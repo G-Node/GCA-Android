@@ -30,7 +30,7 @@ public class Tabs extends TabActivity {
 		addTab("Program", R.drawable.tab_search, GeneralActivity.class);
 		
 		addTab("Abstracts", R.drawable.tab_home,GeneralActivity.class);
-		addTab("Map", R.drawable.tab_search,GeneralActivity.class);
+		addTab("Map", R.drawable.tab_search,LocationMarkers.class);
 	}
 	
 	private void addTab(String labelId, int drawableId, Class<?> c)

@@ -1,0 +1,13 @@
+[
+
+    {
+        "description": "Biocenter of the LMU", 
+        "name": "LMU Biozentrum Martinsried", 
+        "point": {
+            "lat": 48.109306, 
+            "long": 11.459097
+        }, 
+        "type": 1,
+        "cid": "5319197376176516414"
+    }
+]
