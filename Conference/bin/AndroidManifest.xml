@@ -48,7 +48,7 @@
         <activity android:name="LocationMarkers"></activity>
           <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
-            android:value="Your-API-KEY" />
+            android:value="AIzaSyAaCpDF9wClpOLpRsLdsBakrzeBO4V109c" />
     </application>
 
 </manifest>

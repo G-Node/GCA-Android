@@ -9,5 +9,26 @@
         }, 
         "type": 1,
         "cid": "5319197376176516414"
+    },
+        {
+        "description": "", 
+        "name": "Universität München", 
+        "point": {
+            "lat": 48.106901, 
+            "long": 11.453215
+        }, 
+        "type": 1,
+        "cid": "5319197376176516414"
+    },
+        {
+        "description": "", 
+        "name": "Universitätsbibliothek der LMU München - Fachbibliothek Biozentrum", 
+        "point": {
+            "lat": 48.109337, 
+            "long": 11.459875
+        }, 
+        "type": 1,
+        "cid": "5319197376176516414"
     }
+
 ]
