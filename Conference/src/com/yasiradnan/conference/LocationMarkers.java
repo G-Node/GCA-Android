@@ -7,6 +7,7 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -19,23 +20,31 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.util.Log;
 
+import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
+import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.UiSettings;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.MarkerOptions;
 /**
  * @author Adnan
  *
  */
 public class LocationMarkers extends FragmentActivity {
-	
+	private static GoogleMap supportMap;
+	private ArrayList<LatLng> allCoordinates = new ArrayList<LatLng>();
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.location_marker);
+		try {
+		     MapsInitializer.initialize(this);
+		 } catch (GooglePlayServicesNotAvailableException e) {
+		     e.printStackTrace();
+		 }
 		locationMarkers();
 		
 	}
@@ -62,26 +71,34 @@ public class LocationMarkers extends FragmentActivity {
 				double getLng = jsonObject.getJSONObject("point").getDouble("long");
 				String name   = jsonObject.getString("name");
 				LatLng myLoc = new LatLng(getLat, getLng);
-				Log.d("Long", Double.toString(getLng));				
+				allCoordinates.add(myLoc);			
 				FragmentManager fmanager = getSupportFragmentManager();
 		        Fragment fragment = fmanager.findFragmentById(R.id.map);
 				SupportMapFragment supportmapfragment = (SupportMapFragment)fragment;
-				 GoogleMap supportMap = supportmapfragment.getMap();
+				supportMap = supportmapfragment.getMap();
 			        if(supportMap!=null){
-			        	Marker dhaka = supportMap.addMarker(new MarkerOptions().position(myLoc)
+			        	supportMap.addMarker(new MarkerOptions().position(myLoc)
 			        	          .title(name));
-			        	supportMap.moveCamera(CameraUpdateFactory.newLatLngZoom(myLoc, 15));
-			        	supportMap.animateCamera(CameraUpdateFactory.zoomTo(18), 2000, null); 
-			        	/*Set My Current Location Enable*/
-			     		supportMap.setMyLocationEnabled(true);
-			        	supportMap.getUiSettings().setMyLocationButtonEnabled(true);
-			        	/*Set Comapass Enable*/
-			        	supportMap.getUiSettings().setCompassEnabled(true);
-			        	supportMap.getUiSettings().setZoomControlsEnabled(false);
-			
-				
+			        }
+			      
 			}
-			}
+			 LatLngBounds.Builder builder = new LatLngBounds.Builder();
+	        	for(LatLng m :allCoordinates) {
+	        	    builder = builder.include(m);
+	        	    }
+	        	LatLngBounds bounds = builder.build();
+	        	CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, 
+	                    this.getResources().getDisplayMetrics().widthPixels, 
+	                    this.getResources().getDisplayMetrics().heightPixels, 
+	                    50);
+	        	/*move camera*/
+	        	supportMap.moveCamera(cu);
+	        	/*Set Comapass Enable*/
+	        	supportMap.getUiSettings().setCompassEnabled(true);
+	        	/*Set My Current Location Enable*/
+	        	supportMap.setMyLocationEnabled(true);
+	        	supportMap.getUiSettings().setMyLocationButtonEnabled(true);
+	        	
 		} catch (FileNotFoundException e) {
 			Log.e("jsonFile", "file not found");
 		} catch (IOException e) {
