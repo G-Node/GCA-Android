@@ -28,6 +28,7 @@ import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 /**
  * @author Adnan
@@ -71,19 +72,19 @@ public class LocationMarkers extends FragmentActivity {
 				double getLng = jsonObject.getJSONObject("point").getDouble("long");
 				String name   = jsonObject.getString("name");
 				LatLng myLoc = new LatLng(getLat, getLng);
-				allCoordinates.add(myLoc);			
+				allCoordinates.add(myLoc);
 				FragmentManager fmanager = getSupportFragmentManager();
 		        Fragment fragment = fmanager.findFragmentById(R.id.map);
 				SupportMapFragment supportmapfragment = (SupportMapFragment)fragment;
 				supportMap = supportmapfragment.getMap();
 			        if(supportMap!=null){
-			        	supportMap.addMarker(new MarkerOptions().position(myLoc)
+			        supportMap.addMarker(new MarkerOptions().position(myLoc)
 			        	          .title(name));
 			        }
 			      
 			}
 			 LatLngBounds.Builder builder = new LatLngBounds.Builder();
-	        	for(LatLng m :allCoordinates) {
+	        	for(LatLng m : allCoordinates) {
 	        	    builder = builder.include(m);
 	        	    }
 	        	LatLngBounds bounds = builder.build();
@@ -91,20 +92,19 @@ public class LocationMarkers extends FragmentActivity {
 	                    this.getResources().getDisplayMetrics().widthPixels, 
 	                    this.getResources().getDisplayMetrics().heightPixels, 
 	                    50);
-	        	/*move camera*/
-	        	supportMap.moveCamera(cu);
-	        	/*Set Comapass Enable*/
-	        	supportMap.getUiSettings().setCompassEnabled(true);
-	        	/*Set My Current Location Enable*/
-	        	supportMap.setMyLocationEnabled(true);
-	        	supportMap.getUiSettings().setMyLocationButtonEnabled(true);
-	        	
+	        			supportMap.moveCamera(cu);
+	        			/*Set My Current Location Enable*/
+			     		supportMap.setMyLocationEnabled(true);
+			        	supportMap.getUiSettings().setMyLocationButtonEnabled(true);
+			        	/*Set Comapass Enable*/
+			        	supportMap.getUiSettings().setCompassEnabled(true);
+			        	supportMap.getUiSettings().setZoomControlsEnabled(false);
 		} catch (FileNotFoundException e) {
 			Log.e("jsonFile", "file not found");
 		} catch (IOException e) {
 			Log.e("jsonFile", "ioerror");
 		} catch (JSONException e) {
-			Log.e("jsonFile", "error while parsing json");
+			Log.e("jsonFile", Log.getStackTraceString(e));
 		}
 		
 	}

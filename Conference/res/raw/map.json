@@ -72,6 +72,7 @@
     }, 
     {
         "description": "", 
+        "name" : "",
         "point": {
             "lat": 48.127892, 
             "long": 11.588583
