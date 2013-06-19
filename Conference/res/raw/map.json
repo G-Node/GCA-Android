@@ -1,5 +1,35 @@
 [
-
+    {
+        "description": "Enterance: Einsteinstrasse 1",
+	"img": "http://www.architekten24.de/mediadb/news/11142/index.jpg",
+        "name": "Klinikum Rechts der Isar Lecture Halls", 
+        "point": {
+            "lat": 48.135983, 
+            "long": 11.599706
+        }, 
+        "type": 0,
+	"cid" : "510160837290046745"
+    }, 
+    {
+        "description": "Campus Munich City", 
+        "name": "Technische Universit\u00e4t M\u00fcnchen", 
+        "point": {
+            "lat": 48.149494, 
+            "long": 11.567831
+        }, 
+        "type": 1,
+	"cid": "459380363919386213"
+    }, 
+    {
+        "description": "Joint Conference Dinner Location", 
+        "name": "M\u00fcnchner K\u00fcnstlerhaus (Lenbachplatz)", 
+        "point": {
+            "lat": 48.140175, 
+            "long": 11.5676
+        }, 
+        "type": 1,
+	"cid" : "9715630728399769598"
+    }, 
     {
         "description": "Biocenter of the LMU", 
         "name": "LMU Biozentrum Martinsried", 
@@ -8,27 +38,225 @@
             "long": 11.459097
         }, 
         "type": 1,
-        "cid": "5319197376176516414"
-    },
-        {
-        "description": "", 
-        "name": "Universität München", 
+	"cid": "5319197376176516414"
+    }, 
+    {
+        "description": "Hochstra\u00dfe 11", 
+        "name": "Novotel M\u00fcnchen City", 
         "point": {
-            "lat": 48.106901, 
-            "long": 11.453215
+            "lat": 48.129547, 
+            "long": 11.588731
         }, 
-        "type": 1,
-        "cid": "5319197376176516414"
-    },
-        {
-        "description": "", 
-        "name": "Universitätsbibliothek der LMU München - Fachbibliothek Biozentrum", 
+        "type": 2,
+	"cid" : "1997384735751528427"
+    }, 
+    {
+        "description": "Preysingstra\u00dfe 1", 
+        "name": "Hotel Preysing", 
         "point": {
-            "lat": 48.109337, 
-            "long": 11.459875
+            "lat": 48.132389, 
+            "long": 11.591502
         }, 
-        "type": 1,
-        "cid": "5319197376176516414"
+        "type": 2,
+	"cid":"9479883157418406009"
+    }, 
+    {
+        "description": "Effnerstra\u00dfe 99", 
+        "name": "Holiday Inn Munich", 
+        "point": {
+            "lat": 48.159828, 
+            "long": 11.6204
+        }, 
+        "type": 2,
+	"cid" : "12476693871308157739"
+    }, 
+    {
+        "description": "", 
+        "point": {
+            "lat": 48.127892, 
+            "long": 11.588583
+        }, 
+        "type": 2
+    }, 
+    {
+        "description": "", 
+        "name": "Hotel Stadt Rosenheim (Orleansplatz 6a) ", 
+        "point": {
+            "lat": 48.12883, 
+            "long": 11.604263
+        }, 
+        "type": 2
+    }, 
+    {
+        "description": "", 
+        "name": "Hotel Max Emanuel (Rablstra\u00dfe 10) ", 
+        "point": {
+            "lat": 48.127491, 
+            "long": 11.58993
+        }, 
+        "type": 2
+    }, 
+    {
+        "description": "", 
+        "name": "Hilton Munich City (Rosenheimer Str. 15)", 
+        "point": {
+            "lat": 48.129822, 
+            "long": 11.592676
+        }, 
+        "type": 3
+    }, 
+    {
+        "description": "", 
+        "name": "Hotel Op\u00e9ra (St.Anna-Str. 10)", 
+        "point": {
+            "lat": 48.138828, 
+            "long": 11.587017
+        }, 
+        "type": 3
+    }, 
+    {
+        "description": "", 
+        "name": "Sheraton Munich Arabellapark Hotel (Arabellastr. 5)", 
+        "point": {
+            "lat": 48.151146, 
+            "long": 11.618063
+        }, 
+        "type": 3
+    }, 
+    {
+        "description": "", 
+        "name": "Hotel Prinzregent am Friedensengel (Ismaninger Str. 42-44)", 
+        "point": {
+            "lat": 48.139774, 
+            "long": 11.599889
+        }, 
+        "type": 3
+    }, 
+    {
+        "description": "", 
+        "name": "Cosmopolitan Hotel (Hohenzollernstr. 5)", 
+        "point": {
+            "lat": 48.159401, 
+            "long": 11.584187
+        }, 
+        "type": 3
+    }, 
+    {
+        "description": "", 
+        "name": "Hotel Advokat (Baaderstr. 1)", 
+        "point": {
+            "lat": 48.133469, 
+            "long": 11.58189
+        }, 
+        "type": 3
+    }, 
+    {
+        "description": "S-Bahn Station, U1, U2, U4, U5", 
+        "name": "Munich Main Train Station", 
+        "point": {
+            "lat": 48.140347, 
+            "long": 11.558626
+        }, 
+        "type": 4,
+	"cid":"12476693871308157739"
+    }, 
+    {
+        "description": "Service Number: +49 89 975 00",
+        "name": "Munich Airport", 
+        "point": {
+            "lat": 48.350773, 
+            "long": 11.782837
+        }, 
+        "type": 4,
+	"cid": "8731162758777710474"
+    }, 
+    {
+        "description": "Bavarian Cuisine", 
+        "name": "Unions-Br\u00e4u-Haidhausen", 
+        "point": {
+            "lat": 48.135422, 
+            "long": 11.600833
+        }, 
+        "type": 5,
+	"cid" : "2960754823424896461"
+    }, 
+    {
+        "description": "Italian Cuisine", 
+        "name": "Gastst\u00e4tte Pinguin", 
+        "point": {
+            "lat": 48.135387, 
+            "long": 11.598575
+        }, 
+        "type": 5,
+	"cid" : "12863615832582894329"
+    }, 
+    {
+        "description": "Restaurant", 
+        "name": "Kleine Orchidee\u200e", 
+        "point": {
+            "lat": 48.135509, 
+            "long": 11.60226
+        }, 
+        "type": 5,
+	"cid":"17527942899322630423"
+    }, 
+    {
+        "description": "French Cuisine", 
+        "name": "Le Faubourg",
+        "point": {
+            "lat": 48.134811, 
+            "long": 11.598392
+        }, 
+        "type": 5,
+	"cid":"11524307793751141804"
+    }, 
+    {
+        "description": "Greek Cuisine", 
+        "name": "Paros Taverne", 
+        "point": {
+            "lat": 48.133835, 
+            "long": 11.601766
+        }, 
+        "type": 5,
+	"cid" : "12065654050654768607"
+    }, 
+    {
+        "description": "Indian Cuisine", 
+        "name": "Safran", 
+        "point": {
+            "lat": 48.133671, 
+            "long": 11.596445
+        }, 
+        "type": 5,
+	"cid":"10105999442574587647"
+    }, 
+    {
+        "description": "Bavarian Cuisine", 
+        "name": "Hofbr\u00e4u Keller", 
+        "point": {
+            "lat": 48.133995, 
+            "long": 11.595364
+        }, 
+        "type": 5,
+	"cid" : "7949539009245648199"
+    }, 
+    {
+        "description": "Mediterranean Cuisine", 
+        "name": "Restaurant Preysinggarten\u200e", 
+        "point": {
+            "lat": 48.132423, 
+            "long": 11.599323
+        }, 
+        "type": 5,
+	"cid":"5091070620070536713"
+    }, 
+    {
+        "description": "Cafteria of the Univerisity Hospital", 
+        "name": "Cafeteria Maiswinkel Klinikum rechts der Isar", 
+        "point": {
+            "lat": 48.136143, 
+            "long": 11.599411
+        }, 
+        "type": 5
     }
-
 ]
