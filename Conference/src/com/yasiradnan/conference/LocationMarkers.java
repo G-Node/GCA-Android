@@ -26,15 +26,16 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
-import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 /**
  * @author Adnan
  *
  */
 public class LocationMarkers extends FragmentActivity {
+
 	private static GoogleMap supportMap;
 	private ArrayList<LatLng> allCoordinates = new ArrayList<LatLng>();
 	@Override
@@ -70,6 +71,7 @@ public class LocationMarkers extends FragmentActivity {
 				JSONObject jsonObject = jsonArray.getJSONObject(index);
 				double getLat = jsonObject.getJSONObject("point").getDouble("lat");
 				double getLng = jsonObject.getJSONObject("point").getDouble("long");
+				int gettype = jsonObject.getInt("type");
 				String name   = jsonObject.getString("name");
 				LatLng myLoc = new LatLng(getLat, getLng);
 				allCoordinates.add(myLoc);
@@ -78,8 +80,42 @@ public class LocationMarkers extends FragmentActivity {
 				SupportMapFragment supportmapfragment = (SupportMapFragment)fragment;
 				supportMap = supportmapfragment.getMap();
 			        if(supportMap!=null){
-			        supportMap.addMarker(new MarkerOptions().position(myLoc)
-			        	          .title(name));
+			        	/*implementing custom markers for different location's*/
+			        	switch (gettype) {
+						case 0:
+							/*Conference Venue Marker*/
+							supportMap.addMarker(new MarkerOptions().position(myLoc)
+				        	          .title(name).icon(BitmapDescriptorFactory.fromResource(R.drawable.conference)));
+							break;
+						case 1:
+							/*University Marker*/
+							supportMap.addMarker(new MarkerOptions().position(myLoc)
+				        	          .title(name).icon(BitmapDescriptorFactory.fromResource(R.drawable.university)));
+							break;
+						case 2:
+							/*Hotel -1 Marker*/
+							supportMap.addMarker(new MarkerOptions().position(myLoc)
+				        	          .title(name).icon(BitmapDescriptorFactory.fromResource(R.drawable.hotel_1)));
+							break;
+						case 3:
+							/*Hotel -2 Marker*/
+							supportMap.addMarker(new MarkerOptions().position(myLoc)
+				        	          .title(name).icon(BitmapDescriptorFactory.fromResource(R.drawable.hotel_2)));
+							break;
+						case 4:
+							/*Transport Marker*/
+							supportMap.addMarker(new MarkerOptions().position(myLoc)
+				        	          .title(name).icon(BitmapDescriptorFactory.fromResource(R.drawable.transport)));
+							break;
+						case 5:
+							/*Food Marker*/
+							supportMap.addMarker(new MarkerOptions().position(myLoc)
+				        	          .title(name).icon(BitmapDescriptorFactory.fromResource(R.drawable.food)));
+							break;
+
+						default:
+							break;
+						}
 			        }
 			      
 			}
@@ -98,6 +134,7 @@ public class LocationMarkers extends FragmentActivity {
 			        	supportMap.getUiSettings().setMyLocationButtonEnabled(true);
 			        	/*Set Comapass Enable*/
 			        	supportMap.getUiSettings().setCompassEnabled(true);
+			        	/*Set ZoomControl Enable*/
 			        	supportMap.getUiSettings().setZoomControlsEnabled(false);
 		} catch (FileNotFoundException e) {
 			Log.e("jsonFile", "file not found");

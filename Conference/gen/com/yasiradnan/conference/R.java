@@ -189,15 +189,21 @@ containing a value of this type.
         public static final int common_signin_btn_text_normal_light=0x7f020016;
         public static final int common_signin_btn_text_pressed_dark=0x7f020017;
         public static final int common_signin_btn_text_pressed_light=0x7f020018;
-        public static final int ic_launcher=0x7f020019;
-        public static final int info=0x7f02001a;
-        public static final int tab_focus=0x7f02001b;
-        public static final int tab_home=0x7f02001c;
-        public static final int tab_indicator=0x7f02001d;
-        public static final int tab_press=0x7f02001e;
-        public static final int tab_search=0x7f02001f;
-        public static final int tab_selected=0x7f020020;
-        public static final int tab_unselected=0x7f020021;
+        public static final int conference=0x7f020019;
+        public static final int food=0x7f02001a;
+        public static final int hotel_1=0x7f02001b;
+        public static final int hotel_2=0x7f02001c;
+        public static final int ic_launcher=0x7f02001d;
+        public static final int info=0x7f02001e;
+        public static final int tab_focus=0x7f02001f;
+        public static final int tab_home=0x7f020020;
+        public static final int tab_indicator=0x7f020021;
+        public static final int tab_press=0x7f020022;
+        public static final int tab_search=0x7f020023;
+        public static final int tab_selected=0x7f020024;
+        public static final int tab_unselected=0x7f020025;
+        public static final int transport=0x7f020026;
+        public static final int university=0x7f020027;
     }
     public static final class id {
         public static final int action_settings=0x7f060009;
