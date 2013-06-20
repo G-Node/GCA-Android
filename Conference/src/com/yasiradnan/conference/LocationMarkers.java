@@ -69,12 +69,24 @@ public class LocationMarkers extends FragmentActivity {
 			{
 				
 				JSONObject jsonObject = jsonArray.getJSONObject(index);
+				/*get Latitude*/
 				double getLat = jsonObject.getJSONObject("point").getDouble("lat");
+				/*get Longitude*/
 				double getLng = jsonObject.getJSONObject("point").getDouble("long");
+				/*get Location Type*/
 				int gettype = jsonObject.getInt("type");
+				/**/
+				int getZoomto = jsonObject.getInt("zoomto");
+				/*Venue name*/
 				String name   = jsonObject.getString("name");
+				/**/
 				LatLng myLoc = new LatLng(getLat, getLng);
-				allCoordinates.add(myLoc);
+				if(getZoomto == 1)
+				{	
+					/*only Food and Venue*/
+					allCoordinates.add(myLoc);
+					
+				}
 				FragmentManager fmanager = getSupportFragmentManager();
 		        Fragment fragment = fmanager.findFragmentById(R.id.map);
 				SupportMapFragment supportmapfragment = (SupportMapFragment)fragment;
@@ -119,6 +131,8 @@ public class LocationMarkers extends FragmentActivity {
 			        }
 			      
 			}
+			
+			 /*Automatic zoom level*/
 			 LatLngBounds.Builder builder = new LatLngBounds.Builder();
 	        	for(LatLng m : allCoordinates) {
 	        	    builder = builder.include(m);
@@ -128,6 +142,7 @@ public class LocationMarkers extends FragmentActivity {
 	                    this.getResources().getDisplayMetrics().widthPixels, 
 	                    this.getResources().getDisplayMetrics().heightPixels, 
 	                    50);
+	        			/*Move Camera*/
 	        			supportMap.moveCamera(cu);
 	        			/*Set My Current Location Enable*/
 			     		supportMap.setMyLocationEnabled(true);
