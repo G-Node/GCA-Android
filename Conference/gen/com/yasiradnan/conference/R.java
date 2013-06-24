@@ -32,35 +32,64 @@ public final class R {
         public static final int tab_space_unselected_top=0x7f060007;
     }
     public static final class drawable {
-        public static final int bg=0x7f020000;
-        public static final int conference=0x7f020001;
-        public static final int food=0x7f020002;
-        public static final int hotel_1=0x7f020003;
-        public static final int hotel_2=0x7f020004;
-        public static final int ic_launcher=0x7f020005;
-        public static final int info=0x7f020006;
-        public static final int tab_focus=0x7f020007;
-        public static final int tab_home=0x7f020008;
-        public static final int tab_indicator=0x7f020009;
-        public static final int tab_press=0x7f02000a;
-        public static final int tab_search=0x7f02000b;
-        public static final int tab_selected=0x7f02000c;
-        public static final int tab_unselected=0x7f02000d;
-        public static final int transport=0x7f02000e;
-        public static final int university=0x7f02000f;
+        public static final int arrow=0x7f020000;
+        public static final int arrow_selector_left=0x7f020001;
+        public static final int arrow_selector_right=0x7f020002;
+        public static final int bg=0x7f020003;
+        public static final int border=0x7f020004;
+        public static final int conference=0x7f020005;
+        public static final int food=0x7f020006;
+        public static final int gradient_bg=0x7f020007;
+        public static final int gradient_bg_day=0x7f020008;
+        public static final int gradient_bg_hover=0x7f020009;
+        public static final int grey_left=0x7f02000a;
+        public static final int grey_right=0x7f02000b;
+        public static final int hotel_1=0x7f02000c;
+        public static final int hotel_2=0x7f02000d;
+        public static final int ic_launcher=0x7f02000e;
+        public static final int info=0x7f02000f;
+        public static final int list_selector=0x7f020010;
+        public static final int tab_focus=0x7f020011;
+        public static final int tab_home=0x7f020012;
+        public static final int tab_indicator=0x7f020013;
+        public static final int tab_press=0x7f020014;
+        public static final int tab_search=0x7f020015;
+        public static final int tab_selected=0x7f020016;
+        public static final int tab_unselected=0x7f020017;
+        public static final int transport=0x7f020018;
+        public static final int university=0x7f020019;
+        public static final int white_left=0x7f02001a;
+        public static final int white_right=0x7f02001b;
     }
     public static final class id {
-        public static final int action_settings=0x7f0a0004;
-        public static final int icon=0x7f0a0002;
-        public static final int map=0x7f0a0001;
+        public static final int action_settings=0x7f0a000e;
+        public static final int ibLeft=0x7f0a0008;
+        public static final int ibRight=0x7f0a000a;
+        public static final int icon=0x7f0a000c;
+        public static final int itemArrow=0x7f0a0006;
+        public static final int list=0x7f0a000b;
+        public static final int map=0x7f0a0007;
+        public static final int pager=0x7f0a0001;
         public static final int text=0x7f0a0000;
-        public static final int title=0x7f0a0003;
+        public static final int textView1=0x7f0a0002;
+        public static final int textView2=0x7f0a0003;
+        public static final int title=0x7f0a000d;
+        public static final int tvDay=0x7f0a0009;
+        public static final int tvTime=0x7f0a0004;
+        public static final int tvTitle=0x7f0a0005;
     }
     public static final class layout {
         public static final int activity_general=0x7f030000;
-        public static final int location_marker=0x7f030001;
-        public static final int main=0x7f030002;
-        public static final int tab_indicator=0x7f030003;
+        public static final int activity_screen_slide=0x7f030001;
+        public static final int content_extended=0x7f030002;
+        public static final int list_break=0x7f030003;
+        public static final int list_event_with_content=0x7f030004;
+        public static final int list_event_without_content=0x7f030005;
+        public static final int list_separator=0x7f030006;
+        public static final int location_marker=0x7f030007;
+        public static final int main=0x7f030008;
+        public static final int schedule=0x7f030009;
+        public static final int tab_indicator=0x7f03000a;
     }
     public static final class menu {
         public static final int general=0x7f090000;
