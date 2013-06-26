@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.yasiradnan.conference;
+package com.yasiradnan.location;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -30,6 +30,11 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.yasiradnan.conference.R;
+import com.yasiradnan.conference.R.drawable;
+import com.yasiradnan.conference.R.id;
+import com.yasiradnan.conference.R.layout;
+import com.yasiradnan.conference.R.raw;
 /**
  * @author Adnan
  *
