@@ -45,10 +45,12 @@
         <activity
             android:name="com.yasiradnan.conference.GeneralActivity">
         </activity>
-        <activity android:name="LocationMarkers"></activity>
+        <activity android:name="com.yasiradnan.location.LocationMarkers"></activity>
           <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
-            android:value="AIzaSyAaCpDF9wClpOLpRsLdsBakrzeBO4V109c" />
+            android:value="API_KEY" />
+          <activity android:name="com.yasiradnan.Schedule.ScheduleMainActivity"></activity>
+          <activity android:name="com.yasiradnan.Schedule.ContentExtended"></activity>
     </application>
 
 </manifest>
