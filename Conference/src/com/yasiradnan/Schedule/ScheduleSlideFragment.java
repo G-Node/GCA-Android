@@ -1,3 +1,8 @@
+/*
+ * Copyright (c) 2013, Ivan Mylyanyk
+ * License: BSD-2 (see LICENSE)
+ * 
+ * */
 package com.yasiradnan.Schedule;
 
 import java.io.BufferedReader;
@@ -30,8 +35,6 @@ public class ScheduleSlideFragment extends Fragment {
 	static final List<ScheduleItem> dayOne = new ArrayList<ScheduleItem>();
 	static final List<ScheduleItem> dayTwo = new ArrayList<ScheduleItem>();
 	static final List<ScheduleItem> dayThree = new ArrayList<ScheduleItem>();
-	ListView lv1;
-	ListView lv2;
 	final static String ARG_PAGE = "page";
 	private static ViewPager pager;
 	private static int pageNumber;
@@ -53,8 +56,7 @@ public class ScheduleSlideFragment extends Fragment {
 				
 				for (int index = 0; index < jsonArray.length(); index++) 
 				{
-					//Set both values into the listview
-					Log.e("Taga", String.valueOf(index));
+		
 					JSONObject jsonObject = jsonArray.getJSONObject(index);
 					String getDate = jsonObject.getString("date");
 					/**/
@@ -62,183 +64,151 @@ public class ScheduleSlideFragment extends Fragment {
 					{
 						if("12.09.2012".equalsIgnoreCase(getDate))
 				            {
-							JSONArray Onejson = new JSONArray(jsonObject.getString("events"));
+								JSONArray Onejson = new JSONArray(jsonObject.getString("events"));
 							
-							for(int i =0 ; i<Onejson.length();i++)
-							{
-								JSONObject jsonObject1 = (JSONObject) Onejson.get(i);
-								String time = jsonObject1.getString("time");
-								Log.d("KEY Time", time );
-								
-					            String type= jsonObject1.getString("type"); 
-					            Log.d("KEY Type", type );
-					           
-					            String title= jsonObject1.getString("title");
-					            Log.d("KEY Title",title);
-					           
-					            int typeId = jsonObject1.getInt("type_id");
-					           // aa.add(new ScheduleItem(time, title, typeId));
-					           dayOne.add(new ScheduleItem(time, title, typeId, getDate));
-					            //Getting nesting Events
-					            
-					            /**/
-					            if(typeId ==0)
-					            {
-					            	JSONArray twoJson = new JSONArray(jsonObject1.getString("events"));
-					            
-					            	for(int j=0; j< twoJson.length() ; j++){
-					            	JSONObject  anotherEvent = (JSONObject) twoJson.get(j);
-						          
-						            int typeEventId = anotherEvent.getInt("type_id");
-						  
-					            	if(typeEventId == 1)
-					            	{
-					            		String EventInfo= anotherEvent.getString("info");
-					            		String EventType = anotherEvent.getString("type"); 
-					            		String EventTitle= anotherEvent.getString("title");
-					            		String Eventtime = anotherEvent.getString("time");
-					            		Log.d("Key_match", EventInfo);
-					            		dayOne.add(new ScheduleItem(Eventtime, EventTitle, EventInfo, typeEventId,getDate));
+								for(int i =0 ; i<Onejson.length();i++)
+								{
+									JSONObject jsonObject1 = (JSONObject) Onejson.get(i);
+									String time = jsonObject1.getString("time");
+									String type= jsonObject1.getString("type"); 
+									String title= jsonObject1.getString("title");
+									// Log.d("KEY Title",title);
+									int typeId = jsonObject1.getInt("type_id");
+									dayOne.add(new ScheduleItem(time, title, typeId, getDate));
+									//Getting nesting Events
+									/**/
+									if(typeId ==0)
+									{
+										JSONArray twoJson = new JSONArray(jsonObject1.getString("events"));
+										for(int j=0; j< twoJson.length() ; j++)
+										{
+											JSONObject  anotherEvent = (JSONObject) twoJson.get(j);
+											int typeEventId = anotherEvent.getInt("type_id");
+											if(typeEventId == 1)
+											{
+												String EventInfo= anotherEvent.getString("info");
+												String EventType = anotherEvent.getString("type"); 
+												String EventTitle= anotherEvent.getString("title");
+												String Eventtime = anotherEvent.getString("time");
+												dayOne.add(new ScheduleItem(Eventtime, EventTitle, EventInfo, typeEventId,getDate));
 					            	
-					            	}
-					            	else
-					            	{
-					            		String EventType = anotherEvent.getString("type"); 
-						            	String EventTitle= anotherEvent.getString("title");
-						            	String Eventtime = anotherEvent.getString("time");
-						            	dayOne.add(new ScheduleItem(Eventtime, EventTitle, typeEventId,getDate));
-					            	}
+											}
+											else
+											{
+												String EventType = anotherEvent.getString("type"); 
+												String EventTitle= anotherEvent.getString("title");
+												String Eventtime = anotherEvent.getString("time");
+												dayOne.add(new ScheduleItem(Eventtime, EventTitle, typeEventId,getDate));
+											}
 					           
-					             }
-					         }
-					    }
-				            	
-				            }//end of 12
-					}//end of flag
+										}
+									}
+								}
+				            }
+					}//end of dayOne
 					if(dayTwo.isEmpty())
 					{
 				        if("13.09.2012".equalsIgnoreCase(getDate))
 				        	{
-				        	JSONArray Twojson = new JSONArray(jsonObject.getString("events"));
+				        		JSONArray Twojson = new JSONArray(jsonObject.getString("events"));
 							
-							for(int i =0 ; i<Twojson.length();i++)
-							{
-								JSONObject jsonObject1 = (JSONObject) Twojson.get(i);
-								String time = jsonObject1.getString("time");
-								Log.d("KEY Time", time );
-								
-					            String type= jsonObject1.getString("type"); 
-					            Log.d("KEY Type", type );
-					           
-					            String title= jsonObject1.getString("title");
-					            Log.d("KEY Title",title);
-					           
-					            int typeId = jsonObject1.getInt("type_id");
-					           // aa.add(new ScheduleItem(time, title, typeId));
-					          dayTwo.add(new ScheduleItem(time, title, typeId, getDate));
-					            //Getting nesting Events
+				        		for(int i =0 ; i<Twojson.length();i++)
+				        		{
+				        			JSONObject jsonObject1 = (JSONObject) Twojson.get(i);
+				        			String time = jsonObject1.getString("time");
+				        			String type= jsonObject1.getString("type"); 
+				        			String title= jsonObject1.getString("title");
+				        			int typeId = jsonObject1.getInt("type_id");
+				        			dayTwo.add(new ScheduleItem(time, title, typeId, getDate));
+				        			//Getting nesting Events
 					            
-					            /**/
-					            if(typeId ==0)
-					            {
-					            	JSONArray twoJson = new JSONArray(jsonObject1.getString("events"));
+				        			/**/
+				        			if(typeId ==0)
+				        			{
+				        				JSONArray twoJson = new JSONArray(jsonObject1.getString("events"));
 					            
-					            	for(int j=0; j< twoJson.length() ; j++){
-					            	JSONObject  anotherEvent = (JSONObject) twoJson.get(j);
+				        				for(int j=0; j< twoJson.length() ; j++)
+				        				{
+				        					JSONObject  anotherEvent = (JSONObject) twoJson.get(j);
 						          
-						            int typeEventId = anotherEvent.getInt("type_id");
+				        					int typeEventId = anotherEvent.getInt("type_id");
 						  
-					            	if(typeEventId == 1)
-					            	{
-					            		String EventInfo= anotherEvent.getString("info");
-					            		String EventType = anotherEvent.getString("type"); 
-					            		String EventTitle= anotherEvent.getString("title");
-					            		String Eventtime = anotherEvent.getString("time");
-					            		Log.d("Key_match", EventInfo);
-					            		dayTwo.add(new ScheduleItem(Eventtime, EventTitle, EventInfo, typeEventId,getDate));
+				        					if(typeEventId == 1)
+				        					{
+				        						String EventInfo= anotherEvent.getString("info");
+				        						String EventType = anotherEvent.getString("type"); 
+				        						String EventTitle= anotherEvent.getString("title");
+				        						String Eventtime = anotherEvent.getString("time"); 
+				        						dayTwo.add(new ScheduleItem(Eventtime, EventTitle, EventInfo, typeEventId,getDate));
 					            	
-					            	}
-					            	else
-					            	{
-					            		String EventType = anotherEvent.getString("type"); 
-						            	String EventTitle= anotherEvent.getString("title");
-						            	String Eventtime = anotherEvent.getString("time");
-						            	dayTwo.add(new ScheduleItem(Eventtime, EventTitle, typeEventId,getDate));
-					            	}
-					           
-					             }
-					         }
-					    }
-				            	
-				            	
-				            }//end of 123
-					}//end of flag
+				        					}
+				        					else
+				        					{
+				        						String EventType = anotherEvent.getString("type"); 
+				        						String EventTitle= anotherEvent.getString("title");
+				        						String Eventtime = anotherEvent.getString("time");
+				        						dayTwo.add(new ScheduleItem(Eventtime, EventTitle, typeEventId,getDate));
+				        					}
+				        				}
+				        			}	
+				        		}
+				        	 }
+					}//end of dayTwo
 					if(dayThree.isEmpty())
 					{
-						
-					
 						if("14.09.2012".equalsIgnoreCase(getDate))
 				         	{
-				        	 JSONArray Threejson = new JSONArray(jsonObject.getString("events"));
+								JSONArray Threejson = new JSONArray(jsonObject.getString("events"));
 								
 								for(int i =0 ; i<Threejson.length();i++)
-								{
-									JSONObject jsonObject1 = (JSONObject) Threejson.get(i);
-									String time = jsonObject1.getString("time");
-									Log.d("KEY Time", time );
-									
-						            String type= jsonObject1.getString("type"); 
-						            Log.d("KEY Type", type );
-						           
-						            String title= jsonObject1.getString("title");
-						            Log.d("KEY Title",title);
-						           
-						            int typeId = jsonObject1.getInt("type_id");
-						           // aa.add(new ScheduleItem(time, title, typeId));
-						           dayThree.add(new ScheduleItem(time, title, typeId, getDate));
-						            //Getting nesting Events
+									{
+										JSONObject jsonObject1 = (JSONObject) Threejson.get(i);
+										String time = jsonObject1.getString("time");
+										String type= jsonObject1.getString("type"); 
+										String title= jsonObject1.getString("title");
+										int typeId = jsonObject1.getInt("type_id");
+										dayThree.add(new ScheduleItem(time, title, typeId, getDate));
+										//Getting nesting Events
 						            
-						            /**/
-						            if(typeId ==0)
-						            {
-						            	JSONArray twoJson = new JSONArray(jsonObject1.getString("events"));
+										/**/
+										if(typeId ==0)
+										{
+						            		JSONArray twoJson = new JSONArray(jsonObject1.getString("events"));
 						            
-						            	for(int j=0; j< twoJson.length() ; j++){
-						            	JSONObject  anotherEvent = (JSONObject) twoJson.get(j);
+						            		for(int j=0; j< twoJson.length() ; j++){
+						            			JSONObject  anotherEvent = (JSONObject) twoJson.get(j);
 							          
-							            int typeEventId = anotherEvent.getInt("type_id");
+						            			int typeEventId = anotherEvent.getInt("type_id");
 							  
-						            	if(typeEventId == 1)
-						            	{
-						            		String EventInfo= anotherEvent.getString("info");
-						            		String EventType = anotherEvent.getString("type"); 
-						            		String EventTitle= anotherEvent.getString("title");
-						            		String Eventtime = anotherEvent.getString("time");
-						            		Log.d("Key_match", EventInfo);
-						            		dayThree.add(new ScheduleItem(Eventtime, EventTitle, EventInfo, typeEventId,getDate));
+						            			if(typeEventId == 1)
+						            			{
+						            				String EventInfo= anotherEvent.getString("info");
+						            				String EventType = anotherEvent.getString("type"); 
+						            				String EventTitle= anotherEvent.getString("title");
+						            				String Eventtime = anotherEvent.getString("time");
+						            				dayThree.add(new ScheduleItem(Eventtime, EventTitle, EventInfo, typeEventId,getDate));
 						            	
-						            	}
-						            	else
-						            	{
-						            		String EventType = anotherEvent.getString("type"); 
-							            	String EventTitle= anotherEvent.getString("title");
-							            	String Eventtime = anotherEvent.getString("time");
-							            	dayThree.add(new ScheduleItem(Eventtime, EventTitle, typeEventId,getDate));
-						            	}
+						            			}
+						            			else
+						            			{
+						            				String EventType = anotherEvent.getString("type"); 
+						            				String EventTitle= anotherEvent.getString("title");
+						            				String Eventtime = anotherEvent.getString("time");
+						            				dayThree.add(new ScheduleItem(Eventtime, EventTitle, typeEventId,getDate));
+						            			}
 						           
-						             }
-						         }
-						    }
-				            	
-				            	
-				            }//
-					}//flag
-				    }
+						            		}
+										}	
+									}
+				         		}
+							}
+						}
 				
-			}//for index
-			catch (Exception e) {
-			Log.getStackTraceString(e);
-		}
+					}
+			catch (Exception e) 
+			{
+				Log.getStackTraceString(e);
+			}
 	}
 	@Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

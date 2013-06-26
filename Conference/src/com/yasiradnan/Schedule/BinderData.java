@@ -1,5 +1,8 @@
-//Copyright (c) 2013, Ivan Mylyanyk
-//License: BSD-2 (see LICENSE)
+/*
+ * Copyright (c) 2013, Ivan Mylyanyk
+ * License: BSD-2 (see LICENSE)
+ * 
+ * */
 package com.yasiradnan.Schedule;
 
 import java.util.List;
