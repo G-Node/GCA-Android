@@ -1,7 +1,7 @@
 /*
  * Copyright (c) 2013, Ivan Mylyanyk
  * License: BSD-2 (see LICENSE)
- * 
+ * Added Swicth cases as Integer
  * */
 package com.yasiradnan.Schedule;
 

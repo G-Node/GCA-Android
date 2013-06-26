@@ -1,7 +1,9 @@
 /*
  * Copyright (c) 2013, Ivan Mylyanyk
  * License: BSD-2 (see LICENSE)
- * 
+ * This code was modified with Author permission.
+ * Modifications:
+ * Added Scrollable info(TextView)
  * */
 package com.yasiradnan.Schedule;
 

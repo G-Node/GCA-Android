@@ -2,13 +2,19 @@
  * Copyright (c) 2013, Ivan Mylyanyk
  * License: BSD-2 (see LICENSE)
  * 
+ * This code was modified with Author permission.
+ * Modifications:
+ * Added 3 ArrayList
+ * Defined Pages = 3
+ * Added JSON parsing function
+ * Implement switch statement for shwoing page specific list
+ * 
  * */
 package com.yasiradnan.Schedule;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import org.json.JSONArray;
