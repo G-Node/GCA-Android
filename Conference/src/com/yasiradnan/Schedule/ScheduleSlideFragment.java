@@ -46,11 +46,14 @@ public class ScheduleSlideFragment extends Fragment {
 
     private static int pageNumber;
 
-    final static int PAGE_NUM = ScheduleMainActivity.NUM_PAGES;
+    final static int totalPages = ScheduleMainActivity.totalPages;
 
-    public List<ScheduleItem>[] d = (ArrayList<ScheduleItem>[])new ArrayList[PAGE_NUM];
+    @SuppressWarnings("unchecked")
+    public List<ScheduleItem>[] data = (ArrayList<ScheduleItem>[])new ArrayList[totalPages];
 
-    private void jsonParseData() {
+    public int getPageNumber;
+
+    private void jsonParseData(int _getPageNumber) {
         try {
             BufferedReader jsonReader = new BufferedReader(new InputStreamReader(this
                     .getResources().openRawResource(R.raw.program)));
@@ -62,52 +65,50 @@ public class ScheduleSlideFragment extends Fragment {
             // Parse Json
             JSONTokener tokener = new JSONTokener(jsonBuilder.toString());
             JSONArray jsonArray = new JSONArray(tokener);
+            _getPageNumber = getPageNumber;
+            data[_getPageNumber] = new ArrayList<ScheduleItem>();
+            JSONObject jsonObject = jsonArray.getJSONObject(_getPageNumber);
+            String getDate = jsonObject.getString("date");
+            JSONArray getFirstArray = new JSONArray(jsonObject.getString("events"));
 
-            for (int index = 0; index < jsonArray.length(); index++) {
+            for (int i = 0; i < getFirstArray.length(); i++) {
 
-                d[index] = new ArrayList<ScheduleItem>();
-                JSONObject jsonObject = jsonArray.getJSONObject(index);
-                String getDate = jsonObject.getString("date");
-                JSONArray getFirstArray = new JSONArray(jsonObject.getString("events"));
+                JSONObject getJSonObj = (JSONObject)getFirstArray.get(i);
+                String time = getJSonObj.getString("time");
+                //Log.e("Time Log",time);
+                String type = getJSonObj.getString("type");
+                String title = getJSonObj.getString("title");
+                int typeId = getJSonObj.getInt("type_id");
 
-                for (int i = 0; i < getFirstArray.length(); i++) {
+                data[_getPageNumber].add(new ScheduleItem(time, title, typeId, getDate));
 
-                    JSONObject getJSonObj = (JSONObject)getFirstArray.get(i);
-                    String time = getJSonObj.getString("time");
-                    String type = getJSonObj.getString("type");
-                    String title = getJSonObj.getString("title");
-                    int typeId = getJSonObj.getInt("type_id");
+                /*
+                 * Get Events
+                 */
+                if (typeId == 0) {
 
-                    d[index].add(new ScheduleItem(time, title, typeId, getDate));
+                    JSONArray getEventsArray = new JSONArray(getJSonObj.getString("events"));
 
-                    /*
-                     * Get Events
-                     */
-                    if (typeId == 0) {
+                    for (int j = 0; j < getEventsArray.length(); j++) {
 
-                        JSONArray getEventsArray = new JSONArray(getJSonObj.getString("events"));
+                        JSONObject getJSonEventobj = (JSONObject)getEventsArray.get(j);
+                        int typeEventId = getJSonEventobj.getInt("type_id");
 
-                        for (int j = 0; j < getEventsArray.length(); j++) {
+                        if (typeEventId == 1) {
 
-                            JSONObject getJSonEventobj = (JSONObject)getEventsArray.get(j);
-                            int typeEventId = getJSonEventobj.getInt("type_id");
+                            String EventInfo = getJSonEventobj.getString("info");
+                            String EventType = getJSonEventobj.getString("type");
+                            String EventTitle = getJSonEventobj.getString("title");
+                            String Eventtime = getJSonEventobj.getString("time");
+                            data[_getPageNumber].add(new ScheduleItem(Eventtime, EventTitle, EventInfo,
+                                    typeEventId, getDate));
+                        } else {
 
-                            if (typeEventId == 1) {
-
-                                String EventInfo = getJSonEventobj.getString("info");
-                                String EventType = getJSonEventobj.getString("type");
-                                String EventTitle = getJSonEventobj.getString("title");
-                                String Eventtime = getJSonEventobj.getString("time");
-                                d[index].add(new ScheduleItem(Eventtime, EventTitle, EventInfo,
-                                        typeEventId, getDate));
-                            } else {
-
-                                String EventType = getJSonEventobj.getString("type");
-                                String EventTitle = getJSonEventobj.getString("title");
-                                String Eventtime = getJSonEventobj.getString("time");
-                                d[index].add(new ScheduleItem(Eventtime, EventTitle, typeEventId,
-                                        getDate));
-                            }
+                            String EventType = getJSonEventobj.getString("type");
+                            String EventTitle = getJSonEventobj.getString("title");
+                            String Eventtime = getJSonEventobj.getString("time");
+                            data[_getPageNumber].add(new ScheduleItem(Eventtime, EventTitle, typeEventId,
+                                    getDate));
                         }
                     }
                 }
@@ -120,30 +121,34 @@ public class ScheduleSlideFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         ViewGroup rootView = (ViewGroup)inflater.inflate(R.layout.schedule, container, false);
-        /** JSON Parsing */
-        jsonParseData();
-        /** Set header date */
-        ((TextView)rootView.findViewById(R.id.tvDay)).setText(d[pageNumber].get(pageNumber).getDate().toString());
+        getPageNumber = pageNumber;
+        /** 
+         * JSON Parsing 
+         */
+        jsonParseData(getPageNumber);
+        /**
+         * Set header date 
+         */
+        ((TextView)rootView.findViewById(R.id.tvDay)).setText(data[pageNumber].get(pageNumber).getDate().toString());
         final ListView list = (ListView)rootView.findViewById(R.id.list);
-        BinderData bindingData = new BinderData(this.getActivity(), d[pageNumber]);
+        BinderData bindingData = new BinderData(this.getActivity(), data[pageNumber]);
         list.setAdapter(bindingData);
-       
+
         list.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> a, View v, int position, long id) {
-                Log.e("PageNumberOP", String.valueOf(pager.getCurrentItem()));
-                if (d[pager.getCurrentItem()].get(position).getItemType() == 0
-                               || d[pager.getCurrentItem()].get(position).getItemType() == 3
-                               || d[pager.getCurrentItem()].get(position).getItemType() == 2)
+                if (data[pager.getCurrentItem()].get(position).getItemType() == 0
+                        || data[pager.getCurrentItem()].get(position).getItemType() == 3
+                        || data[pager.getCurrentItem()].get(position).getItemType() == 2)
                     return;
                 Intent intent = new Intent(ScheduleSlideFragment.this.getActivity(),
-                               ContentExtended.class);
-                intent.putExtra("title", d[pager.getCurrentItem()].get(position).getTitle());
-                intent.putExtra("content", d[pager.getCurrentItem()].get(position).getContent());
+                        ContentExtended.class);
+                intent.putExtra("title", data[pager.getCurrentItem()].get(position).getTitle());
+                intent.putExtra("content", data[pager.getCurrentItem()].get(position).getContent());
                 startActivity(intent);
             }
         });
-        
+
         ImageButton ibLeft = (ImageButton)rootView.findViewById(R.id.ibLeft);
         if (pageNumber == 0)
             ibLeft.setVisibility(View.INVISIBLE);
@@ -160,7 +165,7 @@ public class ScheduleSlideFragment extends Fragment {
         });
 
         ImageButton ibRight = (ImageButton)rootView.findViewById(R.id.ibRight);
-        if (pageNumber + 1 == PAGE_NUM)
+        if (pageNumber + 1 == totalPages)
             ibRight.setVisibility(View.INVISIBLE);
         else
             ibRight.setVisibility(View.VISIBLE);
@@ -168,7 +173,7 @@ public class ScheduleSlideFragment extends Fragment {
         ibRight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (pager.getCurrentItem() < PAGE_NUM)
+                if (pager.getCurrentItem() < totalPages)
                     pager.setCurrentItem(pager.getCurrentItem() + 1, true);
             }
         });

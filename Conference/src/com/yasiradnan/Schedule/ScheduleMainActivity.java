@@ -37,18 +37,16 @@ public class ScheduleMainActivity extends FragmentActivity {
             for (String line = null; (line = jsonReader.readLine()) != null;) {
                 jsonBuilder.append(line).append("\n");
             }
-
-            // Parse Json
             JSONTokener tokener = new JSONTokener(jsonBuilder.toString());
             JSONArray jsonArray = new JSONArray(tokener);
-            NUM_PAGES = jsonArray.length();
+            totalPages = jsonArray.length();
 
         } catch (Exception e) {
             // TODO: handle exception
         }
     }
 
-    public static int NUM_PAGES;
+    public static int totalPages;
 
     /**/
 
@@ -89,7 +87,7 @@ public class ScheduleMainActivity extends FragmentActivity {
     }
 
     /**
-     * A simple pager adapter that represents 5 ScreenSlidePageFragment objects,
+     * A simple pager adapter that represents ScreenSlidePageFragment objects,
      * in sequence.
      */
     private class ScreenSlidePagerAdapter extends FragmentStatePagerAdapter {
@@ -99,13 +97,13 @@ public class ScheduleMainActivity extends FragmentActivity {
 
         @Override
         public Fragment getItem(int position) {
-            Log.e("#MA", position + "");
+            //Log.e("#MA", position + "");
             return ScheduleSlideFragment.create(position, mPager);
         }
 
         @Override
         public int getCount() {
-            return NUM_PAGES;
+            return totalPages;
         }
     }
 
