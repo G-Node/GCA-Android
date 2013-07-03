@@ -48,9 +48,11 @@ public class ScheduleSlideFragment extends Fragment {
 
     final static int totalPages = ScheduleMainActivity.totalPages;
 
-    @SuppressWarnings("unchecked")
-    public List<ScheduleItem>[] data = (ArrayList<ScheduleItem>[])new ArrayList[totalPages];
-
+    //@SuppressWarnings("unchecked")
+    //public List<ScheduleItem>[] data = (ArrayList<ScheduleItem>[])new ArrayList[totalPages];
+    
+    public ArrayList<ScheduleItem> data = new ArrayList<ScheduleItem>();
+    
     public int getPageNumber;
 
     private void jsonParseData(int _getPageNumber) {
@@ -66,7 +68,6 @@ public class ScheduleSlideFragment extends Fragment {
             JSONTokener tokener = new JSONTokener(jsonBuilder.toString());
             JSONArray jsonArray = new JSONArray(tokener);
             _getPageNumber = getPageNumber;
-            data[_getPageNumber] = new ArrayList<ScheduleItem>();
             JSONObject jsonObject = jsonArray.getJSONObject(_getPageNumber);
             String getDate = jsonObject.getString("date");
             JSONArray getFirstArray = new JSONArray(jsonObject.getString("events"));
@@ -80,7 +81,7 @@ public class ScheduleSlideFragment extends Fragment {
                 String title = getJSonObj.getString("title");
                 int typeId = getJSonObj.getInt("type_id");
 
-                data[_getPageNumber].add(new ScheduleItem(time, title, typeId, getDate));
+                data.add(new ScheduleItem(time, title, typeId, getDate));
 
                 /*
                  * Get Events
@@ -100,14 +101,14 @@ public class ScheduleSlideFragment extends Fragment {
                             String EventType = getJSonEventobj.getString("type");
                             String EventTitle = getJSonEventobj.getString("title");
                             String Eventtime = getJSonEventobj.getString("time");
-                            data[_getPageNumber].add(new ScheduleItem(Eventtime, EventTitle, EventInfo,
+                            data.add(new ScheduleItem(Eventtime, EventTitle, EventInfo,
                                     typeEventId, getDate));
                         } else {
 
                             String EventType = getJSonEventobj.getString("type");
                             String EventTitle = getJSonEventobj.getString("title");
                             String Eventtime = getJSonEventobj.getString("time");
-                            data[_getPageNumber].add(new ScheduleItem(Eventtime, EventTitle, typeEventId,
+                            data.add(new ScheduleItem(Eventtime, EventTitle, typeEventId,
                                     getDate));
                         }
                     }
@@ -129,22 +130,22 @@ public class ScheduleSlideFragment extends Fragment {
         /**
          * Set header date 
          */
-        ((TextView)rootView.findViewById(R.id.tvDay)).setText(data[pageNumber].get(pageNumber).getDate().toString());
+        ((TextView)rootView.findViewById(R.id.tvDay)).setText(data.get(pageNumber).getDate().toString());
         final ListView list = (ListView)rootView.findViewById(R.id.list);
-        BinderData bindingData = new BinderData(this.getActivity(), data[pageNumber]);
+        BinderData bindingData = new BinderData(this.getActivity(), data);
         list.setAdapter(bindingData);
 
         list.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> a, View v, int position, long id) {
-                if (data[pager.getCurrentItem()].get(position).getItemType() == 0
-                        || data[pager.getCurrentItem()].get(position).getItemType() == 3
-                        || data[pager.getCurrentItem()].get(position).getItemType() == 2)
+                if (data.get(position).getItemType() == 0
+                        || data.get(position).getItemType() == 3
+                        || data.get(position).getItemType() == 2)
                     return;
                 Intent intent = new Intent(ScheduleSlideFragment.this.getActivity(),
                         ContentExtended.class);
-                intent.putExtra("title", data[pager.getCurrentItem()].get(position).getTitle());
-                intent.putExtra("content", data[pager.getCurrentItem()].get(position).getContent());
+                intent.putExtra("title", data.get(position).getTitle());
+                intent.putExtra("content", data.get(position).getContent());
                 startActivity(intent);
             }
         });
