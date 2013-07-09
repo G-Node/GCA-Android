@@ -48,103 +48,30 @@ public class ScheduleSlideFragment extends Fragment {
 
     final static int totalPages = ScheduleMainActivity.totalPages;
 
-    @SuppressWarnings("unchecked")
-    public List<ScheduleItem>[] data = (ArrayList<ScheduleItem>[])new ArrayList[totalPages];
-
-    public int getPageNumber;
-
-    private void jsonParseData(int _getPageNumber) {
-        try {
-            BufferedReader jsonReader = new BufferedReader(new InputStreamReader(this
-                    .getResources().openRawResource(R.raw.program)));
-            StringBuilder jsonBuilder = new StringBuilder();
-            for (String line = null; (line = jsonReader.readLine()) != null;) {
-                jsonBuilder.append(line).append("\n");
-            }
-
-            // Parse Json
-            JSONTokener tokener = new JSONTokener(jsonBuilder.toString());
-            JSONArray jsonArray = new JSONArray(tokener);
-            _getPageNumber = getPageNumber;
-            data[_getPageNumber] = new ArrayList<ScheduleItem>();
-            JSONObject jsonObject = jsonArray.getJSONObject(_getPageNumber);
-            String getDate = jsonObject.getString("date");
-            JSONArray getFirstArray = new JSONArray(jsonObject.getString("events"));
-
-            for (int i = 0; i < getFirstArray.length(); i++) {
-
-                JSONObject getJSonObj = (JSONObject)getFirstArray.get(i);
-                String time = getJSonObj.getString("time");
-                //Log.e("Time Log",time);
-                String type = getJSonObj.getString("type");
-                String title = getJSonObj.getString("title");
-                int typeId = getJSonObj.getInt("type_id");
-
-                data[_getPageNumber].add(new ScheduleItem(time, title, typeId, getDate));
-
-                /*
-                 * Get Events
-                 */
-                if (typeId == 0) {
-
-                    JSONArray getEventsArray = new JSONArray(getJSonObj.getString("events"));
-
-                    for (int j = 0; j < getEventsArray.length(); j++) {
-
-                        JSONObject getJSonEventobj = (JSONObject)getEventsArray.get(j);
-                        int typeEventId = getJSonEventobj.getInt("type_id");
-
-                        if (typeEventId == 1) {
-
-                            String EventInfo = getJSonEventobj.getString("info");
-                            String EventType = getJSonEventobj.getString("type");
-                            String EventTitle = getJSonEventobj.getString("title");
-                            String Eventtime = getJSonEventobj.getString("time");
-                            data[_getPageNumber].add(new ScheduleItem(Eventtime, EventTitle, EventInfo,
-                                    typeEventId, getDate));
-                        } else {
-
-                            String EventType = getJSonEventobj.getString("type");
-                            String EventTitle = getJSonEventobj.getString("title");
-                            String Eventtime = getJSonEventobj.getString("time");
-                            data[_getPageNumber].add(new ScheduleItem(Eventtime, EventTitle, typeEventId,
-                                    getDate));
-                        }
-                    }
-                }
-            }
-        } catch (Exception e) {
-            Log.getStackTraceString(e);
-        }
-    }
+    private static List<ScheduleItem>[] ScheduleInformation;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         ViewGroup rootView = (ViewGroup)inflater.inflate(R.layout.schedule, container, false);
-        getPageNumber = pageNumber;
-        /** 
-         * JSON Parsing 
-         */
-        jsonParseData(getPageNumber);
         /**
          * Set header date 
          */
-        ((TextView)rootView.findViewById(R.id.tvDay)).setText(data[pageNumber].get(pageNumber).getDate().toString());
+        ((TextView)rootView.findViewById(R.id.tvDay)).setText(ScheduleInformation[pageNumber].get(pageNumber).getDate().toString());
         final ListView list = (ListView)rootView.findViewById(R.id.list);
-        BinderData bindingData = new BinderData(this.getActivity(), data[pageNumber]);
+        BinderData bindingData = new BinderData(this.getActivity(), ScheduleInformation[pageNumber]);
         list.setAdapter(bindingData);
 
         list.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> a, View v, int position, long id) {
-                if (data[pager.getCurrentItem()].get(position).getItemType() == 0
-                        || data[pager.getCurrentItem()].get(position).getItemType() == 3
-                        || data[pager.getCurrentItem()].get(position).getItemType() == 2)
+                if (ScheduleInformation[pager.getCurrentItem()].get(position).getItemType() == 0
+                        || ScheduleInformation[pager.getCurrentItem()].get(position).getItemType() == 3
+                        || ScheduleInformation[pager.getCurrentItem()].get(position).getItemType() == 2)
                     return;
                 Intent intent = new Intent(ScheduleSlideFragment.this.getActivity(),
                         ContentExtended.class);
-                intent.putExtra("title", data[pager.getCurrentItem()].get(position).getTitle());
-                intent.putExtra("content", data[pager.getCurrentItem()].get(position).getContent());
+                intent.putExtra("title", ScheduleInformation[pager.getCurrentItem()].get(position).getTitle());
+                intent.putExtra("content", ScheduleInformation[pager.getCurrentItem()].get(position).getContent());
                 startActivity(intent);
             }
         });
@@ -189,9 +116,10 @@ public class ScheduleSlideFragment extends Fragment {
         return fragment;
     }
 
-    public static Fragment create(int position, ViewPager _pager) {
+    public static Fragment create(int position, ViewPager _pager, List<ScheduleItem>[] data) {
         pageNumber = position;
         pager = _pager;
+        ScheduleInformation  = data;
         Fragment fragment = new ScheduleSlideFragment();
         Bundle args = new Bundle();
         args.putInt(ARG_PAGE, position);
