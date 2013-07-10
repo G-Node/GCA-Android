@@ -16,9 +16,9 @@
 		    android:layout_height="wrap_content"
 		    android:layout_alignParentLeft="true"
 		    android:background="#FFFFFF"
+		    android:hint="@string/search_abstract"
 		    android:textColor="#FFFFFF"
-		    android:textSize="24sp" 
-		    android:hint="Search"/>
+		    android:textSize="24sp" />
 
 	 </RelativeLayout>
     
