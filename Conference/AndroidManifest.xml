@@ -52,6 +52,7 @@
           <activity android:name="com.yasiradnan.Schedule.ScheduleMainActivity"></activity>
           <activity android:name="com.yasiradnan.Schedule.ContentExtended"></activity>
           <activity android:name="com.yasiradnan.abstracts.AbstractActivity"></activity>
+          <activity android:name="com.yasiradnan.abstracts.AbstractContent"></activity>
     </application>
 
 </manifest>
