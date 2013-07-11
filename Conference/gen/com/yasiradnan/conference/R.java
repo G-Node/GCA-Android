@@ -226,24 +226,24 @@ containing a value of this type.
         public static final int abType=0x7f060006;
         public static final int action_settings=0x7f060017;
         public static final int hybrid=0x7f060004;
-        public static final int ibLeft=0x7f060013;
-        public static final int ibRight=0x7f060014;
+        public static final int ibLeft=0x7f060012;
+        public static final int ibRight=0x7f060013;
         public static final int icon=0x7f060015;
         public static final int itemArrow=0x7f060008;
-        public static final int list=0x7f06000b;
-        public static final int map=0x7f060012;
+        public static final int list=0x7f060014;
+        public static final int map=0x7f060011;
         public static final int none=0x7f060000;
         public static final int normal=0x7f060001;
-        public static final int pager=0x7f06000d;
+        public static final int pager=0x7f06000c;
         public static final int satellite=0x7f060002;
         public static final int terrain=0x7f060003;
-        public static final int text=0x7f06000c;
-        public static final int textView1=0x7f06000e;
-        public static final int textView2=0x7f06000f;
+        public static final int text=0x7f06000b;
+        public static final int textView1=0x7f06000d;
+        public static final int textView2=0x7f06000e;
         public static final int title=0x7f060016;
         public static final int tvDay=0x7f06000a;
-        public static final int tvTime=0x7f060010;
-        public static final int tvTitle=0x7f060011;
+        public static final int tvTime=0x7f06000f;
+        public static final int tvTitle=0x7f060010;
     }
     public static final class layout {
         public static final int abstract_content=0x7f030000;
@@ -264,9 +264,10 @@ containing a value of this type.
         public static final int general=0x7f0a0000;
     }
     public static final class raw {
-        public static final int information=0x7f040000;
-        public static final int map=0x7f040001;
-        public static final int program=0x7f040002;
+        public static final int abstracts=0x7f040000;
+        public static final int information=0x7f040001;
+        public static final int map=0x7f040002;
+        public static final int program=0x7f040003;
     }
     public static final class string {
         public static final int action_settings=0x7f070016;

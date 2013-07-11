@@ -5,6 +5,7 @@ package com.yasiradnan.conference;
 
 import com.yasiradnan.Schedule.ScheduleMainActivity;
 import com.yasiradnan.Schedule.ScheduleSlideFragment;
+import com.yasiradnan.abstracts.AbstractActivity;
 import com.yasiradnan.location.LocationMarkers;
 
 import android.app.TabActivity;
@@ -33,7 +34,7 @@ public class Tabs extends TabActivity {
 		addTab("Info", R.drawable.tab_home, GeneralActivity.class);
 		addTab("Program", R.drawable.tab_search, ScheduleMainActivity.class);
 		
-		addTab("Abstracts", R.drawable.tab_home,GeneralActivity.class);
+		addTab("Abstracts", R.drawable.tab_home,AbstractActivity.class);
 		addTab("Map", R.drawable.tab_map,LocationMarkers.class);
 	}
 	

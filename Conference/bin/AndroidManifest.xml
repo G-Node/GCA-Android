@@ -51,6 +51,7 @@
             android:value="API_KEY" />
           <activity android:name="com.yasiradnan.Schedule.ScheduleMainActivity"></activity>
           <activity android:name="com.yasiradnan.Schedule.ContentExtended"></activity>
+          <activity android:name="com.yasiradnan.abstracts.AbstractActivity"></activity>
     </application>
 
 </manifest>
