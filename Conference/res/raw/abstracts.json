@@ -1,0 +1,293 @@
+[
+    {
+        "correspondence": " Miss. Franziska K\u00fcmpfbeck, Biologie II, Ludwig-Maximilians Universit\u00e4t M\u00fcnchen, Planegg-Martinsried, Germany, kuempfbeck@googlemail.com", 
+        "title": "Comparative study on the encoding of communication signals in two species of weakly electric fish\n", 
+        "url": "http://www.frontiersin.org/Journal/MyEditingViewDetails.aspx?stage=8&articleid=30737", 
+        "abstract": "Communication signals play an important role in separating sympatric species. In particular, mating signals of closely related species often differ dramatically and thus ensure a reproductive barrier. The question arises how sensory systems provide the necessary flexibility to appropriately encode these quickly evolving signals. We here investigate this topic on the example of chirping behavior and its encoding in two closely related species of Gymnotiform weakly-electric fish \u2013 a well established model system for studying sensory processing on the cellular level.\n\nWeakly electric fish generate an electric field around their body by producing weak electric discharges with a specialized organ in their tail. Electroreceptors distributed over their body they are able to sense this field and distortions of it. The quasi-sinusoidal electric organ discharges (EOD) are used by the fish for navigation, electrolocation and communication purposes. Here we focus on the communication behavior. When two fish meet, there individual EODs interfere and lead to an amplitude modulation (AM) of the EOD, the beat. Since EOD frequencies are sexually dimorphic (male and female fish have higher or lower EOD frequencies, or vice versa depending on the species) the beat frequency carries information about the nature of the encounter. During such interactions the fish produce stereotyped communication signals, so called chirps. These consist of transient increases of the EOD frequency affecting the AMs of the EOD in distinct ways.\n\nIn behavioral experiments we studied the chirping behavior of two different wave-type species of weakly-electric fish, Apteronotus albifrons and Apteronotus leptorhynchus. In so called chirp chamber experiments fish were stimulated with sinusoidal, EOD like stimuli mimicking the presence of a conspecific to induce chirping behavior. We observed several differences between the chirps of both species. A. albifrons generally emits chirps of longer duration and sometimes larger complexity than A. leptorhynchus.\nIn a second step electrophysiological playback experiments were performed in which the recorded chirps were used as stimuli. We analyzed how these are encoded in the responses of one population of electroreceptors, the P-units, that in particular encode AMs of the EOD. Chirps of both species are encoded in the same way by the P-units of either species. The differences in the chirps, however, evoke quite different responses, so that they can be potentially well distinguished by the animals. Species specific adapations thus must occur on high levels of information processing.\n", 
+        "topic": "Sensory processing and perception", 
+        "affiliations": {
+            "1": "Biologie II, Ludwig-Maximilians Universit\u00e4t M\u00fcnchen, Germany", 
+            "2": "Institut f\u00fcr Neurobiologie, Eberhard Karls Universit\u00e4t T\u00fcbingen, Germany"
+        }, 
+        "keywords": [
+            "amplitude modulations", 
+            "Communication signals", 
+            "Sensory coding", 
+            "wekly electric fish"
+        ], 
+        "authors": [
+            {
+                "affiliations": [
+                    1
+                ], 
+                "corresponding": true, 
+                "name": "Franziska K\u00fcmpfbeck"
+            }, 
+            {
+                "affiliations": [
+                    1
+                ], 
+                "name": "Jan Grewe"
+            }, 
+            {
+                "affiliations": [
+                    1
+                ], 
+                "name": "Henriette Walz"
+            }, 
+            {
+                "affiliations": [
+                    1, 
+                    2
+                ], 
+                "name": "Jan Benda"
+            }
+        ], 
+        "coi": "The authors declare that the research was conducted in the absence of any commercial or financial relationships that could be construed as a potential conflict of interest.\n", 
+        "type": "Poster", 
+        "cite": " K\u00fcmpfbeck F, Grewe J, Walz H and Benda J. Comparative study on the encoding of communication signals in two species of weakly electric fish. Front. Comput. Neurosci. Conference Abstract: Bernstein Conference 2012."
+    }, 
+    {
+        "correspondence": " Mr. Christian Kellner, Computational Neuroscience, Department Biology II, Ludwig-Maximilians-Universit\u00e4t M\u00fcnchen, Gro\u00dfhaderner Stra\u00dfe 2, Planegg-Martinsried, Germany, kellner@biologie.uni-muenchen.de", 
+        "title": "Nonlinear processing of natural stimuli explains multiple color categories in dichromats\n", 
+        "url": "http://www.frontiersin.org/Journal/MyEditingViewDetails.aspx?stage=8&articleid=29915", 
+        "abstract": "In color-normal humans, the retina possesses three different cone photoreceptor classes that are sensitive to short (S), medium (M), and long (L) wavelength regions of the visible light spectrum. In the retina of dichromats, one class of cones is absent. It is often assumed that protanopes and deuteranopes, which do not possess M and L receptor classes, respectively, lack the perceptual \"red-green\" axis (Brettel et al 1997; Sharpe et al 1999). Nonetheless, it has been shown that dichromats use all basic color terms (\"red\", \"green\", \"blue\", and \"yellow\") to describe their visual percepts (Boynton & Scheibner, 1967; Wachtler et al 2004), which would suggest a greater perceptual dimensionality than one would expect from the spectral dimensionality of the retinal signals. Here, we investigate the possible role of natural image statistics as a basis for color categories in dichromats. We derived human cone response estimates from hyperspectral images and simulated retinal processing of protanopes and deuteranopes by selecting signals from S and M, or S and L cones, respectively. Cone responses were filtered with a center-surround kernel and fed into on and off rectifying channels, corresponding to on and off-center retinal ganglion cells. Independent Component Analyses was performed on the resulting signals to find an efficient representation. Despite the spectrally two-dimensional inputs, the chromatic selectivities of the learned basis functions formed four distinct clusters, corresponding to distinct regions in color space. Our results confirm that the number of perceptual color categories is not restricted by the spectral dimensionality of the photoreceptor input, and indicate that the retinal bifurcation in parallel on and off channels together with the distribution of chromatic signals in natural scenes may enable dichromats to form the same number of color categories as trichromatic observers.\n", 
+        "cite": " Kellner C and Wachtler T. Nonlinear processing of natural stimuli explains multiple color categories in dichromats. Front. Comput. Neurosci. Conference Abstract: Bernstein Conference 2012.", 
+        "topic": "Sensory processing and perception", 
+        "affiliations": {
+            "1": "Department Biology II, Ludwig-Maximilians-Universit\u00e4t M\u00fcnchen, Germany", 
+            "2": "Graduate School of Systemic Neurosciences, Ludwig-Maximilians-Universit\u00e4t M\u00fcnchen, Germany", 
+            "3": "Bernstein Center for Computational Neuroscience, Ludwig-Maximilians-Universit\u00e4t M\u00fcnchen, Germany"
+        }, 
+        "keywords": [
+            "Color Categories", 
+            "Color Vision", 
+            "Dichromats", 
+            "efficient coding", 
+            "natural scenes"
+        ], 
+        "authors": [
+            {
+                "affiliations": [
+                    1, 
+                    2
+                ], 
+                "corresponding": true, 
+                "name": "Christian Kellner"
+            }, 
+            {
+                "affiliations": [
+                    1, 
+                    2, 
+                    3
+                ], 
+                "name": "Thomas Wachtler"
+            }
+        ], 
+        "coi": "The authors declare that the research was conducted in the absence of any commercial or financial relationships that could be construed as a potential conflict of interest.\n", 
+        "acknowledgements": "Supported by the Graduate School of Systemic Neurosciences and the Bernstein Center for Computational Neuroscience Munich.\n", 
+        "type": "Poster", 
+        "refs": "Boynton, R., Scheibner H. (1967). On the perception of red by \"red-blind\" observers. Acta Chromatica 1, 205\u2013220.\nBrettel, H., Vi\u00e9not, F., and Mollon, J. (1997). Computerized simulation of color appearance for dichromats. J. Opt. Soc. Am. A 14, 2647\u20132655.\nSharpe, L. T., Stockman, A., J\u00e4gle, H., and Nathans, J. (1999). \"Opsin genes, cone photopigments, color vision, and color blindness\" in Color vision: From genes to perception, eds. K. R. Gegenfurtner and L. T. Sharpe (Cambridge: Cambridge University Press), 3\u201351.\nWachtler, T., Dohrmann, U., and Hertel, R. (2004). Modeling color percepts of dichromats. Vision Res. 44, 2843\u20132855.\n"
+    }, 
+    {
+        "correspondence": " Mr. Christian Leibig, Computational Neuroscience, Department Biology II, Ludwig-Maximilians-Universit\u00e4t M\u00fcnchen, Computational Neuroscience, Department Biology II , Ludwig-Maximilians-Universit\u00e4t M\u00fcnchen, Gro\u00dfhaderner Stra\u00dfe 2, Planegg-Martinsried, Bavaria, Germany, leibig@biologie.uni-muenchen.de", 
+        "title": "Separability of Adjacent Neurons Recorded with a CMOS-Multi-Transistor-Array\n", 
+        "url": "http://www.frontiersin.org/Journal/MyEditingViewDetails.aspx?stage=8&articleid=29918", 
+        "abstract": "Background/Aims\n\nIn order to understand the functionality of neural networks, reliable parallel spike trains must be recorded from neuronal ensembles [1, 2]. Silicon-based multi-transistor arrays ('Neurochips') are large enough to map the activity of hundreds to thousands of neurons within an area of 1 mm^2.\nIn order to retrieve reliable parallel spike trains, action potentials (APs) have to be properly assigned to their corresponding units. The signal separation of adjacent neurons in neural tissue or cell culture represents a serious challenge, as their electrical coupling areas on the sensor array overlap. In this work we aim to determine whether this problem can be solved based on extracellular action potential waveforms together with their positional information.\n\nMethods\n\nA potential algorithm for assigning APs to corresponding units was presented in [3]. Here, we test its capabilities by using synthetic data with known positions, signal shapes and amplitudes of the extracellular signal. The synthetic data were generated from recordings of four retinal ganglion cells (RGCs). Measurements were done with a CMOS-multi-transistor array (size 1 mm^2, pitch 7.4 \u00b5m, sampling rate 78 kHz). For each RGC several hundred threshold crossings were averaged and down sampled to either 11.5 or 23 kHz respectively. Gaussian noise was added with appropriate amplitude to obtain a signal-to-noise ratio of 11 [4]. Thus a template was obtained for each RGC. Finally, synthetic data sets were generated by combining template pairs at different distances from each other (0, 7.4, 14.8 or 22.2 \u00b5m) and fed to the algorithm described in [3]. The quality of spike sorting was quantified by an error rate defined as the sum of false positive and false negative assignments with respect to the known ground truth. This procedure was carried out for two sampling rates (11.5 and 23 kHz).\n\nResults\n\nWe compared spikes from pairs of different neuronal templates with centres of electrical coupling areas either aligned on each other or separated by multiples of 7.4 \u00b5m. For both temporal sampling rates, spikes could be reliably separated down to the smallest separation distance (0 \u00b5m).\n\nConclusion/Summary\n\nFor given conditions (signal-to-noise ratio, noise distribution and templates) our results provide parameter settings for which spiking activity can be reliably assigned to the corresponding source.\n", 
+        "cite": " Leibig C, Lambacher A, Wachtler T and Zeck G. Separability of Adjacent Neurons Recorded with a CMOS-Multi-Transistor-Array. Front. Comput. Neurosci. Conference Abstract: Bernstein Conference 2012.", 
+        "topic": "Data analysis, machine learning, neuroinformatics", 
+        "affiliations": {
+            "1": "Department Biology II, Ludwig-Maximilians-Universit\u00e4t M\u00fcnchen, Germany", 
+            "2": "Natural and Medical Sciences Institute at the University of T\u00fcbingen, Germany", 
+            "3": "Graduate School for Neural Information Processing, University of T\u00fcbingen, Germany", 
+            "4": "Membrane- and Neurophysics, Max-Planck-Institute of Biochemistry, Germany", 
+            "5": "Bernstein Center for Computational Neuroscience Munich, Germany"
+        }, 
+        "keywords": [
+            "clustering", 
+            "data analysis", 
+            "extracellular recordings", 
+            "high-density CMOS-based MEAs", 
+            "machine learning", 
+            "spike sorting"
+        ], 
+        "authors": [
+            {
+                "affiliations": [
+                    1, 
+                    2, 
+                    3
+                ], 
+                "corresponding": true, 
+                "name": "Christian Leibig"
+            }, 
+            {
+                "affiliations": [
+                    4
+                ], 
+                "name": "Armin Lambacher"
+            }, 
+            {
+                "affiliations": [
+                    1, 
+                    5
+                ], 
+                "name": "Thomas Wachtler"
+            }, 
+            {
+                "affiliations": [
+                    2
+                ], 
+                "name": "G\u00fcnther Zeck"
+            }
+        ], 
+        "coi": "The authors declare that the research was conducted in the absence of any commercial or financial relationships that could be construed as a potential conflict of interest.\n", 
+        "acknowledgements": "Supported by BMBF grant 0312038.\n", 
+        "type": "Poster", 
+        "refs": "[1] Buzs\u00e1ki, G. (2004). Large-scale recording of neuronal ensembles. Nature Neuroscience, 7(5), 446-451.\n\n[2] Einevoll, G. T., Franke, F., Hagen, E., Pouzat, C., & Harris, K. D. (2011). Towards reliable spike-train recordings from thousands of neurons with multielectrodes. Current Opinion in Neurobiology, 22, 1-7.\n\n[3] Lambacher, A., Vitzthum, V., Zeitler, R., Eickenscheidt, M., Eversmann, B., Thewes, R., & Fromherz, P. (2011). Identifying firing mammalian neurons in networks with high-resolution multi-transistor array (MTA). Applied Physics A, 102(1), 1-11.\n\n[4] Leibig, C., Wachtler, T., and Zeck, G., (2011). Resolution Limit of Neurochip Data. Front. Comput. Neurosci. Conference Abstract: BC11 : Computational Neuroscience & Neurotechnology Bernstein Conference & Neurex Annual Meeting 2011. doi: 10.3389/conf.fncom.2011.53.00069\n"
+    }, 
+    {
+        "correspondence": " Mr. Andrey Sobolev, German INCF Node, Department Biology II, Ludwig-Maximilians-Universit\u00e4t M\u00fcnchen, Martinsried, Germany, sobolev@bio.lmu.de", 
+        "title": "Cloud Services and a Data API for Electrophysiology\n", 
+        "url": "http://www.frontiersin.org/Journal/MyEditingViewDetails.aspx?stage=8&articleid=29854", 
+        "abstract": "Recent progress in neuroscience has lead to rapid proliferation of data. The problem of efficiently organizing and annotating this information while allowing effortless access from different platforms becomes crucial if scientists are to fully exploit recorded experimental data.\nThe G-Node services provide data management in the cloud, including tools for organization, annotation, search, and backup. These services are accessed through a common application interface (API), which supports a common data model for electrophysiology and flexible data annotation[1]. Native client libraries in commonly used programming languages (including Python and Matlab[2]) enable researchers to perform computations in familiar analysis environments while retaining the advantages that cloud storage entails. Thus, scientists may select whatever technology is most suitable for their current research with their data being available at all times and from all locations. The platform also features powerful search and query capabilities from simple full-text search to specialized query and filter mechanisms such as data slicing or fine-grained recording channel selection.\nThe services aim at providing an interface useful not only to produce but also to reproduce certain scientific analysis. All the changes made to any object in the system are being tracked. Scientists can go back in time to any revision, which makes the reproduction of individual analysis steps effortless and transparent.\nThese services are complemented by common tools for data access like neuroshare[3], NEO I/O[4], or odML[5], and provide convenient data conversion. Compatible files are automatically converted to native objects which may, in turn, be exported as needed. The platform encourages collaboration between both individual scientists and labs. Data sets, metadata, and files can be shared based on various criteria; simultaneous work on such data sets is supported.\nOur platform equips every electrophysiologist with the tools necessary for integrating sophisticated data management into day to day experimental workflow, thus fostering scientific progress through neuroinformatics.\n\n[1] http://g-node.github.com/g-node-portal/data_api/data_api_specification.html\n[2] https://github.com/G-Node/gnode-client-matlab\n[3] https://github.com/G-Node/python-neuroshare\n[4] http://packages.python.org/neo/io.html\n[5] https://github.com/G-Node/python-odml\n", 
+        "topic": "Data analysis, machine learning, neuroinformatics", 
+        "affiliations": {
+            "1": "Department Biology II, Ludwig-Maximilians-Universit\u00e4t M\u00fcnchen, Germany"
+        }, 
+        "keywords": [
+            "data management", 
+            "Electrophysiology", 
+            "neuroinformatics"
+        ], 
+        "authors": [
+            {
+                "affiliations": [
+                    1
+                ], 
+                "corresponding": true, 
+                "name": "Andrey Sobolev"
+            }, 
+            {
+                "affiliations": [
+                    1
+                ], 
+                "name": "Aljoscha P. Leonhardt"
+            }, 
+            {
+                "affiliations": [
+                    1
+                ], 
+                "name": "Christian Kellner"
+            }, 
+            {
+                "affiliations": [
+                    1
+                ], 
+                "name": "Philipp Rautenberg"
+            }, 
+            {
+                "affiliations": [
+                    1
+                ], 
+                "name": "Andreas V. Herz"
+            }, 
+            {
+                "affiliations": [
+                    1
+                ], 
+                "name": "Thomas Wachtler"
+            }
+        ], 
+        "coi": "The authors declare that the research was conducted in the absence of any commercial or financial relationships that could be construed as a potential conflict of interest.\n", 
+        "acknowledgements": "Supported by the Federal Ministry of Education and Research (Grant 01GQ0801)\n", 
+        "type": "Poster", 
+        "cite": " Sobolev A, Leonhardt A, Kellner C, Rautenberg P, Herz A and Wachtler T. Cloud Services and a Data API for Electrophysiology. Front. Comput. Neurosci. Conference Abstract: Bernstein Conference 2012."
+    },
+    {
+        "correspondence": " Prof. Christof Koch, , Allen Institute for Brain Science, 551 34th Street,, Seattle, WA, USA, koch@klab.caltech.edu", 
+        "title": "Project MindScope\n", 
+        "url": "http://www.frontiersin.org/Journal/MyEditingViewDetails.aspx?stage=8&articleid=31556", 
+        "abstract": "The Allen Institute for Brain Science is engaged in a ten year project to study the principles by which information is encoded, transformed and represented in the mammalian cerebral cortex and related structures. The goals of MindScope are to provide a quantitative taxonomy of cell types and their interconnections in visual cortex and associated brain regions, to observe their dynamics under physiological conditions in behaving mice, to construct cellular models of how their dynamics and function arise from the structural description, and to understand how this function relates to visual perception. This is a large-scale, in-house team effort to synthesize anatomical, physiological and theoretical knowledge into a description of the wiring scheme of the cortex, at both the structural and the functional levels. The fruits of this cerebroscope will be freely available to the public.\n", 
+        "topic": "Neural encoding and decoding", 
+        "affiliations": {
+            "1": "Allen Institute for Brain Science, USA"
+        }, 
+        "keywords": [
+            "Brain", 
+            "Cortex", 
+            "Mouse", 
+            "Neuron", 
+            "bla"
+        ], 
+        "authors": [
+            {
+                "affiliations": [
+                    1
+                ], 
+                "corresponding": true, 
+                "name": "Christof Koch"
+            }
+        ], 
+        "coi": "The authors declare that the research was conducted in the absence of any commercial or financial relationships that could be construed as a potential conflict of interest.\n", 
+        "type": "Invited Talk", 
+        "cite": " Koch C. Project MindScope. Front. Comput. Neurosci. Conference Abstract: Bernstein Conference 2012."
+    }, 
+    {
+        "correspondence": " Dr. Jan Grewe, Department Biologie II, Ludwig-Maximilians-Universit\u00e4t M\u00fcnchen, Planegg-Martinsried, Germany, grewe@bio.lmu.de", 
+        "title": "Amplitude Dependency of Synchrony Codes\n", 
+        "url": "http://www.frontiersin.org/Journal/MyEditingViewDetails.aspx?stage=8&articleid=29818", 
+        "abstract": "Synchronous activity among neurons in a population is usually associated with the occurrence of specific features in the common stimulus. We investigate the synchrony code in the context of the encoding of electrosensory information in the weakly electric fish Apteronotus leptorhynchus.\n\nMiddleton et al., 2009 showed that the extraction of synchronous spikes from a population of input neurons shifts the range of encoded signals to higher frequencies and thus can be understood as a way to separarte coding channels. In the electrosensory world this separation roughly matches the frequency ranges used for the two purposes of active electrosensation, i.e. navigation and prey detection, in the lower range, and communication in the high frequency range.\n\nHere, we compare experimental results from in vivo recordings of p-unit electroreceptors with predictions from linear response theory in the limit of weak stimuli. Analytical expressions are derived for the coherence of both the synchronous spikes, as a coincidence detector would read them out, and the integrated spike trains. The theoretical results show how the synchrony code depends on stimulus amplitude and the power-spectrum of baseline firing.\n\nTheory predicts that any cell that has a regular baseline firing rate and contains a certain amount of intrinsic noise can employ a synchrony code and thus separate coding channels. Furthermore the separation of the frequency bands of integrated and synchronous responses dependes on the stimulus intensity. Weak stimuli lead to a clear separation that becomes weaker with increasing stimulus intensity.\n\nOur experimental results from the electrosensory systems of the weakly electric fish support these predictions. In irregular spiking P-units of the active electrosensory system the observed separation of the coding channels indeed shows the predicted stimulus dependency. On the other hand, ampullary receptors of the passive electrosensory system exhibit a much more regular baseline firing rate than those of the active system. Here the coding ranges of the synchronous and integrated responses are not shifted relative to each other. Thus, the receptors of the passive system do not have a sufficient level of intrinsic noise, although a distinction of synchronous and non-synchronous spikes is still possible. Again, these results are in line with the predictions of the theory.\n", 
+        "cite": " Grewe J, Sharafi N, Walz H, Lindner B and Benda J. Amplitude Dependency of Synchrony Codes. Front. Comput. Neurosci. Conference Abstract: Bernstein Conference 2012.", 
+        "topic": "Sensory processing and perception", 
+        "affiliations": {
+            "1": "Department Biologie II, Ludwig-Maximilians-Universit\u00e4t M\u00fcnchen, Germany", 
+            "2": "Max Planck Institut f\u00fcr Physik komplexer Systeme, Germany", 
+            "3": "Theory of Complex Systems and Neurophysics, Humboldt Universit\u00e4t zu Berlin, Germany", 
+            "4": "Institut f\u00fcr Neurobiologie, Eberhard Karls Universit\u00e4t T\u00fcbingen, Germany"
+        }, 
+        "keywords": [
+            "electrosensory system", 
+            "population coding", 
+            "synchrony code"
+        ], 
+        "authors": [
+            {
+                "affiliations": [
+                    1
+                ], 
+                "corresponding": true, 
+                "name": "Jan Grewe"
+            }, 
+            {
+                "affiliations": [
+                    2
+                ], 
+                "name": "Nahal Sharafi"
+            }, 
+            {
+                "affiliations": [
+                    1
+                ], 
+                "name": "Henriette Walz"
+            }, 
+            {
+                "affiliations": [
+                    2, 
+                    3
+                ], 
+                "name": "Benjamin Lindner"
+            }, 
+            {
+                "affiliations": [
+                    1, 
+                    4
+                ], 
+                "name": "Jan Benda"
+            }
+        ], 
+        "coi": "The authors declare that the research was conducted in the absence of any commercial or financial relationships that could be construed as a potential conflict of interest.\n", 
+        "type": "Poster", 
+        "refs": "Middleton, JW., Longtin, A., Benda, J., and Maler, L. (2009). Postsynaptic Receptive Field Size and Spike Threshold Determine Encoding of High-Frequency Information Via Sensitivity to Synchronous Presynaptic Activity. J. Neurophysiol., 101:(3) 1160-1170\n"
+    }
+]
