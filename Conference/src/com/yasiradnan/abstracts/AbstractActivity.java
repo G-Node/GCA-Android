@@ -16,11 +16,24 @@ import org.json.JSONObject;
 import org.json.JSONTokener;
 
 
+
+
+
+
+
+
 import com.yasiradnan.conference.R;
+
 import android.app.ListActivity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.TextView;
 
 /**
  * @author Adnan
@@ -93,6 +106,23 @@ public class AbstractActivity extends ListActivity {
                             R.id.abTopic, R.id.abType, R.id.abTitle, R.id.SubTitle
                     });
             setListAdapter(sm);
+            ListView listView = getListView();
+            
+            listView.setOnItemClickListener(new OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View v,
+                        int position, long id) {
+                    // TODO Auto-generated method stub
+                    //Get Abstract Data
+                    String abstracts_content = list.get(position).get(KEY_ABSTRACT).toString();
+                    //Create a new Intent
+                    Intent in = new Intent(getApplicationContext(),AbstractContent.class);
+                    //Getting Abstract for another activity
+                    in.putExtra("abstracts", abstracts_content);
+                    //StratActivity
+                    startActivity(in);
+                }
+            });
 
         } catch (FileNotFoundException e) {
             Log.e("jsonFile", "file not found");
