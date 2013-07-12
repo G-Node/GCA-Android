@@ -11,13 +11,13 @@
 		<!-- Search Option -->
 
 		<EditText
-		    android:id="@+id/tvDay"
+		    android:id="@+id/abSearch"
 		    android:layout_width="match_parent"
 		    android:layout_height="wrap_content"
 		    android:layout_alignParentLeft="true"
 		    android:background="#FFFFFF"
 		    android:hint="@string/search_abstract"
-		    android:textColor="#FFFFFF"
+		    android:textColor="#000000"
 		    android:textSize="24sp" />
 		
 	</RelativeLayout>
