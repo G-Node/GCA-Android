@@ -69,7 +69,7 @@ public class AbstractAdapter extends BaseAdapter {
         
         holder.type.setText(data.getType());
         
-        holder.authors.setText(Arrays.toString(data.getAuthorName()));
+        holder.authors.setText(data.getAuthorName());
         
         
         return convertView;

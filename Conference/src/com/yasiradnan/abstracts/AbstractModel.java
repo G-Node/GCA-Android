@@ -5,9 +5,9 @@ public class AbstractModel {
     public String topic;
     public String type;
     public String abstractContent;
-    public String[] authorName;
+    public String authorName;
     
-    public AbstractModel(String abTitle, String abTopic,String abContent,String abType,String [] abAuthor ){
+    public AbstractModel(String abTitle, String abTopic,String abContent,String abType,String abAuthor ){
         title = abTitle;
         topic = abTopic;
         abstractContent = abContent;
@@ -47,11 +47,11 @@ public class AbstractModel {
         this.abstractContent = abstractContent;
     }
     
-    public void setAuthorName(String[] authorName) {
+    public void setAuthorName(String authorName) {
         this.authorName = authorName;
     }
     
-    public String[] getAuthorName() {
+    public String getAuthorName() {
         return authorName;
     }
 

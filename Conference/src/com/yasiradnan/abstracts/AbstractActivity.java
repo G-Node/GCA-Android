@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
@@ -129,7 +130,7 @@ public class AbstractActivity extends Activity {
 
                     }
 
-                    addData.add(new AbstractModel(title, topic, absData, type, AuthorNames));
+                    addData.add(new AbstractModel(title, topic, absData, type, Arrays.toString(AuthorNames)));
 
                 }
             }
