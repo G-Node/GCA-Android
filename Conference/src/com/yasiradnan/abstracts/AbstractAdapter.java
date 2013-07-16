@@ -1,5 +1,6 @@
 package com.yasiradnan.abstracts;
 
+import java.util.Arrays;
 import java.util.List;
 
 import com.yasiradnan.conference.R;
@@ -65,7 +66,7 @@ public class AbstractAdapter extends BaseAdapter {
         holder.title.setText(data.getTitle());
         holder.topic.setText(data.getTopic());
         holder.type.setText(data.getType());
-        holder.authors.setText(data.getType());
+        holder.authors.setText(Arrays.toString(data.getAuthorName()));
         
         
         return convertView;
