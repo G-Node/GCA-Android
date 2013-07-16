@@ -16,6 +16,7 @@ import org.json.JSONTokener;
 
 import com.yasiradnan.conference.R;
 
+import android.app.Activity;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -33,24 +34,7 @@ import android.widget.TextView;
 /**
  * @author Adnan
  */
-public class AbstractActivity extends ListActivity {
-
-    static final List<HashMap<String, String>> listitems = new ArrayList<HashMap<String, String>>();
-
-    static final String[] from = new String[] {
-            "topic", "type", "title", "type", "abstract"
-    };
-
-    public static final String KEY_TITLE = "title";
-
-    public static final String KEY_TOPIC = "topic";
-
-    public static final String KEY_ABSTRACT = "abstract";
-
-    public static final String KEY_TYPE = "type";
-
-    SimpleAdapter simpleAdapter;
-
+public class AbstractActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // TODO Auto-generated method stub
@@ -116,14 +100,7 @@ public class AbstractActivity extends ListActivity {
 
                     String absData = jsonObject.getString("abstract");
 
-                    HashMap<String, String> addingData = new HashMap<String, String>();
-
-                    addingData.put(KEY_TOPIC, topic);
-                    addingData.put(KEY_TYPE, type);
-                    addingData.put(KEY_TITLE, title);
-                    addingData.put(KEY_ABSTRACT, absData);
-
-                    listitems.add(addingData);
+                    
 
                 }
             }
