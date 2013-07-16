@@ -52,24 +52,24 @@ public class AbstractActivity extends Activity {
         setContentView(R.layout.abstract_general);
 
         datainList();
-        
+
         listView = (ListView)findViewById(R.id.list);
 
         abAdapter = new AbstractAdapter(this, addData);
 
         listView.setAdapter(abAdapter);
-        
+
         listView.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> arg0, View view, int position, long arg3) {
                 // TODO Auto-generated method stub
-                
+
                 String abstracts_content = addData.get(position).getAbstractContent();
-                
+
                 Intent in = new Intent(getApplicationContext(), AbstractContent.class);
-                
+
                 in.putExtra("abstracts", abstracts_content);
-                
+
                 startActivity(in);
             }
         });
@@ -114,9 +114,9 @@ public class AbstractActivity extends Activity {
                     String type = jsonObject.getString("type");
 
                     String title = jsonObject.getString("title");
-                    
+
                     Log.e("title", title);
-                    
+
                     String absData = jsonObject.getString("abstract");
 
                     JSONArray getAuthorsArray = new JSONArray(jsonObject.getString("authors"));
@@ -127,13 +127,27 @@ public class AbstractActivity extends Activity {
 
                         authorNames[counter] = getAuthorsArray.getJSONObject(counter).getString(
                                 "name");
-                        authorNames[counter] = String.valueOf(authorNames[counter].replaceAll("^(\\w)\\w+", "$1."));
+                        authorNames[counter] = String.valueOf(authorNames[counter].replaceAll(
+                                "^(\\w)\\w+", "$1."));
 
                     }
-                    
-                    String FormattedString = Arrays.toString(authorNames).replace("[", "").replace("]", "");
 
-                    addData.add(new AbstractModel(title, topic, absData, type, FormattedString));
+                    StringBuilder stringBuild = new StringBuilder();
+
+                    for (int value = 0; value < authorNames.length; value++) {
+
+                        stringBuild.append(authorNames[value]);
+
+                        if (value < authorNames.length - 2) {
+                            stringBuild.append(",");
+                        } else if (value < authorNames.length - 1) {
+                            stringBuild.append(" & ");
+                        }
+                    }
+
+                    String formattedString = stringBuild.toString();
+
+                    addData.add(new AbstractModel(title, topic, absData, type, formattedString));
 
                 }
             }
