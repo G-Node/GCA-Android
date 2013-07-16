@@ -121,16 +121,19 @@ public class AbstractActivity extends Activity {
 
                     JSONArray getAuthorsArray = new JSONArray(jsonObject.getString("authors"));
 
-                    String[] AuthorNames = new String[getAuthorsArray.length()];
+                    String[] authorNames = new String[getAuthorsArray.length()];
 
                     for (int counter = 0; counter < getAuthorsArray.length(); counter++) {
 
-                        AuthorNames[counter] = getAuthorsArray.getJSONObject(counter).getString(
+                        authorNames[counter] = getAuthorsArray.getJSONObject(counter).getString(
                                 "name");
+                        authorNames[counter] = String.valueOf(authorNames[counter].replaceAll("^(\\w)\\w+", "$1."));
 
                     }
+                    
+                    String FormattedString = Arrays.toString(authorNames).replace("[", "").replace("]", "");
 
-                    addData.add(new AbstractModel(title, topic, absData, type, Arrays.toString(AuthorNames)));
+                    addData.add(new AbstractModel(title, topic, absData, type, FormattedString));
 
                 }
             }
