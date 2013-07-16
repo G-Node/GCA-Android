@@ -52,13 +52,26 @@ public class AbstractActivity extends Activity {
 
         datainList();
         
-        Log.e("Size", String.valueOf(addData.size()));
-        
         listView = (ListView)findViewById(R.id.list);
 
         abAdapter = new AbstractAdapter(this, addData);
 
         listView.setAdapter(abAdapter);
+        
+        listView.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> arg0, View view, int position, long arg3) {
+                // TODO Auto-generated method stub
+                
+                String abstracts_content = addData.get(position).getAbstractContent();
+                
+                Intent in = new Intent(getApplicationContext(), AbstractContent.class);
+                
+                in.putExtra("abstracts", abstracts_content);
+                
+                startActivity(in);
+            }
+        });
 
         /*
          * Serach Filter
