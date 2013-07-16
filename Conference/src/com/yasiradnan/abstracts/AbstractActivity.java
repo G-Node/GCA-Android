@@ -14,6 +14,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
+import com.google.android.gms.internal.da;
 import com.yasiradnan.conference.R;
 
 import android.app.Activity;
@@ -35,47 +36,49 @@ import android.widget.TextView;
  * @author Adnan
  */
 public class AbstractActivity extends Activity {
+
+    private List<AbstractModel> data = new ArrayList<AbstractModel>();
+
+    AbstractAdapter abAdapter;
+
+    ListView listView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // TODO Auto-generated method stub
         super.onCreate(savedInstanceState);
-        
+
         setContentView(R.layout.abstract_general);
-        
+
         datainList();
+
+        listView = (ListView)findViewById(R.id.list);
+
+        abAdapter = new AbstractAdapter(this, data);
+
+        listView.setAdapter(abAdapter);
 
         /*
          * Serach Filter
          */
-        
-        EditText searchOption = (EditText)findViewById(R.id.abSearch);
-        
-        searchOption.addTextChangedListener(new TextWatcher() {
 
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                // TODO Auto-generated method stub
-                AbstractActivity.this.simpleAdapter.getFilter().filter(s);
-            }
-
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                // TODO Auto-generated method stub
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                // TODO Auto-generated method stub
-
-            }
-        });
+        /*
+         * EditText searchOption = (EditText)findViewById(R.id.abSearch);
+         * searchOption.addTextChangedListener(new TextWatcher() {
+         * @Override public void onTextChanged(CharSequence s, int start, int
+         * before, int count) { // TODO Auto-generated method stub
+         * AbstractActivity.this.abAdapter.getFilter().filter(s); }
+         * @Override public void beforeTextChanged(CharSequence s, int start,
+         * int count, int after) { // TODO Auto-generated method stub }
+         * @Override public void afterTextChanged(Editable s) { // TODO
+         * Auto-generated method stub } });
+         */
 
     }
 
     private void datainList() {
         try {
-            if (listitems.isEmpty()) {
+            if (data.isEmpty()) {
                 BufferedReader jsonReader = new BufferedReader(new InputStreamReader(this
                         .getResources().openRawResource(R.raw.abstracts)));
                 StringBuilder jsonBuilder = new StringBuilder();
@@ -92,47 +95,27 @@ public class AbstractActivity extends Activity {
 
                     String topic = jsonObject.getString("topic");
 
-                    Log.e("topic", topic);
-
                     String type = jsonObject.getString("type");
 
                     String title = jsonObject.getString("title");
 
                     String absData = jsonObject.getString("abstract");
 
-                    
+                    JSONArray getAuthorsArray = new JSONArray(jsonObject.getString("authors"));
+
+                    String[] AuthorNames = new String[getAuthorsArray.length()];
+
+                    for (int counter = 0; counter < getAuthorsArray.length(); counter++) {
+
+                        AuthorNames[counter] = getAuthorsArray.getJSONObject(counter).getString(
+                                "name");
+
+                    }
+
+                    data.add(new AbstractModel(topic, type, absData, type, AuthorNames));
 
                 }
             }
-            simpleAdapter = new SimpleAdapter(this, listitems, R.layout.abstract_content, from,
-                    new int[] {
-                            R.id.abTopic, R.id.abType, R.id.abTitle, R.id.SubTitle
-                    });
-            setListAdapter(simpleAdapter);
-
-            ListView listView = getListView();
-
-            listView.setOnItemClickListener(new OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
-                    // TODO Auto-generated method stub
-                    // Get Abstract Data
-                    
-                    String abstracts_content = listitems.get(position).get(KEY_ABSTRACT).toString();
-                    
-                    // Create a new Intent
-                    
-                    Intent in = new Intent(getApplicationContext(), AbstractContent.class);
-                    
-                    // Getting Abstract for another activity
-                    
-                    in.putExtra("abstracts", abstracts_content);
-                    
-                    // StratActivity
-                    
-                    startActivity(in);
-                }
-            });
 
         } catch (FileNotFoundException e) {
             Log.e("jsonFile", "file not found");
