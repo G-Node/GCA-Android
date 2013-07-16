@@ -50,7 +50,7 @@ public class AbstractAdapter extends BaseAdapter {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
         
         if(convertView == null){
-            convertView = inflater.inflate(R.layout.abstracts_show, null);
+            convertView = inflater.inflate(R.layout.abstract_content, null);
             holder = new ViewHolder();
             holder.title = (TextView) convertView.findViewById(R.id.abTitle);
             holder.topic = (TextView) convertView.findViewById(R.id.abTopic);
@@ -64,8 +64,11 @@ public class AbstractAdapter extends BaseAdapter {
         AbstractModel data = (AbstractModel) getItem(position);
         
         holder.title.setText(data.getTitle());
+        
         holder.topic.setText(data.getTopic());
+        
         holder.type.setText(data.getType());
+        
         holder.authors.setText(Arrays.toString(data.getAuthorName()));
         
         

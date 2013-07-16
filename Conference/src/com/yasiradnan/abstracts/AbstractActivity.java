@@ -37,7 +37,7 @@ import android.widget.TextView;
  */
 public class AbstractActivity extends Activity {
 
-    private List<AbstractModel> data = new ArrayList<AbstractModel>();
+    private List<AbstractModel> addData = new ArrayList<AbstractModel>();
 
     AbstractAdapter abAdapter;
 
@@ -51,10 +51,12 @@ public class AbstractActivity extends Activity {
         setContentView(R.layout.abstract_general);
 
         datainList();
-
+        
+        Log.e("Size", String.valueOf(addData.size()));
+        
         listView = (ListView)findViewById(R.id.list);
 
-        abAdapter = new AbstractAdapter(this, data);
+        abAdapter = new AbstractAdapter(this, addData);
 
         listView.setAdapter(abAdapter);
 
@@ -78,7 +80,7 @@ public class AbstractActivity extends Activity {
 
     private void datainList() {
         try {
-            if (data.isEmpty()) {
+            if (addData.isEmpty()) {
                 BufferedReader jsonReader = new BufferedReader(new InputStreamReader(this
                         .getResources().openRawResource(R.raw.abstracts)));
                 StringBuilder jsonBuilder = new StringBuilder();
@@ -98,7 +100,9 @@ public class AbstractActivity extends Activity {
                     String type = jsonObject.getString("type");
 
                     String title = jsonObject.getString("title");
-
+                    
+                    Log.e("title", title);
+                    
                     String absData = jsonObject.getString("abstract");
 
                     JSONArray getAuthorsArray = new JSONArray(jsonObject.getString("authors"));
@@ -112,7 +116,7 @@ public class AbstractActivity extends Activity {
 
                     }
 
-                    data.add(new AbstractModel(topic, type, absData, type, AuthorNames));
+                    addData.add(new AbstractModel(title, topic, absData, type, AuthorNames));
 
                 }
             }
