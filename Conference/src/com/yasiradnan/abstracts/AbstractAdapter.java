@@ -15,9 +15,9 @@ import android.widget.TextView;
 
 public class AbstractAdapter extends BaseAdapter {
     Context context;
-    private List<AbstractModel> items;
+    private List<AbstractItem> items;
     
-    public AbstractAdapter(Context context, List<AbstractModel> items) {
+    public AbstractAdapter(Context context, List<AbstractItem> items) {
         // TODO Auto-generated constructor stub
         this.context = context;
         this.items = items;
@@ -61,7 +61,7 @@ public class AbstractAdapter extends BaseAdapter {
             holder = (ViewHolder) convertView.getTag();
         }
         
-        AbstractModel data = (AbstractModel) getItem(position);
+        AbstractItem data = (AbstractItem) getItem(position);
         
         holder.title.setText(data.getTitle());
         

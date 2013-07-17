@@ -1,13 +1,13 @@
 package com.yasiradnan.abstracts;
 
-public class AbstractModel {
+public class AbstractItem {
     public String title;
     public String topic;
     public String type;
     public String abstractContent;
     public String authorName;
     
-    public AbstractModel(String abTitle, String abTopic,String abContent,String abType,String abAuthor ){
+    public AbstractItem(String abTitle, String abTopic,String abContent,String abType,String abAuthor ){
         title = abTitle;
         topic = abTopic;
         abstractContent = abContent;

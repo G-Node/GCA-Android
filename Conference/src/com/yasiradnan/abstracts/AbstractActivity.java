@@ -38,7 +38,7 @@ import android.widget.TextView;
  */
 public class AbstractActivity extends Activity {
 
-    private List<AbstractModel> addData = new ArrayList<AbstractModel>();
+    private List<AbstractItem> addData = new ArrayList<AbstractItem>();
 
     AbstractAdapter abAdapter;
 
@@ -147,7 +147,7 @@ public class AbstractActivity extends Activity {
 
                     String formattedString = stringBuild.toString();
 
-                    addData.add(new AbstractModel(title, topic, absData, type, formattedString));
+                    addData.add(new AbstractItem(title, topic, absData, type, formattedString));
 
                 }
             }
