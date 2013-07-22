@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="Conference/src"/>
+	<classpathentry kind="src" path="google-play-services_lib/gen"/>
+	<classpathentry kind="src" path="google-play-services_lib/src"/>
+	<classpathentry kind="lib" path="Conference/libs/android-support-v4.jar"/>
+	<classpathentry kind="lib" path="Conference/libs/markdownj-0.3.0-1.0.2b4.jar"/>
+	<classpathentry kind="lib" path="google-play-services_lib/bin/google-play-services_lib.jar"/>
+	<classpathentry kind="lib" path="google-play-services_lib/libs/google-play-services.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="output" path="google-play-services_lib/bin/classes"/>
+</classpath>
