@@ -22,10 +22,10 @@ public class Generator {
      */
     public static void main(String[] args) {
         // TODO Auto-generated method stub
-        Schema schema = new Schema(1, "com.yasiradnan.conference");
-        addAbstract(schema);
+        Schema newSchema = new Schema(1, "com.yasiradnan.conference");
+        addAbstract(newSchema);
         try {
-            new DaoGenerator().generateAll(schema, "../Conference/src-gen/");
+            new DaoGenerator().generateAll(newSchema, "../Conference/src-gen/");
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -41,7 +41,7 @@ public class Generator {
          * Abstract 
          * */
         
-        Entity absData = schema.addEntity("AbstractItem");
+        Entity absData = schema.addEntity("AbstractsItem");
         absData.addIdProperty();
         absData.addStringProperty("Correspondence").notNull();
         absData.addStringProperty("title").notNull();
@@ -51,9 +51,6 @@ public class Generator {
         absData.addStringProperty("topic").notNull();
         absData.addStringProperty("coi").notNull();
         absData.addStringProperty("cite").notNull();
-       
-        Property AuthorIdProperty =absData.addLongProperty("absAuthorId").getProperty();
-        absData.addToOne(absData, AuthorIdProperty);
         
         /*
          * Abstract Keywords
@@ -61,8 +58,8 @@ public class Generator {
         
         Entity absKeyWord = schema.addEntity("AbstractKeyWords");
         absKeyWord.addStringProperty("keywords");
-        Property abstractitemId = absKeyWord.addLongProperty("abstractitemId").notNull().getProperty();
-        absKeyWord.addToOne(absData, abstractitemId);
+        Property abstracstitemId = absKeyWord.addLongProperty("abstractsitemId").notNull().getProperty();
+        absKeyWord.addToOne(absData, abstracstitemId);
         
         /*
          * Abstract Authors
@@ -72,8 +69,6 @@ public class Generator {
         absAuthor.addIdProperty();
         absAuthor.addStringProperty("name").notNull();
         absAuthor.addBooleanProperty("Is_Corresponding");
-        
-        absAuthor.addToOne(absAuthor, abstractitemId);
         
         
         /*
@@ -88,9 +83,6 @@ public class Generator {
          * AuthorsAffiliation
          */
         
-        absAffiliation.addToOne(absAuthor, AuthorIdProperty);
-        Property AffiliationIdProperty =absAuthor.addLongProperty("absAffiliationId").getProperty();
-        absAuthor.addToOne(absAuthor, AffiliationIdProperty);
 
         /*
          * AFFILIATION_ONE
@@ -99,9 +91,27 @@ public class Generator {
         Entity absAffiliationName = schema.addEntity("AbsAffiliationName");
         absAffiliationName.addIdProperty();
         absAffiliationName.addStringProperty("af_name");
+              
+        /*
+         * Relations
+         */
+        Property AuthorIdProperty =absData.addLongProperty("absAuthorId").getProperty();
+        absData.addToOne(absAuthor, AuthorIdProperty);
+        
+        Property abstracstitemAuthor = absAuthor.addLongProperty("abstractsitemId").notNull().getProperty();
+        absAuthor.addToOne(absData, abstracstitemAuthor);
         
         Property absAffiliationNameProperty = absData.addLongProperty("absAffiliationNameId").getProperty();
-        absData.addToOne(absData, absAffiliationNameProperty);
+        absData.addToMany(absAffiliationName, absAffiliationNameProperty);
+        
+        Property abs_AF_Author = absAffiliation.addLongProperty("absAuthorId").notNull().getProperty();
+        absAffiliation.addToOne(absAuthor, abs_AF_Author);
+       
+        Property AffiliationIdProperty =absAuthor.addLongProperty("absAffiliationId").getProperty();
+        absAuthor.addToOne(absAffiliation, AffiliationIdProperty);
+        
+        
+        
         
     }
     
