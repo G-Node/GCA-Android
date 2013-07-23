@@ -3,9 +3,13 @@
  */
 package com.yasiradnan.ConferenceGenerator;
 
+import java.io.IOException;
+
+import de.greenrobot.daogenerator.DaoGenerator;
 import de.greenrobot.daogenerator.Entity;
 import de.greenrobot.daogenerator.Property;
 import de.greenrobot.daogenerator.Schema;
+import de.greenrobot.daogenerator.ToMany;
 
 /**
  * @author Adnan
@@ -19,9 +23,24 @@ public class Generator {
     public static void main(String[] args) {
         // TODO Auto-generated method stub
         Schema schema = new Schema(1, "com.yasiradnan.conference");
+        addAbstract(schema);
+        try {
+            new DaoGenerator().generateAll(schema, "../Conference/src-gen/");
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
     
-    private void addAbstract(Schema schema){
+    private static void addAbstract(Schema schema){
+        
+        /*
+         * Abstract 
+         * */
+        
         Entity absData = schema.addEntity("AbstractItem");
         absData.addIdProperty();
         absData.addStringProperty("Correspondence").notNull();
@@ -32,6 +51,9 @@ public class Generator {
         absData.addStringProperty("topic").notNull();
         absData.addStringProperty("coi").notNull();
         absData.addStringProperty("cite").notNull();
+       
+        Property AuthorIdProperty =absData.addLongProperty("absAuthorId").getProperty();
+        absData.addToOne(absData, AuthorIdProperty);
         
         /*
          * Abstract Keywords
@@ -51,6 +73,9 @@ public class Generator {
         absAuthor.addStringProperty("name").notNull();
         absAuthor.addBooleanProperty("Is_Corresponding");
         
+        absAuthor.addToOne(absAuthor, abstractitemId);
+        
+        
         /*
          * AFFILIATION TABLE
          */
@@ -63,8 +88,20 @@ public class Generator {
          * AuthorsAffiliation
          */
         
+        absAffiliation.addToOne(absAuthor, AuthorIdProperty);
+        Property AffiliationIdProperty =absAuthor.addLongProperty("absAffiliationId").getProperty();
+        absAuthor.addToOne(absAuthor, AffiliationIdProperty);
+
+        /*
+         * AFFILIATION_ONE
+         */
         
+        Entity absAffiliationName = schema.addEntity("AbsAffiliationName");
+        absAffiliationName.addIdProperty();
+        absAffiliationName.addStringProperty("af_name");
         
+        Property absAffiliationNameProperty = absData.addLongProperty("absAffiliationNameId").getProperty();
+        absData.addToOne(absData, absAffiliationNameProperty);
         
     }
     
