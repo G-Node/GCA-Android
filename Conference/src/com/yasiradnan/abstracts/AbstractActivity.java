@@ -108,9 +108,17 @@ public class AbstractActivity extends Activity {
                 for (int index = 0; index < jsonArray.length(); index++) {
 
                     JSONObject jsonObject = jsonArray.getJSONObject(index);
-
+                    
                     String topic = jsonObject.getString("topic");
-
+                    
+                    String correspondence = jsonObject.getString("correspondence");
+                    
+                    String url = jsonObject.getString("url");
+                    
+                    String coi = jsonObject.getString("coi");
+                    
+                    String cite = jsonObject.getString("cite");
+                    
                     String type = jsonObject.getString("type");
 
                     String title = jsonObject.getString("title");
