@@ -16,11 +16,18 @@ import org.json.JSONObject;
 import org.json.JSONTokener;
 
 import com.google.android.gms.internal.da;
+import com.yasiradnan.conference.AbstractsItem;
+import com.yasiradnan.conference.AbstractsItemDao;
+import com.yasiradnan.conference.DaoMaster;
+import com.yasiradnan.conference.DaoMaster.DevOpenHelper;
+import com.yasiradnan.conference.DaoSession;
 import com.yasiradnan.conference.R;
 
 import android.app.Activity;
 import android.app.ListActivity;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -32,6 +39,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
+import de.greenrobot.*;
 
 /**
  * @author Adnan
@@ -40,24 +48,50 @@ public class AbstractActivity extends Activity {
 
     private List<AbstractItem> addData = new ArrayList<AbstractItem>();
 
-    AbstractAdapter abAdapter;
+    AbstractCursorAdapter cursorAdapter;
 
     ListView listView;
-
+    
+    SQLiteDatabase database;
+    
+    DevOpenHelper helper;
+    
+    DaoSession daoSession;
+    
+    DaoMaster daoMaster;
+    
+    AbstractsItemDao itemsDao;
+    
+    Cursor cursor;
+    
+    ListView lv;
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // TODO Auto-generated method stub
         super.onCreate(savedInstanceState);
-
+        
+        helper = new DaoMaster.DevOpenHelper(this, "Abstract-Database", null);
+        
+        database = helper.getWritableDatabase();
+        
+        daoMaster = new DaoMaster(database);
+        
+        daoSession = daoMaster.newSession();
+        
+        itemsDao = daoSession.getAbstractsItemDao();
+        
         setContentView(R.layout.abstract_general);
 
         datainList();
 
         listView = (ListView)findViewById(R.id.list);
 
-        abAdapter = new AbstractAdapter(this, addData);
-
-        listView.setAdapter(abAdapter);
+        cursor = database.query(itemsDao.getTablename(), itemsDao.getAllColumns(), null, null, null, null, null);
+        
+        cursorAdapter = new AbstractCursorAdapter(this, cursor);
+        
+        listView.setAdapter(cursorAdapter);
 
         listView.setOnItemClickListener(new OnItemClickListener() {
             @Override
@@ -125,8 +159,12 @@ public class AbstractActivity extends Activity {
 
                     Log.e("title", title);
 
-                    String absData = jsonObject.getString("abstract");
-
+                    String text = jsonObject.getString("abstract");
+                    
+                    AbstractsItem items = new AbstractsItem(null, correspondence, title, url, text, type, topic, coi, cite, null, null);
+                    
+                    itemsDao.insert(items);
+                    
                     JSONArray getAuthorsArray = new JSONArray(jsonObject.getString("authors"));
 
                     String[] authorNames = new String[getAuthorsArray.length()];
@@ -155,7 +193,6 @@ public class AbstractActivity extends Activity {
 
                     String formattedString = stringBuild.toString();
 
-                    addData.add(new AbstractItem(title, topic, absData, type, formattedString));
 
                 }
             }
