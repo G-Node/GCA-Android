@@ -51,36 +51,36 @@ public class AbstractActivity extends Activity {
     AbstractCursorAdapter cursorAdapter;
 
     ListView listView;
-    
+
     SQLiteDatabase database;
-    
+
     DevOpenHelper helper;
-    
+
     DaoSession daoSession;
-    
+
     DaoMaster daoMaster;
-    
+
     AbstractsItemDao itemsDao;
-    
+
     Cursor cursor;
-    
+
     ListView lv;
-    
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // TODO Auto-generated method stub
         super.onCreate(savedInstanceState);
-        
+
         helper = new DaoMaster.DevOpenHelper(this, "Abstract-Database", null);
-        
+
         database = helper.getWritableDatabase();
-        
+
         daoMaster = new DaoMaster(database);
-        
+
         daoSession = daoMaster.newSession();
-        
+
         itemsDao = daoSession.getAbstractsItemDao();
-        
+
         setContentView(R.layout.abstract_general);
 
         datainList();
@@ -88,9 +88,9 @@ public class AbstractActivity extends Activity {
         listView = (ListView)findViewById(R.id.list);
 
         cursor = database.query(itemsDao.getTablename(), itemsDao.getAllColumns(), null, null, null, null, null);
-        
+
         cursorAdapter = new AbstractCursorAdapter(this, cursor);
-        
+
         listView.setAdapter(cursorAdapter);
 
         listView.setOnItemClickListener(new OnItemClickListener() {
@@ -128,74 +128,74 @@ public class AbstractActivity extends Activity {
 
     private void datainList() {
         try {
-            if (addData.isEmpty()) {
-                BufferedReader jsonReader = new BufferedReader(new InputStreamReader(this
-                        .getResources().openRawResource(R.raw.abstracts)));
-                StringBuilder jsonBuilder = new StringBuilder();
-                for (String line = null; (line = jsonReader.readLine()) != null;) {
-                    jsonBuilder.append(line).append("\n");
-                }
 
-                JSONTokener tokener = new JSONTokener(jsonBuilder.toString());
-                JSONArray jsonArray = new JSONArray(tokener);
-
-                for (int index = 0; index < jsonArray.length(); index++) {
-
-                    JSONObject jsonObject = jsonArray.getJSONObject(index);
-                    
-                    String topic = jsonObject.getString("topic");
-                    
-                    String correspondence = jsonObject.getString("correspondence");
-                    
-                    String url = jsonObject.getString("url");
-                    
-                    String coi = jsonObject.getString("coi");
-                    
-                    String cite = jsonObject.getString("cite");
-                    
-                    String type = jsonObject.getString("type");
-
-                    String title = jsonObject.getString("title");
-
-                    Log.e("title", title);
-
-                    String text = jsonObject.getString("abstract");
-                    
-                    AbstractsItem items = new AbstractsItem(null, correspondence, title, url, text, type, topic, coi, cite, null, null);
-                    
-                    itemsDao.insert(items);
-                    
-                    JSONArray getAuthorsArray = new JSONArray(jsonObject.getString("authors"));
-
-                    String[] authorNames = new String[getAuthorsArray.length()];
-
-                    for (int counter = 0; counter < getAuthorsArray.length(); counter++) {
-
-                        authorNames[counter] = getAuthorsArray.getJSONObject(counter).getString(
-                                "name");
-                        authorNames[counter] = String.valueOf(authorNames[counter].replaceAll(
-                                "^(\\w)\\w+", "$1."));
-
-                    }
-
-                    StringBuilder stringBuild = new StringBuilder();
-
-                    for (int value = 0; value < authorNames.length; value++) {
-
-                        stringBuild.append(authorNames[value]);
-
-                        if (value < authorNames.length - 2) {
-                            stringBuild.append(",");
-                        } else if (value < authorNames.length - 1) {
-                            stringBuild.append(" & ");
-                        }
-                    }
-
-                    String formattedString = stringBuild.toString();
-
-
-                }
+            BufferedReader jsonReader = new BufferedReader(new InputStreamReader(this
+                    .getResources().openRawResource(R.raw.abstracts)));
+            StringBuilder jsonBuilder = new StringBuilder();
+            for (String line = null; (line = jsonReader.readLine()) != null;) {
+                jsonBuilder.append(line).append("\n");
             }
+
+            JSONTokener tokener = new JSONTokener(jsonBuilder.toString());
+            JSONArray jsonArray = new JSONArray(tokener);
+
+            for (int index = 0; index < jsonArray.length(); index++) {
+
+                JSONObject jsonObject = jsonArray.getJSONObject(index);
+
+                String topic = jsonObject.getString("topic");
+
+                String correspondence = jsonObject.getString("correspondence");
+
+                String url = jsonObject.getString("url");
+
+                String coi = jsonObject.getString("coi");
+
+                String cite = jsonObject.getString("cite");
+
+                String type = jsonObject.getString("type");
+
+                String title = jsonObject.getString("title");
+
+                Log.e("title", title);
+
+                String text = jsonObject.getString("abstract");
+
+                AbstractsItem items = new AbstractsItem(null, correspondence, title, url, text, type, topic, coi, cite, null, null);
+
+                itemsDao.insert(items);
+
+                JSONArray getAuthorsArray = new JSONArray(jsonObject.getString("authors"));
+
+                String[] authorNames = new String[getAuthorsArray.length()];
+
+                for (int counter = 0; counter < getAuthorsArray.length(); counter++) {
+
+                    authorNames[counter] = getAuthorsArray.getJSONObject(counter).getString(
+                            "name");
+                    authorNames[counter] = String.valueOf(authorNames[counter].replaceAll(
+                            "^(\\w)\\w+", "$1."));
+
+                }
+
+                StringBuilder stringBuild = new StringBuilder();
+
+                for (int value = 0; value < authorNames.length; value++) {
+
+                    stringBuild.append(authorNames[value]);
+
+                    if (value < authorNames.length - 2) {
+                        stringBuild.append(",");
+                    } else if (value < authorNames.length - 1) {
+                        stringBuild.append(" & ");
+                    }
+                }
+
+                String formattedString = stringBuild.toString();
+
+
+            }
+
 
         } catch (FileNotFoundException e) {
             Log.e("jsonFile", "file not found");
