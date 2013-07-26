@@ -1,6 +1,5 @@
 package com.yasiradnan.conference;
 
-import java.util.List;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteStatement;
@@ -8,8 +7,6 @@ import android.database.sqlite.SQLiteStatement;
 import de.greenrobot.dao.AbstractDao;
 import de.greenrobot.dao.DaoConfig;
 import de.greenrobot.dao.Property;
-import de.greenrobot.dao.Query;
-import de.greenrobot.dao.QueryBuilder;
 
 import com.yasiradnan.conference.AbsAffiliationName;
 
@@ -28,10 +25,8 @@ public class AbsAffiliationNameDao extends AbstractDao<AbsAffiliationName, Long>
     public static class Properties {
         public final static Property Id = new Property(0, Long.class, "id", true, "_id");
         public final static Property Af_name = new Property(1, String.class, "af_name", false, "AF_NAME");
-        public final static Property AbsAffiliationNameId = new Property(2, Long.class, "absAffiliationNameId", false, "ABS_AFFILIATION_NAME_ID");
     };
 
-    private Query<AbsAffiliationName> abstractsItem_AbsAffiliationNameListQuery;
 
     public AbsAffiliationNameDao(DaoConfig config) {
         super(config);
@@ -46,8 +41,7 @@ public class AbsAffiliationNameDao extends AbstractDao<AbsAffiliationName, Long>
         String constraint = ifNotExists? "IF NOT EXISTS ": "";
         db.execSQL("CREATE TABLE " + constraint + "'ABS_AFFILIATION_NAME' (" + //
                 "'_id' INTEGER PRIMARY KEY ," + // 0: id
-                "'AF_NAME' TEXT," + // 1: af_name
-                "'ABS_AFFILIATION_NAME_ID' INTEGER);"); // 2: absAffiliationNameId
+                "'AF_NAME' TEXT);"); // 1: af_name
     }
 
     /** Drops the underlying database table. */
@@ -118,16 +112,4 @@ public class AbsAffiliationNameDao extends AbstractDao<AbsAffiliationName, Long>
         return true;
     }
     
-    /** Internal query to resolve the "absAffiliationNameList" to-many relationship of AbstractsItem. */
-    public synchronized List<AbsAffiliationName> _queryAbstractsItem_AbsAffiliationNameList(Long absAffiliationNameId) {
-        if (abstractsItem_AbsAffiliationNameListQuery == null) {
-            QueryBuilder<AbsAffiliationName> queryBuilder = queryBuilder();
-            queryBuilder.where(Properties.AbsAffiliationNameId.eq(absAffiliationNameId));
-            abstractsItem_AbsAffiliationNameListQuery = queryBuilder.build();
-        } else {
-            abstractsItem_AbsAffiliationNameListQuery.setParameter(0, absAffiliationNameId);
-        }
-        return abstractsItem_AbsAffiliationNameListQuery.list();
-    }
-
 }

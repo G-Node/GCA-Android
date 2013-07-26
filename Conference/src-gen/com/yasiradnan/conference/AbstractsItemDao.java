@@ -1,7 +1,5 @@
 package com.yasiradnan.conference;
 
-import java.util.List;
-import java.util.ArrayList;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteStatement;
@@ -9,7 +7,6 @@ import android.database.sqlite.SQLiteStatement;
 import de.greenrobot.dao.AbstractDao;
 import de.greenrobot.dao.DaoConfig;
 import de.greenrobot.dao.Property;
-import de.greenrobot.dao.SqlUtils;
 
 import com.yasiradnan.conference.AbstractsItem;
 
@@ -35,11 +32,7 @@ public class AbstractsItemDao extends AbstractDao<AbstractsItem, Long> {
         public final static Property Topic = new Property(6, String.class, "topic", false, "TOPIC");
         public final static Property Coi = new Property(7, String.class, "coi", false, "COI");
         public final static Property Cite = new Property(8, String.class, "cite", false, "CITE");
-        public final static Property AbsAuthorId = new Property(9, Long.class, "absAuthorId", false, "ABS_AUTHOR_ID");
-        public final static Property AbsAffiliationNameId = new Property(10, Long.class, "absAffiliationNameId", false, "ABS_AFFILIATION_NAME_ID");
     };
-
-    private DaoSession daoSession;
 
 
     public AbstractsItemDao(DaoConfig config) {
@@ -48,7 +41,6 @@ public class AbstractsItemDao extends AbstractDao<AbstractsItem, Long> {
     
     public AbstractsItemDao(DaoConfig config, DaoSession daoSession) {
         super(config, daoSession);
-        this.daoSession = daoSession;
     }
 
     /** Creates the underlying database table. */
@@ -63,9 +55,7 @@ public class AbstractsItemDao extends AbstractDao<AbstractsItem, Long> {
                 "'TYPE' TEXT NOT NULL ," + // 5: type
                 "'TOPIC' TEXT NOT NULL ," + // 6: topic
                 "'COI' TEXT NOT NULL ," + // 7: coi
-                "'CITE' TEXT NOT NULL ," + // 8: cite
-                "'ABS_AUTHOR_ID' INTEGER," + // 9: absAuthorId
-                "'ABS_AFFILIATION_NAME_ID' INTEGER);"); // 10: absAffiliationNameId
+                "'CITE' TEXT NOT NULL );"); // 8: cite
     }
 
     /** Drops the underlying database table. */
@@ -91,22 +81,6 @@ public class AbstractsItemDao extends AbstractDao<AbstractsItem, Long> {
         stmt.bindString(7, entity.getTopic());
         stmt.bindString(8, entity.getCoi());
         stmt.bindString(9, entity.getCite());
- 
-        Long absAuthorId = entity.getAbsAuthorId();
-        if (absAuthorId != null) {
-            stmt.bindLong(10, absAuthorId);
-        }
- 
-        Long absAffiliationNameId = entity.getAbsAffiliationNameId();
-        if (absAffiliationNameId != null) {
-            stmt.bindLong(11, absAffiliationNameId);
-        }
-    }
-
-    @Override
-    protected void attachEntity(AbstractsItem entity) {
-        super.attachEntity(entity);
-        entity.__setDaoSession(daoSession);
     }
 
     /** @inheritdoc */
@@ -127,9 +101,7 @@ public class AbstractsItemDao extends AbstractDao<AbstractsItem, Long> {
             cursor.getString(offset + 5), // type
             cursor.getString(offset + 6), // topic
             cursor.getString(offset + 7), // coi
-            cursor.getString(offset + 8), // cite
-            cursor.isNull(offset + 9) ? null : cursor.getLong(offset + 9), // absAuthorId
-            cursor.isNull(offset + 10) ? null : cursor.getLong(offset + 10) // absAffiliationNameId
+            cursor.getString(offset + 8) // cite
         );
         return entity;
     }
@@ -146,8 +118,6 @@ public class AbstractsItemDao extends AbstractDao<AbstractsItem, Long> {
         entity.setTopic(cursor.getString(offset + 6));
         entity.setCoi(cursor.getString(offset + 7));
         entity.setCite(cursor.getString(offset + 8));
-        entity.setAbsAuthorId(cursor.isNull(offset + 9) ? null : cursor.getLong(offset + 9));
-        entity.setAbsAffiliationNameId(cursor.isNull(offset + 10) ? null : cursor.getLong(offset + 10));
      }
     
     /** @inheritdoc */
@@ -173,95 +143,4 @@ public class AbstractsItemDao extends AbstractDao<AbstractsItem, Long> {
         return true;
     }
     
-    private String selectDeep;
-
-    protected String getSelectDeep() {
-        if (selectDeep == null) {
-            StringBuilder builder = new StringBuilder("SELECT ");
-            SqlUtils.appendColumns(builder, "T", getAllColumns());
-            builder.append(',');
-            SqlUtils.appendColumns(builder, "T0", daoSession.getAbstractAuthorDao().getAllColumns());
-            builder.append(" FROM ABSTRACTS_ITEM T");
-            builder.append(" LEFT JOIN ABSTRACT_AUTHOR T0 ON T.'ABS_AUTHOR_ID'=T0.'_id'");
-            builder.append(' ');
-            selectDeep = builder.toString();
-        }
-        return selectDeep;
-    }
-    
-    protected AbstractsItem loadCurrentDeep(Cursor cursor, boolean lock) {
-        AbstractsItem entity = loadCurrent(cursor, 0, lock);
-        int offset = getAllColumns().length;
-
-        AbstractAuthor abstractAuthor = loadCurrentOther(daoSession.getAbstractAuthorDao(), cursor, offset);
-        entity.setAbstractAuthor(abstractAuthor);
-
-        return entity;    
-    }
-
-    public AbstractsItem loadDeep(Long key) {
-        assertSinglePk();
-        if (key == null) {
-            return null;
-        }
-
-        StringBuilder builder = new StringBuilder(getSelectDeep());
-        builder.append("WHERE ");
-        SqlUtils.appendColumnsEqValue(builder, "T", getPkColumns());
-        String sql = builder.toString();
-        
-        String[] keyArray = new String[] { key.toString() };
-        Cursor cursor = db.rawQuery(sql, keyArray);
-        
-        try {
-            boolean available = cursor.moveToFirst();
-            if (!available) {
-                return null;
-            } else if (!cursor.isLast()) {
-                throw new IllegalStateException("Expected unique result, but count was " + cursor.getCount());
-            }
-            return loadCurrentDeep(cursor, true);
-        } finally {
-            cursor.close();
-        }
-    }
-    
-    /** Reads all available rows from the given cursor and returns a list of new ImageTO objects. */
-    public List<AbstractsItem> loadAllDeepFromCursor(Cursor cursor) {
-        int count = cursor.getCount();
-        List<AbstractsItem> list = new ArrayList<AbstractsItem>(count);
-        
-        if (cursor.moveToFirst()) {
-            if (identityScope != null) {
-                identityScope.lock();
-                identityScope.reserveRoom(count);
-            }
-            try {
-                do {
-                    list.add(loadCurrentDeep(cursor, false));
-                } while (cursor.moveToNext());
-            } finally {
-                if (identityScope != null) {
-                    identityScope.unlock();
-                }
-            }
-        }
-        return list;
-    }
-    
-    protected List<AbstractsItem> loadDeepAllAndCloseCursor(Cursor cursor) {
-        try {
-            return loadAllDeepFromCursor(cursor);
-        } finally {
-            cursor.close();
-        }
-    }
-    
-
-    /** A raw-style query where you can pass any WHERE clause and arguments. */
-    public List<AbstractsItem> queryDeep(String where, String... selectionArg) {
-        Cursor cursor = db.rawQuery(getSelectDeep() + where, selectionArg);
-        return loadDeepAllAndCloseCursor(cursor);
-    }
- 
 }
