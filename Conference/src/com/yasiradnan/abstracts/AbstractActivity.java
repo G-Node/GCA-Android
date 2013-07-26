@@ -50,8 +50,6 @@ import de.greenrobot.*;
  */
 public class AbstractActivity extends Activity {
 
-    private List<AbstractItem> addData = new ArrayList<AbstractItem>();
-
     AbstractCursorAdapter cursorAdapter;
 
     ListView listView;
@@ -100,7 +98,9 @@ public class AbstractActivity extends Activity {
 
         listView = (ListView)findViewById(R.id.list);
 
-        cursor = database.query(itemsDao.getTablename(), itemsDao.getAllColumns(), null, null, null, null, null);
+        cursor = database.rawQuery("",null);
+        
+      
 
         cursorAdapter = new AbstractCursorAdapter(this, cursor);
 
@@ -111,13 +111,13 @@ public class AbstractActivity extends Activity {
             public void onItemClick(AdapterView<?> arg0, View view, int position, long arg3) {
                 // TODO Auto-generated method stub
 
-                String abstracts_content = addData.get(position).getAbstractContent();
+                
 
-                Intent in = new Intent(getApplicationContext(), AbstractContent.class);
+                //Intent in = new Intent(getApplicationContext(), AbstractContent.class);
 
-                in.putExtra("abstracts", abstracts_content);
+                //in.putExtra("abstracts", abstracts_content);
 
-                startActivity(in);
+                //startActivity(in);
             }
         });
 
@@ -209,8 +209,6 @@ public class AbstractActivity extends Activity {
                 AbstractAuthor authorInfo = new AbstractAuthor(null, formattedString);
                 authorDao.insert(authorInfo);
                 
-                AuthorsAbstract authAbs = new AuthorsAbstract(items.getId(), authorInfo.getId());
-                authAbstractsDao.insert(authAbs);
             }
 
 
