@@ -77,12 +77,7 @@ public class Generator {
         Entity absAffiliation = schema.addEntity("AbstractAffiliation");
         absAffiliation.addIdProperty();
         absAffiliation.addIntProperty("affiliationNumber");
-        
-        /*
-         * AuthorsAffiliation
-         */
-        
-
+       
         /*
          * AFFILIATION_ONE
          */
@@ -90,24 +85,23 @@ public class Generator {
         Entity absAffiliationName = schema.addEntity("AbsAffiliationName");
         absAffiliationName.addIdProperty();
         absAffiliationName.addStringProperty("af_name");
+        
+        /*
+         * AUTHORS_ABSTRACT
+         */
+        Entity absAuthorsAbstract = schema.addEntity("AuthorsAbstract");
+        Property abstracstsItemsId = absAuthorsAbstract.addLongProperty("abstractsitemId").notNull().getProperty();
+        absAuthorsAbstract.addToOne(absData, abstracstsItemsId);
+        Property abstracstAuthorId = absAuthorsAbstract.addLongProperty("abstractauthorId").notNull().getProperty();
+        absAuthorsAbstract.addToOne(absAuthor, abstracstAuthorId);
               
         /*
          * Relations
          */
-        Property AuthorIdProperty =absData.addLongProperty("absAuthorId").getProperty();
-        absData.addToOne(absAuthor, AuthorIdProperty);
-        
-        Property abstracstitemAuthor = absAuthor.addLongProperty("abstractsitemId").getProperty();
-        absAuthor.addToOne(absData, abstracstitemAuthor);
-        
-        Property absAffiliationNameProperty = absData.addLongProperty("absAffiliationNameId").getProperty();
-        absData.addToMany(absAffiliationName, absAffiliationNameProperty);
-        
+
         Property abs_AF_Author = absAffiliation.addLongProperty("absAuthorId").getProperty();
         absAffiliation.addToOne(absAuthor, abs_AF_Author);
-       
-        Property AffiliationIdProperty =absAuthor.addLongProperty("absAffiliationId").getProperty();
-        absAuthor.addToOne(absAffiliation, AffiliationIdProperty);
+
         
         
         
