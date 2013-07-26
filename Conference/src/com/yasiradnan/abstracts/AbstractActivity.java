@@ -16,8 +16,12 @@ import org.json.JSONObject;
 import org.json.JSONTokener;
 
 import com.google.android.gms.internal.da;
+import com.yasiradnan.conference.AbstractAuthor;
+import com.yasiradnan.conference.AbstractAuthorDao;
 import com.yasiradnan.conference.AbstractsItem;
 import com.yasiradnan.conference.AbstractsItemDao;
+import com.yasiradnan.conference.AuthorsAbstract;
+import com.yasiradnan.conference.AuthorsAbstractDao;
 import com.yasiradnan.conference.DaoMaster;
 import com.yasiradnan.conference.DaoMaster.DevOpenHelper;
 import com.yasiradnan.conference.DaoSession;
@@ -61,6 +65,10 @@ public class AbstractActivity extends Activity {
     DaoMaster daoMaster;
 
     AbstractsItemDao itemsDao;
+    
+    AbstractAuthorDao authorDao;
+    
+    AuthorsAbstractDao authAbstractsDao;
 
     Cursor cursor;
 
@@ -80,6 +88,11 @@ public class AbstractActivity extends Activity {
         daoSession = daoMaster.newSession();
 
         itemsDao = daoSession.getAbstractsItemDao();
+        
+        authorDao = daoSession.getAbstractAuthorDao();
+        
+        authAbstractsDao = daoSession.getAuthorsAbstractDao();
+        
 
         setContentView(R.layout.abstract_general);
 
@@ -193,7 +206,11 @@ public class AbstractActivity extends Activity {
 
                 String formattedString = stringBuild.toString();
                 
-
+                AbstractAuthor authorInfo = new AbstractAuthor(null, formattedString);
+                authorDao.insert(authorInfo);
+                
+                AuthorsAbstract authAbs = new AuthorsAbstract(items.getId(), authorInfo.getId());
+                authAbstractsDao.insert(authAbs);
             }
 
 
