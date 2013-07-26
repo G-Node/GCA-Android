@@ -65,8 +65,6 @@ public class AbstractActivity extends Activity {
     AbstractsItemDao itemsDao;
     
     AbstractAuthorDao authorDao;
-    
-    AuthorsAbstractDao authAbstractsDao;
 
     Cursor cursor;
 
@@ -89,19 +87,16 @@ public class AbstractActivity extends Activity {
         
         authorDao = daoSession.getAbstractAuthorDao();
         
-        authAbstractsDao = daoSession.getAuthorsAbstractDao();
-        
-
         setContentView(R.layout.abstract_general);
 
         datainList();
 
         listView = (ListView)findViewById(R.id.list);
-
-        cursor = database.rawQuery("",null);
         
-      
-
+        String query = "select abstracts_item._id,title,text,type,name,topic from abstracts_item join abstract_author on abstract_author._id = abstracts_item._id";
+        
+        cursor = database.rawQuery(query,null);
+        
         cursorAdapter = new AbstractCursorAdapter(this, cursor);
 
         listView.setAdapter(cursorAdapter);
