@@ -28,7 +28,7 @@ public class AbstractAffiliationDao extends AbstractDao<AbstractAffiliation, Lon
     public static class Properties {
         public final static Property Id = new Property(0, Long.class, "id", true, "_id");
         public final static Property AffiliationNumber = new Property(1, Integer.class, "affiliationNumber", false, "AFFILIATION_NUMBER");
-        public final static Property AbsAuthorId = new Property(2, long.class, "absAuthorId", false, "ABS_AUTHOR_ID");
+        public final static Property AbsAuthorId = new Property(2, Long.class, "absAuthorId", false, "ABS_AUTHOR_ID");
     };
 
     private DaoSession daoSession;
@@ -49,7 +49,7 @@ public class AbstractAffiliationDao extends AbstractDao<AbstractAffiliation, Lon
         db.execSQL("CREATE TABLE " + constraint + "'ABSTRACT_AFFILIATION' (" + //
                 "'_id' INTEGER PRIMARY KEY ," + // 0: id
                 "'AFFILIATION_NUMBER' INTEGER," + // 1: affiliationNumber
-                "'ABS_AUTHOR_ID' INTEGER NOT NULL );"); // 2: absAuthorId
+                "'ABS_AUTHOR_ID' INTEGER);"); // 2: absAuthorId
     }
 
     /** Drops the underlying database table. */
@@ -72,7 +72,11 @@ public class AbstractAffiliationDao extends AbstractDao<AbstractAffiliation, Lon
         if (affiliationNumber != null) {
             stmt.bindLong(2, affiliationNumber);
         }
-        stmt.bindLong(3, entity.getAbsAuthorId());
+ 
+        Long absAuthorId = entity.getAbsAuthorId();
+        if (absAuthorId != null) {
+            stmt.bindLong(3, absAuthorId);
+        }
     }
 
     @Override
@@ -93,7 +97,7 @@ public class AbstractAffiliationDao extends AbstractDao<AbstractAffiliation, Lon
         AbstractAffiliation entity = new AbstractAffiliation( //
             cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0), // id
             cursor.isNull(offset + 1) ? null : cursor.getInt(offset + 1), // affiliationNumber
-            cursor.getLong(offset + 2) // absAuthorId
+            cursor.isNull(offset + 2) ? null : cursor.getLong(offset + 2) // absAuthorId
         );
         return entity;
     }
@@ -103,7 +107,7 @@ public class AbstractAffiliationDao extends AbstractDao<AbstractAffiliation, Lon
     public void readEntity(Cursor cursor, AbstractAffiliation entity, int offset) {
         entity.setId(cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0));
         entity.setAffiliationNumber(cursor.isNull(offset + 1) ? null : cursor.getInt(offset + 1));
-        entity.setAbsAuthorId(cursor.getLong(offset + 2));
+        entity.setAbsAuthorId(cursor.isNull(offset + 2) ? null : cursor.getLong(offset + 2));
      }
     
     /** @inheritdoc */
@@ -150,9 +154,7 @@ public class AbstractAffiliationDao extends AbstractDao<AbstractAffiliation, Lon
         int offset = getAllColumns().length;
 
         AbstractAuthor abstractAuthor = loadCurrentOther(daoSession.getAbstractAuthorDao(), cursor, offset);
-         if(abstractAuthor != null) {
-            entity.setAbstractAuthor(abstractAuthor);
-        }
+        entity.setAbstractAuthor(abstractAuthor);
 
         return entity;    
     }

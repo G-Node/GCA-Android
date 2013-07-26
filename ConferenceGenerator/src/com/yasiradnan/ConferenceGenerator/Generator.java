@@ -68,7 +68,6 @@ public class Generator {
         Entity absAuthor = schema.addEntity("AbstractAuthor");
         absAuthor.addIdProperty();
         absAuthor.addStringProperty("name").notNull();
-        absAuthor.addBooleanProperty("Is_Corresponding");
         
         
         /*
@@ -98,13 +97,13 @@ public class Generator {
         Property AuthorIdProperty =absData.addLongProperty("absAuthorId").getProperty();
         absData.addToOne(absAuthor, AuthorIdProperty);
         
-        Property abstracstitemAuthor = absAuthor.addLongProperty("abstractsitemId").notNull().getProperty();
+        Property abstracstitemAuthor = absAuthor.addLongProperty("abstractsitemId").getProperty();
         absAuthor.addToOne(absData, abstracstitemAuthor);
         
         Property absAffiliationNameProperty = absData.addLongProperty("absAffiliationNameId").getProperty();
         absData.addToMany(absAffiliationName, absAffiliationNameProperty);
         
-        Property abs_AF_Author = absAffiliation.addLongProperty("absAuthorId").notNull().getProperty();
+        Property abs_AF_Author = absAffiliation.addLongProperty("absAuthorId").getProperty();
         absAffiliation.addToOne(absAuthor, abs_AF_Author);
        
         Property AffiliationIdProperty =absAuthor.addLongProperty("absAffiliationId").getProperty();

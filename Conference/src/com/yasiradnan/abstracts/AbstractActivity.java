@@ -162,7 +162,7 @@ public class AbstractActivity extends Activity {
                 String text = jsonObject.getString("abstract");
 
                 AbstractsItem items = new AbstractsItem(null, correspondence, title, url, text, type, topic, coi, cite, null, null);
-
+                
                 itemsDao.insert(items);
 
                 JSONArray getAuthorsArray = new JSONArray(jsonObject.getString("authors"));

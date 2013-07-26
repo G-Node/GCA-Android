@@ -13,7 +13,7 @@ public class AbstractAuthor {
     /** Not-null value. */
     private String name;
     private Boolean Is_Corresponding;
-    private long abstractsitemId;
+    private Long abstractsitemId;
     private Long absAffiliationId;
 
     /** Used to resolve relations */
@@ -36,7 +36,7 @@ public class AbstractAuthor {
         this.id = id;
     }
 
-    public AbstractAuthor(Long id, String name, Boolean Is_Corresponding, long abstractsitemId, Long absAffiliationId) {
+    public AbstractAuthor(Long id, String name, Boolean Is_Corresponding, Long abstractsitemId, Long absAffiliationId) {
         this.id = id;
         this.name = name;
         this.Is_Corresponding = Is_Corresponding;
@@ -76,11 +76,11 @@ public class AbstractAuthor {
         this.Is_Corresponding = Is_Corresponding;
     }
 
-    public long getAbstractsitemId() {
+    public Long getAbstractsitemId() {
         return abstractsitemId;
     }
 
-    public void setAbstractsitemId(long abstractsitemId) {
+    public void setAbstractsitemId(Long abstractsitemId) {
         this.abstractsitemId = abstractsitemId;
     }
 
@@ -106,11 +106,8 @@ public class AbstractAuthor {
     }
 
     public void setAbstractsItem(AbstractsItem abstractsItem) {
-        if (abstractsItem == null) {
-            throw new DaoException("To-one property 'abstractsitemId' has not-null constraint; cannot set to-one to null");
-        }
         this.abstractsItem = abstractsItem;
-        abstractsitemId = abstractsItem.getId();
+        abstractsitemId = abstractsItem == null ? null : abstractsItem.getId();
         abstractsItem__resolvedKey = abstractsitemId;
     }
 

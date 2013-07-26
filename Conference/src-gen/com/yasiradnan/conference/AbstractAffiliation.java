@@ -11,7 +11,7 @@ public class AbstractAffiliation {
 
     private Long id;
     private Integer affiliationNumber;
-    private long absAuthorId;
+    private Long absAuthorId;
 
     /** Used to resolve relations */
     private transient DaoSession daoSession;
@@ -30,7 +30,7 @@ public class AbstractAffiliation {
         this.id = id;
     }
 
-    public AbstractAffiliation(Long id, Integer affiliationNumber, long absAuthorId) {
+    public AbstractAffiliation(Long id, Integer affiliationNumber, Long absAuthorId) {
         this.id = id;
         this.affiliationNumber = affiliationNumber;
         this.absAuthorId = absAuthorId;
@@ -58,11 +58,11 @@ public class AbstractAffiliation {
         this.affiliationNumber = affiliationNumber;
     }
 
-    public long getAbsAuthorId() {
+    public Long getAbsAuthorId() {
         return absAuthorId;
     }
 
-    public void setAbsAuthorId(long absAuthorId) {
+    public void setAbsAuthorId(Long absAuthorId) {
         this.absAuthorId = absAuthorId;
     }
 
@@ -80,11 +80,8 @@ public class AbstractAffiliation {
     }
 
     public void setAbstractAuthor(AbstractAuthor abstractAuthor) {
-        if (abstractAuthor == null) {
-            throw new DaoException("To-one property 'absAuthorId' has not-null constraint; cannot set to-one to null");
-        }
         this.abstractAuthor = abstractAuthor;
-        absAuthorId = abstractAuthor.getId();
+        absAuthorId = abstractAuthor == null ? null : abstractAuthor.getId();
         abstractAuthor__resolvedKey = absAuthorId;
     }
 

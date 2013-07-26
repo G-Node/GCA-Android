@@ -29,7 +29,7 @@ public class AbstractAuthorDao extends AbstractDao<AbstractAuthor, Long> {
         public final static Property Id = new Property(0, Long.class, "id", true, "_id");
         public final static Property Name = new Property(1, String.class, "name", false, "NAME");
         public final static Property Is_Corresponding = new Property(2, Boolean.class, "Is_Corresponding", false, "IS__CORRESPONDING");
-        public final static Property AbstractsitemId = new Property(3, long.class, "abstractsitemId", false, "ABSTRACTSITEM_ID");
+        public final static Property AbstractsitemId = new Property(3, Long.class, "abstractsitemId", false, "ABSTRACTSITEM_ID");
         public final static Property AbsAffiliationId = new Property(4, Long.class, "absAffiliationId", false, "ABS_AFFILIATION_ID");
     };
 
@@ -52,7 +52,7 @@ public class AbstractAuthorDao extends AbstractDao<AbstractAuthor, Long> {
                 "'_id' INTEGER PRIMARY KEY ," + // 0: id
                 "'NAME' TEXT NOT NULL ," + // 1: name
                 "'IS__CORRESPONDING' INTEGER," + // 2: Is_Corresponding
-                "'ABSTRACTSITEM_ID' INTEGER NOT NULL ," + // 3: abstractsitemId
+                "'ABSTRACTSITEM_ID' INTEGER," + // 3: abstractsitemId
                 "'ABS_AFFILIATION_ID' INTEGER);"); // 4: absAffiliationId
     }
 
@@ -77,7 +77,11 @@ public class AbstractAuthorDao extends AbstractDao<AbstractAuthor, Long> {
         if (Is_Corresponding != null) {
             stmt.bindLong(3, Is_Corresponding ? 1l: 0l);
         }
-        stmt.bindLong(4, entity.getAbstractsitemId());
+ 
+        Long abstractsitemId = entity.getAbstractsitemId();
+        if (abstractsitemId != null) {
+            stmt.bindLong(4, abstractsitemId);
+        }
  
         Long absAffiliationId = entity.getAbsAffiliationId();
         if (absAffiliationId != null) {
@@ -104,7 +108,7 @@ public class AbstractAuthorDao extends AbstractDao<AbstractAuthor, Long> {
             cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0), // id
             cursor.getString(offset + 1), // name
             cursor.isNull(offset + 2) ? null : cursor.getShort(offset + 2) != 0, // Is_Corresponding
-            cursor.getLong(offset + 3), // abstractsitemId
+            cursor.isNull(offset + 3) ? null : cursor.getLong(offset + 3), // abstractsitemId
             cursor.isNull(offset + 4) ? null : cursor.getLong(offset + 4) // absAffiliationId
         );
         return entity;
@@ -116,7 +120,7 @@ public class AbstractAuthorDao extends AbstractDao<AbstractAuthor, Long> {
         entity.setId(cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0));
         entity.setName(cursor.getString(offset + 1));
         entity.setIs_Corresponding(cursor.isNull(offset + 2) ? null : cursor.getShort(offset + 2) != 0);
-        entity.setAbstractsitemId(cursor.getLong(offset + 3));
+        entity.setAbstractsitemId(cursor.isNull(offset + 3) ? null : cursor.getLong(offset + 3));
         entity.setAbsAffiliationId(cursor.isNull(offset + 4) ? null : cursor.getLong(offset + 4));
      }
     
@@ -167,9 +171,7 @@ public class AbstractAuthorDao extends AbstractDao<AbstractAuthor, Long> {
         int offset = getAllColumns().length;
 
         AbstractsItem abstractsItem = loadCurrentOther(daoSession.getAbstractsItemDao(), cursor, offset);
-         if(abstractsItem != null) {
-            entity.setAbstractsItem(abstractsItem);
-        }
+        entity.setAbstractsItem(abstractsItem);
         offset += daoSession.getAbstractsItemDao().getAllColumns().length;
 
         AbstractAffiliation abstractAffiliation = loadCurrentOther(daoSession.getAbstractAffiliationDao(), cursor, offset);
