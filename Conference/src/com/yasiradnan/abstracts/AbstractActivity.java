@@ -16,6 +16,9 @@ import org.json.JSONObject;
 import org.json.JSONTokener;
 
 import com.google.android.gms.internal.da;
+import com.yasiradnan.conference.AbsAffiliationName;
+import com.yasiradnan.conference.AbsAffiliationNameDao;
+import com.yasiradnan.conference.AbstractAffiliationDao;
 import com.yasiradnan.conference.AbstractAuthor;
 import com.yasiradnan.conference.AbstractAuthorDao;
 import com.yasiradnan.conference.AbstractKeyWords;
@@ -69,6 +72,8 @@ public class AbstractActivity extends Activity {
     AbstractAuthorDao authorDao;
     
     AbstractKeyWordsDao abKeyDao;
+    
+    AbsAffiliationNameDao abAfDao;
 
     Cursor cursor;
 
@@ -92,6 +97,8 @@ public class AbstractActivity extends Activity {
         authorDao = daoSession.getAbstractAuthorDao();
         
         abKeyDao = daoSession.getAbstractKeyWordsDao();
+        
+        abAfDao = daoSession.getAbsAffiliationNameDao();
         
         setContentView(R.layout.abstract_general);
 
@@ -178,6 +185,14 @@ public class AbstractActivity extends Activity {
                 AbstractsItem items = new AbstractsItem(null, correspondence, title, url, text, type, topic, coi, cite);
                 
                 itemsDao.insert(items);
+                
+                JSONObject abAfData = jsonArray.getJSONObject(index).getJSONObject("affiliations");
+                
+                String af_name = abAfData.toString().replaceAll("\\{", "").replaceAll("\\}","");
+                
+                AbsAffiliationName abAfName = new AbsAffiliationName(null, af_name);
+                
+                abAfDao.insert(abAfName);
                 
                 JSONArray getKeywords = new JSONArray(jsonObject.getString("keywords"));
                 
