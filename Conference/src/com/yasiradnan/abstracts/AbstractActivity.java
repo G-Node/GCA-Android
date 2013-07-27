@@ -18,6 +18,8 @@ import org.json.JSONTokener;
 import com.google.android.gms.internal.da;
 import com.yasiradnan.conference.AbstractAuthor;
 import com.yasiradnan.conference.AbstractAuthorDao;
+import com.yasiradnan.conference.AbstractKeyWords;
+import com.yasiradnan.conference.AbstractKeyWordsDao;
 import com.yasiradnan.conference.AbstractsItem;
 import com.yasiradnan.conference.AbstractsItemDao;
 import com.yasiradnan.conference.AuthorsAbstract;
@@ -65,6 +67,8 @@ public class AbstractActivity extends Activity {
     AbstractsItemDao itemsDao;
     
     AbstractAuthorDao authorDao;
+    
+    AbstractKeyWordsDao abKeyDao;
 
     Cursor cursor;
 
@@ -86,6 +90,8 @@ public class AbstractActivity extends Activity {
         itemsDao = daoSession.getAbstractsItemDao();
         
         authorDao = daoSession.getAbstractAuthorDao();
+        
+        abKeyDao = daoSession.getAbstractKeyWordsDao();
         
         setContentView(R.layout.abstract_general);
 
@@ -172,7 +178,15 @@ public class AbstractActivity extends Activity {
                 AbstractsItem items = new AbstractsItem(null, correspondence, title, url, text, type, topic, coi, cite);
                 
                 itemsDao.insert(items);
-
+                
+                JSONArray getKeywords = new JSONArray(jsonObject.getString("keywords"));
+                
+                String keywordsData = String.valueOf(getKeywords).replaceAll("\\[", "").replaceAll("\\]","").toString().replace("\"", "");
+                
+                AbstractKeyWords Keywords= new AbstractKeyWords(keywordsData, items.getId());
+                
+                abKeyDao.insert(Keywords);
+                 
                 JSONArray getAuthorsArray = new JSONArray(jsonObject.getString("authors"));
 
                 String[] authorNames = new String[getAuthorsArray.length()];
