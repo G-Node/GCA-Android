@@ -23,13 +23,13 @@ public class AbstractCursorAdapter extends CursorAdapter {
     public void bindView(View view, Context context, Cursor cursor) {
         // TODO Auto-generated method stub
         TextView title = (TextView)view.findViewById(R.id.abTitle);
-        title.setText(cursor.getString(cursor.getColumnIndex(cursor.getColumnName(2))));
+        title.setText(cursor.getString(cursor.getColumnIndexOrThrow("TITLE")));;
         TextView topic = (TextView)view.findViewById(R.id.abTopic);
-        topic.setText(cursor.getString(cursor.getColumnIndex(cursor.getColumnName(6))));
+        topic.setText(cursor.getString(cursor.getColumnIndexOrThrow("TOPIC")));
         TextView type = (TextView)view.findViewById(R.id.abType);
-        type.setText(cursor.getString(cursor.getColumnIndex(cursor.getColumnName(5))));
+        type.setText(cursor.getString(cursor.getColumnIndexOrThrow("TYPE")));
         TextView SubType = (TextView)view.findViewById(R.id.SubTitle);
-        SubType.setText(cursor.getString(cursor.getColumnIndex(cursor.getColumnName(5))));
+        SubType.setText(cursor.getString(cursor.getColumnIndexOrThrow("NAME")));
 
     }
 

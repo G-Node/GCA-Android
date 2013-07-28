@@ -18,6 +18,7 @@ import org.json.JSONTokener;
 import com.google.android.gms.internal.da;
 import com.yasiradnan.conference.AbsAffiliationName;
 import com.yasiradnan.conference.AbsAffiliationNameDao;
+import com.yasiradnan.conference.AbstractAffiliation;
 import com.yasiradnan.conference.AbstractAffiliationDao;
 import com.yasiradnan.conference.AbstractAuthor;
 import com.yasiradnan.conference.AbstractAuthorDao;
@@ -73,7 +74,9 @@ public class AbstractActivity extends Activity {
     
     AbstractKeyWordsDao abKeyDao;
     
-    AbsAffiliationNameDao abAfDao;
+    AbsAffiliationNameDao abAfNameDao;
+    
+    AbstractAffiliationDao abAfDao;
 
     Cursor cursor;
 
@@ -98,7 +101,9 @@ public class AbstractActivity extends Activity {
         
         abKeyDao = daoSession.getAbstractKeyWordsDao();
         
-        abAfDao = daoSession.getAbsAffiliationNameDao();
+        abAfNameDao = daoSession.getAbsAffiliationNameDao();
+        
+        abAfDao = daoSession.getAbstractAffiliationDao();
         
         setContentView(R.layout.abstract_general);
 
@@ -119,13 +124,13 @@ public class AbstractActivity extends Activity {
             public void onItemClick(AdapterView<?> arg0, View view, int position, long arg3) {
                 // TODO Auto-generated method stub
 
+                String Text = 
                 
+                Intent in = new Intent(getApplicationContext(), AbstractContent.class);
 
-                //Intent in = new Intent(getApplicationContext(), AbstractContent.class);
+                in.putExtra("abstracts", abstracts_content);
 
-                //in.putExtra("abstracts", abstracts_content);
-
-                //startActivity(in);
+                startActivity(in);
             }
         });
 
@@ -186,13 +191,15 @@ public class AbstractActivity extends Activity {
                 
                 itemsDao.insert(items);
                 
+                
                 JSONObject abAfData = jsonArray.getJSONObject(index).getJSONObject("affiliations");
                 
                 String af_name = abAfData.toString().replaceAll("\\{", "").replaceAll("\\}","");
                 
                 AbsAffiliationName abAfName = new AbsAffiliationName(null, af_name);
                 
-                abAfDao.insert(abAfName);
+                abAfNameDao.insert(abAfName);
+                
                 
                 JSONArray getKeywords = new JSONArray(jsonObject.getString("keywords"));
                 
@@ -202,6 +209,7 @@ public class AbstractActivity extends Activity {
                 
                 abKeyDao.insert(Keywords);
                  
+               
                 JSONArray getAuthorsArray = new JSONArray(jsonObject.getString("authors"));
 
                 String[] authorNames = new String[getAuthorsArray.length()];
@@ -232,6 +240,8 @@ public class AbstractActivity extends Activity {
                 
                 AbstractAuthor authorInfo = new AbstractAuthor(null, formattedString);
                 authorDao.insert(authorInfo);
+                
+            
                 
             }
 
