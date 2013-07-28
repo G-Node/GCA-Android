@@ -107,13 +107,28 @@ public class AbstractActivity extends Activity {
         
         setContentView(R.layout.abstract_general);
 
-        datainList();
-
         listView = (ListView)findViewById(R.id.list);
         
         String query = "select abstracts_item._id,title,text,type,name,topic from abstracts_item join abstract_author on abstract_author._id = abstracts_item._id";
         
-        cursor = database.rawQuery(query,null);
+        cursor = database.rawQuery(query, null);
+        
+        Boolean isEmpty;
+        
+        if(cursor!=null && cursor.getCount() > 0){
+            
+            isEmpty = false;
+            
+        }else{
+            
+            isEmpty = true;
+            
+        }
+        
+        if(isEmpty){
+            datainList();
+            cursor = database.rawQuery(query, null);
+        }
         
         cursorAdapter = new AbstractCursorAdapter(this, cursor);
 
