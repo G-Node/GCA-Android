@@ -124,11 +124,11 @@ public class AbstractActivity extends Activity {
             public void onItemClick(AdapterView<?> arg0, View view, int position, long arg3) {
                 // TODO Auto-generated method stub
 
-                String Text = 
+                String Text = cursor.getString(cursor.getColumnIndexOrThrow("Text"));
                 
                 Intent in = new Intent(getApplicationContext(), AbstractContent.class);
 
-                in.putExtra("abstracts", abstracts_content);
+                in.putExtra("abstracts", Text);
 
                 startActivity(in);
             }
