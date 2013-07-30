@@ -204,7 +204,7 @@ public class AbstractActivity extends Activity {
 
                 String text = jsonObject.getString("abstract");
 
-                AbstractsItem items = new AbstractsItem(null, correspondence, title, url, text, type, topic, coi, cite);
+                AbstractsItem items = new AbstractsItem(null, correspondence, title, url, text, type, topic, coi, cite,refs);
                 
                 itemsDao.insert(items);
                 
