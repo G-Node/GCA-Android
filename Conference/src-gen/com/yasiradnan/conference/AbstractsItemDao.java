@@ -32,6 +32,7 @@ public class AbstractsItemDao extends AbstractDao<AbstractsItem, Long> {
         public final static Property Topic = new Property(6, String.class, "topic", false, "TOPIC");
         public final static Property Coi = new Property(7, String.class, "coi", false, "COI");
         public final static Property Cite = new Property(8, String.class, "cite", false, "CITE");
+        public final static Property Refs = new Property(9, String.class, "refs", false, "REFS");
     };
 
 
@@ -55,7 +56,8 @@ public class AbstractsItemDao extends AbstractDao<AbstractsItem, Long> {
                 "'TYPE' TEXT NOT NULL ," + // 5: type
                 "'TOPIC' TEXT NOT NULL ," + // 6: topic
                 "'COI' TEXT NOT NULL ," + // 7: coi
-                "'CITE' TEXT NOT NULL );"); // 8: cite
+                "'CITE' TEXT NOT NULL ," + // 8: cite
+                "'REFS' TEXT NOT NULL );"); // 9: refs
     }
 
     /** Drops the underlying database table. */
@@ -81,6 +83,7 @@ public class AbstractsItemDao extends AbstractDao<AbstractsItem, Long> {
         stmt.bindString(7, entity.getTopic());
         stmt.bindString(8, entity.getCoi());
         stmt.bindString(9, entity.getCite());
+        stmt.bindString(10, entity.getRefs());
     }
 
     /** @inheritdoc */
@@ -101,7 +104,8 @@ public class AbstractsItemDao extends AbstractDao<AbstractsItem, Long> {
             cursor.getString(offset + 5), // type
             cursor.getString(offset + 6), // topic
             cursor.getString(offset + 7), // coi
-            cursor.getString(offset + 8) // cite
+            cursor.getString(offset + 8), // cite
+            cursor.getString(offset + 9) // refs
         );
         return entity;
     }
@@ -118,6 +122,7 @@ public class AbstractsItemDao extends AbstractDao<AbstractsItem, Long> {
         entity.setTopic(cursor.getString(offset + 6));
         entity.setCoi(cursor.getString(offset + 7));
         entity.setCite(cursor.getString(offset + 8));
+        entity.setRefs(cursor.getString(offset + 9));
      }
     
     /** @inheritdoc */

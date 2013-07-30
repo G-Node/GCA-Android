@@ -23,6 +23,8 @@ public class AbstractsItem {
     private String coi;
     /** Not-null value. */
     private String cite;
+    /** Not-null value. */
+    private String refs;
 
     public AbstractsItem() {
     }
@@ -31,7 +33,7 @@ public class AbstractsItem {
         this.id = id;
     }
 
-    public AbstractsItem(Long id, String Correspondence, String title, String url, String text, String type, String topic, String coi, String cite) {
+    public AbstractsItem(Long id, String Correspondence, String title, String url, String text, String type, String topic, String coi, String cite, String refs) {
         this.id = id;
         this.Correspondence = Correspondence;
         this.title = title;
@@ -41,6 +43,7 @@ public class AbstractsItem {
         this.topic = topic;
         this.coi = coi;
         this.cite = cite;
+        this.refs = refs;
     }
 
     public Long getId() {
@@ -129,6 +132,16 @@ public class AbstractsItem {
     /** Not-null value; ensure this value is available before it is saved to the database. */
     public void setCite(String cite) {
         this.cite = cite;
+    }
+
+    /** Not-null value. */
+    public String getRefs() {
+        return refs;
+    }
+
+    /** Not-null value; ensure this value is available before it is saved to the database. */
+    public void setRefs(String refs) {
+        this.refs = refs;
     }
 
 }

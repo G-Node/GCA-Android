@@ -197,6 +197,8 @@ public class AbstractActivity extends Activity {
                 String type = jsonObject.getString("type");
 
                 String title = jsonObject.getString("title");
+                
+                String refs = jsonObject.getString("refs");
 
                 Log.e("title", title);
 

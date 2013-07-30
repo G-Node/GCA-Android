@@ -51,6 +51,7 @@ public class Generator {
         absData.addStringProperty("topic").notNull();
         absData.addStringProperty("coi").notNull();
         absData.addStringProperty("cite").notNull();
+        absData.addStringProperty("refs").notNull();
 
         /*
          * Abstract Keywords
