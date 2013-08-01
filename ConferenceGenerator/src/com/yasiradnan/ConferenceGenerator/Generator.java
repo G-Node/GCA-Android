@@ -70,6 +70,7 @@ public class Generator {
         Entity absAuthor = schema.addEntity("AbstractAuthor");
         absAuthor.addIdProperty();
         absAuthor.addStringProperty("name").notNull();
+        absAuthor.addStringProperty("is_Corresponding").notNull();
 
         /*
          * AFFILIATION TABLE
@@ -77,7 +78,7 @@ public class Generator {
 
         Entity absAffiliation = schema.addEntity("AbstractAffiliation");
         absAffiliation.addIdProperty();
-        absAffiliation.addIntProperty("affiliationNumber");
+        absAffiliation.addStringProperty("affiliationNumber");
         
         /*
          * AFFILIATION_ONE
@@ -92,19 +93,42 @@ public class Generator {
          */
         
         Entity absAuthorsAbstract = schema.addEntity("AuthorsAbstract");
+       
         Property abstracstsItemsId = absAuthorsAbstract.addLongProperty("abstractsitemId")
                 .notNull().getProperty();
         absAuthorsAbstract.addToOne(absData, abstracstsItemsId);
+        
         Property abstracstAuthorId = absAuthorsAbstract.addLongProperty("abstractauthorId")
                 .notNull().getProperty();
         absAuthorsAbstract.addToOne(absAuthor, abstracstAuthorId);
 
         /*
-         * Relations
+         * ABSTRACT AND AFFILIATION_ONE
          */
-
-        Property abs_AF_Author = absAffiliation.addLongProperty("absAuthorId").getProperty();
-        absAffiliation.addToOne(absAuthor, abs_AF_Author);
+        
+        Entity absAffiliateName = schema.addEntity("AbstractAffiliateName");
+       
+        Property getabstractItemID = absAffiliateName.addLongProperty("abstractsitemId").notNull().getProperty();
+        
+        absAffiliateName.addToOne(absData, getabstractItemID);
+        
+        Property abstractaffiliateNameID = absAffiliateName.addLongProperty("absaffiliationnameId").notNull().getProperty();
+        
+        absAffiliateName.addToOne(absAffiliationName, abstractaffiliateNameID);
+        
+        /*
+         * Authors and Affiliation number
+         */
+        
+        Entity absAuthorsAffiliate = schema.addEntity("AuthorsAffiliate");
+       
+        Property authorsItemID = absAuthorsAffiliate.addLongProperty("abstractauthorId").notNull().getProperty();
+        absAuthorsAffiliate.addToOne(absAuthor, authorsItemID);
+        
+        Property authorsaffiliateNumber = absAuthorsAffiliate.addLongProperty("abstractaffiliationId").notNull().getProperty();
+        absAuthorsAffiliate.addToOne( absAffiliation, authorsaffiliateNumber);
+        
+        
+        
     }
-
 }
