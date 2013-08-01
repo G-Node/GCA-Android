@@ -104,7 +104,7 @@ public class AbstractActivity extends Activity {
         // TODO Auto-generated method stub
         super.onCreate(savedInstanceState);
 
-        helper = new DaoMaster.DevOpenHelper(this, "Abstract-Database", null);
+        helper = new DaoMaster.DevOpenHelper(this, "Database", null);
 
         database = helper.getWritableDatabase();
 
@@ -132,7 +132,7 @@ public class AbstractActivity extends Activity {
 
         listView = (ListView)findViewById(R.id.list);
         
-        String query = "select abstracts_item._id,title,text,type,name,topic from abstracts_item join abstract_author on abstract_author._id = abstracts_item._id";
+        String query = "select abstracts_item._id,abstract_author.name, title, type, topic, text,affiliation_number,af_name from abs_affiliation_name,abstract_affiliation,abstracts_item,abstract_author,authors_abstract where abstracts_item._id = authors_abstract.abstractsitem_id and abstract_author._id = authors_abstract.abstractauthor_id and abstract_affiliation._id = abstract_author._id and  abs_affiliation_name._id =  abstracts_item._id ";
         
         cursor = database.rawQuery(query, null);
         
