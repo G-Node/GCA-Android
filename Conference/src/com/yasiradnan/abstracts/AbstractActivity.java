@@ -4,7 +4,9 @@ package com.yasiradnan.abstracts;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -29,6 +31,7 @@ import com.yasiradnan.conference.DaoMaster;
 import com.yasiradnan.conference.DaoMaster.DevOpenHelper;
 import com.yasiradnan.conference.DaoSession;
 import com.yasiradnan.conference.R;
+import com.yasiradnan.utils.JSONReader;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -198,15 +201,8 @@ public class AbstractActivity extends Activity {
     private void datainList() {
         try {
 
-            BufferedReader jsonReader = new BufferedReader(new InputStreamReader(this
-                    .getResources().openRawResource(R.raw.abstracts)));
-            StringBuilder jsonBuilder = new StringBuilder();
-            for (String line = null; (line = jsonReader.readLine()) != null;) {
-                jsonBuilder.append(line).append("\n");
-            }
-
-            JSONTokener tokener = new JSONTokener(jsonBuilder.toString());
-            JSONArray jsonArray = new JSONArray(tokener);
+            InputStream inStream = this.getResources().openRawResource(R.raw.abstracts);
+            JSONArray jsonArray = JSONReader.parseStream(inStream);
 
             for (int index = 0; index < jsonArray.length(); index++) {
 
