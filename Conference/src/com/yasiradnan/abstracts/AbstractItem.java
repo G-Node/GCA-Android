@@ -8,6 +8,7 @@ public class AbstractItem {
     String title, topic, type;
     List<String> names;
     public int getID;
+    
     public AbstractItem(int id, String title, String topic, String type){
         this.id = id;
         this.title = title;

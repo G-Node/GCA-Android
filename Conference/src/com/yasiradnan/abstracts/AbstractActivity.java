@@ -46,6 +46,7 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.util.SparseArray;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -150,6 +151,26 @@ public class AbstractActivity extends Activity {
         if(isEmpty){
             datainList();
             cursor = database.rawQuery(query, null);
+        }
+        
+        SparseArray<AbstractItem> dataArray = new SparseArray<AbstractItem>();
+        if(dataArray.size() ==0){
+        cursor.moveToFirst();
+        do {
+            int id = cursor.getInt(cursor.getColumnIndexOrThrow("_id"));
+            String title = cursor.getString(cursor.getColumnIndex("TITLE"));
+            String topic = cursor.getString(cursor.getColumnIndex("TOPIC"));
+            String type = cursor.getString(cursor.getColumnIndex("TYPE"));
+            String name = cursor.getString(cursor.getColumnIndex("NAME"));
+            AbstractItem d = dataArray.get(id);
+            if (d == null) {
+                d = new AbstractItem(id, title, topic, type);
+                d.names.add(name);
+                dataArray.put(id, d);
+            } else {
+                d.names.add(name);
+            }
+        } while (cursor.moveToNext());
         }
         
         cursorAdapter = new AbstractCursorAdapter(this, cursor);
