@@ -1,18 +1,19 @@
 package com.yasiradnan.abstracts;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class AbstractItem {
-    public String title;
-    public String topic;
-    public String type;
-    public String abstractContent;
-    public String authorName;
-    
-    public AbstractItem(String abTitle, String abTopic,String abContent,String abType,String abAuthor ){
-        title = abTitle;
-        topic = abTopic;
-        abstractContent = abContent;
-        type = abType;
-        authorName = abAuthor;
+    int id;
+    String title, topic, type;
+    List<String> names;
+    public int getID;
+    public AbstractItem(int id, String title, String topic, String type){
+        this.id = id;
+        this.title = title;
+        this.topic = topic;
+        this.type = type;
+        names = new ArrayList<String>();
     }
     
     public String getTitle() {
@@ -22,7 +23,12 @@ public class AbstractItem {
     public void setTitle(String title) {
         this.title = title;
     }
-    
+    public int getGetID() {
+        return getID;
+    }
+    public void setGetID(int getID) {
+        this.getID = getID;
+    }
     public String getTopic() {
         return topic;
     }
@@ -38,21 +44,10 @@ public class AbstractItem {
     public void setType(String type) {
         this.type = type;
     }
-    
-    public String getAbstractContent() {
-        return abstractContent;
+    public List<String> getNames() {
+        return names;
     }
-    
-    public void setAbstractContent(String abstractContent) {
-        this.abstractContent = abstractContent;
+    public void setNames(List<String> names) {
+        this.names = names;
     }
-    
-    public void setAuthorName(String authorName) {
-        this.authorName = authorName;
-    }
-    
-    public String getAuthorName() {
-        return authorName;
-    }
-
 }
