@@ -18,6 +18,8 @@ import org.json.JSONTokener;
 import com.google.android.gms.internal.da;
 import com.yasiradnan.conference.AbsAffiliationName;
 import com.yasiradnan.conference.AbsAffiliationNameDao;
+import com.yasiradnan.conference.AbstractAffiliateName;
+import com.yasiradnan.conference.AbstractAffiliateNameDao;
 import com.yasiradnan.conference.AbstractAffiliation;
 import com.yasiradnan.conference.AbstractAffiliationDao;
 import com.yasiradnan.conference.AbstractAuthor;
@@ -28,6 +30,8 @@ import com.yasiradnan.conference.AbstractsItem;
 import com.yasiradnan.conference.AbstractsItemDao;
 import com.yasiradnan.conference.AuthorsAbstract;
 import com.yasiradnan.conference.AuthorsAbstractDao;
+import com.yasiradnan.conference.AuthorsAffiliate;
+import com.yasiradnan.conference.AuthorsAffiliateDao;
 import com.yasiradnan.conference.DaoMaster;
 import com.yasiradnan.conference.DaoMaster.DevOpenHelper;
 import com.yasiradnan.conference.DaoSession;
@@ -77,10 +81,22 @@ public class AbstractActivity extends Activity {
     AbsAffiliationNameDao abAfNameDao;
     
     AbstractAffiliationDao abAfDao;
+    
+    AbstractAffiliateNameDao abAffiliateDao;
+    
+    AuthorsAffiliateDao  abAuthAfDao;
+    
+    AuthorsAbstractDao  absAuthDao;
 
     Cursor cursor;
 
     ListView lv;
+    
+    String authorNames;
+    
+    String is_Corrospondence;
+    
+    String getAfNumber;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -104,6 +120,12 @@ public class AbstractActivity extends Activity {
         abAfNameDao = daoSession.getAbsAffiliationNameDao();
         
         abAfDao = daoSession.getAbstractAffiliationDao();
+        
+        abAffiliateDao = daoSession.getAbstractAffiliateNameDao();
+        
+        abAuthAfDao = daoSession.getAuthorsAffiliateDao();
+        
+        absAuthDao = daoSession.getAuthorsAbstractDao();
         
         setContentView(R.layout.abstract_general);
 
@@ -229,37 +251,34 @@ public class AbstractActivity extends Activity {
                
                 JSONArray getAuthorsArray = new JSONArray(jsonObject.getString("authors"));
 
-                String[] authorNames = new String[getAuthorsArray.length()];
-
                 for (int counter = 0; counter < getAuthorsArray.length(); counter++) {
-
-                    authorNames[counter] = getAuthorsArray.getJSONObject(counter).getString(
-                            "name");
-                    authorNames[counter] = String.valueOf(authorNames[counter].replaceAll(
-                            "^(\\w)\\w+", "$1."));
-
+                    
+                    JSONObject authjsonObJecthor = getAuthorsArray.getJSONObject(counter);
+                    
+                    JSONArray getNumbers = new JSONArray(authjsonObJecthor.getString("affiliations"));
+                    
+                    authorNames = authjsonObJecthor.getString("name");
+                    
+                    is_Corrospondence = authjsonObJecthor.getString("corresponding");
+                    
+                    getAfNumber = getNumbers.toString().replaceAll("\\[", "").replaceAll("\\]","");
+                    
+                    AbstractAuthor absAuth = new AbstractAuthor(null, authorNames, is_Corrospondence);
+                    authorDao.insert(absAuth);
+                    
+                    AbstractAffiliation ab_af = new AbstractAffiliation(null, getAfNumber);
+                    abAfDao.insert(ab_af);
+                    
+                    AuthorsAbstract authAbstract = new AuthorsAbstract(items.getId(), absAuth.getId());
+                    absAuthDao.insert(authAbstract);
+                    
+                    AuthorsAffiliate authAfNumber = new AuthorsAffiliate(absAuth.getId(), ab_af.getId());
+                    abAuthAfDao.insert(authAfNumber);
+                    
+                    
                 }
 
-                StringBuilder stringBuild = new StringBuilder();
-
-                for (int value = 0; value < authorNames.length; value++) {
-
-                    stringBuild.append(authorNames[value]);
-
-                    if (value < authorNames.length - 2) {
-                        stringBuild.append(",");
-                    } else if (value < authorNames.length - 1) {
-                        stringBuild.append(" & ");
-                    }
-                }
-
-                String formattedString = stringBuild.toString();
-                
-                AbstractAuthor authorInfo = new AbstractAuthor(null, formattedString);
-                authorDao.insert(authorInfo);
-                
-            
-                
+              
             }
 
 

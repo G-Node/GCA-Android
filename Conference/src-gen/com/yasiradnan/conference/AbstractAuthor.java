@@ -9,6 +9,8 @@ public class AbstractAuthor {
     private Long id;
     /** Not-null value. */
     private String name;
+    /** Not-null value. */
+    private String is_Corresponding;
 
     public AbstractAuthor() {
     }
@@ -17,9 +19,10 @@ public class AbstractAuthor {
         this.id = id;
     }
 
-    public AbstractAuthor(Long id, String name) {
+    public AbstractAuthor(Long id, String name, String is_Corresponding) {
         this.id = id;
         this.name = name;
+        this.is_Corresponding = is_Corresponding;
     }
 
     public Long getId() {
@@ -38,6 +41,16 @@ public class AbstractAuthor {
     /** Not-null value; ensure this value is available before it is saved to the database. */
     public void setName(String name) {
         this.name = name;
+    }
+
+    /** Not-null value. */
+    public String getIs_Corresponding() {
+        return is_Corresponding;
+    }
+
+    /** Not-null value; ensure this value is available before it is saved to the database. */
+    public void setIs_Corresponding(String is_Corresponding) {
+        this.is_Corresponding = is_Corresponding;
     }
 
 }

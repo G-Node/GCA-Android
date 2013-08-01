@@ -1,7 +1,5 @@
 package com.yasiradnan.conference;
 
-import java.util.List;
-import java.util.ArrayList;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteStatement;
@@ -9,7 +7,6 @@ import android.database.sqlite.SQLiteStatement;
 import de.greenrobot.dao.AbstractDao;
 import de.greenrobot.dao.DaoConfig;
 import de.greenrobot.dao.Property;
-import de.greenrobot.dao.SqlUtils;
 
 import com.yasiradnan.conference.AbstractAffiliation;
 
@@ -27,11 +24,8 @@ public class AbstractAffiliationDao extends AbstractDao<AbstractAffiliation, Lon
     */
     public static class Properties {
         public final static Property Id = new Property(0, Long.class, "id", true, "_id");
-        public final static Property AffiliationNumber = new Property(1, Integer.class, "affiliationNumber", false, "AFFILIATION_NUMBER");
-        public final static Property AbsAuthorId = new Property(2, Long.class, "absAuthorId", false, "ABS_AUTHOR_ID");
+        public final static Property AffiliationNumber = new Property(1, String.class, "affiliationNumber", false, "AFFILIATION_NUMBER");
     };
-
-    private DaoSession daoSession;
 
 
     public AbstractAffiliationDao(DaoConfig config) {
@@ -40,7 +34,6 @@ public class AbstractAffiliationDao extends AbstractDao<AbstractAffiliation, Lon
     
     public AbstractAffiliationDao(DaoConfig config, DaoSession daoSession) {
         super(config, daoSession);
-        this.daoSession = daoSession;
     }
 
     /** Creates the underlying database table. */
@@ -48,8 +41,7 @@ public class AbstractAffiliationDao extends AbstractDao<AbstractAffiliation, Lon
         String constraint = ifNotExists? "IF NOT EXISTS ": "";
         db.execSQL("CREATE TABLE " + constraint + "'ABSTRACT_AFFILIATION' (" + //
                 "'_id' INTEGER PRIMARY KEY ," + // 0: id
-                "'AFFILIATION_NUMBER' INTEGER," + // 1: affiliationNumber
-                "'ABS_AUTHOR_ID' INTEGER);"); // 2: absAuthorId
+                "'AFFILIATION_NUMBER' TEXT);"); // 1: affiliationNumber
     }
 
     /** Drops the underlying database table. */
@@ -68,21 +60,10 @@ public class AbstractAffiliationDao extends AbstractDao<AbstractAffiliation, Lon
             stmt.bindLong(1, id);
         }
  
-        Integer affiliationNumber = entity.getAffiliationNumber();
+        String affiliationNumber = entity.getAffiliationNumber();
         if (affiliationNumber != null) {
-            stmt.bindLong(2, affiliationNumber);
+            stmt.bindString(2, affiliationNumber);
         }
- 
-        Long absAuthorId = entity.getAbsAuthorId();
-        if (absAuthorId != null) {
-            stmt.bindLong(3, absAuthorId);
-        }
-    }
-
-    @Override
-    protected void attachEntity(AbstractAffiliation entity) {
-        super.attachEntity(entity);
-        entity.__setDaoSession(daoSession);
     }
 
     /** @inheritdoc */
@@ -96,8 +77,7 @@ public class AbstractAffiliationDao extends AbstractDao<AbstractAffiliation, Lon
     public AbstractAffiliation readEntity(Cursor cursor, int offset) {
         AbstractAffiliation entity = new AbstractAffiliation( //
             cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0), // id
-            cursor.isNull(offset + 1) ? null : cursor.getInt(offset + 1), // affiliationNumber
-            cursor.isNull(offset + 2) ? null : cursor.getLong(offset + 2) // absAuthorId
+            cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1) // affiliationNumber
         );
         return entity;
     }
@@ -106,8 +86,7 @@ public class AbstractAffiliationDao extends AbstractDao<AbstractAffiliation, Lon
     @Override
     public void readEntity(Cursor cursor, AbstractAffiliation entity, int offset) {
         entity.setId(cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0));
-        entity.setAffiliationNumber(cursor.isNull(offset + 1) ? null : cursor.getInt(offset + 1));
-        entity.setAbsAuthorId(cursor.isNull(offset + 2) ? null : cursor.getLong(offset + 2));
+        entity.setAffiliationNumber(cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1));
      }
     
     /** @inheritdoc */
@@ -133,95 +112,4 @@ public class AbstractAffiliationDao extends AbstractDao<AbstractAffiliation, Lon
         return true;
     }
     
-    private String selectDeep;
-
-    protected String getSelectDeep() {
-        if (selectDeep == null) {
-            StringBuilder builder = new StringBuilder("SELECT ");
-            SqlUtils.appendColumns(builder, "T", getAllColumns());
-            builder.append(',');
-            SqlUtils.appendColumns(builder, "T0", daoSession.getAbstractAuthorDao().getAllColumns());
-            builder.append(" FROM ABSTRACT_AFFILIATION T");
-            builder.append(" LEFT JOIN ABSTRACT_AUTHOR T0 ON T.'ABS_AUTHOR_ID'=T0.'_id'");
-            builder.append(' ');
-            selectDeep = builder.toString();
-        }
-        return selectDeep;
-    }
-    
-    protected AbstractAffiliation loadCurrentDeep(Cursor cursor, boolean lock) {
-        AbstractAffiliation entity = loadCurrent(cursor, 0, lock);
-        int offset = getAllColumns().length;
-
-        AbstractAuthor abstractAuthor = loadCurrentOther(daoSession.getAbstractAuthorDao(), cursor, offset);
-        entity.setAbstractAuthor(abstractAuthor);
-
-        return entity;    
-    }
-
-    public AbstractAffiliation loadDeep(Long key) {
-        assertSinglePk();
-        if (key == null) {
-            return null;
-        }
-
-        StringBuilder builder = new StringBuilder(getSelectDeep());
-        builder.append("WHERE ");
-        SqlUtils.appendColumnsEqValue(builder, "T", getPkColumns());
-        String sql = builder.toString();
-        
-        String[] keyArray = new String[] { key.toString() };
-        Cursor cursor = db.rawQuery(sql, keyArray);
-        
-        try {
-            boolean available = cursor.moveToFirst();
-            if (!available) {
-                return null;
-            } else if (!cursor.isLast()) {
-                throw new IllegalStateException("Expected unique result, but count was " + cursor.getCount());
-            }
-            return loadCurrentDeep(cursor, true);
-        } finally {
-            cursor.close();
-        }
-    }
-    
-    /** Reads all available rows from the given cursor and returns a list of new ImageTO objects. */
-    public List<AbstractAffiliation> loadAllDeepFromCursor(Cursor cursor) {
-        int count = cursor.getCount();
-        List<AbstractAffiliation> list = new ArrayList<AbstractAffiliation>(count);
-        
-        if (cursor.moveToFirst()) {
-            if (identityScope != null) {
-                identityScope.lock();
-                identityScope.reserveRoom(count);
-            }
-            try {
-                do {
-                    list.add(loadCurrentDeep(cursor, false));
-                } while (cursor.moveToNext());
-            } finally {
-                if (identityScope != null) {
-                    identityScope.unlock();
-                }
-            }
-        }
-        return list;
-    }
-    
-    protected List<AbstractAffiliation> loadDeepAllAndCloseCursor(Cursor cursor) {
-        try {
-            return loadAllDeepFromCursor(cursor);
-        } finally {
-            cursor.close();
-        }
-    }
-    
-
-    /** A raw-style query where you can pass any WHERE clause and arguments. */
-    public List<AbstractAffiliation> queryDeep(String where, String... selectionArg) {
-        Cursor cursor = db.rawQuery(getSelectDeep() + where, selectionArg);
-        return loadDeepAllAndCloseCursor(cursor);
-    }
- 
 }
