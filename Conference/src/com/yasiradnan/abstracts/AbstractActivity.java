@@ -5,20 +5,13 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
-import com.google.android.gms.internal.da;
 import com.yasiradnan.conference.AbsAffiliationName;
 import com.yasiradnan.conference.AbsAffiliationNameDao;
-import com.yasiradnan.conference.AbstractAffiliateName;
 import com.yasiradnan.conference.AbstractAffiliateNameDao;
 import com.yasiradnan.conference.AbstractAffiliation;
 import com.yasiradnan.conference.AbstractAffiliationDao;
@@ -38,23 +31,16 @@ import com.yasiradnan.conference.DaoSession;
 import com.yasiradnan.conference.R;
 
 import android.app.Activity;
-import android.app.ListActivity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Log;
 import android.util.SparseArray;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
-import android.widget.TextView;
-import de.greenrobot.*;
 
 /**
  * @author Adnan

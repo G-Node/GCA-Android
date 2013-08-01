@@ -45,7 +45,8 @@
         ], 
         "coi": "The authors declare that the research was conducted in the absence of any commercial or financial relationships that could be construed as a potential conflict of interest.\n", 
         "type": "Poster", 
-        "cite": " K\u00fcmpfbeck F, Grewe J, Walz H and Benda J. Comparative study on the encoding of communication signals in two species of weakly electric fish. Front. Comput. Neurosci. Conference Abstract: Bernstein Conference 2012."
+        "cite": " K\u00fcmpfbeck F, Grewe J, Walz H and Benda J. Comparative study on the encoding of communication signals in two species of weakly electric fish. Front. Comput. Neurosci. Conference Abstract: Bernstein Conference 2012.",
+        "refs" : ""
     }, 
     {
         "correspondence": " Mr. Christian Kellner, Computational Neuroscience, Department Biology II, Ludwig-Maximilians-Universit\u00e4t M\u00fcnchen, Gro\u00dfhaderner Stra\u00dfe 2, Planegg-Martinsried, Germany, kellner@biologie.uni-muenchen.de", 
@@ -202,7 +203,8 @@
         "coi": "The authors declare that the research was conducted in the absence of any commercial or financial relationships that could be construed as a potential conflict of interest.\n", 
         "acknowledgements": "Supported by the Federal Ministry of Education and Research (Grant 01GQ0801)\n", 
         "type": "Poster", 
-        "cite": " Sobolev A, Leonhardt A, Kellner C, Rautenberg P, Herz A and Wachtler T. Cloud Services and a Data API for Electrophysiology. Front. Comput. Neurosci. Conference Abstract: Bernstein Conference 2012."
+        "cite": " Sobolev A, Leonhardt A, Kellner C, Rautenberg P, Herz A and Wachtler T. Cloud Services and a Data API for Electrophysiology. Front. Comput. Neurosci. Conference Abstract: Bernstein Conference 2012.",
+        "refs" : ""
     },
     {
         "correspondence": " Prof. Christof Koch, , Allen Institute for Brain Science, 551 34th Street,, Seattle, WA, USA, koch@klab.caltech.edu", 
@@ -231,7 +233,8 @@
         ], 
         "coi": "The authors declare that the research was conducted in the absence of any commercial or financial relationships that could be construed as a potential conflict of interest.\n", 
         "type": "Invited Talk", 
-        "cite": " Koch C. Project MindScope. Front. Comput. Neurosci. Conference Abstract: Bernstein Conference 2012."
+        "cite": " Koch C. Project MindScope. Front. Comput. Neurosci. Conference Abstract: Bernstein Conference 2012.",
+        "refs" : ""
     }, 
     {
         "correspondence": " Dr. Jan Grewe, Department Biologie II, Ludwig-Maximilians-Universit\u00e4t M\u00fcnchen, Planegg-Martinsried, Germany, grewe@bio.lmu.de", 
