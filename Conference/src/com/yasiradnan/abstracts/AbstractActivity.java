@@ -74,29 +74,29 @@ public class AbstractActivity extends Activity {
     DaoMaster daoMaster;
 
     AbstractsItemDao itemsDao;
-    
+
     AbstractAuthorDao authorDao;
-    
+
     AbstractKeyWordsDao abKeyDao;
-    
+
     AbsAffiliationNameDao abAfNameDao;
-    
+
     AbstractAffiliationDao abAfDao;
-    
+
     AbstractAffiliateNameDao abAffiliateDao;
-    
-    AuthorsAffiliateDao  abAuthAfDao;
-    
-    AuthorsAbstractDao  absAuthDao;
+
+    AuthorsAffiliateDao abAuthAfDao;
+
+    AuthorsAbstractDao absAuthDao;
 
     Cursor cursor;
 
     ListView lv;
-    
+
     String authorNames;
-    
+
     String is_Corrospondence;
-    
+
     String getAfNumber;
 
     @Override
@@ -113,69 +113,69 @@ public class AbstractActivity extends Activity {
         daoSession = daoMaster.newSession();
 
         itemsDao = daoSession.getAbstractsItemDao();
-        
+
         authorDao = daoSession.getAbstractAuthorDao();
-        
+
         abKeyDao = daoSession.getAbstractKeyWordsDao();
-        
+
         abAfNameDao = daoSession.getAbsAffiliationNameDao();
-        
+
         abAfDao = daoSession.getAbstractAffiliationDao();
-        
+
         abAffiliateDao = daoSession.getAbstractAffiliateNameDao();
-        
+
         abAuthAfDao = daoSession.getAuthorsAffiliateDao();
-        
+
         absAuthDao = daoSession.getAuthorsAbstractDao();
-        
+
         setContentView(R.layout.abstract_general);
 
         listView = (ListView)findViewById(R.id.list);
-        
+
         String query = "select abstracts_item._id,abstract_author.name, title, type, topic, text,affiliation_number,af_name from abs_affiliation_name,abstract_affiliation,abstracts_item,abstract_author,authors_abstract where abstracts_item._id = authors_abstract.abstractsitem_id and abstract_author._id = authors_abstract.abstractauthor_id and abstract_affiliation._id = abstract_author._id and  abs_affiliation_name._id =  abstracts_item._id ";
-        
+
         cursor = database.rawQuery(query, null);
-        
+
         Boolean isEmpty;
-        
-        if(cursor!=null && cursor.getCount() > 0){
-            
+
+        if (cursor != null && cursor.getCount() > 0) {
+
             isEmpty = false;
-            
-        }else{
-            
+
+        } else {
+
             isEmpty = true;
-            
+
         }
-        
-        if(isEmpty){
+
+        if (isEmpty) {
             datainList();
             cursor = database.rawQuery(query, null);
         }
-        
-        SparseArray<AbstractItem> dataArray = new SparseArray<AbstractItem>();
-        if(dataArray.size() ==0){
-        cursor.moveToFirst();
-        do {
-            int id = cursor.getInt(cursor.getColumnIndexOrThrow("_id"));
-            String title = cursor.getString(cursor.getColumnIndex("TITLE"));
-            String topic = cursor.getString(cursor.getColumnIndex("TOPIC"));
-            String type = cursor.getString(cursor.getColumnIndex("TYPE"));
-            String name = cursor.getString(cursor.getColumnIndex("NAME"));
-            AbstractItem d = dataArray.get(id);
-            if (d == null) {
-                d = new AbstractItem(id, title, topic, type);
-                d.names.add(name);
-                dataArray.put(id, d);
-            } else {
-                d.names.add(name);
-            }
-        } while (cursor.moveToNext());
-        }
-        
-        cursorAdapter = new AbstractCursorAdapter(this, cursor);
 
-        listView.setAdapter(cursorAdapter);
+        SparseArray<AbstractItem> dataArray = new SparseArray<AbstractItem>();
+        if (dataArray.size() == 0) {
+            cursor.moveToFirst();
+            do {
+                int id = cursor.getInt(cursor.getColumnIndexOrThrow("_id"));
+                String title = cursor.getString(cursor.getColumnIndex("TITLE"));
+                String topic = cursor.getString(cursor.getColumnIndex("TOPIC"));
+                String type = cursor.getString(cursor.getColumnIndex("TYPE"));
+                String name = cursor.getString(cursor.getColumnIndex("NAME"));
+                AbstractItem d = dataArray.get(id);
+                if (d == null) {
+                    d = new AbstractItem(id, title, topic, type);
+                    d.names.add(name);
+                    dataArray.put(id, d);
+                } else {
+                    d.names.add(name);
+                }
+            } while (cursor.moveToNext());
+        }
+
+        AbstractAdapter abAdapter = new AbstractAdapter(this, dataArray);
+
+        listView.setAdapter(abAdapter);
 
         listView.setOnItemClickListener(new OnItemClickListener() {
             @Override
@@ -183,7 +183,7 @@ public class AbstractActivity extends Activity {
                 // TODO Auto-generated method stub
 
                 String Text = cursor.getString(cursor.getColumnIndexOrThrow("Text"));
-                
+
                 Intent in = new Intent(getApplicationContext(), AbstractContent.class);
 
                 in.putExtra("abstracts", Text);
@@ -240,68 +240,68 @@ public class AbstractActivity extends Activity {
                 String type = jsonObject.getString("type");
 
                 String title = jsonObject.getString("title");
-                
+
                 String refs = jsonObject.getString("refs");
 
                 Log.e("title", title);
 
                 String text = jsonObject.getString("abstract");
 
-                AbstractsItem items = new AbstractsItem(null, correspondence, title, url, text, type, topic, coi, cite,refs);
-                
+                AbstractsItem items = new AbstractsItem(null, correspondence, title, url, text,
+                        type, topic, coi, cite, refs);
+
                 itemsDao.insert(items);
-                
-                
+
                 JSONObject abAfData = jsonArray.getJSONObject(index).getJSONObject("affiliations");
-                
-                String af_name = abAfData.toString().replaceAll("\\{", "").replaceAll("\\}","");
-                
+
+                String af_name = abAfData.toString().replaceAll("\\{", "").replaceAll("\\}", "");
+
                 AbsAffiliationName abAfName = new AbsAffiliationName(null, af_name);
-                
+
                 abAfNameDao.insert(abAfName);
-                
-                
+
                 JSONArray getKeywords = new JSONArray(jsonObject.getString("keywords"));
-                
-                String keywordsData = String.valueOf(getKeywords).replaceAll("\\[", "").replaceAll("\\]","").toString().replace("\"", "");
-                
-                AbstractKeyWords Keywords= new AbstractKeyWords(keywordsData, items.getId());
-                
+
+                String keywordsData = String.valueOf(getKeywords).replaceAll("\\[", "")
+                        .replaceAll("\\]", "").toString().replace("\"", "");
+
+                AbstractKeyWords Keywords = new AbstractKeyWords(keywordsData, items.getId());
+
                 abKeyDao.insert(Keywords);
-                 
-               
+
                 JSONArray getAuthorsArray = new JSONArray(jsonObject.getString("authors"));
 
                 for (int counter = 0; counter < getAuthorsArray.length(); counter++) {
-                    
+
                     JSONObject authjsonObJecthor = getAuthorsArray.getJSONObject(counter);
-                    
-                    JSONArray getNumbers = new JSONArray(authjsonObJecthor.getString("affiliations"));
-                    
+
+                    JSONArray getNumbers = new JSONArray(
+                            authjsonObJecthor.getString("affiliations"));
+
                     authorNames = authjsonObJecthor.getString("name");
-                    
+
                     is_Corrospondence = authjsonObJecthor.getString("corresponding");
-                    
-                    getAfNumber = getNumbers.toString().replaceAll("\\[", "").replaceAll("\\]","");
-                    
-                    AbstractAuthor absAuth = new AbstractAuthor(null, authorNames, is_Corrospondence);
+
+                    getAfNumber = getNumbers.toString().replaceAll("\\[", "").replaceAll("\\]", "");
+
+                    AbstractAuthor absAuth = new AbstractAuthor(null, authorNames,
+                            is_Corrospondence);
                     authorDao.insert(absAuth);
-                    
+
                     AbstractAffiliation ab_af = new AbstractAffiliation(null, getAfNumber);
                     abAfDao.insert(ab_af);
-                    
-                    AuthorsAbstract authAbstract = new AuthorsAbstract(items.getId(), absAuth.getId());
+
+                    AuthorsAbstract authAbstract = new AuthorsAbstract(items.getId(),
+                            absAuth.getId());
                     absAuthDao.insert(authAbstract);
-                    
-                    AuthorsAffiliate authAfNumber = new AuthorsAffiliate(absAuth.getId(), ab_af.getId());
+
+                    AuthorsAffiliate authAfNumber = new AuthorsAffiliate(absAuth.getId(),
+                            ab_af.getId());
                     abAuthAfDao.insert(authAfNumber);
-                    
-                    
+
                 }
 
-              
             }
-
 
         } catch (FileNotFoundException e) {
             Log.e("jsonFile", "file not found");
