@@ -90,7 +90,7 @@ public class AbstractActivity extends Activity {
         // TODO Auto-generated method stub
         super.onCreate(savedInstanceState);
 
-        helper = new DaoMaster.DevOpenHelper(this, "Database", null);
+        helper = new DaoMaster.DevOpenHelper(this, "ABDatabase", null);
 
         database = helper.getWritableDatabase();
 
@@ -140,7 +140,7 @@ public class AbstractActivity extends Activity {
         }
 
         SparseArray<AbstractItem> dataArray = new SparseArray<AbstractItem>();
-        if (dataArray.size() == 0) {
+        if (dataArray.size() == 0)
             cursor.moveToFirst();
             do {
                 int id = cursor.getInt(cursor.getColumnIndexOrThrow("_id"));
@@ -157,7 +157,6 @@ public class AbstractActivity extends Activity {
                     d.names.add(name);
                 }
             } while (cursor.moveToNext());
-        }
 
         AbstractAdapter abAdapter = new AbstractAdapter(this, dataArray);
 
@@ -294,7 +293,7 @@ public class AbstractActivity extends Activity {
         } catch (IOException e) {
             Log.e("jsonFile", "ioerror");
         } catch (JSONException e) {
-            Log.e("jsonFile", "error while parsing json");
+            e.printStackTrace();
         }
     }
 }
