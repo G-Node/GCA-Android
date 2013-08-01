@@ -70,7 +70,7 @@ public class AbstractAdapter extends BaseAdapter {
         
         holder.type.setText(data.getType());
         
-        holder.authors.setText(data.getNames().toString());
+        holder.authors.setText(data.getNames().toString().replaceAll("\\[", "").replaceAll("\\]", ""));
         
         
         return convertView;
