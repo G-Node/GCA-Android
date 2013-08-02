@@ -222,7 +222,12 @@ public class AbstractActivity extends Activity {
 
                 String title = jsonObject.getString("title");
 
-                String refs = jsonObject.getString("refs");
+                String refs = "";
+                
+                if(jsonObject.has("refs")){
+                    
+                    refs = jsonObject.getString("refs");
+                }
 
                 Log.e("title", title);
 
@@ -261,7 +266,12 @@ public class AbstractActivity extends Activity {
 
                     authorNames = authjsonObJecthor.getString("name");
 
-                    is_Corrospondence = authjsonObJecthor.getString("corresponding");
+                    String is_Corrospondence = "";
+                    
+                    if(authjsonObJecthor.has("corresponding")){
+                        
+                        is_Corrospondence = authjsonObJecthor.getString("corresponding");
+                    }
 
                     getAfNumber = getNumbers.toString().replaceAll("\\[", "").replaceAll("\\]", "");
 
