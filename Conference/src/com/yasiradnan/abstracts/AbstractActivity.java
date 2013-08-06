@@ -121,7 +121,7 @@ public class AbstractActivity extends Activity {
 
         listView = (ListView)findViewById(R.id.list);
 
-        String query = "select abstracts_item._id,title, type, topic, text,affiliation_number,af_name from abs_affiliation_name,abstract_affiliation,abstracts_item,abstract_author,authors_abstract where abstracts_item._id = authors_abstract.abstractsitem_id and abstract_author._id = authors_abstract.abstractauthor_id and abstract_affiliation._id = abstract_author._id and  abs_affiliation_name._id =  abstracts_item._id ";
+        String query = "select abstracts_item._id,title, type, topic, text,affiliation_number,af_name from abs_affiliation_name,abstract_affiliation,abstracts_item,abstract_author,authors_abstract where abstracts_item._id = authors_abstract.abstractsitem_id and abstract_author._id = authors_abstract.abstractauthor_id and abstract_affiliation._id = abstract_author._id and abs_affiliation_name._id = abstracts_item._id GROUP By abstracts_item._id";
 
         cursor = database.rawQuery(query, null);
 
