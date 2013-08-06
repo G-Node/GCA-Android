@@ -56,7 +56,7 @@ public class AbstractActivity extends Activity {
 
     SQLiteDatabase database;
 
-    DevOpenHelper helper;
+    public static DevOpenHelper helper;
 
     DaoSession daoSession;
 
@@ -121,7 +121,7 @@ public class AbstractActivity extends Activity {
 
         listView = (ListView)findViewById(R.id.list);
 
-        String query = "select abstracts_item._id,abstract_author.name, title, type, topic, text,affiliation_number,af_name from abs_affiliation_name,abstract_affiliation,abstracts_item,abstract_author,authors_abstract where abstracts_item._id = authors_abstract.abstractsitem_id and abstract_author._id = authors_abstract.abstractauthor_id and abstract_affiliation._id = abstract_author._id and  abs_affiliation_name._id =  abstracts_item._id ";
+        String query = "select abstracts_item._id,title, type, topic, text,affiliation_number,af_name from abs_affiliation_name,abstract_affiliation,abstracts_item,abstract_author,authors_abstract where abstracts_item._id = authors_abstract.abstractsitem_id and abstract_author._id = authors_abstract.abstractauthor_id and abstract_affiliation._id = abstract_author._id and  abs_affiliation_name._id =  abstracts_item._id ";
 
         cursor = database.rawQuery(query, null);
 
@@ -141,29 +141,10 @@ public class AbstractActivity extends Activity {
             datainList();
             cursor = database.rawQuery(query, null);
         }
-
-        SparseArray<AbstractItem> dataArray = new SparseArray<AbstractItem>();
-        if (dataArray.size() == 0)
-            cursor.moveToFirst();
-            do {
-                int id = cursor.getInt(cursor.getColumnIndexOrThrow("_id"));
-                String title = cursor.getString(cursor.getColumnIndex("TITLE"));
-                String topic = cursor.getString(cursor.getColumnIndex("TOPIC"));
-                String type = cursor.getString(cursor.getColumnIndex("TYPE"));
-                String name = cursor.getString(cursor.getColumnIndex("NAME"));
-                AbstractItem d = dataArray.get(id);
-                if (d == null) {
-                    d = new AbstractItem(id, title, topic, type);
-                    d.names.add(name);
-                    dataArray.put(id, d);
-                } else {
-                    d.names.add(name);
-                }
-            } while (cursor.moveToNext());
-
-        AbstractAdapter abAdapter = new AbstractAdapter(this, dataArray);
-
-        listView.setAdapter(abAdapter);
+        
+        AbstractCursorAdapter cursorAdapter = new AbstractCursorAdapter(this, cursor);
+        listView.setAdapter(cursorAdapter);
+        
 
         listView.setOnItemClickListener(new OnItemClickListener() {
             @Override
