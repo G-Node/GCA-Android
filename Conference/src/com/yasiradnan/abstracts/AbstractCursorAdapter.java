@@ -60,7 +60,7 @@ public class AbstractCursorAdapter extends CursorAdapter {
         
         TextView SubType = (TextView)view.findViewById(R.id.SubTitle);
         
-        SubType.setText(getName);
+        SubType.setText(getName.replaceAll("^(\\w)\\w+", "$1."));
 
     }
 
