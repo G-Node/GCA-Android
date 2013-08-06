@@ -54,9 +54,9 @@ public class AbstractActivity extends Activity {
 
     ListView listView;
 
-    SQLiteDatabase database;
+    public static SQLiteDatabase database;
 
-    public static DevOpenHelper helper;
+    DevOpenHelper helper;
 
     DaoSession daoSession;
 
