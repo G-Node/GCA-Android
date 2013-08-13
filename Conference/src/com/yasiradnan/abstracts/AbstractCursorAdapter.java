@@ -77,8 +77,11 @@ public class AbstractCursorAdapter extends CursorAdapter {
 
                 if (i == namesArray.length - 1) {
                     formatterNames = formatterNames + " & " + namesArray[i];
-                } else {
-                    formatterNames = formatterNames + namesArray[i] + " ";
+                }else if (i == 0){
+                    formatterNames = formatterNames +namesArray[i];
+                }
+                else {
+                    formatterNames = formatterNames + " , " +namesArray[i];
                 }
             }
             authorNames.setText(formatterNames.replaceAll("((?:^|[^A-Z.])[A-Z])[a-z]*\\s(?=[A-Z])",
