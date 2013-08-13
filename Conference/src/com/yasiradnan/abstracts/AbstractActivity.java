@@ -51,8 +51,8 @@ import android.widget.ListView;
 public class AbstractActivity extends Activity {
 
     AbstractCursorAdapter cursorAdapter;
-
-    ListView listView;
+    
+    public static ListView listView;
 
     public static SQLiteDatabase database;
 

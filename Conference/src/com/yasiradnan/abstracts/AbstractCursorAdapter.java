@@ -5,6 +5,8 @@ import com.yasiradnan.conference.R;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.graphics.Paint;
+import android.graphics.Rect;
 import android.support.v4.widget.CursorAdapter;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -84,8 +86,36 @@ public class AbstractCursorAdapter extends CursorAdapter {
                     formatterNames = formatterNames + " , " +namesArray[i];
                 }
             }
-            authorNames.setText(formatterNames.replaceAll("((?:^|[^A-Z.])[A-Z])[a-z]*\\s(?=[A-Z])",
-                    "$1."));
+            
+            
+            /*
+             * Get Width
+             */
+            
+            int layout_width = AbstractActivity.listView.getWidth();
+            
+            Paint paint = new Paint();
+            Rect bounds = new Rect();
+            
+            int text_height = 0;
+            int text_width = 0;
+            
+            //paint.setTypeface(Typeface.DEFAULT);
+            
+            paint.getTextBounds(formatterNames, 0, formatterNames.length(), bounds);
+
+            text_height =  bounds.height();
+            text_width =  bounds.width();
+            
+            if(text_width > layout_width){
+                
+                
+                
+             }else{
+                 
+             }
+            
+            
         } else {
 
             authorNames
