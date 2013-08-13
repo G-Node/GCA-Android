@@ -137,5 +137,7 @@ public class AbstractCursorAdapter extends CursorAdapter {
         View returnView = inflater.inflate(R.layout.abstract_content, viewgroup, false);
         return returnView;
     }
+    
+    
 
 }

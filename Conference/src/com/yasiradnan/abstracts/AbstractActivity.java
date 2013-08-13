@@ -38,11 +38,16 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.support.v4.widget.CursorAdapter;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.util.SparseArray;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.EditText;
+import android.widget.FilterQueryProvider;
 import android.widget.ListView;
 
 /**
@@ -51,8 +56,8 @@ import android.widget.ListView;
 public class AbstractActivity extends Activity {
 
     AbstractCursorAdapter cursorAdapter;
-    
-    public static ListView listView;
+
+   ListView listView;
 
     public static SQLiteDatabase database;
 
@@ -141,10 +146,15 @@ public class AbstractActivity extends Activity {
             datainList();
             cursor = database.rawQuery(query, null);
         }
+
+        cursorAdapter = new AbstractCursorAdapter(this, cursor);
         
-        AbstractCursorAdapter cursorAdapter = new AbstractCursorAdapter(this, cursor);
         listView.setAdapter(cursorAdapter);
         
+        listView.setTextFilterEnabled(true);
+        
+        
+
 
         listView.setOnItemClickListener(new OnItemClickListener() {
             @Override
@@ -164,123 +174,137 @@ public class AbstractActivity extends Activity {
         /*
          * Serach Filter
          */
-
-        /*
-         * EditText searchOption = (EditText)findViewById(R.id.abSearch);
-         * searchOption.addTextChangedListener(new TextWatcher() {
-         * @Override public void onTextChanged(CharSequence s, int start, int
-         * before, int count) { // TODO Auto-generated method stub
-         * AbstractActivity.this.abAdapter.getFilter().filter(s); }
-         * @Override public void beforeTextChanged(CharSequence s, int start,
-         * int count, int after) { // TODO Auto-generated method stub }
-         * @Override public void afterTextChanged(Editable s) { // TODO
-         * Auto-generated method stub } });
-         */
-
-    }
-
-    private void datainList() {
-        try {
-
-            InputStream inStream = this.getResources().openRawResource(R.raw.abstracts);
-            JSONArray jsonArray = JSONReader.parseStream(inStream);
-
-            for (int index = 0; index < jsonArray.length(); index++) {
-
-                JSONObject jsonObject = jsonArray.getJSONObject(index);
-
-                String topic = jsonObject.getString("topic");
-
-                String correspondence = jsonObject.getString("correspondence");
-
-                String url = jsonObject.getString("url");
-
-                String coi = jsonObject.getString("coi");
-
-                String cite = jsonObject.getString("cite");
-
-                String type = jsonObject.getString("type");
-
-                String title = jsonObject.getString("title");
-
-                String refs = "";
+        listView.setTextFilterEnabled(true);
+        
+        EditText searchOption = (EditText)findViewById(R.id.abSearch);
+        
+        searchOption.addTextChangedListener(new TextWatcher() {
+            
+            @Override
+            public void onTextChanged(CharSequence cs, int start, int before, int count) {
+                // TODO Auto-generated method stub
+                ((CursorAdapter)AbstractActivity.this.cursorAdapter).getFilter().filter(cs);
+            }
+            
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                // TODO Auto-generated method stub
                 
-                if(jsonObject.has("refs")){
-                    
-                    refs = jsonObject.getString("refs");
-                }
+            }
+            
+            @Override
+            public void afterTextChanged(Editable s) {
+                // TODO Auto-generated method stub
+                
+                
+            }
+        });
 
-                Log.e("title", title);
 
-                String text = jsonObject.getString("abstract");
+        }
 
-                AbstractsItem items = new AbstractsItem(null, correspondence, title, url, text,
-                        type, topic, coi, cite, refs);
+        private void datainList() {
+            try {
 
-                itemsDao.insert(items);
+                InputStream inStream = this.getResources().openRawResource(R.raw.abstracts);
+                JSONArray jsonArray = JSONReader.parseStream(inStream);
 
-                JSONObject abAfData = jsonArray.getJSONObject(index).getJSONObject("affiliations");
+                for (int index = 0; index < jsonArray.length(); index++) {
 
-                String af_name = abAfData.toString().replaceAll("\\{", "").replaceAll("\\}", "");
+                    JSONObject jsonObject = jsonArray.getJSONObject(index);
 
-                AbsAffiliationName abAfName = new AbsAffiliationName(null, af_name);
+                    String topic = jsonObject.getString("topic");
 
-                abAfNameDao.insert(abAfName);
+                    String correspondence = jsonObject.getString("correspondence");
 
-                JSONArray getKeywords = new JSONArray(jsonObject.getString("keywords"));
+                    String url = jsonObject.getString("url");
 
-                String keywordsData = String.valueOf(getKeywords).replaceAll("\\[", "")
-                        .replaceAll("\\]", "").toString().replace("\"", "");
+                    String coi = jsonObject.getString("coi");
 
-                AbstractKeyWords Keywords = new AbstractKeyWords(keywordsData, items.getId());
+                    String cite = jsonObject.getString("cite");
 
-                abKeyDao.insert(Keywords);
+                    String type = jsonObject.getString("type");
 
-                JSONArray getAuthorsArray = new JSONArray(jsonObject.getString("authors"));
+                    String title = jsonObject.getString("title");
 
-                for (int counter = 0; counter < getAuthorsArray.length(); counter++) {
+                    String refs = "";
 
-                    JSONObject authjsonObJecthor = getAuthorsArray.getJSONObject(counter);
+                    if (jsonObject.has("refs")) {
 
-                    JSONArray getNumbers = new JSONArray(
-                            authjsonObJecthor.getString("affiliations"));
-
-                    authorNames = authjsonObJecthor.getString("name");
-
-                    String is_Corrospondence = "";
-                    
-                    if(authjsonObJecthor.has("corresponding")){
-                        
-                        is_Corrospondence = authjsonObJecthor.getString("corresponding");
+                        refs = jsonObject.getString("refs");
                     }
 
-                    getAfNumber = getNumbers.toString().replaceAll("\\[", "").replaceAll("\\]", "");
+                    Log.e("title", title);
 
-                    AbstractAuthor absAuth = new AbstractAuthor(null, authorNames,
-                            is_Corrospondence);
-                    authorDao.insert(absAuth);
+                    String text = jsonObject.getString("abstract");
 
-                    AbstractAffiliation ab_af = new AbstractAffiliation(null, getAfNumber);
-                    abAfDao.insert(ab_af);
+                    AbstractsItem items = new AbstractsItem(null, correspondence, title, url, text,
+                            type, topic, coi, cite, refs);
 
-                    AuthorsAbstract authAbstract = new AuthorsAbstract(items.getId(),
-                            absAuth.getId());
-                    absAuthDao.insert(authAbstract);
+                    itemsDao.insert(items);
 
-                    AuthorsAffiliate authAfNumber = new AuthorsAffiliate(absAuth.getId(),
-                            ab_af.getId());
-                    abAuthAfDao.insert(authAfNumber);
+                    JSONObject abAfData = jsonArray.getJSONObject(index).getJSONObject("affiliations");
+
+                    String af_name = abAfData.toString().replaceAll("\\{", "").replaceAll("\\}", "");
+
+                    AbsAffiliationName abAfName = new AbsAffiliationName(null, af_name);
+
+                    abAfNameDao.insert(abAfName);
+
+                    JSONArray getKeywords = new JSONArray(jsonObject.getString("keywords"));
+
+                    String keywordsData = String.valueOf(getKeywords).replaceAll("\\[", "")
+                            .replaceAll("\\]", "").toString().replace("\"", "");
+
+                    AbstractKeyWords Keywords = new AbstractKeyWords(keywordsData, items.getId());
+
+                    abKeyDao.insert(Keywords);
+
+                    JSONArray getAuthorsArray = new JSONArray(jsonObject.getString("authors"));
+
+                    for (int counter = 0; counter < getAuthorsArray.length(); counter++) {
+
+                        JSONObject authjsonObJecthor = getAuthorsArray.getJSONObject(counter);
+
+                        JSONArray getNumbers = new JSONArray(
+                                authjsonObJecthor.getString("affiliations"));
+
+                        authorNames = authjsonObJecthor.getString("name");
+
+                        String is_Corrospondence = "";
+
+                        if (authjsonObJecthor.has("corresponding")) {
+
+                            is_Corrospondence = authjsonObJecthor.getString("corresponding");
+                        }
+
+                        getAfNumber = getNumbers.toString().replaceAll("\\[", "").replaceAll("\\]", "");
+
+                        AbstractAuthor absAuth = new AbstractAuthor(null, authorNames,
+                                is_Corrospondence);
+                        authorDao.insert(absAuth);
+
+                        AbstractAffiliation ab_af = new AbstractAffiliation(null, getAfNumber);
+                        abAfDao.insert(ab_af);
+
+                        AuthorsAbstract authAbstract = new AuthorsAbstract(items.getId(),
+                                absAuth.getId());
+                        absAuthDao.insert(authAbstract);
+
+                        AuthorsAffiliate authAfNumber = new AuthorsAffiliate(absAuth.getId(),
+                                ab_af.getId());
+                        abAuthAfDao.insert(authAfNumber);
+
+                    }
 
                 }
 
+            } catch (FileNotFoundException e) {
+                Log.e("jsonFile", "file not found");
+            } catch (IOException e) {
+                Log.e("jsonFile", "ioerror");
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
-
-        } catch (FileNotFoundException e) {
-            Log.e("jsonFile", "file not found");
-        } catch (IOException e) {
-            Log.e("jsonFile", "ioerror");
-        } catch (JSONException e) {
-            e.printStackTrace();
         }
     }
-}
