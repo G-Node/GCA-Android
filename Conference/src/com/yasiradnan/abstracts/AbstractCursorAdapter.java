@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.TextView;
 
 public class AbstractCursorAdapter extends CursorAdapter {
@@ -72,7 +73,7 @@ public class AbstractCursorAdapter extends CursorAdapter {
 
         String[] namesArray = getName.split(",");
 
-        Log.e("Length", String.valueOf(namesArray.length));
+       // Log.e("Length", String.valueOf(namesArray.length));
 
         if (namesArray.length > 1) {
             for (int i = 0; i < namesArray.length; i++) {
@@ -92,7 +93,8 @@ public class AbstractCursorAdapter extends CursorAdapter {
              * Get Width
              */
             
-            int layout_width = AbstractActivity.listView.getWidth();
+            WindowManager WinMgr = (WindowManager)context.getSystemService(Context.WINDOW_SERVICE);
+            int displayWidth = WinMgr.getDefaultDisplay().getWidth();
             
             Paint paint = new Paint();
             Rect bounds = new Rect();
@@ -107,12 +109,17 @@ public class AbstractCursorAdapter extends CursorAdapter {
             text_height =  bounds.height();
             text_width =  bounds.width();
             
-            if(text_width > layout_width){
+            
+            Log.e("SIZE", "Text =" + String.valueOf(text_width) + "------" +"Layout = " + String.valueOf(displayWidth));
+              
+            if(text_width > displayWidth){
                 
-                
+               
+                authorNames.setText("");
                 
              }else{
-                 
+                 authorNames.setText(formatterNames.replaceAll("((?:^|[^A-Z.])[A-Z])[a-z]*\\s(?=[A-Z])",
+                         "$1.")); 
              }
             
             
