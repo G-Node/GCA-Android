@@ -114,8 +114,8 @@ public class AbstractCursorAdapter extends CursorAdapter {
               
             if(text_width > displayWidth){
                 
-               
-                authorNames.setText("");
+                String output= formatterNames.split(",")[0] + " et al. " ;
+                authorNames.setText(output);
                 
              }else{
                  authorNames.setText(formatterNames.replaceAll("((?:^|[^A-Z.])[A-Z])[a-z]*\\s(?=[A-Z])",
