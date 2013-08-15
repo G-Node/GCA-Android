@@ -33,6 +33,7 @@ import com.yasiradnan.conference.DaoSession;
 import com.yasiradnan.conference.R;
 import com.yasiradnan.utils.JSONReader;
 
+import de.greenrobot.dao.QueryBuilder;
 import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
@@ -126,9 +127,13 @@ public class AbstractActivity extends Activity {
 
         listView = (ListView)findViewById(R.id.list);
 
-        String query = "select abstracts_item._id,title, type, topic, text,affiliation_number,af_name from abs_affiliation_name,abstract_affiliation,abstracts_item,abstract_author,authors_abstract where abstracts_item._id = authors_abstract.abstractsitem_id and abstract_author._id = authors_abstract.abstractauthor_id and abstract_affiliation._id = abstract_author._id and abs_affiliation_name._id = abstracts_item._id GROUP By abstracts_item._id";
+        //String query = "select abstracts_item._id,title, type, topic, text,affiliation_number,af_name from abs_affiliation_name,abstract_affiliation,abstracts_item,abstract_author,authors_abstract where abstracts_item._id = authors_abstract.abstractsitem_id and abstract_author._id = authors_abstract.abstractauthor_id and abstract_affiliation._id = abstract_author._id and abs_affiliation_name._id = abstracts_item._id GROUP By abstracts_item._id";
 
-        cursor = database.rawQuery(query, null);
+        
+        
+        //cursor = database.rawQuery(query, null);
+        
+        cursor = database.query(itemsDao.getTablename(), itemsDao.getAllColumns(), null, null, null, null, null);
 
         Boolean isEmpty;
 
@@ -144,7 +149,7 @@ public class AbstractActivity extends Activity {
 
         if (isEmpty) {
             datainList();
-            cursor = database.rawQuery(query, null);
+            cursor = database.query(itemsDao.getTablename(), itemsDao.getAllColumns(), null, null, null, null, null);
         }
 
         cursorAdapter = new AbstractCursorAdapter(this, cursor);
