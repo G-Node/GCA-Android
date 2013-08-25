@@ -77,8 +77,6 @@ public class AbstractActivity extends Activity {
         // TODO Auto-generated method stub
         super.onCreate(savedInstanceState);
 
-        
-
         setContentView(R.layout.abstract_general);
 
         listView = (ListView)findViewById(R.id.list);
@@ -102,7 +100,9 @@ public class AbstractActivity extends Activity {
         }
 
         if (isEmpty) {
+           
             datainList();
+            
             cursor = dbHelper.database.rawQuery(query, null);
         }
 
@@ -158,7 +158,8 @@ public class AbstractActivity extends Activity {
                 
             }
         });
-
+        
+        dbHelper.close();
 
         }
 
@@ -198,13 +199,16 @@ public class AbstractActivity extends Activity {
                     String text = jsonObject.getString("abstract");
 
                     //itemsDao.insert(items);
+                    
+                    dbHelper.addItems(null, text, topic, correspondence, url, coi, cite, type, title, refs);
 
                     JSONObject abAfData = jsonArray.getJSONObject(index).getJSONObject("affiliations");
 
                     String af_name = abAfData.toString().replaceAll("\\{", "").replaceAll("\\}", "");
 
-
                     //abAfNameDao.insert(abAfName);
+                    
+                    dbHelper.addAbsAffiliation(af_name, null);
 
                     JSONArray getKeywords = new JSONArray(jsonObject.getString("keywords"));
 
@@ -213,6 +217,8 @@ public class AbstractActivity extends Activity {
 
 
                     //abKeyDao.insert(Keywords);
+                    
+                    dbHelper.addKeyWord(keywordsData, null);
 
                     JSONArray getAuthorsArray = new JSONArray(jsonObject.getString("authors"));
 
@@ -236,16 +242,20 @@ public class AbstractActivity extends Activity {
 
                        
                         //authorDao.insert(absAuth);
-
+                        
+                        dbHelper.addAuthors(null, authorNames, is_Corrospondence);
                        
                         //abAfDao.insert(ab_af);
-
-                      
+                        
+                        dbHelper.addAbstractAffiliation(null, getAfNumber);
+                        
                         //absAuthDao.insert(authAbstract);
-
+                        
+                        dbHelper.addAuthorsAbstractItems(dbHelper.items_id, dbHelper.authors_id);
                         
                         //abAuthAfDao.insert(authAfNumber);
-
+                        
+                        dbHelper.authorsAffiliation(dbHelper.abstract_affiliation_id, dbHelper.authors_id);
                     }
 
                 }
