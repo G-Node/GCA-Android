@@ -19,7 +19,7 @@ public class AbstractCursorAdapter extends CursorAdapter {
     Cursor cursorOne;
 
     String getName;
-
+    
     @SuppressWarnings("deprecation")
     public AbstractCursorAdapter(Context context, Cursor c) {
         super(context, c);
@@ -46,8 +46,9 @@ public class AbstractCursorAdapter extends CursorAdapter {
 
         String sqlQuery = "select abstracts_item._id AS ID,abstract_author.NAME AS NAME from abstracts_item,abstract_author,authors_abstract where abstracts_item._id = authors_abstract.abstractsitem_id and abstract_author._id = authors_abstract.abstractauthor_id and ID = "
                 + value + " GROUP BY NAME";
-
-        cursorOne = AbstractActivity.database.rawQuery(sqlQuery, null);
+        
+        
+        cursorOne = DatabaseHelper.database.rawQuery(sqlQuery, null);
 
         if (cursorOne != null) {
             cursorOne.moveToFirst();
@@ -93,7 +94,7 @@ public class AbstractCursorAdapter extends CursorAdapter {
              * Get Width
              */
             
-            WindowManager WinMgr = (WindowManager)context.getSystemService(Context.WINDOW_SERVICE);
+          WindowManager WinMgr = (WindowManager)context.getSystemService(Context.WINDOW_SERVICE);
             int displayWidth = WinMgr.getDefaultDisplay().getWidth();
             
             Paint paint = new Paint();
