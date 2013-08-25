@@ -12,24 +12,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
-import com.yasiradnan.conference.AbsAffiliationName;
-import com.yasiradnan.conference.AbsAffiliationNameDao;
-import com.yasiradnan.conference.AbstractAffiliateNameDao;
-import com.yasiradnan.conference.AbstractAffiliation;
-import com.yasiradnan.conference.AbstractAffiliationDao;
-import com.yasiradnan.conference.AbstractAuthor;
-import com.yasiradnan.conference.AbstractAuthorDao;
-import com.yasiradnan.conference.AbstractKeyWords;
-import com.yasiradnan.conference.AbstractKeyWordsDao;
-import com.yasiradnan.conference.AbstractsItem;
-import com.yasiradnan.conference.AbstractsItemDao;
-import com.yasiradnan.conference.AuthorsAbstract;
-import com.yasiradnan.conference.AuthorsAbstractDao;
-import com.yasiradnan.conference.AuthorsAffiliate;
-import com.yasiradnan.conference.AuthorsAffiliateDao;
-import com.yasiradnan.conference.DaoMaster;
-import com.yasiradnan.conference.DaoMaster.DevOpenHelper;
-import com.yasiradnan.conference.DaoSession;
 import com.yasiradnan.conference.R;
 import com.yasiradnan.utils.JSONReader;
 
@@ -59,7 +41,7 @@ public class AbstractActivity extends Activity {
     AbstractCursorAdapter cursorAdapter;
 
     ListView listView;
-    
+
     Cursor cursor;
 
     ListView lv;
@@ -69,10 +51,8 @@ public class AbstractActivity extends Activity {
     String is_Corrospondence;
 
     String getAfNumber;
-    
+
     DatabaseHelper dbHelper = new DatabaseHelper(this);
-    
-   
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,13 +62,13 @@ public class AbstractActivity extends Activity {
         setContentView(R.layout.abstract_general);
 
         listView = (ListView)findViewById(R.id.list);
-        
+
         dbHelper.open();
-        
+
         String query = "select abstracts_item._id,title, type, topic, text,affiliation_number,af_name from abs_affiliation_name,abstract_affiliation,abstracts_item,abstract_author,authors_abstract where abstracts_item._id = authors_abstract.abstractsitem_id and abstract_author._id = authors_abstract.abstractauthor_id and abstract_affiliation._id = abstract_author._id and abs_affiliation_name._id = abstracts_item._id GROUP By abstracts_item._id";
 
         cursor = DatabaseHelper.database.rawQuery(query, null);
-        
+
         Boolean isEmpty;
 
         if (cursor != null && cursor.getCount() > 0) {
@@ -102,20 +82,17 @@ public class AbstractActivity extends Activity {
         }
 
         if (isEmpty) {
-           
+
             datainList();
-            
+
             cursor = DatabaseHelper.database.rawQuery(query, null);
         }
 
         cursorAdapter = new AbstractCursorAdapter(this, cursor);
-        
-        listView.setAdapter(cursorAdapter);
-        
-        listView.setTextFilterEnabled(true);
-        
-        
 
+        listView.setAdapter(cursorAdapter);
+
+        listView.setTextFilterEnabled(true);
 
         listView.setOnItemClickListener(new OnItemClickListener() {
             @Override
@@ -136,140 +113,123 @@ public class AbstractActivity extends Activity {
          * Serach Filter
          */
         listView.setTextFilterEnabled(true);
-        
+
         EditText searchOption = (EditText)findViewById(R.id.abSearch);
-        
+
         searchOption.addTextChangedListener(new TextWatcher() {
-            
+
             @Override
             public void onTextChanged(CharSequence cs, int start, int before, int count) {
                 // TODO Auto-generated method stub
                 ((CursorAdapter)AbstractActivity.this.cursorAdapter).getFilter().filter(cs);
             }
-            
+
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
                 // TODO Auto-generated method stub
-                
+
             }
-            
+
             @Override
             public void afterTextChanged(Editable s) {
                 // TODO Auto-generated method stub
-                
-                
+
             }
         });
-        
-        //dbHelper.close();
 
-        }
+        // dbHelper.close();
 
-        private void datainList() {
-            try {
+    }
 
-                InputStream inStream = this.getResources().openRawResource(R.raw.abstracts);
-                JSONArray jsonArray = JSONReader.parseStream(inStream);
+    private void datainList() {
+        try {
 
-                
+            InputStream inStream = this.getResources().openRawResource(R.raw.abstracts);
+            JSONArray jsonArray = JSONReader.parseStream(inStream);
 
-                for (int index = 0; index < jsonArray.length(); index++) {
+            for (int index = 0; index < jsonArray.length(); index++) {
 
-                    JSONObject jsonObject = jsonArray.getJSONObject(index);
+                JSONObject jsonObject = jsonArray.getJSONObject(index);
 
-                    String topic = jsonObject.getString("topic");
+                String topic = jsonObject.getString("topic");
 
-                    String correspondence = jsonObject.getString("correspondence");
+                String correspondence = jsonObject.getString("correspondence");
 
-                    String url = jsonObject.getString("url");
+                String url = jsonObject.getString("url");
 
-                    String coi = jsonObject.getString("coi");
+                String coi = jsonObject.getString("coi");
 
-                    String cite = jsonObject.getString("cite");
+                String cite = jsonObject.getString("cite");
 
-                    String type = jsonObject.getString("type");
+                String type = jsonObject.getString("type");
 
-                    String title = jsonObject.getString("title");
+                String title = jsonObject.getString("title");
 
-                    String refs = "";
+                String refs = "";
 
-                    if (jsonObject.has("refs")) {
+                if (jsonObject.has("refs")) {
 
-                        refs = jsonObject.getString("refs");
-                    }
-
-                    Log.e("title", title);
-
-                    String text = jsonObject.getString("abstract");
-
-                    //itemsDao.insert(items);
-                    
-                    dbHelper.addItems(null, text, topic, correspondence, url, coi, cite, type, title, refs);
-
-                    JSONObject abAfData = jsonArray.getJSONObject(index).getJSONObject("affiliations");
-
-                    String af_name = abAfData.toString().replaceAll("\\{", "").replaceAll("\\}", "");
-
-                    //abAfNameDao.insert(abAfName);
-                    
-                    dbHelper.addAbsAffiliation(af_name, null);
-
-                    JSONArray getKeywords = new JSONArray(jsonObject.getString("keywords"));
-
-                    String keywordsData = String.valueOf(getKeywords).replaceAll("\\[", "")
-                            .replaceAll("\\]", "").toString().replace("\"", "");
-
-
-                    //abKeyDao.insert(Keywords);
-                    
-                    dbHelper.addKeyWord(keywordsData, null);
-
-                    JSONArray getAuthorsArray = new JSONArray(jsonObject.getString("authors"));
-
-                    for (int counter = 0; counter < getAuthorsArray.length(); counter++) {
-
-                        JSONObject authjsonObJecthor = getAuthorsArray.getJSONObject(counter);
-
-                        JSONArray getNumbers = new JSONArray(
-                                authjsonObJecthor.getString("affiliations"));
-
-                        authorNames = authjsonObJecthor.getString("name");
-
-                        String is_Corrospondence = "";
-
-                        if (authjsonObJecthor.has("corresponding")) {
-
-                            is_Corrospondence = authjsonObJecthor.getString("corresponding");
-                        }
-
-                        getAfNumber = getNumbers.toString().replaceAll("\\[", "").replaceAll("\\]", "");
-
-                       
-                        //authorDao.insert(absAuth);
-                        
-                        dbHelper.addAuthors(null, authorNames, is_Corrospondence);
-                       
-                        //abAfDao.insert(ab_af);
-                        
-                        dbHelper.addAbstractAffiliation(null, getAfNumber);
-                        
-                        //absAuthDao.insert(authAbstract);
-                        
-                        dbHelper.addAuthorsAbstractItems(dbHelper.items_id, dbHelper.authors_id);
-                        
-                        //abAuthAfDao.insert(authAfNumber);
-                        
-                        dbHelper.authorsAffiliation(dbHelper.abstract_affiliation_id, dbHelper.authors_id);
-                    }
-
+                    refs = jsonObject.getString("refs");
                 }
 
-            } catch (FileNotFoundException e) {
-                Log.e("jsonFile", "file not found");
-            } catch (IOException e) {
-                Log.e("jsonFile", "ioerror");
-            } catch (JSONException e) {
-                e.printStackTrace();
+                Log.e("title", title);
+
+                String text = jsonObject.getString("abstract");
+
+                dbHelper.addItems(null, text, topic, correspondence, url, coi, cite, type, title,
+                        refs);
+
+                JSONObject abAfData = jsonArray.getJSONObject(index).getJSONObject("affiliations");
+
+                String af_name = abAfData.toString().replaceAll("\\{", "").replaceAll("\\}", "");
+
+                dbHelper.addAbsAffiliation(af_name, null);
+
+                JSONArray getKeywords = new JSONArray(jsonObject.getString("keywords"));
+
+                String keywordsData = String.valueOf(getKeywords).replaceAll("\\[", "")
+                        .replaceAll("\\]", "").toString().replace("\"", "");
+
+                dbHelper.addKeyWord(keywordsData, null);
+
+                JSONArray getAuthorsArray = new JSONArray(jsonObject.getString("authors"));
+
+                for (int counter = 0; counter < getAuthorsArray.length(); counter++) {
+
+                    JSONObject authjsonObJecthor = getAuthorsArray.getJSONObject(counter);
+
+                    JSONArray getNumbers = new JSONArray(
+                            authjsonObJecthor.getString("affiliations"));
+
+                    authorNames = authjsonObJecthor.getString("name");
+
+                    String is_Corrospondence = "";
+
+                    if (authjsonObJecthor.has("corresponding")) {
+
+                        is_Corrospondence = authjsonObJecthor.getString("corresponding");
+                    }
+
+                    getAfNumber = getNumbers.toString().replaceAll("\\[", "").replaceAll("\\]", "");
+
+                    dbHelper.addAuthors(null, authorNames, is_Corrospondence);
+
+                    dbHelper.addAbstractAffiliation(null, getAfNumber);
+
+                    dbHelper.addAuthorsAbstractItems(dbHelper.items_id, dbHelper.authors_id);
+
+                    dbHelper.authorsAffiliation(dbHelper.abstract_affiliation_id,
+                            dbHelper.authors_id);
+                }
+
             }
+
+        } catch (FileNotFoundException e) {
+            Log.e("jsonFile", "file not found");
+        } catch (IOException e) {
+            Log.e("jsonFile", "ioerror");
+        } catch (JSONException e) {
+            e.printStackTrace();
         }
     }
+}
