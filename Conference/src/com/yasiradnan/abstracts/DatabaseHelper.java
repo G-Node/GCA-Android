@@ -15,11 +15,11 @@ import android.database.sqlite.SQLiteOpenHelper;
  */
 public class DatabaseHelper extends SQLiteOpenHelper {
 
-    private static String Database_Name = "TestData";
+    private static String Database_Name = "TestDB-1";
 
     private static int Database_Version = 1;
 
-    SQLiteDatabase database;
+    public static SQLiteDatabase database;
 
     public long items_id;
 
@@ -51,31 +51,31 @@ public class DatabaseHelper extends SQLiteOpenHelper {
      * Query for Creating Tables
      */
 
-    private String CREATE_ABS_AFFILIATION_NAME = "CREATE TABLE IF NOT EXISTS ABS_AFFILIATION_NAME "
+    public static final String CREATE_ABS_AFFILIATION_NAME = "CREATE TABLE IF NOT EXISTS ABS_AFFILIATION_NAME "
             + "( _id INTEGER PRIMARY KEY AUTOINCREMENT,AF_NAME TEXT);";
 
-    private String CREATE_ABSTRACT_AFFILIATE_NAME = "CREATE TABLE IF NOT EXISTS ABSTRACT_AFFILIATE_NAME"
+    public static final String CREATE_ABSTRACT_AFFILIATE_NAME = "CREATE TABLE IF NOT EXISTS ABSTRACT_AFFILIATE_NAME"
             + "(ABSTRACTSITEM_ID INTEGER NOT NULL,ABSAFFILIATIONNAME_ID INTEGER NOT NULL);";
 
-    private String CREATE_ABSTRACT_AFFILIATION = "CREATE TABLE IF NOT EXISTS ABSTRACT_AFFILIATION ("
+    public static final String CREATE_ABSTRACT_AFFILIATION = "CREATE TABLE IF NOT EXISTS ABSTRACT_AFFILIATION ("
             + "_id INTEGER PRIMARY KEY AUTOINCREMENT,AFFILIATION_NUMBER TEXT);";
 
-    private String CREATE_ABSTRACT_AUTHOR = "CREATE TABLE IF NOT EXISTS  ABSTRACT_AUTHOR "
+    public static final String CREATE_ABSTRACT_AUTHOR = "CREATE TABLE IF NOT EXISTS  ABSTRACT_AUTHOR "
             + "(_id INTEGER PRIMARY KEY AUTOINCREMENT ,NAME TEXT NOT NULL,IS__CORRESPONDING TEXT);";
 
-    private String CREATE_ABSTRACT_KEY_WORDS = "CREATE TABLE IF NOT EXISTS ABSTRACT_KEY_WORDS"
+    public static final String CREATE_ABSTRACT_KEY_WORDS = "CREATE TABLE IF NOT EXISTS ABSTRACT_KEY_WORDS"
             + "( KEYWORDS TEXT,_id INTEGER PRIMARY KEY AUTOINCREMENT );";
 
-    private String CREATE_ABSTRACTS_ITEM = "CREATE TABLE IF NOT EXISTS ABSTRACTS_ITEM"
+    public static final String CREATE_ABSTRACTS_ITEM = "CREATE TABLE IF NOT EXISTS ABSTRACTS_ITEM"
             + "(_id INTEGER PRIMARY KEY AUTOINCREMENT , CORRESPONDENCE TEXT NOT NULL,"
             + "TITLE TEXT NOT NULL ,URL TEXT NOT NULL,"
             + "TEXT TEXT NOT NULL,TYPE TEXT NOT NULL, TOPIC TEXT NOT NULL,"
             + "COI TEXT NOT NULL,CITE TEXT NOT NULL,REFS TEXT NOT NULL);";
 
-    private String CREATE_AUTHORS_ABSTRACT = "CREATE TABLE IF NOT EXISTS AUTHORS_ABSTRACT"
+    public static final String CREATE_AUTHORS_ABSTRACT = "CREATE TABLE IF NOT EXISTS AUTHORS_ABSTRACT"
             + "( ABSTRACTSITEM_ID INTEGER NOT NULL,ABSTRACTAUTHOR_ID INTEGER NOT NULL);";
 
-    private String CREATE_AUTHORS_AFFILIATE = "CREATE TABLE IF NOT EXISTS AUTHORS_AFFILIATE"
+    public static final String CREATE_AUTHORS_AFFILIATE = "CREATE TABLE IF NOT EXISTS AUTHORS_AFFILIATE"
             + "(ABSTRACTAUTHOR_ID INTEGER NOT NULL,ABSTRACTAFFILIATION_ID INTEGER NOT NULL );";
 
     /*
@@ -94,7 +94,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
      * .SQLiteDatabase)
      */
     @Override
-    public void onCreate(SQLiteDatabase arg0) {
+    public void onCreate(SQLiteDatabase database) {
         // TODO Auto-generated method stub
 
         /*
@@ -126,7 +126,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
      * .SQLiteDatabase, int, int)
      */
     @Override
-    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+    public void onUpgrade(SQLiteDatabase database, int oldVersion, int newVersion) {
         // TODO Auto-generated method stub
 
         database.execSQL("DROP TABLE IF EXISTS" + TABLE_ABS_AFFILIATION_NAME);
@@ -144,6 +144,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         database.execSQL("DROP TABLE IF EXISTS" + TABLE_AUTHORS_ABSTRACT);
 
         database.execSQL("DROP TABLE IF EXISTS" + TABLE_AUTHORS_AFFILIATE);
+        
+        onCreate(database);
 
     }
 
