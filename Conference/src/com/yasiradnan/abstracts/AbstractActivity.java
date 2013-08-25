@@ -71,6 +71,8 @@ public class AbstractActivity extends Activity {
     String getAfNumber;
     
     DatabaseHelper dbHelper = new DatabaseHelper(this);
+    
+   
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,7 +87,7 @@ public class AbstractActivity extends Activity {
         
         String query = "select abstracts_item._id,title, type, topic, text,affiliation_number,af_name from abs_affiliation_name,abstract_affiliation,abstracts_item,abstract_author,authors_abstract where abstracts_item._id = authors_abstract.abstractsitem_id and abstract_author._id = authors_abstract.abstractauthor_id and abstract_affiliation._id = abstract_author._id and abs_affiliation_name._id = abstracts_item._id GROUP By abstracts_item._id";
 
-        cursor = dbHelper.database.rawQuery(query, null);
+        cursor = DatabaseHelper.database.rawQuery(query, null);
         
         Boolean isEmpty;
 
@@ -103,7 +105,7 @@ public class AbstractActivity extends Activity {
            
             datainList();
             
-            cursor = dbHelper.database.rawQuery(query, null);
+            cursor = DatabaseHelper.database.rawQuery(query, null);
         }
 
         cursorAdapter = new AbstractCursorAdapter(this, cursor);
@@ -120,7 +122,7 @@ public class AbstractActivity extends Activity {
             public void onItemClick(AdapterView<?> arg0, View view, int position, long arg3) {
                 // TODO Auto-generated method stub
 
-                String Text = cursor.getString(cursor.getColumnIndexOrThrow("Text"));
+                String Text = cursor.getString(cursor.getColumnIndexOrThrow("TEXT"));
 
                 Intent in = new Intent(getApplicationContext(), AbstractContent.class);
 
@@ -159,7 +161,7 @@ public class AbstractActivity extends Activity {
             }
         });
         
-        dbHelper.close();
+        //dbHelper.close();
 
         }
 
@@ -168,6 +170,8 @@ public class AbstractActivity extends Activity {
 
                 InputStream inStream = this.getResources().openRawResource(R.raw.abstracts);
                 JSONArray jsonArray = JSONReader.parseStream(inStream);
+
+                
 
                 for (int index = 0; index < jsonArray.length(); index++) {
 
