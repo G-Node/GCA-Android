@@ -58,32 +58,8 @@ public class AbstractActivity extends Activity {
 
     AbstractCursorAdapter cursorAdapter;
 
-   ListView listView;
-
-    public static SQLiteDatabase database;
-
-    DevOpenHelper helper;
-
-    DaoSession daoSession;
-
-    DaoMaster daoMaster;
-
-    AbstractsItemDao itemsDao;
-
-    AbstractAuthorDao authorDao;
-
-    AbstractKeyWordsDao abKeyDao;
-
-    AbsAffiliationNameDao abAfNameDao;
-
-    AbstractAffiliationDao abAfDao;
-
-    AbstractAffiliateNameDao abAffiliateDao;
-
-    AuthorsAffiliateDao abAuthAfDao;
-
-    AuthorsAbstractDao absAuthDao;
-
+    ListView listView;
+    
     Cursor cursor;
 
     ListView lv;
@@ -93,48 +69,26 @@ public class AbstractActivity extends Activity {
     String is_Corrospondence;
 
     String getAfNumber;
+    
+    DatabaseHelper dbHelper = new DatabaseHelper(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // TODO Auto-generated method stub
         super.onCreate(savedInstanceState);
 
-        helper = new DaoMaster.DevOpenHelper(this, "ABDatabase", null);
-
-        database = helper.getWritableDatabase();
-
-        daoMaster = new DaoMaster(database);
-
-        daoSession = daoMaster.newSession();
-
-        itemsDao = daoSession.getAbstractsItemDao();
-
-        authorDao = daoSession.getAbstractAuthorDao();
-
-        abKeyDao = daoSession.getAbstractKeyWordsDao();
-
-        abAfNameDao = daoSession.getAbsAffiliationNameDao();
-
-        abAfDao = daoSession.getAbstractAffiliationDao();
-
-        abAffiliateDao = daoSession.getAbstractAffiliateNameDao();
-
-        abAuthAfDao = daoSession.getAuthorsAffiliateDao();
-
-        absAuthDao = daoSession.getAuthorsAbstractDao();
+        
 
         setContentView(R.layout.abstract_general);
 
         listView = (ListView)findViewById(R.id.list);
-
-        //String query = "select abstracts_item._id,title, type, topic, text,affiliation_number,af_name from abs_affiliation_name,abstract_affiliation,abstracts_item,abstract_author,authors_abstract where abstracts_item._id = authors_abstract.abstractsitem_id and abstract_author._id = authors_abstract.abstractauthor_id and abstract_affiliation._id = abstract_author._id and abs_affiliation_name._id = abstracts_item._id GROUP By abstracts_item._id";
-
         
+        dbHelper.open();
         
-        //cursor = database.rawQuery(query, null);
-        
-        cursor = database.query(itemsDao.getTablename(), itemsDao.getAllColumns(), null, null, null, null, null);
+        String query = "select abstracts_item._id,title, type, topic, text,affiliation_number,af_name from abs_affiliation_name,abstract_affiliation,abstracts_item,abstract_author,authors_abstract where abstracts_item._id = authors_abstract.abstractsitem_id and abstract_author._id = authors_abstract.abstractauthor_id and abstract_affiliation._id = abstract_author._id and abs_affiliation_name._id = abstracts_item._id GROUP By abstracts_item._id";
 
+        cursor = dbHelper.database.rawQuery(query, null);
+        
         Boolean isEmpty;
 
         if (cursor != null && cursor.getCount() > 0) {
@@ -149,7 +103,7 @@ public class AbstractActivity extends Activity {
 
         if (isEmpty) {
             datainList();
-            cursor = database.query(itemsDao.getTablename(), itemsDao.getAllColumns(), null, null, null, null, null);
+            cursor = dbHelper.database.rawQuery(query, null);
         }
 
         cursorAdapter = new AbstractCursorAdapter(this, cursor);
@@ -243,27 +197,22 @@ public class AbstractActivity extends Activity {
 
                     String text = jsonObject.getString("abstract");
 
-                    AbstractsItem items = new AbstractsItem(null, correspondence, title, url, text,
-                            type, topic, coi, cite, refs);
-
-                    itemsDao.insert(items);
+                    //itemsDao.insert(items);
 
                     JSONObject abAfData = jsonArray.getJSONObject(index).getJSONObject("affiliations");
 
                     String af_name = abAfData.toString().replaceAll("\\{", "").replaceAll("\\}", "");
 
-                    AbsAffiliationName abAfName = new AbsAffiliationName(null, af_name);
 
-                    abAfNameDao.insert(abAfName);
+                    //abAfNameDao.insert(abAfName);
 
                     JSONArray getKeywords = new JSONArray(jsonObject.getString("keywords"));
 
                     String keywordsData = String.valueOf(getKeywords).replaceAll("\\[", "")
                             .replaceAll("\\]", "").toString().replace("\"", "");
 
-                    AbstractKeyWords Keywords = new AbstractKeyWords(keywordsData, items.getId());
 
-                    abKeyDao.insert(Keywords);
+                    //abKeyDao.insert(Keywords);
 
                     JSONArray getAuthorsArray = new JSONArray(jsonObject.getString("authors"));
 
@@ -285,20 +234,17 @@ public class AbstractActivity extends Activity {
 
                         getAfNumber = getNumbers.toString().replaceAll("\\[", "").replaceAll("\\]", "");
 
-                        AbstractAuthor absAuth = new AbstractAuthor(null, authorNames,
-                                is_Corrospondence);
-                        authorDao.insert(absAuth);
+                       
+                        //authorDao.insert(absAuth);
 
-                        AbstractAffiliation ab_af = new AbstractAffiliation(null, getAfNumber);
-                        abAfDao.insert(ab_af);
+                       
+                        //abAfDao.insert(ab_af);
 
-                        AuthorsAbstract authAbstract = new AuthorsAbstract(items.getId(),
-                                absAuth.getId());
-                        absAuthDao.insert(authAbstract);
+                      
+                        //absAuthDao.insert(authAbstract);
 
-                        AuthorsAffiliate authAfNumber = new AuthorsAffiliate(absAuth.getId(),
-                                ab_af.getId());
-                        abAuthAfDao.insert(authAfNumber);
+                        
+                        //abAuthAfDao.insert(authAfNumber);
 
                     }
 
