@@ -45,7 +45,7 @@ public class AbstractCursorAdapter extends CursorAdapter {
         String value = cursor.getString(cursor.getColumnIndexOrThrow("_id"));
 
         String sqlQuery = "select abstracts_item._id AS ID,abstract_author.NAME AS NAME from abstracts_item,abstract_author,authors_abstract where abstracts_item._id = authors_abstract.abstractsitem_id and abstract_author._id = authors_abstract.abstractauthor_id and ID = "
-                + value + " GROUP BY NAME";
+                + value;
         
         
         cursorOne = DatabaseHelper.database.rawQuery(sqlQuery, null);
@@ -94,7 +94,7 @@ public class AbstractCursorAdapter extends CursorAdapter {
              * Get Width
              */
             
-          WindowManager WinMgr = (WindowManager)context.getSystemService(Context.WINDOW_SERVICE);
+            WindowManager WinMgr = (WindowManager)context.getSystemService(Context.WINDOW_SERVICE);
             int displayWidth = WinMgr.getDefaultDisplay().getWidth();
             
             Paint paint = new Paint();
