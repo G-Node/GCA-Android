@@ -42,6 +42,8 @@ public class AbstractActivity extends Activity {
 
     ListView listView;
 
+    EditText searchOption;
+
     Cursor cursor;
 
     ListView lv;
@@ -62,6 +64,8 @@ public class AbstractActivity extends Activity {
         setContentView(R.layout.abstract_general);
 
         listView = (ListView)findViewById(R.id.list);
+
+        searchOption = (EditText)findViewById(R.id.abSearch);
 
         dbHelper.open();
 
@@ -112,16 +116,19 @@ public class AbstractActivity extends Activity {
         /*
          * Serach Filter
          */
-        listView.setTextFilterEnabled(true);
-
-        EditText searchOption = (EditText)findViewById(R.id.abSearch);
+        cursorAdapter.setFilterQueryProvider(new FilterQueryProvider() {
+            public Cursor runQuery(CharSequence constraint) {
+                return dbHelper.fetchDataByName(constraint.toString());
+            }
+        });
 
         searchOption.addTextChangedListener(new TextWatcher() {
 
             @Override
             public void onTextChanged(CharSequence cs, int start, int before, int count) {
                 // TODO Auto-generated method stub
-                ((CursorAdapter)AbstractActivity.this.cursorAdapter).getFilter().filter(cs);
+                AbstractActivity.this.cursorAdapter.getFilter().filter(cs);
+
             }
 
             @Override

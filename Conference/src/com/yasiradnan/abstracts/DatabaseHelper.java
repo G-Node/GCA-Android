@@ -6,9 +6,11 @@ package com.yasiradnan.abstracts;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 /**
  * @author Adnan
@@ -261,6 +263,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put("ABSTRACTAUTHOR_ID", ABSTRACTAUTHOR_ID);
 
         database.insert(TABLE_AUTHORS_AFFILIATE, null, values);
+    }
+
+    public Cursor fetchDataByName(String string) {
+        // TODO Auto-generated method stub
+        Cursor cursor = database.rawQuery("select *from abstracts_item where TITLE like '%" + string + "%'", null);
+        return cursor;
     }
 
 }
