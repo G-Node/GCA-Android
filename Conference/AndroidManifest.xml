@@ -50,8 +50,7 @@
             android:name="com.google.android.maps.v2.API_KEY"
             android:value="API_KEY" />
           <activity android:name="com.yasiradnan.Schedule.ScheduleMainActivity"></activity>
-          <activity android:name="com.yasiradnan.Schedule.ContentExtended"
-              android:windowSoftInputMode="stateHidden">
+          <activity android:name="com.yasiradnan.Schedule.ContentExtended">
               
           </activity>
           <activity android:name="com.yasiradnan.abstracts.AbstractActivity"></activity>
