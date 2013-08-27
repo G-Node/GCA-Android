@@ -17,7 +17,7 @@ import android.util.Log;
  */
 public class DatabaseHelper extends SQLiteOpenHelper {
 
-    private static String Database_Name = "TesDB-5";
+    private static String Database_Name = "TesDB-6";
 
     private static int Database_Version = 1;
 

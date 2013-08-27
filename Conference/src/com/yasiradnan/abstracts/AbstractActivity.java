@@ -237,10 +237,13 @@ public class AbstractActivity extends Activity {
                         cursor = dbHelper.database.rawQuery(
                                 "select _id from abstract_author where NAME like '%" + authorNames
                                         + "%'", null);
-                        cursor.moveToFirst();
-                        do {
-                            getAuthorID = cursor.getString(cursor.getColumnIndexOrThrow("_id"));
-                        } while (cursor.moveToNext());
+                        try {
+                            if (cursor.moveToFirst()) { 
+                               getAuthorID = cursor.getString(0);
+                            }
+                          } finally {
+                            cursor.close();
+                          }
 
                         dbHelper.addAuthorsAbstractItems(dbHelper.items_id, Integer.parseInt(getAuthorID));
                         dbHelper.authorsAffiliation(dbHelper.abstract_affiliation_id,

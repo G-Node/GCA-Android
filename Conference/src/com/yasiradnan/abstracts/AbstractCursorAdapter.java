@@ -62,7 +62,6 @@ public class AbstractCursorAdapter extends CursorAdapter {
 
                     getName = getName + ","
                             + cursorOne.getString(cursorOne.getColumnIndexOrThrow("NAME"));
-
                 }
 
             } while (cursorOne.moveToNext());
@@ -73,8 +72,6 @@ public class AbstractCursorAdapter extends CursorAdapter {
         String formatterNames = "";
 
         String[] namesArray = getName.split(",");
-
-       // Log.e("Length", String.valueOf(namesArray.length));
 
         if (namesArray.length > 1) {
             for (int i = 0; i < namesArray.length; i++) {
@@ -111,7 +108,7 @@ public class AbstractCursorAdapter extends CursorAdapter {
             text_width =  bounds.width();
             
             
-            Log.e("SIZE", "Text =" + String.valueOf(text_width) + "------" +"Layout = " + String.valueOf(displayWidth));
+            //Log.e("SIZE", "Text =" + String.valueOf(text_width) + "------" +"Layout = " + String.valueOf(displayWidth));
               
             if(text_width > displayWidth){
                 
