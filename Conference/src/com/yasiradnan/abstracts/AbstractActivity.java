@@ -54,6 +54,8 @@ public class AbstractActivity extends Activity {
 
     String getAfNumber;
 
+    String getAuthorID;
+
     DatabaseHelper dbHelper = new DatabaseHelper(this);
 
     @Override
@@ -179,7 +181,7 @@ public class AbstractActivity extends Activity {
                     refs = jsonObject.getString("refs");
                 }
 
-                Log.e("title", title);
+                // Log.e("title", title);
 
                 String text = jsonObject.getString("abstract");
 
@@ -219,14 +221,33 @@ public class AbstractActivity extends Activity {
 
                     getAfNumber = getNumbers.toString().replaceAll("\\[", "").replaceAll("\\]", "");
 
-                    dbHelper.addAuthors(null, authorNames, is_Corrospondence);
-
                     dbHelper.addAbstractAffiliation(null, getAfNumber);
 
-                    dbHelper.addAuthorsAbstractItems(dbHelper.items_id, dbHelper.authors_id);
+                    if (!dbHelper.Exists(authorNames)) {
 
-                    dbHelper.authorsAffiliation(dbHelper.abstract_affiliation_id,
-                            dbHelper.authors_id);
+                        Log.e("NAME CHECK", authorNames);
+
+                        dbHelper.addAuthors(null, authorNames, is_Corrospondence);
+
+                        dbHelper.addAuthorsAbstractItems(dbHelper.items_id, dbHelper.authors_id);
+
+                        dbHelper.authorsAffiliation(dbHelper.abstract_affiliation_id,
+                                dbHelper.authors_id);
+                    } else {
+                        cursor = dbHelper.database.rawQuery(
+                                "select _id from abstract_author where NAME like '%" + authorNames
+                                        + "%'", null);
+                        cursor.moveToFirst();
+                        do {
+                            getAuthorID = cursor.getString(cursor.getColumnIndexOrThrow("_id"));
+                        } while (cursor.moveToNext());
+
+                        dbHelper.addAuthorsAbstractItems(dbHelper.items_id, Integer.parseInt(getAuthorID));
+                        dbHelper.authorsAffiliation(dbHelper.abstract_affiliation_id,
+                                Integer.parseInt(getAuthorID));
+                        Log.e("Get ID", getAuthorID);
+                    }
+
                 }
 
             }
