@@ -19,7 +19,7 @@ public class AbstractCursorAdapter extends CursorAdapter {
     Cursor cursorOne;
 
     String getName;
-    
+
     @SuppressWarnings("deprecation")
     public AbstractCursorAdapter(Context context, Cursor c) {
         super(context, c);
@@ -29,10 +29,11 @@ public class AbstractCursorAdapter extends CursorAdapter {
     @Override
     public void bindView(View view, Context context, Cursor cursor) {
         // TODO Auto-generated method stub
+        
         TextView title = (TextView)view.findViewById(R.id.abTitle);
 
         title.setText(cursor.getString(cursor.getColumnIndexOrThrow("TITLE")));
-        ;
+        
 
         TextView topic = (TextView)view.findViewById(R.id.abTopic);
 
@@ -46,22 +47,25 @@ public class AbstractCursorAdapter extends CursorAdapter {
 
         String sqlQuery = "select abstracts_item._id AS ID,abstract_author.NAME AS NAME from abstracts_item,abstract_author,authors_abstract where abstracts_item._id = authors_abstract.abstractsitem_id and abstract_author._id = authors_abstract.abstractauthor_id and ID = "
                 + value;
-        
-        
+
         cursorOne = DatabaseHelper.database.rawQuery(sqlQuery, null);
 
         if (cursorOne != null) {
             cursorOne.moveToFirst();
             do {
-                
+
                 if (cursorOne.getPosition() == 0) {
 
                     getName = cursorOne.getString(cursorOne.getColumnIndexOrThrow("NAME"));
 
+                } else if (cursorOne.isLast()) {
+                    getName = getName + " & "
+                            + cursorOne.getString(cursorOne.getColumnIndexOrThrow("NAME"));
                 } else {
 
-                    getName = getName + ","
+                    getName = getName + " , "
                             + cursorOne.getString(cursorOne.getColumnIndexOrThrow("NAME"));
+
                 }
 
             } while (cursorOne.moveToNext());
@@ -69,60 +73,30 @@ public class AbstractCursorAdapter extends CursorAdapter {
 
         TextView authorNames = (TextView)view.findViewById(R.id.SubTitle);
 
-        String formatterNames = "";
+        /*
+         * Get Width
+         */
 
-        String[] namesArray = getName.split(",");
+        WindowManager WinMgr = (WindowManager)context.getSystemService(Context.WINDOW_SERVICE);
+        int displayWidth = WinMgr.getDefaultDisplay().getWidth();
 
-        if (namesArray.length > 1) {
-            for (int i = 0; i < namesArray.length; i++) {
+        Paint paint = new Paint();
+        Rect bounds = new Rect();
 
-                if (i == namesArray.length - 1) {
-                    formatterNames = formatterNames + " & " + namesArray[i];
-                }else if (i == 0){
-                    formatterNames = formatterNames +namesArray[i];
-                }
-                else {
-                    formatterNames = formatterNames + " , " +namesArray[i];
-                }
-            }
-            
-            
-            /*
-             * Get Width
-             */
-            
-            WindowManager WinMgr = (WindowManager)context.getSystemService(Context.WINDOW_SERVICE);
-            int displayWidth = WinMgr.getDefaultDisplay().getWidth();
-            
-            Paint paint = new Paint();
-            Rect bounds = new Rect();
-            
-            int text_height = 0;
-            int text_width = 0;
-            
-            //paint.setTypeface(Typeface.DEFAULT);
-            
-            paint.getTextBounds(formatterNames, 0, formatterNames.length(), bounds);
+        int text_height = 0;
+        int text_width = 0;
 
-            text_height =  bounds.height();
-            text_width =  bounds.width();
-            
-            
-            //Log.e("SIZE", "Text =" + String.valueOf(text_width) + "------" +"Layout = " + String.valueOf(displayWidth));
-              
-            if(text_width > displayWidth){
-                
-                String output= formatterNames.split(",")[0] + " et al. " ;
-                authorNames.setText(output);
-                
-             }else{
-                 authorNames.setText(formatterNames.replaceAll("((?:^|[^A-Z.])[A-Z])[a-z]*\\s(?=[A-Z])",
-                         "$1.")); 
-             }
-            
-            
+        paint.getTextBounds(getName, 0, getName.length(), bounds);
+
+        text_height = bounds.height();
+        text_width = bounds.width();
+
+        if (text_width > displayWidth) {
+
+            String output = getName.split(",")[0] + " et al. ";
+            authorNames.setText(output);
+
         } else {
-
             authorNames
             .setText(getName.replaceAll("((?:^|[^A-Z.])[A-Z])[a-z]*\\s(?=[A-Z])", "$1."));
         }
@@ -135,7 +109,5 @@ public class AbstractCursorAdapter extends CursorAdapter {
         View returnView = inflater.inflate(R.layout.abstract_content, viewgroup, false);
         return returnView;
     }
-    
-    
 
 }
