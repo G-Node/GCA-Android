@@ -75,20 +75,8 @@ public class AbstractActivity extends Activity {
 
         cursor = DatabaseHelper.database.rawQuery(query, null);
 
-        Boolean isEmpty;
-
-        if (cursor != null && cursor.getCount() > 0) {
-
-            isEmpty = false;
-
-        } else {
-
-            isEmpty = true;
-
-        }
-
-        if (isEmpty) {
-
+        if(cursor.getCount() <= 0){
+            
             datainList();
 
             cursor = DatabaseHelper.database.rawQuery(query, null);
@@ -238,17 +226,18 @@ public class AbstractActivity extends Activity {
                                 "select _id from abstract_author where NAME like '%" + authorNames
                                         + "%'", null);
                         try {
-                            if (cursor.moveToFirst()) { 
-                               getAuthorID = cursor.getString(0);
+                            if (cursor.moveToFirst()) {
+                                getAuthorID = cursor.getString(0);
                             }
-                          } finally {
+                        } finally {
                             cursor.close();
-                          }
+                        }
 
-                        dbHelper.addAuthorsAbstractItems(dbHelper.items_id, Integer.parseInt(getAuthorID));
+                        dbHelper.addAuthorsAbstractItems(dbHelper.items_id,
+                                Integer.parseInt(getAuthorID));
                         dbHelper.authorsAffiliation(dbHelper.abstract_affiliation_id,
                                 Integer.parseInt(getAuthorID));
-                        Log.e("Get ID", getAuthorID);
+                        
                     }
 
                 }
