@@ -17,7 +17,7 @@ import android.util.Log;
  */
 public class DatabaseHelper extends SQLiteOpenHelper {
 
-    private static String Database_Name = "TesDB-6";
+    private static String Database_Name = "DroidDB";
 
     private static int Database_Version = 1;
 
@@ -242,13 +242,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         abstract_affiliation_id = database.insert(TABLENAME_ABSTRACT_AFFILIATION, null, values);
     }
 
-    public void addAuthorsAbstractItems(long abstractItems_id, long abstractAuthor_id) {
+    public void addAuthorsAbstractItems(long abstractItems_id, long abstractAuthor_id, long ABSTRACTAFFILIATION_ID) {
 
         ContentValues values = new ContentValues();
 
         values.put("ABSTRACTSITEM_ID", abstractItems_id);
 
         values.put("ABSTRACTAUTHOR_ID", abstractAuthor_id);
+        
+        values.put("ABSTRACTAFFILIATION_ID", ABSTRACTAFFILIATION_ID);
 
         database.insert(TABLE_AUTHORS_ABSTRACT, null, values);
 

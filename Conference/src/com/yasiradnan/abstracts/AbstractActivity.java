@@ -72,7 +72,7 @@ public class AbstractActivity extends Activity {
         dbHelper.open();
 
         String query = "select abstracts_item._id,title, type, topic, text,affiliation_number,af_name from abs_affiliation_name,abstract_affiliation,abstracts_item,abstract_author,authors_abstract where abstracts_item._id = authors_abstract.abstractsitem_id and abstract_author._id = authors_abstract.abstractauthor_id and abstract_affiliation._id = abstract_author._id and abs_affiliation_name._id = abstracts_item._id GROUP By abstracts_item._id";
-
+            
         cursor = DatabaseHelper.database.rawQuery(query, null);
 
         if(cursor.getCount() <= 0){
@@ -94,10 +94,18 @@ public class AbstractActivity extends Activity {
                 // TODO Auto-generated method stub
 
                 String Text = cursor.getString(cursor.getColumnIndexOrThrow("TEXT"));
+                
+                String Title = cursor.getString(cursor.getColumnIndexOrThrow("TITLE"));
+                
+                String Topic = cursor.getString(cursor.getColumnIndexOrThrow("TOPIC"));
 
                 Intent in = new Intent(getApplicationContext(), AbstractContent.class);
 
                 in.putExtra("abstracts", Text);
+                
+                in.putExtra("Title", Title);
+                
+                in.putExtra("Topic", Topic);
 
                 startActivity(in);
             }
@@ -217,7 +225,7 @@ public class AbstractActivity extends Activity {
 
                         dbHelper.addAuthors(null, authorNames, is_Corrospondence);
 
-                        dbHelper.addAuthorsAbstractItems(dbHelper.items_id, dbHelper.authors_id);
+                        dbHelper.addAuthorsAbstractItems(dbHelper.items_id, dbHelper.authors_id, dbHelper.abstract_affiliation_id);
 
                         dbHelper.authorsAffiliation(dbHelper.abstract_affiliation_id,
                                 dbHelper.authors_id);
@@ -234,7 +242,7 @@ public class AbstractActivity extends Activity {
                         }
 
                         dbHelper.addAuthorsAbstractItems(dbHelper.items_id,
-                                Integer.parseInt(getAuthorID));
+                                Integer.parseInt(getAuthorID),dbHelper.abstract_affiliation_id);
                         dbHelper.authorsAffiliation(dbHelper.abstract_affiliation_id,
                                 Integer.parseInt(getAuthorID));
                         
