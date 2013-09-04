@@ -17,7 +17,7 @@ import android.util.Log;
  */
 public class DatabaseHelper extends SQLiteOpenHelper {
 
-    private static String Database_Name = "DroidDB";
+    private static String Database_Name = "DroidDB-1";
 
     private static int Database_Version = 1;
 
@@ -75,7 +75,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + "COI TEXT NOT NULL,CITE TEXT NOT NULL,REFS TEXT NOT NULL);";
 
     public static final String CREATE_AUTHORS_ABSTRACT = "CREATE TABLE IF NOT EXISTS AUTHORS_ABSTRACT"
-            + "( ABSTRACTSITEM_ID INTEGER NOT NULL,ABSTRACTAUTHOR_ID INTEGER NOT NULL);";
+            + "( ABSTRACTSITEM_ID INTEGER NOT NULL,ABSTRACTAUTHOR_ID INTEGER NOT NULL,ABSTRACTAFFILIATION_ID INTEGER NOT NULL);";
 
     public static final String CREATE_AUTHORS_AFFILIATE = "CREATE TABLE IF NOT EXISTS AUTHORS_AFFILIATE"
             + "(ABSTRACTAUTHOR_ID INTEGER NOT NULL,ABSTRACTAFFILIATION_ID INTEGER NOT NULL );";

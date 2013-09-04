@@ -98,7 +98,9 @@ public class AbstractActivity extends Activity {
                 String Title = cursor.getString(cursor.getColumnIndexOrThrow("TITLE"));
                 
                 String Topic = cursor.getString(cursor.getColumnIndexOrThrow("TOPIC"));
-
+                
+                String value = cursor.getString(cursor.getColumnIndexOrThrow("_id"));
+                
                 Intent in = new Intent(getApplicationContext(), AbstractContent.class);
 
                 in.putExtra("abstracts", Text);
@@ -106,6 +108,8 @@ public class AbstractActivity extends Activity {
                 in.putExtra("Title", Title);
                 
                 in.putExtra("Topic", Topic);
+                
+                in.putExtra("value", value);
 
                 startActivity(in);
             }
