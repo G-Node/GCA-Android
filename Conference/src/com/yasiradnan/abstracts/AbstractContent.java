@@ -23,10 +23,10 @@ public class AbstractContent extends Activity {
     TextView title;
     TextView topic;
     TextView afName;
-    String getName;
     TextView emailField;
     TextView authorNames;
     String affiliation_ID;
+    String getName;
     Cursor cursor;
         @Override
         protected void onCreate(Bundle savedInstanceState) {
@@ -110,14 +110,14 @@ public class AbstractContent extends Activity {
             
             //((TextView)findViewById(R.id.text)).setText(Html.fromHtml("<sup><small>1</small></sup>"));
             
-            //content.setText(abstracts);
+            content.setText(abstracts);
             
             //content.setMovementMethod(new ScrollingMovementMethod());
             
         }
         
         private void initial_UI(){
-            //content = (TextView)findViewById(R.id.absContent);
+            content = (TextView)findViewById(R.id.Content);
             title  = (TextView)findViewById(R.id.ConTitle);
             topic = (TextView)findViewById(R.id.ConTopic);
             authorNames = (TextView)findViewById(R.id.ConAuthor);
