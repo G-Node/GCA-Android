@@ -1,5 +1,7 @@
 package com.yasiradnan.abstracts;
 
+import java.util.Arrays;
+
 import org.w3c.dom.Text;
 
 import com.yasiradnan.conference.R;
@@ -20,11 +22,13 @@ public class AbstractContent extends Activity {
     TextView content;
     TextView title;
     TextView topic;
+    TextView afName;
     ListView list;
     String getName;
     TextView authorNames;
     String affiliation_ID;
     RelativeLayout rel;
+    //String[] newText;
     Cursor cursor;
         @Override
         protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +49,8 @@ public class AbstractContent extends Activity {
             String Topic = getData.getString("Topic");
             
             String value = getData.getString("value");
+            
+            String affiliationName = getData.getString("afName");
             
             Log.e("Value", value);
             
@@ -74,7 +80,27 @@ public class AbstractContent extends Activity {
            title.setTypeface(null, Typeface.BOLD);
             
            topic.setText(Topic);
-            
+           
+          // afName.setText(affiliationName.replace("\"", "").replace("," , " ").replace(":", ". "));
+           /*afName.setText(affiliationName.replace("\",\"","\n").replace("\"", "").replace(":", ". "));
+           Log.e("A", String.valueOf(affiliationName.split("\",\"")));*/
+           
+           String[] newAfName = affiliationName.split("\",\""); //it returns an array of strings
+         
+           for (int i=0; i<newAfName.length; i++){
+               Log.e("", String.valueOf(newAfName.length));
+               newAfName[i] = newAfName[i].replace("\"", "").replace(":", ". ");
+               
+           }
+          
+           Arrays.sort(newAfName);
+         
+           String FormattedText = "";
+           for (String string : newAfName){
+              
+               FormattedText = FormattedText+string+"\n";
+           }
+           afName.setText((FormattedText));
             
             
             //((TextView)findViewById(R.id.text)).setText(Html.fromHtml("<sup><small>1</small></sup>"));
@@ -91,6 +117,7 @@ public class AbstractContent extends Activity {
             topic = (TextView)findViewById(R.id.ConTopic);
             list = (ListView)findViewById(R.id.list);
             authorNames = (TextView)findViewById(R.id.ConAuthor);
+            afName = (TextView)findViewById(R.id.ConAfName);
             
         }
         

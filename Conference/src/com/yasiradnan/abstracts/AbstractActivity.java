@@ -71,7 +71,7 @@ public class AbstractActivity extends Activity {
 
         dbHelper.open();
 
-        String query = "select abstracts_item._id,title, type, topic, text,affiliation_number,af_name from abs_affiliation_name,abstract_affiliation,abstracts_item,abstract_author,authors_abstract where abstracts_item._id = authors_abstract.abstractsitem_id and abstract_author._id = authors_abstract.abstractauthor_id and abstract_affiliation._id = abstract_author._id and abs_affiliation_name._id = abstracts_item._id GROUP By abstracts_item._id";
+        String query = "select abstracts_item._id,title, type, topic, text,af_name from abs_affiliation_name,abstract_affiliation,abstracts_item,abstract_author,authors_abstract where abstracts_item._id = authors_abstract.abstractsitem_id and abstract_author._id = authors_abstract.abstractauthor_id and abstract_affiliation._id = abstract_author._id and abs_affiliation_name._id = abstracts_item._id GROUP By abstracts_item._id";
             
         cursor = DatabaseHelper.database.rawQuery(query, null);
 
@@ -101,6 +101,8 @@ public class AbstractActivity extends Activity {
                 
                 String value = cursor.getString(cursor.getColumnIndexOrThrow("_id"));
                 
+                String afName = cursor.getString(cursor.getColumnIndexOrThrow("AF_NAME"));
+                
                 Intent in = new Intent(getApplicationContext(), AbstractContent.class);
 
                 in.putExtra("abstracts", Text);
@@ -110,6 +112,8 @@ public class AbstractActivity extends Activity {
                 in.putExtra("Topic", Topic);
                 
                 in.putExtra("value", value);
+                
+                in.putExtra("afName", afName);
 
                 startActivity(in);
             }

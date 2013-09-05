@@ -35,8 +35,15 @@
             android:layout_alignParentRight="true"
             android:layout_below="@+id/ConTitle"
             android:layout_marginTop="19dp"
-            
             android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <TextView
+            android:id="@+id/ConAfName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/ConAuthor"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
 
     </RelativeLayout>
 
