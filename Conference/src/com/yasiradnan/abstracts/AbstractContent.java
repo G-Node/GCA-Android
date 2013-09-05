@@ -23,12 +23,10 @@ public class AbstractContent extends Activity {
     TextView title;
     TextView topic;
     TextView afName;
-    ListView list;
     String getName;
+    TextView emailField;
     TextView authorNames;
     String affiliation_ID;
-    RelativeLayout rel;
-    //String[] newText;
     Cursor cursor;
         @Override
         protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +49,8 @@ public class AbstractContent extends Activity {
             String value = getData.getString("value");
             
             String affiliationName = getData.getString("afName");
+            
+            String email = getData.getString("email");
             
             Log.e("Value", value);
             
@@ -101,7 +101,12 @@ public class AbstractContent extends Activity {
                FormattedText = FormattedText+string+"\n";
            }
            afName.setText((FormattedText));
-            
+           
+           int index = email.lastIndexOf(",");
+           
+           String emailText = email.substring(index+1,email.length());
+           
+           emailField.setText("*"+emailText);
             
             //((TextView)findViewById(R.id.text)).setText(Html.fromHtml("<sup><small>1</small></sup>"));
             
@@ -115,9 +120,9 @@ public class AbstractContent extends Activity {
             //content = (TextView)findViewById(R.id.absContent);
             title  = (TextView)findViewById(R.id.ConTitle);
             topic = (TextView)findViewById(R.id.ConTopic);
-            list = (ListView)findViewById(R.id.list);
             authorNames = (TextView)findViewById(R.id.ConAuthor);
             afName = (TextView)findViewById(R.id.ConAfName);
+            emailField = (TextView)findViewById(R.id.email);
             
         }
         
