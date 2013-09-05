@@ -25,6 +25,7 @@ public class AbstractContent extends Activity {
     TextView afName;
     TextView emailField;
     TextView authorNames;
+    TextView ConRefs;
     String affiliation_ID;
     String getName;
     Cursor cursor;
@@ -51,6 +52,8 @@ public class AbstractContent extends Activity {
             String affiliationName = getData.getString("afName");
             
             String email = getData.getString("email");
+            
+            String refs = getData.getString("refs");
             
             Log.e("Value", value);
             
@@ -102,17 +105,18 @@ public class AbstractContent extends Activity {
            }
            afName.setText((FormattedText));
            
+           
            int index = email.lastIndexOf(",");
            
            String emailText = email.substring(index+1,email.length());
            
            emailField.setText("*"+emailText);
             
-            //((TextView)findViewById(R.id.text)).setText(Html.fromHtml("<sup><small>1</small></sup>"));
+           
+           content.setText(abstracts);
+           
+           ConRefs.setText(refs);
             
-            content.setText(abstracts);
-            
-            //content.setMovementMethod(new ScrollingMovementMethod());
             
         }
         
@@ -123,6 +127,7 @@ public class AbstractContent extends Activity {
             authorNames = (TextView)findViewById(R.id.ConAuthor);
             afName = (TextView)findViewById(R.id.ConAfName);
             emailField = (TextView)findViewById(R.id.email);
+            ConRefs = (TextView)findViewById(R.id.Conrefs);
             
         }
         
