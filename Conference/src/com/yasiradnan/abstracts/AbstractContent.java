@@ -69,14 +69,19 @@ public class AbstractContent extends Activity {
             if (cursor !=null && cursor.moveToFirst()) {
                 do {
                     
-                    String Corrosponding = cursor.getString(cursor.getColumnIndexOrThrow("IS__CORRESPONDING"));
-                    if(Corrosponding.length() > 0){
-                        getName = cursor.getString(cursor.getColumnIndexOrThrow("NAME"));
+                    //String Corrosponding = cursor.getString(cursor.getColumnIndexOrThrow("IS__CORRESPONDING"));
+                    getName = cursor.getString(cursor.getColumnIndexOrThrow("NAME"));
+                    int getIndex = email.indexOf(",");
+                    String getCorsName =email.substring(0, getIndex);
+                    int newIndex = getCorsName.indexOf(".");
+                    String getFormattedName = getCorsName.substring(newIndex+1,getCorsName.length());
+                    Log.e("QW", "");
+                    Log.e("AAA", String.valueOf(getFormattedName.trim().equalsIgnoreCase(getName.trim())));
+                    if(getFormattedName.trim().equalsIgnoreCase(getName.trim())){
                         affiliation_ID = cursor.getString(cursor.getColumnIndexOrThrow("NUMBER"));
                         authorNames.append(Html.fromHtml("\n"+getName+"<sup><small>"+affiliation_ID+"*</small></sup><br/>"));
                         authorNames.append("\n"); 
                     }else{
-                        getName = cursor.getString(cursor.getColumnIndexOrThrow("NAME"));
                         affiliation_ID = cursor.getString(cursor.getColumnIndexOrThrow("NUMBER"));
                         authorNames.append(Html.fromHtml("\n"+getName+"<sup><small>"+affiliation_ID+"</small></sup><br/>"));
                         authorNames.append("\n"); 
