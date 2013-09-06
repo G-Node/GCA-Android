@@ -57,7 +57,7 @@ public class AbstractContent extends Activity {
             
             Log.e("Value", value);
             
-            String sqlQuery = "select abstract_author.NAME AS NAME ,ABSTRACT_AFFILIATION.AFFILIATION_NUMBER AS NUMBER "
+            String sqlQuery = "select abstract_author.NAME AS NAME,abstract_author.IS__CORRESPONDING,ABSTRACT_AFFILIATION.AFFILIATION_NUMBER AS NUMBER "
                     + "from abstracts_item,abstract_author,authors_abstract,ABSTRACT_AFFILIATION "
                     + "where abstracts_item._id = authors_abstract.abstractsitem_id "
                     + "and abstract_author._id = authors_abstract.abstractauthor_id "
@@ -68,10 +68,20 @@ public class AbstractContent extends Activity {
             
             if (cursor !=null && cursor.moveToFirst()) {
                 do {
-                    getName = cursor.getString(cursor.getColumnIndexOrThrow("NAME"));
-                    affiliation_ID = cursor.getString(cursor.getColumnIndexOrThrow("NUMBER"));
-                    authorNames.append(Html.fromHtml("\n"+getName+"<sup><small>"+affiliation_ID+"</small></sup><br/>"));
-                    authorNames.append("\n"); 
+                    
+                    String Corrosponding = cursor.getString(cursor.getColumnIndexOrThrow("IS__CORRESPONDING"));
+                    if(Corrosponding.length() > 0){
+                        getName = cursor.getString(cursor.getColumnIndexOrThrow("NAME"));
+                        affiliation_ID = cursor.getString(cursor.getColumnIndexOrThrow("NUMBER"));
+                        authorNames.append(Html.fromHtml("\n"+getName+"<sup><small>"+affiliation_ID+"*</small></sup><br/>"));
+                        authorNames.append("\n"); 
+                    }else{
+                        getName = cursor.getString(cursor.getColumnIndexOrThrow("NAME"));
+                        affiliation_ID = cursor.getString(cursor.getColumnIndexOrThrow("NUMBER"));
+                        authorNames.append(Html.fromHtml("\n"+getName+"<sup><small>"+affiliation_ID+"</small></sup><br/>"));
+                        authorNames.append("\n"); 
+                    }
+                 
 
                 } while (cursor.moveToNext());
             }
@@ -115,7 +125,11 @@ public class AbstractContent extends Activity {
            
            content.setText(abstracts);
            
-           ConRefs.setText(refs);
+           Log.e("Length",String.valueOf(refs.length()));
+           if(refs.length() > 0){
+           ConRefs.setText("Reference\n"+refs);
+           
+           }
             
             
         }
