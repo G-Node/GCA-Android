@@ -17,7 +17,7 @@ import android.util.Log;
  */
 public class DatabaseHelper extends SQLiteOpenHelper {
 
-    private static String Database_Name = "DroidDB-1";
+    private static String Database_Name = "DroidDB-30";
 
     private static int Database_Version = 1;
 
@@ -48,6 +48,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String TABLE_AUTHORS_ABSTRACT = "AUTHORS_ABSTRACT";
 
     public static final String TABLE_AUTHORS_AFFILIATE = "AUTHORS_AFFILIATE";
+    
+    public static final String TABLE_ABSTRACT_AUTHOR_CORRESPONDENCE = "ABSTRACT_AUTHOR_CORRESPONDENCE";
 
     /*
      * Query for Creating Tables
@@ -79,6 +81,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public static final String CREATE_AUTHORS_AFFILIATE = "CREATE TABLE IF NOT EXISTS AUTHORS_AFFILIATE"
             + "(ABSTRACTAUTHOR_ID INTEGER NOT NULL,ABSTRACTAFFILIATION_ID INTEGER NOT NULL );";
+    
+    public static final String CREATE_ABSTRACT_AUTHOR_CORRESPONDENCE = "CREATE TABLE IF NOT EXISTS ABSTRACT_AUTHOR_CORRESPONDENCE"
+            + "(CORRESPONDING_AUTHOR_ID INTEGER NOT NULL,ABSTRACTSITEM_ID INTEGER NOT NULL )";
 
     /*
      * End
@@ -118,6 +123,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         database.execSQL(CREATE_AUTHORS_ABSTRACT);
 
         database.execSQL(CREATE_AUTHORS_AFFILIATE);
+        
+        database.execSQL(CREATE_ABSTRACT_AUTHOR_CORRESPONDENCE);
 
     }
 
@@ -146,6 +153,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         database.execSQL("DROP TABLE IF EXISTS" + TABLE_AUTHORS_ABSTRACT);
 
         database.execSQL("DROP TABLE IF EXISTS" + TABLE_AUTHORS_AFFILIATE);
+        
+        database.execSQL("DROP TABLE IF EXISTS" + TABLE_ABSTRACT_AUTHOR_CORRESPONDENCE);
         
         onCreate(database);
 
@@ -265,6 +274,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put("ABSTRACTAUTHOR_ID", ABSTRACTAUTHOR_ID);
 
         database.insert(TABLE_AUTHORS_AFFILIATE, null, values);
+    }
+    
+    public void addCorrespondingAuthor(long abstractItems_id, long abstractAuthor_id ){
+       
+        ContentValues values = new ContentValues();
+
+        values.put("ABSTRACTSITEM_ID", abstractItems_id);
+
+        values.put("CORRESPONDING_AUTHOR_ID", abstractAuthor_id);
+
+        database.insert(TABLE_ABSTRACT_AUTHOR_CORRESPONDENCE, null, values);
     }
 
     public Cursor fetchDataByName(String string) {

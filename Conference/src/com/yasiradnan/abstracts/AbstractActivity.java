@@ -237,14 +237,21 @@ public class AbstractActivity extends Activity {
 
                     if (!dbHelper.Exists(authorNames)) {
 
-                        Log.e("NAME CHECK", authorNames);
-
+                        
+                        
                         dbHelper.addAuthors(null, authorNames, is_Corrospondence);
-
+                        
+                        
                         dbHelper.addAuthorsAbstractItems(dbHelper.items_id, dbHelper.authors_id, dbHelper.abstract_affiliation_id);
 
+                        
                         dbHelper.authorsAffiliation(dbHelper.abstract_affiliation_id,
                                 dbHelper.authors_id);
+                        
+                        if(is_Corrospondence.equalsIgnoreCase("True")){
+                            dbHelper.addCorrespondingAuthor(dbHelper.items_id, dbHelper.authors_id);
+                        }
+                        
                     } else {
                         cursor = dbHelper.database.rawQuery(
                                 "select _id from abstract_author where NAME like '%" + authorNames
@@ -256,14 +263,16 @@ public class AbstractActivity extends Activity {
                         } finally {
                             cursor.close();
                         }
-
+                        
+                        if(is_Corrospondence.equalsIgnoreCase("True")){
+                            dbHelper.addCorrespondingAuthor(dbHelper.items_id, Integer.parseInt(getAuthorID));
+                        }
                         dbHelper.addAuthorsAbstractItems(dbHelper.items_id,
                                 Integer.parseInt(getAuthorID),dbHelper.abstract_affiliation_id);
                         dbHelper.authorsAffiliation(dbHelper.abstract_affiliation_id,
                                 Integer.parseInt(getAuthorID));
                         
                     }
-
                 }
 
             }

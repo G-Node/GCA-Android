@@ -28,7 +28,7 @@ public class AbstractContent extends Activity {
     TextView ConRefs;
     String affiliation_ID;
     String getName;
-    Cursor cursor;
+    Cursor cursor,cursorOne;
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             // TODO Auto-generated method stub
@@ -57,26 +57,31 @@ public class AbstractContent extends Activity {
             
             Log.e("Value", value);
             
-            String sqlQuery = "select abstract_author.NAME AS NAME,abstract_author.IS__CORRESPONDING,ABSTRACT_AFFILIATION.AFFILIATION_NUMBER AS NUMBER "
+            String sqlQuery = "select authors_abstract.abstractauthor_id AS AUTH_ID,abstract_author.NAME AS NAME,abstract_author.IS__CORRESPONDING,ABSTRACT_AFFILIATION.AFFILIATION_NUMBER AS NUMBER "
                     + "from abstracts_item,abstract_author,authors_abstract,ABSTRACT_AFFILIATION "
                     + "where abstracts_item._id = authors_abstract.abstractsitem_id "
                     + "and abstract_author._id = authors_abstract.abstractauthor_id "
                     + "and ABSTRACT_AFFILIATION._id = authors_abstract.ABSTRACTAFFILIATION_ID "
                     + "and abstracts_item._id = " + value ;
             
-            cursor = DatabaseHelper.database.rawQuery(sqlQuery, null);
+            String sql = "select CORRESPONDING_AUTHOR_ID AS ID from ABSTRACT_AUTHOR_CORRESPONDENCE where abstractsItem_id = "+ value;
             
-            if (cursor !=null && cursor.moveToFirst()) {
+            cursor = DatabaseHelper.database.rawQuery(sqlQuery, null);
+            cursorOne = DatabaseHelper.database.rawQuery(sql, null);  
+            
+            if ((cursor !=null && cursor.moveToFirst()) && (cursorOne !=null && cursorOne.moveToFirst())) {
                 do {
                     
                     //String Corrosponding = cursor.getString(cursor.getColumnIndexOrThrow("IS__CORRESPONDING"));
-                    getName = cursor.getString(cursor.getColumnIndexOrThrow("NAME"));
+                   /* getName = cursor.getString(cursor.getColumnIndexOrThrow("NAME"));
                     int getIndex = email.indexOf(",");
                     String getCorsName =email.substring(0, getIndex);
                     int newIndex = getCorsName.indexOf(".");
                     String getFormattedName = getCorsName.substring(newIndex+1,getCorsName.length());
+                   
                     Log.e("QW", "");
                     Log.e("AAA", String.valueOf(getFormattedName.trim().equalsIgnoreCase(getName.trim())));
+                   
                     if(getFormattedName.trim().equalsIgnoreCase(getName.trim())){
                         affiliation_ID = cursor.getString(cursor.getColumnIndexOrThrow("NUMBER"));
                         authorNames.append(Html.fromHtml("\n"+getName+"<sup><small>"+affiliation_ID+"*</small></sup><br/>"));
@@ -85,8 +90,22 @@ public class AbstractContent extends Activity {
                         affiliation_ID = cursor.getString(cursor.getColumnIndexOrThrow("NUMBER"));
                         authorNames.append(Html.fromHtml("\n"+getName+"<sup><small>"+affiliation_ID+"</small></sup><br/>"));
                         authorNames.append("\n"); 
-                    }
-                 
+                    }*/
+                 String getID = cursor.getString(cursor.getColumnIndexOrThrow("AUTH_ID"));
+                 Log.e("A", getID);
+                 String Corr_AUTH_ID = cursorOne.getString(cursorOne.getColumnIndexOrThrow("ID"));
+                 Log.e("B", Corr_AUTH_ID);
+                 if(getID.trim().equalsIgnoreCase(Corr_AUTH_ID.trim())){
+                     getName = cursor.getString(cursor.getColumnIndexOrThrow("NAME"));
+                     affiliation_ID = cursor.getString(cursor.getColumnIndexOrThrow("NUMBER"));
+                     authorNames.append(Html.fromHtml("\n"+getName+"<sup><small>"+affiliation_ID+"*</small></sup><br/>"));
+                     authorNames.append("\n"); 
+                 }else{
+                     getName = cursor.getString(cursor.getColumnIndexOrThrow("NAME"));
+                     affiliation_ID = cursor.getString(cursor.getColumnIndexOrThrow("NUMBER"));
+                     authorNames.append(Html.fromHtml("\n"+getName+"<sup><small>"+affiliation_ID+"</small></sup><br/>"));
+                     authorNames.append("\n"); 
+                 }
 
                 } while (cursor.moveToNext());
             }
