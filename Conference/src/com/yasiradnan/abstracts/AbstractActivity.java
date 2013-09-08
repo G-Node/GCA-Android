@@ -1,31 +1,22 @@
 
 package com.yasiradnan.abstracts;
 
-import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.json.JSONTokener;
-
 import com.yasiradnan.conference.R;
 import com.yasiradnan.utils.JSONReader;
 
-import de.greenrobot.dao.QueryBuilder;
 import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.support.v4.widget.CursorAdapter;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
-import android.util.SparseArray;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
