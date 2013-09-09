@@ -5,6 +5,9 @@ import java.util.Arrays;
 
 import org.w3c.dom.Text;
 
+import com.actionbarsherlock.app.SherlockActivity;
+import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuItem;
 import com.yasiradnan.conference.R;
 
 import android.app.Activity;
@@ -22,7 +25,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class AbstractContent extends Activity {
+public class AbstractContent extends SherlockActivity {
     TextView content;
 
     TextView title;
@@ -120,12 +123,12 @@ public class AbstractContent extends Activity {
         afName = (TextView)findViewById(R.id.ConAfName);
         emailField = (TextView)findViewById(R.id.email);
         ConRefs = (TextView)findViewById(R.id.Conrefs);
-        btn = (Button)findViewById(R.id.button1);
+       // btn = (Button)findViewById(R.id.button1);
 
     }
 
     private void click() {
-        btn.setOnClickListener(new View.OnClickListener() {
+    /*    btn.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
@@ -152,7 +155,7 @@ public class AbstractContent extends Activity {
                 
 
             }
-        });
+        });*/
     }
 
     private void sqlQueries() {
@@ -254,7 +257,9 @@ public class AbstractContent extends Activity {
     }
 
     private void getAbsTitle() {
+        
         cursorTwo.moveToFirst();
+        
         do {
 
             String getTitle = cursorTwo.getString(cursorTwo.getColumnIndexOrThrow("TITLE"));
@@ -354,5 +359,17 @@ public class AbstractContent extends Activity {
 
         authorNames.setText("");
 
+    }
+    
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // TODO Auto-generated method stub
+        return super.onCreateOptionsMenu(menu);
+    }
+    
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // TODO Auto-generated method stub
+        return super.onOptionsItemSelected(item);
     }
 }
