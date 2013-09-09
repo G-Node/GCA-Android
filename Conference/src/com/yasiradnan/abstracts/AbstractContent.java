@@ -10,6 +10,7 @@ import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 import com.yasiradnan.conference.R;
+import com.yasiradnan.conference.R.id;
 
 import android.app.Activity;
 import android.database.Cursor;
@@ -375,6 +376,16 @@ public class AbstractContent extends SherlockActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // TODO Auto-generated method stub
+        switch (item.getItemId()) {
+            case R.id.next:
+                Toast.makeText(getApplicationContext(), "Next", Toast.LENGTH_LONG).show();
+                break;
+            case R.id.Previous:
+                Toast.makeText(getApplicationContext(), "Previous", Toast.LENGTH_LONG).show();
+                break;
+            default:
+                break;
+        }
         return super.onOptionsItemSelected(item);
     }
 }
