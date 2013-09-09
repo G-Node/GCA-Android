@@ -44,19 +44,21 @@ public class AbstractContent extends SherlockActivity {
 
     Button btn;
 
-    String affiliation_ID;
+    private String affiliation_ID;
 
-    String getName;
+    private String getName;
 
-    String value;
+    private String value;
 
-    String sqlQueryOne;
+    private String sqlQueryOne;
 
-    String sqlQueryTwo;
+    private String sqlQueryTwo;
 
-    String sqlQueryThree;
+    private String sqlQueryThree;
 
-    String affiliationName;
+    private String affiliationName;
+
+    private int itemNumber;
 
     Cursor cursor, cursorOne, cursorTwo;
 
@@ -65,6 +67,11 @@ public class AbstractContent extends SherlockActivity {
         // TODO Auto-generated method stub
         super.onCreate(savedInstanceState);
         setContentView(R.layout.abstracts_show);
+
+        /*
+         * Initalizing fields
+         */
+
         initial_UI();
 
         /*
@@ -86,31 +93,44 @@ public class AbstractContent extends SherlockActivity {
 
         String refs = getData.getString("refs");
 
-        Log.e("Value", value);
-
+        itemNumber = getData.getInt("itemNumber");
+        
+        
+       
+        
         sqlQueries();
 
-        click();
+       
 
         authorName();
 
+        
         affiliationName();
 
+        
         title.setText(Title);
 
+        
         title.setTypeface(null, Typeface.BOLD);
 
+        
         topic.setText(Topic);
 
+        
         int index = email.lastIndexOf(",");
 
+        
         String emailText = email.substring(index + 1, email.length());
 
+        
         emailField.setText("*" + emailText);
 
+        
         content.setText(abstracts);
 
+        
         if (refs.length() > 0) {
+            
             ConRefs.setText("Reference\n" + refs);
 
         }
@@ -118,27 +138,23 @@ public class AbstractContent extends SherlockActivity {
     }
 
     private void initial_UI() {
+        
         content = (TextView)findViewById(R.id.Content);
+        
         title = (TextView)findViewById(R.id.ConTitle);
+        
         topic = (TextView)findViewById(R.id.ConTopic);
+        
         authorNames = (TextView)findViewById(R.id.ConAuthor);
+        
         afName = (TextView)findViewById(R.id.ConAfName);
+        
         emailField = (TextView)findViewById(R.id.email);
+    
         ConRefs = (TextView)findViewById(R.id.Conrefs);
-        // btn = (Button)findViewById(R.id.button1);
-
+        
     }
 
-    private void click() {
-        /*
-         * btn.setOnClickListener(new View.OnClickListener() {
-         * @Override public void onClick(View v) { // TODO Auto-generated method
-         * stub int Current = Integer.parseInt(value) + 1; value =
-         * String.valueOf(Current); resetAllFields(); sqlQueries();
-         * getAbsTitle(); getAbsTopic(); getAbsEmail(); authorName();
-         * getAfName(); getContent(); getRefs(); } });
-         */
-    }
 
     private void sqlQueries() {
 
@@ -167,6 +183,10 @@ public class AbstractContent extends SherlockActivity {
     }
 
     private void authorName() {
+        
+        /*
+         * Author Names
+         */
         if ((cursor != null && cursor.moveToFirst())
                 && (cursorOne != null && cursorOne.moveToFirst())) {
             do {
@@ -197,9 +217,8 @@ public class AbstractContent extends SherlockActivity {
                  * authorNames.append("\n"); }
                  */
                 String getID = cursor.getString(cursor.getColumnIndexOrThrow("AUTH_ID"));
-                Log.e("A", getID);
                 String Corr_AUTH_ID = cursorOne.getString(cursorOne.getColumnIndexOrThrow("ID"));
-                Log.e("B", Corr_AUTH_ID);
+               
                 if (getID.trim().equalsIgnoreCase(Corr_AUTH_ID.trim())) {
                     getName = cursor.getString(cursor.getColumnIndexOrThrow("NAME"));
                     affiliation_ID = cursor.getString(cursor.getColumnIndexOrThrow("NUMBER"));
@@ -223,7 +242,7 @@ public class AbstractContent extends SherlockActivity {
         String[] newAfName = affiliationName.split("\",\"");
 
         for (int i = 0; i < newAfName.length; i++) {
-            Log.e("", String.valueOf(newAfName.length));
+            
             newAfName[i] = newAfName[i].replace("\"", "").replace(":", ". ");
 
         }
@@ -354,129 +373,142 @@ public class AbstractContent extends SherlockActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         // TODO Auto-generated method stub
         switch (item.getItemId()) {
+
             case R.id.next:
-                
+
                 int currentValue = Integer.parseInt(value) + 1;
-                value = String.valueOf(currentValue);
 
-                /*
-                 * Delete previous data from all field
-                 */
-                resetAllFields();
+                if (currentValue <= itemNumber) {
 
-                /*
-                 * Run SQL Quries
-                 */
+                    value = String.valueOf(currentValue);
 
-                sqlQueries();
+                    /*
+                     * Delete previous data from all field
+                     */
+                    resetAllFields();
 
-                /*
-                 * Get Abstract Title
-                 */
+                    /*
+                     * Run SQL Quries
+                     */
 
-                getAbsTitle();
+                    sqlQueries();
 
-                /*
-                 * Get Abstract Topic
-                 */
+                    /*
+                     * Get Abstract Title
+                     */
 
-                getAbsTopic();
+                    getAbsTitle();
 
-                /*
-                 * Get Email
-                 */
+                    /*
+                     * Get Abstract Topic
+                     */
 
-                getAbsEmail();
+                    getAbsTopic();
 
-                /*
-                 * Get Author Names
-                 */
+                    /*
+                     * Get Email
+                     */
 
-                authorName();
+                    getAbsEmail();
 
-                /*
-                 * Get Affiliation's Name
-                 */
+                    /*
+                     * Get Author Names
+                     */
 
-                getAfName();
+                    authorName();
 
-                /*
-                 * Get Abstract Content
-                 */
+                    /*
+                     * Get Affiliation's Name
+                     */
 
-                getContent();
+                    getAfName();
 
-                /*
-                 * Get References
-                 */
+                    /*
+                     * Get Abstract Content
+                     */
 
-                getRefs();
+                    getContent();
+
+                    /*
+                     * Get References
+                     */
+
+                    getRefs();
+                } else {
+                    Toast.makeText(getApplicationContext(), "No more Abstracts Left",
+                            Toast.LENGTH_LONG).show();
+                }
 
                 break;
-            
+
             case R.id.Previous:
-                
+
                 int previousValue = Integer.parseInt(value) - 1;
-                value = String.valueOf(previousValue);
+                if (previousValue != 0) {
 
-                /*
-                 * Delete previous data from all field
-                 */
-                resetAllFields();
+                    value = String.valueOf(previousValue);
 
-                /*
-                 * Run SQL Quries
-                 */
+                    /*
+                     * Delete previous data from all field
+                     */
+                    resetAllFields();
 
-                sqlQueries();
+                    /*
+                     * Run SQL Quries
+                     */
 
-                /*
-                 * Get Abstract Title
-                 */
+                    sqlQueries();
 
-                getAbsTitle();
+                    /*
+                     * Get Abstract Title
+                     */
 
-                /*
-                 * Get Abstract Topic
-                 */
+                    getAbsTitle();
 
-                getAbsTopic();
+                    /*
+                     * Get Abstract Topic
+                     */
 
-                /*
-                 * Get Email
-                 */
+                    getAbsTopic();
 
-                getAbsEmail();
+                    /*
+                     * Get Email
+                     */
 
-                /*
-                 * Get Author Names
-                 */
+                    getAbsEmail();
 
-                authorName();
+                    /*
+                     * Get Author Names
+                     */
 
-                /*
-                 * Get Affiliation's Name
-                 */
+                    authorName();
 
-                getAfName();
+                    /*
+                     * Get Affiliation's Name
+                     */
 
-                /*
-                 * Get Abstract Content
-                 */
+                    getAfName();
 
-                getContent();
+                    /*
+                     * Get Abstract Content
+                     */
 
-                /*
-                 * Get References
-                 */
+                    getContent();
 
-                getRefs();
-                
-                
+                    /*
+                     * Get References
+                     */
+
+                    getRefs();
+
+                }else{
+                    Toast.makeText(getApplicationContext(), "This is the first Abstract", Toast.LENGTH_LONG).show();
+                }
+
                 break;
-            
+
             default:
-                
+
                 break;
         }
         return super.onOptionsItemSelected(item);
