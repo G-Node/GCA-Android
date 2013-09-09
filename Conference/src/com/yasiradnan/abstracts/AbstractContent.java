@@ -125,39 +125,19 @@ public class AbstractContent extends SherlockActivity {
         afName = (TextView)findViewById(R.id.ConAfName);
         emailField = (TextView)findViewById(R.id.email);
         ConRefs = (TextView)findViewById(R.id.Conrefs);
-       // btn = (Button)findViewById(R.id.button1);
+        // btn = (Button)findViewById(R.id.button1);
 
     }
 
     private void click() {
-    /*    btn.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                // TODO Auto-generated method stub
-                int Current = Integer.parseInt(value) + 1;
-                value = String.valueOf(Current);
-                resetAllFields();
-
-                sqlQueries();
-
-                getAbsTitle();
-
-                getAbsTopic();
-
-                getAbsEmail();
-
-                authorName();
-
-                getAfName();
-                
-                getContent();
-                
-                getRefs();
-                
-
-            }
-        });*/
+        /*
+         * btn.setOnClickListener(new View.OnClickListener() {
+         * @Override public void onClick(View v) { // TODO Auto-generated method
+         * stub int Current = Integer.parseInt(value) + 1; value =
+         * String.valueOf(Current); resetAllFields(); sqlQueries();
+         * getAbsTitle(); getAbsTopic(); getAbsEmail(); authorName();
+         * getAfName(); getContent(); getRefs(); } });
+         */
     }
 
     private void sqlQueries() {
@@ -207,13 +187,14 @@ public class AbstractContent extends SherlockActivity {
                  * affiliation_ID =
                  * cursor.getString(cursor.getColumnIndexOrThrow("NUMBER"));
                  * authorNames
-                 * .append(Html.fromHtml("\n"+getName+"<sup><small>"+affiliation_ID
-                 * +"*</small></sup><br/>")); authorNames.append("\n"); }else{
-                 * affiliation_ID =
+                 * .append(Html.fromHtml("\n"+getName+"<sup><small>"+
+                 * affiliation_ID +"*</small></sup><br/>"));
+                 * authorNames.append("\n"); }else{ affiliation_ID =
                  * cursor.getString(cursor.getColumnIndexOrThrow("NUMBER"));
                  * authorNames
-                 * .append(Html.fromHtml("\n"+getName+"<sup><small>"+affiliation_ID
-                 * +"</small></sup><br/>")); authorNames.append("\n"); }
+                 * .append(Html.fromHtml("\n"+getName+"<sup><small>"+
+                 * affiliation_ID +"</small></sup><br/>"));
+                 * authorNames.append("\n"); }
                  */
                 String getID = cursor.getString(cursor.getColumnIndexOrThrow("AUTH_ID"));
                 Log.e("A", getID);
@@ -259,9 +240,9 @@ public class AbstractContent extends SherlockActivity {
     }
 
     private void getAbsTitle() {
-        
+
         cursorTwo.moveToFirst();
-        
+
         do {
 
             String getTitle = cursorTwo.getString(cursorTwo.getColumnIndexOrThrow("TITLE"));
@@ -298,51 +279,47 @@ public class AbstractContent extends SherlockActivity {
         } while (cursorTwo.moveToNext());
 
     }
-    
-    private void getRefs(){
-        
+
+    private void getRefs() {
+
         cursorTwo.moveToFirst();
-        
-        do{
-            
+
+        do {
+
             String refs = cursorTwo.getString(cursorTwo.getColumnIndexOrThrow("REFS"));
             if (refs.length() > 0) {
                 ConRefs.setText("Reference\n" + refs);
 
             }
-            
-        }while(cursorTwo.moveToNext());
-        
-        
-     
+
+        } while (cursorTwo.moveToNext());
+
     }
-    
-    private void getContent(){
-        
+
+    private void getContent() {
+
         cursorTwo.moveToFirst();
-        
-        do{
-            
+
+        do {
+
             String Text = cursorTwo.getString(cursorTwo.getColumnIndexOrThrow("TEXT"));
             content.setText(Text);
-            
-        }while(cursorTwo.moveToNext());
+
+        } while (cursorTwo.moveToNext());
     }
-    
-    
-    private void getAfName(){
-        
+
+    private void getAfName() {
+
         cursorTwo.moveToFirst();
-        
-        do{
-            
+
+        do {
+
             affiliationName = cursorTwo.getString(6);
-             
-        }while(cursorTwo.moveToNext());
-        
-        
+
+        } while (cursorTwo.moveToNext());
+
         affiliationName();
-        
+
     }
 
     private void resetAllFields() {
@@ -362,7 +339,7 @@ public class AbstractContent extends SherlockActivity {
         authorNames.setText("");
 
     }
-    
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // TODO Auto-generated method stub
@@ -372,18 +349,134 @@ public class AbstractContent extends SherlockActivity {
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         return true;
     }
-    
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // TODO Auto-generated method stub
         switch (item.getItemId()) {
             case R.id.next:
-                Toast.makeText(getApplicationContext(), "Next", Toast.LENGTH_LONG).show();
+                
+                int currentValue = Integer.parseInt(value) + 1;
+                value = String.valueOf(currentValue);
+
+                /*
+                 * Delete previous data from all field
+                 */
+                resetAllFields();
+
+                /*
+                 * Run SQL Quries
+                 */
+
+                sqlQueries();
+
+                /*
+                 * Get Abstract Title
+                 */
+
+                getAbsTitle();
+
+                /*
+                 * Get Abstract Topic
+                 */
+
+                getAbsTopic();
+
+                /*
+                 * Get Email
+                 */
+
+                getAbsEmail();
+
+                /*
+                 * Get Author Names
+                 */
+
+                authorName();
+
+                /*
+                 * Get Affiliation's Name
+                 */
+
+                getAfName();
+
+                /*
+                 * Get Abstract Content
+                 */
+
+                getContent();
+
+                /*
+                 * Get References
+                 */
+
+                getRefs();
+
                 break;
+            
             case R.id.Previous:
-                Toast.makeText(getApplicationContext(), "Previous", Toast.LENGTH_LONG).show();
+                
+                int previousValue = Integer.parseInt(value) - 1;
+                value = String.valueOf(previousValue);
+
+                /*
+                 * Delete previous data from all field
+                 */
+                resetAllFields();
+
+                /*
+                 * Run SQL Quries
+                 */
+
+                sqlQueries();
+
+                /*
+                 * Get Abstract Title
+                 */
+
+                getAbsTitle();
+
+                /*
+                 * Get Abstract Topic
+                 */
+
+                getAbsTopic();
+
+                /*
+                 * Get Email
+                 */
+
+                getAbsEmail();
+
+                /*
+                 * Get Author Names
+                 */
+
+                authorName();
+
+                /*
+                 * Get Affiliation's Name
+                 */
+
+                getAfName();
+
+                /*
+                 * Get Abstract Content
+                 */
+
+                getContent();
+
+                /*
+                 * Get References
+                 */
+
+                getRefs();
+                
+                
                 break;
+            
             default:
+                
                 break;
         }
         return super.onOptionsItemSelected(item);

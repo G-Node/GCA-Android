@@ -65,7 +65,9 @@ public class AbstractActivity extends Activity {
         String query = "select abstracts_item._id,CORRESPONDENCE,title, type, topic, text,af_name,REFS from abs_affiliation_name,abstract_affiliation,abstracts_item,abstract_author,authors_abstract where abstracts_item._id = authors_abstract.abstractsitem_id and abstract_author._id = authors_abstract.abstractauthor_id and abstract_affiliation._id = abstract_author._id and abs_affiliation_name._id = abstracts_item._id GROUP By abstracts_item._id";
          
         cursor = DatabaseHelper.database.rawQuery(query, null);
-
+        
+        Log.e("Cursor Count", String.valueOf(cursor.getCount()));
+        
         if(cursor.getCount() <= 0){
             
             datainList();
@@ -98,6 +100,8 @@ public class AbstractActivity extends Activity {
                 
                 String refs = cursor.getString(cursor.getColumnIndexOrThrow("REFS"));
                 
+                int itemNumber = cursor.getCount();
+                
                 Intent in = new Intent(getApplicationContext(), AbstractContent.class);
 
                 in.putExtra("abstracts", Text);
@@ -113,6 +117,8 @@ public class AbstractActivity extends Activity {
                 in.putExtra("email", email);
                 
                 in.putExtra("refs", refs);
+                
+                in.putExtra("itemNumber", itemNumber);
 
                 startActivity(in);
             }

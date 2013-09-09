@@ -92,12 +92,12 @@ public class AbstractCursorAdapter extends CursorAdapter {
         text_width = bounds.width();
 
         if (text_width > displayWidth) {
-            Log.e("Width inside", String.valueOf(text_width)+"--------------"+String.valueOf(displayWidth));
+            //Log.e("Width inside", String.valueOf(text_width)+"--------------"+String.valueOf(displayWidth));
             String output = getName.split(",")[0] + " et al. ";
             authorNames.setText(output);
 
         } else {
-            Log.e("Width inside", String.valueOf(text_width)+"--------------"+String.valueOf(displayWidth));
+            //Log.e("Width inside", String.valueOf(text_width)+"--------------"+String.valueOf(displayWidth));
             authorNames
             .setText(getName.replaceAll("((?:^|[^A-Z.])[A-Z])[a-z]*\\s(?=[A-Z])", "$1."));
         }
