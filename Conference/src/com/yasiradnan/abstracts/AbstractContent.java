@@ -14,7 +14,9 @@ import com.yasiradnan.conference.R.id;
 
 import android.app.Activity;
 import android.database.Cursor;
+import android.graphics.Color;
 import android.graphics.Typeface;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.text.Html;
 import android.text.method.ScrollingMovementMethod;
@@ -366,6 +368,10 @@ public class AbstractContent extends SherlockActivity {
         inflater.inflate(R.menu.general, menu);
         getSupportActionBar().setDisplayShowHomeEnabled(false);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
+        /*
+         * Changing Title Background Color
+         */
+        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#003f84")));
         return true;
     }
 
