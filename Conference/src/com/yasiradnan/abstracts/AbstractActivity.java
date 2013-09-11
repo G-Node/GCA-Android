@@ -4,15 +4,23 @@ package com.yasiradnan.abstracts;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import com.actionbarsherlock.app.ActionBar;
+import com.actionbarsherlock.app.SherlockActivity;
+import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuInflater;
+import com.actionbarsherlock.view.MenuItem;
 import com.yasiradnan.conference.R;
 import com.yasiradnan.utils.JSONReader;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -27,7 +35,7 @@ import android.widget.ListView;
 /**
  * @author Adnan
  */
-public class AbstractActivity extends Activity {
+public class AbstractActivity extends SherlockActivity {
 
     AbstractCursorAdapter cursorAdapter;
 
@@ -53,7 +61,7 @@ public class AbstractActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         // TODO Auto-generated method stub
         super.onCreate(savedInstanceState);
-
+        
         setContentView(R.layout.abstract_general);
 
         listView = (ListView)findViewById(R.id.list);
@@ -157,6 +165,34 @@ public class AbstractActivity extends Activity {
 
         // dbHelper.close();
 
+    }
+    
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // TODO Auto-generated method stub
+        
+        MenuInflater inflater = getSupportMenuInflater();
+        
+        inflater.inflate(R.menu.menu, menu);
+        
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayUseLogoEnabled(false);   
+        actionBar.setDisplayShowHomeEnabled(false);
+        actionBar.setDisplayShowTitleEnabled(false);
+        
+        /*
+         * Changing Title Background Color
+         */
+        
+        actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#003f84")));
+        
+        return true;
+    }
+    
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // TODO Auto-generated method stub
+        return super.onOptionsItemSelected(item);
     }
 
     private void datainList() {
@@ -282,4 +318,6 @@ public class AbstractActivity extends Activity {
             e.printStackTrace();
         }
     }
+    
+    
 }

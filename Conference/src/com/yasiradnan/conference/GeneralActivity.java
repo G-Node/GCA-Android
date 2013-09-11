@@ -5,6 +5,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
+import com.actionbarsherlock.app.ActionBar;
+import com.actionbarsherlock.app.SherlockActivity;
+import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuInflater;
 import com.petebevin.markdown.MarkdownProcessor;
 
 import android.app.Activity;
@@ -13,7 +17,7 @@ import android.os.Bundle;
 import android.text.Html;
 import android.widget.TextView;
 
-public class GeneralActivity extends Activity {
+public class GeneralActivity extends SherlockActivity {
 	TextView text;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -64,5 +68,4 @@ public class GeneralActivity extends Activity {
 	    }
 	    return text.toString();
 	  }
-
 }

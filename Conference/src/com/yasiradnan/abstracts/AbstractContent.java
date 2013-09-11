@@ -1,4 +1,3 @@
-
 package com.yasiradnan.abstracts;
 
 import java.util.Arrays;
@@ -30,6 +29,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class AbstractContent extends SherlockActivity {
+    
     TextView content;
 
     TextView title;
@@ -71,7 +71,7 @@ public class AbstractContent extends SherlockActivity {
         setContentView(R.layout.abstracts_show);
 
         /*
-         * Initalizing fields
+         * Initializing fields
          */
 
         initial_UI();
@@ -125,15 +125,17 @@ public class AbstractContent extends SherlockActivity {
         String emailText = email.substring(index + 1, email.length());
 
         
-        emailField.setText("*" + emailText);
-
+        
+        emailField.append(Html.fromHtml("*<a href= mailto:"+ emailText + ">"+ emailText+"</a><br/>"));
+        
+       
         
         content.setText(abstracts);
 
         
         if (refs.length() > 0) {
             
-            ConRefs.setText("Reference\n" + refs);
+            ConRefs.append(Html.fromHtml("<b>Reference</b><br />" + refs ));
 
         }
 
@@ -180,7 +182,9 @@ public class AbstractContent extends SherlockActivity {
                 + "and abs_affiliation_name._id = abstracts_item._id GROUP By abstracts_item._id";
 
         cursor = DatabaseHelper.database.rawQuery(sqlQueryOne, null);
+        
         cursorOne = DatabaseHelper.database.rawQuery(sqlQueryTwo, null);
+        
         cursorTwo = DatabaseHelper.database.rawQuery(sqlQueryThree, null);
     }
 
@@ -257,6 +261,8 @@ public class AbstractContent extends SherlockActivity {
             FormattedText = FormattedText + string + "\n";
         }
         afName.setText((FormattedText));
+        
+        afName.setTypeface(null,Typeface.ITALIC);
 
     }
 
@@ -295,7 +301,7 @@ public class AbstractContent extends SherlockActivity {
 
             String emailText = email.substring(index + 1, email.length());
 
-            emailField.setText("*" + emailText);
+            emailField.append(Html.fromHtml("*<a href= mailto:"+ emailText + ">"+ emailText+"</a><br/>"));
 
         } while (cursorTwo.moveToNext());
 
@@ -309,7 +315,8 @@ public class AbstractContent extends SherlockActivity {
 
             String refs = cursorTwo.getString(cursorTwo.getColumnIndexOrThrow("REFS"));
             if (refs.length() > 0) {
-                ConRefs.setText("Reference\n" + refs);
+                
+                ConRefs.append(Html.fromHtml("<b>Reference</b><br/>"+refs ));
 
             }
 
@@ -362,16 +369,23 @@ public class AbstractContent extends SherlockActivity {
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
+    public boolean onCreateOptionsMenu(com.actionbarsherlock.view.Menu menu) {
         // TODO Auto-generated method stub
+
         MenuInflater inflater = getSupportMenuInflater();
+        
         inflater.inflate(R.menu.general, menu);
+        
         getSupportActionBar().setDisplayShowHomeEnabled(false);
+        
         getSupportActionBar().setDisplayShowTitleEnabled(false);
+        
         /*
          * Changing Title Background Color
          */
+        
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#003f84")));
+        
         return true;
     }
 
