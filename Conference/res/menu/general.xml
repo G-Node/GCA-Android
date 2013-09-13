@@ -1,16 +1,17 @@
-<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+<menu xmlns:android="http://schemas.android.com/apk/res/android" 
+ xmlns:app="http://schemas.android.com/apk/res-auto" >
 
     <item
         android:id="@+id/action_settings"
         android:orderInCategory="100"
-        android:showAsAction="never"
+        app:showAsAction="never"
         android:title="@string/action_settings"/>
     <item 
         android:id="@+id/next" 
        	android:title="Next" 
         android:visible="true" 
         android:enabled="true" 
-        android:showAsAction="always" 
+        app:showAsAction="always" 
         android:orderInCategory="1">
         
     </item>
@@ -20,14 +21,14 @@
         android:visible="true" 
         android:enabled="true" 
         android:orderInCategory="2" 
-        android:showAsAction="always">
+        app:showAsAction="always">
         
     </item>
     <item android:id="@+id/star" 
         android:icon="@drawable/ic_action_important" 
         android:enabled="true" 
         android:orderInCategory="0" 
-        android:showAsAction="always" 
+        app:showAsAction="always" 
         android:title="Star" 
         android:visible="true">
     </item>

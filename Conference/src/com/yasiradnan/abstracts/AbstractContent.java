@@ -4,10 +4,6 @@ import java.util.Arrays;
 
 import org.w3c.dom.Text;
 
-import com.actionbarsherlock.app.SherlockActivity;
-import com.actionbarsherlock.view.Menu;
-import com.actionbarsherlock.view.MenuInflater;
-import com.actionbarsherlock.view.MenuItem;
 import com.yasiradnan.conference.R;
 import com.yasiradnan.conference.R.id;
 
@@ -17,9 +13,13 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.text.Html;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.Button;
@@ -28,7 +28,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class AbstractContent extends SherlockActivity {
+public class AbstractContent extends ActionBarActivity {
     
     TextView content;
 
@@ -68,6 +68,7 @@ public class AbstractContent extends SherlockActivity {
     protected void onCreate(Bundle savedInstanceState) {
         // TODO Auto-generated method stub
         super.onCreate(savedInstanceState);
+        
         setContentView(R.layout.abstracts_show);
 
         /*
@@ -367,12 +368,12 @@ public class AbstractContent extends SherlockActivity {
         authorNames.setText("");
 
     }
-
+    
     @Override
-    public boolean onCreateOptionsMenu(com.actionbarsherlock.view.Menu menu) {
+    public boolean onCreateOptionsMenu(Menu menu) {
         // TODO Auto-generated method stub
-
-        MenuInflater inflater = getSupportMenuInflater();
+        
+        MenuInflater inflater = getMenuInflater();
         
         inflater.inflate(R.menu.general, menu);
         
@@ -380,14 +381,10 @@ public class AbstractContent extends SherlockActivity {
         
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         
-        /*
-         * Changing Title Background Color
-         */
-        
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#003f84")));
-        
         return true;
     }
+    
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

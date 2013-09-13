@@ -21,12 +21,16 @@ import android.widget.TextView;
  * @author Adnan
  *
  */
+@SuppressWarnings("deprecation")
 public class Tabs extends TabActivity {
 /** Called when the activity is first created. */
 	
 	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
+		
+	    super.onCreate(savedInstanceState);
+		
 		setContentView(R.layout.main);
+		
 		setTabs() ;
 	}
 	private void setTabs()
