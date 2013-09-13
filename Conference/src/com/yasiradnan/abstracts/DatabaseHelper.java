@@ -48,7 +48,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String TABLE_AUTHORS_ABSTRACT = "AUTHORS_ABSTRACT";
 
     public static final String TABLE_AUTHORS_AFFILIATE = "AUTHORS_AFFILIATE";
-    
+
     public static final String TABLE_ABSTRACT_AUTHOR_CORRESPONDENCE = "ABSTRACT_AUTHOR_CORRESPONDENCE";
 
     /*
@@ -81,7 +81,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public static final String CREATE_AUTHORS_AFFILIATE = "CREATE TABLE IF NOT EXISTS AUTHORS_AFFILIATE"
             + "(ABSTRACTAUTHOR_ID INTEGER NOT NULL,ABSTRACTAFFILIATION_ID INTEGER NOT NULL );";
-    
+
     public static final String CREATE_ABSTRACT_AUTHOR_CORRESPONDENCE = "CREATE TABLE IF NOT EXISTS ABSTRACT_AUTHOR_CORRESPONDENCE"
             + "(CORRESPONDING_AUTHOR_ID INTEGER NOT NULL,ABSTRACTSITEM_ID INTEGER NOT NULL )";
 
@@ -123,7 +123,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         database.execSQL(CREATE_AUTHORS_ABSTRACT);
 
         database.execSQL(CREATE_AUTHORS_AFFILIATE);
-        
+
         database.execSQL(CREATE_ABSTRACT_AUTHOR_CORRESPONDENCE);
 
     }
@@ -153,9 +153,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         database.execSQL("DROP TABLE IF EXISTS" + TABLE_AUTHORS_ABSTRACT);
 
         database.execSQL("DROP TABLE IF EXISTS" + TABLE_AUTHORS_AFFILIATE);
-        
+
         database.execSQL("DROP TABLE IF EXISTS" + TABLE_ABSTRACT_AUTHOR_CORRESPONDENCE);
-        
+
         onCreate(database);
 
     }
@@ -251,14 +251,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         abstract_affiliation_id = database.insert(TABLENAME_ABSTRACT_AFFILIATION, null, values);
     }
 
-    public void addAuthorsAbstractItems(long abstractItems_id, long abstractAuthor_id, long ABSTRACTAFFILIATION_ID) {
+    public void addAuthorsAbstractItems(long abstractItems_id, long abstractAuthor_id,
+            long ABSTRACTAFFILIATION_ID) {
 
         ContentValues values = new ContentValues();
 
         values.put("ABSTRACTSITEM_ID", abstractItems_id);
 
         values.put("ABSTRACTAUTHOR_ID", abstractAuthor_id);
-        
+
         values.put("ABSTRACTAFFILIATION_ID", ABSTRACTAFFILIATION_ID);
 
         database.insert(TABLE_AUTHORS_ABSTRACT, null, values);
@@ -266,7 +267,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public void authorsAffiliation(long ABSTRACTAFFILIATION_ID, long ABSTRACTAUTHOR_ID) {
-        
+
         ContentValues values = new ContentValues();
 
         values.put("ABSTRACTAFFILIATION_ID", ABSTRACTAFFILIATION_ID);
@@ -275,9 +276,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         database.insert(TABLE_AUTHORS_AFFILIATE, null, values);
     }
-    
-    public void addCorrespondingAuthor(long abstractItems_id, long abstractAuthor_id ){
-       
+
+    public void addCorrespondingAuthor(long abstractItems_id, long abstractAuthor_id) {
+
         ContentValues values = new ContentValues();
 
         values.put("ABSTRACTSITEM_ID", abstractItems_id);
@@ -289,15 +290,27 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public Cursor fetchDataByName(String string) {
         // TODO Auto-generated method stub
-        Cursor cursor = database.rawQuery("select *from abstracts_item where TITLE like '%" + string + "%'", null);
+
+        Cursor cursor = database.rawQuery("select ABSTRACTS_ITEM._id, "
+                + "GROUP_CONCAT(ABSTRACT_AUTHOR.NAME),ABSTRACTS_ITEM.TITLE, ABSTRACTS_ITEM.TOPIC, "
+                + "ABSTRACTS_ITEM.TYPE, ABSTRACTS_ITEM.TEXT, "
+                + "ABSTRACT_KEY_WORDS.KEYWORDS "
+                + "from ABSTRACTS_ITEM , ABSTRACT_AUTHOR , AUTHORS_ABSTRACT, ABSTRACT_KEY_WORDS  "
+                + "where ABSTRACTS_ITEM._id = ABSTRACT_KEY_WORDS._id "
+                +  "and ABSTRACTS_ITEM._id = AUTHORS_ABSTRACT.ABSTRACTSITEM_ID "
+                + "and ABSTRACT_AUTHOR._id = AUTHORS_ABSTRACT.ABSTRACTAUTHOR_ID "
+                + "and (ABSTRACT_KEY_WORDS.KEYWORDS like '%" + string + "%' "
+                + "or ABSTRACTS_ITEM.TITLE like '%" + string + "%' or ABSTRACT_AUTHOR.NAME like '%" + string + "%')GROUP BY ABSTRACTS_ITEM._id", null);
+
         return cursor;
     }
-    
+
     public boolean Exists(String NAME) {
-        Cursor cursor = database.rawQuery("select 1 from abstract_author where NAME like '%" + NAME + "%'", null);
+        Cursor cursor = database.rawQuery("select 1 from abstract_author where NAME like '%" + NAME
+                + "%'", null);
         boolean exists = (cursor.getCount() > 0);
         cursor.close();
         return exists;
-     }
+    }
 
 }

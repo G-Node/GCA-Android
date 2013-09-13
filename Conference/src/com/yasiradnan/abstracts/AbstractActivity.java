@@ -9,23 +9,25 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.actionbarsherlock.app.ActionBar;
-import com.actionbarsherlock.app.SherlockActivity;
-import com.actionbarsherlock.view.Menu;
-import com.actionbarsherlock.view.MenuInflater;
-import com.actionbarsherlock.view.MenuItem;
 import com.yasiradnan.conference.R;
 import com.yasiradnan.utils.JSONReader;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
+import android.view.Window;
+import android.webkit.WebChromeClient.CustomViewCallback;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.EditText;
@@ -35,7 +37,7 @@ import android.widget.ListView;
 /**
  * @author Adnan
  */
-public class AbstractActivity extends SherlockActivity {
+public class AbstractActivity extends Activity {
 
     AbstractCursorAdapter cursorAdapter;
 
@@ -60,8 +62,10 @@ public class AbstractActivity extends SherlockActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // TODO Auto-generated method stub
+        setTheme(android.R.style.Theme_DeviceDefault_Light_NoActionBar);
         super.onCreate(savedInstanceState);
-        
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+
         setContentView(R.layout.abstract_general);
 
         listView = (ListView)findViewById(R.id.list);
@@ -71,13 +75,13 @@ public class AbstractActivity extends SherlockActivity {
         dbHelper.open();
 
         String query = "select abstracts_item._id,CORRESPONDENCE,title, type, topic, text,af_name,REFS from abs_affiliation_name,abstract_affiliation,abstracts_item,abstract_author,authors_abstract where abstracts_item._id = authors_abstract.abstractsitem_id and abstract_author._id = authors_abstract.abstractauthor_id and abstract_affiliation._id = abstract_author._id and abs_affiliation_name._id = abstracts_item._id GROUP By abstracts_item._id";
-         
+
         cursor = DatabaseHelper.database.rawQuery(query, null);
-        
+
         Log.e("Cursor Count", String.valueOf(cursor.getCount()));
-        
-        if(cursor.getCount() <= 0){
-            
+
+        if (cursor.getCount() <= 0) {
+
             datainList();
 
             cursor = DatabaseHelper.database.rawQuery(query, null);
@@ -94,38 +98,42 @@ public class AbstractActivity extends SherlockActivity {
             public void onItemClick(AdapterView<?> arg0, View view, int position, long arg3) {
                 // TODO Auto-generated method stub
 
+                cursor = (Cursor)arg0.getAdapter().getItem(position);
+
                 String Text = cursor.getString(cursor.getColumnIndexOrThrow("TEXT"));
-                
+
                 String Title = cursor.getString(cursor.getColumnIndexOrThrow("TITLE"));
-                
+
                 String Topic = cursor.getString(cursor.getColumnIndexOrThrow("TOPIC"));
-                
+
                 String value = cursor.getString(cursor.getColumnIndexOrThrow("_id"));
-                
+
                 String afName = cursor.getString(cursor.getColumnIndexOrThrow("AF_NAME"));
-                
+
                 String email = cursor.getString(cursor.getColumnIndexOrThrow("CORRESPONDENCE"));
-                
+
                 String refs = cursor.getString(cursor.getColumnIndexOrThrow("REFS"));
-                
+
+                Log.e("Position", String.valueOf(position));
+
                 int itemNumber = cursor.getCount();
-                
+
                 Intent in = new Intent(getApplicationContext(), AbstractContent.class);
 
                 in.putExtra("abstracts", Text);
-                
+
                 in.putExtra("Title", Title);
-                
+
                 in.putExtra("Topic", Topic);
-                
+
                 in.putExtra("value", value);
-                
+
                 in.putExtra("afName", afName);
-                
+
                 in.putExtra("email", email);
-                
+
                 in.putExtra("refs", refs);
-                
+
                 in.putExtra("itemNumber", itemNumber);
 
                 startActivity(in);
@@ -163,36 +171,6 @@ public class AbstractActivity extends SherlockActivity {
             }
         });
 
-        // dbHelper.close();
-
-    }
-    
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // TODO Auto-generated method stub
-        
-        MenuInflater inflater = getSupportMenuInflater();
-        
-        inflater.inflate(R.menu.menu, menu);
-        
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setDisplayUseLogoEnabled(false);   
-        actionBar.setDisplayShowHomeEnabled(false);
-        actionBar.setDisplayShowTitleEnabled(false);
-        
-        /*
-         * Changing Title Background Color
-         */
-        
-        actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#003f84")));
-        
-        return true;
-    }
-    
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // TODO Auto-generated method stub
-        return super.onOptionsItemSelected(item);
     }
 
     private void datainList() {
@@ -270,41 +248,40 @@ public class AbstractActivity extends SherlockActivity {
 
                     if (!dbHelper.Exists(authorNames)) {
 
-                        
-                        
                         dbHelper.addAuthors(null, authorNames, is_Corrospondence);
-                        
-                        
-                        dbHelper.addAuthorsAbstractItems(dbHelper.items_id, dbHelper.authors_id, dbHelper.abstract_affiliation_id);
 
-                        
+                        dbHelper.addAuthorsAbstractItems(dbHelper.items_id, dbHelper.authors_id,
+                                dbHelper.abstract_affiliation_id);
+
                         dbHelper.authorsAffiliation(dbHelper.abstract_affiliation_id,
                                 dbHelper.authors_id);
-                        
-                        if(is_Corrospondence.equalsIgnoreCase("True")){
+
+                        if (is_Corrospondence.equalsIgnoreCase("True")) {
                             dbHelper.addCorrespondingAuthor(dbHelper.items_id, dbHelper.authors_id);
                         }
-                        
+
                     } else {
                         cursor = dbHelper.database.rawQuery(
                                 "select _id from abstract_author where NAME like '%" + authorNames
                                         + "%'", null);
                         try {
+
                             if (cursor.moveToFirst()) {
                                 getAuthorID = cursor.getString(0);
                             }
                         } finally {
                             cursor.close();
                         }
-                        
-                        if(is_Corrospondence.equalsIgnoreCase("True")){
-                            dbHelper.addCorrespondingAuthor(dbHelper.items_id, Integer.parseInt(getAuthorID));
+
+                        if (is_Corrospondence.equalsIgnoreCase("True")) {
+                            dbHelper.addCorrespondingAuthor(dbHelper.items_id,
+                                    Integer.parseInt(getAuthorID));
                         }
                         dbHelper.addAuthorsAbstractItems(dbHelper.items_id,
-                                Integer.parseInt(getAuthorID),dbHelper.abstract_affiliation_id);
+                                Integer.parseInt(getAuthorID), dbHelper.abstract_affiliation_id);
                         dbHelper.authorsAffiliation(dbHelper.abstract_affiliation_id,
                                 Integer.parseInt(getAuthorID));
-                        
+
                     }
                 }
 
@@ -318,6 +295,11 @@ public class AbstractActivity extends SherlockActivity {
             e.printStackTrace();
         }
     }
-    
-    
+
+    @Override
+    protected void onDestroy() {
+        // TODO Auto-generated method stub
+        super.onDestroy();
+        cursorAdapter.getCursor().close();
+    }
 }
