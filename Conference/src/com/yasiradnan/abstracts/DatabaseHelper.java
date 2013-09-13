@@ -17,7 +17,7 @@ import android.util.Log;
  */
 public class DatabaseHelper extends SQLiteOpenHelper {
 
-    private static String Database_Name = "DroidDB-30";
+    private static String Database_Name = "AppDatabase";
 
     private static int Database_Version = 1;
 
@@ -74,7 +74,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + "(_id INTEGER PRIMARY KEY AUTOINCREMENT , CORRESPONDENCE TEXT NOT NULL,"
             + "TITLE TEXT NOT NULL ,URL TEXT NOT NULL,"
             + "TEXT TEXT NOT NULL,TYPE TEXT NOT NULL, TOPIC TEXT NOT NULL,"
-            + "COI TEXT NOT NULL,CITE TEXT NOT NULL,REFS TEXT NOT NULL);";
+            + "COI TEXT NOT NULL,CITE TEXT NOT NULL,REFS TEXT NOT NULL,ACKNOWLEDGEMENTS TEXT);";
 
     public static final String CREATE_AUTHORS_ABSTRACT = "CREATE TABLE IF NOT EXISTS AUTHORS_ABSTRACT"
             + "( ABSTRACTSITEM_ID INTEGER NOT NULL,ABSTRACTAUTHOR_ID INTEGER NOT NULL,ABSTRACTAFFILIATION_ID INTEGER NOT NULL);";
@@ -177,7 +177,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public void addItems(Integer id, String text, String topic, String correspondence, String url,
-            String coi, String cite, String type, String title, String refs) {
+            String coi, String cite, String type, String title, String refs, String acknowledgements) {
         ContentValues cd = new ContentValues();
 
         cd.put("_id", id);
@@ -199,6 +199,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cd.put("CITE", cite);
 
         cd.put("REFS", refs);
+        
+        cd.put("ACKNOWLEDGEMENTS", acknowledgements);
 
         items_id = database.insert(TABLENAME_ABSTRACTS_ITEM, null, cd);
 

@@ -43,6 +43,8 @@ public class AbstractContent extends ActionBarActivity {
     TextView authorNames;
 
     TextView ConRefs;
+    
+    TextView ConAck;
 
     Button btn;
 
@@ -95,6 +97,8 @@ public class AbstractContent extends ActionBarActivity {
         String email = getData.getString("email");
 
         String refs = getData.getString("refs");
+        
+        String acknowledgements = getData.getString("acknowledgements");
 
         itemNumber = getData.getInt("itemNumber");
         
@@ -132,7 +136,12 @@ public class AbstractContent extends ActionBarActivity {
        
         
         content.setText(abstracts);
-
+        
+        
+        if(acknowledgements.length() > 0){
+            
+            ConAck.append(Html.fromHtml("<b>Acknowledgements</b><br />" + acknowledgements ));
+        }
         
         if (refs.length() > 0) {
             
@@ -157,6 +166,8 @@ public class AbstractContent extends ActionBarActivity {
         emailField = (TextView)findViewById(R.id.email);
     
         ConRefs = (TextView)findViewById(R.id.Conrefs);
+        
+        ConAck = (TextView)findViewById(R.id.ConACK);
         
     }
 
