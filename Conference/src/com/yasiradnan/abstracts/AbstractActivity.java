@@ -62,10 +62,7 @@ public class AbstractActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // TODO Auto-generated method stub
-        setTheme(android.R.style.Theme_DeviceDefault_Light_NoActionBar);
         super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-
         setContentView(R.layout.abstract_general);
 
         listView = (ListView)findViewById(R.id.list);
@@ -73,13 +70,18 @@ public class AbstractActivity extends Activity {
         searchOption = (EditText)findViewById(R.id.abSearch);
 
         dbHelper.open();
+        
+        DatabaseHelper.database = dbHelper.getWritableDatabase();
 
-        String query = "select abstracts_item._id,CORRESPONDENCE,title, type, topic, text,af_name,REFS from abs_affiliation_name,abstract_affiliation,abstracts_item,abstract_author,authors_abstract where abstracts_item._id = authors_abstract.abstractsitem_id and abstract_author._id = authors_abstract.abstractauthor_id and abstract_affiliation._id = abstract_author._id and abs_affiliation_name._id = abstracts_item._id GROUP By abstracts_item._id";
+        String query = "select abstracts_item._id,CORRESPONDENCE,title, type, topic, text,af_name,REFS,ACKNOWLEDGEMENTS from abs_affiliation_name,abstract_affiliation,abstracts_item,abstract_author,authors_abstract where abstracts_item._id = authors_abstract.abstractsitem_id and abstract_author._id = authors_abstract.abstractauthor_id and abstract_affiliation._id = abstract_author._id and abs_affiliation_name._id = abstracts_item._id GROUP By abstracts_item._id";
 
         cursor = DatabaseHelper.database.rawQuery(query, null);
 
         Log.e("Cursor Count", String.valueOf(cursor.getCount()));
-
+        
+        /*
+         * Check If Database is empty
+         */
         if (cursor.getCount() <= 0) {
 
             datainList();
@@ -98,7 +100,8 @@ public class AbstractActivity extends Activity {
             public void onItemClick(AdapterView<?> arg0, View view, int position, long arg3) {
                 // TODO Auto-generated method stub
 
-                cursor = (Cursor)arg0.getAdapter().getItem(position);
+                try{
+                cursor = (Cursor)cursorAdapter.getCursor();
 
                 String Text = cursor.getString(cursor.getColumnIndexOrThrow("TEXT"));
 
@@ -113,6 +116,8 @@ public class AbstractActivity extends Activity {
                 String email = cursor.getString(cursor.getColumnIndexOrThrow("CORRESPONDENCE"));
 
                 String refs = cursor.getString(cursor.getColumnIndexOrThrow("REFS"));
+                
+                String acknowledgements = cursor.getString(cursor.getColumnIndexOrThrow("ACKNOWLEDGEMENTS"));
 
                 Log.e("Position", String.valueOf(position));
 
@@ -135,8 +140,13 @@ public class AbstractActivity extends Activity {
                 in.putExtra("refs", refs);
 
                 in.putExtra("itemNumber", itemNumber);
+                
+                in.putExtra("acknowledgements",acknowledgements);
 
                 startActivity(in);
+                }catch(Exception e){
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -155,6 +165,7 @@ public class AbstractActivity extends Activity {
             public void onTextChanged(CharSequence cs, int start, int before, int count) {
                 // TODO Auto-generated method stub
                 AbstractActivity.this.cursorAdapter.getFilter().filter(cs);
+                AbstractActivity.this.cursorAdapter.notifyDataSetChanged();
 
             }
 
@@ -167,7 +178,7 @@ public class AbstractActivity extends Activity {
             @Override
             public void afterTextChanged(Editable s) {
                 // TODO Auto-generated method stub
-
+                
             }
         });
 
@@ -204,12 +215,15 @@ public class AbstractActivity extends Activity {
                     refs = jsonObject.getString("refs");
                 }
 
-                // Log.e("title", title);
+                String acknowledgements = "";
+                
+                if(jsonObject.has("acknowledgements")){
+                    acknowledgements = jsonObject.getString("acknowledgements");
+                }
 
                 String text = jsonObject.getString("abstract");
 
-                dbHelper.addItems(null, text, topic, correspondence, url, coi, cite, type, title,
-                        refs);
+                dbHelper.addItems(null, text, topic, correspondence, url, coi, cite, type, title, refs, acknowledgements);
 
                 JSONObject abAfData = jsonArray.getJSONObject(index).getJSONObject("affiliations");
 
@@ -294,12 +308,5 @@ public class AbstractActivity extends Activity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-    }
-
-    @Override
-    protected void onDestroy() {
-        // TODO Auto-generated method stub
-        super.onDestroy();
-        cursorAdapter.getCursor().close();
     }
 }
