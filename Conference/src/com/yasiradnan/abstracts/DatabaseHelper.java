@@ -295,12 +295,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         Cursor cursor = database.rawQuery("select ABSTRACTS_ITEM._id, "
                 + "GROUP_CONCAT(ABSTRACT_AUTHOR.NAME),ABSTRACTS_ITEM.TITLE, ABSTRACTS_ITEM.TOPIC, "
-                + "ABSTRACTS_ITEM.TYPE, ABSTRACTS_ITEM.TEXT, "
+                + "ABSTRACTS_ITEM.TYPE, ABSTRACTS_ITEM.TEXT,"
+                + "ABS_AFFILIATION_NAME.af_name, ABSTRACTS_ITEM.REFS, ABSTRACTS_ITEM.ACKNOWLEDGEMENTS, "
+                + "ABSTRACTS_ITEM.CORRESPONDENCE, "
                 + "ABSTRACT_KEY_WORDS.KEYWORDS "
-                + "from ABSTRACTS_ITEM , ABSTRACT_AUTHOR , AUTHORS_ABSTRACT, ABSTRACT_KEY_WORDS  "
+                + "from abs_affiliation_name , abstract_affiliation , ABSTRACTS_ITEM , ABSTRACT_AUTHOR , AUTHORS_ABSTRACT, ABSTRACT_KEY_WORDS  "
                 + "where ABSTRACTS_ITEM._id = ABSTRACT_KEY_WORDS._id "
                 +  "and ABSTRACTS_ITEM._id = AUTHORS_ABSTRACT.ABSTRACTSITEM_ID "
                 + "and ABSTRACT_AUTHOR._id = AUTHORS_ABSTRACT.ABSTRACTAUTHOR_ID "
+                + "and abs_affiliation_name._id = abstracts_item._id "
                 + "and (ABSTRACT_KEY_WORDS.KEYWORDS like '%" + string + "%' "
                 + "or ABSTRACTS_ITEM.TITLE like '%" + string + "%' or ABSTRACT_AUTHOR.NAME like '%" + string + "%')GROUP BY ABSTRACTS_ITEM._id", null);
 

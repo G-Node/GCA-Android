@@ -70,8 +70,6 @@ public class AbstractActivity extends Activity {
         searchOption = (EditText)findViewById(R.id.abSearch);
 
         dbHelper.open();
-        
-        DatabaseHelper.database = dbHelper.getWritableDatabase();
 
         String query = "select abstracts_item._id,CORRESPONDENCE,title, type, topic, text,af_name,REFS,ACKNOWLEDGEMENTS from abs_affiliation_name,abstract_affiliation,abstracts_item,abstract_author,authors_abstract where abstracts_item._id = authors_abstract.abstractsitem_id and abstract_author._id = authors_abstract.abstractauthor_id and abstract_affiliation._id = abstract_author._id and abs_affiliation_name._id = abstracts_item._id GROUP By abstracts_item._id";
 
@@ -94,6 +92,8 @@ public class AbstractActivity extends Activity {
         listView.setAdapter(cursorAdapter);
 
         listView.setTextFilterEnabled(true);
+        
+        listView.setFastScrollEnabled(true);
 
         listView.setOnItemClickListener(new OnItemClickListener() {
             @Override
@@ -111,13 +111,13 @@ public class AbstractActivity extends Activity {
 
                 String value = cursor.getString(cursor.getColumnIndexOrThrow("_id"));
 
-                String afName = cursor.getString(cursor.getColumnIndexOrThrow("AF_NAME"));
+               String afName = cursor.getString(cursor.getColumnIndexOrThrow("AF_NAME"));
 
-                String email = cursor.getString(cursor.getColumnIndexOrThrow("CORRESPONDENCE"));
+               String email = cursor.getString(cursor.getColumnIndexOrThrow("CORRESPONDENCE"));
 
                 String refs = cursor.getString(cursor.getColumnIndexOrThrow("REFS"));
                 
-                String acknowledgements = cursor.getString(cursor.getColumnIndexOrThrow("ACKNOWLEDGEMENTS"));
+               String acknowledgements = cursor.getString(cursor.getColumnIndexOrThrow("ACKNOWLEDGEMENTS"));
 
                 Log.e("Position", String.valueOf(position));
 

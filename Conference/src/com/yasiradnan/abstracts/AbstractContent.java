@@ -1,3 +1,4 @@
+
 package com.yasiradnan.abstracts;
 
 import java.util.Arrays;
@@ -29,7 +30,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class AbstractContent extends ActionBarActivity {
-    
+
     TextView content;
 
     TextView title;
@@ -43,7 +44,7 @@ public class AbstractContent extends ActionBarActivity {
     TextView authorNames;
 
     TextView ConRefs;
-    
+
     TextView ConAck;
 
     Button btn;
@@ -70,7 +71,7 @@ public class AbstractContent extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         // TODO Auto-generated method stub
         super.onCreate(savedInstanceState);
-        
+
         setContentView(R.layout.abstracts_show);
 
         /*
@@ -97,80 +98,64 @@ public class AbstractContent extends ActionBarActivity {
         String email = getData.getString("email");
 
         String refs = getData.getString("refs");
-        
+
         String acknowledgements = getData.getString("acknowledgements");
 
         itemNumber = getData.getInt("itemNumber");
-        
-        
-       
-        
-        sqlQueries();
 
-       
+        sqlQueries();
 
         authorName();
 
-        
         affiliationName();
 
-        
         title.setText(Title);
 
-        
         title.setTypeface(null, Typeface.BOLD);
 
-        
         topic.setText(Topic);
 
-        
         int index = email.lastIndexOf(",");
 
-        
         String emailText = email.substring(index + 1, email.length());
 
-        
-        
-        emailField.append(Html.fromHtml("*<a href= mailto:"+ emailText + ">"+ emailText+"</a><br/>"));
-        
-       
-        
+        emailField.append(Html.fromHtml("*<a href= mailto:" + emailText + ">" + emailText
+                + "</a><br/>"));
+
         content.setText(abstracts);
-        
-        
-        if(acknowledgements.length() > 0){
-            
-            ConAck.append(Html.fromHtml("<b>Acknowledgements</b><br />" + acknowledgements ));
+
+        if (acknowledgements.length() > 0) {
+
+            ConAck.append(Html.fromHtml("<b>Acknowledgements</b><br />" + acknowledgements));
         }
-        
+
         if (refs.length() > 0) {
-            
-            ConRefs.append(Html.fromHtml("<b>Reference</b><br />" + refs ));
+
+            ConRefs.append(Html.fromHtml("<b>Reference</b><br />" + refs));
 
         }
 
     }
 
     private void initial_UI() {
-        
-        content = (TextView)findViewById(R.id.Content);
-        
-        title = (TextView)findViewById(R.id.ConTitle);
-        
-        topic = (TextView)findViewById(R.id.ConTopic);
-        
-        authorNames = (TextView)findViewById(R.id.ConAuthor);
-        
-        afName = (TextView)findViewById(R.id.ConAfName);
-        
-        emailField = (TextView)findViewById(R.id.email);
-    
-        ConRefs = (TextView)findViewById(R.id.Conrefs);
-        
-        ConAck = (TextView)findViewById(R.id.ConACK);
-        
-    }
 
+        content = (TextView)findViewById(R.id.Content);
+
+        title = (TextView)findViewById(R.id.ConTitle);
+
+        topic = (TextView)findViewById(R.id.ConTopic);
+
+        authorNames = (TextView)findViewById(R.id.ConAuthor);
+
+        afName = (TextView)findViewById(R.id.ConAfName);
+
+        emailField = (TextView)findViewById(R.id.email);
+
+        ConRefs = (TextView)findViewById(R.id.Conrefs);
+
+        ConAck = (TextView)findViewById(R.id.ConACK);
+
+    }
 
     private void sqlQueries() {
 
@@ -194,14 +179,14 @@ public class AbstractContent extends ActionBarActivity {
                 + "and abs_affiliation_name._id = abstracts_item._id GROUP By abstracts_item._id";
 
         cursor = DatabaseHelper.database.rawQuery(sqlQueryOne, null);
-        
+
         cursorOne = DatabaseHelper.database.rawQuery(sqlQueryTwo, null);
-        
+
         cursorTwo = DatabaseHelper.database.rawQuery(sqlQueryThree, null);
     }
 
     private void authorName() {
-        
+
         /*
          * Author Names
          */
@@ -236,7 +221,7 @@ public class AbstractContent extends ActionBarActivity {
                  */
                 String getID = cursor.getString(cursor.getColumnIndexOrThrow("AUTH_ID"));
                 String Corr_AUTH_ID = cursorOne.getString(cursorOne.getColumnIndexOrThrow("ID"));
-               
+
                 if (getID.trim().equalsIgnoreCase(Corr_AUTH_ID.trim())) {
                     getName = cursor.getString(cursor.getColumnIndexOrThrow("NAME"));
                     affiliation_ID = cursor.getString(cursor.getColumnIndexOrThrow("NUMBER"));
@@ -260,7 +245,7 @@ public class AbstractContent extends ActionBarActivity {
         String[] newAfName = affiliationName.split("\",\"");
 
         for (int i = 0; i < newAfName.length; i++) {
-            
+
             newAfName[i] = newAfName[i].replace("\"", "").replace(":", ". ");
 
         }
@@ -273,8 +258,8 @@ public class AbstractContent extends ActionBarActivity {
             FormattedText = FormattedText + string + "\n";
         }
         afName.setText((FormattedText));
-        
-        afName.setTypeface(null,Typeface.ITALIC);
+
+        afName.setTypeface(null, Typeface.ITALIC);
 
     }
 
@@ -313,7 +298,8 @@ public class AbstractContent extends ActionBarActivity {
 
             String emailText = email.substring(index + 1, email.length());
 
-            emailField.append(Html.fromHtml("*<a href= mailto:"+ emailText + ">"+ emailText+"</a><br/>"));
+            emailField.append(Html.fromHtml("*<a href= mailto:" + emailText + ">" + emailText
+                    + "</a><br/>"));
 
         } while (cursorTwo.moveToNext());
 
@@ -327,8 +313,8 @@ public class AbstractContent extends ActionBarActivity {
 
             String refs = cursorTwo.getString(cursorTwo.getColumnIndexOrThrow("REFS"));
             if (refs.length() > 0) {
-                
-                ConRefs.append(Html.fromHtml("<b>Reference</b><br/>"+refs ));
+
+                ConRefs.append(Html.fromHtml("<b>Reference</b><br/>" + refs));
 
             }
 
@@ -379,23 +365,22 @@ public class AbstractContent extends ActionBarActivity {
         authorNames.setText("");
 
     }
-    
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // TODO Auto-generated method stub
-        
+
         MenuInflater inflater = getMenuInflater();
-        
+
         inflater.inflate(R.menu.general, menu);
-        
+
         getSupportActionBar().setDisplayShowHomeEnabled(false);
-        
+
         getSupportActionBar().setDisplayShowTitleEnabled(false);
-        
+
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#003f84")));
         return true;
     }
-    
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -529,8 +514,9 @@ public class AbstractContent extends ActionBarActivity {
 
                     getRefs();
 
-                }else{
-                    Toast.makeText(getApplicationContext(), "This is the first Abstract", Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(getApplicationContext(), "This is the first Abstract",
+                            Toast.LENGTH_LONG).show();
                 }
 
                 break;
