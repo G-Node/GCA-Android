@@ -57,6 +57,8 @@ public class AbstractActivity extends Activity {
 
     String getAuthorID;
 
+    public static int cursorCount;
+
     DatabaseHelper dbHelper = new DatabaseHelper(this);
 
     @Override
@@ -75,16 +77,18 @@ public class AbstractActivity extends Activity {
 
         cursor = DatabaseHelper.database.rawQuery(query, null);
 
-        Log.e("Cursor Count", String.valueOf(cursor.getCount()));
-        
+        cursorCount = cursor.getCount();
+
         /*
          * Check If Database is empty
          */
-        if (cursor.getCount() <= 0) {
+        if (cursorCount <= 0) {
 
             datainList();
 
             cursor = DatabaseHelper.database.rawQuery(query, null);
+
+            cursorCount = cursor.getCount();
         }
 
         cursorAdapter = new AbstractCursorAdapter(this, cursor);
@@ -92,7 +96,7 @@ public class AbstractActivity extends Activity {
         listView.setAdapter(cursorAdapter);
 
         listView.setTextFilterEnabled(true);
-        
+
         listView.setFastScrollEnabled(true);
 
         listView.setOnItemClickListener(new OnItemClickListener() {
@@ -100,51 +104,48 @@ public class AbstractActivity extends Activity {
             public void onItemClick(AdapterView<?> arg0, View view, int position, long arg3) {
                 // TODO Auto-generated method stub
 
-                try{
-                cursor = (Cursor)cursorAdapter.getCursor();
+                try {
+                    cursor = (Cursor)cursorAdapter.getCursor();
 
-                String Text = cursor.getString(cursor.getColumnIndexOrThrow("TEXT"));
+                    String Text = cursor.getString(cursor.getColumnIndexOrThrow("TEXT"));
 
-                String Title = cursor.getString(cursor.getColumnIndexOrThrow("TITLE"));
+                    String Title = cursor.getString(cursor.getColumnIndexOrThrow("TITLE"));
 
-                String Topic = cursor.getString(cursor.getColumnIndexOrThrow("TOPIC"));
+                    String Topic = cursor.getString(cursor.getColumnIndexOrThrow("TOPIC"));
 
-                String value = cursor.getString(cursor.getColumnIndexOrThrow("_id"));
+                    String value = cursor.getString(cursor.getColumnIndexOrThrow("_id"));
 
-               String afName = cursor.getString(cursor.getColumnIndexOrThrow("AF_NAME"));
+                    String afName = cursor.getString(cursor.getColumnIndexOrThrow("AF_NAME"));
 
-               String email = cursor.getString(cursor.getColumnIndexOrThrow("CORRESPONDENCE"));
+                    String email = cursor.getString(cursor.getColumnIndexOrThrow("CORRESPONDENCE"));
 
-                String refs = cursor.getString(cursor.getColumnIndexOrThrow("REFS"));
-                
-               String acknowledgements = cursor.getString(cursor.getColumnIndexOrThrow("ACKNOWLEDGEMENTS"));
+                    String refs = cursor.getString(cursor.getColumnIndexOrThrow("REFS"));
 
-                Log.e("Position", String.valueOf(position));
+                    String acknowledgements = cursor.getString(cursor
+                            .getColumnIndexOrThrow("ACKNOWLEDGEMENTS"));
 
-                int itemNumber = cursor.getCount();
+                    Log.e("Position", String.valueOf(position));
 
-                Intent in = new Intent(getApplicationContext(), AbstractContent.class);
+                    Intent in = new Intent(getApplicationContext(), AbstractContent.class);
 
-                in.putExtra("abstracts", Text);
+                    in.putExtra("abstracts", Text);
 
-                in.putExtra("Title", Title);
+                    in.putExtra("Title", Title);
 
-                in.putExtra("Topic", Topic);
+                    in.putExtra("Topic", Topic);
 
-                in.putExtra("value", value);
+                    in.putExtra("value", value);
 
-                in.putExtra("afName", afName);
+                    in.putExtra("afName", afName);
 
-                in.putExtra("email", email);
+                    in.putExtra("email", email);
 
-                in.putExtra("refs", refs);
+                    in.putExtra("refs", refs);
 
-                in.putExtra("itemNumber", itemNumber);
-                
-                in.putExtra("acknowledgements",acknowledgements);
+                    in.putExtra("acknowledgements", acknowledgements);
 
-                startActivity(in);
-                }catch(Exception e){
+                    startActivity(in);
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
@@ -178,7 +179,7 @@ public class AbstractActivity extends Activity {
             @Override
             public void afterTextChanged(Editable s) {
                 // TODO Auto-generated method stub
-                
+
             }
         });
 
@@ -216,14 +217,15 @@ public class AbstractActivity extends Activity {
                 }
 
                 String acknowledgements = "";
-                
-                if(jsonObject.has("acknowledgements")){
+
+                if (jsonObject.has("acknowledgements")) {
                     acknowledgements = jsonObject.getString("acknowledgements");
                 }
 
                 String text = jsonObject.getString("abstract");
 
-                dbHelper.addItems(null, text, topic, correspondence, url, coi, cite, type, title, refs, acknowledgements);
+                dbHelper.addItems(null, text, topic, correspondence, url, coi, cite, type, title,
+                        refs, acknowledgements);
 
                 JSONObject abAfData = jsonArray.getJSONObject(index).getJSONObject("affiliations");
 

@@ -101,8 +101,6 @@ public class AbstractContent extends ActionBarActivity {
 
         String acknowledgements = getData.getString("acknowledgements");
 
-        itemNumber = getData.getInt("itemNumber");
-
         sqlQueries();
 
         authorName();
@@ -158,6 +156,8 @@ public class AbstractContent extends ActionBarActivity {
     }
 
     private void sqlQueries() {
+        
+        Log.e("Value", value);
 
         sqlQueryOne = "select authors_abstract.abstractauthor_id AS AUTH_ID,abstract_author.NAME AS NAME,abstract_author.IS__CORRESPONDING,ABSTRACT_AFFILIATION.AFFILIATION_NUMBER AS NUMBER "
                 + "from abstracts_item,abstract_author,authors_abstract,ABSTRACT_AFFILIATION "
@@ -390,8 +390,7 @@ public class AbstractContent extends ActionBarActivity {
             case R.id.next:
 
                 int currentValue = Integer.parseInt(value) + 1;
-
-                if (currentValue <= itemNumber) {
+                if (currentValue <= AbstractActivity.cursorCount) {
 
                     value = String.valueOf(currentValue);
 
@@ -449,7 +448,7 @@ public class AbstractContent extends ActionBarActivity {
                     getRefs();
                 } else {
                     Toast.makeText(getApplicationContext(), "No more Abstracts Left",
-                            Toast.LENGTH_LONG).show();
+                            Toast.LENGTH_SHORT).show();
                 }
 
                 break;
@@ -516,7 +515,7 @@ public class AbstractContent extends ActionBarActivity {
 
                 } else {
                     Toast.makeText(getApplicationContext(), "This is the first Abstract",
-                            Toast.LENGTH_LONG).show();
+                            Toast.LENGTH_SHORT).show();
                 }
 
                 break;
