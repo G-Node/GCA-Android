@@ -254,14 +254,13 @@ public class AbstractContent extends ActionBarActivity {
 
         for (String string : newAfName) {
 
-            // FormattedText = FormattedText + string + "\n";
             int countComma = string.replaceAll("[^,]", "").length();
 
             if (countComma > 1) {
                 Pattern pattern = Pattern.compile("(\\d++)\\.([^,]++),\\s*+([^,]++),\\s*+(.*+)");
                 Matcher matcher = pattern.matcher("");
                 matcher.reset(string);
-                String Af_Names = matcher.replaceAll("$1, $3, $2, $4");
+                String Af_Names = matcher.replaceAll("$1. $3, $2, $4");
                 afName.append(Af_Names + "\n");
                 afName.setTypeface(null, Typeface.ITALIC);
             } else {
