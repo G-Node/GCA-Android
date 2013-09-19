@@ -225,14 +225,14 @@ public class AbstractContent extends ActionBarActivity {
                 if (getID.trim().equalsIgnoreCase(Corr_AUTH_ID.trim())) {
                     getName = cursor.getString(cursor.getColumnIndexOrThrow("NAME"));
                     affiliation_ID = cursor.getString(cursor.getColumnIndexOrThrow("NUMBER"));
-                    authorNames.append(Html.fromHtml("\n" + getName + "<sup><small>"
-                            + affiliation_ID + "*</small></sup><br/>"));
+                    authorNames.append(Html.fromHtml("\n<b>" + getName + "<sup><small>"
+                            + affiliation_ID + "*</small></sup></b><br/>"));
                     authorNames.append("\n");
                 } else {
                     getName = cursor.getString(cursor.getColumnIndexOrThrow("NAME"));
                     affiliation_ID = cursor.getString(cursor.getColumnIndexOrThrow("NUMBER"));
-                    authorNames.append(Html.fromHtml("\n" + getName + "<sup><small>"
-                            + affiliation_ID + "</small></sup><br/>"));
+                    authorNames.append(Html.fromHtml("\n<b>" + getName + "<sup><small>"
+                            + affiliation_ID + "</small></sup><br/></b>"));
                     authorNames.append("\n");
                 }
 
@@ -260,6 +260,7 @@ public class AbstractContent extends ActionBarActivity {
         afName.setText((FormattedText));
 
         afName.setTypeface(null, Typeface.ITALIC);
+        
 
     }
 
