@@ -2,6 +2,8 @@
 package com.yasiradnan.abstracts;
 
 import java.util.Arrays;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.w3c.dom.Text;
 
@@ -156,7 +158,7 @@ public class AbstractContent extends ActionBarActivity {
     }
 
     private void sqlQueries() {
-        
+
         Log.e("Value", value);
 
         sqlQueryOne = "select authors_abstract.abstractauthor_id AS AUTH_ID,abstract_author.NAME AS NAME,abstract_author.IS__CORRESPONDING,ABSTRACT_AFFILIATION.AFFILIATION_NUMBER AS NUMBER "
@@ -256,11 +258,24 @@ public class AbstractContent extends ActionBarActivity {
         for (String string : newAfName) {
 
             FormattedText = FormattedText + string + "\n";
+
         }
-        afName.setText((FormattedText));
+
+        Pattern pattern = Pattern.compile("(\\d++)\\.([^,]++),\\s*+([^,]++),\\s*+(.*+)");
+
+        Matcher matcher = pattern.matcher("");
+
+        matcher.reset(FormattedText);
+
+        String Af_Names = matcher.replaceAll("$1. $3, $2, $4");
+
+        afName.setText(Af_Names);
+
+        /*
+         * Set Affiliation Names Format to Italic
+         */
 
         afName.setTypeface(null, Typeface.ITALIC);
-        
 
     }
 
