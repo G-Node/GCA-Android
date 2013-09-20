@@ -129,7 +129,8 @@ public class AbstractContent extends ActionBarActivity {
 
         if (refs.length() > 0) {
             
-            ConRefs.append(Html.fromHtml("<b>Reference</b><br/>" + refs));
+            ConRefs.append(Html.fromHtml("<b>Reference</b><br/>"));
+            ConRefs.append("\n"+ refs);
 
         }
 
@@ -259,11 +260,11 @@ public class AbstractContent extends ActionBarActivity {
                 Matcher matcher = pattern.matcher("");
                 matcher.reset(string);
                 String Af_Names = matcher.replaceAll("$1. $3, $2, $4");
-                afName.append(Af_Names + "\n");
+                afName.append(Af_Names+"\n");
                 afName.setTypeface(null, Typeface.ITALIC);
             } else {
 
-                afName.append(string + "\n");
+                afName.append(string+"\n");
                 afName.setTypeface(null, Typeface.ITALIC);
             }
 
@@ -321,7 +322,8 @@ public class AbstractContent extends ActionBarActivity {
             String refs = cursorTwo.getString(cursorTwo.getColumnIndexOrThrow("REFS"));
             if (refs.length() > 0) {
 
-                ConRefs.append(Html.fromHtml("<b>Reference</b><br/>" + refs));
+                ConRefs.append(Html.fromHtml("<b>Reference</b><br/>"));
+                ConRefs.append("\n"+ refs);
 
             }
 
