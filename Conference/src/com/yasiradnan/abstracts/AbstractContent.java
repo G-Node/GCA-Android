@@ -128,8 +128,8 @@ public class AbstractContent extends ActionBarActivity {
         }
 
         if (refs.length() > 0) {
-
-            ConRefs.append(Html.fromHtml("<b>Reference</b><br />" + refs));
+            
+            ConRefs.append(Html.fromHtml("<b>Reference</b><br/>" + refs));
 
         }
 
@@ -225,15 +225,13 @@ public class AbstractContent extends ActionBarActivity {
                 if (getID.trim().equalsIgnoreCase(Corr_AUTH_ID.trim())) {
                     getName = cursor.getString(cursor.getColumnIndexOrThrow("NAME"));
                     affiliation_ID = cursor.getString(cursor.getColumnIndexOrThrow("NUMBER"));
-                    authorNames.append(Html.fromHtml("\n<b>" + getName + "<sup><small>"
-                            + affiliation_ID + "*</small></sup></b><br/>"));
-                    authorNames.append("\n");
+                    authorNames.append(Html.fromHtml("<b>" + getName + "<sup><small>"
+                            + affiliation_ID + "*</small></sup><br/></b>"));
                 } else {
                     getName = cursor.getString(cursor.getColumnIndexOrThrow("NAME"));
                     affiliation_ID = cursor.getString(cursor.getColumnIndexOrThrow("NUMBER"));
-                    authorNames.append(Html.fromHtml("\n<b>" + getName + "<sup><small>"
+                    authorNames.append(Html.fromHtml("<b>" + getName + "<sup><small>"
                             + affiliation_ID + "</small></sup><br/></b>"));
-                    authorNames.append("\n");
                 }
 
             } while (cursor.moveToNext());
