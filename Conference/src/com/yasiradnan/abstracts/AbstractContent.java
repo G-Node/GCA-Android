@@ -124,7 +124,8 @@ public class AbstractContent extends ActionBarActivity {
 
         if (acknowledgements.length() > 0) {
 
-            ConAck.append(Html.fromHtml("<b>Acknowledgements</b><br />" + acknowledgements));
+            ConAck.append(Html.fromHtml("<b>Acknowledgements</b><br />"));
+            ConAck.append("\n"+acknowledgements);
         }
 
         if (refs.length() > 0) {
@@ -170,7 +171,7 @@ public class AbstractContent extends ActionBarActivity {
         sqlQueryTwo = "select CORRESPONDING_AUTHOR_ID AS ID from ABSTRACT_AUTHOR_CORRESPONDENCE where abstractsItem_id = "
                 + value;
 
-        sqlQueryThree = "select abstracts_item._id AS ID,CORRESPONDENCE,title, type, topic, text,af_name as af,REFS "
+        sqlQueryThree = "select abstracts_item._id AS ID,CORRESPONDENCE,title, type, topic, text,af_name as af,REFS,ACKNOWLEDGEMENTS "
                 + "from abs_affiliation_name,abstract_affiliation,abstracts_item,abstract_author,authors_abstract "
                 + "where ID = "
                 + value
@@ -330,6 +331,23 @@ public class AbstractContent extends ActionBarActivity {
         } while (cursorTwo.moveToNext());
 
     }
+    
+    private void getAcknowledgements(){
+        
+        cursorTwo.moveToFirst();
+
+        do {
+
+            String acknowledgements = cursorTwo.getString(cursorTwo.getColumnIndexOrThrow("ACKNOWLEDGEMENTS"));
+            
+            if (acknowledgements.length() > 0) {
+
+                ConAck.append(Html.fromHtml("<b>Acknowledgements</b><br />"));
+                ConAck.append("\n"+acknowledgements);
+            }
+
+        } while (cursorTwo.moveToNext());
+    }
 
     private void getContent() {
 
@@ -372,6 +390,8 @@ public class AbstractContent extends ActionBarActivity {
         afName.setText("");
 
         authorNames.setText("");
+        
+        ConAck.setText("");
 
     }
 
@@ -449,7 +469,13 @@ public class AbstractContent extends ActionBarActivity {
                      */
 
                     getContent();
-
+                    
+                    /*
+                     * get Acknowledgements
+                     */
+                    
+                    getAcknowledgements();
+                    
                     /*
                      * Get References
                      */
@@ -515,6 +541,12 @@ public class AbstractContent extends ActionBarActivity {
                      */
 
                     getContent();
+                    
+                    /*
+                     * Get Acknowledgements
+                     */
+                    
+                    getAcknowledgements();
 
                     /*
                      * Get References
