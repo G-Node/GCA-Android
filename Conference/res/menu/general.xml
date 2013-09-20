@@ -1,36 +1,30 @@
-<menu xmlns:android="http://schemas.android.com/apk/res/android" 
- xmlns:app="http://schemas.android.com/apk/res-auto" >
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" >
 
     <item
-        android:id="@+id/action_settings"
-        android:orderInCategory="100"
-        app:showAsAction="never"
-        android:title="@string/action_settings"/>
-    <item 
-        android:id="@+id/next" 
-       	android:title="Next" 
-        android:visible="true" 
-        android:enabled="true" 
-        app:showAsAction="always" 
-        android:orderInCategory="1">
-        
-    </item>
-    <item 
-        android:id="@+id/Previous"
-        android:title="Previous" 
-        android:visible="true" 
-        android:enabled="true" 
-        android:orderInCategory="2" 
+        android:id="@+id/next"
+        android:enabled="true"
+        android:orderInCategory="2"
+        android:title="@string/next"
+        android:visible="true"
         app:showAsAction="always">
-        
     </item>
-    <item android:id="@+id/star" 
-        android:icon="@drawable/ic_action_important" 
-        android:enabled="true" 
-        android:orderInCategory="0" 
-        app:showAsAction="always" 
-        android:title="Star" 
-        android:visible="true">
+    <item
+        android:id="@+id/Previous"
+        android:enabled="true"
+        android:orderInCategory="1"
+        android:title="@string/prev"
+        android:visible="true"
+        app:showAsAction="always">
+    </item>
+    <item
+        android:id="@+id/star"
+        android:enabled="true"
+        android:icon="@drawable/ic_action_important"
+        android:orderInCategory="0"
+        android:title="Star"
+        android:visible="true"
+        app:showAsAction="always">
     </item>
 
 </menu>
