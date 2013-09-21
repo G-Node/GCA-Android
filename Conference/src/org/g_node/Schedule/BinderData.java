@@ -3,7 +3,7 @@
  * License: BSD-2 (see LICENSE)
  * Added Swicth cases as Integer
  * */
-package org.g_node.Schedule;
+package org.g_node.schedule;
 
 import java.util.List;
 

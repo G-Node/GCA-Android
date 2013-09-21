@@ -5,7 +5,7 @@
  * Modifications:
  * Added Scrollable info(TextView)
  * */
-package org.g_node.Schedule;
+package org.g_node.schedule;
 
 import com.yasiradnan.conference.R;
 

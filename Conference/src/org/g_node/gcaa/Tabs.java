@@ -3,8 +3,8 @@
  */
 package org.g_node.gcaa;
 
-import org.g_node.Schedule.ScheduleMainActivity;
-import org.g_node.Schedule.ScheduleSlideFragment;
+import org.g_node. schedule.ScheduleMainActivity;
+import org.g_node. schedule.ScheduleSlideFragment;
 import org.g_node.abstracts.AbstractActivity;
 import org.g_node.location.LocationMarkers;
 

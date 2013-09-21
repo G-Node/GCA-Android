@@ -11,7 +11,7 @@
  * 
  * */
 
-package org.g_node.Schedule;
+package org.g_node.schedule;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
