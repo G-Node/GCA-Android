@@ -5,74 +5,83 @@
  * Modifications:
  * Added ItemType as Integer and Date
  * */
+
 package org.g_node.schedule;
 
-public class ScheduleItem {
-	private String time;
-	private String title;
-	private int itemType;
-	private String content;
-	private String date;
-	
-	ScheduleItem(String _time, String _title) {
-		time = _time;
-		title = _title;
-		itemType = 2;
-		setContent(null);
-	}
-	
-	ScheduleItem(String _time, String _title, String _content,int _itemType, String _date) {
-		time = _time;
-		title = _title;
-		itemType = _itemType;
-		content = _content;
-		date = _date;
-	}
-	
-	ScheduleItem(String _time, String _title, int _itemType, String _date) {
-		time = _time;
-		title = _title;
-		itemType = _itemType;
-		date = _date;
-		setContent(null);
-	}
-	
-	public String getTime() {
-		return time;
-	}
-	public void setTime(String time) {
-		this.time = time;
-	}
+import java.io.Serializable;
 
-	public String getTitle() {
-		return title;
-	}
+@SuppressWarnings("serial")
+public class ScheduleItem implements Serializable {
+    private String time;
 
-	public void setTitle(String title) {
-		this.title = title;
-	}
+    private String title;
 
-	public int getItemType() {
-		return itemType;
-	}
+    private int itemType;
 
-	public void setItemType(int itemType) {
-		this.itemType = itemType;
-	}
-	
-	public String getDate() {
-		return date;
-	}
+    private String content;
 
-	public void setDate(String Date) {
-		this.date = date;
-	}
+    private String date;
 
-	public String getContent() {
-		return content;
-	}
+    ScheduleItem(String _time, String _title) {
+        time = _time;
+        title = _title;
+        itemType = 2;
+        setContent(null);
+    }
 
-	public void setContent(String content) {
-		this.content = content;
-	}
+    ScheduleItem(String _time, String _title, String _content, int _itemType, String _date) {
+        time = _time;
+        title = _title;
+        itemType = _itemType;
+        content = _content;
+        date = _date;
+    }
+
+    ScheduleItem(String _time, String _title, int _itemType, String _date) {
+        time = _time;
+        title = _title;
+        itemType = _itemType;
+        date = _date;
+        setContent(null);
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public int getItemType() {
+        return itemType;
+    }
+
+    public void setItemType(int itemType) {
+        this.itemType = itemType;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
 }
