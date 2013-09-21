@@ -1,4 +1,4 @@
-package com.yasiradnan.abstracts;
+package org.g_node.abstracts;
 
 import java.util.ArrayList;
 import java.util.List;

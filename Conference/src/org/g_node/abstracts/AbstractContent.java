@@ -1,5 +1,5 @@
 
-package com.yasiradnan.abstracts;
+package org.g_node.abstracts;
 
 import java.util.Arrays;
 import java.util.regex.Matcher;

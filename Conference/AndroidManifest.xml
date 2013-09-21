@@ -36,25 +36,25 @@
         android:label="@string/app_name"
         android:theme="@style/Theme.Base.AppCompat.Light" >
         <uses-library android:name="com.google.android.maps" />
-       <activity android:name=".Tabs" android:label="@string/app_name">
+       <activity android:name="org.g_node.gcaa.Tabs" android:label="@string/app_name">
 			<intent-filter>
 				<action android:name="android.intent.action.MAIN" />
 				<category android:name="android.intent.category.LAUNCHER" />
 			</intent-filter>
 		</activity>	
         <activity
-            android:name="com.yasiradnan.conference.GeneralActivity">
+            android:name="org.g_node.gcaa.GeneralActivity">
         </activity>
-        <activity android:name="com.yasiradnan.location.LocationMarkers"></activity>
+        <activity android:name="org.g_node.location.LocationMarkers"></activity>
           <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
             android:value="API_KEY" />
-          <activity android:name="com.yasiradnan.Schedule.ScheduleMainActivity"></activity>
-          <activity android:name="com.yasiradnan.Schedule.ContentExtended">
+          <activity android:name="org.g_node.Schedule.ScheduleMainActivity"></activity>
+          <activity android:name="org.g_node.Schedule.ContentExtended">
               
           </activity>
-          <activity android:name="com.yasiradnan.abstracts.AbstractActivity"></activity>
-          <activity android:name="com.yasiradnan.abstracts.AbstractContent"></activity>
+          <activity android:name="org.g_node.abstracts.AbstractActivity"></activity>
+          <activity android:name="org.g_node.abstracts.AbstractContent"></activity>
     </application>
 
 </manifest>

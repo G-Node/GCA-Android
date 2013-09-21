@@ -2,7 +2,7 @@
  * 
  */
 
-package com.yasiradnan.abstracts;
+package org.g_node.abstracts;
 
 import android.content.ContentValues;
 import android.content.Context;

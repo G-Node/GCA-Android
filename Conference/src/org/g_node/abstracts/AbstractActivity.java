@@ -1,16 +1,16 @@
 
-package com.yasiradnan.abstracts;
+package org.g_node.abstracts;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 
+import org.g_node.utils.JSONReader;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.yasiradnan.conference.R;
-import com.yasiradnan.utils.JSONReader;
 
 import android.app.Activity;
 import android.content.Intent;

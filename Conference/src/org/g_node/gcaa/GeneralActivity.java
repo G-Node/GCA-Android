@@ -1,4 +1,4 @@
-package com.yasiradnan.conference;
+package org.g_node.gcaa;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -7,7 +7,9 @@ import java.io.InputStreamReader;
 
 
 
+
 import com.petebevin.markdown.MarkdownProcessor;
+import com.yasiradnan.conference.R;
 
 import android.app.Activity;
 import android.content.Context;

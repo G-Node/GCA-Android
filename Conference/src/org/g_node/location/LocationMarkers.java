@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.yasiradnan.location;
+package org.g_node.location;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;

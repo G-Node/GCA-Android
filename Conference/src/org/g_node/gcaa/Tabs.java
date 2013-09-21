@@ -1,12 +1,14 @@
 /**
  * 
  */
-package com.yasiradnan.conference;
+package org.g_node.gcaa;
 
-import com.yasiradnan.Schedule.ScheduleMainActivity;
-import com.yasiradnan.Schedule.ScheduleSlideFragment;
-import com.yasiradnan.abstracts.AbstractActivity;
-import com.yasiradnan.location.LocationMarkers;
+import org.g_node.Schedule.ScheduleMainActivity;
+import org.g_node.Schedule.ScheduleSlideFragment;
+import org.g_node.abstracts.AbstractActivity;
+import org.g_node.location.LocationMarkers;
+
+import com.yasiradnan.conference.R;
 
 import android.app.TabActivity;
 import android.content.Intent;

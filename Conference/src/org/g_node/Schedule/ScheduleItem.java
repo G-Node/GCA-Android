@@ -5,7 +5,7 @@
  * Modifications:
  * Added ItemType as Integer and Date
  * */
-package com.yasiradnan.Schedule;
+package org.g_node.Schedule;
 
 public class ScheduleItem {
 	private String time;

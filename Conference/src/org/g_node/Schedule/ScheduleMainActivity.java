@@ -6,7 +6,7 @@
  * Get Array length from getLength()
  * */
 
-package com.yasiradnan.Schedule;
+package org.g_node.Schedule;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
