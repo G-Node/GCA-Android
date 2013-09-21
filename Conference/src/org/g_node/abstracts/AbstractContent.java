@@ -5,12 +5,7 @@ import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.w3c.dom.Text;
-
-import com.yasiradnan.conference.R;
-import com.yasiradnan.conference.R.id;
-
-import android.app.Activity;
+import org.g_node.gcaa.R;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.graphics.Typeface;
@@ -18,16 +13,10 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.text.Html;
-import android.text.method.ScrollingMovementMethod;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup.LayoutParams;
 import android.widget.Button;
-import android.widget.ListView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -71,95 +60,104 @@ public class AbstractContent extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         // TODO Auto-generated method stub
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.abstracts_show);
-
         /*
          * Initializing fields
          */
-
         initial_UI();
-
         /*
-         * Getting abstracts form AbstractActivity
+         * Getting data from Intent
          */
         Bundle getData = getIntent().getExtras();
-
         String abstracts = getData.getString("abstracts");
-
         String Title = getData.getString("Title");
-
         String Topic = getData.getString("Topic");
-
         value = getData.getString("value");
-
         affiliationName = getData.getString("afName");
-
         String email = getData.getString("email");
-
         String refs = getData.getString("refs");
-
-        String acknowledgements = getData.getString("acknowledgements");
-
+        String acknowledgments = getData.getString("acknowledgements");
+        /*
+         * Executing SQL Queries to get data
+         */
         sqlQueries();
-
+        /*
+         * Show Author Names and Corresponding Author Names with a (*) sign
+         */
         authorName();
-
+        /*
+         * Get Affiliation Name for associate abstracts
+         */
         affiliationName();
-
         title.setText(Title);
-
+        /*
+         * Set Title to BOLD
+         */
         title.setTypeface(null, Typeface.BOLD);
-
         topic.setText(Topic);
-
+        /*
+         * Getting email address from CORRESPONDENCE(ABSTRACTS_ITEM table)
+         */
         int index = email.lastIndexOf(",");
-
         String emailText = email.substring(index + 1, email.length());
-
         emailField.append(Html.fromHtml("*<a href= mailto:" + emailText + ">" + emailText
                 + "</a><br/>"));
-
         content.setText(abstracts);
+        /*
+         * If acknowledgments contain any data
+         */
+        if (acknowledgments.length() > 0) {
 
-        if (acknowledgements.length() > 0) {
-
-            ConAck.append(Html.fromHtml("<b>Acknowledgements</b><br />"));
-            ConAck.append("\n"+acknowledgements);
+            ConAck.append(Html.fromHtml("<b>Acknowledgments</b><br />"));
+            ConAck.append("\n" + acknowledgments);
         }
-
+        /*
+         * If refs contain any data
+         */
         if (refs.length() > 0) {
-            
-            ConRefs.append(Html.fromHtml("<b>Reference</b><br/>"));
-            ConRefs.append("\n"+ refs);
 
+            ConRefs.append(Html.fromHtml("<b>Reference</b><br/>"));
+            ConRefs.append("\n" + refs);
         }
 
     }
 
     private void initial_UI() {
-
+        /*
+         * TextView for Abstract Text
+         */
         content = (TextView)findViewById(R.id.Content);
-
+        /*
+         * TextView for Abstract Title
+         */
         title = (TextView)findViewById(R.id.ConTitle);
-
+        /*
+         * TextView for Abstract Topic
+         */
         topic = (TextView)findViewById(R.id.ConTopic);
-
+        /*
+         * TextView for Abstract Author
+         */
         authorNames = (TextView)findViewById(R.id.ConAuthor);
-
+        /*
+         * TextView for Affiliation Name
+         */
         afName = (TextView)findViewById(R.id.ConAfName);
-
+        /*
+         * TextView for email
+         */
         emailField = (TextView)findViewById(R.id.email);
-
+        /*
+         * TextView for Reference
+         */
         ConRefs = (TextView)findViewById(R.id.Conrefs);
-
+        /*
+         * TextView for Acknowledgments
+         */
         ConAck = (TextView)findViewById(R.id.ConACK);
-
     }
 
     private void sqlQueries() {
-
-        Log.e("Value", value);
 
         sqlQueryOne = "select authors_abstract.abstractauthor_id AS AUTH_ID,abstract_author.NAME AS NAME,abstract_author.IS__CORRESPONDING,ABSTRACT_AFFILIATION.AFFILIATION_NUMBER AS NUMBER "
                 + "from abstracts_item,abstract_author,authors_abstract,ABSTRACT_AFFILIATION "
@@ -181,9 +179,7 @@ public class AbstractContent extends ActionBarActivity {
                 + "and abs_affiliation_name._id = abstracts_item._id GROUP By abstracts_item._id";
 
         cursor = DatabaseHelper.database.rawQuery(sqlQueryOne, null);
-
         cursorOne = DatabaseHelper.database.rawQuery(sqlQueryTwo, null);
-
         cursorTwo = DatabaseHelper.database.rawQuery(sqlQueryThree, null);
     }
 
@@ -223,7 +219,10 @@ public class AbstractContent extends ActionBarActivity {
                  */
                 String getID = cursor.getString(cursor.getColumnIndexOrThrow("AUTH_ID"));
                 String Corr_AUTH_ID = cursorOne.getString(cursorOne.getColumnIndexOrThrow("ID"));
-
+                /*
+                 * Compare Author id and Corresponding Author id if Author is a
+                 * Corresponding Author show (*) sign
+                 */
                 if (getID.trim().equalsIgnoreCase(Corr_AUTH_ID.trim())) {
                     getName = cursor.getString(cursor.getColumnIndexOrThrow("NAME"));
                     affiliation_ID = cursor.getString(cursor.getColumnIndexOrThrow("NUMBER"));
@@ -242,33 +241,41 @@ public class AbstractContent extends ActionBarActivity {
 
     private void affiliationName() {
 
+        /*
+         * Split String
+         */
         String[] newAfName = affiliationName.split("\",\"");
-
         for (int i = 0; i < newAfName.length; i++) {
-
             newAfName[i] = newAfName[i].replace("\"", "").replace(":", ". ");
-
         }
-
+        /*
+         * Sorting Data
+         */
         Arrays.sort(newAfName);
-
         for (String string : newAfName) {
-
+            /*
+             * Count Comma in a String
+             */
             int countComma = string.replaceAll("[^,]", "").length();
-
+            /*
+             * If String has more than 1 comma
+             */
             if (countComma > 1) {
+                /**
+                 * Arrange String as Number. Institute Name, Department Name ,
+                 * Location But Format was Number. Department Name, Institute
+                 * Name, Location
+                 */
                 Pattern pattern = Pattern.compile("(\\d++)\\.([^,]++),\\s*+([^,]++),\\s*+(.*+)");
                 Matcher matcher = pattern.matcher("");
                 matcher.reset(string);
                 String Af_Names = matcher.replaceAll("$1. $3, $2, $4");
-                afName.append(Af_Names+"\n");
+                afName.append(Af_Names + "\n");
                 afName.setTypeface(null, Typeface.ITALIC);
             } else {
-
-                afName.append(string+"\n");
+                afName.append(string + "\n");
                 afName.setTypeface(null, Typeface.ITALIC);
             }
-
         }
     }
 
@@ -324,26 +331,27 @@ public class AbstractContent extends ActionBarActivity {
             if (refs.length() > 0) {
 
                 ConRefs.append(Html.fromHtml("<b>Reference</b><br/>"));
-                ConRefs.append("\n"+ refs);
+                ConRefs.append("\n" + refs);
 
             }
 
         } while (cursorTwo.moveToNext());
 
     }
-    
-    private void getAcknowledgements(){
-        
+
+    private void getAcknowledgements() {
+
         cursorTwo.moveToFirst();
 
         do {
 
-            String acknowledgements = cursorTwo.getString(cursorTwo.getColumnIndexOrThrow("ACKNOWLEDGEMENTS"));
-            
+            String acknowledgements = cursorTwo.getString(cursorTwo
+                    .getColumnIndexOrThrow("ACKNOWLEDGEMENTS"));
+
             if (acknowledgements.length() > 0) {
 
                 ConAck.append(Html.fromHtml("<b>Acknowledgements</b><br />"));
-                ConAck.append("\n"+acknowledgements);
+                ConAck.append("\n" + acknowledgements);
             }
 
         } while (cursorTwo.moveToNext());
@@ -378,19 +386,12 @@ public class AbstractContent extends ActionBarActivity {
     private void resetAllFields() {
 
         title.setText("");
-
         topic.setText("");
-
         content.setText("");
-
         ConRefs.setText("");
-
         emailField.setText("");
-
         afName.setText("");
-
         authorNames.setText("");
-        
         ConAck.setText("");
 
     }
@@ -402,11 +403,17 @@ public class AbstractContent extends ActionBarActivity {
         MenuInflater inflater = getMenuInflater();
 
         inflater.inflate(R.menu.general, menu);
-
+        /*
+         * Disable home button
+         */
         getSupportActionBar().setDisplayShowHomeEnabled(false);
-
+        /*
+         * Hide Application Title
+         */
         getSupportActionBar().setDisplayShowTitleEnabled(false);
-
+        /*
+         * Set Custom Color in ActionBar
+         */
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#003f84")));
         return true;
     }
@@ -415,7 +422,9 @@ public class AbstractContent extends ActionBarActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         // TODO Auto-generated method stub
         switch (item.getItemId()) {
-
+        /*
+         * Menu Item for switching next and previous data
+         */
             case R.id.next:
 
                 int currentValue = Integer.parseInt(value) + 1;
@@ -469,13 +478,13 @@ public class AbstractContent extends ActionBarActivity {
                      */
 
                     getContent();
-                    
+
                     /*
-                     * get Acknowledgements
+                     * get Acknowledgments
                      */
-                    
+
                     getAcknowledgements();
-                    
+
                     /*
                      * Get References
                      */
@@ -541,11 +550,11 @@ public class AbstractContent extends ActionBarActivity {
                      */
 
                     getContent();
-                    
+
                     /*
-                     * Get Acknowledgements
+                     * Get Acknowledgments
                      */
-                    
+
                     getAcknowledgements();
 
                     /*

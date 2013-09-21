@@ -1,15 +1,12 @@
 
 package org.g_node.abstracts;
 
-
-import com.yasiradnan.conference.R;
-
+import org.g_node.gcaa.R;
 import android.content.Context;
 import android.database.Cursor;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.support.v4.widget.CursorAdapter;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,22 +27,28 @@ public class AbstractCursorAdapter extends CursorAdapter {
     @Override
     public void bindView(View view, Context context, Cursor cursor) {
         // TODO Auto-generated method stub
-        
+        /*
+         * TextView for showing Title
+         */
         TextView title = (TextView)view.findViewById(R.id.abTitle);
-
         title.setText(cursor.getString(cursor.getColumnIndexOrThrow("TITLE")));
-        
-
+        /*
+         * TextView for showing Topic
+         */
         TextView topic = (TextView)view.findViewById(R.id.abTopic);
-
         topic.setText(cursor.getString(cursor.getColumnIndexOrThrow("TOPIC")));
-
+        /*
+         * TextView for Showing Type
+         */
         TextView type = (TextView)view.findViewById(R.id.abType);
-
         type.setText(cursor.getString(cursor.getColumnIndexOrThrow("TYPE")));
-
+        /*
+         * _id for getting Author Names
+         */
         String value = cursor.getString(cursor.getColumnIndexOrThrow("_id"));
-
+        /*
+         * SQL Query for getting Author Name
+         */
         String sqlQuery = "select abstracts_item._id AS ID,abstract_author.NAME AS NAME from abstracts_item,abstract_author,authors_abstract where abstracts_item._id = authors_abstract.abstractsitem_id and abstract_author._id = authors_abstract.abstractauthor_id and ID = "
                 + value;
 
@@ -53,17 +56,24 @@ public class AbstractCursorAdapter extends CursorAdapter {
 
         if (cursorOne != null) {
             cursorOne.moveToFirst();
+            /*
+             * Name format will be like this A, B & C or A,B,C & D. So, if the
+             * name is the last name. We should use '&' before the name
+             */
             do {
 
                 if (cursorOne.getPosition() == 0) {
-
+                    /*
+                     * First data
+                     */
                     getName = cursorOne.getString(cursorOne.getColumnIndexOrThrow("NAME"));
-
                 } else if (cursorOne.isLast()) {
+                    /*
+                     * Last Data
+                     */
                     getName = getName + " & "
                             + cursorOne.getString(cursorOne.getColumnIndexOrThrow("NAME"));
                 } else {
-
                     getName = getName + " , "
                             + cursorOne.getString(cursorOne.getColumnIndexOrThrow("NAME"));
 
@@ -71,36 +81,39 @@ public class AbstractCursorAdapter extends CursorAdapter {
 
             } while (cursorOne.moveToNext());
         }
-
+        /*
+         * TextView for Author Names
+         */
         TextView authorNames = (TextView)view.findViewById(R.id.SubTitle);
-
         /*
          * Get Width
          */
-
         WindowManager WinMgr = (WindowManager)context.getSystemService(Context.WINDOW_SERVICE);
+        @SuppressWarnings("deprecation")
         int displayWidth = WinMgr.getDefaultDisplay().getWidth();
-
         Paint paint = new Paint();
         Rect bounds = new Rect();
-
-        int text_height = 0;
         int text_width = 0;
-
         paint.getTextBounds(getName, 0, getName.length(), bounds);
-
-        text_height = bounds.height();
+        /*
+         * Getting Text Width
+         */
         text_width = bounds.width();
-
+        /*
+         * If Text Width is greater than Display Width Then show First Name et
+         * al.
+         */
         if (text_width > displayWidth) {
-            //Log.e("Width inside", String.valueOf(text_width)+"--------------"+String.valueOf(displayWidth));
             String output = getName.split(",")[0] + " et al. ";
             authorNames.setText(output);
 
         } else {
-            //Log.e("Width inside", String.valueOf(text_width)+"--------------"+String.valueOf(displayWidth));
+            /*
+             * Name Format will be like this If the Name is Yasir Adnan So,It
+             * will be Y.Adnan
+             */
             authorNames
-            .setText(getName.replaceAll("((?:^|[^A-Z.])[A-Z])[a-z]*\\s(?=[A-Z])", "$1."));
+                    .setText(getName.replaceAll("((?:^|[^A-Z.])[A-Z])[a-z]*\\s(?=[A-Z])", "$1."));
         }
     }
 
