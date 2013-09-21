@@ -1,12 +1,9 @@
 package org.g_node.utils;
 
 
-import com.yasiradnan.conference.R;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONTokener;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
