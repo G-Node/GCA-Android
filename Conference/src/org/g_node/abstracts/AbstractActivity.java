@@ -308,7 +308,7 @@ public class AbstractActivity extends Activity {
                         }
 
                     } else {
-                        cursor = dbHelper.database.rawQuery(
+                        cursor = DatabaseHelper.database.rawQuery(
                                 "select _id from abstract_author where NAME like '%" + authorNames
                                         + "%'", null);
                         try {

@@ -50,9 +50,7 @@
             android:name="com.google.android.maps.v2.API_KEY"
             android:value="API_KEY" />
           <activity android:name="org.g_node.schedule.ScheduleMainActivity"></activity>
-          <activity android:name="org.g_node.schedule.ContentExtended">
-              
-          </activity>
+          <activity android:name="org.g_node.schedule.ContentExtended"></activity>
           <activity android:name="org.g_node.abstracts.AbstractActivity"></activity>
           <activity android:name="org.g_node.abstracts.AbstractContent"></activity>
     </application>
