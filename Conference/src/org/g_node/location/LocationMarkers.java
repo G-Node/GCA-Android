@@ -1,5 +1,6 @@
 /**
- * 
+ * Copyright (c) 2013, Yasir Adnan <adnan.ayon@gmail.com>
+ * License: BSD-3 (See LICENSE)
  */
 
 package org.g_node.location;
@@ -32,10 +33,6 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.MarkerOptions;
-
-/**
- * @author Adnan
- */
 
 public class LocationMarkers extends FragmentActivity {
 

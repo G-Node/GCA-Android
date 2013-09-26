@@ -1,3 +1,7 @@
+/**
+ * Copyright (c) 2013, Yasir Adnan <adnan.ayon@gmail.com>
+ * License: BSD-3 (See LICENSE)
+ */
 
 package org.g_node.abstracts;
 

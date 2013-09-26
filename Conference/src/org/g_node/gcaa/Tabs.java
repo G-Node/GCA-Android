@@ -1,5 +1,6 @@
 /**
- * 
+ * Copyright (c) 2013, Yasir Adnan <adnan.ayon@gmail.com>
+ * License: BSD-3 (See LICENSE)
  */
 
 package org.g_node.gcaa;
@@ -17,9 +18,6 @@ import android.widget.ImageView;
 import android.widget.TabHost;
 import android.widget.TextView;
 
-/**
- * @author Adnan
- */
 @SuppressWarnings("deprecation")
 public class Tabs extends TabActivity {
     /** Called when the activity is first created. */

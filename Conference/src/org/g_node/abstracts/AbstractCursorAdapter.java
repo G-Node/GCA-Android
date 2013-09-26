@@ -1,3 +1,7 @@
+/**
+ * Copyright (c) 2013, Yasir Adnan <adnan.ayon@gmail.com>
+ * License: BSD-3 (See LICENSE)
+ */
 
 package org.g_node.abstracts;
 
@@ -113,7 +117,7 @@ public class AbstractCursorAdapter extends CursorAdapter {
              * will be Y.Adnan
              */
             authorNames
-                    .setText(getName.replaceAll("((?:^|[^A-Z.])[A-Z])[a-z]*\\s(?=[A-Z])", "$1."));
+            .setText(getName.replaceAll("((?:^|[^A-Z.])[A-Z])[a-z]*\\s(?=[A-Z])", "$1."));
         }
     }
 

@@ -1,5 +1,6 @@
 /**
- * 
+ * Copyright (c) 2013, Yasir Adnan <adnan.ayon@gmail.com>
+ * License: BSD-3 (See LICENSE)
  */
 
 package org.g_node.abstracts;
@@ -10,9 +11,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-/**
- * @author Adnan
- */
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static String Database_Name = "AppDatabase";
@@ -197,7 +195,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cd.put("CITE", cite);
 
         cd.put("REFS", refs);
-        
+
         cd.put("ACKNOWLEDGEMENTS", acknowledgements);
 
         items_id = database.insert(TABLENAME_ABSTRACTS_ITEM, null, cd);
@@ -291,19 +289,23 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public Cursor fetchDataByName(String string) {
         // TODO Auto-generated method stub
 
-        Cursor cursor = database.rawQuery("select ABSTRACTS_ITEM._id, "
-                + "GROUP_CONCAT(ABSTRACT_AUTHOR.NAME),ABSTRACTS_ITEM.TITLE, ABSTRACTS_ITEM.TOPIC, "
-                + "ABSTRACTS_ITEM.TYPE, ABSTRACTS_ITEM.TEXT,"
-                + "ABS_AFFILIATION_NAME.af_name, ABSTRACTS_ITEM.REFS, ABSTRACTS_ITEM.ACKNOWLEDGEMENTS, "
-                + "ABSTRACTS_ITEM.CORRESPONDENCE, "
-                + "ABSTRACT_KEY_WORDS.KEYWORDS "
-                + "from abs_affiliation_name , abstract_affiliation , ABSTRACTS_ITEM , ABSTRACT_AUTHOR , AUTHORS_ABSTRACT, ABSTRACT_KEY_WORDS  "
-                + "where ABSTRACTS_ITEM._id = ABSTRACT_KEY_WORDS._id "
-                +  "and ABSTRACTS_ITEM._id = AUTHORS_ABSTRACT.ABSTRACTSITEM_ID "
-                + "and ABSTRACT_AUTHOR._id = AUTHORS_ABSTRACT.ABSTRACTAUTHOR_ID "
-                + "and abs_affiliation_name._id = abstracts_item._id "
-                + "and (ABSTRACT_KEY_WORDS.KEYWORDS like '%" + string + "%' "
-                + "or ABSTRACTS_ITEM.TITLE like '%" + string + "%' or ABSTRACT_AUTHOR.NAME like '%" + string + "%')GROUP BY ABSTRACTS_ITEM._id", null);
+        Cursor cursor = database
+                .rawQuery(
+                        "select ABSTRACTS_ITEM._id, "
+                                + "GROUP_CONCAT(ABSTRACT_AUTHOR.NAME),ABSTRACTS_ITEM.TITLE, ABSTRACTS_ITEM.TOPIC, "
+                                + "ABSTRACTS_ITEM.TYPE, ABSTRACTS_ITEM.TEXT,"
+                                + "ABS_AFFILIATION_NAME.af_name, ABSTRACTS_ITEM.REFS, ABSTRACTS_ITEM.ACKNOWLEDGEMENTS, "
+                                + "ABSTRACTS_ITEM.CORRESPONDENCE, "
+                                + "ABSTRACT_KEY_WORDS.KEYWORDS "
+                                + "from abs_affiliation_name , abstract_affiliation , ABSTRACTS_ITEM , ABSTRACT_AUTHOR , AUTHORS_ABSTRACT, ABSTRACT_KEY_WORDS  "
+                                + "where ABSTRACTS_ITEM._id = ABSTRACT_KEY_WORDS._id "
+                                + "and ABSTRACTS_ITEM._id = AUTHORS_ABSTRACT.ABSTRACTSITEM_ID "
+                                + "and ABSTRACT_AUTHOR._id = AUTHORS_ABSTRACT.ABSTRACTAUTHOR_ID "
+                                + "and abs_affiliation_name._id = abstracts_item._id "
+                                + "and (ABSTRACT_KEY_WORDS.KEYWORDS like '%" + string + "%' "
+                                + "or ABSTRACTS_ITEM.TITLE like '%" + string
+                                + "%' or ABSTRACT_AUTHOR.NAME like '%" + string
+                                + "%')GROUP BY ABSTRACTS_ITEM._id", null);
 
         return cursor;
     }

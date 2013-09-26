@@ -1,3 +1,7 @@
+/**
+ * Copyright (c) 2013, Yasir Adnan <adnan.ayon@gmail.com>
+ * License: BSD-3 (See LICENSE)
+ */
 
 package org.g_node.abstracts;
 
@@ -23,9 +27,6 @@ import android.widget.EditText;
 import android.widget.FilterQueryProvider;
 import android.widget.ListView;
 
-/**
- * @author Adnan
- */
 public class AbstractActivity extends Activity {
 
     AbstractCursorAdapter cursorAdapter;
