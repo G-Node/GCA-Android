@@ -1,4 +1,5 @@
 /**
+ * Code edited for adding Search for Affiliations as well by Shumail Mohyuddin	
  * Copyright (c) 2013, Yasir Adnan <adnan.ayon@gmail.com>
  * License: BSD-3 (See LICENSE)
  */
@@ -305,6 +306,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                                 + "and (ABSTRACT_KEY_WORDS.KEYWORDS like '%" + string + "%' "
                                 + "or ABSTRACTS_ITEM.TITLE like '%" + string
                                 + "%' or ABSTRACT_AUTHOR.NAME like '%" + string
+                                + "%' or ABS_AFFILIATION_NAME.af_name like '%" + string
                                 + "%')GROUP BY ABSTRACTS_ITEM._id", null);
 
         return cursor;
