@@ -1,0 +1,30 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" >
+
+    <item
+        android:id="@+id/next"
+        android:enabled="true"
+        android:orderInCategory="2"
+        android:title="@string/next"
+        android:visible="true"
+        app:showAsAction="always">
+    </item>
+    <item
+        android:id="@+id/Previous"
+        android:enabled="true"
+        android:orderInCategory="1"
+        android:title="@string/prev"
+        android:visible="true"
+        app:showAsAction="always">
+    </item>
+    <item
+        android:id="@+id/star"
+        android:enabled="true"
+        android:icon="@drawable/ic_action_important"
+        android:orderInCategory="0"
+        android:title="Star"
+        android:visible="true"
+        app:showAsAction="always">
+    </item>
+
+</menu>

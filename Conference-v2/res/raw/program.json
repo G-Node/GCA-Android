@@ -1,0 +1,421 @@
+[
+    {
+        "date": "12.09.2012",
+        "events": 
+        [
+            {
+                "time": "12:30",
+                "type": "food",
+                "title": "Lunch",
+                "type_id" : "3"
+            },
+            {
+                "time": "14:00",
+                "type": "session",
+                 "type_id" : "0",
+                "title": "Opening and Presentation of the Awards",
+                "events": [
+                    {
+                        "time": "14:00",
+                        "type": "general",
+                        "type_id" : "2",
+                        "title": "Opening (Local Organizers)"
+                    },
+                    {
+                        "time": "14:05",
+                        "type": "general",
+                        "type_id" : "2",
+                        "title": "Welcome TUM and LMU"
+                    },
+                    {
+                        "time": "14:15",
+                        "type": "general",
+                        "type_id" : "1",
+                        "title": "Welcome BMBF and Presentation of the Bernstein Award 2012",
+                        "info": "Welcome BMBF and Presentation of the Bernstein Award 2012.Since 2006, the Federal Ministry of Education and Research (Bundesministerium für Bildung und Forschung, BMBF) annually confers the Bernstein Award for Computational Neuroscience to one excellent junior researcher with outstanding ideas for new research projects. The award is endowed with up to 1.25 million € over the course of five years and is one of the most highly remunerated research awards for young scientists in Germany. With this funding, the awardees can establish their own, independent research group at a research institution of their choice in Germany.\nThe Bernstein Awardee 2012 will be publicly announced within the opening session of the Bernstein Conference 2012, on September 12, 2012. Following the award ceremony, the awardee will present his/her current research and future projects to be conducted with the support of the award."
+                    },
+                    {
+                        "time": "14:25",
+                        "type": "general",
+                        "type_id" : "2",
+                        "title": "Lecture by the Bernstein Award Winner"
+                    },
+                    {
+                        "time": "15:05",
+                        "type": "general",
+                        "type_id" : "1",
+                        "title": "Presentation of the Braitenberg Award 2012",
+                        "info": "Valentino Braitenberg Award – The Golden Neuron 2012.In honor of Prof. Valentino Braitenberg, one of the founding directors of the Max Planck Institute for Biological Cybernetics in Tübingen, and pioneer of Computational Neuroscience in Germany, who sadly passed away in September 2011, the Valentino Braitenberg Award was created. It will be awarded for the first time during the opening session of the Bernstein Conference on September 12, 2012.The prize recognizes outstanding researchers who have provided major contributions to our understanding of brain function and who significantly influenced brain research or are expected to do so. Especially considered are studies of the microscopic properties of brain architecture and their functional implications.The Award 2012 will go to Prof. Moshe Abeles from the Gonda Multidisciplinary Brain Research Center at Bar Ilan University, Israel."
+                    },
+                    {
+                        "time": "15:10",
+                        "type": "general",
+                        "type_id" : "2",
+                        "title": "Lecture by the Braitenberg Award Winner"
+                    }
+                ]
+            },
+            {
+                "time": "15:50",
+                "type": "food",
+                "title": "Coffee",
+                "type_id" : "3"
+            },
+            {
+                "time": "16:20",
+                "type": "session",
+                "type_id" : "0",
+                "title": "Neural Circuits: Structure and Signals",
+                "events": [
+                    {
+                        "time": "16:20",
+                        "type": "talk",
+                        "type_id" : "2",
+                        "title": "Structural Neurobiology: Tools for the dense reconstruction of neuronal circuits",
+                        "person": "Moritz Helmstaedter (MPI Neurobiology Munich)",
+                        "id": 65537
+                    },
+                    {
+                        "time": "17:00",
+                        "type": "talk",
+                        "type_id" : "2",
+                        "title": "How local is the local field potential?",
+                        "person": "Gaute Einevoll (Aas)",
+                        "id": 65538
+                    }
+                ]
+            },
+            {
+                "time": "19:00",
+                "type": "dinner",
+                "type_id" : "2",
+                "title": "Joint INCF/BCCN Conference Dinner",
+                "location": "Münchner Künstlerhaus",
+                "info": "Joint INCF / Bernstein Conference Dinner.The Joint Dinner will provide ample opportunities to meet with participants from both the INCF Congress and the Bernstein Conference at the “Münchner Künstlerhaus”. For more than a century, the ’Munich House of Artists’ has served as a gorgeous meeting place for artists and the general society alike. Participants will learn more about this historical gem over a welcome drink, after which a buffet-style dinner and beverages will be served. We look forward to a nice late-summer evening and stimulating discussions.The Joint INCF/Bernstein Conference Dinner will take place at the “Münchner Künstlerhaus am Lenbachplatz”, Wednesday, Sep 12, starting 19:00. It will take ca. 15 min from the conference venue to get there. Directions: From ‘Max-Weber-Platz’ take U4 (direction ’Westendstrasse’) or U5 (di- rection ’Laimer Platz’) to ’Karlsplatz (Stachus)’. Follow the signs ’Ausgang Lenbachplatz/ Karl- splatz/ Maxburgstraße’. Outside, turn right and cross the street. You will find the Künstlerhaus at the corner of Maxburgstrasse and Herzog-Max- Strasse. Take the entrance on Maxburgstrasse into the courtyard of the Künstlerhaus."
+            }
+        ]
+    },
+    {
+        "date": "13.09.2012",
+        "events": [
+            {
+                "time": "9:00",
+                "type": "session",
+                "type_id" : "0",
+                "title": "Coding",
+                "events": [
+                    {
+                        "time": "9:00",
+                        "type": "talk",
+                        "type_id" : "2",
+                        "title": "Not noisy, just wrong: the computational and neural cause of behavioral variability",
+                        "person": "Alexandre Pouget (Geneva)",
+                        "id": 65539
+                    },
+                    {
+                        "time": "9:40",
+                        "type": "talk",
+                        "type_id" : "2",
+                        "title": "Neural computations underlying optimal multisensory cue integration",
+                        "person": "Greg DeAngelis (Rochester)",
+                        "id": 65540
+                    }
+                ]
+            },
+            {
+                "time": "10:20",
+                "type": "food",
+                "type_id" : "3",
+                "title": "Coffee"
+            },
+            {
+                "time": "10:50",
+                "type": "session",
+                "type_id" : "0",
+                "title": "Vision",
+                "events": [
+                    {
+                        "time": "10:50",
+                        "type": "talk",
+                        "type_id" : "2",
+                        "title": "Wakefulness, locomotion, and navigation: A look from visual cortex",
+                        "person": "Matteo Carandini (UCL London)",
+                        "fontid": "31641",
+                        "id": 65541
+                    },
+                    {
+                        "time": "11:30",
+                        "type": "talk",
+                         "type_id" : "2",
+                        "title": "Temporal constraints for visual object recognition:  neurophysiological, behavioural and computational approaches",
+                        "person": "Gabriel Kreiman (Harvard)",
+                        "id": 65542
+                    },
+                    {
+                        "time": "12:10",
+                        "type": "talk",
+                         "type_id" : "2",
+                        "title": "A sketch of a theory of visual cortex",
+                        "person": "Tomaso Poggio (MIT)",
+                        "id": 66543
+                    }
+                ]
+            },
+            {
+                "time": "12:50",
+                "type": "food",
+                 "type_id" : "3",
+                "title": "Lunch"
+            },
+            {
+                "time": "14:00",
+                "type": "session",
+                 "type_id" : "0",
+                "title": "Network Dynamics and Representations",
+                "events": [
+                    {
+                        "time": "14:00",
+                        "type": "talk",
+                        "type_id" : "2",
+                        "title": "Neurogrid: Simulating a million neurons and a billion synapses in real-time with sixteen neuromorphic chips",
+                        "person": "Kwabena Boahen (Stanford)",
+                        "frontid": "31702",
+                        "id": 65544
+                    },
+                    {
+                        "time": "14:40",
+                        "type": "talk",
+                        "type_id" : "2",
+                        "title": "Overcomplete representations and neuronal circuit dynamics",
+                        "person": "Shaul Druckmann (Janelia Farm)",
+                        "id": 65545
+                    }
+                ]
+            },
+            {
+                "time": "15:20",
+                "type": "food",
+                "type_id" : "3",
+                "title": "Coffee"
+            },
+            {
+                "time": "15:50",
+                "type": "session",
+                "type_id" : "0",
+                "title": "Learning",
+                "events": [
+                    {
+                        "time": "15:50",
+                        "type": "talk",
+                        "type_id" : "2",
+                        "title": "Statistical and causal learning",
+                        "person": "Bernhard Schölkopf (MPI Tübingen)",
+                        "frontid": "31665",
+                        "id": 65546
+                    },
+                    {
+                        "time": "16:30",
+                        "type": "talk",
+                         "type_id" : "2",
+                        "title": "Internal models: of ferret and men",
+                        "person": "Máté Lengyel (Cambridge)",
+                        "id": 65547
+                    },
+                    {
+                        "time": "17:10",
+                        "type": "talk",
+                         "type_id" : "2",
+                        "title": "Self-organization and unsupervised learning in recurrent networks",
+                        "person": "Jochen Triesch (FIAS Frankfurt)",
+                        "fontid": "31654",
+                        "id": 65548
+                    }
+                ]
+            },
+            {
+                "time": "18:00",
+                "type": "poster",
+                 "type_id" : "2",
+                "title": "Poster Session I"
+            },
+            {
+                "time": "20:00",
+                "type": "talk",
+                 "type_id" : "0",
+                "title": "Public evening lecture",
+                "events": [
+                    {
+                        "time": "20:00",
+                        "type": "lecture",
+                         "type_id" : "1",
+                        "title": "Intelligenz ohne Hirnrinde? Wie Vögel einen eigenen Weg zu kognitiven Höchstleistungen gefunden haben",
+                        "person": "Onur Güntürkün (Bochum)",
+                        "info": "Public Bernstein Lecture 2012.The Bernstein Conference touches upon many themes that are of high public interest, from fundamental questions about brain and mind to clinical and biotechnological applications of neuroscience research. To foster the exchange between computational neuroscientists and the interested public and to provide an overview about a specific research topic that is at the focus of research within the Bernstein Network, the Public Bernstein Lecture has been introduced in 2012. To reach a broad audience, the lecture will be given in German, at 20:00 on September 13, 2012.This year’s speaker is Prof. Onur Güntürkün from Ruhr-Universität Bochum. He will talk about the astounding cognitive abilities of birds. Complex thinking without a cortex - certainly a thought-provoking topic."
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "date":"14.09.2012",
+        "events":[
+        {
+            "time":"9:00",
+            "type":"session",
+            "type_id" : "0",
+            "title":"Desicion",
+            "events":
+            [
+                 {
+                    "time":"9:00",
+                    "type":"talk",
+                    "type_id" : "2",
+                    "title":"Conversion of sensory signals into perceptual decisions",
+                    "person":"Ranulfo Romo(UNAM Mexico City)",
+                    "id":65549
+                },
+                {
+                    "time":"9:40",
+                    "type":"talk",
+                    "type_id" : "2",
+                    "title":"Origins and use of uncertainty in decision-making",
+                    "person": "Zach Mainen (Lisbon)",
+                    "id":65550
+                }
+            ]
+        },
+        {
+            "time":"10:20",
+            "type":"food",
+             "type_id" : "3",
+            "title":"Coffee"
+
+        },
+        {
+             "time":"10:50",
+            "type":"session",
+             "type_id" : "0",
+            "title":"Disease and Cure",
+            "events":
+            [
+                {
+                    "time":"10:50",
+                    "type":"talk",
+                     "type_id" : "2",
+                    "title":"Explaining away emotions. How simple decision dysfunctions might perturb complex cognitions",
+                    "person": "Quentin Huys",
+                    "id":65551
+                },
+                {
+                    "time":"11:30",
+                    "type":"talk",
+                     "type_id" : "2",
+                    "title":"Spatial processing and map learning in the entorhino-hippocampal circuit",
+                    "person":"Stefan Leutgeb(UCSD)",
+                    "id":65552
+                },
+                {
+                    "time":"12:10",
+                    "type":"talk",
+                    "type_id" : "2",
+                    "title":"Improving hearing with cochlear implants in reverberant spaces",
+                    "person":"Bernhard Seeber(Nottingham/TUMunich)",
+                    "frontid":"31625",
+                    "id":65553
+                }
+            ]
+        },
+        {
+             "time":"12:50",
+            "type":"food",
+             "type_id" : "3",
+            "title":"Lunch"
+        },
+        {
+             "time":"14:00",
+            "type":"session",
+             "type_id" : "0",
+            "title":"Cognition",
+            "events":
+            [
+                {
+                    "time":"14:00",
+                    "type":"talk",
+                    "title":"The Left and the Right Side of Visual Discriminations",
+                    "person": "Onur Güntürkün (Bochum)",
+                    "type_id" : "2",
+                    "id":65554
+                },
+                {
+                    "time":"14:40",
+                    "type":"talk",
+                    "title": "Biological precursors of the number sense",
+                    "person":"Andreas Nieder(Tübingen)",
+                     "type_id" : "2",
+                    "id":65555
+                }
+            ]
+        },
+        {
+             "time":"15:20",
+            "type":"food",
+             "type_id" : "3",
+            "title":"Coffee"
+        },
+        {
+            "time":"15:50",
+            "type":"session",
+             "type_id" : "0",
+            "title":"Prizes and Global Perspectives",
+            "events":
+            [
+                {
+                    "time":"15:50",
+                    "type":"general",
+                    "title":"Bernstein Movie Award 2012",
+                    "type_id" : "1",
+                    "info":"Neurovision Film Contest\nAnd what have you discovered?\nEvery scientist knows the awkward feeling when other people want to know what they work on. Scientific advances catch people’s interests, but the complex and abstract details often make communication between scientists and non-scientists difficult. Even more so in areas like neuroscience, where most study subjects, such as cells or brain activity, are invisible and thus not intuitively understood by people outside the field.\nTo help tackle this problem, for the second time, the Bernstein Conference called for entries to the NeuroVision Film Contest. Without using many words, complex ideas can be transported via strong images or animations. We want to encourage scientists to use their imagination and to express their ideas about neuroscience in this medium. Likewise, we want to raise interest in our field in young filmmakers.\nConditions for entering the contest were straightforward and left possibilities for many different approaches. Importantly, no professional filmmakers were allowed to participate. Submitted films had to deal with neuroscience - subject and way of presentation were up to the filmmakers. Accordingly, the variety of films we received was large, ranging from science fiction to informational science coverage and to an almost poetic tribute.\nYou want to see the masterpieces? Throughout the conference, all films will be shown in rotation in lecture hall B. You can enjoy other scientists views on their work and also vote for your favourite film there. A ballot for voting is included in the conference bag. Also, a jury composed of media professionals as well as scientists – Markus A. Dahlem (TU Berlin), Robin Greene (On3), Armin Olbrich (Bayrischer Rundfunk), Florian Rau (HU Berlin), Markus Schulte von Drach (Süddeutsche Zeitung) – will elect winners. With the help of our sponsors Assign Group, Elisabeth und Helmut Uhl Stiftung, and Innovations- &amp; Gründerzentrum Biotechnologie, we are able to award two prices: One for the most creative handling of the topic and one for the greatest informational value. Awards will be given during the official award session on the last day of the conference."
+                },
+                {
+                    "time":"16:05",
+                    "type":"general",
+                    "title":"Brains-for-BrainsAward2012",
+                    "type_id" : "1",
+                    "info":"Brains-for-Brains Award 2012.\nThe Brains for Brains Awards are an initiative of the Bernstein Association for Computational Neuroscience, supported by external donors. This year's awards were kindly supported by Brain Products GmbH, Gilching, Multi Channel Systems MCS GmbH, Reutlingen, and neuroConn GmbH, Ilmenau.\nThe Brains for Brains Award honors outstanding young international scientists who achieved a peer-reviewed scientific publication before starting their doctoral thesis. It consists of a 500 € cash prize and a travel fellowship of up to 2.000 € covering their trip to Germany, participation in the Bernstein Conference and two individually planned visits to selected Computational Neuroscience labs in Germany. During the award ceremony, the awardees give a brief teaser about their posters that will be presented during the subsequent poster sessions.\nThis year’s awards will go to Jeffrey Seely (Columbia University, New York, USA) and Michael Eickenberg (INRIA-Parietal, Neurospin, Saclay, France)."
+
+                },
+                {
+                   "time":"16:20",
+                   "type":"presentation",
+                   "type_id" : "2",
+                   "title":"Big data from small data: A deep survey of neuroscience data via the Neuroscience Information Framework",
+                   "person":"Maryann Martone(UCSD)",
+                   "id":65556
+                },
+                {
+                   "time":"17:00",
+                   "type":"presentation",
+                    "type_id" : "2",
+                   "title":"Project Mind Scope",
+                   "person":"Christof Koch(Allen Institute,Seattle)",
+                   "frontid":"31556",
+                   "id":65557
+                },
+                {
+                   "time":"17:40",
+                    "type":"general",
+                    "type_id" : "2",
+                   "title":"Outlook(Organizers of Bernstein Conferences 2012 and 2013)"
+                }
+            ]
+        },
+        {
+            "time":"18:00",
+            "type":"poster",
+            "type_id" : "2",
+            "title":"PosterSessionII"
+        }
+   ]
+}
+
+]

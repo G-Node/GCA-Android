@@ -1,0 +1,46 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <RelativeLayout
+        android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:background="@drawable/gradient_bg_day"
+		android:padding="15dip">
+		<!-- Leftend Arrow -->
+	    <ImageButton
+	        android:id="@+id/ibLeft"
+	        android:contentDescription="@string/app_name"
+	        android:layout_width="25dip"
+	        android:layout_height="25dip"
+	        android:layout_alignParentLeft="true"
+	        android:layout_centerVertical="true"
+	        android:background="@drawable/arrow_selector_left" />
+    	<TextView 
+		 	android:id="@+id/tvDay"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_centerHorizontal="true"
+			android:textSize="24sp"
+			android:textColor="#FFFFFF" />
+    	<!-- Rightend Arrow -->
+	    <ImageButton
+	        android:id="@+id/ibRight"
+	        android:contentDescription="@string/app_name"
+	        android:layout_width="25dip"
+	        android:layout_height="25dip"
+	        android:layout_alignParentRight="true"
+	        android:layout_centerVertical="true"
+	        android:background="@drawable/arrow_selector_right" />
+    </RelativeLayout>
+    
+    <ListView
+      android:id="@+id/list"
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content"
+      android:divider="#b5b5b5"
+      android:dividerHeight="1dp"
+      android:listSelector="@drawable/list_selector">
+    </ListView>
+</LinearLayout>
