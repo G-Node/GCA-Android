@@ -137,7 +137,7 @@ public class FeedXmlPullParser {
 			e.printStackTrace();
 		}
 
-		// return the populated list.
+		// the parsed list is ready for returning here.
 		return newsItemsList;
 	}
 }
