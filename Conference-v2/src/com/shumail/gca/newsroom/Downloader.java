@@ -1,4 +1,4 @@
-package com.shumail.newsroom;
+package com.shumail.gca.newsroom;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;

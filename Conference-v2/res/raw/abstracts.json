@@ -1,0 +1,138 @@
+[
+    {
+        "acknowledgements": "BMBF Grant XXX",
+        "affiliations": [
+            {
+                "address": "Munich",
+                "country": "Germany",
+                "department": "Bio II",
+                "position": 0,
+                "section": "LMU",
+                "uuid": "00428269-8b95-40c9-b6ee-a53187bbc164"
+            }, 
+			{
+                "address": "Munich",
+                "country": "Germany",
+                "department": "Bio II",
+                "position": 0,
+                "section": "LMU",
+                "uuid": "00428269-8b95-40c9-b6ee-a53187bbc164"
+            }
+        ],
+        "authors": [
+            {
+                "affiliations": [
+                    0,
+					1
+                ],
+                "firstName": "Christian",
+                "lastName": "Garbers",
+                "mail": "garbers@bio.lmu.de",
+                "middleName": null,
+                "position": 0,
+                "uuid": "7c4f46b9-c608-4520-9923-d4b5d8c72384"
+            },
+            {
+                "affiliations": [
+                    0
+                ],
+                "firstName": "Christian",
+                "lastName": "Kellner",
+                "mail": null,
+                "middleName": "J",
+                "position": 1,
+                "uuid": "c9d353b1-d4e0-4a07-9bdb-18257c60c769"
+            }
+        ],
+        "conference": "67daf3c4-09b9-4b2e-ae88-aae0fc22007d",
+        "conflictOfInterest": null,
+        "doi": null,
+        "figures": [],
+        "isTalk": false,
+        "mtime": "2014-05-21T15:03:12.766Z",
+        "owners": "http://localhost:9000/api/abstracts/1bb88633-a2b7-4b44-b111-73513376c4af/owners",
+        "reasonForTalk": null,
+        "references": [
+            {
+                "doi": null,
+                "link": null,
+                "text": "Johann Wolfgang Goethe. Gedenkausgabe der Werke, Briefe und Gespr\u00e4che. Band 1\u201324 und Erg.-B\u00e4nde 1\u20133, Band 16, Z\u00fcrich 1948 ff, S. 7-9,767-768.",
+                "uuid": "bdd3f7c4-ff67-4ead-abe9-616619b6bd77"
+            }, 
+			
+			{
+                "doi": null,
+                "link": null,
+                "text": "asdasd. Gedenkausgabe der Werke, Briefe und Gespr\u00e4che. Band 1\u201324 und Erg.-B\u00e4nde 1\u20133, Band 16, Z\u00fcrich 1948 ff, S. 7-9,767-768.",
+                "uuid": "bdd3f7c4-ff67-4ead-abe9-616619b6bd77"
+            }
+        ],
+        "sortId": 0,
+        "state": "Submitted",
+        "stateLog": "http://localhost:9000/api/abstracts/1bb88633-a2b7-4b44-b111-73513376c4af/stateLog",
+        "text": "The Allen Institute for Brain Science is engaged in a ten year project to study the principles by which information is encoded, transformed and represented in the mammalian cerebral cortex and related structures. The goals of MindScope are to provide a quantitative taxonomy of cell types and their interconnections",
+        "title": "First Example Abstract",
+        "topic": "topic one",
+        "uuid": "1bb88633-a2b7-4b44-b111-73513376c4af"
+    },
+	{
+        "acknowledgements": "Supported by the Graduate School of Systemic Neurosciences and the Bernstein Center for Computational Neuroscience Munich.\n",
+        "affiliations": [
+            {
+                "address": "Munich",
+                "country": "Germany",
+                "department": "Bio II",
+                "position": 0,
+                "section": "LMU",
+                "uuid": "00428269-8b95-40c9-b6ee-a53187bbc164"
+            }
+        ],
+        "authors": [
+            {
+                "affiliations": [
+                    0
+                ],
+                "firstName": "Christian",
+                "lastName": "Garbers",
+                "mail": "garbers@bio.lmu.de",
+                "middleName": null,
+                "position": 0,
+                "uuid": "7c4f46b9-c608-4520-9923-d4b5d8c72384"
+            },
+            {
+                "affiliations": [
+                    0
+                ],
+                "firstName": "Christian",
+                "lastName": "Kellner",
+                "mail": null,
+                "middleName": "J",
+                "position": 1,
+                "uuid": "c9d353b1-d4e0-4a07-9bdb-18257c60c769"
+            }
+        ],
+        "conference": "67daf3c4-09b9-4b2e-ae88-aae0fc22007d",
+        "conflictOfInterest": null,
+        "doi": null,
+        "figures": [],
+        "isTalk": false,
+        "mtime": "2014-05-21T15:03:12.766Z",
+        "owners": "http://localhost:9000/api/abstracts/1bb88633-a2b7-4b44-b111-73513376c4af/owners",
+        "reasonForTalk": null,
+        "references": [
+            {
+                "doi": null,
+                "link": null,
+                "text": "Johann Wolfgang Goethe. Gedenkausgabe der Werke, Briefe und Gespr\u00e4che. Band 1\u201324 und Erg.-B\u00e4nde 1\u20133, Band 16, Z\u00fcrich 1948 ff, S. 7-9,767-768.",
+                "uuid": "bdd3f7c4-ff67-4ead-abe9-616619b6bd77"
+            }
+        ],
+        "sortId": 0,
+        "state": "Submitted",
+        "stateLog": "http://localhost:9000/api/abstracts/1bb88633-a2b7-4b44-b111-73513376c4af/stateLog",
+        "text": "Synchronous activity among neurons in a population is usually associated with the occurrence of specific features in the common stimulus. We investigate the synchrony code in the context of the encoding of electrosensory information in the weakly electric fish Apteronotus leptorhynchus.\n\nMiddleton et al., 2009 showed that the extraction of synchronous spikes from a population of input neurons shifts the range of encoded signals to higher frequencies and thus can be understood as a way to separarte coding channels. In the electrosensory world this separation roughly matches the",
+        "title": "Abstracts example shit second",
+        "topic": "topic two",
+        "uuid": "1bb88633-a2b7-4b44-b111-73513376c4af"
+    }
+]

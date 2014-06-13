@@ -1,4 +1,4 @@
-package com.shumail.newsroom;
+package com.shumail.gca.newsroom;
 
 import java.io.FileNotFoundException;
 
@@ -19,7 +19,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
-public class MainActivity extends Activity {
+public class NewsRoomActivity extends Activity {
 
 	private NewsAdapter mAdapter;
 	private ListView newsItems;
@@ -29,7 +29,7 @@ public class MainActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		Log.i("incf", "OnCreate()");
-		setContentView(R.layout.activity_main);
+		setContentView(R.layout.activity_newsroom);
 
 		//Get reference to our ListView
 		newsItems = (ListView)findViewById(R.id.sitesList);
@@ -57,7 +57,7 @@ public class MainActivity extends Activity {
 			SitesDownloadTask download = new SitesDownloadTask();
 			download.execute();
 		}else{
-			mAdapter = new NewsAdapter(getApplicationContext(), -1, FeedXmlPullParser.getNewsItemFromFile(MainActivity.this));
+			mAdapter = new NewsAdapter(getApplicationContext(), -1, FeedXmlPullParser.getNewsItemFromFile(NewsRoomActivity.this));
 			newsItems.setAdapter(mAdapter);
 		}
 
@@ -77,7 +77,7 @@ public class MainActivity extends Activity {
 	 */
 	private class SitesDownloadTask extends AsyncTask<Void, Void, Void>{
 		
-		private ProgressDialog Dialog = new ProgressDialog(MainActivity.this);
+		private ProgressDialog Dialog = new ProgressDialog(NewsRoomActivity.this);
 		
 		@Override
 		protected void onPreExecute()
@@ -103,7 +103,7 @@ public class MainActivity extends Activity {
 		protected void onPostExecute(Void result){
 			Dialog.dismiss();
 			//setup our Adapter and set it to the ListView.
-			mAdapter = new NewsAdapter(MainActivity.this, -1, FeedXmlPullParser.getNewsItemFromFile(MainActivity.this));
+			mAdapter = new NewsAdapter(NewsRoomActivity.this, -1, FeedXmlPullParser.getNewsItemFromFile(NewsRoomActivity.this));
 			newsItems.setAdapter(mAdapter);
 			Log.i("incf-rss", "adapter size = "+ mAdapter.getCount());
 		}
