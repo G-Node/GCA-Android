@@ -9,21 +9,12 @@
                 "position": 0,
                 "section": "LMU",
                 "uuid": "00428269-8b95-40c9-b6ee-a53187bbc164"
-            }, 
-			{
-                "address": "Munich",
-                "country": "Germany",
-                "department": "Bio II",
-                "position": 0,
-                "section": "LMU",
-                "uuid": "00428269-8b95-40c9-b6ee-a53187bbc164"
             }
         ],
         "authors": [
             {
                 "affiliations": [
-                    0,
-					1
+                    0
                 ],
                 "firstName": "Christian",
                 "lastName": "Garbers",
@@ -58,37 +49,324 @@
                 "link": null,
                 "text": "Johann Wolfgang Goethe. Gedenkausgabe der Werke, Briefe und Gespr\u00e4che. Band 1\u201324 und Erg.-B\u00e4nde 1\u20133, Band 16, Z\u00fcrich 1948 ff, S. 7-9,767-768.",
                 "uuid": "bdd3f7c4-ff67-4ead-abe9-616619b6bd77"
-            }, 
-			
-			{
-                "doi": null,
-                "link": null,
-                "text": "asdasd. Gedenkausgabe der Werke, Briefe und Gespr\u00e4che. Band 1\u201324 und Erg.-B\u00e4nde 1\u20133, Band 16, Z\u00fcrich 1948 ff, S. 7-9,767-768.",
-                "uuid": "bdd3f7c4-ff67-4ead-abe9-616619b6bd77"
             }
         ],
         "sortId": 0,
         "state": "Submitted",
         "stateLog": "http://localhost:9000/api/abstracts/1bb88633-a2b7-4b44-b111-73513376c4af/stateLog",
-        "text": "The Allen Institute for Brain Science is engaged in a ten year project to study the principles by which information is encoded, transformed and represented in the mammalian cerebral cortex and related structures. The goals of MindScope are to provide a quantitative taxonomy of cell types and their interconnections",
-        "title": "First Example Abstract",
+        "text": "Die Retina befindet sich, je nachdem Licht oder Finsternis auf sie wirken, in zwei verschiedenen Zust\u00e4nden, die einander v\u00f6llig entgegenstehen.[27]\nWenn wir die Augen innerhalb eines ganz finstern Raums offen halten, so wird uns ein gewisser Mangel empfindbar. Das Organ ist sich selbst \u00fcberlassen, es zieht sich in sich selbst zur\u00fcck, ihm fehlt jene reizende befriedigende Ber\u00fchrung, durch die es mit der \u00e4u\u00dfern Welt verbunden und zum Ganzen wird.\nWenden wir das Auge gegen eine stark beleuchtete wei\u00dfe Fl\u00e4che, so wird es geblendet und f\u00fcr eine Zeit lang unf\u00e4hig, m\u00e4\u00dfig beleuchtete Gegenst\u00e4nde zu unterscheiden.\nJeder dieser \u00e4u\u00dfersten Zust\u00e4nde nimmt auf die angegebene Weise die ganze Netzhaut ein, und insofern werden wir nur einen derselben auf einmal gewahr. Dort fanden wir das Organ in der h\u00f6chsten Abspannung und Empf\u00e4nglichkeit, hier in der \u00e4u\u00dfersten \u00dcberspannung und Unempfindlichkeit.",
+        "title": "An cool example Abstract",
         "topic": "topic one",
         "uuid": "1bb88633-a2b7-4b44-b111-73513376c4af"
     },
-	{
-        "acknowledgements": "Supported by the Graduate School of Systemic Neurosciences and the Bernstein Center for Computational Neuroscience Munich.\n",
+    {
+        "acknowledgements": "acc one",
         "affiliations": [
+            {
+                "address": "New York",
+                "country": "USA",
+                "department": "Department One",
+                "position": 0,
+                "section": "Institute Foo",
+                "uuid": "5e648182-95d6-4597-9ff7-944183f90d1d"
+            },
             {
                 "address": "Munich",
                 "country": "Germany",
-                "department": "Bio II",
-                "position": 0,
-                "section": "LMU",
-                "uuid": "00428269-8b95-40c9-b6ee-a53187bbc164"
+                "department": "New Department",
+                "position": 1,
+                "section": "Institute Bar",
+                "uuid": "7fc5f231-0ce3-40ed-be58-52901efa9146"
             }
         ],
         "authors": [
             {
+                "affiliations": [],
+                "firstName": "One",
+                "lastName": "Name",
+                "mail": "one@foo.bar",
+                "middleName": "Middle",
+                "position": 0,
+                "uuid": "912a74ab-3669-444e-9bad-e75367478951"
+            },
+            {
+                "affiliations": [],
+                "firstName": "Two",
+                "lastName": "Name",
+                "mail": "two@foo.bar",
+                "middleName": "Middle",
+                "position": 1,
+                "uuid": "c4b656b8-477c-43e3-83b4-21a6b678edb0"
+            },
+            {
+                "affiliations": [],
+                "firstName": "The",
+                "lastName": "Name",
+                "mail": "three@foo.bar",
+                "middleName": null,
+                "position": 2,
+                "uuid": "d527f098-e493-4977-bb37-93311b2bfde7"
+            }
+        ],
+        "conference": "67daf3c4-09b9-4b2e-ae88-aae0fc22007d",
+        "conflictOfInterest": "coi one",
+        "doi": "doi one",
+        "figures": [
+            {
+                "URL": "http://localhost:9000/api/figures/ea200993-8633-4f2f-9fda-b78286d5b420/image",
+                "caption": "This is the super nice figure one.",
+                "position": 0,
+                "uuid": "ea200993-8633-4f2f-9fda-b78286d5b420"
+            }
+        ],
+        "isTalk": true,
+        "mtime": "2014-05-21T14:57:44.172Z",
+        "owners": "http://localhost:9000/api/abstracts/493aa24d-6b48-4283-9643-619d371dbafc/owners",
+        "reasonForTalk": "very good reason",
+        "references": [
+            {
+                "doi": null,
+                "link": null,
+                "text": "Authorone et al. Title One",
+                "uuid": "e76f1281-98a2-4759-bbbe-e49309ec9abb"
+            },
+            {
+                "doi": null,
+                "link": null,
+                "text": "Authortwo et al. Title Two",
+                "uuid": "e3f440dc-4433-476a-aac9-8c882fd733fc"
+            },
+            {
+                "doi": null,
+                "link": null,
+                "text": "Authortwo et al. Title Three",
+                "uuid": "ee0eb167-384a-4919-a8e3-d6d1a4a8a692"
+            }
+        ],
+        "sortId": 65537,
+        "state": "Published",
+        "stateLog": "http://localhost:9000/api/abstracts/493aa24d-6b48-4283-9643-619d371dbafc/stateLog",
+        "text": "text one",
+        "title": "Title of abstract one",
+        "topic": "topic one",
+        "uuid": "493aa24d-6b48-4283-9643-619d371dbafc"
+    },
+    {
+        "acknowledgements": "acc two",
+        "affiliations": [
+            {
+                "address": "Seatlle",
+                "country": "USA",
+                "department": "Department II",
+                "position": 0,
+                "section": "Institute of Bla",
+                "uuid": "e1488328-fe95-4354-89c9-6b53bfe009ea"
+            },
+            {
+                "address": "Berlin",
+                "country": "Germany",
+                "department": "Other Department",
+                "position": 1,
+                "section": "Institute III",
+                "uuid": "eaffb947-4cc2-4593-9265-116682a04486"
+            }
+        ],
+        "authors": [
+            {
+                "affiliations": [],
+                "firstName": "Four",
+                "lastName": "Name",
+                "mail": "four@foo.bar",
+                "middleName": "Middle",
+                "position": 0,
+                "uuid": "5ce65881-063a-43eb-9389-add968b6fd0e"
+            },
+            {
+                "affiliations": [],
+                "firstName": "Five",
+                "lastName": "Name",
+                "mail": "five@foo.bar",
+                "middleName": "Middle",
+                "position": 1,
+                "uuid": "56fdfb12-d943-4c5f-8656-36938b867a55"
+            },
+            {
+                "affiliations": [],
+                "firstName": "The",
+                "lastName": "Name",
+                "mail": "six@foo.bar",
+                "middleName": null,
+                "position": 2,
+                "uuid": "a5084b12-063f-4aaa-900c-3855b635855c"
+            }
+        ],
+        "conference": "67daf3c4-09b9-4b2e-ae88-aae0fc22007d",
+        "conflictOfInterest": "coi two",
+        "doi": "doi two",
+        "figures": [
+            {
+                "URL": "http://localhost:9000/api/figures/859eb654-dcd2-4e85-9565-381d19fc759a/image",
+                "caption": "This is the super nice figure two.",
+                "position": 1,
+                "uuid": "859eb654-dcd2-4e85-9565-381d19fc759a"
+            }
+        ],
+        "isTalk": true,
+        "mtime": "2014-05-21T14:57:44.172Z",
+        "owners": "http://localhost:9000/api/abstracts/9a8ebfce-426a-465b-a9be-211eecf001a7/owners",
+        "reasonForTalk": "very good reason",
+        "references": [
+            {
+                "doi": null,
+                "link": null,
+                "text": "Authorfour et al. Title Four",
+                "uuid": "e88e379e-0b6b-4580-8102-6ce490fb6d48"
+            },
+            {
+                "doi": null,
+                "link": null,
+                "text": "Authorfive et al. Title Five",
+                "uuid": "989870a1-3012-4cf5-902d-6887dfab097a"
+            },
+            {
+                "doi": null,
+                "link": null,
+                "text": "Authorfive et al. Title Six",
+                "uuid": "37412c2f-b9e1-44b3-8f4b-b51b6628bd63"
+            }
+        ],
+        "sortId": 65538,
+        "state": "InReview",
+        "stateLog": "http://localhost:9000/api/abstracts/9a8ebfce-426a-465b-a9be-211eecf001a7/stateLog",
+        "text": "text two",
+        "title": "Title of abstract two",
+        "topic": "topic two",
+        "uuid": "9a8ebfce-426a-465b-a9be-211eecf001a7"
+    },
+    {
+        "acknowledgements": "acc three",
+        "affiliations": [
+            {
+                "address": "Los Angeles",
+                "country": "USA",
+                "department": "Department IV",
+                "position": 0,
+                "section": "Another Institute",
+                "uuid": "c17c95b6-fe78-47c1-ab53-1a32c264a45a"
+            },
+            {
+                "address": "Frankfurt",
+                "country": "Germany",
+                "department": "My Department",
+                "position": 1,
+                "section": "Institute of Nothing",
+                "uuid": "cd63a990-d632-4324-9050-ee62c978ef12"
+            }
+        ],
+        "authors": [
+            {
+                "affiliations": [],
+                "firstName": "Four",
+                "lastName": "Name",
+                "mail": "four@foo.bar",
+                "middleName": "Middle",
+                "position": 0,
+                "uuid": "0a72aca9-2096-42b4-ae62-29de173511cf"
+            },
+            {
+                "affiliations": [],
+                "firstName": "Five",
+                "lastName": "Name",
+                "mail": "five@foo.bar",
+                "middleName": "Middle",
+                "position": 1,
+                "uuid": "3f685c1e-6ef8-4035-b2c8-8c1b45f5d646"
+            },
+            {
+                "affiliations": [],
+                "firstName": "The",
+                "lastName": "Name",
+                "mail": "six@foo.bar",
+                "middleName": null,
+                "position": 2,
+                "uuid": "fa51d679-71b9-424d-a621-21dac555a538"
+            }
+        ],
+        "conference": "67daf3c4-09b9-4b2e-ae88-aae0fc22007d",
+        "conflictOfInterest": "coi three",
+        "doi": "doi three",
+        "figures": [
+            {
+                "URL": "http://localhost:9000/api/figures/4b20c80e-277c-46cb-8bd2-5cd20ce4e565/image",
+                "caption": "This is the super nice figure three.",
+                "position": 2,
+                "uuid": "4b20c80e-277c-46cb-8bd2-5cd20ce4e565"
+            }
+        ],
+        "isTalk": false,
+        "mtime": "2014-05-21T14:57:44.172Z",
+        "owners": "http://localhost:9000/api/abstracts/ffff8a2d-913c-455d-962d-c27dc15ec816/owners",
+        "reasonForTalk": null,
+        "references": [
+            {
+                "doi": null,
+                "link": null,
+                "text": "Authorfour et al. Title Six",
+                "uuid": "d67602a6-425b-442d-89c8-d39af9f394d4"
+            },
+            {
+                "doi": null,
+                "link": null,
+                "text": "Authorfive et al. Title Seven",
+                "uuid": "bd295728-e5b1-43be-8ee5-9566276f4fa7"
+            },
+            {
+                "doi": null,
+                "link": null,
+                "text": "Authorfive et al. Title Nine",
+                "uuid": "73725316-2f45-4d84-b0e9-d593ac62234f"
+            }
+        ],
+        "sortId": 131073,
+        "state": "InPreparation",
+        "stateLog": "http://localhost:9000/api/abstracts/ffff8a2d-913c-455d-962d-c27dc15ec816/stateLog",
+        "text": "text three",
+        "title": "Title of abstract three",
+        "topic": "topic three",
+        "uuid": "ffff8a2d-913c-455d-962d-c27dc15ec816"
+    },
+    {
+        "acknowledgements": "acc four",
+        "affiliations": [
+            {
+                "address": "Frankfurt",
+                "country": "Germany",
+                "department": "My Department",
+                "position": 0,
+                "section": "Institute of Nothing",
+                "uuid": "796ef323-bf69-484d-963e-43623c2ca14f"
+            }
+        ],
+        "authors": [
+            {
+                "affiliations": [],
+                "firstName": "Four",
+                "lastName": "Name",
+                "mail": "four@foo.bar",
+                "middleName": "Middle",
+                "position": 0,
+                "uuid": "26debc4b-cbf3-4770-8c3a-0be44e179df2"
+            },
+            {
+                "affiliations": [],
+                "firstName": "Five",
+                "lastName": "Name",
+                "mail": "five@foo.bar",
+                "middleName": "Middle",
+                "position": 1,
+                "uuid": "1c03ac00-0380-4fef-84ca-473645a9ae49"
+            },
+	    {
                 "affiliations": [
                     0
                 ],
@@ -96,43 +374,53 @@
                 "lastName": "Garbers",
                 "mail": "garbers@bio.lmu.de",
                 "middleName": null,
-                "position": 0,
+                "position": 3,
                 "uuid": "7c4f46b9-c608-4520-9923-d4b5d8c72384"
             },
             {
-                "affiliations": [
-                    0
-                ],
-                "firstName": "Christian",
-                "lastName": "Kellner",
-                "mail": null,
-                "middleName": "J",
-                "position": 1,
-                "uuid": "c9d353b1-d4e0-4a07-9bdb-18257c60c769"
+                "affiliations": [],
+                "firstName": "The",
+                "lastName": "Name",
+                "mail": "six@foo.bar",
+                "middleName": null,
+                "position": 2,
+                "uuid": "eafa6b2b-8bc9-4374-b978-273cebc78b12"
             }
         ],
         "conference": "67daf3c4-09b9-4b2e-ae88-aae0fc22007d",
-        "conflictOfInterest": null,
-        "doi": null,
+        "conflictOfInterest": "coi four",
+        "doi": "doi four",
         "figures": [],
         "isTalk": false,
-        "mtime": "2014-05-21T15:03:12.766Z",
-        "owners": "http://localhost:9000/api/abstracts/1bb88633-a2b7-4b44-b111-73513376c4af/owners",
+        "mtime": "2014-05-21T14:57:44.172Z",
+        "owners": "http://localhost:9000/api/abstracts/86738a09-1b27-43a4-95b1-01355d737b60/owners",
         "reasonForTalk": null,
         "references": [
             {
                 "doi": null,
                 "link": null,
-                "text": "Johann Wolfgang Goethe. Gedenkausgabe der Werke, Briefe und Gespr\u00e4che. Band 1\u201324 und Erg.-B\u00e4nde 1\u20133, Band 16, Z\u00fcrich 1948 ff, S. 7-9,767-768.",
-                "uuid": "bdd3f7c4-ff67-4ead-abe9-616619b6bd77"
+                "text": "Authorfour et al. Title Six",
+                "uuid": "2938e904-61c4-4049-8741-d3d4d0d5a4ce"
+            },
+            {
+                "doi": null,
+                "link": null,
+                "text": "Authorfive et al. Title Seven",
+                "uuid": "ff9088ac-a875-4aa0-b8be-18c3716c0dba"
+            },
+            {
+                "doi": null,
+                "link": null,
+                "text": "Authorfive et al. Title Nine",
+                "uuid": "4a34dcb3-8b16-4604-adeb-8c0973bf82bf"
             }
         ],
-        "sortId": 0,
-        "state": "Submitted",
-        "stateLog": "http://localhost:9000/api/abstracts/1bb88633-a2b7-4b44-b111-73513376c4af/stateLog",
-        "text": "Synchronous activity among neurons in a population is usually associated with the occurrence of specific features in the common stimulus. We investigate the synchrony code in the context of the encoding of electrosensory information in the weakly electric fish Apteronotus leptorhynchus.\n\nMiddleton et al., 2009 showed that the extraction of synchronous spikes from a population of input neurons shifts the range of encoded signals to higher frequencies and thus can be understood as a way to separarte coding channels. In the electrosensory world this separation roughly matches the",
-        "title": "Abstracts example shit second",
-        "topic": "topic two",
-        "uuid": "1bb88633-a2b7-4b44-b111-73513376c4af"
+        "sortId": 131074,
+        "state": "InPreparation",
+        "stateLog": "http://localhost:9000/api/abstracts/86738a09-1b27-43a4-95b1-01355d737b60/stateLog",
+        "text": "text four",
+        "title": "Title of abstract four",
+        "topic": "topic four",
+        "uuid": "86738a09-1b27-43a4-95b1-01355d737b60"
     }
 ]

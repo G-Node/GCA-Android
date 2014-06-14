@@ -7,15 +7,19 @@ import java.io.InputStream;
 import com.shumail.gca.utils.JSONReader;
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import com.shumail.newsroom.R;
 
+import android.R.bool;
 import android.os.Bundle;
 import android.app.Activity;
 import android.util.Log;
 import android.view.Menu;
 
 public class Abstracts extends Activity {
+	
+	String gTag = "GCA-Abstracts";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +28,77 @@ public class Abstracts extends Activity {
 		try {
 			//get json file from raw 
 			InputStream inStream = this.getResources().openRawResource(R.raw.abstracts);
-			JSONArray jsonArray = JSONReader.parseStream(inStream);
+			JSONArray jsonArray = JSONReader.parseStream(inStream);	//read json file and put in JSONarray
+			
+			 for (int index = 0; index < jsonArray.length(); index++) {
+				 
+				 //get first abstract item object
+				 JSONObject jsonObject = jsonArray.getJSONObject(index);
+				 Log.i(gTag, "json got: " + jsonObject);	             
+				 
+				 //iterate over the object got, to extract required keys and values
+				 
+				 //abstract UUID
+				 String abs_uuid = jsonObject.getString("uuid");
+	             Log.i(gTag, "abstract uuid: " + abs_uuid);
+	             
+				 //abstract topic
+				 String topic = jsonObject.getString("topic");
+	             Log.i(gTag, "topic: " + topic);
+	             
+	             //abstract title
+	             String title = jsonObject.getString("title");
+	             Log.i(gTag, "title: " + title);
+	             
+	             //abstract text
+	             String text = jsonObject.getString("text");
+	             Log.i(gTag, "text: " + text);
+	             
+	             //abstract state
+	             String state = jsonObject.getString("state");
+	             Log.i(gTag, "state: " + state);
+	             
+	             //abstract sortID
+	             int sortID = jsonObject.getInt("sortId");
+	             Log.i(gTag, "sortID: " + sortID);
+	             
+	             //abstract reasonForTalk
+	             String reasonForTalk = jsonObject.getString("reasonForTalk");
+	             Log.i(gTag, "reasonForTalk: " + reasonForTalk);
+	             
+	             //abstract mtime
+	             String mtime = jsonObject.getString("mtime");
+	             Log.i(gTag, "mtime: " + mtime);
+	             
+	             //abstract isTalk
+	             Boolean isTalk = jsonObject.getBoolean("isTalk");
+	             String abstractType;
+	             Log.i(gTag, "isTalk: " + isTalk);
+	             
+	             if(!isTalk) {	//if isTalk is false, then type is poster
+	            	abstractType = "poster"; 
+	             } else {
+	            	 abstractType = "Talk";
+	             }
+	             Log.i(gTag, "abstract type: " + abstractType);
+	             
+	             //abstract DOI
+	             String doi = jsonObject.getString("doi");
+	             Log.i(gTag, "doi: " + doi);
+	             
+	             //Abstract conflictOfInterest
+	             String coi = jsonObject.getString("conflictOfInterest");
+	             Log.i(gTag, "conflictOfInterest: " + coi);
+	             
+	             //Abstract acknowledgements
+	             String acknowledgements = jsonObject.getString("acknowledgements");
+	             Log.i(gTag, "acknowledgements: " + acknowledgements);
+	             
+	             
+				 
+			 }
+			
+			
 		
 		} catch (FileNotFoundException e) {
             Log.e("jsonFile", "file not found");
