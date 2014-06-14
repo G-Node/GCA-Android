@@ -128,7 +128,47 @@ public class Abstracts extends Activity {
 	            	 
 	             }//loop end for each affiliation object
 				 
-			 }
+	             //Abstract Authors JSONarray
+	             JSONArray abs_authors_Array = jsonObject.getJSONArray("authors");
+	             
+	             //now iterate over authors array to extract each author information
+	             for (int j=0; j<abs_authors_Array.length(); j++) {
+	            	 //get author object
+	            	 
+	            	 JSONObject authorJSONObject = abs_authors_Array.getJSONObject(j);
+	            	
+	            	 //author UUID
+	            	 String author_uuid = authorJSONObject.getString("uuid");
+	            	 Log.i(gTag, "auth uuid: " + author_uuid);
+	            	 
+	            	 //author first Name
+	            	 String author_fName = authorJSONObject.getString("firstName");
+	            	 Log.i(gTag, "auth first name: " + author_fName);
+	            	 
+	            	 //author last Name
+	            	 String author_lName = authorJSONObject.getString("lastName");
+	            	 Log.i(gTag, "auth last name: " + author_lName);
+	            	 
+	            	 //author middle Name
+	            	 String author_middleName = authorJSONObject.getString("middleName");
+	            	 Log.i(gTag, "auth middle name: " + author_middleName);
+	            	 
+	            	 //author mail
+	            	 String author_mail = authorJSONObject.getString("mail");
+	            	 Log.i(gTag, "auth mail: " + author_mail);
+	            	 
+	            	 //author position (unique for each abstract)
+	            	 int author_position = authorJSONObject.getInt("position");
+	            	 Log.i(gTag, "auth position: " + author_position);
+	            	 
+	            	 //now get affiliations of a particular author for an abstract for example
+	            	 // "affiliations": [0,1]
+	            	 JSONArray authorAffiliationsArray = authorJSONObject.getJSONArray("affiliations");
+	            	 Log.i(gTag, "auth affiliations: " + authorAffiliationsArray.toString());
+	             
+	             } //end authors array loop
+	             
+			 }//end abstracts array parsing
 			
 			
 		
