@@ -94,7 +94,39 @@ public class Abstracts extends Activity {
 	             String acknowledgements = jsonObject.getString("acknowledgements");
 	             Log.i(gTag, "acknowledgements: " + acknowledgements);
 	             
+	             //Abstract affiliations JSONarray
+	             JSONArray abs_Aff_Array = jsonObject.getJSONArray("affiliations");
 	             
+	             //now iterate over this array for extracting each affiliation 
+	             for (int j=0; j<abs_Aff_Array.length(); j++) {
+	            	 //get affiliation object
+	            	 JSONObject affiliationJSONObject = abs_Aff_Array.getJSONObject(j);
+	            	 
+	            	 //affiliation UUID
+	            	 String affiliation_uuid = affiliationJSONObject.getString("uuid");
+	            	 Log.i(gTag, "aff uuid: " + affiliation_uuid);
+	            	 
+	            	 //affiliation section
+	            	 String affiliation_section = affiliationJSONObject.getString("section");
+	            	 Log.i(gTag, "aff section: " + affiliation_section);
+	            	 
+	            	 //affiliation department
+	            	 String affiliation_department = affiliationJSONObject.getString("department");
+	            	 Log.i(gTag, "aff department: " + affiliation_department);
+	            	 
+	            	 //affiliation country
+	            	 String affiliation_country = affiliationJSONObject.getString("country");
+	            	 Log.i(gTag, "aff country: " + affiliation_country);
+	            	 
+	            	 //affiliation address
+	            	 String affiliation_address = affiliationJSONObject.getString("address");
+	            	 Log.i(gTag, "aff address: " + affiliation_address);
+	            	 
+	            	 //affiliation position - (different for each abstract)
+	            	 int affiliation_position = affiliationJSONObject.getInt("position");
+	            	 Log.i(gTag, "aff position: " + affiliation_position);
+	            	 
+	             }//loop end for each affiliation object
 				 
 			 }
 			
