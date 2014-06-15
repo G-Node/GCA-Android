@@ -168,9 +168,34 @@ public class Abstracts extends Activity {
 	             
 	             } //end authors array loop
 	             
+	             
+	             //Abstract references JSONarray
+	             JSONArray abs_References_Array = jsonObject.getJSONArray("references");
+	             
+	             //now iterate over this array for extracting each reference
+	             for (int j=0; j<abs_References_Array.length(); j++) {
+	            	 //get reference object
+	            	 JSONObject referenceJSONObject = abs_References_Array.getJSONObject(j);
+	            	 
+	            	 //Reference UUID
+	            	 String reference_uuid = referenceJSONObject.getString("uuid");
+	            	 Log.i(gTag, "ref uuid: " + reference_uuid);
+	            	 
+	            	 //Reference text
+	            	 String reference_text = referenceJSONObject.getString("text");
+	            	 Log.i(gTag, "ref text: " + reference_text);
+	            	 
+	            	 //Reference link
+	            	 String reference_link = referenceJSONObject.getString("link");
+	            	 Log.i(gTag, "ref link: " + reference_link);
+	            	 
+	            	 //Reference DOI
+	            	 String reference_doi = referenceJSONObject.getString("doi");
+	            	 Log.i(gTag, "ref DOI: " + reference_doi);
+	             	             
+	             }//end references array loop
+	             
 			 }//end abstracts array parsing
-			
-			
 		
 		} catch (FileNotFoundException e) {
             Log.e("jsonFile", "file not found");
