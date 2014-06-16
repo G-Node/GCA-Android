@@ -194,6 +194,10 @@ public class Abstracts extends Activity {
 		            	 //Add authors data in AUTHORS_DETAILS table 
 		            	 dbHelper.addAuthors(author_uuid, author_fName, author_middleName, author_lName, author_mail);
 	            	 }
+	            	 
+	            	 //Add position, affiliation data in ABSTRACT_AUTHOR_POSITION_AFFILIATION table
+	            	 dbHelper.addInABSTRACT_AUTHOR_POSITION_AFFILIATION(abs_uuid, author_uuid, author_position, authorAffiliationsArray.toString() );
+	            	 
 	             } //end authors array loop
 	             
 	             

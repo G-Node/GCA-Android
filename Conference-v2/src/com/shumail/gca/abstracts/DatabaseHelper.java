@@ -24,6 +24,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     
     public long items_id;
     public long author_id;
+    public long abs_auth_pos_id;
     
     /*
      * Tables Name
@@ -32,6 +33,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String TABLE_ABSTRACT_DETAILS = "ABSTRACT_DETAILS";
     
     public static final String TABLE_AUTHORS_DETAILS = "AUTHORS_DETAILS";
+    
+    public static final String TABLE_ABSTRACT_AUTHOR_POSITION_AFFILIATION = "ABSTRACT_AUTHOR_POSITION_AFFILIATION";
     
     
     /*
@@ -48,6 +51,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String CREATE_AUTHORS_DETAILS = "CREATE TABLE IF NOT EXISTS AUTHORS_DETAILS"
             + "( AUTHOR_UUID VARCHAR PRIMARY KEY, AUTHOR_FIRST_NAME TEXT NOT NULL, AUTHOR_MIDDLE_NAME TEXT, " 
     		+ "AUTHOR_LAST_NAME TEXT NOT NULL, AUTHOR_EMAIL TEXT NOT NULL);";
+    
+    public static final String CREATE_ABSTRACT_AUTHOR_POSITION_AFFILIATION = "CREATE TABLE IF NOT EXISTS ABSTRACT_AUTHOR_POSITION_AFFILIATION"
+            + "( ABSTRACT_UUID VARCHAR NOT NULL, AUTHOR_UUID VARCHAR NOT NULL, " 
+    		+ "AUTHOR_POSITION INTEGER NOT NULL, AUTHOR_AFFILIATION VARCHAR NOT NULL);";
     
 
     
@@ -66,6 +73,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
          */
 		database.execSQL(CREATE_ABSTRACT_DETAILS);
 		database.execSQL(CREATE_AUTHORS_DETAILS);
+		database.execSQL(CREATE_ABSTRACT_AUTHOR_POSITION_AFFILIATION);
 		
 	}
 
@@ -75,6 +83,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		
 		database.execSQL("DROP TABLE IF EXISTS" + TABLE_ABSTRACT_DETAILS);
 		database.execSQL("DROP TABLE IF EXISTS" + TABLE_AUTHORS_DETAILS);
+		database.execSQL("DROP TABLE IF EXISTS" + TABLE_ABSTRACT_AUTHOR_POSITION_AFFILIATION);
+		
 		
 		onCreate(database);
 		
@@ -147,7 +157,25 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	
         author_id = database.insert(TABLE_AUTHORS_DETAILS, null, value);
         Log.i(gtag, "Author inserted - id: " + author_id);
-	}
+	
+	}	//end addAuthors function
+	
+	//function for adding data in ABSTRACT_AUTHOR_POSITION_AFFILIATION table
+	public void addInABSTRACT_AUTHOR_POSITION_AFFILIATION(String abstractUUID, String authorUUID, int authorPosition, String authorAffiliation) {
+		ContentValues values = new ContentValues();
+		
+		values.put("ABSTRACT_UUID", abstractUUID);
+		
+		values.put("AUTHOR_UUID", authorUUID);
+		
+		values.put("AUTHOR_POSITION", authorPosition);
+		
+		values.put("AUTHOR_AFFILIATION", authorAffiliation);
+		
+		abs_auth_pos_id = database.insert(TABLE_ABSTRACT_AUTHOR_POSITION_AFFILIATION, null, values);
+		Log.i(gtag, "Abstract UUID, Auth uuid, position, affiliation inserted: " + abs_auth_pos_id);
+		
+	}	//end addInABSTRACT_AUTHOR_POSITION_AFFILIATION function
 	
 	//function to check if author already exists in directory
 	public boolean AuthorExists(String UUID) {
