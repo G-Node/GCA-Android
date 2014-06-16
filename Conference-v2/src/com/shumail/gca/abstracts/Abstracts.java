@@ -189,7 +189,11 @@ public class Abstracts extends Activity {
 	            	 // "affiliations": [0,1]
 	            	 JSONArray authorAffiliationsArray = authorJSONObject.getJSONArray("affiliations");
 	            	 Log.i(gTag, "auth affiliations: " + authorAffiliationsArray.toString());
-	             
+	            	 
+	            	 if (!dbHelper.AuthorExists(author_uuid)) {
+		            	 //Add authors data in AUTHORS_DETAILS table 
+		            	 dbHelper.addAuthors(author_uuid, author_fName, author_middleName, author_lName, author_mail);
+	            	 }
 	             } //end authors array loop
 	             
 	             

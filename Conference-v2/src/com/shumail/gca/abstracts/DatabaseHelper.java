@@ -6,12 +6,15 @@ package com.shumail.gca.abstracts;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
+	
+	private String gtag = "GCA-DB";
 	
 	private static String Database_Name = "gca.db";
 
@@ -20,12 +23,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static SQLiteDatabase database;
     
     public long items_id;
+    public long author_id;
     
     /*
      * Tables Name
      */
     
     public static final String TABLE_ABSTRACT_DETAILS = "ABSTRACT_DETAILS";
+    
+    public static final String TABLE_AUTHORS_DETAILS = "AUTHORS_DETAILS";
     
     
     /*
@@ -38,6 +44,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + "STATE TEXT NOT NULL, SORTID INTEGER NOT NULL, REASONFORTALK TEXT," 
             + "MTIME TEXT NOT NULL, TYPE TEXT NOT NULL, DOI TEXT, COI TEXT,"
             + "ACKNOWLEDGEMENTS TEXT );";
+    
+    public static final String CREATE_AUTHORS_DETAILS = "CREATE TABLE IF NOT EXISTS AUTHORS_DETAILS"
+            + "( AUTHOR_UUID VARCHAR PRIMARY KEY, AUTHOR_FIRST_NAME TEXT NOT NULL, AUTHOR_MIDDLE_NAME TEXT, " 
+    		+ "AUTHOR_LAST_NAME TEXT NOT NULL, AUTHOR_EMAIL TEXT NOT NULL);";
+    
 
     
     
@@ -54,6 +65,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
          * Creating Tables
          */
 		database.execSQL(CREATE_ABSTRACT_DETAILS);
+		database.execSQL(CREATE_AUTHORS_DETAILS);
 		
 	}
 
@@ -62,6 +74,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		// TODO Auto-generated method stub
 		
 		database.execSQL("DROP TABLE IF EXISTS" + TABLE_ABSTRACT_DETAILS);
+		database.execSQL("DROP TABLE IF EXISTS" + TABLE_AUTHORS_DETAILS);
+		
 		onCreate(database);
 		
 	}
@@ -82,6 +96,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         database.close();
     }
 	
+	//function for adding data in ABSTRACT_DETAILS table
 	public void addItems(String uuid, String topic, String Title, String text, String STATE, int SortID,
             String reasonsForTalk, String mtime, String type, String DOI, String COI, String acknowledgements) {
         ContentValues cd = new ContentValues();
@@ -111,8 +126,38 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cd.put("ACKNOWLEDGEMENTS", acknowledgements);
 
         items_id = database.insert(TABLE_ABSTRACT_DETAILS, null, cd);
-        Log.i("GNODE", Long.toString(items_id));
+        Log.i(gtag, Long.toString(items_id));
 
+    }	//end function addItems
+	
+	//function for adding data in AUTHORS_DETAILS table
+	public void addAuthors(String uuid, String first_Name, String middle_Name, String last_Name, String author_mail) {
+		
+		ContentValues value = new ContentValues();
+
+        value.put("AUTHOR_UUID", uuid);
+        
+        value.put("AUTHOR_FIRST_NAME", first_Name);
+        
+        value.put("AUTHOR_MIDDLE_NAME", middle_Name);
+        
+        value.put("AUTHOR_LAST_NAME", last_Name);
+        
+        value.put("AUTHOR_EMAIL", author_mail);
+	
+        author_id = database.insert(TABLE_AUTHORS_DETAILS, null, value);
+        Log.i(gtag, "Author inserted - id: " + author_id);
+	}
+	
+	//function to check if author already exists in directory
+	public boolean AuthorExists(String UUID) {
+        Cursor cursor = database.rawQuery("select 1 from " + TABLE_AUTHORS_DETAILS + "where AUTHOR_UUID like '%" + UUID
+                + "%'", null);
+        boolean exists = (cursor.getCount() > 0);
+        cursor.close();
+        return exists;
     }
+	
+	
 
 }
