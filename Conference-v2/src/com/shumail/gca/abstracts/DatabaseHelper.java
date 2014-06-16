@@ -18,7 +18,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	
 	private static String Database_Name = "gca.db";
 
-    private static int Database_Version = 2;
+    private static int Database_Version = 3;
 
     public static SQLiteDatabase database;
     
@@ -136,7 +136,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cd.put("ACKNOWLEDGEMENTS", acknowledgements);
 
         items_id = database.insert(TABLE_ABSTRACT_DETAILS, null, cd);
-        Log.i(gtag, Long.toString(items_id));
+        Log.i(gtag, "Abstract item insert id return: " + Long.toString(items_id));
 
     }	//end function addItems
 	
@@ -179,7 +179,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	
 	//function to check if author already exists in directory
 	public boolean AuthorExists(String UUID) {
-        Cursor cursor = database.rawQuery("select 1 from " + TABLE_AUTHORS_DETAILS + "where AUTHOR_UUID like '%" + UUID
+        Cursor cursor = database.rawQuery("select 1 from " + TABLE_AUTHORS_DETAILS + " where AUTHOR_UUID like '%" + UUID
                 + "%'", null);
         boolean exists = (cursor.getCount() > 0);
         cursor.close();
