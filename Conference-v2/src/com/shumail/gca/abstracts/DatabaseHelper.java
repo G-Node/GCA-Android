@@ -18,7 +18,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	
 	private static String Database_Name = "gca.db";
 
-    private static int Database_Version = 1;
+    private static int Database_Version = 2;
 
     public static SQLiteDatabase database;
     
@@ -81,9 +81,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	public void onUpgrade(SQLiteDatabase database, int oldVersion, int newVersion) {
 		// TODO Auto-generated method stub
 		
-		database.execSQL("DROP TABLE IF EXISTS" + TABLE_ABSTRACT_DETAILS);
-		database.execSQL("DROP TABLE IF EXISTS" + TABLE_AUTHORS_DETAILS);
-		database.execSQL("DROP TABLE IF EXISTS" + TABLE_ABSTRACT_AUTHOR_POSITION_AFFILIATION);
+		database.execSQL("DROP TABLE IF EXISTS " + TABLE_ABSTRACT_DETAILS);
+		database.execSQL("DROP TABLE IF EXISTS " + TABLE_AUTHORS_DETAILS);
+		database.execSQL("DROP TABLE IF EXISTS " + TABLE_ABSTRACT_AUTHOR_POSITION_AFFILIATION);
 		
 		
 		onCreate(database);
