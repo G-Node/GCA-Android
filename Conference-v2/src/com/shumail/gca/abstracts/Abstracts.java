@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import com.shumail.gca.utils.JSONReader;
+
+import com.shumail.gca.abstracts.DatabaseHelper;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -20,11 +22,29 @@ import android.view.Menu;
 public class Abstracts extends Activity {
 	
 	String gTag = "GCA-Abstracts";
+	DatabaseHelper dbHelper = new DatabaseHelper(this);
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_abstracts);
+		
+		/*
+         * Get Writable Database
+         */
+        dbHelper.open();
+		
+        //call jsonParse function to get data from abstracts JSON file
+        jsonParse();
+		
+		/*
+         * Close Writable Database
+         */
+        dbHelper.close();
+        
+	}//end onCreate
+	
+	private void jsonParse() {
 		try {
 			//get json file from raw 
 			InputStream inStream = this.getResources().openRawResource(R.raw.abstracts);
@@ -93,6 +113,10 @@ public class Abstracts extends Activity {
 	             //Abstract acknowledgements
 	             String acknowledgements = jsonObject.getString("acknowledgements");
 	             Log.i(gTag, "acknowledgements: " + acknowledgements);
+	             
+	             //Table insertion
+	             //add the basic abstract json keys into abstract_details table
+	             dbHelper.addItems(abs_uuid, topic, title, text, state, sortID, reasonForTalk, mtime, abstractType, doi, coi, acknowledgements);
 	             
 	             //Abstract affiliations JSONarray
 	             JSONArray abs_Aff_Array = jsonObject.getJSONArray("affiliations");
@@ -204,7 +228,8 @@ public class Abstracts extends Activity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-	}
+	
+	}	//end json parseing
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
