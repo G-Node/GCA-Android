@@ -19,11 +19,13 @@ import android.app.Activity;
 import android.database.Cursor;
 import android.util.Log;
 import android.view.Menu;
+import android.widget.ListView;
 
 public class Abstracts extends Activity {
 	
 	Cursor cursor;
 	public static int cursorCount;
+	ListView listView;
 	
 	String gTag = "GCA-Abstracts";
 	DatabaseHelper dbHelper = new DatabaseHelper(this);
@@ -32,6 +34,7 @@ public class Abstracts extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_abstracts);
+		listView = (ListView)findViewById(R.id.AbsListView);
 		
 		/*
          * Get Writable Database
