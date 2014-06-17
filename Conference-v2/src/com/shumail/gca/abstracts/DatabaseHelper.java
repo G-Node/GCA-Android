@@ -18,7 +18,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	
 	private static String Database_Name = "gca.db";
 
-    private static int Database_Version = 3;
+    private static int Database_Version = 4;
 
     public static SQLiteDatabase database;
     

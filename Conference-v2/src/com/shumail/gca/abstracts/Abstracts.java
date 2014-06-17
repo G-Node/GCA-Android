@@ -16,10 +16,14 @@ import com.shumail.newsroom.R;
 import android.R.bool;
 import android.os.Bundle;
 import android.app.Activity;
+import android.database.Cursor;
 import android.util.Log;
 import android.view.Menu;
 
 public class Abstracts extends Activity {
+	
+	Cursor cursor;
+	public static int cursorCount;
 	
 	String gTag = "GCA-Abstracts";
 	DatabaseHelper dbHelper = new DatabaseHelper(this);
@@ -34,8 +38,40 @@ public class Abstracts extends Activity {
          */
         dbHelper.open();
 		
-        //call jsonParse function to get data from abstracts JSON file
-        jsonParse();
+        //check if DB already has data
+        
+        /*
+         * SQL Query to get data
+         */
+        String query = "SELECT * FROM ABSTRACT_DETAILS;";
+        /*
+         * Query execution
+         */
+        cursor = DatabaseHelper.database.rawQuery(query, null);
+        int a = cursor.getCount();
+        Log.i(gTag, "data got rows : " + Integer.toString(a));
+        /*
+         * Get number of data to check whether database has any data or it's
+         * empty
+         */
+        cursorCount = cursor.getCount();
+        /*
+         * Check If Database is empty.
+         */
+        if (cursorCount <= 0) {
+
+           //call jsonParse function to get data from abstracts JSON file
+            jsonParse();
+            /*
+             * Query execution
+             */
+            cursor = DatabaseHelper.database.rawQuery(query, null);
+            /*
+             * get number of cursor data
+             */
+            cursorCount = cursor.getCount();
+        }
+        
 		
 		/*
          * Close Writable Database
@@ -46,6 +82,7 @@ public class Abstracts extends Activity {
 	
 	private void jsonParse() {
 		try {
+			Log.i(gTag, "in JSON PARSING FUNCTION");
 			//get json file from raw 
 			InputStream inStream = this.getResources().openRawResource(R.raw.abstracts);
 			JSONArray jsonArray = JSONReader.parseStream(inStream);	//read json file and put in JSONarray
