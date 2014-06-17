@@ -7,6 +7,8 @@ import java.io.InputStream;
 import com.shumail.gca.utils.JSONReader;
 
 import com.shumail.gca.abstracts.DatabaseHelper;
+
+import com.shumail.gca.abstracts.AbstractCursorAdapter;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -26,6 +28,7 @@ public class Abstracts extends Activity {
 	Cursor cursor;
 	public static int cursorCount;
 	ListView listView;
+	AbstractCursorAdapter cursorAdapter;
 	
 	String gTag = "GCA-Abstracts";
 	DatabaseHelper dbHelper = new DatabaseHelper(this);
@@ -75,6 +78,13 @@ public class Abstracts extends Activity {
             cursorCount = cursor.getCount();
         }
         
+        //set listview
+        cursorAdapter = new AbstractCursorAdapter(this, cursor);
+        listView.setAdapter(cursorAdapter);
+        listView.setTextFilterEnabled(true);
+        listView.setFastScrollEnabled(true);
+        
+        //implement here onClickListener for list item
 		
 		/*
          * Close Writable Database
