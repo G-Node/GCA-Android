@@ -54,7 +54,7 @@ public class Abstracts extends Activity {
         /*
          * SQL Query to get data
          */
-        String query = "SELECT * FROM ABSTRACT_DETAILS;";
+        String query = "SELECT UUID AS _id , TOPIC, TITLE, ABSRACT_TEXT, STATE, SORTID, REASONFORTALK, MTIME, TYPE,DOI, COI, ACKNOWLEDGEMENTS FROM ABSTRACT_DETAILS;";
         /*
          * Query execution
          */
