@@ -102,7 +102,7 @@ public class Abstracts extends Activity {
                     Log.i(gTag, "ABSTRACT_TEXT => " + Text);
                     String Title = cursor.getString(cursor.getColumnIndexOrThrow("TITLE"));
                     String Topic = cursor.getString(cursor.getColumnIndexOrThrow("TOPIC"));
-                    String value = cursor.getString(cursor.getColumnIndexOrThrow("UUID"));
+                    String value = cursor.getString(cursor.getColumnIndexOrThrow("_id"));
                     String afName = "TEST AF"; //cursor.getString(cursor.getColumnIndexOrThrow("AF_NAME"));
                     String email = "test@foo.bar"; //cursor.getString(cursor.getColumnIndexOrThrow("CORRESPONDENCE"));
                     String refs = "REF 1 Test"; // cursor.getString(cursor.getColumnIndexOrThrow("REFS"));
