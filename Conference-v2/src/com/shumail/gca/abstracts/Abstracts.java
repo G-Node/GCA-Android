@@ -131,7 +131,7 @@ public class Abstracts extends Activity {
 		/*
          * Close Writable Database
          */
-        dbHelper.close();
+        //dbHelper.close();
         
 	}//end onCreate
 	

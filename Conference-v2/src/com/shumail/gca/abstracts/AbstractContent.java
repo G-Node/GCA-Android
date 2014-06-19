@@ -19,6 +19,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 //import android.support.v7.app.ActionBarActivity;
 import android.text.Html;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -27,6 +28,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class AbstractContent extends Activity {
+	
+	String gtag = "GCA-Abs-Con";
 
     TextView content;
 
@@ -94,19 +97,23 @@ public class AbstractContent extends Activity {
 //        authorName();
         
         //test set author name
-        authorNames.setText("Author Names here");
+        //authorNames.setText("Author Names here");
         
         //Query for getting author name, email, position, affiliation data for the particular Abstract
         String authorSQLQuery = "SELECT DISTINCT AUTHORS_DETAILS.AUTHOR_FIRST_NAME, " +
-	        						"AUTHOR_MIDDLE_NAME, AUTHOR_LAST_NAME, AUTHOR_EMAIL, " +
-	        						"ABSTRACT_AUTHOR_POSITION_AFFILIATION.AUTHOR_AFFILIATION, " +
-	        						"ABSTRACT_AUTHOR_POSITION_AFFILIATION.AUTHOR_POSITION " +
+        								"AUTHOR_MIDDLE_NAME, AUTHOR_LAST_NAME, AUTHOR_EMAIL, " +
+        								"ABSTRACT_AUTHOR_POSITION_AFFILIATION.AUTHOR_AFFILIATION, " +
+        								"ABSTRACT_AUTHOR_POSITION_AFFILIATION.AUTHOR_POSITION " +
         						"FROM AUTHORS_DETAILS JOIN ABSTRACT_AUTHOR_POSITION_AFFILIATION USING (AUTHOR_UUID) " +
         						"WHERE AUTHORS_DETAILS.AUTHOR_UUID IN " +
-        								"(SELECT AUTHOR_UUID FROM ABSTRACT_AUTHOR_POSITION_AFFILIATION WHERE ABSTRACT_UUID = '" + value + "');"; 
+        								"(SELECT AUTHOR_UUID FROM ABSTRACT_AUTHOR_POSITION_AFFILIATION WHERE ABSTRACT_UUID = '" + value + "') " +
+        							"AND ABSTRACT_AUTHOR_POSITION_AFFILIATION.AUTHOR_POSITION IN " +
+        								"(SELECT AUTHOR_POSITION FROM ABSTRACT_AUTHOR_POSITION_AFFILIATION WHERE ABSTRACT_UUID = '" + value + "') " +
+        						"ORDER BY AUTHOR_POSITION ASC;"; 
         
+       
         //Test set affiliations name
-        afName.setText("AFF name 1 \nAFF Name 2");
+        //afName.setText("AFF name 1 \nAFF Name 2");
         
 //        /*
 //         * Get Affiliation Name for associate abstracts
