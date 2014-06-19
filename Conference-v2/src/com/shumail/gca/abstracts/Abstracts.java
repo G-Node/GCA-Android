@@ -106,7 +106,7 @@ public class Abstracts extends Activity {
                     String afName = "TEST AF"; //cursor.getString(cursor.getColumnIndexOrThrow("AF_NAME"));
                     String email = "test@foo.bar"; //cursor.getString(cursor.getColumnIndexOrThrow("CORRESPONDENCE"));
                     String refs = "REF 1 Test"; // cursor.getString(cursor.getColumnIndexOrThrow("REFS"));
-                    String acknowledgements = "ACKNOW test";	//cursor.getString(cursor.getColumnIndexOrThrow("ACKNOWLEDGEMENTS"));
+                    String acknowledgements = cursor.getString(cursor.getColumnIndexOrThrow("ACKNOWLEDGEMENTS"));
                     Intent in = new Intent(getApplicationContext(), AbstractContent.class);
                     /*
                      * Passing data by Intent

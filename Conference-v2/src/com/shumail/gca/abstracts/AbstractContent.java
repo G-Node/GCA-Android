@@ -92,6 +92,22 @@ public class AbstractContent extends Activity {
 //         * Show Author Names and Corresponding Author Names with a (*) sign
 //         */
 //        authorName();
+        
+        //test set author name
+        authorNames.setText("Author Names here");
+        
+        //Query for getting author name, email, position, affiliation data for the particular Abstract
+        String authorSQLQuery = "SELECT DISTINCT AUTHORS_DETAILS.AUTHOR_FIRST_NAME, " +
+	        						"AUTHOR_MIDDLE_NAME, AUTHOR_LAST_NAME, AUTHOR_EMAIL, " +
+	        						"ABSTRACT_AUTHOR_POSITION_AFFILIATION.AUTHOR_AFFILIATION, " +
+	        						"ABSTRACT_AUTHOR_POSITION_AFFILIATION.AUTHOR_POSITION " +
+        						"FROM AUTHORS_DETAILS JOIN ABSTRACT_AUTHOR_POSITION_AFFILIATION USING (AUTHOR_UUID) " +
+        						"WHERE AUTHORS_DETAILS.AUTHOR_UUID IN " +
+        								"(SELECT AUTHOR_UUID FROM ABSTRACT_AUTHOR_POSITION_AFFILIATION WHERE ABSTRACT_UUID = '" + value + "');"; 
+        
+        //Test set affiliations name
+        afName.setText("AFF name 1 \nAFF Name 2");
+        
 //        /*
 //         * Get Affiliation Name for associate abstracts
 //         */
