@@ -111,7 +111,18 @@ public class AbstractContent extends Activity {
         								"(SELECT AUTHOR_POSITION FROM ABSTRACT_AUTHOR_POSITION_AFFILIATION WHERE ABSTRACT_UUID = '" + value + "') " +
         						"ORDER BY AUTHOR_POSITION ASC;"; 
         
-       
+        cursor = DatabaseHelper.database.rawQuery(authorSQLQuery, null);
+        Log.i(gtag, "executed query: rows = " + cursor.getCount());
+        //cursor.moveToFirst();
+        if (cursor != null && cursor.moveToFirst()) {
+	        do {
+	        	Log.i(gtag, "in DO WHILE");
+	        	String authorName = cursor.getString(cursor.getColumnIndexOrThrow("AUTHOR_FIRST_NAME")) + ", " + cursor.getString(cursor.getColumnIndexOrThrow("AUTHOR_LAST_NAME")) ;
+	        	String authAffiliation = cursor.getString(cursor.getColumnIndexOrThrow("AUTHOR_AFFILIATION"));
+	        	authorNames.append(Html.fromHtml("<b>" + authorName + "<sup><small>"
+                        + authAffiliation + "</small></sup><br/></b>"));
+	        } while (cursor.moveToNext());
+        }
         //Test set affiliations name
         //afName.setText("AFF name 1 \nAFF Name 2");
         
