@@ -173,13 +173,14 @@ public class AbstractContent extends Activity {
          */
         if (acknowledgments.length() > 0) {
 
-            ConAck.append(Html.fromHtml("<b>Acknowledgments</b><br />"));
-            ConAck.append("\n" + acknowledgments);
+            ConAck.append(Html.fromHtml("<b>Acknowledgments</b><br/>"));
+            ConAck.append(acknowledgments + "\n" );
         }
         
         String referenceSQLQuery = "SELECT * FROM ABSTRACT_REFERENCES WHERE ABSTRACT_UUID = '" + value +"';";
         cursorTwo = DatabaseHelper.database.rawQuery(referenceSQLQuery, null);
         
+        ConRefs.append(Html.fromHtml("<b>References</b><br/>"));
         if (cursorTwo != null && cursorTwo.moveToFirst()) {
         	do {
 	        	Log.i(gtag, "in DO WHILE References");
