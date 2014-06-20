@@ -137,7 +137,10 @@ public class AbstractContent extends Activity {
         if (cursorOne != null && cursorOne.moveToFirst()) {
 	        do {
 	        	Log.i(gtag, "in DO WHILE aff");
-	        	String affName = cursorOne.getString(cursorOne.getColumnIndexOrThrow("AFFILIATION_DEPARTMENT")) + ", " + cursorOne.getString(cursorOne.getColumnIndexOrThrow("AFFILIATION_SECTION")) ;
+	        	String affName = cursorOne.getString(cursorOne.getColumnIndexOrThrow("AFFILIATION_SECTION")) + 
+	        					", " + cursorOne.getString(cursorOne.getColumnIndexOrThrow("AFFILIATION_DEPARTMENT")) + 
+	        					", " + cursorOne.getString(cursorOne.getColumnIndexOrThrow("AFFILIATION_ADDRESS")) + 
+	        					", " + cursorOne.getString(cursorOne.getColumnIndexOrThrow("AFFILIATION_COUNTRY")) ;
 	        	int affPos = cursorOne.getInt(cursorOne.getColumnIndexOrThrow("AFFILIATION_POSITION"));
 	        	afName.append(Html.fromHtml(affPos + ": " + "<b>" + affName + "</b><br/>" ));
 	        } while (cursorOne.moveToNext());
