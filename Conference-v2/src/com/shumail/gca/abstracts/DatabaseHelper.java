@@ -212,6 +212,22 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		Log.i(gtag, "Affiliation inserted into directory: " + affiliation_id);
 	}
 	
+	//function to add in ABSTRACT_AFFILIATION_ID_POSITION Table - maintaining affiliation position against each abstract in a separate table
+	public void addInABSTRACT_AFFILIATION_ID_POSITION (String abs_uuid, String aff_uuid, String aff_position) {
+		
+		ContentValues values = new ContentValues();
+		
+		values.put("ABSTRACT_UUID", abs_uuid);
+		
+		values.put("AFFILIATION_UUID", aff_uuid);
+		
+		values.put("AFFILIATION_POSITION", aff_position);
+		
+		long abs_aff_id_pos;
+		abs_aff_id_pos = database.insert(TABLE_ABSTRACT_AFFILIATION_ID_POSITION, null, values);
+		Log.i(gtag, "abs uuid, aff uuid, aff pos inserted: id = > " + abs_aff_id_pos);
+	}
+	
 	//function to check if author already exists in directory
 	public boolean AuthorExists(String UUID) {
         Cursor cursor = database.rawQuery("select 1 from " + TABLE_AUTHORS_DETAILS + " where AUTHOR_UUID like '%" + UUID
