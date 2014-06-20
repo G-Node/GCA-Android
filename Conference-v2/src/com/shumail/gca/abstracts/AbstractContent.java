@@ -84,7 +84,7 @@ public class AbstractContent extends Activity {
         value = getData.getString("value");
         affiliationName = getData.getString("afName");
         String email = getData.getString("email");
-        String refs = getData.getString("refs");
+        String refs; 	//= getData.getString("refs");
         String acknowledgments = getData.getString("acknowledgements");
        
 //        /*
@@ -176,14 +176,26 @@ public class AbstractContent extends Activity {
             ConAck.append(Html.fromHtml("<b>Acknowledgments</b><br />"));
             ConAck.append("\n" + acknowledgments);
         }
-        /*
-         * If refs contain any data
-         */
-        if (refs.length() > 0) {
-
-            ConRefs.append(Html.fromHtml("<b>Reference</b><br/>"));
-            ConRefs.append("\n" + refs);
+        
+        String referenceSQLQuery = "SELECT * FROM ABSTRACT_REFERENCES WHERE ABSTRACT_UUID = '" + value +"';";
+        cursorTwo = DatabaseHelper.database.rawQuery(referenceSQLQuery, null);
+        
+        if (cursorTwo != null && cursorTwo.moveToFirst()) {
+        	do {
+	        	Log.i(gtag, "in DO WHILE References");
+	        	String referenceName = cursorTwo.getString(cursorTwo.getColumnIndexOrThrow("REF_TEXT"));
+	        	ConRefs.append(Html.fromHtml("- " + referenceName + "<br/>" ));
+	        } while (cursorTwo.moveToNext());
         }
+        
+//        /*
+//         * If refs contain any data
+//         */
+//        if (refs.length() > 0) {
+//
+//            ConRefs.append(Html.fromHtml("<b>Reference</b><br/>"));
+//            ConRefs.append("\n" + refs);
+//        }
 
     }
 
