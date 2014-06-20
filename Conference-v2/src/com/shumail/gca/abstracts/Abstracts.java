@@ -325,6 +325,9 @@ public class Abstracts extends Activity {
 	            	 //Reference DOI
 	            	 String reference_doi = referenceJSONObject.getString("doi");
 	            	 Log.i(gTag, "ref DOI: " + reference_doi);
+	            	 
+	            	 //insert the reference into ABSTRACT_REFERENCES table 
+	            	 dbHelper.addInABSTRACT_REFERENCES(abs_uuid, reference_uuid, reference_text, reference_link, reference_doi);
 	             	             
 	             }//end references array loop
 	             

@@ -40,6 +40,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     
     public static final String TABLE_ABSTRACT_AFFILIATION_ID_POSITION = "ABSTRACT_AFFILIATION_ID_POSITION";
     
+    public static final String TABLE_ABSTRACT_REFERENCES = "ABSTRACT_REFERENCES";
+    
+    
     /*
      * Query for Creating Tables
      */
@@ -67,7 +70,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + "( ABSTRACT_UUID VARCHAR NOT NULL, AFFILIATION_UUID VARCHAR NOT NULL, " 
     		+ "AFFILIATION_POSITION INTEGER NOT NULL);";
     
-
+    
+    public static final String CREATE_ABSTRACT_REFERENCES = "CREATE TABLE IF NOT EXISTS " + TABLE_ABSTRACT_REFERENCES
+    			+ "( ABSTRACT_UUID VARCHAR NOT NULL, REF_UUID VARCHAR NOT NULL, " 
+    			+ "REF_TEXT TEXT, REF_LINK TEXT, REF_DOI TEXT);"; 
     
     
     public DatabaseHelper(Context context) {
@@ -87,6 +93,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		database.execSQL(CREATE_ABSTRACT_AUTHOR_POSITION_AFFILIATION);
 		database.execSQL(CREATE_AFFILIATION_DETAILS);
 		database.execSQL(CREATE_ABSTRACT_AFFILIATION_ID_POSITION);
+		database.execSQL(CREATE_ABSTRACT_REFERENCES);
 		
 	}
 
@@ -99,6 +106,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		database.execSQL("DROP TABLE IF EXISTS " + TABLE_ABSTRACT_AUTHOR_POSITION_AFFILIATION);
 		database.execSQL("DROP TABLE IF EXISTS " + TABLE_AFFILIATION_DETAILS);
 		database.execSQL("DROP TABLE IF EXISTS " + TABLE_ABSTRACT_AFFILIATION_ID_POSITION);
+		database.execSQL("DROP TABLE IF EXISTS " + TABLE_ABSTRACT_REFERENCES);
 		
 		
 		onCreate(database);
@@ -226,6 +234,27 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		long abs_aff_id_pos;
 		abs_aff_id_pos = database.insert(TABLE_ABSTRACT_AFFILIATION_ID_POSITION, null, values);
 		Log.i(gtag, "abs uuid, aff uuid, aff pos inserted: id = > " + abs_aff_id_pos);
+	}
+	
+	//function for adding in ABSTRACT_REFERENCES table 
+	public void addInABSTRACT_REFERENCES (String ABSTRACT_UUID, String REF_UUID, String REF_TEXT, String REF_LINK, String REF_DOI) {
+		
+		ContentValues values = new ContentValues();
+		
+		values.put("ABSTRACT_UUID", ABSTRACT_UUID);
+		
+		values.put("REF_UUID", REF_UUID);
+		
+		values.put("REF_TEXT", REF_TEXT);
+		
+		values.put("REF_LINK", REF_LINK);
+		
+		values.put("REF_DOI", REF_DOI);
+		
+		long ref_id;
+		ref_id = database.insert(TABLE_ABSTRACT_REFERENCES, null, values);
+		Log.i(gtag, "reference inserted: id = > " + ref_id);
+		
 	}
 	
 	//function to check if author already exists in directory
