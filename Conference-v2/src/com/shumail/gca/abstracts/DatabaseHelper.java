@@ -192,6 +192,26 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		
 	}	//end addInABSTRACT_AUTHOR_POSITION_AFFILIATION function
 	
+	//function for adding new affiliation in AFFILIATION_DETAILS Table
+	public void addInAFFILIATION_DETAILS(String uuid, String aff_address, String aff_country, String aff_dept, String aff_section) {
+		
+		ContentValues values = new ContentValues();
+		
+		values.put("AFFILIATION_UUID", uuid);
+		
+		values.put("AFFILIATION_ADDRESS", aff_address);
+		
+		values.put("AFFILIATION_COUNTRY", aff_country);
+		
+		values.put("AFFILIATION_DEPARTMENT", aff_dept);
+		
+		values.put("AFFILIATION_SECTION", aff_section);
+		
+		long affiliation_id;
+		affiliation_id = database.insert(TABLE_AFFILIATION_DETAILS, null, values);
+		Log.i(gtag, "Affiliation inserted into directory: " + affiliation_id);
+	}
+	
 	//function to check if author already exists in directory
 	public boolean AuthorExists(String UUID) {
         Cursor cursor = database.rawQuery("select 1 from " + TABLE_AUTHORS_DETAILS + " where AUTHOR_UUID like '%" + UUID
