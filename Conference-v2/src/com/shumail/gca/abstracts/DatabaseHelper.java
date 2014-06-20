@@ -18,7 +18,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	
 	private static String Database_Name = "gca.db";
 
-    private static int Database_Version = 4;
+    private static int Database_Version = 5;
 
     public static SQLiteDatabase database;
     
@@ -65,7 +65,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     
     public static final String CREATE_ABSTRACT_AFFILIATION_ID_POSITION = "CREATE TABLE IF NOT EXISTS " + TABLE_ABSTRACT_AFFILIATION_ID_POSITION 
             + "( ABSTRACT_UUID VARCHAR NOT NULL, AFFILIATION_UUID VARCHAR NOT NULL, " 
-    		+ "AFFILIATION_POSITION VARCHAR NOT NULL);";
+    		+ "AFFILIATION_POSITION INTEGER NOT NULL);";
     
 
     
@@ -213,7 +213,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	}
 	
 	//function to add in ABSTRACT_AFFILIATION_ID_POSITION Table - maintaining affiliation position against each abstract in a separate table
-	public void addInABSTRACT_AFFILIATION_ID_POSITION (String abs_uuid, String aff_uuid, String aff_position) {
+	public void addInABSTRACT_AFFILIATION_ID_POSITION (String abs_uuid, String aff_uuid, int aff_position) {
 		
 		ContentValues values = new ContentValues();
 		
@@ -236,6 +236,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cursor.close();
         return exists;
     }
+	
+	//function to check if affiliation already exists in directory
+	public boolean AffiliationExists(String UUID) {
+        Cursor cursor = database.rawQuery("select 1 from " + TABLE_AFFILIATION_DETAILS + " where AFFILIATION_UUID like '%" + UUID
+                + "%'", null);
+        boolean exists = (cursor.getCount() > 0);
+        cursor.close();
+        return exists;
+    }	
 	
 	
 

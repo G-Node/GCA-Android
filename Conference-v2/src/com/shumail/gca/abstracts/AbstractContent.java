@@ -121,8 +121,18 @@ public class AbstractContent extends Activity {
                         + authAffiliation + "</small></sup><br/></b>"));
 	        } while (cursor.moveToNext());
         }
+        
+        //SQL Query for getting affiliation data, position for the particular abstract
+        String affiliationsSQLQuery = 	"SELECT AFFILIATION_ADDRESS, AFFILIATION_COUNTRY, " +
+        										"AFFILIATION_DEPARTMENT, AFFILIATION_SECTION, AFFILIATION_POSITION " +
+        								"FROM AFFILIATION_DETAILS JOIN ABSTRACT_AFFILIATION_ID_POSITION USING (AFFILIATION_UUID) " +
+        								"WHERE AFFILIATION_UUID IN " +
+        									"(SELECT AFFILIATION_UUID FROM ABSTRACT_AFFILIATION_ID_POSITION " +
+        										"WHERE ABSTRACT_UUID = '" + value + "')  " +
+        								"ORDER BY AFFILIATION_POSITION ASC;";
+        
         //Test set affiliations name
-        //afName.setText("AFF name 1 \nAFF Name 2");
+        afName.setText("AFF name 1 \nAFF Name 2");
         
 //        /*
 //         * Get Affiliation Name for associate abstracts

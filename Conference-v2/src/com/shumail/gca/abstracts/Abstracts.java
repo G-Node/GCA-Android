@@ -242,6 +242,15 @@ public class Abstracts extends Activity {
 	            	 int affiliation_position = affiliationJSONObject.getInt("position");
 	            	 Log.i(gTag, "aff position: " + affiliation_position);
 	            	 
+	            	 //check if affiliation UUID is not already in table
+	            	 if (!dbHelper.AffiliationExists(affiliation_uuid)) {
+		            	 //add affiliation detail into AFFILIATION_DETAILS Table
+		            	 dbHelper.addInAFFILIATION_DETAILS(affiliation_uuid, affiliation_address, affiliation_country, affiliation_department, affiliation_section); 
+	            	 }
+	            	 
+	            	 //add affiliation position against particular abstract in ABSTRACT_AFFILIATION_ID_POSITION table
+	            	 dbHelper.addInABSTRACT_AFFILIATION_ID_POSITION(abs_uuid, affiliation_uuid, affiliation_position);
+	            	 
 	             }//loop end for each affiliation object
 				 
 	             //Abstract Authors JSONarray
