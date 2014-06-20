@@ -96,8 +96,6 @@ public class AbstractContent extends Activity {
 //         */
 //        authorName();
         
-        //test set author name
-        //authorNames.setText("Author Names here");
         
         //Query for getting author name, email, position, affiliation data for the particular Abstract
         String authorSQLQuery = "SELECT DISTINCT AUTHORS_DETAILS.AUTHOR_FIRST_NAME, " +
