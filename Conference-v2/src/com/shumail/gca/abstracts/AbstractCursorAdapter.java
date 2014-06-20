@@ -51,6 +51,38 @@ public class AbstractCursorAdapter extends CursorAdapter {
          */
         String value = cursor.getString(cursor.getColumnIndexOrThrow("_id"));
 
+        String authorNamesQuery = "SELECT DISTINCT AUTHORS_DETAILS.AUTHOR_UUID, AUTHORS_DETAILS.AUTHOR_FIRST_NAME, AUTHOR_MIDDLE_NAME, AUTHOR_LAST_NAME, AUTHOR_EMAIL FROM AUTHORS_DETAILS WHERE AUTHORS_DETAILS.AUTHOR_UUID IN (SELECT AUTHOR_UUID FROM ABSTRACT_AUTHOR_POSITION_AFFILIATION WHERE ABSTRACT_UUID = '" + value + "');";
+        cursorOne =  DatabaseHelper.database.rawQuery(authorNamesQuery, null);
+        
+      if (cursorOne != null) {
+      cursorOne.moveToFirst();
+      /*
+       * Name format will be like this A, B & C or A,B,C & D. So, if the
+       * name is the last name. We should use '&' before the name
+       */
+      do {
+
+          if (cursorOne.getPosition() == 0) {
+              /*
+               * First data
+               */
+              getName = cursorOne.getString(cursorOne.getColumnIndexOrThrow("AUTHOR_FIRST_NAME")) + " " + cursorOne.getString(cursorOne.getColumnIndexOrThrow("AUTHOR_LAST_NAME"));
+          } else if (cursorOne.isLast()) {
+              /*
+               * Last Data
+               */
+              getName = getName + " & "
+                      + cursorOne.getString(cursorOne.getColumnIndexOrThrow("AUTHOR_FIRST_NAME")) + " " + cursorOne.getString(cursorOne.getColumnIndexOrThrow("AUTHOR_LAST_NAME"));
+          } else {
+              getName = getName + " , "
+                      + cursorOne.getString(cursorOne.getColumnIndexOrThrow("AUTHOR_FIRST_NAME")) + " " + cursorOne.getString(cursorOne.getColumnIndexOrThrow("AUTHOR_LAST_NAME"));
+
+          }
+
+      } while (cursorOne.moveToNext());
+  }
+        
+        
 //        /*
 //         * SQL Query for getting Author Name
 //         */
@@ -89,7 +121,6 @@ public class AbstractCursorAdapter extends CursorAdapter {
         /*
          * TextView for Author Names
          */
-        getName = "Shumail Mohyuddin";
         TextView authorNames = (TextView)view.findViewById(R.id.SubTitle);
         /*
          * Get Width
