@@ -110,7 +110,7 @@ public class AbstractContent extends Activity {
         						"ORDER BY AUTHOR_POSITION ASC;"; 
         
         cursor = DatabaseHelper.database.rawQuery(authorSQLQuery, null);
-        Log.i(gtag, "executed query: rows = " + cursor.getCount());
+        Log.i(gtag, "Auth executed query: rows = " + cursor.getCount());
         //cursor.moveToFirst();
         if (cursor != null && cursor.moveToFirst()) {
 	        do {
@@ -131,8 +131,21 @@ public class AbstractContent extends Activity {
         										"WHERE ABSTRACT_UUID = '" + value + "')  " +
         								"ORDER BY AFFILIATION_POSITION ASC;";
         
+        cursorOne = DatabaseHelper.database.rawQuery(affiliationsSQLQuery, null);
+        Log.i(gtag, "Affiliation executed query: rows = " + cursorOne.getCount());
+        
+        if (cursorOne != null && cursorOne.moveToFirst()) {
+	        do {
+	        	Log.i(gtag, "in DO WHILE aff");
+	        	String affName = cursorOne.getString(cursorOne.getColumnIndexOrThrow("AFFILIATION_DEPARTMENT")) + ", " + cursorOne.getString(cursorOne.getColumnIndexOrThrow("AFFILIATION_SECTION")) ;
+	        	int affPos = cursorOne.getInt(cursorOne.getColumnIndexOrThrow("AFFILIATION_POSITION"));
+	        	afName.append(Html.fromHtml(affPos + ": " + "<b>" + affName + "</b><br/>" ));
+	        } while (cursorOne.moveToNext());
+        }
+        
+        
         //Test set affiliations name
-        afName.setText("AFF name 1 \nAFF Name 2");
+        //afName.setText("AFF name 1 \nAFF Name 2");
         
 //        /*
 //         * Get Affiliation Name for associate abstracts
