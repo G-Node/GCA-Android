@@ -282,7 +282,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 .rawQuery(
                         "SELECT UUID AS _id , TOPIC, TITLE, ABSRACT_TEXT, STATE, SORTID, " +
                         "REASONFORTALK, MTIME, TYPE,DOI, COI, ACKNOWLEDGEMENTS " +
-                        "FROM ABSTRACT_DETAILS WHERE TITLE like '%" + string + "%';", null);
+                        "FROM ABSTRACT_DETAILS WHERE TITLE like '%" + string + "%' OR " +
+                        " _id in (SELECT ABSTRACT_UUID FROM ABSTRACT_AFFILIATION_ID_POSITION " +
+                        		"WHERE AFFILIATION_UUID IN (SELECT AFFILIATION_UUID FROM AFFILIATION_DETAILS " +
+                        		"WHERE AFFILIATION_COUNTRY LIKE '%" + string + "%')) ;", null);
 
         return cursor;
     }
