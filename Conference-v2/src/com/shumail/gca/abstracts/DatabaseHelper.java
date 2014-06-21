@@ -275,6 +275,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return exists;
     }	
 	
+	public Cursor fetchDataByName(String string) {
+        // TODO Auto-generated method stub
+
+        Cursor cursor = database
+                .rawQuery(
+                        "SELECT UUID AS _id , TOPIC, TITLE, ABSRACT_TEXT, STATE, SORTID, " +
+                        "REASONFORTALK, MTIME, TYPE,DOI, COI, ACKNOWLEDGEMENTS " +
+                        "FROM ABSTRACT_DETAILS WHERE TITLE like '%" + string + "%';", null);
+
+        return cursor;
+    }
+	
 	
 
 }
