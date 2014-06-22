@@ -275,7 +275,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		Log.i(gtag, "abstract favourited - id: " + abs_fav_id);
 	}
 	
-	
+	//function for deleting from ABSTRACT_FAVORITES if user un-favorites some abstract
+	public void deleteFromABSTRACT_FAVORITES (String abstract_uuid) {
+		
+		long rows_affected = database.delete(TABLE_ABSTRACT_FAVORITES, "ABSTRACT_UUID = ?", new String[] { abstract_uuid });
+		Log.i(gtag, "deleted abstract from fav - no: " + rows_affected);
+	}
 	
 	//function to check if author already exists in directory
 	public boolean AuthorExists(String UUID) {
