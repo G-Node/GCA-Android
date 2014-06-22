@@ -42,6 +42,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     
     public static final String TABLE_ABSTRACT_REFERENCES = "ABSTRACT_REFERENCES";
     
+    public static final String TABLE_ABSTRACT_FAVORITES = "ABSTRACT_FAVORITES";
+    
     
     /*
      * Query for Creating Tables
@@ -75,6 +77,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     			+ "( ABSTRACT_UUID VARCHAR NOT NULL, REF_UUID VARCHAR NOT NULL, " 
     			+ "REF_TEXT TEXT, REF_LINK TEXT, REF_DOI TEXT);"; 
     
+    public static final String CREATE_ABSTRACT_FAVORITES = "CREATE TABLE IF NOT EXISTS " + TABLE_ABSTRACT_FAVORITES
+    		+ "( ABSTRACT_UUID VARCHAR NOT NULL); " ;
+    		
+    
     
     public DatabaseHelper(Context context) {
         super(context, Database_Name, null, Database_Version);
@@ -94,6 +100,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		database.execSQL(CREATE_AFFILIATION_DETAILS);
 		database.execSQL(CREATE_ABSTRACT_AFFILIATION_ID_POSITION);
 		database.execSQL(CREATE_ABSTRACT_REFERENCES);
+		database.execSQL(CREATE_ABSTRACT_FAVORITES);
 		
 	}
 
@@ -107,7 +114,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		database.execSQL("DROP TABLE IF EXISTS " + TABLE_AFFILIATION_DETAILS);
 		database.execSQL("DROP TABLE IF EXISTS " + TABLE_ABSTRACT_AFFILIATION_ID_POSITION);
 		database.execSQL("DROP TABLE IF EXISTS " + TABLE_ABSTRACT_REFERENCES);
-		
+		database.execSQL("DROP TABLE IF EXISTS " + TABLE_ABSTRACT_FAVORITES);
 		
 		onCreate(database);
 		
