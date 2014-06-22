@@ -264,6 +264,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		
 	}
 	
+	//function for adding to ABSTRACT_FAVORITES Table when a user favourites some abstract
+	public void addInABSTRACT_FAVORITES (String abstract_uuid) {
+			
+		ContentValues values = new ContentValues();
+		
+		values.put("ABSTRACT_UUID", abstract_uuid);
+		
+		long abs_fav_id = database.insert(TABLE_ABSTRACT_FAVORITES, null, values);
+		Log.i(gtag, "abstract favourited - id: " + abs_fav_id);
+	}
+	
+	
+	
 	//function to check if author already exists in directory
 	public boolean AuthorExists(String UUID) {
         Cursor cursor = database.rawQuery("select 1 from " + TABLE_AUTHORS_DETAILS + " where AUTHOR_UUID like '%" + UUID
