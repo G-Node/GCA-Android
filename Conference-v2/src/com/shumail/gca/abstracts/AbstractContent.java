@@ -33,7 +33,7 @@ public class AbstractContent extends Activity {
 	
 	String gtag = "GCA-Abs-Con";
 	
-	boolean isFav = true;
+	boolean isFav;
 	
 	MenuItem starG;
 
@@ -500,7 +500,19 @@ public class AbstractContent extends Activity {
 
         inflater.inflate(R.menu.abstract_content_menu, menu);
         starG = menu.findItem(R.id.star);
-        starG.setIcon(R.drawable.ic_action_important_selected);
+        
+        if(DatabaseHelper.abstractIsFavorite(value) ){
+        	isFav = true;
+        } else {
+        	isFav = false;
+        }
+        
+        if(isFav) {
+        	starG.setIcon(R.drawable.ic_action_important_selected);
+        } else {
+        	starG.setIcon(R.drawable.ic_action_important);
+        }
+	        
         /*
          * Disable home button
          */
@@ -530,6 +542,7 @@ public class AbstractContent extends Activity {
         	
 			if(isFav){ 
 				Log.i(gtag, "in isFAV");
+				DatabaseHelper.deleteFromABSTRACT_FAVORITES(value);
 				Toast.makeText(getApplicationContext(), "Removed from Favorites",
 	                    Toast.LENGTH_SHORT).show();
 	            starG.setIcon(R.drawable.ic_action_important);
@@ -537,6 +550,7 @@ public class AbstractContent extends Activity {
 	        	
 	        }else{
 	        	Log.i(gtag, "in else of isFAV");
+	        	DatabaseHelper.addInABSTRACT_FAVORITES(value);
 	        	Toast.makeText(getApplicationContext(), "Added to Favorites",
 	                    Toast.LENGTH_SHORT).show();
 	        	starG.setIcon(R.drawable.ic_action_important_selected);

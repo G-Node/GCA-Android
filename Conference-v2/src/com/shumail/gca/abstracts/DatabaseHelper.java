@@ -265,21 +265,21 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	}
 	
 	//function for adding to ABSTRACT_FAVORITES Table when a user favourites some abstract
-	public void addInABSTRACT_FAVORITES (String abstract_uuid) {
+	public static void addInABSTRACT_FAVORITES (String abstract_uuid) {
 			
 		ContentValues values = new ContentValues();
 		
 		values.put("ABSTRACT_UUID", abstract_uuid);
 		
 		long abs_fav_id = database.insert(TABLE_ABSTRACT_FAVORITES, null, values);
-		Log.i(gtag, "abstract favourited - id: " + abs_fav_id);
+		Log.i("GCA-DB", "abstract favourited - id: " + abs_fav_id);
 	}
 	
 	//function for deleting from ABSTRACT_FAVORITES if user un-favorites some abstract
-	public void deleteFromABSTRACT_FAVORITES (String abstract_uuid) {
+	public static void deleteFromABSTRACT_FAVORITES (String abstract_uuid) {
 		
 		long rows_affected = database.delete(TABLE_ABSTRACT_FAVORITES, "ABSTRACT_UUID = ?", new String[] { abstract_uuid });
-		Log.i(gtag, "deleted abstract from fav - no: " + rows_affected);
+		Log.i("GCA-DB", "deleted abstract from fav - no: " + rows_affected);
 	}
 	
 	//function to check if author already exists in directory
@@ -301,7 +301,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 	
 	//function to check if Abstract is already favorited and exists in table
-	public boolean abstractIsFavorite(String UUID) {
+	public static boolean abstractIsFavorite(String UUID) {
         Cursor cursor = database.rawQuery("select 1 from " + TABLE_ABSTRACT_FAVORITES + " where ABSTRACT_UUID like '%" + UUID
                 + "%'", null);
         boolean exists = (cursor.getCount() > 0);
