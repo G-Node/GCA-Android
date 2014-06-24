@@ -24,6 +24,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -31,6 +32,10 @@ import android.widget.Toast;
 public class AbstractContent extends Activity {
 	
 	String gtag = "GCA-Abs-Con";
+	
+	boolean isFav = true;
+	
+	MenuItem starG;
 
     TextView content;
 
@@ -494,6 +499,8 @@ public class AbstractContent extends Activity {
         MenuInflater inflater = getMenuInflater();
 
         inflater.inflate(R.menu.abstract_content_menu, menu);
+        starG = menu.findItem(R.id.star);
+        starG.setIcon(R.drawable.ic_action_important_selected);
         /*
          * Disable home button
          */
@@ -512,10 +519,31 @@ public class AbstractContent extends Activity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // TODO Auto-generated method stub
+    	
         switch (item.getItemId()) {
         /*
          * Menu Item for switching next and previous data
          */
+        
+        case R.id.star:
+        	Log.i(gtag, "in Onclick of STAR");
+        	
+			if(isFav){ 
+				Log.i(gtag, "in isFAV");
+				Toast.makeText(getApplicationContext(), "Removed from Favorites",
+	                    Toast.LENGTH_SHORT).show();
+	            starG.setIcon(R.drawable.ic_action_important_selected);
+	        }else{
+	        	Log.i(gtag, "in else of isFAV");
+	        	Toast.makeText(getApplicationContext(), "Added to Favorites",
+	                    Toast.LENGTH_SHORT).show();
+	        	starG.setIcon(R.drawable.ic_action_important);
+	        }
+			isFav = !isFav; // reverse
+	
+        	break;
+        	
+        	
             case R.id.next:
 
                 int currentValue = Integer.parseInt(value) + 1;
@@ -660,6 +688,7 @@ public class AbstractContent extends Activity {
                 }
 
                 break;
+           
 
             default:
 
