@@ -310,7 +310,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                         "FROM ABSTRACT_DETAILS WHERE ABSRACT_TEXT like '%" + string + "%' OR TITLE like '%" + string + "%' OR " +
                         " _id in (SELECT ABSTRACT_UUID FROM ABSTRACT_AFFILIATION_ID_POSITION " +
                         		"WHERE AFFILIATION_UUID IN (SELECT AFFILIATION_UUID FROM AFFILIATION_DETAILS " +
-                        		"WHERE AFFILIATION_COUNTRY LIKE '%" + string + "%')) OR " +
+                        		"WHERE AFFILIATION_SECTION LIKE '%" + string + "%' OR " +
+                        			   "AFFILIATION_DEPARTMENT LIKE '%" + string + "%' OR " +
+                        			   "AFFILIATION_ADDRESS LIKE '%" + string + "%' OR " +
+                        			   "AFFILIATION_COUNTRY LIKE '%" + string + "%')) OR " +
                         " _id in (SELECT ABSTRACT_UUID FROM ABSTRACT_AUTHOR_POSITION_AFFILIATION " +
                         		"WHERE AUTHOR_UUID IN (SELECT AUTHOR_UUID FROM AUTHORS_DETAILS " +
                         		"WHERE AUTHOR_FIRST_NAME || ' ' || AUTHOR_LAST_NAME LIKE '%" + string + "%' OR AUTHOR_LAST_NAME LIKE '%" + string + "%' OR AUTHOR_FIRST_NAME LIKE '%" + string + "%')) ;", null);
