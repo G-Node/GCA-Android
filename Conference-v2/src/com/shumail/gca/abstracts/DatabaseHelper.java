@@ -298,7 +298,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         boolean exists = (cursor.getCount() > 0);
         cursor.close();
         return exists;
-    }	
+    }
+	
+	//function to check if Abstract is already favorited and exists in table
+	public boolean abstractIsFavorite(String UUID) {
+        Cursor cursor = database.rawQuery("select 1 from " + TABLE_ABSTRACT_FAVORITES + " where ABSTRACT_UUID like '%" + UUID
+                + "%'", null);
+        boolean exists = (cursor.getCount() > 0);
+        cursor.close();
+        return exists;
+    }
 	
 	public Cursor fetchDataByName(String string) {
         // TODO Auto-generated method stub
