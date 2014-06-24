@@ -532,15 +532,17 @@ public class AbstractContent extends Activity {
 				Log.i(gtag, "in isFAV");
 				Toast.makeText(getApplicationContext(), "Removed from Favorites",
 	                    Toast.LENGTH_SHORT).show();
-	            starG.setIcon(R.drawable.ic_action_important_selected);
+	            starG.setIcon(R.drawable.ic_action_important);
+	            isFav = false;
+	        	
 	        }else{
 	        	Log.i(gtag, "in else of isFAV");
 	        	Toast.makeText(getApplicationContext(), "Added to Favorites",
 	                    Toast.LENGTH_SHORT).show();
-	        	starG.setIcon(R.drawable.ic_action_important);
+	        	starG.setIcon(R.drawable.ic_action_important_selected);
+	        	isFav = true;
 	        }
-			isFav = !isFav; // reverse
-	
+			
         	break;
         	
         	
