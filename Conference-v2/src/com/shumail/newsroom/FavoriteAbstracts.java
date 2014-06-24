@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.AdapterView.OnItemClickListener;
 
 public class FavoriteAbstracts extends Activity {
@@ -61,7 +62,14 @@ public class FavoriteAbstracts extends Activity {
          */
         if (cursorCount <= 0) {
         	//NO FAVORITES
+        	TextView noAbstractInFav = (TextView)findViewById(R.id.noFavAbsText);
+        	noAbstractInFav.setText("You don't have any Favorite Abstract");
+        	
         } else {
+        	
+        	TextView belowFav = (TextView)findViewById(R.id.noFavAbsText);
+        	belowFav.setText("Your Favorited Abstracts");
+        	
         	cursorAdapter = new AbstractCursorAdapter(this, cursor);
             listView.setAdapter(cursorAdapter);
             listView.setTextFilterEnabled(true);

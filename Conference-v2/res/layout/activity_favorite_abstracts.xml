@@ -9,8 +9,25 @@
         android:id="@+id/favAbsListView"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_centerVertical="true" >
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:layout_alignParentLeft="true" >
     </ListView>
-
+	
+    <View
+        android:id="@+id/favAbsBar"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:layout_below="@+id/favAbsListView"
+        android:layout_width="fill_parent"
+        android:layout_height="2dp"
+        android:background="#c0c0c0"/>
+    
+    <TextView
+        android:id="@+id/noFavAbsText"
+        android:layout_below="@+id/favAbsBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:layout_alignParentBottom="true" />
+		
+    
 </RelativeLayout>
