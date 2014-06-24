@@ -313,7 +313,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                         		"WHERE AFFILIATION_COUNTRY LIKE '%" + string + "%')) OR " +
                         " _id in (SELECT ABSTRACT_UUID FROM ABSTRACT_AUTHOR_POSITION_AFFILIATION " +
                         		"WHERE AUTHOR_UUID IN (SELECT AUTHOR_UUID FROM AUTHORS_DETAILS " +
-                        		"WHERE AUTHOR_FIRST_NAME LIKE '%" + string + "%')) ;", null);
+                        		"WHERE AUTHOR_FIRST_NAME || ' ' || AUTHOR_LAST_NAME LIKE '%" + string + "%' OR AUTHOR_LAST_NAME LIKE '%" + string + "%' OR AUTHOR_FIRST_NAME LIKE '%" + string + "%')) ;", null);
 
         return cursor;
     }
