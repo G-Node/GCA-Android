@@ -10,5 +10,6 @@
     <string name="action_settings">Settings</string>
     <string name="title_activity_abstracts">Abstracts</string>
     <string name="searchHint">Search Abstracts...</string>
+    <string name="title_activity_favorite_abstracts">Favorite Abstracts</string>
 
 </resources>

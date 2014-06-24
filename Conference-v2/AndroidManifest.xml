@@ -34,10 +34,13 @@
             android:name="com.shumail.gca.abstracts.Abstracts"
             android:label="@string/title_activity_abstracts" >
         </activity>
-        
         <activity
             android:name="com.shumail.gca.abstracts.AbstractContent"
             android:label="@string/title_activity_abstracts" >
+        </activity>
+        <activity
+            android:name="com.shumail.newsroom.FavoriteAbstracts"
+            android:label="@string/title_activity_favorite_abstracts" >
         </activity>
     </application>
 

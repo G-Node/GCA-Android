@@ -2,6 +2,7 @@ package com.shumail.gca;
 
 import com.shumail.gca.abstracts.Abstracts;
 import com.shumail.gca.newsroom.NewsRoomActivity;
+import com.shumail.newsroom.FavoriteAbstracts;
 import com.shumail.newsroom.R;
 
 import android.os.Bundle;
@@ -36,6 +37,17 @@ public class MainActivity extends Activity {
 			public void onClick(View v) {
 				Intent abstractIntent = new Intent(MainActivity.this, Abstracts.class);
 				startActivity(abstractIntent);
+				
+			}
+		});
+		
+		Button favBtn = (Button) findViewById(R.id.button3);
+		favBtn.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				Intent favIntent = new Intent(MainActivity.this, FavoriteAbstracts.class);
+				startActivity(favIntent);
 				
 			}
 		});
