@@ -12,7 +12,10 @@ import org.jsoup.nodes.Element;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserFactory;
 
+import android.app.AlertDialog;
+import android.app.AlertDialog.Builder;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.util.Log;
 
 public class FeedXmlPullParser {
@@ -42,8 +45,25 @@ public class FeedXmlPullParser {
 
 			// Open up InputStream and Reader of our file.
 			FileInputStream fis = ctx.openFileInput("news.xml");
+			Log.i("incf-file", "before file null check");
+			Log.i("incf-file", "FILE Stream: " + fis.toString());
+			
 			BufferedReader reader = new BufferedReader(new InputStreamReader(fis));
-
+			if (reader.readLine() == null) {
+				Log.i("incf-file", "FILE Buffer NULL" + reader.toString());
+				Builder x = new AlertDialog.Builder(ctx);
+			    x.setTitle("ERROR")
+			    .setMessage("Unable to connect to Internet. Please ensure internet connectivity")
+			    .setNeutralButton(android.R.string.ok,
+			            new DialogInterface.OnClickListener() {
+			        public void onClick(DialogInterface dialog, int id) {
+			            dialog.cancel();
+			        }
+			    }).setIcon(android.R.drawable.ic_dialog_alert)
+			     .show();
+			}
+			
+			Log.i("incf-rss", "parsing starts");
 			// point the parser to our file.
 			xpp.setInput(reader);
 
@@ -134,7 +154,17 @@ public class FeedXmlPullParser {
 			}
 			Log.i("incf-rss", "after while finished - ");
 		} catch (Exception e) {
-			e.printStackTrace();
+			Log.i("incf-file", "no file exists - " + e.getMessage());
+			Builder x = new AlertDialog.Builder(ctx);
+		    x.setTitle("ERROR")
+		    .setMessage("Unable to connect to Internet. Please ensure internet connectivity")
+		    .setNeutralButton(android.R.string.ok,
+		            new DialogInterface.OnClickListener() {
+		        public void onClick(DialogInterface dialog, int id) {
+		            dialog.cancel();
+		        }
+		    }).setIcon(android.R.drawable.ic_dialog_alert)
+		     .show();
 		}
 
 		// the parsed list is ready for returning here.

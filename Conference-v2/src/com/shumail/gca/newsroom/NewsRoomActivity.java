@@ -57,6 +57,7 @@ public class NewsRoomActivity extends Activity {
 			SitesDownloadTask download = new SitesDownloadTask();
 			download.execute();
 		}else{
+			Log.i("incf-rss", "No Internet available");
 			mAdapter = new NewsAdapter(getApplicationContext(), -1, FeedXmlPullParser.getNewsItemFromFile(NewsRoomActivity.this));
 			newsItems.setAdapter(mAdapter);
 		}
