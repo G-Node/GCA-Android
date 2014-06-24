@@ -19,6 +19,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 //import android.support.v7.app.ActionBarActivity;
 import android.text.Html;
+import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -115,10 +116,22 @@ public class AbstractContent extends Activity {
         if (cursor != null && cursor.moveToFirst()) {
 	        do {
 	        	Log.i(gtag, "in DO WHILE");
+	        	String authEmail = cursor.getString(cursor.getColumnIndexOrThrow("AUTHOR_EMAIL"));
+	        	Log.i(gtag, "author email => " + authEmail);
 	        	String authorName = cursor.getString(cursor.getColumnIndexOrThrow("AUTHOR_FIRST_NAME")) + ", " + cursor.getString(cursor.getColumnIndexOrThrow("AUTHOR_LAST_NAME")) ;
 	        	String authAffiliation = cursor.getString(cursor.getColumnIndexOrThrow("AUTHOR_AFFILIATION"));
-	        	authorNames.append(Html.fromHtml("<b>" + authorName + "<sup><small>"
+	        	if (authEmail == null || authEmail.equals("null")) {
+	        		Log.i(gtag, "in author check - IF NULL");
+	        		authorNames.append(Html.fromHtml("<b>" + authorName + "<sup><small>"
                         + authAffiliation + "</small></sup><br/></b>"));
+
+	        	} else {
+	        		Log.i(gtag, "in author check - ELSE ");
+	        		authorNames.append(Html.fromHtml("<b><a href=\"mailto:" + authEmail + "\">" + authorName + "</a>"  + "<sup><small>"
+	                        + authAffiliation + "</small></sup><br/></b>"));
+	        		authorNames.setMovementMethod(LinkMovementMethod.getInstance());
+	        		
+	        	}
 	        } while (cursor.moveToNext());
         }
         
