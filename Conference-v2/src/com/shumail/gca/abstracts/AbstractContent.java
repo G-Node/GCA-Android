@@ -562,10 +562,20 @@ public class AbstractContent extends Activity {
         	
             case R.id.next:
 
-                int currentValue = Integer.parseInt(value) + 1;
-                if (currentValue <= Abstracts.cursorCount) {
+                String getCurrentRowIDQuery = "SELECT ROWID FROM ABSTRACT_DETAILS WHERE UUID = '" + value + "';";
+                
+                Cursor getRowIdCursor = DatabaseHelper.database.rawQuery(getCurrentRowIDQuery, null);
+                int currentRowID = getRowIdCursor.getInt(getRowIdCursor.getColumnIndexOrThrow("ROWID"));
+                
+                int nextRecordID = currentRowID + 1;
+                
+                if (nextRecordID <= Abstracts.cursorCount) {
 
-                    value = String.valueOf(currentValue);
+                	//query and get next abstract id 
+                	String getNextAbstractUUID = "SELECT UUID FROM ABSTRACT_DETAILS WHERE ROWID = " + nextRecordID + ";";
+                    Cursor getNextAbstractCursor = DatabaseHelper.database.rawQuery(getNextAbstractUUID, null);
+                    
+                	value = getNextAbstractCursor.getString(getRowIdCursor.getColumnIndexOrThrow("UUID"));;
 
                     /*
                      * Delete previous data from all field
