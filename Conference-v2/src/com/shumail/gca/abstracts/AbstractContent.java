@@ -69,7 +69,7 @@ public class AbstractContent extends Activity {
 
     private String affiliationName;
 
-    Cursor cursor, cursorOne, cursorTwo;
+    Cursor cursor, cursorOne, cursorTwo, referenceCursor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,72 +97,14 @@ public class AbstractContent extends Activity {
 //         * Executing SQL Queries to get data
 //         */
 //        sqlQueries();
-//        /*
-//         * Show Author Names and Corresponding Author Names with a (*) sign
-//         */
-//        authorName();
+        /*
+         * Show Author names for that Abstract
+         */
+        authorName();
         
         
-        //Query for getting author name, email, position, affiliation data for the particular Abstract
-        String authorSQLQuery = "SELECT DISTINCT AUTHORS_DETAILS.AUTHOR_FIRST_NAME, " +
-        								"AUTHOR_MIDDLE_NAME, AUTHOR_LAST_NAME, AUTHOR_EMAIL, " +
-        								"ABSTRACT_AUTHOR_POSITION_AFFILIATION.AUTHOR_AFFILIATION, " +
-        								"ABSTRACT_AUTHOR_POSITION_AFFILIATION.AUTHOR_POSITION " +
-        						"FROM AUTHORS_DETAILS JOIN ABSTRACT_AUTHOR_POSITION_AFFILIATION USING (AUTHOR_UUID) " +
-        						"WHERE AUTHORS_DETAILS.AUTHOR_UUID IN " +
-        								"(SELECT AUTHOR_UUID FROM ABSTRACT_AUTHOR_POSITION_AFFILIATION WHERE ABSTRACT_UUID = '" + value + "') " +
-        							"AND ABSTRACT_AUTHOR_POSITION_AFFILIATION.AUTHOR_POSITION IN " +
-        								"(SELECT AUTHOR_POSITION FROM ABSTRACT_AUTHOR_POSITION_AFFILIATION WHERE ABSTRACT_UUID = '" + value + "') " +
-        						"ORDER BY AUTHOR_POSITION ASC;"; 
-        
-        cursor = DatabaseHelper.database.rawQuery(authorSQLQuery, null);
-        Log.i(gtag, "Auth executed query: rows = " + cursor.getCount());
-        //cursor.moveToFirst();
-        if (cursor != null && cursor.moveToFirst()) {
-	        do {
-	        	Log.i(gtag, "in DO WHILE");
-	        	String authEmail = cursor.getString(cursor.getColumnIndexOrThrow("AUTHOR_EMAIL"));
-	        	Log.i(gtag, "author email => " + authEmail);
-	        	String authorName = cursor.getString(cursor.getColumnIndexOrThrow("AUTHOR_FIRST_NAME")) + ", " + cursor.getString(cursor.getColumnIndexOrThrow("AUTHOR_LAST_NAME")) ;
-	        	String authAffiliation = cursor.getString(cursor.getColumnIndexOrThrow("AUTHOR_AFFILIATION"));
-	        	if (authEmail == null || authEmail.equals("null")) {
-	        		Log.i(gtag, "in author check - IF NULL");
-	        		authorNames.append(Html.fromHtml("<b>" + authorName + "<sup><small>"
-                        + authAffiliation + "</small></sup><br/></b>"));
 
-	        	} else {
-	        		Log.i(gtag, "in author check - ELSE ");
-	        		authorNames.append(Html.fromHtml("<b><a href=\"mailto:" + authEmail + "\">" + authorName + "</a>"  + "<sup><small>"
-	                        + authAffiliation + "</small></sup><br/></b>"));
-	        		authorNames.setMovementMethod(LinkMovementMethod.getInstance());
-	        		
-	        	}
-	        } while (cursor.moveToNext());
-        }
         
-        //SQL Query for getting affiliation data, position for the particular abstract
-        String affiliationsSQLQuery = 	"SELECT AFFILIATION_ADDRESS, AFFILIATION_COUNTRY, " +
-        										"AFFILIATION_DEPARTMENT, AFFILIATION_SECTION, AFFILIATION_POSITION " +
-        								"FROM AFFILIATION_DETAILS JOIN ABSTRACT_AFFILIATION_ID_POSITION USING (AFFILIATION_UUID) " +
-        								"WHERE AFFILIATION_UUID IN " +
-        									"(SELECT AFFILIATION_UUID FROM ABSTRACT_AFFILIATION_ID_POSITION " +
-        										"WHERE ABSTRACT_UUID = '" + value + "')  " +
-        								"ORDER BY AFFILIATION_POSITION ASC;";
-        
-        cursorOne = DatabaseHelper.database.rawQuery(affiliationsSQLQuery, null);
-        Log.i(gtag, "Affiliation executed query: rows = " + cursorOne.getCount());
-        
-        if (cursorOne != null && cursorOne.moveToFirst()) {
-	        do {
-	        	Log.i(gtag, "in DO WHILE aff");
-	        	String affName = cursorOne.getString(cursorOne.getColumnIndexOrThrow("AFFILIATION_SECTION")) + 
-	        					", " + cursorOne.getString(cursorOne.getColumnIndexOrThrow("AFFILIATION_DEPARTMENT")) + 
-	        					", " + cursorOne.getString(cursorOne.getColumnIndexOrThrow("AFFILIATION_ADDRESS")) + 
-	        					", " + cursorOne.getString(cursorOne.getColumnIndexOrThrow("AFFILIATION_COUNTRY")) ;
-	        	int affPos = cursorOne.getInt(cursorOne.getColumnIndexOrThrow("AFFILIATION_POSITION"));
-	        	afName.append(Html.fromHtml(affPos + ": " + "<b>" + affName + "</b><br/>" ));
-	        } while (cursorOne.moveToNext());
-        }
         
         
         //Test set affiliations name
@@ -171,7 +113,7 @@ public class AbstractContent extends Activity {
 //        /*
 //         * Get Affiliation Name for associate abstracts
 //         */
-//        affiliationName();
+        affiliationName();
         title.setText(Title);
         /*
          * Set Title to BOLD
@@ -195,17 +137,8 @@ public class AbstractContent extends Activity {
             ConAck.append(acknowledgments + "\n" );
         }
         
-        String referenceSQLQuery = "SELECT * FROM ABSTRACT_REFERENCES WHERE ABSTRACT_UUID = '" + value +"';";
-        cursorTwo = DatabaseHelper.database.rawQuery(referenceSQLQuery, null);
+        getRefs();
         
-        ConRefs.append(Html.fromHtml("<b>References</b><br/>"));
-        if (cursorTwo != null && cursorTwo.moveToFirst()) {
-        	do {
-	        	Log.i(gtag, "in DO WHILE References");
-	        	String referenceName = cursorTwo.getString(cursorTwo.getColumnIndexOrThrow("REF_TEXT"));
-	        	ConRefs.append(Html.fromHtml("- " + referenceName + "<br/>" ));
-	        } while (cursorTwo.moveToNext());
-        }
         
 //        /*
 //         * If refs contain any data
@@ -255,28 +188,34 @@ public class AbstractContent extends Activity {
 
     private void sqlQueries() {
 
-        sqlQueryOne = "select authors_abstract.abstractauthor_id AS AUTH_ID,abstract_author.NAME AS NAME,abstract_author.IS__CORRESPONDING,ABSTRACT_AFFILIATION.AFFILIATION_NUMBER AS NUMBER "
-                + "from abstracts_item,abstract_author,authors_abstract,ABSTRACT_AFFILIATION "
-                + "where abstracts_item._id = authors_abstract.abstractsitem_id "
-                + "and abstract_author._id = authors_abstract.abstractauthor_id "
-                + "and ABSTRACT_AFFILIATION._id = authors_abstract.ABSTRACTAFFILIATION_ID "
-                + "and abstracts_item._id = " + value;
+//        sqlQueryOne = "select authors_abstract.abstractauthor_id AS AUTH_ID,abstract_author.NAME AS NAME,abstract_author.IS__CORRESPONDING,ABSTRACT_AFFILIATION.AFFILIATION_NUMBER AS NUMBER "
+//                + "from abstracts_item,abstract_author,authors_abstract,ABSTRACT_AFFILIATION "
+//                + "where abstracts_item._id = authors_abstract.abstractsitem_id "
+//                + "and abstract_author._id = authors_abstract.abstractauthor_id "
+//                + "and ABSTRACT_AFFILIATION._id = authors_abstract.ABSTRACTAFFILIATION_ID "
+//                + "and abstracts_item._id = " + value;
+//
+//        sqlQueryTwo = "select CORRESPONDING_AUTHOR_ID AS ID from ABSTRACT_AUTHOR_CORRESPONDENCE where abstractsItem_id = "
+//                + value;
+        
+        String nextAbstractData = "SELECT UUID AS _id , TOPIC, TITLE, " +
+        		"ABSRACT_TEXT, STATE, SORTID, REASONFORTALK, MTIME, TYPE,DOI, COI, ACKNOWLEDGEMENTS " +
+        		"FROM ABSTRACT_DETAILS WHERE _id = '" + value + "';";
+        
+//        sqlQueryThree = "select abstracts_item._id AS ID,CORRESPONDENCE,title, type, topic, text,af_name as af,REFS,ACKNOWLEDGEMENTS "
+//                + "from abs_affiliation_name,abstract_affiliation,abstracts_item,abstract_author,authors_abstract "
+//                + "where ID = "
+//                + value
+//                + " and abstracts_item._id = authors_abstract.abstractsitem_id "
+//                + "and abstract_author._id = authors_abstract.abstractauthor_id "
+//                + "and abstract_affiliation._id = abstract_author._id "
+//                + "and abs_affiliation_name._id = abstracts_item._id GROUP By abstracts_item._id";
 
-        sqlQueryTwo = "select CORRESPONDING_AUTHOR_ID AS ID from ABSTRACT_AUTHOR_CORRESPONDENCE where abstractsItem_id = "
-                + value;
-
-        sqlQueryThree = "select abstracts_item._id AS ID,CORRESPONDENCE,title, type, topic, text,af_name as af,REFS,ACKNOWLEDGEMENTS "
-                + "from abs_affiliation_name,abstract_affiliation,abstracts_item,abstract_author,authors_abstract "
-                + "where ID = "
-                + value
-                + " and abstracts_item._id = authors_abstract.abstractsitem_id "
-                + "and abstract_author._id = authors_abstract.abstractauthor_id "
-                + "and abstract_affiliation._id = abstract_author._id "
-                + "and abs_affiliation_name._id = abstracts_item._id GROUP By abstracts_item._id";
-
-        cursor = DatabaseHelper.database.rawQuery(sqlQueryOne, null);
-        cursorOne = DatabaseHelper.database.rawQuery(sqlQueryTwo, null);
-        cursorTwo = DatabaseHelper.database.rawQuery(sqlQueryThree, null);
+//        cursor = DatabaseHelper.database.rawQuery(sqlQueryOne, null);
+//        cursorOne = DatabaseHelper.database.rawQuery(sqlQueryTwo, null);
+        
+        //Cursor with next Abstract Data
+        cursorTwo = DatabaseHelper.database.rawQuery(nextAbstractData, null);
     }
 
     private void authorName() {
@@ -284,95 +223,72 @@ public class AbstractContent extends Activity {
         /*
          * Author Names
          */
-        if ((cursor != null && cursor.moveToFirst())
-                && (cursorOne != null && cursorOne.moveToFirst())) {
-            do {
+        //Query for getting author name, email, position, affiliation data for the particular Abstract
+        String authorSQLQuery = "SELECT DISTINCT AUTHORS_DETAILS.AUTHOR_FIRST_NAME, " +
+        								"AUTHOR_MIDDLE_NAME, AUTHOR_LAST_NAME, AUTHOR_EMAIL, " +
+        								"ABSTRACT_AUTHOR_POSITION_AFFILIATION.AUTHOR_AFFILIATION, " +
+        								"ABSTRACT_AUTHOR_POSITION_AFFILIATION.AUTHOR_POSITION " +
+        						"FROM AUTHORS_DETAILS JOIN ABSTRACT_AUTHOR_POSITION_AFFILIATION USING (AUTHOR_UUID) " +
+        						"WHERE AUTHORS_DETAILS.AUTHOR_UUID IN " +
+        								"(SELECT AUTHOR_UUID FROM ABSTRACT_AUTHOR_POSITION_AFFILIATION WHERE ABSTRACT_UUID = '" + value + "') " +
+        							"AND ABSTRACT_AUTHOR_POSITION_AFFILIATION.AUTHOR_POSITION IN " +
+        								"(SELECT AUTHOR_POSITION FROM ABSTRACT_AUTHOR_POSITION_AFFILIATION WHERE ABSTRACT_UUID = '" + value + "') " +
+        						"ORDER BY AUTHOR_POSITION ASC;"; 
+        
+        cursor = DatabaseHelper.database.rawQuery(authorSQLQuery, null);
+        Log.i(gtag, "Auth executed query: rows = " + cursor.getCount());
+        //cursor.moveToFirst();
+        if (cursor != null && cursor.moveToFirst()) {
+	        do {
+	        	Log.i(gtag, "in DO WHILE");
+	        	String authEmail = cursor.getString(cursor.getColumnIndexOrThrow("AUTHOR_EMAIL"));
+	        	Log.i(gtag, "author email => " + authEmail);
+	        	String authorName = cursor.getString(cursor.getColumnIndexOrThrow("AUTHOR_FIRST_NAME")) + ", " + cursor.getString(cursor.getColumnIndexOrThrow("AUTHOR_LAST_NAME")) ;
+	        	String authAffiliation = cursor.getString(cursor.getColumnIndexOrThrow("AUTHOR_AFFILIATION"));
+	        	if (authEmail == null || authEmail.equals("null")) {
+	        		Log.i(gtag, "in author check - IF NULL");
+	        		authorNames.append(Html.fromHtml("<b>" + authorName + "<sup><small>"
+                        + authAffiliation + "</small></sup><br/></b>"));
 
-                // String Corrosponding =
-                // cursor.getString(cursor.getColumnIndexOrThrow("IS__CORRESPONDING"));
-                /*
-                 * getName =
-                 * cursor.getString(cursor.getColumnIndexOrThrow("NAME")); int
-                 * getIndex = email.indexOf(","); String getCorsName
-                 * =email.substring(0, getIndex); int newIndex =
-                 * getCorsName.indexOf("."); String getFormattedName =
-                 * getCorsName.substring(newIndex+1,getCorsName.length());
-                 * Log.e("QW", ""); Log.e("AAA",
-                 * String.valueOf(getFormattedName.
-                 * trim().equalsIgnoreCase(getName.trim())));
-                 * if(getFormattedName.trim().equalsIgnoreCase(getName.trim())){
-                 * affiliation_ID =
-                 * cursor.getString(cursor.getColumnIndexOrThrow("NUMBER"));
-                 * authorNames
-                 * .append(Html.fromHtml("\n"+getName+"<sup><small>"+
-                 * affiliation_ID +"*</small></sup><br/>"));
-                 * authorNames.append("\n"); }else{ affiliation_ID =
-                 * cursor.getString(cursor.getColumnIndexOrThrow("NUMBER"));
-                 * authorNames
-                 * .append(Html.fromHtml("\n"+getName+"<sup><small>"+
-                 * affiliation_ID +"</small></sup><br/>"));
-                 * authorNames.append("\n"); }
-                 */
-                String getID = cursor.getString(cursor.getColumnIndexOrThrow("AUTH_ID"));
-                String Corr_AUTH_ID = cursorOne.getString(cursorOne.getColumnIndexOrThrow("ID"));
-                /*
-                 * Compare Author id and Corresponding Author id if Author is a
-                 * Corresponding Author show (*) sign
-                 */
-                if (getID.trim().equalsIgnoreCase(Corr_AUTH_ID.trim())) {
-                    getName = cursor.getString(cursor.getColumnIndexOrThrow("NAME"));
-                    affiliation_ID = cursor.getString(cursor.getColumnIndexOrThrow("NUMBER"));
-                    authorNames.append(Html.fromHtml("<b>" + getName + "<sup><small>"
-                            + affiliation_ID + "*</small></sup><br/></b>"));
-                } else {
-                    getName = cursor.getString(cursor.getColumnIndexOrThrow("NAME"));
-                    affiliation_ID = cursor.getString(cursor.getColumnIndexOrThrow("NUMBER"));
-                    authorNames.append(Html.fromHtml("<b>" + getName + "<sup><small>"
-                            + affiliation_ID + "</small></sup><br/></b>"));
-                }
-
-            } while (cursor.moveToNext());
+	        	} else {
+	        		Log.i(gtag, "in author check - ELSE ");
+	        		authorNames.append(Html.fromHtml("<b><a href=\"mailto:" + authEmail + "\">" + authorName + "</a>"  + "<sup><small>"
+	                        + authAffiliation + "</small></sup><br/></b>"));
+	        		authorNames.setMovementMethod(LinkMovementMethod.getInstance());
+	        		
+	        	}
+	        } while (cursor.moveToNext());
         }
+    	
     }
 
     private void affiliationName() {
-
-        /*
-         * Split String
-         */
-        String[] newAfName = affiliationName.split("\",\"");
-        for (int i = 0; i < newAfName.length; i++) {
-            newAfName[i] = newAfName[i].replace("\"", "").replace(":", ". ");
+    	
+    	//SQL Query for getting affiliation data, position for the particular abstract
+        String affiliationsSQLQuery = 	"SELECT AFFILIATION_ADDRESS, AFFILIATION_COUNTRY, " +
+        										"AFFILIATION_DEPARTMENT, AFFILIATION_SECTION, AFFILIATION_POSITION " +
+        								"FROM AFFILIATION_DETAILS JOIN ABSTRACT_AFFILIATION_ID_POSITION USING (AFFILIATION_UUID) " +
+        								"WHERE AFFILIATION_UUID IN " +
+        									"(SELECT AFFILIATION_UUID FROM ABSTRACT_AFFILIATION_ID_POSITION " +
+        										"WHERE ABSTRACT_UUID = '" + value + "')  " +
+        								"ORDER BY AFFILIATION_POSITION ASC;";
+        
+        cursorOne = DatabaseHelper.database.rawQuery(affiliationsSQLQuery, null);
+        Log.i(gtag, "Affiliation executed query: rows = " + cursorOne.getCount());
+        
+        if (cursorOne != null && cursorOne.moveToFirst()) {
+	        do {
+	        	Log.i(gtag, "in DO WHILE aff");
+	        	String affName = cursorOne.getString(cursorOne.getColumnIndexOrThrow("AFFILIATION_SECTION")) + 
+	        					", " + cursorOne.getString(cursorOne.getColumnIndexOrThrow("AFFILIATION_DEPARTMENT")) + 
+	        					", " + cursorOne.getString(cursorOne.getColumnIndexOrThrow("AFFILIATION_ADDRESS")) + 
+	        					", " + cursorOne.getString(cursorOne.getColumnIndexOrThrow("AFFILIATION_COUNTRY")) ;
+	        	int affPos = cursorOne.getInt(cursorOne.getColumnIndexOrThrow("AFFILIATION_POSITION"));
+	        	afName.append(Html.fromHtml(affPos + ": " + "<b>" + affName + "</b><br/>" ));
+	        } while (cursorOne.moveToNext());
         }
-        /*
-         * Sorting Data
-         */
-        Arrays.sort(newAfName);
-        for (String string : newAfName) {
-            /*
-             * Count Comma in a String
-             */
-            int countComma = string.replaceAll("[^,]", "").length();
-            /*
-             * If String has more than 1 comma
-             */
-            if (countComma > 1) {
-                /**
-                 * Arrange String as Number. Institute Name, Department Name ,
-                 * Location But Format was Number. Department Name, Institute
-                 * Name, Location
-                 */
-                Pattern pattern = Pattern.compile("(\\d++)\\.([^,]++),\\s*+([^,]++),\\s*+(.*+)");
-                Matcher matcher = pattern.matcher("");
-                matcher.reset(string);
-                String Af_Names = matcher.replaceAll("$1. $3, $2, $4");
-                afName.append(Af_Names + "\n");
-                afName.setTypeface(null, Typeface.ITALIC);
-            } else {
-                afName.append(string + "\n");
-                afName.setTypeface(null, Typeface.ITALIC);
-            }
-        }
+        
+        
     }
 
     private void getAbsTitle() {
@@ -399,39 +315,37 @@ public class AbstractContent extends Activity {
 
     }
 
-    private void getAbsEmail() {
-
-        cursorTwo.moveToFirst();
-        do {
-
-            String email = cursorTwo.getString(cursorTwo.getColumnIndexOrThrow("CORRESPONDENCE"));
-
-            int index = email.lastIndexOf(",");
-
-            String emailText = email.substring(index + 1, email.length());
-
-            emailField.append(Html.fromHtml("*<a href= mailto:" + emailText + ">" + emailText
-                    + "</a><br/>"));
-
-        } while (cursorTwo.moveToNext());
-
-    }
+//    private void getAbsEmail() {
+//
+//        cursorTwo.moveToFirst();
+//        do {
+//
+//            String email = cursorTwo.getString(cursorTwo.getColumnIndexOrThrow("CORRESPONDENCE"));
+//
+//            int index = email.lastIndexOf(",");
+//
+//            String emailText = email.substring(index + 1, email.length());
+//
+//            emailField.append(Html.fromHtml("*<a href= mailto:" + emailText + ">" + emailText
+//                    + "</a><br/>"));
+//
+//        } while (cursorTwo.moveToNext());
+//
+//    }
 
     private void getRefs() {
 
-        cursorTwo.moveToFirst();
-
-        do {
-
-            String refs = cursorTwo.getString(cursorTwo.getColumnIndexOrThrow("REFS"));
-            if (refs.length() > 0) {
-
-                ConRefs.append(Html.fromHtml("<b>Reference</b><br/>"));
-                ConRefs.append("\n" + refs);
-
-            }
-
-        } while (cursorTwo.moveToNext());
+    	String referenceSQLQuery = "SELECT * FROM ABSTRACT_REFERENCES WHERE ABSTRACT_UUID = '" + value +"';";
+        referenceCursor = DatabaseHelper.database.rawQuery(referenceSQLQuery, null);
+        
+        ConRefs.append(Html.fromHtml("<b>References</b><br/>"));
+        if (referenceCursor != null && referenceCursor.moveToFirst()) {
+        	do {
+	        	Log.i(gtag, "in DO WHILE References");
+	        	String referenceName = referenceCursor.getString(referenceCursor.getColumnIndexOrThrow("REF_TEXT"));
+	        	ConRefs.append(Html.fromHtml("- " + referenceName + "<br/>" ));
+	        } while (referenceCursor.moveToNext());
+        }
 
     }
 
@@ -447,10 +361,14 @@ public class AbstractContent extends Activity {
             if (acknowledgements.length() > 0) {
 
                 ConAck.append(Html.fromHtml("<b>Acknowledgements</b><br />"));
-                ConAck.append("\n" + acknowledgements);
+                ConAck.append(acknowledgements + "\n" );
             }
 
         } while (cursorTwo.moveToNext());
+        
+        
+        
+        
     }
 
     private void getContent() {
@@ -459,21 +377,13 @@ public class AbstractContent extends Activity {
 
         do {
 
-            String Text = cursorTwo.getString(cursorTwo.getColumnIndexOrThrow("TEXT"));
+            String Text = cursorTwo.getString(cursorTwo.getColumnIndexOrThrow("ABSRACT_TEXT"));
             content.setText(Text);
 
         } while (cursorTwo.moveToNext());
     }
 
     private void getAfName() {
-
-        cursorTwo.moveToFirst();
-
-        do {
-
-            affiliationName = cursorTwo.getString(6);
-
-        } while (cursorTwo.moveToNext());
 
         affiliationName();
 
@@ -563,19 +473,25 @@ public class AbstractContent extends Activity {
             case R.id.next:
 
                 String getCurrentRowIDQuery = "SELECT ROWID FROM ABSTRACT_DETAILS WHERE UUID = '" + value + "';";
-                
+                Log.i(gtag, "Current Row ID Query: " + getCurrentRowIDQuery);
                 Cursor getRowIdCursor = DatabaseHelper.database.rawQuery(getCurrentRowIDQuery, null);
-                int currentRowID = getRowIdCursor.getInt(getRowIdCursor.getColumnIndexOrThrow("ROWID"));
-                
+                Log.i(gtag, "Next Cursor count: " + getRowIdCursor.getCount());
+                Log.i(gtag, "Columns:" + getRowIdCursor.getColumnCount() ); 
+                Log.i(gtag, "Column Name: " + getRowIdCursor.getColumnName(0));
+                Log.i(gtag, "Column Index: " + getRowIdCursor.getColumnIndex("rowid"));
+                getRowIdCursor.moveToFirst();
+                Log.i(gtag, "Before 483");
+                int currentRowID = getRowIdCursor.getInt(0);
+                Log.i(gtag, "After 483 & ROW ID = " + currentRowID);
                 int nextRecordID = currentRowID + 1;
-                
+                Log.i(gtag, "New ROW ID = " + nextRecordID);
                 if (nextRecordID <= Abstracts.cursorCount) {
 
                 	//query and get next abstract id 
                 	String getNextAbstractUUID = "SELECT UUID FROM ABSTRACT_DETAILS WHERE ROWID = " + nextRecordID + ";";
                     Cursor getNextAbstractCursor = DatabaseHelper.database.rawQuery(getNextAbstractUUID, null);
-                    
-                	value = getNextAbstractCursor.getString(getRowIdCursor.getColumnIndexOrThrow("UUID"));;
+                    getNextAbstractCursor.moveToFirst();
+                	value = getNextAbstractCursor.getString(getNextAbstractCursor.getColumnIndexOrThrow("UUID"));
 
                     /*
                      * Delete previous data from all field
@@ -604,7 +520,7 @@ public class AbstractContent extends Activity {
                      * Get Email
                      */
 
-                    getAbsEmail();
+                    //getAbsEmail();
 
                     /*
                      * Get Author Names
@@ -672,12 +588,7 @@ public class AbstractContent extends Activity {
 
                     getAbsTopic();
 
-                    /*
-                     * Get Email
-                     */
-
-                    getAbsEmail();
-
+                    
                     /*
                      * Get Author Names
                      */
@@ -688,7 +599,7 @@ public class AbstractContent extends Activity {
                      * Get Affiliation's Name
                      */
 
-                    getAfName();
+                    getAfName();	//sai krna ha
 
                     /*
                      * Get Abstract Content
