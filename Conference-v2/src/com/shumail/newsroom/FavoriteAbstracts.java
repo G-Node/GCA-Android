@@ -121,5 +121,13 @@ public class FavoriteAbstracts extends Activity {
 		getMenuInflater().inflate(R.menu.favorite_abstracts, menu);
 		return true;
 	}
+	
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        dbHelper.close();
+        // The activity is about to be destroyed.
+    }
+
 
 }
