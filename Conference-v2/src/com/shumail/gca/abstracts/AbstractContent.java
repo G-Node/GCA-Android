@@ -551,6 +551,8 @@ public class AbstractContent extends Activity {
                      */
 
                     getRefs();
+                    
+                    invalidateOptionsMenu();
                 } else {
                     Toast.makeText(getApplicationContext(), "No more Abstracts Left",
                             Toast.LENGTH_SHORT).show();
