@@ -471,6 +471,7 @@ public class AbstractContent extends Activity {
         	
         	
             case R.id.next:
+            {
 
                 String getCurrentRowIDQuery = "SELECT ROWID FROM ABSTRACT_DETAILS WHERE UUID = '" + value + "';";
                 Log.i(gtag, "Current Row ID Query: " + getCurrentRowIDQuery);
@@ -559,13 +560,32 @@ public class AbstractContent extends Activity {
                 }
 
                 break;
+            }
 
             case R.id.Previous:
+            {
+            	
+            	String getCurrentRowIDQuery = "SELECT ROWID FROM ABSTRACT_DETAILS WHERE UUID = '" + value + "';";
+                Log.i(gtag, "Current Row ID Query: " + getCurrentRowIDQuery);
+                Cursor getRowIdCursor = DatabaseHelper.database.rawQuery(getCurrentRowIDQuery, null);
+                Log.i(gtag, "Prev Cursor count: " + getRowIdCursor.getCount());
+                Log.i(gtag, "Columns:" + getRowIdCursor.getColumnCount() ); 
+                Log.i(gtag, "Column Name: " + getRowIdCursor.getColumnName(0));
+                Log.i(gtag, "Column Index: " + getRowIdCursor.getColumnIndex("rowid"));
+                getRowIdCursor.moveToFirst();
+                Log.i(gtag, "Before 483");
+                int currentRowID = getRowIdCursor.getInt(0);
+                Log.i(gtag, "After 483 & ROW ID = " + currentRowID);
+                int prevRecordID = currentRowID - 1;
+                Log.i(gtag, "New ROW ID = " + prevRecordID);
+                
+				if (prevRecordID != 0) {
 
-                int previousValue = Integer.parseInt(value) - 1;
-                if (previousValue != 0) {
-
-                    value = String.valueOf(previousValue);
+                	//query and get prev abstract id 
+                	String getNextAbstractUUID = "SELECT UUID FROM ABSTRACT_DETAILS WHERE ROWID = " + prevRecordID + ";";
+                    Cursor getNextAbstractCursor = DatabaseHelper.database.rawQuery(getNextAbstractUUID, null);
+                    getNextAbstractCursor.moveToFirst();
+                	value = getNextAbstractCursor.getString(getNextAbstractCursor.getColumnIndexOrThrow("UUID"));
 
                     /*
                      * Delete previous data from all field
@@ -590,7 +610,12 @@ public class AbstractContent extends Activity {
 
                     getAbsTopic();
 
-                    
+                    /*
+                     * Get Email
+                     */
+
+                    //getAbsEmail();
+
                     /*
                      * Get Author Names
                      */
@@ -601,7 +626,7 @@ public class AbstractContent extends Activity {
                      * Get Affiliation's Name
                      */
 
-                    getAfName();	//sai krna ha
+                    getAfName();
 
                     /*
                      * Get Abstract Content
@@ -610,7 +635,7 @@ public class AbstractContent extends Activity {
                     getContent();
 
                     /*
-                     * Get Acknowledgments
+                     * get Acknowledgments
                      */
 
                     getAcknowledgements();
@@ -620,7 +645,9 @@ public class AbstractContent extends Activity {
                      */
 
                     getRefs();
-
+                    
+                    invalidateOptionsMenu();
+                    
                 } else {
                     Toast.makeText(getApplicationContext(), "This is the first Abstract",
                             Toast.LENGTH_SHORT).show();
@@ -628,7 +655,7 @@ public class AbstractContent extends Activity {
 
                 break;
            
-
+            }
             default:
 
                 break;
