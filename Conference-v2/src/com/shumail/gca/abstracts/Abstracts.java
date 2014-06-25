@@ -385,5 +385,13 @@ public class Abstracts extends Activity {
 		getMenuInflater().inflate(R.menu.abstracts, menu);
 		return true;
 	}
+	
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        dbHelper.close();
+        // The activity is about to be destroyed.
+    }
+
 
 }
