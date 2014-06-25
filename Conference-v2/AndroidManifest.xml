@@ -39,7 +39,7 @@
             android:label="@string/title_activity_abstracts" >
         </activity>
         <activity
-            android:name="com.shumail.newsroom.FavoriteAbstracts"
+            android:name="com.shumail.gca.abstracts.FavoriteAbstracts"
             android:label="@string/title_activity_favorite_abstracts" >
         </activity>
     </application>

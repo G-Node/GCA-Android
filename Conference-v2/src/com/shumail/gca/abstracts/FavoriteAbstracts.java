@@ -1,8 +1,9 @@
-package com.shumail.newsroom;
+package com.shumail.gca.abstracts;
 
-import com.shumail.gca.abstracts.AbstractContent;
-import com.shumail.gca.abstracts.AbstractCursorAdapter;
-import com.shumail.gca.abstracts.DatabaseHelper;
+import com.shumail.newsroom.R;
+import com.shumail.newsroom.R.id;
+import com.shumail.newsroom.R.layout;
+import com.shumail.newsroom.R.menu;
 
 import android.os.Bundle;
 import android.app.Activity;
