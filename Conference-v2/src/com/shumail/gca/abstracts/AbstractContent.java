@@ -5,7 +5,9 @@
 
 package com.shumail.gca.abstracts;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -238,6 +240,9 @@ public class AbstractContent extends Activity {
         cursor = DatabaseHelper.database.rawQuery(authorSQLQuery, null);
         Log.i(gtag, "Auth executed query: rows = " + cursor.getCount());
         //cursor.moveToFirst();
+        
+        List<String> abstractAuthorNames = new ArrayList<String>();
+        
         if (cursor != null && cursor.moveToFirst()) {
 	        do {
 	        	Log.i(gtag, "in DO WHILE");
@@ -245,18 +250,27 @@ public class AbstractContent extends Activity {
 	        	Log.i(gtag, "author email => " + authEmail);
 	        	String authorName = cursor.getString(cursor.getColumnIndexOrThrow("AUTHOR_FIRST_NAME")) + ", " + cursor.getString(cursor.getColumnIndexOrThrow("AUTHOR_LAST_NAME")) ;
 	        	String authAffiliation = cursor.getString(cursor.getColumnIndexOrThrow("AUTHOR_AFFILIATION"));
-	        	if (authEmail == null || authEmail.equals("null")) {
-	        		Log.i(gtag, "in author check - IF NULL");
-	        		authorNames.append(Html.fromHtml("<b>" + authorName + "<sup><small>"
-                        + authAffiliation + "</small></sup><br/></b>"));
-
-	        	} else {
-	        		Log.i(gtag, "in author check - ELSE ");
-	        		authorNames.append(Html.fromHtml("<b><a href=\"mailto:" + authEmail + "\">" + authorName + "</a>"  + "<sup><small>"
-	                        + authAffiliation + "</small></sup><br/></b>"));
-	        		authorNames.setMovementMethod(LinkMovementMethod.getInstance());
+	        	
+	        	if (abstractAuthorNames.indexOf(authorName) == -1 ) {
+	        		abstractAuthorNames.add(authorName);
 	        		
+	        		if (authEmail == null || authEmail.equals("null")) {
+		        		Log.i(gtag, "in author check - IF NULL");
+		        		authorNames.append(Html.fromHtml("<b>" + authorName + "<sup><small>"
+	                        + authAffiliation + "</small></sup><br/></b>"));
+
+		        	} else {
+		        		Log.i(gtag, "in author check - ELSE ");
+		        		authorNames.append(Html.fromHtml("<b><a href=\"mailto:" + authEmail + "\">" + authorName + "</a>"  + "<sup><small>"
+		                        + authAffiliation + "</small></sup><br/></b>"));
+		        		authorNames.setMovementMethod(LinkMovementMethod.getInstance());
+		        		
+		        	}
+	        	} else {
+	        		;
 	        	}
+	        	
+	        	
 	        } while (cursor.moveToNext());
         }
     	
