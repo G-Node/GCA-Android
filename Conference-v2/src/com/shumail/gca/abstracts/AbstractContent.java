@@ -95,33 +95,23 @@ public class AbstractContent extends Activity {
         String refs; 	//= getData.getString("refs");
         String acknowledgments = getData.getString("acknowledgements");
        
-//        /*
-//         * Executing SQL Queries to get data
-//         */
-//        sqlQueries();
         /*
          * Show Author names for that Abstract
          */
         authorName();
         
-        
-
-        
-        
-        
-        //Test set affiliations name
-        //afName.setText("AFF name 1 \nAFF Name 2");
-        
-//        /*
-//         * Get Affiliation Name for associate abstracts
-//         */
+        /*
+         * Get Affiliation Name for associate abstracts
+         */
         affiliationName();
+        
         title.setText(Title);
         /*
          * Set Title to BOLD
          */
         title.setTypeface(null, Typeface.BOLD);
         topic.setText(Topic);
+
         /*
          * Getting email address from CORRESPONDENCE(ABSTRACTS_ITEM table)
          */
@@ -139,17 +129,8 @@ public class AbstractContent extends Activity {
             ConAck.append(acknowledgments + "\n" );
         }
         
+        //Get References from db and show in view
         getRefs();
-        
-        
-//        /*
-//         * If refs contain any data
-//         */
-//        if (refs.length() > 0) {
-//
-//            ConRefs.append(Html.fromHtml("<b>Reference</b><br/>"));
-//            ConRefs.append("\n" + refs);
-//        }
 
     }
 
@@ -188,43 +169,22 @@ public class AbstractContent extends Activity {
         ConAck = (TextView)findViewById(R.id.ConACK);
     }
 
+    //Query for fetching next/prev abstract data
     private void sqlQueries() {
-
-//        sqlQueryOne = "select authors_abstract.abstractauthor_id AS AUTH_ID,abstract_author.NAME AS NAME,abstract_author.IS__CORRESPONDING,ABSTRACT_AFFILIATION.AFFILIATION_NUMBER AS NUMBER "
-//                + "from abstracts_item,abstract_author,authors_abstract,ABSTRACT_AFFILIATION "
-//                + "where abstracts_item._id = authors_abstract.abstractsitem_id "
-//                + "and abstract_author._id = authors_abstract.abstractauthor_id "
-//                + "and ABSTRACT_AFFILIATION._id = authors_abstract.ABSTRACTAFFILIATION_ID "
-//                + "and abstracts_item._id = " + value;
-//
-//        sqlQueryTwo = "select CORRESPONDING_AUTHOR_ID AS ID from ABSTRACT_AUTHOR_CORRESPONDENCE where abstractsItem_id = "
-//                + value;
-        
+      
         String nextAbstractData = "SELECT UUID AS _id , TOPIC, TITLE, " +
         		"ABSRACT_TEXT, STATE, SORTID, REASONFORTALK, MTIME, TYPE,DOI, COI, ACKNOWLEDGEMENTS " +
         		"FROM ABSTRACT_DETAILS WHERE _id = '" + value + "';";
-        
-//        sqlQueryThree = "select abstracts_item._id AS ID,CORRESPONDENCE,title, type, topic, text,af_name as af,REFS,ACKNOWLEDGEMENTS "
-//                + "from abs_affiliation_name,abstract_affiliation,abstracts_item,abstract_author,authors_abstract "
-//                + "where ID = "
-//                + value
-//                + " and abstracts_item._id = authors_abstract.abstractsitem_id "
-//                + "and abstract_author._id = authors_abstract.abstractauthor_id "
-//                + "and abstract_affiliation._id = abstract_author._id "
-//                + "and abs_affiliation_name._id = abstracts_item._id GROUP By abstracts_item._id";
-
-//        cursor = DatabaseHelper.database.rawQuery(sqlQueryOne, null);
-//        cursorOne = DatabaseHelper.database.rawQuery(sqlQueryTwo, null);
         
         //Cursor with next Abstract Data
         cursorTwo = DatabaseHelper.database.rawQuery(nextAbstractData, null);
     }
 
     private void authorName() {
-
         /*
-         * Author Names
+         * Function for getting Author Names & addint to the view
          */
+    	
         //Query for getting author name, email, position, affiliation data for the particular Abstract
         String authorSQLQuery = "SELECT DISTINCT AUTHORS_DETAILS.AUTHOR_FIRST_NAME, " +
         								"AUTHOR_MIDDLE_NAME, AUTHOR_LAST_NAME, AUTHOR_EMAIL, " +
@@ -270,14 +230,15 @@ public class AbstractContent extends Activity {
 	        		;
 	        	}
 	        	
-	        	
 	        } while (cursor.moveToNext());
         }
     	
     }
 
     private void affiliationName() {
-    	
+    	/*
+    	 *Function for getting affiliation names for that abstract and adding to the view 
+    	 */
     	//SQL Query for getting affiliation data, position for the particular abstract
         String affiliationsSQLQuery = 	"SELECT AFFILIATION_ADDRESS, AFFILIATION_COUNTRY, " +
         										"AFFILIATION_DEPARTMENT, AFFILIATION_SECTION, AFFILIATION_POSITION " +
@@ -300,9 +261,7 @@ public class AbstractContent extends Activity {
 	        	int affPos = cursorOne.getInt(cursorOne.getColumnIndexOrThrow("AFFILIATION_POSITION"));
 	        	afName.append(Html.fromHtml(affPos + ": " + "<b>" + affName + "</b><br/>" ));
 	        } while (cursorOne.moveToNext());
-        }
-        
-        
+        }        
     }
 
     private void getAbsTitle() {
@@ -328,24 +287,6 @@ public class AbstractContent extends Activity {
         } while (cursorTwo.moveToNext());
 
     }
-
-//    private void getAbsEmail() {
-//
-//        cursorTwo.moveToFirst();
-//        do {
-//
-//            String email = cursorTwo.getString(cursorTwo.getColumnIndexOrThrow("CORRESPONDENCE"));
-//
-//            int index = email.lastIndexOf(",");
-//
-//            String emailText = email.substring(index + 1, email.length());
-//
-//            emailField.append(Html.fromHtml("*<a href= mailto:" + emailText + ">" + emailText
-//                    + "</a><br/>"));
-//
-//        } while (cursorTwo.moveToNext());
-//
-//    }
 
     private void getRefs() {
 
@@ -380,14 +321,11 @@ public class AbstractContent extends Activity {
 
         } while (cursorTwo.moveToNext());
         
-        
-        
-        
     }
 
     private void getContent() {
 
-        cursorTwo.moveToFirst();
+    cursorTwo.moveToFirst();
 
         do {
 
