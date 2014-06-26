@@ -332,8 +332,11 @@ public class Abstracts extends Activity {
 		            	 dbHelper.addAuthors(author_uuid, author_fName, author_middleName, author_lName, author_mail);
 	            	 }
 	            	 
+	            	 //Remove brackets from author affiliation that's to be written in super script
+	            	 String authorAffiliationsWithoutBraces = authorAffiliationsArray.toString().replaceAll("\\[", "").replaceAll("\\]", "");
+	            	 
 	            	 //Add position, affiliation data in ABSTRACT_AUTHOR_POSITION_AFFILIATION table
-	            	 dbHelper.addInABSTRACT_AUTHOR_POSITION_AFFILIATION(abs_uuid, author_uuid, author_position, authorAffiliationsArray.toString() );
+	            	 dbHelper.addInABSTRACT_AUTHOR_POSITION_AFFILIATION(abs_uuid, author_uuid, author_position, authorAffiliationsWithoutBraces );
 	            	 
 	             } //end authors array loop
 	             
