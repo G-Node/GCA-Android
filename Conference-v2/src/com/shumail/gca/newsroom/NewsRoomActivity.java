@@ -109,5 +109,10 @@ public class NewsRoomActivity extends Activity {
 			Log.i("incf-rss", "adapter size = "+ mAdapter.getCount());
 		}
 	}
-
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        this.mAdapter.imageLoader.destroy();
+        // The activity is about to be destroyed.
+    }
 }
