@@ -11,5 +11,6 @@
     <string name="title_activity_abstracts">Abstracts</string>
     <string name="searchHint">Search Abstracts...</string>
     <string name="title_activity_favorite_abstracts">Favorite Abstracts</string>
+    <string name="title_activity_splash_screen">SplashScreen</string>
 
 </resources>
