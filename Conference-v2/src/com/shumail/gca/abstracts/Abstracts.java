@@ -109,9 +109,6 @@ public class Abstracts extends Activity {
                     String Title = cursor.getString(cursor.getColumnIndexOrThrow("TITLE"));
                     String Topic = cursor.getString(cursor.getColumnIndexOrThrow("TOPIC"));
                     String value = cursor.getString(cursor.getColumnIndexOrThrow("_id"));
-                    String afName = "TEST AF"; //cursor.getString(cursor.getColumnIndexOrThrow("AF_NAME"));
-                    String email = "test@foo.bar"; //cursor.getString(cursor.getColumnIndexOrThrow("CORRESPONDENCE"));
-                    String refs = "REF 1 Test"; // cursor.getString(cursor.getColumnIndexOrThrow("REFS"));
                     String acknowledgements = cursor.getString(cursor.getColumnIndexOrThrow("ACKNOWLEDGEMENTS"));
                     Intent in = new Intent(getApplicationContext(), AbstractContent.class);
                     /*
@@ -121,9 +118,6 @@ public class Abstracts extends Activity {
                     in.putExtra("Title", Title);
                     in.putExtra("Topic", Topic);
                     in.putExtra("value", value);
-                    in.putExtra("afName", afName);
-                    in.putExtra("email", email);
-                    in.putExtra("refs", refs);
                     in.putExtra("acknowledgements", acknowledgements);
                     startActivity(in);
                 } catch (Exception e) {

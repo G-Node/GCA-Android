@@ -43,20 +43,13 @@
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:textStyle="italic" />
 
-        <TextView
-            android:id="@+id/email"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_below="@+id/ConAfName"
-            android:textAppearance="?android:attr/textAppearanceSmall" />
 
         <TextView
             android:id="@+id/Content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
-            android:layout_below="@+id/email"
+            android:layout_below="@+id/ConAfName"
             android:textAppearance="?android:attr/textAppearanceSmall" />
 
         <TextView

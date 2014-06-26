@@ -47,8 +47,6 @@ public class AbstractContent extends Activity {
 
     TextView afName;
 
-    TextView emailField;
-
     TextView authorNames;
 
     TextView ConRefs;
@@ -57,20 +55,9 @@ public class AbstractContent extends Activity {
 
     Button btn;
 
-    private String affiliation_ID;
-
-    private String getName;
-
     private String value;
 
-    private String sqlQueryOne;
-
-    private String sqlQueryTwo;
-
-    private String sqlQueryThree;
-
-    private String affiliationName;
-
+    
     Cursor cursor, cursorOne, cursorTwo, referenceCursor;
 
     @Override
@@ -90,9 +77,6 @@ public class AbstractContent extends Activity {
         String Title = getData.getString("Title");
         String Topic = getData.getString("Topic");
         value = getData.getString("value");
-        affiliationName = getData.getString("afName");
-        String email = getData.getString("email");
-        String refs; 	//= getData.getString("refs");
         String acknowledgments = getData.getString("acknowledgements");
        
         /*
@@ -111,21 +95,18 @@ public class AbstractContent extends Activity {
          */
         title.setTypeface(null, Typeface.BOLD);
         topic.setText(Topic);
-
+        
         /*
-         * Getting email address from CORRESPONDENCE(ABSTRACTS_ITEM table)
+         * Set Abstract Text in view
          */
-        int index = email.lastIndexOf(",");
-        String emailText = email.substring(index + 1, email.length());
-        emailField.append(Html.fromHtml("*<a href= mailto:" + emailText + ">" + emailText
-                + "</a><br/>"));
-        content.setText(abstracts);
+        
+        content.setText(abstracts + "\n");
         /*
          * If acknowledgments contain any data
          */
         if (acknowledgments.length() > 0) {
 
-            ConAck.append(Html.fromHtml("<b>Acknowledgments</b><br/>"));
+        	ConAck.append(Html.fromHtml("<b>Acknowledgments</b><br/>"));
             ConAck.append(acknowledgments + "\n" );
         }
         
@@ -155,10 +136,6 @@ public class AbstractContent extends Activity {
          * TextView for Affiliation Name
          */
         afName = (TextView)findViewById(R.id.ConAfName);
-        /*
-         * TextView for email
-         */
-        emailField = (TextView)findViewById(R.id.email);
         /*
          * TextView for Reference
          */
@@ -330,7 +307,7 @@ public class AbstractContent extends Activity {
         do {
 
             String Text = cursorTwo.getString(cursorTwo.getColumnIndexOrThrow("ABSRACT_TEXT"));
-            content.setText(Text);
+            content.setText(Text + "\n");
 
         } while (cursorTwo.moveToNext());
     }
@@ -347,7 +324,6 @@ public class AbstractContent extends Activity {
         topic.setText("");
         content.setText("");
         ConRefs.setText("");
-        emailField.setText("");
         afName.setText("");
         authorNames.setText("");
         ConAck.setText("");
