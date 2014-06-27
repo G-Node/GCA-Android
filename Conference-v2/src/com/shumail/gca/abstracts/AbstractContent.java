@@ -188,6 +188,20 @@ public class AbstractContent extends Activity {
 	        	String authorName = cursor.getString(cursor.getColumnIndexOrThrow("AUTHOR_FIRST_NAME")) + ", " + cursor.getString(cursor.getColumnIndexOrThrow("AUTHOR_LAST_NAME")) ;
 	        	String authAffiliation = cursor.getString(cursor.getColumnIndexOrThrow("AUTHOR_AFFILIATION"));
 	        	
+	        	String authAffiliationINTs = authAffiliation.replaceAll("[^0-9]", "");
+	        	
+	        	Pattern digitPattern = Pattern.compile("(\\d)"); // EDIT: Increment each digit.
+
+	        	Matcher matcher = digitPattern.matcher(authAffiliationINTs);
+	        	StringBuffer result = new StringBuffer();
+	        	while (matcher.find())
+	        	{
+	        	    matcher.appendReplacement(result, String.valueOf(Integer.parseInt(matcher.group(1)) + 1));
+	        	}
+	        	matcher.appendTail(result);
+	        	authAffiliation = result.toString();
+	        	
+	        	
 	        	if (abstractAuthorNames.indexOf(authorName) == -1 ) {
 	        		abstractAuthorNames.add(authorName);
 	        		
@@ -236,6 +250,7 @@ public class AbstractContent extends Activity {
 	        					", " + cursorOne.getString(cursorOne.getColumnIndexOrThrow("AFFILIATION_ADDRESS")) + 
 	        					", " + cursorOne.getString(cursorOne.getColumnIndexOrThrow("AFFILIATION_COUNTRY")) ;
 	        	int affPos = cursorOne.getInt(cursorOne.getColumnIndexOrThrow("AFFILIATION_POSITION"));
+	        	affPos++;
 	        	afName.append(Html.fromHtml(affPos + ": " + "<b>" + affName + "</b><br/>" ));
 	        } while (cursorOne.moveToNext());
         }        
