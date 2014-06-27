@@ -287,10 +287,12 @@ public class AbstractContent extends Activity {
         
         ConRefs.append(Html.fromHtml("<b>References</b><br/>"));
         if (referenceCursor != null && referenceCursor.moveToFirst()) {
+        	int refNumber = 1;
         	do {
 	        	Log.i(gtag, "in DO WHILE References");
 	        	String referenceName = referenceCursor.getString(referenceCursor.getColumnIndexOrThrow("REF_TEXT"));
-	        	ConRefs.append(Html.fromHtml("- " + referenceName + "<br/>" ));
+	        	ConRefs.append(Html.fromHtml(refNumber + ": " + referenceName + "<br/>" ));
+	        	refNumber++;
 	        } while (referenceCursor.moveToNext());
         }
 
