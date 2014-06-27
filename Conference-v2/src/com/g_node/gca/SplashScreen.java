@@ -1,4 +1,4 @@
-package com.shumail.gca;
+package com.g_node.gca;
 
 import com.shumail.newsroom.R;
 import com.shumail.newsroom.R.layout;

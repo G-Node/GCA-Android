@@ -1,14 +1,14 @@
-package com.shumail.gca.abstracts;
+package com.g_node.gca.abstracts;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 
-import com.shumail.gca.utils.JSONReader;
+import com.g_node.gca.abstracts.AbstractCursorAdapter;
+import com.g_node.gca.abstracts.DatabaseHelper;
+import com.g_node.gca.utils.JSONReader;
 
-import com.shumail.gca.abstracts.DatabaseHelper;
 
-import com.shumail.gca.abstracts.AbstractCursorAdapter;
 
 import org.json.JSONArray;
 import org.json.JSONException;

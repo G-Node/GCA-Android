@@ -1,4 +1,4 @@
-package com.shumail.gca.abstracts;
+package com.g_node.gca.abstracts;
 
 import com.shumail.newsroom.R;
 import com.shumail.newsroom.R.id;

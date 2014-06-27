@@ -3,7 +3,7 @@
  * License: BSD-3 (See LICENSE)
  */
 
-package com.shumail.gca.abstracts;
+package com.g_node.gca.abstracts;
 
 import java.util.ArrayList;
 import java.util.Arrays;

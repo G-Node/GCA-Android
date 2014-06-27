@@ -2,7 +2,7 @@
 * Date: Jun 16, 2014
 */
 
-package com.shumail.gca.abstracts;
+package com.g_node.gca.abstracts;
 
 import android.content.ContentValues;
 import android.content.Context;

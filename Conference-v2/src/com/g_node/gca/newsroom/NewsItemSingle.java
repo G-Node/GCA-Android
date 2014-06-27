@@ -1,4 +1,4 @@
-package com.shumail.gca.newsroom;
+package com.g_node.gca.newsroom;
 /*
  * Data object that holds all of our information about a single rss item.
  */

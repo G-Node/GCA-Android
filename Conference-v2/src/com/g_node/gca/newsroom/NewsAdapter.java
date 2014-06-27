@@ -1,4 +1,4 @@
-package com.shumail.gca.newsroom;
+package com.g_node.gca.newsroom;
 
 import java.text.DateFormat;
 import java.text.ParseException;

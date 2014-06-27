@@ -1,8 +1,8 @@
-package com.shumail.gca;
+package com.g_node.gca;
 
-import com.shumail.gca.abstracts.Abstracts;
-import com.shumail.gca.abstracts.FavoriteAbstracts;
-import com.shumail.gca.newsroom.NewsRoomActivity;
+import com.g_node.gca.abstracts.Abstracts;
+import com.g_node.gca.abstracts.FavoriteAbstracts;
+import com.g_node.gca.newsroom.NewsRoomActivity;
 import com.shumail.newsroom.R;
 
 import android.os.Bundle;

@@ -3,7 +3,7 @@
 * Author: Shumail Mohy-ud-Din
 */
 
-package com.shumail.gca.utils;
+package com.g_node.gca.utils;
 
 import org.json.JSONArray;
 import org.json.JSONException;
