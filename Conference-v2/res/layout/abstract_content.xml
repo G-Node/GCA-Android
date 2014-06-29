@@ -9,7 +9,8 @@
         android:id="@+id/abTopic"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#003f84"
+        android:background="#FF8800"
+        android:gravity="center"
         android:textColor="#FFFFFF" />
 	
     <!-- View -->
@@ -18,16 +19,7 @@
         android:layout_width="fill_parent"
         android:layout_height="1dp"
         android:background="@android:color/darker_gray" />
-	
-	<!-- Type -->
-	
-    <TextView
-        android:id="@+id/abType"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#003f84"
-        android:gravity="right"
-        android:textColor="#FFFFFF" />
+		
 	
     <RelativeLayout
         android:layout_width="fill_parent"
@@ -43,23 +35,24 @@
             android:id="@+id/abTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
             android:contentDescription="@string/app_name"
             android:paddingLeft="25dip"
             android:paddingRight="25dip"
             android:textColor="#000000"
-            android:textSize="18sp" />
+            android:textStyle="bold"
+            android:textSize="20sp" />
        
-        <!-- Rightend Arrow -->
-
-        <ImageView
-            android:id="@+id/itemArrow"
-            android:layout_width="25dip"
-            android:layout_height="25dip"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:contentDescription="@string/app_name"
-            />
+                
+	        <!-- Type -->
+		
+	    <TextView
+	        android:id="@+id/abType"
+	        android:layout_width="55dip"
+	        android:layout_height="20dip"
+	        android:background="#003f84"
+	        android:layout_alignParentRight="true"
+	        android:gravity="center"
+	        android:textColor="#FFFFFF" />
        
         <!-- Subtitle -->
 
@@ -70,9 +63,9 @@
             android:layout_below="@id/abTitle"
             android:paddingLeft="25dip"
             android:paddingRight="25dip"
+            android:paddingTop="3dip"
             android:textColor="#666362"
             android:textSize="12sp"
-            android:textStyle="bold"
             android:typeface="sans" />
     </RelativeLayout>
 

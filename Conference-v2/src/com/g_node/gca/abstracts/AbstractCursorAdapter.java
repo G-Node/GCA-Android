@@ -8,6 +8,7 @@ package com.g_node.gca.abstracts;
 import com.shumail.newsroom.R;
 import android.content.Context;
 import android.database.Cursor;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.support.v4.widget.CursorAdapter;
@@ -45,7 +46,14 @@ public class AbstractCursorAdapter extends CursorAdapter {
          * TextView for Showing Type
          */
         TextView type = (TextView)view.findViewById(R.id.abType);
-        type.setText(cursor.getString(cursor.getColumnIndexOrThrow("TYPE")));
+        String typeText = cursor.getString(cursor.getColumnIndexOrThrow("TYPE"));
+        type.setText(typeText.toUpperCase());
+        
+        if(typeText.compareToIgnoreCase("poster") == 0) {
+        	type.setBackgroundColor(Color.parseColor("#AA66CC"));
+        } else {
+        	type.setBackgroundColor(Color.parseColor("#33B5E5"));
+        }
         /*
          * _id for getting Author Names
          */
