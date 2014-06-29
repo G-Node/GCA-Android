@@ -188,7 +188,7 @@ public class AbstractContent extends Activity {
 	        	String authorName = cursor.getString(cursor.getColumnIndexOrThrow("AUTHOR_FIRST_NAME")) + ", " + cursor.getString(cursor.getColumnIndexOrThrow("AUTHOR_LAST_NAME")) ;
 	        	String authAffiliation = cursor.getString(cursor.getColumnIndexOrThrow("AUTHOR_AFFILIATION"));
 	        	
-	        	String authAffiliationINTs = authAffiliation.replaceAll("[^0-9]", "");
+	        	String authAffiliationINTs = authAffiliation.replaceAll("[^0-9][,]", "");
 	        	
 	        	Pattern digitPattern = Pattern.compile("(\\d)"); // EDIT: Increment each digit.
 
