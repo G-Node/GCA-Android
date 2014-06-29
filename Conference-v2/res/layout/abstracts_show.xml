@@ -8,30 +8,51 @@
     <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content" >
-
+    
+    <TextView
+            android:id="@+id/ConTitle"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-light"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+			android:gravity="left"
+            android:textStyle="bold"
+            android:background="@android:color/holo_orange_light"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+    
+    
+        
         <TextView
             android:id="@+id/ConTopic"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:gravity="right"
+            android:layout_marginTop="2dp"
+            android:gravity="center"
+            android:layout_below="@+id/ConTitle"
             android:textAppearance="?android:attr/textAppearanceSmall" />
-
-        <TextView
-            android:id="@+id/ConTitle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_below="@+id/ConTopic"
-            android:layout_marginTop="12dp"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
+		
+        <View
+			android:id="@+id/bar1"
+			android:layout_marginLeft="5dp"
+			android:layout_marginRight="5dp"
+			android:layout_marginTop="5dp"
+			android:layout_marginBottom="3dp"            
+		    android:layout_width="fill_parent"
+		    android:layout_height="1dp"
+		    android:layout_below="@+id/ConTopic"
+		    android:background="@android:color/darker_gray"/>
+        
+        
 
         <TextView
             android:id="@+id/ConAuthor"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
-            android:layout_below="@+id/ConTitle"
+            android:layout_below="@+id/bar1"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <TextView
@@ -49,9 +70,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
+            android:paddingLeft="5dip"
+            android:paddingRight="5dip"
             android:layout_below="@+id/ConAfName"
-            android:textAppearance="?android:attr/textAppearanceSmall" />
+            android:textAppearance="?android:attr/textAppearanceMedium" />
 
+        
+        
         <TextView
             android:id="@+id/ConACK"
             android:layout_width="match_parent"
@@ -68,5 +93,5 @@
             android:layout_below="@+id/ConACK"
             android:textAppearance="?android:attr/textAppearanceSmall" />
     </RelativeLayout>
-
+  
 </ScrollView>

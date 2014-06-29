@@ -207,13 +207,13 @@ public class AbstractContent extends Activity {
 	        		
 	        		if (authEmail == null || authEmail.equals("null")) {
 		        		Log.i(gtag, "in author check - IF NULL");
-		        		authorNames.append(Html.fromHtml("<b>" + authorName + "<sup><small>"
-	                        + authAffiliation + "</small></sup><br/></b>"));
+		        		authorNames.append(Html.fromHtml("<b>" + authorName + "</b><sup><small>"
+	                        + authAffiliation + "</small></sup><br/>"));
 
 		        	} else {
 		        		Log.i(gtag, "in author check - ELSE ");
-		        		authorNames.append(Html.fromHtml("<b><a href=\"mailto:" + authEmail + "\">" + authorName + "</a>"  + "<sup><small>"
-		                        + authAffiliation + "</small></sup><br/></b>"));
+		        		authorNames.append(Html.fromHtml("<b><a href=\"mailto:" + authEmail + "\">" + authorName + "</a>"  + "</b><sup><small>"
+		                        + authAffiliation + "</small></sup><br/>"));
 		        		authorNames.setMovementMethod(LinkMovementMethod.getInstance());
 		        		
 		        	}
@@ -379,7 +379,7 @@ public class AbstractContent extends Activity {
         /*
          * Set Custom Color in ActionBar
          */
-        getActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#003f84")));
+        
         return true;
     }
 
