@@ -26,7 +26,7 @@ public class FavoriteAbstracts extends Activity {
 	ListView listView;
 	AbstractCursorAdapter cursorAdapter;
 	
-	String gTag = "GCA-Abstracts";
+	String gTag = "GCA-fav-Abstracts";
 	DatabaseHelper dbHelper = new DatabaseHelper(this);
 
 	@Override
@@ -39,9 +39,39 @@ public class FavoriteAbstracts extends Activity {
          * Get Writable Database
          */
         dbHelper.open();
-		
-        //check if DB already has data
-        
+		//function to load favourite abstracts
+        loadFavAbstracts();
+
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.favorite_abstracts, menu);
+		return true;
+	}
+	
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        dbHelper.close();
+        // The activity is about to be destroyed.
+    }
+    
+    @Override
+    protected void onResume() {
+    	Log.i(gTag, "in on resume");
+    	super.onResume();
+    	//refreshes the listview
+    	listView.setAdapter(null);
+    	loadFavAbstracts();
+    }
+    
+    //function for loading favorite abstracts
+    private void loadFavAbstracts() {
+    	
+    	Log.i(gTag, "Loading Fav Abstract function");
+    	//check if DB already has data
         /*
          * SQL Query to get data
          */
@@ -113,21 +143,6 @@ public class FavoriteAbstracts extends Activity {
                 }
             });
         }
-
-	}
-
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.favorite_abstracts, menu);
-		return true;
-	}
-	
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        dbHelper.close();
-        // The activity is about to be destroyed.
     }
 
 
