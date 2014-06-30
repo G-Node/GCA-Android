@@ -2,6 +2,7 @@ package com.g_node.gca;
 
 import com.g_node.gca.abstracts.Abstracts;
 import com.g_node.gca.abstracts.FavoriteAbstracts;
+import com.g_node.gca.map.MapActivity;
 import com.g_node.gca.newsroom.NewsRoomActivity;
 import com.shumail.newsroom.R;
 
@@ -48,6 +49,17 @@ public class MainActivity extends Activity {
 			public void onClick(View v) {
 				Intent favIntent = new Intent(MainActivity.this, FavoriteAbstracts.class);
 				startActivity(favIntent);
+				
+			}
+		});
+		
+		Button mapBtn = (Button) findViewById(R.id.button4);
+		mapBtn.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				Intent mapIntent = new Intent(MainActivity.this, MapActivity.class);
+				startActivity(mapIntent);
 				
 			}
 		});
