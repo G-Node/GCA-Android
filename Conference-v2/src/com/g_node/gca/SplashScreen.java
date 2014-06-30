@@ -12,13 +12,14 @@ import android.view.Menu;
 import android.view.Window;
 
 public class SplashScreen extends Activity {
-	
-	// Splash screen timer
-    private static int SPLASH_TIME_OUT = 2000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        
+        // Splash screen timer
+    	int SPLASH_TIME_OUT = Integer.parseInt(getResources().getString(R.string.splashTiming));
+        
         //removing the action bar of splash screen
         getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
         getActionBar().hide();

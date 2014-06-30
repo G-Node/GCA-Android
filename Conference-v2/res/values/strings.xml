@@ -15,5 +15,6 @@
     <string name="title_activity_map">MapActivity</string>
     <string name="AcknowledgementHeading">Acknowledgements</string>
     <string name="referencesHeading">References</string>
+    <string name="splashTiming">1300</string>
 
 </resources>
