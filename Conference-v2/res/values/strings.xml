@@ -13,5 +13,7 @@
     <string name="title_activity_favorite_abstracts">Favorite Abstracts</string>
     <string name="title_activity_splash_screen">SplashScreen</string>
     <string name="title_activity_map">MapActivity</string>
+    <string name="AcknowledgementHeading">Acknowledgements</string>
+    <string name="referencesHeading">References</string>
 
 </resources>

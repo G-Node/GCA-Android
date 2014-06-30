@@ -100,13 +100,12 @@ public class AbstractContent extends Activity {
          * Set Abstract Text in view
          */
         
-        content.setText(abstracts + "\n");
+        content.setText(abstracts);
         /*
          * If acknowledgments contain any data
          */
         if (acknowledgments.length() > 0) {
-
-        	ConAck.append(Html.fromHtml("<b>Acknowledgments</b><br/>"));
+        	
             ConAck.append(acknowledgments + "\n" );
         }
         
@@ -285,7 +284,6 @@ public class AbstractContent extends Activity {
     	String referenceSQLQuery = "SELECT * FROM ABSTRACT_REFERENCES WHERE ABSTRACT_UUID = '" + value +"';";
         referenceCursor = DatabaseHelper.database.rawQuery(referenceSQLQuery, null);
         
-        ConRefs.append(Html.fromHtml("<b>References</b><br/>"));
         if (referenceCursor != null && referenceCursor.moveToFirst()) {
         	int refNumber = 1;
         	do {
@@ -309,7 +307,6 @@ public class AbstractContent extends Activity {
 
             if (acknowledgements.length() > 0) {
 
-                ConAck.append(Html.fromHtml("<b>Acknowledgements</b><br />"));
                 ConAck.append(acknowledgements + "\n" );
             }
 
@@ -324,7 +321,7 @@ public class AbstractContent extends Activity {
         do {
 
             String Text = cursorTwo.getString(cursorTwo.getColumnIndexOrThrow("ABSRACT_TEXT"));
-            content.setText(Text + "\n");
+            content.setText(Text);
 
         } while (cursorTwo.moveToNext());
     }

@@ -75,22 +75,74 @@
             android:layout_below="@+id/ConAfName"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
+        <TextView
+            android:id="@+id/ConAcknowledgeheading"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+			android:paddingTop="5dp"
+			android:paddingBottom="2dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:fontFamily="sans-serif-light"
+            android:text="@string/AcknowledgementHeading"
+            android:layout_below="@+id/Content"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+        
+        
+        <View
+			android:id="@+id/bar3"
+			android:layout_marginLeft="5dp"
+			android:layout_marginRight="5dp"
+			android:layout_marginTop="2dp"
+			android:layout_marginBottom="3dp"            
+		    android:layout_width="fill_parent"
+		    android:layout_height="1dp"
+		    android:layout_below="@+id/ConAcknowledgeheading"
+		    android:background="@android:color/darker_gray"/>
         
         
         <TextView
             android:id="@+id/ConACK"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
             android:layout_alignParentLeft="true"
-            android:layout_below="@+id/Content"
+            android:layout_below="@+id/bar3"
             android:textAppearance="?android:attr/textAppearanceSmall" />
+        
+        <TextView
+            android:id="@+id/ConReferenceheading"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+			android:paddingTop="5dp"
+			android:paddingBottom="2dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:fontFamily="sans-serif-light"
+            android:text="@string/referencesHeading"
+            android:layout_below="@+id/ConACK"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
 
+        <View
+			android:id="@+id/bar4"
+			android:layout_marginLeft="5dp"
+			android:layout_marginRight="5dp"
+			android:layout_marginTop="2dp"
+			android:layout_marginBottom="3dp"            
+		    android:layout_width="fill_parent"
+		    android:layout_height="1dp"
+		    android:layout_below="@+id/ConReferenceheading"
+		    android:background="@android:color/darker_gray"/>
+        
         <TextView
             android:id="@+id/Conrefs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
-            android:layout_below="@+id/ConACK"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:layout_below="@+id/bar4"
             android:textAppearance="?android:attr/textAppearanceSmall" />
     </RelativeLayout>
   
