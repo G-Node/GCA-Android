@@ -9,9 +9,10 @@
         android:id="@+id/abTopic"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#FF8800"
+        android:background="#e1e1e1"
         android:gravity="center"
-        android:textColor="#FFFFFF" />
+        android:textStyle="italic"
+        android:textColor="#595656" />
 	
     <!-- View -->
     

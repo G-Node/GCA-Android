@@ -1,10 +1,18 @@
-<resources>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
     <style name="MyTheme" parent="@android:style/Theme.Holo.Light">
         <item name="android:actionBarStyle">@style/MyActionBar</item>
+        <item name="android:actionMenuTextColor">#fcf8f8</item>
     </style>
 
     <style name="MyActionBar" parent="@android:style/Widget.Holo.Light.ActionBar">
-        <item name="android:background">@android:color/holo_orange_dark</item>
-        <item name="android:textColor">#ffffff</item>
+        <item name="android:background">@android:color/holo_blue_dark</item>        <item name="android:textColor">#fcf8f8</item>
+        <item name="android:titleTextStyle">@style/MyActionBarTitleText</item>
     </style>
+    
+    <style name="MyActionBarTitleText"
+           parent="@android:style/Widget.Holo.Light.ActionBar">
+        <item name="android:textColor">#fcf8f8</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    
 </resources>
