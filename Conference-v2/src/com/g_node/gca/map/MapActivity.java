@@ -17,6 +17,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -27,16 +28,21 @@ import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.GoogleMap.OnInfoWindowClickListener;
+import com.google.android.gms.maps.GoogleMap.OnMarkerClickListener;
 import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 public class MapActivity extends FragmentActivity {
 
     private static GoogleMap supportMap;
+    private Marker lastOpened = null;
+    String gtag = "GCA-map";
 
     private ArrayList<LatLng> allCoordinates = new ArrayList<LatLng>();
 
@@ -50,8 +56,20 @@ public class MapActivity extends FragmentActivity {
             e.printStackTrace();
         }
         locationMarkers();
+        
+        //Lisener for infoWindow to get LAT & LONG of that marker
+        supportMap.setOnInfoWindowClickListener(new OnInfoWindowClickListener() {
 
+            public void onInfoWindowClick(Marker marker) {
+                LatLng position = marker.getPosition();
+                
+            	Log.i(gtag, "Marker Info Clicked - LAT: " + position.latitude + ", LONG: " + position.longitude);
+            }
+        });
+        
     }
+    
+    
 
     public void locationMarkers() {
         /*
