@@ -18,6 +18,7 @@ import org.json.JSONObject;
 import org.json.JSONTokener;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -62,8 +63,18 @@ public class MapActivity extends FragmentActivity {
 
             public void onInfoWindowClick(Marker marker) {
                 LatLng position = marker.getPosition();
-                
             	Log.i(gtag, "Marker Info Clicked - LAT: " + position.latitude + ", LONG: " + position.longitude);
+            	
+            	Intent navigateIntent = new Intent(Intent.ACTION_VIEW);
+            	
+            	String currentLat =  String.valueOf(position.latitude);
+            	String currentLong =  String.valueOf(position.longitude);
+            	String currLabel = marker.getTitle();
+            	
+            	String geoLocation =  "geo:0,0?q=" + currentLat + "," + currentLong + "(" + currLabel + ")";
+				navigateIntent.setData(Uri.parse(geoLocation));
+				startActivity(navigateIntent);
+            	
             }
         });
         
