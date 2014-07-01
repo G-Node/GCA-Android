@@ -51,6 +51,8 @@
             android:id="@+id/ConAuthor"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:paddingLeft="5dip"
+            android:paddingRight="5dip"
             android:layout_alignParentLeft="true"
             android:layout_below="@+id/bar1"
             android:textAppearance="?android:attr/textAppearanceMedium" />
@@ -59,6 +61,8 @@
             android:id="@+id/ConAfName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingLeft="5dip"
+            android:paddingRight="5dip"
             android:layout_alignParentLeft="true"
             android:layout_below="@+id/ConAuthor"
             android:textAppearance="?android:attr/textAppearanceSmall"
