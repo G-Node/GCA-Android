@@ -1,5 +1,6 @@
 /**
  * Copyright (c) 2013, Yasir Adnan <adnan.ayon@gmail.com>
+ * Customized for 2nd version by Shumail Mohy-ud-Din <shumailmohyuddin@gmail.com>
  * License: BSD-3 (See LICENSE)
  */
 
@@ -24,11 +25,14 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.util.Log;
+import android.view.View;
+import android.widget.TextView;
 
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.GoogleMap.InfoWindowAdapter;
 import com.google.android.gms.maps.GoogleMap.OnInfoWindowClickListener;
 import com.google.android.gms.maps.GoogleMap.OnMarkerClickListener;
 import com.google.android.gms.maps.MapsInitializer;
@@ -42,7 +46,6 @@ import com.google.android.gms.maps.model.MarkerOptions;
 public class MapActivity extends FragmentActivity {
 
     private static GoogleMap supportMap;
-    private Marker lastOpened = null;
     String gtag = "GCA-map";
 
     private ArrayList<LatLng> allCoordinates = new ArrayList<LatLng>();
@@ -78,10 +81,34 @@ public class MapActivity extends FragmentActivity {
             }
         });
         
+        //adapter for custom info-window - added icon for navigation
+        supportMap.setInfoWindowAdapter(new InfoWindowAdapter() {
+			
+			@Override
+			public View getInfoWindow(Marker arg0) {
+				// TODO Auto-generated method stub
+				return null;
+			}
+			
+			@Override
+			public View getInfoContents(Marker arg0) {
+				// TODO Auto-generated method stub
+				// Getting view from the layout file info_window_layout
+                View v = getLayoutInflater().inflate(R.layout.info_window_layout, null);
+
+                // Getting reference to the TextView to set title
+                TextView note = (TextView) v.findViewById(R.id.note);
+
+                note.setText(arg0.getTitle() );
+
+                // Returning the view containing InfoWindow contents
+                return v;
+			}
+		});
+        
     }
     
-    
-
+    //Main map points function
     public void locationMarkers() {
         /*
          * Implement Location Markers
