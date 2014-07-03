@@ -113,11 +113,11 @@ public class AbstractContent extends FragmentActivity implements
         /*
          * Disable home button
          */
-        getActionBar().setDisplayShowHomeEnabled(false);
+        //getActionBar().setDisplayShowHomeEnabled(false);
         /*
          * Hide Application Title
          */
-        getActionBar().setDisplayShowTitleEnabled(false);
+        //getActionBar().setDisplayShowTitleEnabled(false);
         /*
          * Set Custom Color in ActionBar
          */

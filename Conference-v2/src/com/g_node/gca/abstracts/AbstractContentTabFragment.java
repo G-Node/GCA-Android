@@ -75,15 +75,17 @@ public class AbstractContentTabFragment extends Fragment {
          * Getting data from Intent
          */
 		
-		Bundle getData = getActivity().getIntent().getExtras();
-		
-		String abstracts = getData.getString("abstracts");
-        String Title = getData.getString("Title");
-        String Topic = getData.getString("Topic");
-        String acknowledgments = getData.getString("acknowledgements");
+//		Bundle getData = getActivity().getIntent().getExtras();
+//		
+//		String abstracts = getData.getString("abstracts");
+//        String Title = getData.getString("Title");
+//        String Topic = getData.getString("Topic");
+//        String acknowledgments = getData.getString("acknowledgements");
         
         value = getArguments().getString("value");
 		
+        sqlQueries();
+        
         /*
          * Show Author names for that Abstract
          */
@@ -94,25 +96,33 @@ public class AbstractContentTabFragment extends Fragment {
          */
         affiliationName();
         
-        title.setText(Title);
+//        title.setText(Title);
+        getAbsTitle();
+        
         /*
          * Set Title to BOLD
          */
         title.setTypeface(null, Typeface.BOLD);
-        topic.setText(Topic);
+        
+//        topic.setText(Topic);
+        getAbsTopic();
         
         /*
          * Set Abstract Text in view
          */
         
-        content.setText(abstracts);
+//        content.setText(abstracts);
+        getContent();
         /*
          * If acknowledgments contain any data
          */
-        if (acknowledgments.length() > 0) {
-        	
-            ConAck.append(acknowledgments + "\n" );
-        }
+//        if (acknowledgments.length() > 0) {
+//        	
+//            ConAck.append(acknowledgments + "\n" );
+//        }
+        
+        getAcknowledgements();
+        
         
         //Get References from db and show in view
         getRefs();
