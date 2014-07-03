@@ -306,6 +306,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 + "%'", null);
         boolean exists = (cursor.getCount() > 0);
         cursor.close();
+        Log.i("GCA-DB", "Abstract UUID: " + UUID);
+        Log.i("GCA-DB", "Abstract is Fav: " + exists);
         return exists;
     }
 	

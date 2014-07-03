@@ -5,345 +5,90 @@
 
 package com.g_node.gca.abstracts;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 import com.shumail.newsroom.R;
 
 import android.app.Activity;
-import android.database.Cursor;
-import android.graphics.Color;
-import android.graphics.Typeface;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-//import android.support.v7.app.ActionBarActivity;
-import android.text.Html;
-import android.text.method.LinkMovementMethod;
+import android.app.ActionBar;
+import android.app.ActionBar.Tab;
+import android.app.FragmentTransaction;
+import android.database.Cursor;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
 
-public class AbstractContent extends Activity {
+
+public class AbstractContent extends FragmentActivity implements
+	ActionBar.TabListener {
 	
 	String gtag = "GCA-Abs-Con";
+	private String value;
 	
 	boolean isFav;
-	
 	MenuItem starG;
-
-    TextView content;
-
-    TextView title;
-
-    TextView topic;
-
-    TextView afName;
-
-    TextView authorNames;
-
-    TextView ConRefs;
-
-    TextView ConAck;
-
-    Button btn;
-
-    private String value;
-
-    
-    Cursor cursor, cursorOne, cursorTwo, referenceCursor;
+	
+	private ViewPager viewPager;
+	private TabsPagerAdapter mAdapter;
+	private ActionBar actionBar;
+	
+	// Tab titles
+	private String[] tabs = { "Abstract", "Notes" };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // TODO Auto-generated method stub
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.abstracts_show);
-        /*
-         * Initializing fields
-         */
-        initial_UI();
-        /*
-         * Getting data from Intent
-         */
-        Bundle getData = getIntent().getExtras();
-        String abstracts = getData.getString("abstracts");
-        String Title = getData.getString("Title");
-        String Topic = getData.getString("Topic");
-        value = getData.getString("value");
-        String acknowledgments = getData.getString("acknowledgements");
-       
-        /*
-         * Show Author names for that Abstract
-         */
-        authorName();
+        setContentView(R.layout.activity_abstractcontent_viewpager);
         
-        /*
-         * Get Affiliation Name for associate abstracts
-         */
-        affiliationName();
+        Bundle getData = getIntent().getExtras();		
+		value = getData.getString("value");
         
-        title.setText(Title);
-        /*
-         * Set Title to BOLD
-         */
-        title.setTypeface(null, Typeface.BOLD);
-        topic.setText(Topic);
+        // Initilization
+ 		viewPager = (ViewPager) findViewById(R.id.pager);
+ 		actionBar = getActionBar();
+ 		mAdapter = new TabsPagerAdapter(getSupportFragmentManager());
+ 		
+ 		mAdapter.setValue(value);	//set current UUID for fragments
+ 		
+ 		viewPager.setAdapter(mAdapter);
+ 		actionBar.setHomeButtonEnabled(false);
+ 		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);		
+
+ 		// Adding Tabs
+ 		for (String tab_name : tabs) {
+ 			actionBar.addTab(actionBar.newTab().setText(tab_name)
+ 					.setTabListener(this));
+ 		}
+ 		
+ 		/**
+		 * on swiping the viewpager make respective tab selected
+		 * */
+		viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+
+			@Override
+			public void onPageSelected(int position) {
+				// on changing the page
+				// make respected tab selected
+				actionBar.setSelectedNavigationItem(position);
+			}
+	
+			@Override
+			public void onPageScrolled(int arg0, float arg1, int arg2) {
+			}
+	
+			@Override
+			public void onPageScrollStateChanged(int arg0) {
+			
+			}
+		});
         
-        /*
-         * Set Abstract Text in view
-         */
-        
-        content.setText(abstracts);
-        /*
-         * If acknowledgments contain any data
-         */
-        if (acknowledgments.length() > 0) {
-        	
-            ConAck.append(acknowledgments + "\n" );
-        }
-        
-        //Get References from db and show in view
-        getRefs();
-
-    }
-
-    private void initial_UI() {
-        /*
-         * TextView for Abstract Text
-         */
-        content = (TextView)findViewById(R.id.Content);
-        /*
-         * TextView for Abstract Title
-         */
-        title = (TextView)findViewById(R.id.ConTitle);
-        /*
-         * TextView for Abstract Topic
-         */
-        topic = (TextView)findViewById(R.id.ConTopic);
-        /*
-         * TextView for Abstract Author
-         */
-        authorNames = (TextView)findViewById(R.id.ConAuthor);
-        /*
-         * TextView for Affiliation Name
-         */
-        afName = (TextView)findViewById(R.id.ConAfName);
-        /*
-         * TextView for Reference
-         */
-        ConRefs = (TextView)findViewById(R.id.Conrefs);
-        /*
-         * TextView for Acknowledgments
-         */
-        ConAck = (TextView)findViewById(R.id.ConACK);
-    }
-
-    //Query for fetching next/prev abstract data
-    private void sqlQueries() {
-      
-        String nextAbstractData = "SELECT UUID AS _id , TOPIC, TITLE, " +
-        		"ABSRACT_TEXT, STATE, SORTID, REASONFORTALK, MTIME, TYPE,DOI, COI, ACKNOWLEDGEMENTS " +
-        		"FROM ABSTRACT_DETAILS WHERE _id = '" + value + "';";
-        
-        //Cursor with next Abstract Data
-        cursorTwo = DatabaseHelper.database.rawQuery(nextAbstractData, null);
-    }
-
-    private void authorName() {
-        /*
-         * Function for getting Author Names & addint to the view
-         */
-    	
-        //Query for getting author name, email, position, affiliation data for the particular Abstract
-        String authorSQLQuery = "SELECT DISTINCT AUTHORS_DETAILS.AUTHOR_FIRST_NAME, " +
-        								"AUTHOR_MIDDLE_NAME, AUTHOR_LAST_NAME, AUTHOR_EMAIL, " +
-        								"ABSTRACT_AUTHOR_POSITION_AFFILIATION.AUTHOR_AFFILIATION, " +
-        								"ABSTRACT_AUTHOR_POSITION_AFFILIATION.AUTHOR_POSITION " +
-        						"FROM AUTHORS_DETAILS JOIN ABSTRACT_AUTHOR_POSITION_AFFILIATION USING (AUTHOR_UUID) " +
-        						"WHERE AUTHORS_DETAILS.AUTHOR_UUID IN " +
-        								"(SELECT AUTHOR_UUID FROM ABSTRACT_AUTHOR_POSITION_AFFILIATION WHERE ABSTRACT_UUID = '" + value + "') " +
-        							"AND ABSTRACT_AUTHOR_POSITION_AFFILIATION.AUTHOR_POSITION IN " +
-        								"(SELECT AUTHOR_POSITION FROM ABSTRACT_AUTHOR_POSITION_AFFILIATION WHERE ABSTRACT_UUID = '" + value + "') " +
-        						"ORDER BY AUTHOR_POSITION ASC;"; 
-        
-        cursor = DatabaseHelper.database.rawQuery(authorSQLQuery, null);
-        Log.i(gtag, "Auth executed query: rows = " + cursor.getCount());
-        //cursor.moveToFirst();
-        
-        List<String> abstractAuthorNames = new ArrayList<String>();
-        
-        if (cursor != null && cursor.moveToFirst()) {
-	        do {
-	        	Log.i(gtag, "in DO WHILE");
-	        	String authEmail = cursor.getString(cursor.getColumnIndexOrThrow("AUTHOR_EMAIL"));
-	        	Log.i(gtag, "author email => " + authEmail);
-	        	String authorName = cursor.getString(cursor.getColumnIndexOrThrow("AUTHOR_FIRST_NAME")) + ", " + cursor.getString(cursor.getColumnIndexOrThrow("AUTHOR_LAST_NAME")) ;
-	        	String authAffiliation = cursor.getString(cursor.getColumnIndexOrThrow("AUTHOR_AFFILIATION"));
-	        	
-	        	String authAffiliationINTs = authAffiliation.replaceAll("[^0-9][,]", "");
-	        	
-	        	Pattern digitPattern = Pattern.compile("(\\d)"); // EDIT: Increment each digit.
-
-	        	Matcher matcher = digitPattern.matcher(authAffiliationINTs);
-	        	StringBuffer result = new StringBuffer();
-	        	while (matcher.find())
-	        	{
-	        	    matcher.appendReplacement(result, String.valueOf(Integer.parseInt(matcher.group(1)) + 1));
-	        	}
-	        	matcher.appendTail(result);
-	        	authAffiliation = result.toString();
-	        	
-	        	
-	        	if (abstractAuthorNames.indexOf(authorName) == -1 ) {
-	        		abstractAuthorNames.add(authorName);
-	        		
-	        		if (authEmail == null || authEmail.equals("null")) {
-		        		Log.i(gtag, "in author check - IF NULL");
-		        		authorNames.append(Html.fromHtml("<b>" + authorName + "</b><sup><small>"
-	                        + authAffiliation + "</small></sup><br/>"));
-
-		        	} else {
-		        		Log.i(gtag, "in author check - ELSE ");
-		        		authorNames.append(Html.fromHtml("<b><a href=\"mailto:" + authEmail + "\">" + authorName + "</a>"  + "</b><sup><small>"
-		                        + authAffiliation + "</small></sup><br/>"));
-		        		authorNames.setMovementMethod(LinkMovementMethod.getInstance());
-		        		
-		        	}
-	        	} else {
-	        		;
-	        	}
-	        	
-	        } while (cursor.moveToNext());
-        }
-    	
-    }
-
-    private void affiliationName() {
-    	/*
-    	 *Function for getting affiliation names for that abstract and adding to the view 
-    	 */
-    	//SQL Query for getting affiliation data, position for the particular abstract
-        String affiliationsSQLQuery = 	"SELECT AFFILIATION_ADDRESS, AFFILIATION_COUNTRY, " +
-        										"AFFILIATION_DEPARTMENT, AFFILIATION_SECTION, AFFILIATION_POSITION " +
-        								"FROM AFFILIATION_DETAILS JOIN ABSTRACT_AFFILIATION_ID_POSITION USING (AFFILIATION_UUID) " +
-        								"WHERE AFFILIATION_UUID IN " +
-        									"(SELECT AFFILIATION_UUID FROM ABSTRACT_AFFILIATION_ID_POSITION " +
-        										"WHERE ABSTRACT_UUID = '" + value + "')  " +
-        								"ORDER BY AFFILIATION_POSITION ASC;";
-        
-        cursorOne = DatabaseHelper.database.rawQuery(affiliationsSQLQuery, null);
-        Log.i(gtag, "Affiliation executed query: rows = " + cursorOne.getCount());
-        
-        if (cursorOne != null && cursorOne.moveToFirst()) {
-	        do {
-	        	Log.i(gtag, "in DO WHILE aff");
-	        	String affName = cursorOne.getString(cursorOne.getColumnIndexOrThrow("AFFILIATION_SECTION")) + 
-	        					", " + cursorOne.getString(cursorOne.getColumnIndexOrThrow("AFFILIATION_DEPARTMENT")) + 
-	        					", " + cursorOne.getString(cursorOne.getColumnIndexOrThrow("AFFILIATION_ADDRESS")) + 
-	        					", " + cursorOne.getString(cursorOne.getColumnIndexOrThrow("AFFILIATION_COUNTRY")) ;
-	        	int affPos = cursorOne.getInt(cursorOne.getColumnIndexOrThrow("AFFILIATION_POSITION"));
-	        	affPos++;
-	        	afName.append(Html.fromHtml(affPos + ": " + "<b>" + affName + "</b><br/>" ));
-	        } while (cursorOne.moveToNext());
-        }        
-    }
-
-    private void getAbsTitle() {
-
-        cursorTwo.moveToFirst();
-
-        do {
-
-            String getTitle = cursorTwo.getString(cursorTwo.getColumnIndexOrThrow("TITLE"));
-            title.setText(getTitle);
-
-        } while (cursorTwo.moveToNext());
-    }
-
-    private void getAbsTopic() {
-
-        cursorTwo.moveToFirst();
-        do {
-
-            String getTopic = cursorTwo.getString(cursorTwo.getColumnIndexOrThrow("TOPIC"));
-            topic.setText(getTopic);
-
-        } while (cursorTwo.moveToNext());
-
-    }
-
-    private void getRefs() {
-
-    	String referenceSQLQuery = "SELECT * FROM ABSTRACT_REFERENCES WHERE ABSTRACT_UUID = '" + value +"';";
-        referenceCursor = DatabaseHelper.database.rawQuery(referenceSQLQuery, null);
-        
-        if (referenceCursor != null && referenceCursor.moveToFirst()) {
-        	int refNumber = 1;
-        	do {
-	        	Log.i(gtag, "in DO WHILE References");
-	        	String referenceName = referenceCursor.getString(referenceCursor.getColumnIndexOrThrow("REF_TEXT"));
-	        	ConRefs.append(Html.fromHtml(refNumber + ": " + referenceName + "<br/>" ));
-	        	refNumber++;
-	        } while (referenceCursor.moveToNext());
-        }
-
-    }
-
-    private void getAcknowledgements() {
-
-        cursorTwo.moveToFirst();
-
-        do {
-
-            String acknowledgements = cursorTwo.getString(cursorTwo
-                    .getColumnIndexOrThrow("ACKNOWLEDGEMENTS"));
-
-            if (acknowledgements.length() > 0) {
-
-                ConAck.append(acknowledgements + "\n" );
-            }
-
-        } while (cursorTwo.moveToNext());
-        
-    }
-
-    private void getContent() {
-
-    cursorTwo.moveToFirst();
-
-        do {
-
-            String Text = cursorTwo.getString(cursorTwo.getColumnIndexOrThrow("ABSRACT_TEXT"));
-            content.setText(Text);
-
-        } while (cursorTwo.moveToNext());
-    }
-
-    private void getAfName() {
-
-        affiliationName();
-
-    }
-
-    private void resetAllFields() {
-
-        title.setText("");
-        topic.setText("");
-        content.setText("");
-        ConRefs.setText("");
-        afName.setText("");
-        authorNames.setText("");
-        ConAck.setText("");
-
-    }
-
+    }	//end oncreate
+    
+    
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // TODO Auto-generated method stub
@@ -379,12 +124,12 @@ public class AbstractContent extends Activity {
         
         return true;
     }
-
+    
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // TODO Auto-generated method stub
-    	
-        switch (item.getItemId()) {
+    
+    	switch (item.getItemId()) {
         /*
          * Menu Item for switching next and previous data
          */
@@ -411,197 +156,63 @@ public class AbstractContent extends Activity {
 			
         	break;
         	
-        	
-            case R.id.next:
-            {
+        case R.id.next:
+        {
+        	String getCurrentRowIDQuery = "SELECT ROWID FROM ABSTRACT_DETAILS WHERE UUID = '" + value + "';";
+            Log.i(gtag, "Current Row ID Query: " + getCurrentRowIDQuery);
+            Cursor getRowIdCursor = DatabaseHelper.database.rawQuery(getCurrentRowIDQuery, null);
+            Log.i(gtag, "Next Cursor count: " + getRowIdCursor.getCount());
+            Log.i(gtag, "Columns:" + getRowIdCursor.getColumnCount() ); 
+            Log.i(gtag, "Column Name: " + getRowIdCursor.getColumnName(0));
+            Log.i(gtag, "Column Index: " + getRowIdCursor.getColumnIndex("rowid"));
+            getRowIdCursor.moveToFirst();
+            Log.i(gtag, "Before 483");
+            int currentRowID = getRowIdCursor.getInt(0);
+            Log.i(gtag, "After 483 & ROW ID = " + currentRowID);
+            int nextRecordID = currentRowID + 1;
+            Log.i(gtag, "New ROW ID = " + nextRecordID);
+            if (nextRecordID <= Abstracts.cursorCount) {
 
-                String getCurrentRowIDQuery = "SELECT ROWID FROM ABSTRACT_DETAILS WHERE UUID = '" + value + "';";
-                Log.i(gtag, "Current Row ID Query: " + getCurrentRowIDQuery);
-                Cursor getRowIdCursor = DatabaseHelper.database.rawQuery(getCurrentRowIDQuery, null);
-                Log.i(gtag, "Next Cursor count: " + getRowIdCursor.getCount());
-                Log.i(gtag, "Columns:" + getRowIdCursor.getColumnCount() ); 
-                Log.i(gtag, "Column Name: " + getRowIdCursor.getColumnName(0));
-                Log.i(gtag, "Column Index: " + getRowIdCursor.getColumnIndex("rowid"));
-                getRowIdCursor.moveToFirst();
-                Log.i(gtag, "Before 483");
-                int currentRowID = getRowIdCursor.getInt(0);
-                Log.i(gtag, "After 483 & ROW ID = " + currentRowID);
-                int nextRecordID = currentRowID + 1;
-                Log.i(gtag, "New ROW ID = " + nextRecordID);
-                if (nextRecordID <= Abstracts.cursorCount) {
-
-                	//query and get next abstract id 
-                	String getNextAbstractUUID = "SELECT UUID FROM ABSTRACT_DETAILS WHERE ROWID = " + nextRecordID + ";";
-                    Cursor getNextAbstractCursor = DatabaseHelper.database.rawQuery(getNextAbstractUUID, null);
-                    getNextAbstractCursor.moveToFirst();
-                	value = getNextAbstractCursor.getString(getNextAbstractCursor.getColumnIndexOrThrow("UUID"));
-
-                    /*
-                     * Delete previous data from all field
-                     */
-                    resetAllFields();
-
-                    /*
-                     * Run SQL Quries
-                     */
-
-                    sqlQueries();
-
-                    /*
-                     * Get Abstract Title
-                     */
-
-                    getAbsTitle();
-
-                    /*
-                     * Get Abstract Topic
-                     */
-
-                    getAbsTopic();
-
-                    /*
-                     * Get Email
-                     */
-
-                    //getAbsEmail();
-
-                    /*
-                     * Get Author Names
-                     */
-
-                    authorName();
-
-                    /*
-                     * Get Affiliation's Name
-                     */
-
-                    getAfName();
-
-                    /*
-                     * Get Abstract Content
-                     */
-
-                    getContent();
-
-                    /*
-                     * get Acknowledgments
-                     */
-
-                    getAcknowledgements();
-
-                    /*
-                     * Get References
-                     */
-
-                    getRefs();
-                    
-                    invalidateOptionsMenu();
-                } else {
-                    Toast.makeText(getApplicationContext(), "No more Abstracts Left",
-                            Toast.LENGTH_SHORT).show();
-                }
-
-                break;
-            }
-
-            case R.id.Previous:
-            {
+            	//query and get next abstract id 
+            	String getNextAbstractUUID = "SELECT UUID FROM ABSTRACT_DETAILS WHERE ROWID = " + nextRecordID + ";";
+                Cursor getNextAbstractCursor = DatabaseHelper.database.rawQuery(getNextAbstractUUID, null);
+                getNextAbstractCursor.moveToFirst();
+            	value = getNextAbstractCursor.getString(getNextAbstractCursor.getColumnIndexOrThrow("UUID"));
             	
-            	String getCurrentRowIDQuery = "SELECT ROWID FROM ABSTRACT_DETAILS WHERE UUID = '" + value + "';";
-                Log.i(gtag, "Current Row ID Query: " + getCurrentRowIDQuery);
-                Cursor getRowIdCursor = DatabaseHelper.database.rawQuery(getCurrentRowIDQuery, null);
-                Log.i(gtag, "Prev Cursor count: " + getRowIdCursor.getCount());
-                Log.i(gtag, "Columns:" + getRowIdCursor.getColumnCount() ); 
-                Log.i(gtag, "Column Name: " + getRowIdCursor.getColumnName(0));
-                Log.i(gtag, "Column Index: " + getRowIdCursor.getColumnIndex("rowid"));
-                getRowIdCursor.moveToFirst();
-                Log.i(gtag, "Before 483");
-                int currentRowID = getRowIdCursor.getInt(0);
-                Log.i(gtag, "After 483 & ROW ID = " + currentRowID);
-                int prevRecordID = currentRowID - 1;
-                Log.i(gtag, "New ROW ID = " + prevRecordID);
-                
-				if (prevRecordID != 0) {
-
-                	//query and get prev abstract id 
-                	String getNextAbstractUUID = "SELECT UUID FROM ABSTRACT_DETAILS WHERE ROWID = " + prevRecordID + ";";
-                    Cursor getNextAbstractCursor = DatabaseHelper.database.rawQuery(getNextAbstractUUID, null);
-                    getNextAbstractCursor.moveToFirst();
-                	value = getNextAbstractCursor.getString(getNextAbstractCursor.getColumnIndexOrThrow("UUID"));
-
-                    /*
-                     * Delete previous data from all field
-                     */
-                    resetAllFields();
-
-                    /*
-                     * Run SQL Quries
-                     */
-
-                    sqlQueries();
-
-                    /*
-                     * Get Abstract Title
-                     */
-
-                    getAbsTitle();
-
-                    /*
-                     * Get Abstract Topic
-                     */
-
-                    getAbsTopic();
-
-                    /*
-                     * Get Email
-                     */
-
-                    //getAbsEmail();
-
-                    /*
-                     * Get Author Names
-                     */
-
-                    authorName();
-
-                    /*
-                     * Get Affiliation's Name
-                     */
-
-                    getAfName();
-
-                    /*
-                     * Get Abstract Content
-                     */
-
-                    getContent();
-
-                    /*
-                     * get Acknowledgments
-                     */
-
-                    getAcknowledgements();
-
-                    /*
-                     * Get References
-                     */
-
-                    getRefs();
-                    
-                    invalidateOptionsMenu();
-                    
-                } else {
-                    Toast.makeText(getApplicationContext(), "This is the first Abstract",
-                            Toast.LENGTH_SHORT).show();
-                }
-
-                break;
-           
+            	mAdapter.notifyDataSetChanged();
+            
+            } else {
+                Toast.makeText(getApplicationContext(), "No more Abstracts Left",
+                        Toast.LENGTH_SHORT).show();
             }
-            default:
-
-                break;
+            
+            break;
         }
-        return super.onOptionsItemSelected(item);
-    }
+        	
+        
+        default:
+
+            break;
+    	}
+    
+    	return super.onOptionsItemSelected(item);
+    	
+    }	//end onOptionsMenuItemSelected
+    
+    
+    @Override
+	public void onTabReselected(Tab tab, FragmentTransaction ft) {
+	}
+
+	@Override
+	public void onTabSelected(Tab tab, FragmentTransaction ft) {
+		// on tab selected
+		// show respected fragment view
+		viewPager.setCurrentItem(tab.getPosition());
+	}
+
+	@Override
+	public void onTabUnselected(Tab tab, FragmentTransaction ft) {
+	}
+
 }
