@@ -33,7 +33,7 @@
             android:name="com.g_node.gca.MainActivity"
             android:label="@string/title_activity_main" >
         </activity>
-        <activity
+        <activity android:windowSoftInputMode="stateUnchanged"
             android:name="com.g_node.gca.abstracts.Abstracts"
             android:label="@string/title_activity_abstracts" >
         </activity>
