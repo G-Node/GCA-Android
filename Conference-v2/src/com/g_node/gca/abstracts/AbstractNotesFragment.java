@@ -3,6 +3,7 @@ package com.g_node.gca.abstracts;
 import com.shumail.newsroom.R;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,10 +26,17 @@ public class AbstractNotesFragment extends Fragment {
 	public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         
-        value = getArguments().getString("value");
+        value = TabsPagerAdapter.getValue();
+        //value = getArguments().getString("value");
         
         TextView sampleNote = (TextView)getView().findViewById(R.id.notesText);
         sampleNote.setText(value);
         
 	}
+	
+	@Override
+	public void onDestroy() {
+        super.onDestroy();
+        Log.i("GCA-Abs-Frag", "AbstractNotes Fragment - on Destroy");
+    }
 }

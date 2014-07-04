@@ -57,19 +57,20 @@ public class AbstractContentTabFragment extends Fragment {
 		
 		setHasOptionsMenu(true);  
 		View rootView = inflater.inflate(R.layout.abstracts_show, container, false);
-		
+		Log.i("GCA-Abs-Frag", "Abstract Content Fragment onCreateViews");
 			return rootView;
 	}
 	
 	@Override
 	public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        Log.i(gtag, "Abstract Content Fragment onViewCreated");
+        Log.i("GCA-Abs-Frag", "Abstract Content Fragment onViewCreated");
         
         /*
          * Initializing fields
          */
         initial_UI();
+        resetAllFields();
         
         /*
          * Getting data from Intent
@@ -82,7 +83,9 @@ public class AbstractContentTabFragment extends Fragment {
 //        String Topic = getData.getString("Topic");
 //        String acknowledgments = getData.getString("acknowledgements");
         
-        value = getArguments().getString("value");
+        value = TabsPagerAdapter.getValue();
+        //value = getArguments().getString("value");
+        Log.i("GCA-Abs-Frag", "new value: " + value);
 		
         sqlQueries();
         
@@ -128,6 +131,13 @@ public class AbstractContentTabFragment extends Fragment {
         getRefs();
     
 	}
+	
+	@Override
+	public void onDestroy() {
+        super.onDestroy();
+        Log.i("GCA-Abs-Frag", "AbstractContent Fragment - on Destroy");
+    }
+	
 	
 //	@Override
 //	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
@@ -239,7 +249,7 @@ public class AbstractContentTabFragment extends Fragment {
 	
 	//Query for fetching next/prev abstract data
     private void sqlQueries() {
-      
+    	Log.i(gtag, "SQLQueries function");
         String nextAbstractData = "SELECT UUID AS _id , TOPIC, TITLE, " +
         		"ABSRACT_TEXT, STATE, SORTID, REASONFORTALK, MTIME, TYPE,DOI, COI, ACKNOWLEDGEMENTS " +
         		"FROM ABSTRACT_DETAILS WHERE _id = '" + value + "';";

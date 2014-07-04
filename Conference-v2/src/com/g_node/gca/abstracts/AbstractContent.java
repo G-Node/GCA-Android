@@ -178,9 +178,11 @@ public class AbstractContent extends FragmentActivity implements
                 Cursor getNextAbstractCursor = DatabaseHelper.database.rawQuery(getNextAbstractUUID, null);
                 getNextAbstractCursor.moveToFirst();
             	value = getNextAbstractCursor.getString(getNextAbstractCursor.getColumnIndexOrThrow("UUID"));
-            	
+            	mAdapter.setValue(value);
             	mAdapter.notifyDataSetChanged();
-            
+            	
+            	invalidateOptionsMenu();
+            	
             } else {
                 Toast.makeText(getApplicationContext(), "No more Abstracts Left",
                         Toast.LENGTH_SHORT).show();
@@ -188,7 +190,42 @@ public class AbstractContent extends FragmentActivity implements
             
             break;
         }
+        
+        case R.id.Previous:
+        {
         	
+        	String getCurrentRowIDQuery = "SELECT ROWID FROM ABSTRACT_DETAILS WHERE UUID = '" + value + "';";
+            Log.i(gtag, "Current Row ID Query: " + getCurrentRowIDQuery);
+            Cursor getRowIdCursor = DatabaseHelper.database.rawQuery(getCurrentRowIDQuery, null);
+            Log.i(gtag, "Prev Cursor count: " + getRowIdCursor.getCount());
+            Log.i(gtag, "Columns:" + getRowIdCursor.getColumnCount() ); 
+            Log.i(gtag, "Column Name: " + getRowIdCursor.getColumnName(0));
+            Log.i(gtag, "Column Index: " + getRowIdCursor.getColumnIndex("rowid"));
+            getRowIdCursor.moveToFirst();
+            Log.i(gtag, "Before 483");
+            int currentRowID = getRowIdCursor.getInt(0);
+            Log.i(gtag, "After 483 & ROW ID = " + currentRowID);
+            int prevRecordID = currentRowID - 1;
+            Log.i(gtag, "New ROW ID = " + prevRecordID);
+            
+			if (prevRecordID != 0) {
+				//query and get prev abstract id 
+            	String getNextAbstractUUID = "SELECT UUID FROM ABSTRACT_DETAILS WHERE ROWID = " + prevRecordID + ";";
+                Cursor getNextAbstractCursor = DatabaseHelper.database.rawQuery(getNextAbstractUUID, null);
+                getNextAbstractCursor.moveToFirst();
+            	value = getNextAbstractCursor.getString(getNextAbstractCursor.getColumnIndexOrThrow("UUID"));
+            	
+            	mAdapter.setValue(value);
+            	mAdapter.notifyDataSetChanged();
+            	
+            	invalidateOptionsMenu();
+			} else {
+                Toast.makeText(getApplicationContext(), "This is the first Abstract",
+                        Toast.LENGTH_SHORT).show();
+            }
+
+            break;
+        }
         
         default:
 
@@ -214,5 +251,11 @@ public class AbstractContent extends FragmentActivity implements
 	@Override
 	public void onTabUnselected(Tab tab, FragmentTransaction ft) {
 	}
+	
+	@Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.i(gtag, "AbstractContent - on Destroy");
+    }
 
 }

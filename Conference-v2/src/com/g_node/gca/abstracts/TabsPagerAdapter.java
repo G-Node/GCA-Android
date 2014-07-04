@@ -4,12 +4,13 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.util.Log;
 
 public class TabsPagerAdapter extends FragmentPagerAdapter {
 	
-	String value;
+	static String value;
 
-	public String getValue() {
+	public static String getValue() {
 		return value;
 	}
 
@@ -24,11 +25,12 @@ public class TabsPagerAdapter extends FragmentPagerAdapter {
 	@Override
 	public Fragment getItem(int index) {
 
+		Log.i("GCA-Abs-Frag", "getItem of Adapter");
+		
 		switch (index) {
 		case 0:
 		{
 			// Main Abstract Content Fragment
-			
 			Bundle bundle = new Bundle();
 			bundle.putString("value", value);
 			
@@ -53,6 +55,17 @@ public class TabsPagerAdapter extends FragmentPagerAdapter {
 	public int getCount() {
 		// get item count - equal to number of tabs
 		return 2;
+	}
+	
+	@Override
+	public int getItemPosition(Object object) {
+	    return POSITION_NONE;
+	}
+	
+	@Override
+	public void notifyDataSetChanged () {
+		Log.i("GCA-Abs-Frag", "notifyDataSetChanged called");
+		super.notifyDataSetChanged();
 	}
 
 }
