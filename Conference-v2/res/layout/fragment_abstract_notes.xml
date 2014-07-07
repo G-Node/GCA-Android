@@ -5,11 +5,20 @@
     android:orientation="vertical"
     android:background="#ff8400" >
     
+    <Button 
+     android:layout_height="wrap_content"
+     android:layout_width="fill_parent"  
+     android:id="@+id/addNotebtn"
+     android:text="Add" 
+        />
+    
     <TextView android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="Notes"
         android:textSize="20dp"
+        android:layout_below="@+id/addNotebtn"
         android:id="@+id/notesText"/>
+    
     
     <ListView
         android:id="@+id/noteslist"
