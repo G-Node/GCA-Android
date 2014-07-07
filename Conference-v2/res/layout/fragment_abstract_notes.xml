@@ -7,11 +7,17 @@
     
     <TextView android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
         android:text="Notes"
         android:textSize="20dp"
-        android:id="@+id/notesText"
-        android:layout_centerInParent="true"/>
+        android:id="@+id/notesText"/>
+    
+    <ListView
+        android:id="@+id/noteslist"
+        android:layout_below="@+id/notesText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+         >
+    </ListView>
     
 
 </RelativeLayout>

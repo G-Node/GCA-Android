@@ -44,6 +44,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     
     public static final String TABLE_ABSTRACT_FAVORITES = "ABSTRACT_FAVORITES";
     
+    public static final String TABLE_ABSTRACT_NOTES = "ABSTRACT_NOTES";
     
     /*
      * Query for Creating Tables
@@ -80,6 +81,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String CREATE_ABSTRACT_FAVORITES = "CREATE TABLE IF NOT EXISTS " + TABLE_ABSTRACT_FAVORITES
     		+ "( ABSTRACT_UUID VARCHAR NOT NULL); " ;
     		
+    public static final String CREATE_ABSTRACT_NOTES = "CREATE TABLE IF NOT EXISTS " + TABLE_ABSTRACT_NOTES
+    		+ "(NOTE_ID INTEGER PRIMARY KEY,  ABSTRACT_UUID VARCHAR NOT NULL, NOTE_TITLE TEXT, NOTE_TEXT TEXT); " ;
     
     
     public DatabaseHelper(Context context) {
@@ -101,6 +104,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		database.execSQL(CREATE_ABSTRACT_AFFILIATION_ID_POSITION);
 		database.execSQL(CREATE_ABSTRACT_REFERENCES);
 		database.execSQL(CREATE_ABSTRACT_FAVORITES);
+		database.execSQL(CREATE_ABSTRACT_NOTES);
 		
 	}
 
@@ -115,7 +119,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		database.execSQL("DROP TABLE IF EXISTS " + TABLE_ABSTRACT_AFFILIATION_ID_POSITION);
 		database.execSQL("DROP TABLE IF EXISTS " + TABLE_ABSTRACT_REFERENCES);
 		database.execSQL("DROP TABLE IF EXISTS " + TABLE_ABSTRACT_FAVORITES);
-		
+		database.execSQL("DROP TABLE IF EXISTS " + TABLE_ABSTRACT_NOTES);
 		onCreate(database);
 		
 	}
@@ -280,6 +284,22 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		
 		long rows_affected = database.delete(TABLE_ABSTRACT_FAVORITES, "ABSTRACT_UUID = ?", new String[] { abstract_uuid });
 		Log.i("GCA-DB", "deleted abstract from fav - no: " + rows_affected);
+	}
+	
+	//Function for adding notes for some abstract into Database TABLE_ABSTRACT_NOTES
+	public static void addInABSTRACT_NOTES(String abstractUUID, String noteTitle, String NoteText) {
+		
+		ContentValues values = new ContentValues();
+		
+		values.put("ABSTRACT_UUID", abstractUUID);
+		
+		values.put("NOTE_TITLE", noteTitle);
+		
+		values.put("NOTE_TEXT", NoteText);
+		
+		long note_id;
+		note_id = database.insert(TABLE_ABSTRACT_NOTES, null, values);
+		Log.i("GCA-DB", "Note inserted: id = > " + note_id);
 	}
 	
 	//function to check if author already exists in directory
