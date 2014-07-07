@@ -70,6 +70,11 @@ public class AddNoteDialogFragment extends DialogFragment {
             	 String noteTitle = noteTitleEditText.getText().toString();
             	 DatabaseHelper.addInABSTRACT_NOTES(absUUID, y, noteTitle);
                  Toast.makeText(getActivity(), "ADDED ..", Toast.LENGTH_SHORT).show();
+                 
+//                 String getNotesQuery = "SELECT ABSTRACT_UUID AS _id, NOTE_TITLE FROM ABSTRACT_NOTES WHERE ABSTRACT_UUID = '" + absUUID + "';";
+//                 AbstractNotesFragment.notesCursor = DatabaseHelper.database.rawQuery(getNotesQuery, null);
+//                 
+                 AbstractNotesFragment.adapter.notifyDataSetChanged();
                  dialog.dismiss();
              }
          });
