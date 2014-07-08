@@ -69,7 +69,18 @@ public class AbstractNotesFragment extends Fragment {
 				addNoteFragment.show(getFragmentManager(), "fragment_add_note");
 			}
 		});
-     
+        
+        Button refreshNotesBtn = (Button) getView().findViewById(R.id.NoteRefresh);
+        refreshNotesBtn.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				populateListView();
+			}
+		});
+        
+        
         notesList.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
@@ -126,7 +137,7 @@ public class AbstractNotesFragment extends Fragment {
 	        //DatabaseHelper.deleteFromABSTRACT_NOTES(info.id);
 			//update in dialogefragment positive button method 
 	        Log.i("GCA-Abs-Frag", "After EditNote Dialog");
-	        populateListView();
+	        //populateListView();
 	        return(true);
 	      }
 	    }

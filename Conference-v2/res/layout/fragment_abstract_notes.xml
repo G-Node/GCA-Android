@@ -3,20 +3,29 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#ff8400" >
-    
+    android:background="#c2eefd" >
+
+<LinearLayout android:id="@+id/notesButtons" android:orientation="horizontal" android:layout_height="wrap_content" android:layout_width="fill_parent" android:weightSum="1.0" >
     <Button 
      android:layout_height="wrap_content"
-     android:layout_width="fill_parent"  
+     android:layout_width="wrap_content"  
+     android:id="@+id/NoteRefresh"
+     android:layout_weight="0.3"
+     android:text="Refresh" />
+        
+    <Button 
+     android:layout_height="wrap_content"
+     android:layout_width="wrap_content"  
      android:id="@+id/addNotebtn"
-     android:text="Add" 
-        />
-    
+     android:layout_weight="0.7"
+     android:text="Add Note" />
+</LinearLayout>    
+
     <TextView android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="Notes"
         android:textSize="20dp"
-        android:layout_below="@+id/addNotebtn"
+        android:layout_below="@+id/notesButtons"
         android:id="@+id/notesText"/>
     
     
