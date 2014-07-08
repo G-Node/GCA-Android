@@ -11,8 +11,11 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.ContextMenu.ContextMenuInfo;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.webkit.WebView.FindListener;
@@ -22,6 +25,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
+import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.AdapterView.OnItemClickListener;
 
 public class AbstractNotesFragment extends Fragment {
@@ -53,6 +57,7 @@ public class AbstractNotesFragment extends Fragment {
         //DatabaseHelper.addInABSTRACT_NOTES(value, "2nd", "asdq 123 asdasd desputm atera i oqwe oiqwe aw");
         
         populateListView();
+        registerForContextMenu(notesList);
         
         Button addNoteBtn = (Button) getView().findViewById(R.id.addNotebtn);
         addNoteBtn.setOnClickListener(new OnClickListener() {
@@ -88,8 +93,35 @@ public class AbstractNotesFragment extends Fragment {
         
 	}
 	
+	@Override
+	public void onCreateContextMenu(ContextMenu menu, View v,
+			ContextMenuInfo menuInfo) {
+		AdapterContextMenuInfo info = (AdapterContextMenuInfo) menuInfo;  // ??
+		int currentNoteId = (int) info.id;         
+		menu.add(0, 2, 0, "Edit");
+		menu.add(0, 3, 1, "Delete");   
+	}
+	
+	 @Override
+	  public boolean onContextItemSelected(MenuItem item) {
+	    switch (item.getItemId()) {
+	      case 3:
+	      {
+	        AdapterView.AdapterContextMenuInfo info=
+	          (AdapterView.AdapterContextMenuInfo)item.getMenuInfo();
+	        Log.i("GCA-Abs-Frag", "Menu info id: " + info.id);
+	        DatabaseHelper.deleteFromABSTRACT_NOTES(info.id);
+	        populateListView();
+	        return(true);
+	      }
+	    }
+
+	    return(super.onOptionsItemSelected(item));
+	  }
+	
+	
 	public void populateListView() {
-		String getNotesQuery = "SELECT ABSTRACT_UUID AS _id, NOTE_TITLE, NOTE_TEXT FROM ABSTRACT_NOTES WHERE ABSTRACT_UUID = '" + value + "';";
+		String getNotesQuery = "SELECT NOTE_ID AS _id, ABSTRACT_UUID, NOTE_TITLE, NOTE_TEXT FROM ABSTRACT_NOTES WHERE ABSTRACT_UUID = '" + value + "';";
         notesCursor = DatabaseHelper.database.rawQuery(getNotesQuery, null);
         
         notesList = (ListView) getView().findViewById(R.id.noteslist);

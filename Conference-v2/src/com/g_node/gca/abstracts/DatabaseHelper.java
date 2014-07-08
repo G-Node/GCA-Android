@@ -302,6 +302,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		Log.i("GCA-DB", "Note inserted: id = > " + note_id);
 	}
 	
+	//Function for delete notes for some abstract from Database TABLE_ABSTRACT_NOTES
+	public static void deleteFromABSTRACT_NOTES(long id) {
+		long rows_affected = database.delete(TABLE_ABSTRACT_NOTES, "NOTE_ID = ?", new String[] { String.valueOf(id)});
+		Log.i("GCA-DB", "deleted Note from db  - no: " + rows_affected);
+	}
+	
 	//function to check if author already exists in directory
 	public boolean AuthorExists(String UUID) {
         Cursor cursor = database.rawQuery("select 1 from " + TABLE_AUTHORS_DETAILS + " where AUTHOR_UUID like '%" + UUID
