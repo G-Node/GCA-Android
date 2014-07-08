@@ -114,6 +114,21 @@ public class AbstractNotesFragment extends Fragment {
 	        populateListView();
 	        return(true);
 	      }
+	      case 2:
+	      {
+	        AdapterView.AdapterContextMenuInfo info=
+	          (AdapterView.AdapterContextMenuInfo)item.getMenuInfo();
+	        Log.i("GCA-Abs-Frag", "Menu info id: " + info.id);
+	        
+	        
+	        EditNoteDialogFragment editNoteFragment = EditNoteDialogFragment.newInstance(value, String.valueOf(info.id));
+			editNoteFragment.show(getFragmentManager(), "fragment_edit_note");
+	        //DatabaseHelper.deleteFromABSTRACT_NOTES(info.id);
+			//update in dialogefragment positive button method
+	        
+	        populateListView();
+	        return(true);
+	      }
 	    }
 
 	    return(super.onOptionsItemSelected(item));
