@@ -124,8 +124,8 @@ public class AbstractNotesFragment extends Fragment {
 	        EditNoteDialogFragment editNoteFragment = EditNoteDialogFragment.newInstance(value, String.valueOf(info.id));
 			editNoteFragment.show(getFragmentManager(), "fragment_edit_note");
 	        //DatabaseHelper.deleteFromABSTRACT_NOTES(info.id);
-			//update in dialogefragment positive button method
-	        
+			//update in dialogefragment positive button method 
+	        Log.i("GCA-Abs-Frag", "After EditNote Dialog");
 	        populateListView();
 	        return(true);
 	      }
@@ -136,6 +136,7 @@ public class AbstractNotesFragment extends Fragment {
 	
 	
 	public void populateListView() {
+		Log.i("GCA-Abs-Frag", "in PopulateListview func");
 		String getNotesQuery = "SELECT NOTE_ID AS _id, ABSTRACT_UUID, NOTE_TITLE, NOTE_TEXT FROM ABSTRACT_NOTES WHERE ABSTRACT_UUID = '" + value + "';";
         notesCursor = DatabaseHelper.database.rawQuery(getNotesQuery, null);
         

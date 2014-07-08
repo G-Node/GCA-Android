@@ -308,6 +308,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		Log.i("GCA-DB", "deleted Note from db  - no: " + rows_affected);
 	}
 	
+	//Function for updating the Note if user edits it
+	public static void updateNoteABSTRACT_NOTES(String note_id, String noteTitle, String NoteText) {
+		
+		ContentValues values = new ContentValues();
+		
+		values.put("NOTE_TITLE", noteTitle);
+		
+		values.put("NOTE_TEXT", NoteText);
+		
+		long rows_affected = database.update(TABLE_ABSTRACT_NOTES, values, "NOTE_ID = ?", new String[] { note_id} );
+		Log.i("GCA-DB", "Updated Note from db  - no: " + rows_affected);
+	}
+	
 	//function to check if author already exists in directory
 	public boolean AuthorExists(String UUID) {
         Cursor cursor = database.rawQuery("select 1 from " + TABLE_AUTHORS_DETAILS + " where AUTHOR_UUID like '%" + UUID

@@ -68,8 +68,10 @@ public class EditNoteDialogFragment extends DialogFragment {
             	 Editable noteText = noteTextEditText.getText();
             	 String y = noteText.toString();
             	 String noteTitle = noteTitleEditText.getText().toString();
-            	 //DatabaseHelper.addInABSTRACT_NOTES(absUUID, y, noteTitle);
-                 Toast.makeText(getActivity(), "Updated..", Toast.LENGTH_SHORT).show();
+            	 
+            	 DatabaseHelper.updateNoteABSTRACT_NOTES(current_note_id, noteTitle, y);
+                 
+            	 Toast.makeText(getActivity(), "Updated..", Toast.LENGTH_SHORT).show();
  //                 
                  AbstractNotesFragment.adapter.notifyDataSetChanged();
                  dialog.dismiss();
