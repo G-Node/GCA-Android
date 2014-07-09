@@ -71,7 +71,7 @@ public class EditNoteDialogFragment extends DialogFragment {
             	 
             	 DatabaseHelper.updateNoteABSTRACT_NOTES(current_note_id, noteTitle, y);
                  
-            	 Toast.makeText(getActivity(), "Updated..", Toast.LENGTH_SHORT).show();
+            	 Toast.makeText(getActivity(), "Updated Note - Please Refresh...", Toast.LENGTH_SHORT).show();
  //                 
                  AbstractNotesFragment.adapter.notifyDataSetChanged();
                  dialog.dismiss();

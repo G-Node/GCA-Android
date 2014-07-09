@@ -25,6 +25,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.AdapterView.OnItemClickListener;
 
@@ -34,6 +35,7 @@ public class AbstractNotesFragment extends Fragment {
 	static Cursor notesCursor;
 	ListView notesList;
 	static SimpleCursorAdapter adapter;
+	TextView notificationNote;
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -51,11 +53,10 @@ public class AbstractNotesFragment extends Fragment {
         value = TabsPagerAdapter.getValue();
         //value = getArguments().getString("value");
         
-        TextView sampleNote = (TextView)getView().findViewById(R.id.notesText);
-        sampleNote.setText(value);
-        //DatabaseHelper.addInABSTRACT_NOTES(value, "1st", "lorem desputm atera i oqwe oiqwe aw");
-        //DatabaseHelper.addInABSTRACT_NOTES(value, "2nd", "asdq 123 asdasd desputm atera i oqwe oiqwe aw");
-        
+        notificationNote = (TextView)getView().findViewById(R.id.notesText);
+        notificationNote.setText("Your Notes for the Abstract");
+
+        //populate the notes from DB into listview
         populateListView();
         registerForContextMenu(notesList);
         
@@ -77,6 +78,7 @@ public class AbstractNotesFragment extends Fragment {
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
 				populateListView();
+				Toast.makeText(getActivity(), "Notes Refrshed.", Toast.LENGTH_SHORT).show();
 			}
 		});
         
@@ -96,7 +98,7 @@ public class AbstractNotesFragment extends Fragment {
 			        public void onClick(DialogInterface dialog, int id) {
 			            dialog.cancel();
 			        }
-			    }).setIcon(android.R.drawable.ic_dialog_info)
+			    }).setIcon(getResources().getDrawable(R.drawable.ic_listitem_edit))
 			     .show();
 			}
 		
@@ -150,7 +152,9 @@ public class AbstractNotesFragment extends Fragment {
 		Log.i("GCA-Abs-Frag", "in PopulateListview func");
 		String getNotesQuery = "SELECT NOTE_ID AS _id, ABSTRACT_UUID, NOTE_TITLE, NOTE_TEXT FROM ABSTRACT_NOTES WHERE ABSTRACT_UUID = '" + value + "';";
         notesCursor = DatabaseHelper.database.rawQuery(getNotesQuery, null);
-        
+        if(notesCursor.getCount() <= 0) {
+        	notificationNote.setText("No Notes available for this Abstract");
+        }
         notesList = (ListView) getView().findViewById(R.id.noteslist);
         
         adapter = new SimpleCursorAdapter(getActivity(), R.layout.noteslist_item_layout, notesCursor, new String[] {"NOTE_TITLE"}, new int[] { R.id.noteTitle}, 0);
