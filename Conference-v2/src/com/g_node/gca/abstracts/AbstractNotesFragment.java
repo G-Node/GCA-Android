@@ -98,7 +98,7 @@ public class AbstractNotesFragment extends Fragment {
 			        public void onClick(DialogInterface dialog, int id) {
 			            dialog.cancel();
 			        }
-			    }).setIcon(getResources().getDrawable(R.drawable.ic_listitem_edit))
+			    }).setIcon(getResources().getDrawable(R.drawable.notes_icon))
 			     .show();
 			}
 		
