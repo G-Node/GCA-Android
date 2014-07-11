@@ -1,0 +1,139 @@
+[
+    {
+        "title": "Opening",
+        "subtitle": "might be there",
+        "start": "13:30",
+        "end": "14:30",
+        "location": "B01.063",
+        "date": "2014-08-01",
+        "authors": ["George Martin"],
+        "type": "talk",
+        "abstract": "http://..."
+    },
+    {
+        "title": "Session 1",
+        "subtitle": "Dead people talking",
+        "tracks": [
+            {
+                "title": "Honorfull People",
+                "subtitle": "might die earlier",
+                "chair": ["Lord Aryn"],
+                "events": [
+                    {
+                        "title": "Bealisch warned me",
+                        "subtitle": "i guess",
+                        "start": "14:45",
+                        "end": "15:30",
+                        "location": "B01.063",
+                        "date": "2014-08-01",
+                        "authors": ["Eddard Stark"],
+                        "type": "talk",
+                        "abstract": "http://..."
+                    },
+                    {
+                        "title": "Should not have fucked the girl",
+                        "subtitle": null,
+                        "start": "15:30",
+                        "end": "16:15",
+                        "location": "B01.063",
+                        "date": "2014-08-01",
+                        "authors": ["Rob Stark"],
+                        "type": "talk",
+                        "abstract": "http://..."
+                    }
+                ]
+            },
+            {
+                "title": "Not so Honorfull People",
+                "subtitle": null,
+                "chair": ["Lord Tywin"],
+                "events": [
+                    {
+                        "title": "It was Tyrion",
+                        "subtitle": null,
+                        "start": "14:45",
+                        "end": "15:30",
+                        "location": "B01.064",
+                        "date": "2014-08-01",
+                        "authors": ["Jeofrey Bratheon"],
+                        "type": "talk", "abstract": "http://..."
+                    },
+                    {
+                        "title": "I like ears",
+                        "subtitle": null,
+                        "start": "15:30",
+                        "end": "16:00",
+                        "location": "B01.064",
+                        "date": "2014-08-01",
+                        "authors": ["The biter"],
+                        "type": "talk",
+                        "abstract": "http://..."
+                    },
+                    {
+                        "title": "Maeh",
+                        "subtitle": null,
+                        "start": "16:00",
+                        "end": "16:15",
+                        "location": "B01.064",
+                        "date": "2014-08-01",
+                        "authors": ["Vargo Hoat"],
+                        "type": "talk",
+                        "abstract": "http://..."
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "title": "Coffe break",
+        "subtitle": "might be there",
+        "start": "16:15",
+        "end": "17:00",
+        "location": "Crown room",
+        "date": "2014-08-01",
+        "authors": [],
+        "type": "break",
+        "abstract": "http://..."
+    },
+    {
+        "title": "Living people talking",
+        "subtitle": null,
+        "chair": "Sandor Clegane",
+        "events": [
+            {
+                "title": "Where do whores go?",
+                "subtitle": "really i am asking you",
+                "start": "14:45",
+                "end": "15:30",
+                "location": "B01.063",
+                "date": "2014-08-02",
+                "authors": ["Tyrion Lannister "],
+                "type": "talk",
+                "abstract": "http://..."
+            },
+            {
+                "title": "The halls beneath the keep",
+                "subtitle": null,
+                "start": "15:30",
+                "end": "16:15",
+                "location": "Reed Keep",
+                "date": "2014-08-02",
+                "authors": ["Varys"],
+                "type": "workshop",
+                "abstract": "http://..."
+            }
+        ]
+    },
+    {
+        "title": "Coffe break",
+        "subtitle": "might be there",
+        "start": "16:15",
+        "end": "17:00",
+        "location": "Crown room",
+        "date": "2014-08-02",
+        "authors": [],
+        "type": "break",
+        "abstract": "http://..."
+    }
+]
+

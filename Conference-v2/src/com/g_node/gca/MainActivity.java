@@ -4,6 +4,7 @@ import com.g_node.gca.abstracts.Abstracts;
 import com.g_node.gca.abstracts.FavoriteAbstracts;
 import com.g_node.gca.map.MapActivity;
 import com.g_node.gca.newsroom.NewsRoomActivity;
+import com.g_node.gca.schedule.ScheduleMainActivity;
 import com.shumail.newsroom.R;
 
 import android.os.Bundle;
@@ -60,6 +61,17 @@ public class MainActivity extends Activity {
 			public void onClick(View v) {
 				Intent mapIntent = new Intent(MainActivity.this, MapActivity.class);
 				startActivity(mapIntent);
+				
+			}
+		});
+		
+		Button scheduleBtn = (Button) findViewById(R.id.button5);
+		scheduleBtn.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				Intent scheduleIntent = new Intent(MainActivity.this, ScheduleMainActivity.class);
+				startActivity(scheduleIntent);
 				
 			}
 		});
