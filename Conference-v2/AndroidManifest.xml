@@ -7,7 +7,7 @@
     <uses-sdk
         android:minSdkVersion="14"
         android:targetSdkVersion="17" />
-    
+
     <permission
         android:name="com.map.mapdemo.permission.MAPS_RECEIVE"
         android:protectionLevel="signature" />
@@ -33,9 +33,10 @@
             android:name="com.g_node.gca.MainActivity"
             android:label="@string/title_activity_main" >
         </activity>
-        <activity android:windowSoftInputMode="stateUnchanged"
+        <activity
             android:name="com.g_node.gca.abstracts.Abstracts"
-            android:label="@string/title_activity_abstracts" >
+            android:label="@string/title_activity_abstracts"
+            android:windowSoftInputMode="stateUnchanged" >
         </activity>
         <activity
             android:name="com.g_node.gca.abstracts.AbstractContent"
@@ -58,9 +59,15 @@
             android:name="com.g_node.gca.map.MapActivity"
             android:label="@string/title_activity_map" >
         </activity>
+
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
             android:value="AIzaSyDqitAsErwWTWAkWCtLiu9od9iJ1Xf-Jts" />
+
+        <activity
+            android:name="com.g_node.gca.schedule.ScheduleMainActivity"
+            android:label="@string/title_activity_schedule_main" >
+        </activity>
     </application>
 
 </manifest>
