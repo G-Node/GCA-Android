@@ -16,5 +16,6 @@
     <string name="AcknowledgementHeading">Acknowledgements</string>
     <string name="referencesHeading">References</string>
     <string name="splashTiming">1300</string>
+    <string name="title_activity_schedule_main">Schedule</string>
 
 </resources>
