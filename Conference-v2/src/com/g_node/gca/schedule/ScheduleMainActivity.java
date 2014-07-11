@@ -83,11 +83,33 @@ public class ScheduleMainActivity extends Activity {
                 	
                 	//closing if	
                 	} else if(scheduleItemJsonObject.has("chair")) {	// 'chair' key is only in track
-                		//parse the track now
                 		
+                		//parse the track
                 		parseScheduleTrackJSON(counter, scheduleItemJsonObject);
+                	
+                	//closing elseif
+                	} else if(scheduleItemJsonObject.has("tracks")) {  // 'tracks' key is only in session
+                		
+                		String session_title = scheduleItemJsonObject.getString("title");
+                		Log.i(LOG_TAG, "SESSION - title: " + session_title);
+                		
+                		String session_subtitle = scheduleItemJsonObject.getString("subtitle");
+                		Log.i(LOG_TAG, "SESSION - subtitle: " + session_subtitle);
+                		
+                		Log.i(LOG_TAG, "SESSION - Start parsing Tracks");
+                		
+                		JSONArray sessionTracksArray = scheduleItemJsonObject.getJSONArray("tracks");
+                		
+                		for (int trackCounter = 0; trackCounter < sessionTracksArray.length(); trackCounter++) {
+                			
+                			//get Track object 
+                			JSONObject sessionTrackObject = sessionTracksArray.getJSONObject(trackCounter);
+                			//parse the track object
+                			parseScheduleTrackJSON(trackCounter, sessionTrackObject);
+                		}
+                		
+                		Log.i(LOG_TAG, "SESSION - End parsing Tracks");
                 	}
-            	
             }
             
 		} catch (Exception e) {
