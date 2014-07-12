@@ -17,6 +17,7 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.util.Log;
 import android.view.Menu;
+import android.widget.ListView;
 import android.widget.TextView;
 
 public class ScheduleMainActivity extends Activity {
@@ -45,7 +46,13 @@ public class ScheduleMainActivity extends Activity {
 		getScheduleJSONData();
 		
 		TextView x = (TextView) findViewById(R.id.schedulemain);
-		x.setText("asda");
+		x.setText("Schedule Mian");
+		
+		ListView ScheduleList = (ListView) findViewById(R.id.ScheduleMainList);
+		Log.i(LOG_TAG, "ScheduleList id got - layout got");
+		scheduleAdapter adapter = new scheduleAdapter(this, scheduleRecordsArray, eventsRecordsArray);
+		Log.i(LOG_TAG, "Adapter set - constructor initialized");
+		ScheduleList.setAdapter(adapter);
 		
 	}
 	
