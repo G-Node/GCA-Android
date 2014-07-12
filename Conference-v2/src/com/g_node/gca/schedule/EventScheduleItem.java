@@ -7,7 +7,7 @@ public class EventScheduleItem {
 
     private String subtitle;
 
-    private int start;
+    private String start;
 
 	private String end;
 
@@ -21,7 +21,7 @@ public class EventScheduleItem {
     
     private String eventAbstract;
     
-    public EventScheduleItem(String title, String subtitle, int start, String end,
+    public EventScheduleItem(String title, String subtitle, String start, String end,
 			String location, String date, String authors, String type,
 			String eventAbstract) {
 
@@ -52,11 +52,11 @@ public class EventScheduleItem {
 		this.subtitle = subtitle;
 	}
 
-	public int getStart() {
+	public String getStart() {
 		return start;
 	}
 
-	public void setStart(int start) {
+	public void setStart(String start) {
 		this.start = start;
 	}
 

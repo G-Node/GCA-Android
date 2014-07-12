@@ -11,9 +11,10 @@ public class SessionScheduleItem {
     
    
     //Constructor
-	public SessionScheduleItem(String title, String subtitle) {
+	public SessionScheduleItem(String title, String subtitle, int tracksInSession) {
 		this.title = title;
 		this.subtitle = subtitle;
+		this.tracksInSession = new TrackScheduleItem[tracksInSession];
 	}
 
 	//Setters & Getters 
@@ -37,9 +38,17 @@ public class SessionScheduleItem {
 	public TrackScheduleItem[] getTracksInSession() {
 		return tracksInSession;
 	}
+	
+	public TrackScheduleItem getTracksInSession(int index) {
+		return tracksInSession[index];
+	}
 
 	public void setTracksInSession(TrackScheduleItem[] tracksInSession) {
 		this.tracksInSession = tracksInSession;
+	}
+	
+	public void setTracksInSession(int index, TrackScheduleItem trackToAdd) {
+		this.tracksInSession[index] = trackToAdd;
 	}
     
     

@@ -11,10 +11,11 @@ public class TrackScheduleItem {
     
     private EventScheduleItem[] eventsInTrack;
 
-	public TrackScheduleItem(String title, String subtitle, String chair) {
+	public TrackScheduleItem(String title, String subtitle, String chair, int trackEventsCount) {
 		this.title = title;
 		this.subtitle = subtitle;
 		this.chair = chair;
+		this.eventsInTrack = new EventScheduleItem[trackEventsCount];
 	}
 
 	public String getTitle() {
@@ -47,6 +48,10 @@ public class TrackScheduleItem {
 
 	public void setEventsInTrack(EventScheduleItem[] eventsInTrack) {
 		this.eventsInTrack = eventsInTrack;
+	}
+	
+	public void setEventsInTrack(int index, EventScheduleItem eventToAdd) {
+		this.eventsInTrack[index] = eventToAdd;
 	}
 	
 }
