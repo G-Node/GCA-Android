@@ -26,7 +26,13 @@ public class ScheduleMainActivity extends Activity {
 	private String SCHEDULE_ITEMTYPE_TRACK = "track";
 	private String SCHEDULE_ITEMTYPE_SESSION = "session";
 	
+	List<ScheduleItemRecord> scheduleRecordsArray = new ArrayList<ScheduleItemRecord>() ;
 	
+	List<EventScheduleItem> eventsRecordsArray = new ArrayList<EventScheduleItem>() ;
+	
+	List<TrackScheduleItem> tracksRecordsArray = new ArrayList<TrackScheduleItem>() ;
+	
+	List<SessionScheduleItem> sessionRecordsArray = new ArrayList<SessionScheduleItem>() ;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
