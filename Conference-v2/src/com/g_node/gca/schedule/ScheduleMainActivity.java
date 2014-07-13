@@ -50,7 +50,7 @@ public class ScheduleMainActivity extends Activity {
 		
 		ListView ScheduleList = (ListView) findViewById(R.id.ScheduleMainList);
 		Log.i(LOG_TAG, "ScheduleList id got - layout got");
-		scheduleAdapter adapter = new scheduleAdapter(this, scheduleRecordsArray, eventsRecordsArray);
+		scheduleAdapter adapter = new scheduleAdapter(this, scheduleRecordsArray, eventsRecordsArray, tracksRecordsArray, sessionRecordsArray, this);
 		Log.i(LOG_TAG, "Adapter set - constructor initialized");
 		ScheduleList.setAdapter(adapter);
 		
