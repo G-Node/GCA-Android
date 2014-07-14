@@ -68,6 +68,10 @@
             android:name="com.g_node.gca.schedule.ScheduleMainActivity"
             android:label="@string/title_activity_schedule_main" >
         </activity>
+        <activity
+            android:name="com.g_node.gca.schedule.ScheduleItemExtended"
+            android:label="@string/title_activity_schedule_item_extended" >
+        </activity>
     </application>
 
 </manifest>

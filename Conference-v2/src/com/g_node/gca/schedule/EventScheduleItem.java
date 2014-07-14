@@ -1,7 +1,9 @@
 package com.g_node.gca.schedule;
 
+import java.io.Serializable;
 
-public class EventScheduleItem {
+
+public class EventScheduleItem implements Serializable{
 	
 	private String title;
 

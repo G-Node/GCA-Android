@@ -15,8 +15,12 @@ import com.shumail.newsroom.R.menu;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.Intent;
 import android.util.Log;
 import android.view.Menu;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -53,6 +57,43 @@ public class ScheduleMainActivity extends Activity {
 		scheduleAdapter adapter = new scheduleAdapter(this, scheduleRecordsArray, eventsRecordsArray, tracksRecordsArray, sessionRecordsArray, this);
 		Log.i(LOG_TAG, "Adapter set - constructor initialized");
 		ScheduleList.setAdapter(adapter);
+		
+		//List Item Click Listener
+		
+		ScheduleList.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View v, int position, long id) {
+				// TODO Auto-generated method stub
+				
+				Log.i("GCA-Schedule-List", "Clicked Item - int position: " + position);
+				Log.i("GCA-Schedule-List", "Clicked Item - Long ID: " + id);
+				
+				if(scheduleRecordsArray.get(position).getSchedule_item_type().equals(SCHEDULE_ITEMTYPE_EVENT)) {
+					Log.i("GCA-Schedule-List", "Event Clicked");
+					
+					ScheduleItemRecord scheduleItemRecordAtCurrentPosition = scheduleRecordsArray.get(position);
+					EventScheduleItem eventAtListPosition = eventsRecordsArray.get(scheduleItemRecordAtCurrentPosition.getIndex() );
+					
+					//ScheduleItemExtended scheduleDetailObject = new ScheduleItemExtended(eventAtListPosition);
+					
+					Intent intent = new Intent(ScheduleMainActivity.this, ScheduleItemExtended.class);
+					
+					Bundle bundle = new Bundle();
+					bundle.putSerializable("dEvent", eventAtListPosition);
+					
+					//bundle.putString("type", SCHEDULE_ITEMTYPE_SESSION);
+					bundle.putString("type", scheduleRecordsArray.get(position).getSchedule_item_type());
+					
+					intent.putExtras(bundle);
+					startActivity(intent);
+					
+				} else {
+					;
+				}
+				
+			}
+		});
 		
 	}
 	
