@@ -88,8 +88,26 @@ public class ScheduleMainActivity extends Activity {
 					intent.putExtras(bundle);
 					startActivity(intent);
 					
-				} else {
-					;
+				} else if (scheduleRecordsArray.get(position).getSchedule_item_type().equals(SCHEDULE_ITEMTYPE_TRACK)) {
+					
+					Log.i("GCA-Schedule-List", "Track Clicked");
+					
+					ScheduleItemRecord scheduleItemRecordAtCurrentPosition = scheduleRecordsArray.get(position);
+					TrackScheduleItem trackAtListPosition = tracksRecordsArray.get(scheduleItemRecordAtCurrentPosition.getIndex() );
+					
+					//ScheduleItemExtended scheduleDetailObject = new ScheduleItemExtended(eventAtListPosition);
+					
+					Intent intent = new Intent(ScheduleMainActivity.this, ScheduleItemExtended.class);
+					
+					Bundle bundle = new Bundle();
+					bundle.putSerializable("dTrack", trackAtListPosition);
+					
+					//bundle.putString("type", SCHEDULE_ITEMTYPE_SESSION);
+					bundle.putString("type", scheduleRecordsArray.get(position).getSchedule_item_type());
+					
+					intent.putExtras(bundle);
+					startActivity(intent);
+					
 				}
 				
 			}

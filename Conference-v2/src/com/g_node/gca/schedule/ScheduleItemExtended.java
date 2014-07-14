@@ -33,6 +33,18 @@ public class ScheduleItemExtended extends Activity {
 			TextView eventTitleView = (TextView) findViewById(R.id.scheduleDetailTitle);
 			eventTitleView.setText(eventToDisplay.getTitle());
 		
+		} else if (eType.equals(SCHEDULE_ITEMTYPE_TRACK)) {
+		
+			setContentView(R.layout.activity_schedule_item_extended);
+			
+			TrackScheduleItem trackToDisplay =  (TrackScheduleItem) bundle.getSerializable("dTrack");
+			
+			Log.i("GCA-Schedule-List", "Track title: " + trackToDisplay.getTitle());
+			
+			TextView eventTitleView = (TextView) findViewById(R.id.scheduleDetailTitle);
+			eventTitleView.setText(trackToDisplay.getTitle() + trackToDisplay.getChair());
+			
+		
 		} else {
 			setContentView(R.layout.activity_schedule_item_extended);
 			TextView eventTitleView = (TextView) findViewById(R.id.scheduleDetailTitle);

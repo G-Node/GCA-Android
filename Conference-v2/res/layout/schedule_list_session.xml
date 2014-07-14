@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:paddingTop="15dip"
+    android:paddingRight="15dip"
+    android:paddingBottom="15dip" >
+    <!-- Time -->
+    <TextView
+	  	android:id="@+id/sessionTitle"
+	  	android:contentDescription="@string/app_name"
+	  	android:layout_width="wrap_content"
+	  	android:layout_height="wrap_content"
+	  android:paddingLeft="25dip"
+		android:paddingRight="25dip"
+	  	android:textColor="#0099CC"
+	  	android:text="123123123123123"
+	  	android:textSize="18sp" />
+
+    <!--  Title -->
+    <TextView
+        android:id="@+id/sessionSubtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/sessionTitle"
+        android:paddingRight="25dip"
+        android:layout_marginLeft="25dip"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:text="asdasdasd"
+        android:typeface="sans" />
+    
+    <TableLayout 
+        android:id="@+id/sessionTracksTable"
+        android:paddingLeft="35dip"
+        android:paddingTop="15dip"
+        android:layout_below="@+id/sessionSubtitle"
+        android:layout_width="match_parent" 
+    	android:layout_height="wrap_content" >
+        
+    </TableLayout>
+    
+</RelativeLayout>  

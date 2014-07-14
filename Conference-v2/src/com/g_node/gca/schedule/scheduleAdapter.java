@@ -157,22 +157,38 @@ public class scheduleAdapter extends BaseAdapter {
 			
 		} else {
 			
-			vi = inflater.inflate(R.layout.schedule_list_events_general, null);
+			vi = inflater.inflate(R.layout.schedule_list_session, null);
 			
 			if(vi==null ){
 				Log.i("error", "null");
 			}
 			
-			TextView x = (TextView) vi.findViewById(R.id.tvTime);
+			TextView sessionTitle = (TextView) vi.findViewById(R.id.sessionTitle);
 			
 			int indexOfSession = y.getIndex();
 			
 			SessionScheduleItem tempSession = sessionsRecordList.get(indexOfSession);
 			
-			x.setText(tempSession.getSubtitle());
+			sessionTitle.setText(tempSession.getTitle());
 			
-			TextView xa = (TextView) vi.findViewById(R.id.tvTitle);
-			xa.setText(tempSession.getTitle() + " (" + Integer.toString(y.getIndex() ) + ")");
+			TextView sessionSubtitle = (TextView) vi.findViewById(R.id.sessionSubtitle);
+			sessionSubtitle.setText(tempSession.getSubtitle() );
+			
+			TrackScheduleItem[] tempSessionTracks = tempSession.getTracksInSession();
+			
+			//EventScheduleItem[] tempS = tempTrack.getEventsInTrack();
+			
+			TableLayout table = (TableLayout)vi.findViewById(R.id.sessionTracksTable);
+			
+			for(int i=0; i<tempSessionTracks.length; i++) {
+				
+				TableRow tempRow = (TableRow) LayoutInflater.from(ctx).inflate(R.layout.session_track_table_row, null);
+				((TextView)tempRow.findViewById(R.id.session_track_name)).setText(tempSessionTracks[i].getTitle());
+				((TextView)tempRow.findViewById(R.id.session_track_chair)).setText("Chaired by: " + tempSessionTracks[i].getChair());
+				table.addView(tempRow);
+			}
+			table.requestLayout();
+			
 			
 			return vi;
 			
