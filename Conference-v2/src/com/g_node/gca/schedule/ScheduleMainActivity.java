@@ -155,7 +155,7 @@ public class ScheduleMainActivity extends Activity {
                 		String event_date = scheduleItemJsonObject.getString("date");
                 		Log.i(LOG_TAG, "Basic Event - date: " + event_date);
                 		
-                		String event_authors = scheduleItemJsonObject.getJSONArray("authors").toString();
+                		String event_authors = scheduleItemJsonObject.getJSONArray("authors").toString().replace("\"", "").replace("[", "").replace("]", "");
                 		Log.i(LOG_TAG, "Basic Event - Authors: " + event_authors);
                 		
                 		String event_type = scheduleItemJsonObject.getString("type");
@@ -278,7 +278,7 @@ public class ScheduleMainActivity extends Activity {
 				String track_event_date = trackEventObject.getString("date");
 				Log.i(LOG_TAG, "Track Event - date: " + track_event_date);
 				
-				String track_event_authors = trackEventObject.getJSONArray("authors").toString();
+				String track_event_authors = trackEventObject.getJSONArray("authors").toString().replace("\"", "").replace("[", "").replace("]", "");
 				Log.i(LOG_TAG, "Track Event - Authors: " + track_event_authors);
 				
 				String track_event_type = trackEventObject.getString("type");
@@ -308,7 +308,7 @@ public class ScheduleMainActivity extends Activity {
 			String track_subtitle = _scheduleItemJsonObject.getString("subtitle");
 			Log.i(LOG_TAG, "Track - subtitle: " + track_subtitle);
 			
-			String track_chair = _scheduleItemJsonObject.getString("chair");
+			String track_chair = _scheduleItemJsonObject.getString("chair").replace("\"", "").replace("[", "").replace("]", "");
 			Log.i(LOG_TAG, "Track - Chair: " + track_chair);
 			
 			Log.i(LOG_TAG, "Tracks - Start parsing Events");
