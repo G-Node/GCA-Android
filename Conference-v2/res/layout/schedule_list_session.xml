@@ -44,8 +44,8 @@
     
     <TableLayout 
         android:id="@+id/sessionTracksTable"
-        android:paddingLeft="35dip"
-        android:paddingRight="35dip"
+        android:paddingLeft="25dip"
+        android:paddingRight="25dip"
         android:paddingTop="15dip"
         android:layout_below="@+id/schedule_session_header_block"
         android:layout_width="match_parent" 

@@ -67,11 +67,12 @@ public class scheduleAdapter extends BaseAdapter {
 	@Override
 	public View getView(int arg0, View arg1, ViewGroup arg2) {
 		// TODO Auto-generated method stub
-		
+		Log.i("GCA-B-Schedule", "Line 70");
 		View vi = arg1;
 		ScheduleItemRecord y = scheduleItemsGeneralList.get(arg0);
 		
 		if(y.getSchedule_item_type().equals(SCHEDULE_ITEMTYPE_EVENT)) {
+			Log.i("GCA-B-Schedule", "GetView called for EVENT");
 			
 			vi = inflater.inflate(R.layout.schedule_list_events_general, null);
 			
@@ -95,6 +96,8 @@ public class scheduleAdapter extends BaseAdapter {
 			return vi;
 		
 		} else if (y.getSchedule_item_type().equals(SCHEDULE_ITEMTYPE_TRACK)) {
+			
+			Log.i("GCA-B-Schedule", "GetView called for TRACK");
 			
 			//display track here now
 			vi = inflater.inflate(R.layout.schedule_list_track, null);
@@ -161,13 +164,15 @@ public class scheduleAdapter extends BaseAdapter {
 			return vi;
 			
 		} else {
+			Log.i("GCA-B-Schedule", "GetView called for SESSION");
+			Log.i("GCA-A-Schedule", "Line 164");
 			
 			vi = inflater.inflate(R.layout.schedule_list_session, null);
 			
 			if(vi==null ){
 				Log.i("error", "null");
 			}
-			
+			Log.i("GCA-A-Schedule", "Line 170");
 			TextView sessionTitle = (TextView) vi.findViewById(R.id.sessionTitle);
 			
 			int indexOfSession = y.getIndex();
@@ -185,11 +190,45 @@ public class scheduleAdapter extends BaseAdapter {
 			
 			TableLayout table = (TableLayout)vi.findViewById(R.id.sessionTracksTable);
 			
+			Log.i("GCA-A-Schedule", "Session Tracks Count: " + tempSessionTracks.length);
+			
+			//add tracks to table
 			for(int i=0; i<tempSessionTracks.length; i++) {
 				
-				TableRow tempRow = (TableRow) LayoutInflater.from(ctx).inflate(R.layout.session_track_table_row, null);
+				Log.i("GCA-A-Schedule", "in outer Loop no: " + i);
+				
+				TableRow tempRow = (TableRow) inflater.inflate(R.layout.session_track_table_row, null);
 				((TextView)tempRow.findViewById(R.id.session_track_name)).setText(tempSessionTracks[i].getTitle());
 				((TextView)tempRow.findViewById(R.id.session_track_chair)).setText("Chaired by: " + tempSessionTracks[i].getChair());
+				
+				//here add events of respective track in another table
+				EventScheduleItem[] eventsInCurrentTrack = tempSessionTracks[i].getEventsInTrack();
+				
+				TableLayout trackEventstable = (TableLayout)vi.findViewById(R.id.session_track_events_table);
+				
+				Log.i("GCA-A-Schedule", "Track Events Count: " + eventsInCurrentTrack.length);
+				
+				for(int j=0; j<eventsInCurrentTrack.length; j++) {
+					Log.i("GCA-A-Schedule", "in loop: " + j);
+					//adding each event into a this table
+					TableRow tempEventRowForTrackEventsTable = (TableRow) inflater.inflate(R.layout.track_events_table_row, null);
+					if(tempEventRowForTrackEventsTable == null){
+						Log.i("GCA-Schedule", "NULL SCENE");
+					}
+					((TextView)tempEventRowForTrackEventsTable.findViewById(R.id.track_event_start)).setText(eventsInCurrentTrack[j].getStart());
+					Log.i("GCA-A-Schedule", "Event title shit: " + eventsInCurrentTrack[j].getTitle());
+					((TextView)tempEventRowForTrackEventsTable.findViewById(R.id.track_Event_end)).setText(eventsInCurrentTrack[j].getEnd());
+					((TextView)tempEventRowForTrackEventsTable.findViewById(R.id.track_event_title)).setText(eventsInCurrentTrack[j].getTitle());
+					((TextView)tempEventRowForTrackEventsTable.findViewById(R.id.track_event_location)).setText(eventsInCurrentTrack[j].getLocation());
+					
+					//Adding the event row to Tracks
+					trackEventstable.addView(tempEventRowForTrackEventsTable);
+					trackEventstable.requestLayout();
+				}
+				
+			//	Log.i("GCA-Schedule", "Count of Child in inside table:" + trackEventstable.getChildCount());
+				
+				//adding the final track row
 				table.addView(tempRow);
 			}
 			table.requestLayout();

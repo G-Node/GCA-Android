@@ -23,6 +23,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class ScheduleMainActivity extends Activity {
 	
@@ -111,6 +112,7 @@ public class ScheduleMainActivity extends Activity {
 					
 				} else {
 					Log.i("GCA-Schedule-List", "Session Clicked");
+					Toast.makeText(ScheduleMainActivity.this, "SESSION Item Clicked...", Toast.LENGTH_SHORT).show();
 				}
 				
 			}
