@@ -110,7 +110,7 @@ public class ScheduleMainActivity extends Activity {
 					startActivity(intent);
 					
 				} else {
-					Log.i("GCA-Schedule-List", "shit Clicked");
+					Log.i("GCA-Schedule-List", "Session Clicked");
 				}
 				
 			}
