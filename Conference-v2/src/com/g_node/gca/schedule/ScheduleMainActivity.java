@@ -46,13 +46,23 @@ public class ScheduleMainActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		
+		Log.i("GCA-Performance", "In Oncreate of ScheduleMain");
+		Log.i("GCA-Performance", "in on Create - Time: " + System.currentTimeMillis());
 		setContentView(R.layout.activity_schedule_main);
 		
+		Log.i("GCA-Performance", "before JSONParese- Time: " + System.currentTimeMillis());
+		
+		//Function to parse the Schedule JSON
 		getScheduleJSONData();
+
+		Log.i("GCA-Performance", "After JSONParse - Time: " + System.currentTimeMillis());
 		
 		TextView x = (TextView) findViewById(R.id.schedulemain);
 		x.setText("Schedule Mian");
 		x.setVisibility(View.GONE);
+		
+		Log.i("GCA-Performance", "HERE BEFORE LISTVIEW");
 		
 		ListView ScheduleList = (ListView) findViewById(R.id.ScheduleMainList);
 		Log.i(LOG_TAG, "ScheduleList id got - layout got");
@@ -118,6 +128,17 @@ public class ScheduleMainActivity extends Activity {
 			}
 		});
 		
+		Log.i("GCA-Performance", "HERE AFTER LISTVIEW");
+		
+	}
+	
+	
+	@Override
+	protected void onResume() {
+		// TODO Auto-generated method stub
+		super.onResume();
+		Log.i("GCA-Performance", "in on Resume of Schedule main");
+		Log.i("GCA-Performance", "in on Resume - Time: " + System.currentTimeMillis());
 	}
 	
 	

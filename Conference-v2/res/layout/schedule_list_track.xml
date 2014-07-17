@@ -45,7 +45,8 @@
     
     <TableLayout 
         android:id="@+id/trackEventsTable"
-        android:paddingLeft="35dip"
+        android:paddingLeft="25dip"
+        android:paddingRight="25dip"
         android:paddingTop="15dip"
         android:layout_below="@+id/schedule_tracks_header_block"
         android:layout_width="match_parent" 

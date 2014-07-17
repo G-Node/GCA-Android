@@ -211,15 +211,15 @@ public class scheduleAdapter extends BaseAdapter {
 				for(int j=0; j<eventsInCurrentTrack.length; j++) {
 					Log.i("GCA-A-Schedule", "in loop: " + j);
 					//adding each event into a this table
-					TableRow tempEventRowForTrackEventsTable = (TableRow) inflater.inflate(R.layout.track_events_table_row, null);
+					TableRow tempEventRowForTrackEventsTable = (TableRow) inflater.inflate(R.layout.session_track_event_table_row, null);
 					if(tempEventRowForTrackEventsTable == null){
 						Log.i("GCA-Schedule", "NULL SCENE");
 					}
-					((TextView)tempEventRowForTrackEventsTable.findViewById(R.id.track_event_start)).setText(eventsInCurrentTrack[j].getStart());
+					((TextView)tempEventRowForTrackEventsTable.findViewById(R.id.session_track_event_start)).setText(eventsInCurrentTrack[j].getStart());
 					Log.i("GCA-A-Schedule", "Event title shit: " + eventsInCurrentTrack[j].getTitle());
-					((TextView)tempEventRowForTrackEventsTable.findViewById(R.id.track_Event_end)).setText(eventsInCurrentTrack[j].getEnd());
-					((TextView)tempEventRowForTrackEventsTable.findViewById(R.id.track_event_title)).setText(eventsInCurrentTrack[j].getTitle());
-					((TextView)tempEventRowForTrackEventsTable.findViewById(R.id.track_event_location)).setText(eventsInCurrentTrack[j].getLocation());
+					((TextView)tempEventRowForTrackEventsTable.findViewById(R.id.session_track_Event_end)).setText(eventsInCurrentTrack[j].getEnd());
+					((TextView)tempEventRowForTrackEventsTable.findViewById(R.id.session_track_event_title)).setText(eventsInCurrentTrack[j].getTitle());
+					((TextView)tempEventRowForTrackEventsTable.findViewById(R.id.session_track_event_location)).setText(eventsInCurrentTrack[j].getLocation());
 					
 					//Adding the event row to Tracks
 					trackEventstable.addView(tempEventRowForTrackEventsTable);
