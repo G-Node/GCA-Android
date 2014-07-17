@@ -79,15 +79,18 @@ public class scheduleAdapter extends BaseAdapter {
 				Log.i("error", "null");
 			}
 			
-			TextView x = (TextView) vi.findViewById(R.id.tvTime);
+			TextView x = (TextView) vi.findViewById(R.id.event_start_time);
 			int indexOfEvent =y.getIndex();
 			
 			EventScheduleItem tempEvent = eventsRecordsList.get(indexOfEvent);
 			
 			x.setText(tempEvent.getStart());
 			
-			TextView xa = (TextView) vi.findViewById(R.id.tvTitle);
+			TextView xa = (TextView) vi.findViewById(R.id.event_title);
 			xa.setText(tempEvent.getTitle());
+			
+			((TextView)vi.findViewById(R.id.event_end_time)).setText(tempEvent.getEnd());
+			((TextView)vi.findViewById(R.id.event_location)).setText(tempEvent.getLocation());
 			
 			return vi;
 		

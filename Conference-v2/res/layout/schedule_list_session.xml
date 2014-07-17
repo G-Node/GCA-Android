@@ -3,18 +3,26 @@
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:paddingTop="15dip"
-    android:paddingRight="15dip"
     android:paddingBottom="15dip" 
     android:background="#FCFFB7" >
-    <!-- Time -->
+    
+    <LinearLayout 
+        android:id="@+id/schedule_session_header_block"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:orientation="vertical"
+	    android:background="@drawable/yellow_background_pattern"
+    >
+    
+    <!-- Title of Session -->
     <TextView
 	  	android:id="@+id/sessionTitle"
 	  	android:contentDescription="@string/app_name"
 	  	android:layout_width="wrap_content"
 	  	android:layout_height="wrap_content"
-	  android:paddingLeft="25dip"
+	  	android:paddingLeft="25dip"
 		android:paddingRight="25dip"
+	    android:paddingTop="8dp"
 	  	android:textColor="#0099CC"
 	  	android:text="123123123123123"
 	  	android:textSize="18sp" />
@@ -24,20 +32,22 @@
         android:id="@+id/sessionSubtitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/sessionTitle"
         android:paddingRight="25dip"
         android:layout_marginLeft="25dip"
         android:textColor="#000000"
         android:textSize="18sp"
+        android:paddingBottom="8dp"
         android:textStyle="bold"
-        android:text="asdasdasd"
         android:typeface="sans" />
+    
+    </LinearLayout>
     
     <TableLayout 
         android:id="@+id/sessionTracksTable"
         android:paddingLeft="35dip"
+        android:paddingRight="35dip"
         android:paddingTop="15dip"
-        android:layout_below="@+id/sessionSubtitle"
+        android:layout_below="@+id/schedule_session_header_block"
         android:layout_width="match_parent" 
     	android:layout_height="wrap_content" >
         

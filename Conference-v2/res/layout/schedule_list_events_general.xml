@@ -1,35 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+   
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/track_event_row_linearLayout_block"    
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:paddingTop="15dip"
-    android:paddingRight="15dip"
-    android:paddingBottom="15dip"
-    android:background="#B7F1FF" >
-    <!-- Time -->
-    <TextView
-	  	android:id="@+id/tvTime"
-	  	android:contentDescription="@string/app_name"
-	  	android:layout_width="wrap_content"
-	  	android:layout_height="wrap_content"
-	  	android:layout_centerVertical="true"
-		android:paddingLeft="25dip"
-		android:paddingRight="25dip"
-	  	android:textColor="#0099CC"
-	  	android:textSize="18sp" />
+    android:baselineAligned="false">
 
-    <!--  Title -->
-    <TextView
-        android:id="@+id/tvTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/tvTime"
-        android:paddingRight="25dip"
-        android:layout_marginLeft="0dip"
-        android:layout_centerVertical="true"
-        android:textColor="#000000"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:typeface="sans" />
-</RelativeLayout>  
+    <LinearLayout android:id="@+id/block_time_container"
+        android:orientation="vertical"
+        android:layout_width="72dp"
+        android:layout_height="match_parent"
+        android:background="@drawable/transparent_background_pattern"
+        android:padding="8dp">
+
+        <TextView android:id="@+id/event_start_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:paddingTop="6sp" />
+
+        <TextView android:id="@+id/event_end_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:textColor="#3A2F0B"
+            android:paddingTop="4dp"/>
+    </LinearLayout>
+
+    <LinearLayout android:id="@+id/list_item_middle_container"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="match_parent"
+        android:background="#B7F1FF"
+        android:clickable="false"
+        android:focusable="false"
+        android:padding="8dp"
+        android:orientation="vertical">
+
+        <TextView android:id="@+id/event_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="3dp"
+            android:layout_marginRight="3dp"
+            android:paddingTop="6sp"
+            android:textStyle="bold"
+            android:duplicateParentState="true" />
+
+        <TextView android:id="@+id/event_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="3dp"
+            android:layout_marginRight="3dp"
+            android:paddingBottom="8dp"
+            android:duplicateParentState="true" />
+    </LinearLayout>
+    
+</LinearLayout>

@@ -57,7 +57,7 @@ public class trackEventsAdapter extends BaseAdapter {
 		
 		vi = inflater.inflate(R.layout.schedule_list_events_general, null);
 		
-		TextView x = (TextView) vi.findViewById(R.id.tvTime);
+		TextView x = (TextView) vi.findViewById(R.id.event_start_time);
 		x.setText(tempEvent.getTitle() + tempEvent.getAuthors());
 		
 //		TextView xa = (TextView) vi.findViewById(R.id.tvTitle);
