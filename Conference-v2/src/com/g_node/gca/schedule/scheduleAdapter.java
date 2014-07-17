@@ -204,7 +204,7 @@ public class scheduleAdapter extends BaseAdapter {
 				//here add events of respective track in another table
 				EventScheduleItem[] eventsInCurrentTrack = tempSessionTracks[i].getEventsInTrack();
 				
-				TableLayout trackEventstable = (TableLayout)vi.findViewById(R.id.session_track_events_table);
+				TableLayout trackEventstable = (TableLayout)tempRow.findViewById(R.id.session_track_events_table);
 				
 				Log.i("GCA-A-Schedule", "Track Events Count: " + eventsInCurrentTrack.length);
 				
