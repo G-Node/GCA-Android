@@ -5,7 +5,8 @@
     android:orientation="horizontal"
     android:paddingTop="15dip"
     android:paddingRight="15dip"
-    android:paddingBottom="15dip" >
+    android:paddingBottom="15dip"
+    android:background="#B7F1FF" >
     <!-- Time -->
     <TextView
 	  	android:id="@+id/tvTime"

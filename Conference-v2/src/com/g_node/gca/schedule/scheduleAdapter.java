@@ -109,7 +109,7 @@ public class scheduleAdapter extends BaseAdapter {
 			x.setText(tempTrack.getTitle());
 			
 			TextView xa = (TextView) vi.findViewById(R.id.trackSubtitle);
-			xa.setText("Chaired By: " + tempTrack.getChair() + " (" + Integer.toString(y.getIndex() ) + ")");
+			xa.setText("Chaired By: " + tempTrack.getChair() );
 			
 			//ListView trackEventsListView = (ListView) vi.findViewById(R.id.trackInsideItemListView);
 			
@@ -121,8 +121,10 @@ public class scheduleAdapter extends BaseAdapter {
 			for(int i=0; i<tempTrackEvents.length; i++) {
 				
 				TableRow tempRow = (TableRow) LayoutInflater.from(ctx).inflate(R.layout.track_events_table_row, null);
-				((TextView)tempRow.findViewById(R.id.attrib_name)).setText(tempTrackEvents[i].getTitle());
-				((TextView)tempRow.findViewById(R.id.attrib_value)).setText(tempTrackEvents[i].getStart());
+				((TextView)tempRow.findViewById(R.id.track_event_start)).setText(tempTrackEvents[i].getStart());
+				((TextView)tempRow.findViewById(R.id.track_event_title)).setText(tempTrackEvents[i].getTitle());
+				((TextView)tempRow.findViewById(R.id.track_event_location)).setText(tempTrackEvents[i].getLocation());
+				((TextView)tempRow.findViewById(R.id.track_Event_end)).setText(tempTrackEvents[i].getEnd());
 				table.addView(tempRow);
 			}
 			table.requestLayout();

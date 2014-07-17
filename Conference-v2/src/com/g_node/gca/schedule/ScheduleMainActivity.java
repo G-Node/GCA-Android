@@ -51,6 +51,7 @@ public class ScheduleMainActivity extends Activity {
 		
 		TextView x = (TextView) findViewById(R.id.schedulemain);
 		x.setText("Schedule Mian");
+		x.setVisibility(View.GONE);
 		
 		ListView ScheduleList = (ListView) findViewById(R.id.ScheduleMainList);
 		Log.i(LOG_TAG, "ScheduleList id got - layout got");
@@ -108,6 +109,8 @@ public class ScheduleMainActivity extends Activity {
 					intent.putExtras(bundle);
 					startActivity(intent);
 					
+				} else {
+					Log.i("GCA-Schedule-List", "shit Clicked");
 				}
 				
 			}
