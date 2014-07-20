@@ -70,6 +70,10 @@ public class ScheduleMainActivity extends Activity {
 		Log.i(LOG_TAG, "Adapter set - constructor initialized");
 		ScheduleList.setAdapter(adapter);
 		
+		//ScheduleList.setHasTransientState(true);
+		
+		android.support.v4.view.ViewCompat.setHasTransientState(ScheduleList, true);
+		
 		//List Item Click Listener
 		
 		ScheduleList.setOnItemClickListener(new OnItemClickListener() {
@@ -199,7 +203,7 @@ public class ScheduleMainActivity extends Activity {
                 		int eventAddedIndex = eventsRecordsArray.size() - 1;
                 		
                 		//add it now to main records array
-                		scheduleRecordsArray.add(new ScheduleItemRecord(SCHEDULE_ITEMTYPE_EVENT, eventAddedIndex));
+                		scheduleRecordsArray.add(new ScheduleItemRecord(SCHEDULE_ITEMTYPE_EVENT, eventAddedIndex, event_date));
                 		
                 	//closing if	
                 	} else if(scheduleItemJsonObject.has("chair")) {	// 'chair' key is only in track
@@ -226,8 +230,10 @@ public class ScheduleMainActivity extends Activity {
                 		//get index of added session in the list
                 		int addedSessionIndex = sessionRecordsArray.size() - 1;
                 		
+                		String tempSessionDate = sessionTracksArray.getJSONObject(0).getJSONArray("events").getJSONObject(0).getString("date");
+                		Log.i(LOG_TAG, "Session - " + session_title + " - Date: " + tempSessionDate);
                 		//add it now to main records array
-                		scheduleRecordsArray.add(new ScheduleItemRecord(SCHEDULE_ITEMTYPE_SESSION, addedSessionIndex));                		
+                		scheduleRecordsArray.add(new ScheduleItemRecord(SCHEDULE_ITEMTYPE_SESSION, addedSessionIndex, tempSessionDate));                		
                 		
                 		//get the session added at this index
                 		tempSession = sessionRecordsArray.get(addedSessionIndex);
@@ -274,9 +280,12 @@ public class ScheduleMainActivity extends Activity {
 		
 		//get index of that added track and add events at that index
 		int addedTrackIndex = tracksRecordsArray.size() - 1;
-
+		
+		String tempTrackDate = _scheduleItemJsonObject.getJSONArray("events").getJSONObject(0).getString("date");
+		Log.i(LOG_TAG, "Date for Track - " + track_title + "is: " + tempTrackDate);
+		
 		//add it now to main records array
-		scheduleRecordsArray.add(new ScheduleItemRecord(SCHEDULE_ITEMTYPE_TRACK, addedTrackIndex));
+		scheduleRecordsArray.add(new ScheduleItemRecord(SCHEDULE_ITEMTYPE_TRACK, addedTrackIndex, tempTrackDate));
 		
 		//get track that's added to add events now after parsing events
 		TrackScheduleItem tempTrack =  tracksRecordsArray.get(addedTrackIndex);
@@ -325,7 +334,7 @@ public class ScheduleMainActivity extends Activity {
 	}
 	
 	
-	//Function for parsing Tracks
+	//Function for parsing Tracks in Session
 		void parseSessionTrackJSON(int _counter, JSONObject _scheduleItemJsonObject) throws JSONException {
 			
 			String track_title = _scheduleItemJsonObject.getString("title");

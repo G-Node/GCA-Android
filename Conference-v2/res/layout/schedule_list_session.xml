@@ -6,11 +6,21 @@
     android:paddingBottom="15dip" 
     android:background="#FCFFB7" >
     
+    <TextView android:id="@+id/session_date_header"
+       android:layout_width="fill_parent"
+       android:layout_height="wrap_content"
+       android:textSize="16sp"
+       android:textStyle="bold"
+       android:gravity="center"
+       android:paddingBottom="6sp"
+       android:paddingTop="6sp"/>
+    
     <LinearLayout 
         android:id="@+id/schedule_session_header_block"
 	    android:layout_width="fill_parent"
 	    android:layout_height="wrap_content"
 	    android:orientation="vertical"
+	    android:layout_below="@+id/session_date_header"
 	    android:background="@drawable/yellow_background_pattern"
     >
     

@@ -8,9 +8,12 @@ public class ScheduleItemRecord {
 	
 	private int index;
 	
-	public ScheduleItemRecord(String schedule_item_type, int index) {
+	private String event_date;
+	
+	public ScheduleItemRecord(String schedule_item_type, int index, String event_date) {
 		this.schedule_item_type = schedule_item_type;
 		this.index = index;
+		this.event_date = event_date;
 	}
 
 	public String getSchedule_item_type() {
@@ -27,6 +30,14 @@ public class ScheduleItemRecord {
 
 	public void setIndex(int index) {
 		this.index = index;
+	}
+
+	public String getEvent_date() {
+		return event_date;
+	}
+
+	public void setEvent_date(String event_date) {
+		this.event_date = event_date;
 	}
 	
 	

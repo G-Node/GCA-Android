@@ -1,5 +1,6 @@
 package com.g_node.gca.schedule;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.shumail.newsroom.R;
@@ -35,6 +36,9 @@ public class scheduleAdapter extends BaseAdapter {
 	private List<SessionScheduleItem> sessionsRecordList;
 	private Context ctx;
 	private Activity activity;
+	List<String> diffDates = new ArrayList<String>() ;
+	List<Integer> viewsRendered = new ArrayList<Integer>();
+	
 	
 	public scheduleAdapter(Activity act, List<ScheduleItemRecord> _items, List<EventScheduleItem> _eventsList, List<TrackScheduleItem> _tracksList, List<SessionScheduleItem> _sessionsList, Context _Ctx ) {
 		inflater = (LayoutInflater) act.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -76,6 +80,30 @@ public class scheduleAdapter extends BaseAdapter {
 			
 			vi = inflater.inflate(R.layout.schedule_list_events_general, null);
 			
+			Log.i("Conflict", "abi event date: " + y.getEvent_date());
+			Log.i("Conflict", "abi DiffList : " + diffDates.toString());
+			
+			if(diffDates.contains( y.getEvent_date() )) { //if date is already present
+				
+				if(!viewsRendered.contains(arg0)) {  //check if view is not already rendered
+					//if date is already present
+					TextView x = (TextView) vi.findViewById(R.id.date_header);
+					x.setVisibility(View.GONE);
+				} else {
+					;
+				}
+				
+			} else {
+				if(!viewsRendered.contains(arg0)) {
+					diffDates.add(y.getEvent_date());
+					//set header
+					TextView x = (TextView) vi.findViewById(R.id.date_header);
+					x.setText(y.getEvent_date());
+				} else {
+					;
+				}
+			}
+			
 			if(vi==null ){
 				Log.i("error", "null");
 			}
@@ -93,6 +121,10 @@ public class scheduleAdapter extends BaseAdapter {
 			((TextView)vi.findViewById(R.id.event_end_time)).setText(tempEvent.getEnd());
 			((TextView)vi.findViewById(R.id.event_location)).setText(tempEvent.getLocation());
 			
+			if(!viewsRendered.contains(arg0)) {
+				viewsRendered.add(arg0);
+			}
+			
 			return vi;
 		
 		} else if (y.getSchedule_item_type().equals(SCHEDULE_ITEMTYPE_TRACK)) {
@@ -101,6 +133,19 @@ public class scheduleAdapter extends BaseAdapter {
 			
 			//display track here now
 			vi = inflater.inflate(R.layout.schedule_list_track, null);
+			
+			if(diffDates.contains( y.getEvent_date() )) {
+				//if date is already present
+				TextView x = (TextView) vi.findViewById(R.id.track_date_header);
+				x.setVisibility(View.GONE);
+				
+			} else {
+				diffDates.add(y.getEvent_date());
+				//set header
+				TextView x = (TextView) vi.findViewById(R.id.track_date_header);
+				x.setText(y.getEvent_date());
+				
+			}
 			
 			if(vi==null ){
 				Log.i("error", "null");
@@ -169,6 +214,19 @@ public class scheduleAdapter extends BaseAdapter {
 			
 			vi = inflater.inflate(R.layout.schedule_list_session, null);
 			
+			if(diffDates.contains( y.getEvent_date() )) {
+				//if date is already present
+				TextView x = (TextView) vi.findViewById(R.id.session_date_header);
+				x.setVisibility(View.GONE);
+				
+			} else {
+				diffDates.add(y.getEvent_date());
+				//set header
+				TextView x = (TextView) vi.findViewById(R.id.session_date_header);
+				x.setText(y.getEvent_date());
+				
+			}
+			
 			if(vi==null ){
 				Log.i("error", "null");
 			}
@@ -236,7 +294,8 @@ public class scheduleAdapter extends BaseAdapter {
 			
 			return vi;
 			
-		}
+		} //end last else
+		
 	}
 	
 }
