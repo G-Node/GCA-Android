@@ -86,21 +86,27 @@ public class scheduleAdapter extends BaseAdapter {
 			if(diffDates.contains( y.getEvent_date() )) { //if date is already present
 				
 				if(!viewsRendered.contains(arg0)) {  //check if view is not already rendered
-					//if date is already present
+					//if date is already present view is not rendered 
+					
 					TextView x = (TextView) vi.findViewById(R.id.date_header);
 					x.setVisibility(View.GONE);
 				} else {
-					;
+					//if view is rendered and date is already present
+					TextView x = (TextView) vi.findViewById(R.id.date_header);
+					x.setText(y.getEvent_date());
 				}
 				
-			} else {
+			} else { //if date is not present
+				
 				if(!viewsRendered.contains(arg0)) {
 					diffDates.add(y.getEvent_date());
 					//set header
 					TextView x = (TextView) vi.findViewById(R.id.date_header);
 					x.setText(y.getEvent_date());
+					viewsRendered.add(arg0);
 				} else {
-					;
+					TextView x = (TextView) vi.findViewById(R.id.date_header);
+					x.setVisibility(View.GONE);
 				}
 			}
 			
@@ -121,9 +127,9 @@ public class scheduleAdapter extends BaseAdapter {
 			((TextView)vi.findViewById(R.id.event_end_time)).setText(tempEvent.getEnd());
 			((TextView)vi.findViewById(R.id.event_location)).setText(tempEvent.getLocation());
 			
-			if(!viewsRendered.contains(arg0)) {
-				viewsRendered.add(arg0);
-			}
+//			if(!viewsRendered.contains(arg0)) {
+//				viewsRendered.add(arg0);
+//			}
 			
 			return vi;
 		
@@ -134,17 +140,31 @@ public class scheduleAdapter extends BaseAdapter {
 			//display track here now
 			vi = inflater.inflate(R.layout.schedule_list_track, null);
 			
-			if(diffDates.contains( y.getEvent_date() )) {
-				//if date is already present
-				TextView x = (TextView) vi.findViewById(R.id.track_date_header);
-				x.setVisibility(View.GONE);
+			if(diffDates.contains( y.getEvent_date() )) { //if date is already present
 				
-			} else {
-				diffDates.add(y.getEvent_date());
-				//set header
-				TextView x = (TextView) vi.findViewById(R.id.track_date_header);
-				x.setText(y.getEvent_date());
+				if(!viewsRendered.contains(arg0)) {  //check if view is not already rendered
+					//if date is already present view is not rendered 
+					
+					TextView x = (TextView) vi.findViewById(R.id.track_date_header);
+					x.setVisibility(View.GONE);
+				} else {
+					//if view is rendered and date is already present
+					TextView x = (TextView) vi.findViewById(R.id.track_date_header);
+					x.setText(y.getEvent_date());
+				}
 				
+			} else { //if date is not present
+				
+				if(!viewsRendered.contains(arg0)) {
+					diffDates.add(y.getEvent_date());
+					//set header
+					TextView x = (TextView) vi.findViewById(R.id.track_date_header);
+					x.setText(y.getEvent_date());
+					viewsRendered.add(arg0);
+				} else {
+					TextView x = (TextView) vi.findViewById(R.id.track_date_header);
+					x.setVisibility(View.GONE);
+				}
 			}
 			
 			if(vi==null ){
@@ -214,19 +234,32 @@ public class scheduleAdapter extends BaseAdapter {
 			
 			vi = inflater.inflate(R.layout.schedule_list_session, null);
 			
-			if(diffDates.contains( y.getEvent_date() )) {
-				//if date is already present
-				TextView x = (TextView) vi.findViewById(R.id.session_date_header);
-				x.setVisibility(View.GONE);
+			if(diffDates.contains( y.getEvent_date() )) { //if date is already present
 				
-			} else {
-				diffDates.add(y.getEvent_date());
-				//set header
-				TextView x = (TextView) vi.findViewById(R.id.session_date_header);
-				x.setText(y.getEvent_date());
+				if(!viewsRendered.contains(arg0)) {  //check if view is not already rendered
+					//if date is already present view is not rendered 
+					
+					TextView x = (TextView) vi.findViewById(R.id.session_date_header);
+					x.setVisibility(View.GONE);
+				} else {
+					//if view is rendered and date is already present
+					TextView x = (TextView) vi.findViewById(R.id.session_date_header);
+					x.setText(y.getEvent_date());
+				}
 				
-			}
-			
+			} else { //if date is not present
+				
+				if(!viewsRendered.contains(arg0)) {
+					diffDates.add(y.getEvent_date());
+					//set header
+					TextView x = (TextView) vi.findViewById(R.id.session_date_header);
+					x.setText(y.getEvent_date());
+					viewsRendered.add(arg0);
+				} else {
+					TextView x = (TextView) vi.findViewById(R.id.session_date_header);
+					x.setVisibility(View.GONE);
+				}
+			}			
 			if(vi==null ){
 				Log.i("error", "null");
 			}

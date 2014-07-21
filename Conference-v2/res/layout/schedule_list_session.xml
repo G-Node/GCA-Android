@@ -9,11 +9,12 @@
     <TextView android:id="@+id/session_date_header"
        android:layout_width="fill_parent"
        android:layout_height="wrap_content"
-       android:textSize="16sp"
+       android:textSize="22sp"
        android:textStyle="bold"
        android:gravity="center"
-       android:paddingBottom="6sp"
-       android:paddingTop="6sp"/>
+       android:textColor="#efefef"
+       android:paddingBottom="10sp"
+       android:paddingTop="10sp"/>
     
     <LinearLayout 
         android:id="@+id/schedule_session_header_block"

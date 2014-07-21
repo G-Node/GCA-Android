@@ -7,12 +7,13 @@
     <TextView android:id="@+id/date_header"
        android:layout_width="fill_parent"
        android:layout_height="wrap_content"
-       android:textSize="16sp"
+       android:textSize="22sp"
        android:textStyle="bold"
        android:background="#ab62c4"
+       android:textColor="#efefef"
        android:gravity="center"
-       android:paddingBottom="6sp"
-       android:paddingTop="6sp" />
+       android:paddingBottom="10sp"
+       android:paddingTop="10sp" />
    
 <LinearLayout 
     android:id="@+id/track_event_row_linearLayout_block"    
