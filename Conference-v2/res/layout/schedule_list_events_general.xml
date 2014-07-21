@@ -1,28 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content" >
-    
-    <TextView android:id="@+id/date_header"
-       android:layout_width="fill_parent"
-       android:layout_height="wrap_content"
-       android:textSize="22sp"
-       android:textStyle="bold"
-       android:background="#ab62c4"
-       android:textColor="#efefef"
-       android:gravity="center"
-       android:paddingBottom="10sp"
-       android:paddingTop="10sp" />
    
-<LinearLayout 
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/track_event_row_linearLayout_block"    
-    android:layout_below="@+id/date_header"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:baselineAligned="false">	
-    
+    android:baselineAligned="false">
+
     <LinearLayout android:id="@+id/block_time_container"
         android:orientation="vertical"
         android:layout_width="72dp"
@@ -74,4 +58,3 @@
     </LinearLayout>
     
 </LinearLayout>
-</RelativeLayout>

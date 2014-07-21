@@ -14,7 +14,10 @@ import com.shumail.newsroom.R;
 import com.shumail.newsroom.R.menu;
 
 import android.os.Bundle;
+import android.app.ActionBar;
+import android.app.ActionBar.Tab;
 import android.app.Activity;
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.util.Log;
 import android.view.Menu;
@@ -25,7 +28,14 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class ScheduleMainActivity extends Activity {
+import android.support.v4.view.ViewPager;
+import android.support.v4.view.ViewPager.OnPageChangeListener;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentStatePagerAdapter;
+
+public class ScheduleMainActivity extends FragmentActivity implements ActionBar.TabListener {
 	
 	String LOG_TAG = "GCA-Schedule";
 	
@@ -43,98 +53,73 @@ public class ScheduleMainActivity extends Activity {
 	
 	List<SessionScheduleItem> sessionRecordsArray = new ArrayList<SessionScheduleItem>() ;
 	
+	List<DateWiseEventsRecord> dateWiseEventsRecordList = new ArrayList<DateWiseEventsRecord>();
+	
+	private ActionBar actionBar;
+	ViewPager viewPager;
+	SchedulePagerAdapter mAdapter;
+	
+
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
 		Log.i("GCA-Performance", "In Oncreate of ScheduleMain");
 		Log.i("GCA-Performance", "in on Create - Time: " + System.currentTimeMillis());
-		setContentView(R.layout.activity_schedule_main);
+		setContentView(R.layout.activity_schedule_main_viewpager);
 		
 		Log.i("GCA-Performance", "before JSONParese- Time: " + System.currentTimeMillis());
 		
 		//Function to parse the Schedule JSON
 		getScheduleJSONData();
-
+		
+		groupEventsByDate();
+		
 		Log.i("GCA-Performance", "After JSONParse - Time: " + System.currentTimeMillis());
 		
-		TextView x = (TextView) findViewById(R.id.schedulemain);
-		x.setText("Schedule Mian");
-		x.setVisibility(View.GONE);
+		// Initilization
+ 		viewPager = (ViewPager) findViewById(R.id.schedulePager);
+ 		actionBar = getActionBar();
+ 		mAdapter = new SchedulePagerAdapter(getSupportFragmentManager());
+ 		mAdapter.setLists(scheduleRecordsArray, eventsRecordsArray, tracksRecordsArray, sessionRecordsArray, dateWiseEventsRecordList);
+ 		viewPager.setAdapter(mAdapter);
+ 		actionBar.setHomeButtonEnabled(false);
+ 		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 		
-		Log.i("GCA-Performance", "HERE BEFORE LISTVIEW");
-		
-		ListView ScheduleList = (ListView) findViewById(R.id.ScheduleMainList);
-		Log.i(LOG_TAG, "ScheduleList id got - layout got");
-		scheduleAdapter adapter = new scheduleAdapter(this, scheduleRecordsArray, eventsRecordsArray, tracksRecordsArray, sessionRecordsArray, this);
-		Log.i(LOG_TAG, "Adapter set - constructor initialized");
-		ScheduleList.setAdapter(adapter);
-		
-		//ScheduleList.setHasTransientState(true);
-		
-		android.support.v4.view.ViewCompat.setHasTransientState(ScheduleList, true);
-		
-		//List Item Click Listener
-		
-		ScheduleList.setOnItemClickListener(new OnItemClickListener() {
+ 		for(int i=0; i<dateWiseEventsRecordList.size(); i++) {
+ 			DateWiseEventsRecord temp = dateWiseEventsRecordList.get(i);
+ 			actionBar.addTab(actionBar.newTab().setText(temp.getGroup_date()).setTabListener(this) );
+ 		}
+ 		
+ 		viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
 
 			@Override
-			public void onItemClick(AdapterView<?> arg0, View v, int position, long id) {
+			public void onPageScrollStateChanged(int arg0) {
+				
+				// TODO Auto-generated method stub
+				Log.i(LOG_TAG, "at 100 of schedule activity");
+//				actionBar.setSelectedNavigationItem(1);
+				Log.i(LOG_TAG, "at 102 of schedule activity");
+				//supportInvalidateOptionsMenu();
+			}
+
+			@Override
+			public void onPageScrolled(int arg0, float arg1, int arg2) {
 				// TODO Auto-generated method stub
 				
-				Log.i("GCA-Schedule-List", "Clicked Item - int position: " + position);
-				Log.i("GCA-Schedule-List", "Clicked Item - Long ID: " + id);
-				
-				if(scheduleRecordsArray.get(position).getSchedule_item_type().equals(SCHEDULE_ITEMTYPE_EVENT)) {
-					Log.i("GCA-Schedule-List", "Event Clicked");
-					
-					ScheduleItemRecord scheduleItemRecordAtCurrentPosition = scheduleRecordsArray.get(position);
-					EventScheduleItem eventAtListPosition = eventsRecordsArray.get(scheduleItemRecordAtCurrentPosition.getIndex() );
-					
-					//ScheduleItemExtended scheduleDetailObject = new ScheduleItemExtended(eventAtListPosition);
-					
-					Intent intent = new Intent(ScheduleMainActivity.this, ScheduleItemExtended.class);
-					
-					Bundle bundle = new Bundle();
-					bundle.putSerializable("dEvent", eventAtListPosition);
-					
-					//bundle.putString("type", SCHEDULE_ITEMTYPE_SESSION);
-					bundle.putString("type", scheduleRecordsArray.get(position).getSchedule_item_type());
-					
-					intent.putExtras(bundle);
-					startActivity(intent);
-					
-				} else if (scheduleRecordsArray.get(position).getSchedule_item_type().equals(SCHEDULE_ITEMTYPE_TRACK)) {
-					
-					Log.i("GCA-Schedule-List", "Track Clicked");
-					
-					ScheduleItemRecord scheduleItemRecordAtCurrentPosition = scheduleRecordsArray.get(position);
-					TrackScheduleItem trackAtListPosition = tracksRecordsArray.get(scheduleItemRecordAtCurrentPosition.getIndex() );
-					
-					//ScheduleItemExtended scheduleDetailObject = new ScheduleItemExtended(eventAtListPosition);
-					
-					Intent intent = new Intent(ScheduleMainActivity.this, ScheduleItemExtended.class);
-					
-					Bundle bundle = new Bundle();
-					bundle.putSerializable("dTrack", trackAtListPosition);
-					
-					//bundle.putString("type", SCHEDULE_ITEMTYPE_SESSION);
-					bundle.putString("type", scheduleRecordsArray.get(position).getSchedule_item_type());
-					
-					intent.putExtras(bundle);
-					startActivity(intent);
-					
-				} else {
-					Log.i("GCA-Schedule-List", "Session Clicked");
-					Toast.makeText(ScheduleMainActivity.this, "SESSION Item Clicked...", Toast.LENGTH_SHORT).show();
-				}
-				
 			}
-		});
+
+			@Override
+			public void onPageSelected(int arg0) {
+				// TODO Auto-generated method stub
+				actionBar.setSelectedNavigationItem(arg0);
+			}
+ 			
+ 		});
+ 		
 		
-		Log.i("GCA-Performance", "HERE AFTER LISTVIEW");
-		
-	}
+	}//end oncreate
 	
 	
 	@Override
@@ -335,7 +320,7 @@ public class ScheduleMainActivity extends Activity {
 	
 	
 	//Function for parsing Tracks in Session
-		void parseSessionTrackJSON(int _counter, JSONObject _scheduleItemJsonObject) throws JSONException {
+	void parseSessionTrackJSON(int _counter, JSONObject _scheduleItemJsonObject) throws JSONException {
 			
 			String track_title = _scheduleItemJsonObject.getString("title");
 			Log.i(LOG_TAG, "Track - title: " + track_title);
@@ -412,11 +397,90 @@ public class ScheduleMainActivity extends Activity {
 			tempSession.setTracksInSession(_counter, trackAddedForSession);
 		}	
 
+	void groupEventsByDate() {
+		
+		Log.i(LOG_TAG, "in groupEvents func - Line 425");
+		List<String> differentDatesForGroups = new ArrayList<String>();
+		int indexOfCurrentDate;
+		
+		for(int i=0; i<scheduleRecordsArray.size(); i++) {
+			Log.i(LOG_TAG, "in groupEvents func for loop - Line 430");
+			//get current event record from indexes array
+			ScheduleItemRecord temperoryScheduleItem = scheduleRecordsArray.get(i);
+			
+			String dateOfCurrentEventItem = temperoryScheduleItem.getEvent_date();
+			
+			Log.i(LOG_TAG, "in groupEvents func - Line 436");
+			
+			if(!differentDatesForGroups.contains(dateOfCurrentEventItem)) {
+				//if date is not already in record, add it
+				Log.i(LOG_TAG, "in groupEvents func - Line 440");
+				differentDatesForGroups.add(dateOfCurrentEventItem);
+				Log.i(LOG_TAG, "in groupEvents func - Line 442");
+				indexOfCurrentDate = differentDatesForGroups.size() -1;
+			} else {
+				//get index of the date
+				indexOfCurrentDate = differentDatesForGroups.indexOf(dateOfCurrentEventItem);
+			}
+			Log.i(LOG_TAG, "in groupEvents func - Line 448");
+			//now check the List of GroupEvents for this Index
+			
+			DateWiseEventsRecord tempDateGroup;
+			
+			try {
+				tempDateGroup = dateWiseEventsRecordList.get(indexOfCurrentDate);
+			} catch (IndexOutOfBoundsException e) {
+				// TODO: handle exception
+				dateWiseEventsRecordList.add(new DateWiseEventsRecord(dateOfCurrentEventItem));
+				tempDateGroup = dateWiseEventsRecordList.get(indexOfCurrentDate);
+			}
+			
+			
+			Log.i(LOG_TAG, "in groupEvents func - Line 451");
+			
+			if(tempDateGroup == null ) {
+				dateWiseEventsRecordList.add(new DateWiseEventsRecord(dateOfCurrentEventItem));
+				tempDateGroup = dateWiseEventsRecordList.get(indexOfCurrentDate);
+			} //end if condition for null
+			
+			//add the index of this event item into the group eventsForThisDate
+			tempDateGroup.addEventsForDate(i);
+			
+			//Update the main list
+			dateWiseEventsRecordList.set(indexOfCurrentDate, tempDateGroup);
+			
+			Log.i(LOG_TAG, "in groupEvents func - Line 464");
+		} //end outer for loop - iterating for indexes array
+		Log.i(LOG_TAG, "in groupEvents func - Line 466");
+	} //end function groupEventsByDate
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.schedule_main, menu);
 		return true;
+	}
+
+
+	@Override
+	public void onTabReselected(Tab arg0, FragmentTransaction arg1) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void onTabSelected(Tab arg0, FragmentTransaction arg1) {
+		// TODO Auto-generated method stub
+		viewPager.setCurrentItem(arg0.getPosition());
+		
+	}
+
+
+	@Override
+	public void onTabUnselected(Tab arg0, FragmentTransaction arg1) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

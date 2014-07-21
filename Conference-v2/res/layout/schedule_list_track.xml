@@ -6,23 +6,11 @@
     android:paddingBottom="15dip" 
     android:background="#C4FFB7"  >
     
-    <TextView android:id="@+id/track_date_header"
-       android:layout_width="fill_parent"
-       android:layout_height="wrap_content"
-       android:textSize="22sp"
-       android:textStyle="bold"
-       android:background="#ab62c4"
-       android:textColor="#efefef"
-       android:gravity="center"
-       android:paddingBottom="10sp"
-       android:paddingTop="10sp" />
-    
      <LinearLayout 
         android:id="@+id/schedule_tracks_header_block"
 	    android:layout_width="fill_parent"
 	    android:layout_height="wrap_content"
 	    android:orientation="vertical"
-	    android:layout_below="@+id/track_date_header"
 	    android:background="@drawable/green_background_pattern" >
     
     <!-- Time -->
