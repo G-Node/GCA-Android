@@ -52,7 +52,7 @@ public class SchedulePagerAdapter extends FragmentStatePagerAdapter {
 		}
 		 
 		//isey yahan schedulerecorsarray siraf is date wali bhejni ha
-		fragment_schedule.setLists(eventsForThisFragment, eventsRecordsArray, tracksRecordsArray, sessionRecordsArray);
+		fragment_schedule.setLists(eventsRecordsArray, tracksRecordsArray, sessionRecordsArray);
 		//eventsForThisFragment = null;
 		
 		Bundle bundle = new Bundle();

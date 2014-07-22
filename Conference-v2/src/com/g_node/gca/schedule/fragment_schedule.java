@@ -19,7 +19,6 @@ public class fragment_schedule extends Fragment {
 
 	String LOG_TAG = "GCA-Schedule-Frag";
 
-	private static List<ScheduleItemRecord> scheduleRecordsArray;
 	private static List<EventScheduleItem> eventsRecordsArray;
 	private static List<TrackScheduleItem> tracksRecordsArray;
 	private static List<SessionScheduleItem> sessionRecordsArray;
@@ -60,9 +59,8 @@ public class fragment_schedule extends Fragment {
            
 	}
 	
-	 public static void setLists(List<ScheduleItemRecord> _items, List<EventScheduleItem> _eventsList, List<TrackScheduleItem> _tracksList, List<SessionScheduleItem> _sessionsList) {
+	 public static void setLists(List<EventScheduleItem> _eventsList, List<TrackScheduleItem> _tracksList, List<SessionScheduleItem> _sessionsList) {
 		 Log.i("GCA-Error", "Setting Fragment Satic Lists");
-		 scheduleRecordsArray = _items;
 		 eventsRecordsArray = _eventsList;
 		 tracksRecordsArray = _tracksList;
 		 sessionRecordsArray = _sessionsList;
