@@ -1,5 +1,6 @@
 package com.g_node.gca.schedule;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.shumail.newsroom.R;
@@ -23,6 +24,12 @@ public class fragment_schedule extends Fragment {
 	private static List<TrackScheduleItem> tracksRecordsArray;
 	private static List<SessionScheduleItem> sessionRecordsArray;
 	
+	private List<ScheduleItemRecord> eventsForThisFragment = new ArrayList<ScheduleItemRecord>();
+	
+	public void setEventsForThisFragment(List<ScheduleItemRecord> temp) {
+		eventsForThisFragment = temp;
+	}
+	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -36,6 +43,8 @@ public class fragment_schedule extends Fragment {
 	public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         
+        Log.i("GCA-Error", "onViewCreaed Called");
+        
         TextView notificationNote = (TextView)getView().findViewById(R.id.schedulemain);
         
         Bundle bundle = this.getArguments();
@@ -45,13 +54,14 @@ public class fragment_schedule extends Fragment {
         ListView ScheduleList = (ListView) getView().findViewById(R.id.ScheduleMainList);
 		Log.i(LOG_TAG, "ScheduleList id got - layout got");
 		
-		scheduleAdapter adapter = new scheduleAdapter(getActivity(), scheduleRecordsArray, eventsRecordsArray, tracksRecordsArray, sessionRecordsArray, getActivity());
+		scheduleAdapter adapter = new scheduleAdapter(getActivity(), eventsForThisFragment, eventsRecordsArray, tracksRecordsArray, sessionRecordsArray, getActivity());
 		Log.i(LOG_TAG, "Adapter set - constructor initialized");
 		ScheduleList.setAdapter(adapter);
            
 	}
 	
 	 public static void setLists(List<ScheduleItemRecord> _items, List<EventScheduleItem> _eventsList, List<TrackScheduleItem> _tracksList, List<SessionScheduleItem> _sessionsList) {
+		 Log.i("GCA-Error", "Setting Fragment Satic Lists");
 		 scheduleRecordsArray = _items;
 		 eventsRecordsArray = _eventsList;
 		 tracksRecordsArray = _tracksList;

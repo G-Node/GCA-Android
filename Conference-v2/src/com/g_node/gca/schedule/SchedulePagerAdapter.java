@@ -50,17 +50,18 @@ public class SchedulePagerAdapter extends FragmentStatePagerAdapter {
 			ScheduleItemRecord eventObjectGot = scheduleRecordsArray.get(indexToGetData);
 			eventsForThisFragment.add(eventObjectGot);
 		}
-		
-		
 		 
 		//isey yahan schedulerecorsarray siraf is date wali bhejni ha
 		fragment_schedule.setLists(eventsForThisFragment, eventsRecordsArray, tracksRecordsArray, sessionRecordsArray);
+		//eventsForThisFragment = null;
 		
 		Bundle bundle = new Bundle();
 		bundle.putInt("tab", arg0);
 		
 		fragment_schedule x = new fragment_schedule();
+		x.setEventsForThisFragment(eventsForThisFragment);
 		x.setArguments(bundle);
+		
 		return x;
 	}
 
