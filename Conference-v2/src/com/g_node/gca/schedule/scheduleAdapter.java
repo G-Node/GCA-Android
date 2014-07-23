@@ -7,6 +7,7 @@ import com.shumail.newsroom.R;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
+import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -93,6 +94,9 @@ public class scheduleAdapter extends BaseAdapter {
 			((TextView)vi.findViewById(R.id.event_end_time)).setText(tempEvent.getEnd());
 			((TextView)vi.findViewById(R.id.event_location)).setText(tempEvent.getLocation());
 			
+			if(!tempEvent.getAuthors().equals("")) 
+				((TextView)vi.findViewById(R.id.event_location)).append(Html.fromHtml("&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;<i>" + tempEvent.getAuthors() + "</i>" ));
+			
 			return vi;
 		
 		} else if (y.getSchedule_item_type().equals(SCHEDULE_ITEMTYPE_TRACK)) {
@@ -131,6 +135,10 @@ public class scheduleAdapter extends BaseAdapter {
 				((TextView)tempRow.findViewById(R.id.track_event_title)).setText(tempTrackEvents[i].getTitle());
 				((TextView)tempRow.findViewById(R.id.track_event_location)).setText(tempTrackEvents[i].getLocation());
 				((TextView)tempRow.findViewById(R.id.track_Event_end)).setText(tempTrackEvents[i].getEnd());
+				
+				if(!tempTrackEvents[i].getAuthors().equals("")) 
+					((TextView)tempRow.findViewById(R.id.track_event_location)).append(Html.fromHtml("&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;<i>" + tempTrackEvents[i].getAuthors() + "</i>"));
+				
 				table.addView(tempRow);
 			}
 			table.requestLayout();
@@ -221,6 +229,9 @@ public class scheduleAdapter extends BaseAdapter {
 					((TextView)tempEventRowForTrackEventsTable.findViewById(R.id.session_track_event_title)).setText(eventsInCurrentTrack[j].getTitle());
 					((TextView)tempEventRowForTrackEventsTable.findViewById(R.id.session_track_event_location)).setText(eventsInCurrentTrack[j].getLocation());
 					
+					if(!eventsInCurrentTrack[j].getAuthors().equals("")) 
+						((TextView)tempEventRowForTrackEventsTable.findViewById(R.id.session_track_event_location)).append(Html.fromHtml("&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;<i>" + eventsInCurrentTrack[j].getAuthors() + "</i>"));
+						
 					//Adding the event row to Tracks
 					trackEventstable.addView(tempEventRowForTrackEventsTable);
 					trackEventstable.requestLayout();

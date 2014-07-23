@@ -11,15 +11,14 @@
         android:orientation="vertical"
         android:layout_width="72dp"
         android:layout_height="match_parent"
-        android:background="@drawable/transparent_background_pattern"
-        android:padding="8dp">
+        android:gravity="center"
+        android:background="@drawable/transparent_background_pattern" >
 
         <TextView android:id="@+id/event_start_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="12sp"
-            android:textStyle="bold"
-            android:paddingTop="6sp" />
+            android:textStyle="bold" />
 
         <TextView android:id="@+id/event_end_time"
             android:layout_width="wrap_content"

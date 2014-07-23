@@ -378,7 +378,7 @@ public class ScheduleMainActivity extends FragmentActivity implements ActionBar.
 					String track_event_date = trackEventObject.getString("date");
 					Log.i(LOG_TAG, "Track Event - date: " + track_event_date);
 					
-					String track_event_authors = trackEventObject.getJSONArray("authors").toString();
+					String track_event_authors = trackEventObject.getJSONArray("authors").toString().replace("\"", "").replace("[", "").replace("]", "");
 					Log.i(LOG_TAG, "Track Event - Authors: " + track_event_authors);
 					
 					String track_event_type = trackEventObject.getString("type");
