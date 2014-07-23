@@ -81,6 +81,7 @@ public class ScheduleMainActivity extends FragmentActivity implements ActionBar.
 		// Initilization
  		viewPager = (ViewPager) findViewById(R.id.schedulePager);
  		actionBar = getActionBar();
+ 		actionBar.setIcon(getResources().getDrawable(R.drawable.icon_schedule_actionbar));
  		mAdapter = new SchedulePagerAdapter(getSupportFragmentManager());
  		mAdapter.setLists(scheduleRecordsArray, eventsRecordsArray, tracksRecordsArray, sessionRecordsArray, dateWiseEventsRecordList);
  		viewPager.setAdapter(mAdapter);

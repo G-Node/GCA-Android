@@ -25,6 +25,7 @@ public class fragment_schedule extends Fragment {
 	
 	private List<ScheduleItemRecord> eventsForThisFragment = new ArrayList<ScheduleItemRecord>();
 	
+	//this function will update the list of events for this fragment only
 	public void setEventsForThisFragment(List<ScheduleItemRecord> temp) {
 		eventsForThisFragment = temp;
 	}
@@ -44,11 +45,12 @@ public class fragment_schedule extends Fragment {
         
         Log.i("GCA-Error", "onViewCreaed Called");
         
-        TextView notificationNote = (TextView)getView().findViewById(R.id.schedulemain);
-        
+//        TextView notificationNote = (TextView)getView().findViewById(R.id.schedulemain);
+//        
         Bundle bundle = this.getArguments();
-        int myInt = bundle.getInt("tab");
-        notificationNote.setText("Tab Number " + myInt);
+        int dayNumber = bundle.getInt("tab");
+        Log.i(LOG_TAG, "Current Tab: " + ++dayNumber);
+        //        notificationNote.setText("Day : " + ++dayNumber);
         
         ListView ScheduleList = (ListView) getView().findViewById(R.id.ScheduleMainList);
 		Log.i(LOG_TAG, "ScheduleList id got - layout got");
