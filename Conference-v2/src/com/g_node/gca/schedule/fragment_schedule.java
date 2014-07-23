@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.shumail.newsroom.R;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -12,13 +13,20 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class fragment_schedule extends Fragment {
 
 	String LOG_TAG = "GCA-Schedule-Frag";
-
+	
+	private String SCHEDULE_ITEMTYPE_EVENT = "event";
+	private String SCHEDULE_ITEMTYPE_TRACK = "track";
+	private String SCHEDULE_ITEMTYPE_SESSION = "session";
+	
 	private static List<EventScheduleItem> eventsRecordsArray;
 	private static List<TrackScheduleItem> tracksRecordsArray;
 	private static List<SessionScheduleItem> sessionRecordsArray;
@@ -58,6 +66,64 @@ public class fragment_schedule extends Fragment {
 		scheduleAdapter adapter = new scheduleAdapter(getActivity(), eventsForThisFragment, eventsRecordsArray, tracksRecordsArray, sessionRecordsArray, getActivity());
 		Log.i(LOG_TAG, "Adapter set - constructor initialized");
 		ScheduleList.setAdapter(adapter);
+		
+		//List Item Click Listener
+		
+		ScheduleList.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View v, int position, long id) {
+				// TODO Auto-generated method stub
+				
+				Log.i("GCA-Schedule-List", "Clicked Item - int position: " + position);
+				Log.i("GCA-Schedule-List", "Clicked Item - Long ID: " + id);
+				
+				if(eventsForThisFragment.get(position).getSchedule_item_type().equals(SCHEDULE_ITEMTYPE_EVENT)) {
+					Log.i("GCA-Schedule-List", "Event Clicked");
+					
+					ScheduleItemRecord scheduleItemRecordAtCurrentPosition = eventsForThisFragment.get(position);
+					EventScheduleItem eventAtListPosition = eventsRecordsArray.get(scheduleItemRecordAtCurrentPosition.getIndex() );
+					
+					//ScheduleItemExtended scheduleDetailObject = new ScheduleItemExtended(eventAtListPosition);
+					
+					Intent intent = new Intent(getActivity(), ScheduleItemExtended.class);
+					
+					Bundle bundle = new Bundle();
+					bundle.putSerializable("dEvent", eventAtListPosition);
+					
+					//bundle.putString("type", SCHEDULE_ITEMTYPE_SESSION);
+					bundle.putString("type", eventsForThisFragment.get(position).getSchedule_item_type());
+					
+					intent.putExtras(bundle);
+					startActivity(intent);
+					
+				} else if (eventsForThisFragment.get(position).getSchedule_item_type().equals(SCHEDULE_ITEMTYPE_TRACK)) {
+					
+					Log.i("GCA-Schedule-List", "Track Clicked");
+					
+					ScheduleItemRecord scheduleItemRecordAtCurrentPosition = eventsForThisFragment.get(position);
+					TrackScheduleItem trackAtListPosition = tracksRecordsArray.get(scheduleItemRecordAtCurrentPosition.getIndex() );
+					
+					//ScheduleItemExtended scheduleDetailObject = new ScheduleItemExtended(eventAtListPosition);
+					
+					Intent intent = new Intent(getActivity(), ScheduleItemExtended.class);
+					
+					Bundle bundle = new Bundle();
+					bundle.putSerializable("dTrack", trackAtListPosition);
+					
+					//bundle.putString("type", SCHEDULE_ITEMTYPE_SESSION);
+					bundle.putString("type", eventsForThisFragment.get(position).getSchedule_item_type());
+					
+					intent.putExtras(bundle);
+					startActivity(intent);
+					
+				} else {
+					Log.i("GCA-Schedule-List", "Session Clicked");
+					Toast.makeText(getActivity(), "SESSION Item Clicked...", Toast.LENGTH_SHORT).show();
+				}
+				
+			}
+		});		
            
 	}
 	
