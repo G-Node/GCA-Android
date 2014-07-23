@@ -154,6 +154,8 @@ public class AbstractNotesFragment extends Fragment {
         notesCursor = DatabaseHelper.database.rawQuery(getNotesQuery, null);
         if(notesCursor.getCount() <= 0) {
         	notificationNote.setText("No Notes available for this Abstract");
+        } else {
+        	notificationNote.setText("You have " + notesCursor.getCount() + " Notes for the Abstract");
         }
         notesList = (ListView) getView().findViewById(R.id.noteslist);
         
