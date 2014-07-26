@@ -42,7 +42,7 @@ public class ScheduleItemExtended extends Activity {
 		String eType = bundle.getString("type");
 		if(eType.equals(SCHEDULE_ITEMTYPE_EVENT)) {
 			
-			setContentView(R.layout.activity_schedule_item_extended);
+			setContentView(R.layout.activity_schedule_item_extended_event);
 			
 			EventScheduleItem eventToDisplay =  (EventScheduleItem) bundle.getSerializable("dEvent");
 			
@@ -95,18 +95,22 @@ public class ScheduleItemExtended extends Activity {
 			
 		} else if (eType.equals(SCHEDULE_ITEMTYPE_TRACK)) {
 		
-			setContentView(R.layout.activity_schedule_item_extended);
+			setContentView(R.layout.activity_schedule_item_extended_track);
 			
 			TrackScheduleItem trackToDisplay =  (TrackScheduleItem) bundle.getSerializable("dTrack");
 			
+			actionbar = getActionBar();
+			actionbar.setTitle(trackToDisplay.getTitle());
+			
 			Log.i("GCA-Schedule-List", "Track title: " + trackToDisplay.getTitle());
 			
-//			TextView eventTitleView = (TextView) findViewById(R.id.scheduleDetailTitle);
-//			eventTitleView.setText(trackToDisplay.getTitle() + trackToDisplay.getChair());
+			((TextView) findViewById(R.id.schedule_track_title)).setText(trackToDisplay.getTitle());
+			((TextView) findViewById(R.id.schedule_track_subtitle)).setText(trackToDisplay.getSubtitle());			
+			((TextView) findViewById(R.id.schedule_track_chair)).setText("Chair:   " + trackToDisplay.getChair());
 //			
 		
 		} else {
-			setContentView(R.layout.activity_schedule_item_extended);
+			setContentView(R.layout.activity_schedule_item_extended_event);
 //			TextView eventTitleView = (TextView) findViewById(R.id.scheduleDetailTitle);
 //			eventTitleView.setText("asdasdasdasdas123");
 		}
