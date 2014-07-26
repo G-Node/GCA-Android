@@ -7,6 +7,7 @@ import com.shumail.newsroom.R.layout;
 import com.shumail.newsroom.R.menu;
 
 import android.os.Bundle;
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
@@ -27,6 +28,8 @@ public class ScheduleItemExtended extends Activity {
 	
 	String event_abstract_uuid;
 	
+	ActionBar actionbar;
+	
 	String LOG_TAG = "GCA-Sch-Extend";
 
 	@Override
@@ -43,10 +46,21 @@ public class ScheduleItemExtended extends Activity {
 			
 			EventScheduleItem eventToDisplay =  (EventScheduleItem) bundle.getSerializable("dEvent");
 			
+			actionbar = getActionBar();
+			actionbar.setTitle(eventToDisplay.getTitle());
+			
 			Log.i("GCA-Schedule-List", "event title: " + eventToDisplay.getTitle());
 			
-			TextView eventTitleView = (TextView) findViewById(R.id.scheduleDetailTitle);
+			TextView eventTitleView = (TextView) findViewById(R.id.schedule_event_title);
 			eventTitleView.setText(eventToDisplay.getTitle());
+			
+			((TextView) findViewById(R.id.schedule_event_subtitle)).setText(eventToDisplay.getSubtitle());
+			((TextView) findViewById(R.id.schedule_event_author)).setText(eventToDisplay.getAuthors());
+			((TextView) findViewById(R.id.schedule_event_time)).setText(eventToDisplay.getStart() + "   -   " + eventToDisplay.getEnd());
+			((TextView) findViewById(R.id.schedule_event_location)).setText(eventToDisplay.getLocation());
+			((TextView) findViewById(R.id.schedule_event_date)).setText(eventToDisplay.getDate());
+			((TextView) findViewById(R.id.schedule_event_type)).setText(eventToDisplay.getType().toUpperCase());
+			
 			
 			event_abstract_uuid = eventToDisplay.getEventAbstract();
 			event_abstract_uuid = event_abstract_uuid.substring(event_abstract_uuid.lastIndexOf("/")+1, event_abstract_uuid.length());
@@ -87,14 +101,14 @@ public class ScheduleItemExtended extends Activity {
 			
 			Log.i("GCA-Schedule-List", "Track title: " + trackToDisplay.getTitle());
 			
-			TextView eventTitleView = (TextView) findViewById(R.id.scheduleDetailTitle);
-			eventTitleView.setText(trackToDisplay.getTitle() + trackToDisplay.getChair());
-			
+//			TextView eventTitleView = (TextView) findViewById(R.id.scheduleDetailTitle);
+//			eventTitleView.setText(trackToDisplay.getTitle() + trackToDisplay.getChair());
+//			
 		
 		} else {
 			setContentView(R.layout.activity_schedule_item_extended);
-			TextView eventTitleView = (TextView) findViewById(R.id.scheduleDetailTitle);
-			eventTitleView.setText("asdasdasdasdas123");
+//			TextView eventTitleView = (TextView) findViewById(R.id.scheduleDetailTitle);
+//			eventTitleView.setText("asdasdasdasdas123");
 		}
 		
 		

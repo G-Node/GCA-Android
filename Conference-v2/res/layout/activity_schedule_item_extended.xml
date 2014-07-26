@@ -2,25 +2,178 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="#b6f2fd"
     tools:context=".ScheduleItemExtended" >
 
     <TextView
-        android:id="@+id/scheduleDetailTitle"
+        android:id="@+id/schedule_event_title"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+		android:textColor="#b6f2fd"
+		android:background="#034f5d"
         android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
+        android:text="@string/hello_world" />
+
+	<TextView
+        android:id="@+id/schedule_event_subtitle"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+		android:textColor="#0a5690"
+		android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
+        android:layout_below="@+id/schedule_event_title"
+        android:text="@string/hello_world" />
+
+	<TextView
+        android:id="@+id/schedule_event_type"
+        android:layout_marginRight="15dp"
+        android:layout_alignParentRight="true"
+        android:paddingLeft="3dp"
+        android:paddingRight="3dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/hello_world" />
+        android:gravity="right"
+		android:textColor="#e7e7e5"
+		android:background="#7e7d7b"
+		android:textSize="12sp"
+		android:layout_below="@+id/schedule_event_subtitle"
+        android:text="Type of Event" />
+	
+	<TableLayout 
+	    android:id="@+id/schedule_event_detail_table"
+	    android:layout_below="@+id/schedule_event_type"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:paddingLeft="15dp"
+	    android:stretchColumns="1">	
+	
+		<TableRow>
+	        <TextView
+	            android:layout_weight="1"
+		        android:paddingTop="10dp"
+		        android:paddingBottom="10dp"
+		        android:paddingLeft="5dp"
+		        android:layout_width="fill_parent"
+		        android:layout_height="wrap_content"
+		        android:gravity="center_vertical"
+				android:textColor="#0a5690"
+				android:drawablePadding="5dp"
+		        android:drawableLeft="@drawable/icon_calendar"
+		        android:text="Date:" />
+	        <TextView
+	            android:layout_weight="1"
+	            android:id="@+id/schedule_event_date"
+	            android:paddingTop="10dp"
+		        android:paddingBottom="10dp"
+		        android:paddingLeft="5dp"
+		        android:layout_width="fill_parent"
+		        android:layout_height="wrap_content"
+		        android:gravity="center"
+				android:textColor="#0a5690"
+	            android:text="Event Date"
+	            android:padding="3dip" />
+    	</TableRow>
+	    	    	
+	    <TableRow>
+	        <TextView
+	            android:layout_weight="1"	            
+		        android:paddingTop="10dp"
+		        android:paddingBottom="10dp"
+		        android:paddingLeft="5dp"
+		        android:layout_width="fill_parent"
+		        android:layout_height="wrap_content"
+		        android:gravity="center_vertical"
+				android:textColor="#0a5690"
+				android:drawablePadding="5dp"
+		        android:drawableLeft="@drawable/icon_clock"
+		        android:text="Time:" />
+	        
+	        <TextView
+	            android:layout_weight="1"	            
+	            android:id="@+id/schedule_event_time"
+	            android:paddingTop="10dp"
+		        android:paddingBottom="10dp"
+		        android:paddingLeft="5dp"
+		        android:layout_width="fill_parent"
+		        android:layout_height="wrap_content"
+		        android:gravity="center"
+				android:textColor="#0a5690"
+	            android:text="Event Time goes here"
+	            android:padding="3dip" />
+    	</TableRow>
+	    
+	    <TableRow>
+	        <TextView
+	            android:layout_weight="1"	            
+		        android:paddingTop="10dp"
+		        android:paddingBottom="10dp"
+		        android:paddingLeft="5dp"
+		        android:layout_width="fill_parent"
+		        android:layout_height="wrap_content"
+		        android:gravity="center_vertical"
+				android:textColor="#0a5690"
+				android:drawablePadding="5dp"
+		        android:drawableLeft="@drawable/speaker_avatar"
+		        android:text="Author:" />
+	        
+	        <TextView
+	            android:layout_weight="1"
+	            android:id="@+id/schedule_event_author"
+	            android:paddingTop="10dp"
+		        android:paddingBottom="10dp"
+		        android:paddingLeft="5dp"
+		        android:layout_width="fill_parent"
+		        android:layout_height="wrap_content"
+		        android:gravity="center"
+				android:textColor="#0a5690"
+	            android:text="Shumail"
+	            android:padding="3dip" />
+    	</TableRow>
+
+		<TableRow>
+	        <TextView
+	            android:layout_weight="1"	            
+		        android:paddingTop="10dp"
+		        android:paddingBottom="10dp"
+		        android:paddingLeft="5dp"
+		        android:layout_width="fill_parent"
+		        android:layout_height="wrap_content"
+		        android:gravity="center_vertical"
+				android:textColor="#0a5690"
+				android:drawablePadding="5dp"
+		        android:drawableLeft="@drawable/icon_location"
+		        android:text="Location:" />
+	        <TextView
+	            android:layout_weight="1"	            
+	            android:id="@+id/schedule_event_location"
+	            android:paddingTop="10dp"
+		        android:paddingBottom="10dp"
+		        android:paddingLeft="5dp"
+		        android:layout_width="fill_parent"
+		        android:layout_height="wrap_content"
+		        android:gravity="center"
+				android:textColor="#0a5690"
+	            android:text="Event Location"
+	            android:padding="3dip" />
+    	</TableRow>	    
+
+			
+	    	
+    </TableLayout>
 	
     <Button 
         android:id="@+id/btn_launch_Abstract_from_event"
         android:text="Open Abstract"
-        android:layout_width="wrap_content"
+        android:gravity="center"
+        android:layout_marginLeft="35dp"
+        android:layout_marginRight="35dp"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/scheduleDetailTitle"
-        />
+        android:layout_below="@+id/schedule_event_detail_table"  />
     
 </RelativeLayout>
