@@ -119,6 +119,21 @@ public class fragment_schedule extends Fragment {
 					
 				} else {
 					Log.i("GCA-Schedule-List", "Session Clicked");
+					
+					ScheduleItemRecord scheduleItemRecordAtCurrentPosition = eventsForThisFragment.get(position);
+					SessionScheduleItem sessionkAtListPosition = sessionRecordsArray.get(scheduleItemRecordAtCurrentPosition.getIndex() );
+					
+					Intent intent = new Intent(getActivity(), ScheduleItemExtended.class);
+					
+					Bundle bundle = new Bundle();
+					bundle.putSerializable("dSession", sessionkAtListPosition);
+					
+					//bundle.putString("type", SCHEDULE_ITEMTYPE_SESSION);
+					bundle.putString("type", eventsForThisFragment.get(position).getSchedule_item_type());
+					
+					intent.putExtras(bundle);
+					startActivity(intent);					
+					
 					Toast.makeText(getActivity(), "SESSION Item Clicked...", Toast.LENGTH_SHORT).show();
 				}
 				

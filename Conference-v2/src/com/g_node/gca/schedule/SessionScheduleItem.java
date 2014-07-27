@@ -1,7 +1,9 @@
 package com.g_node.gca.schedule;
 
+import java.io.Serializable;
 
-public class SessionScheduleItem {
+
+public class SessionScheduleItem implements Serializable {
 	
 	private String title;
 
