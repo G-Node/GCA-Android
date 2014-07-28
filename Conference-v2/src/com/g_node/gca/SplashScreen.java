@@ -62,9 +62,13 @@ public class SplashScreen extends Activity {
         getActionBar().hide();
         setContentView(R.layout.activity_splash_screen);
         
+        Log.i("GCA-Performance", "before Schedule JSON Parsing and populating lists - Time: " + System.currentTimeMillis());
+        
         getScheduleJSONData();
         groupEventsByDate();
         setScheduleData();
+        
+        Log.i("GCA-Performance", "After Schedule JSON Parsing and populating lists - Time: " + System.currentTimeMillis());
         
         new Handler().postDelayed(new Runnable() {
         	//Handler for for showing splash screen for a little time
