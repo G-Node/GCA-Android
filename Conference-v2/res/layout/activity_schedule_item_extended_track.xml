@@ -45,15 +45,54 @@
         android:text="@string/hello_world" />
 		
 	
+	<TextView
+	    android:id="@+id/schedule_track_events_heading"
+	    android:layout_below="@+id/schedule_track_chair"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="15dp"
+        android:paddingBottom="1dp"
+        android:drawableLeft="@drawable/icon_pointer"
+        android:drawablePadding="5sp"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="left|center_vertical"
+        android:fontFamily="sans-serif-light"
+		android:textColor="@android:color/black"
+		android:text="Events in this Track:"
+		android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small"/>
+	
+	<View
+		android:id="@+id/bar8"
+		android:layout_marginLeft="50dp"
+		android:layout_marginRight="15dp"
+		android:layout_marginBottom="3dp"            
+	    android:layout_width="fill_parent"
+	    android:layout_height="0.5sp"
+	    android:layout_below="@+id/schedule_track_events_heading"
+	    android:background="@android:color/black"/>	
+		
+	
 	<TableLayout 
 	    android:id="@+id/schedule_track_events_detail_table"
-	    android:layout_below="@+id/schedule_track_chair"
+	    android:layout_below="@+id/bar8"
 	    android:layout_width="fill_parent"
 	    android:layout_height="wrap_content"
 	    android:paddingLeft="15dp"
+	    android:layout_marginTop="20dp"
 	    android:stretchColumns="1">	
 	    	
     </TableLayout>
 	
+	
+	<TextView
+        android:paddingBottom="10dp"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textStyle="italic"
+		android:textColor="#0a5690"
+		android:text="Click the button above to navigate to respective Event detail"
+		android:layout_alignParentBottom="true" 
+		android:textSize="10sp"/>
     
 </RelativeLayout>

@@ -54,6 +54,10 @@ public class MapActivity extends FragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
+        
+        getActionBar().setIcon(getResources().getDrawable(R.drawable.icon_maps));
+        getActionBar().setTitle("Locations Map");
+        
         try {
             MapsInitializer.initialize(this);
         } catch (GooglePlayServicesNotAvailableException e) {

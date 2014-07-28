@@ -102,10 +102,11 @@ public class NewsRoomActivity extends Activity {
 		
 		@Override
 		protected void onPostExecute(Void result){
-			Dialog.dismiss();
+
 			//setup our Adapter and set it to the ListView.
 			mAdapter = new NewsAdapter(NewsRoomActivity.this, -1, FeedXmlPullParser.getNewsItemFromFile(NewsRoomActivity.this));
 			newsItems.setAdapter(mAdapter);
+			Dialog.dismiss();
 			Log.i("incf-rss", "adapter size = "+ mAdapter.getCount());
 		}
 	}
