@@ -45,15 +45,15 @@ public class ScheduleMainActivity extends FragmentActivity implements ActionBar.
 	
 	private SessionScheduleItem tempSession;
 	
-	List<ScheduleItemRecord> scheduleRecordsArray = new ArrayList<ScheduleItemRecord>() ;
+	public static List<ScheduleItemRecord> scheduleRecordsArray = new ArrayList<ScheduleItemRecord>() ;
 	
-	List<EventScheduleItem> eventsRecordsArray = new ArrayList<EventScheduleItem>() ;
+	public static List<EventScheduleItem> eventsRecordsArray = new ArrayList<EventScheduleItem>() ;
 	
-	List<TrackScheduleItem> tracksRecordsArray = new ArrayList<TrackScheduleItem>() ;
+	public static List<TrackScheduleItem> tracksRecordsArray = new ArrayList<TrackScheduleItem>() ;
 	
-	List<SessionScheduleItem> sessionRecordsArray = new ArrayList<SessionScheduleItem>() ;
+	public static List<SessionScheduleItem> sessionRecordsArray = new ArrayList<SessionScheduleItem>() ;
 	
-	List<DateWiseEventsRecord> dateWiseEventsRecordList = new ArrayList<DateWiseEventsRecord>();
+	public static List<DateWiseEventsRecord> dateWiseEventsRecordList = new ArrayList<DateWiseEventsRecord>();
 	
 	private ActionBar actionBar;
 	ViewPager viewPager;
@@ -71,10 +71,10 @@ public class ScheduleMainActivity extends FragmentActivity implements ActionBar.
 		
 		Log.i("GCA-Performance", "before JSONParese- Time: " + System.currentTimeMillis());
 		
-		//Function to parse the Schedule JSON
-		getScheduleJSONData();
-		
-		groupEventsByDate();
+//		//Function to parse the Schedule JSON
+//		getScheduleJSONData();
+//		
+//		groupEventsByDate();
 		
 		Log.i("GCA-Performance", "After JSONParse - Time: " + System.currentTimeMillis());
 		

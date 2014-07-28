@@ -133,8 +133,6 @@ public class fragment_schedule extends Fragment {
 					
 					intent.putExtras(bundle);
 					startActivity(intent);					
-					
-					Toast.makeText(getActivity(), "SESSION Item Clicked...", Toast.LENGTH_SHORT).show();
 				}
 				
 			}
