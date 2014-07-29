@@ -22,7 +22,10 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		
-		Button news = (Button)findViewById(R.id.button1);
+		getActionBar().setTitle("G-Node Conference");
+		getActionBar().setIcon(getResources().getDrawable(R.drawable.icon_brain));
+		
+		Button news = (Button)findViewById(R.id.btn_news);
 		news.setOnClickListener(new OnClickListener() {
 			
 			@Override
@@ -32,7 +35,7 @@ public class MainActivity extends Activity {
 			}
 		});
 		
-		Button absBtn = (Button) findViewById(R.id.button2);
+		Button absBtn = (Button) findViewById(R.id.btn_abstracts);
 		absBtn.setOnClickListener(new OnClickListener() {
 			
 			@Override
@@ -43,18 +46,7 @@ public class MainActivity extends Activity {
 			}
 		});
 		
-		Button favBtn = (Button) findViewById(R.id.button3);
-		favBtn.setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				Intent favIntent = new Intent(MainActivity.this, FavoriteAbstracts.class);
-				startActivity(favIntent);
-				
-			}
-		});
-		
-		Button mapBtn = (Button) findViewById(R.id.button4);
+		Button mapBtn = (Button) findViewById(R.id.btn_maps);
 		mapBtn.setOnClickListener(new OnClickListener() {
 			
 			@Override
@@ -65,7 +57,7 @@ public class MainActivity extends Activity {
 			}
 		});
 		
-		Button scheduleBtn = (Button) findViewById(R.id.button5);
+		Button scheduleBtn = (Button) findViewById(R.id.btn_schedule);
 		scheduleBtn.setOnClickListener(new OnClickListener() {
 			
 			@Override
@@ -75,7 +67,21 @@ public class MainActivity extends Activity {
 				
 			}
 		});
+
 		
+		Button favBtn = (Button) findViewById(R.id.btn_favorites);
+		favBtn.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				Intent favIntent = new Intent(MainActivity.this, FavoriteAbstracts.class);
+				startActivity(favIntent);
+				
+			}
+		});
+		
+		
+				
 	}
 
 	@Override

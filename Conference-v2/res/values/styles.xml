@@ -12,7 +12,7 @@
     <style name="MyActionBarTitleText"
            parent="@android:style/Widget.Holo.Light.ActionBar">
         <item name="android:textColor">#fcf8f8</item>
-        <item name="android:textStyle">bold</item>
+        <item name="android:textStyle">normal</item>
         <item name="android:textSize">20sp</item>
     </style>
     

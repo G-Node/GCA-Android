@@ -1,62 +1,99 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="fill_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".MainActivity" >
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#cbddff"
+    android:weightSum="3" >
 
-    <RelativeLayout android:layout_width="match_parent"
-    android:layout_height="fill_parent" >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1.3"
+        android:orientation="horizontal"
+        android:gravity="bottom"
+        android:weightSum="3" >
+
+        <Button
+            android:id="@+id/btn_news"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/icon_news"
+            android:drawablePadding="10dp"
+            android:text="NEWS" />
+
+		<Button
+		    android:id="@+id/btn_abstracts"
+		    android:layout_width="0dp"
+		    android:layout_height="wrap_content"
+		    android:layout_weight="1"
+		    android:drawableTop="@drawable/icon_paper"
+		    android:drawablePadding="10dp"
+		    android:text="Abstracts" />
+		
+		<Button
+            android:id="@+id/btn_maps"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/icon_map_btn"
+            android:drawablePadding="10dp"
+            android:text="MAPS" />
+				
+
+    </LinearLayout>
+    
+ <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:weightSum="2" >    
+    
+
+    <Button
+        android:id="@+id/btn_schedule"
+        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:drawableTop="@drawable/icon_schedule_btn2"
+        android:drawablePadding="10dp"
+        android:text="Schedule" />
+    
     
     <Button
-        android:id="@+id/button1"
-        android:layout_width="wrap_content"
+        android:id="@+id/btn_favorites"
+        android:layout_weight="1"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="104dp"
-        android:layout_marginTop="22dp"
-        android:text="NEWS" />
+        android:drawableTop="@drawable/icon_star_btn"
+        android:drawablePadding="10dp"
+        android:text="FAVOURITES" />
+    
+</LinearLayout>
 
-    <Button
-        android:id="@+id/button4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/button3"
-        android:layout_below="@+id/button3"
-        android:layout_marginTop="23dp"
-        android:text="MAPS" />
+<LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.7"
+        android:orientation="horizontal"
+        android:weightSum="1" >    
 
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/button1"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="26dp"
-        android:text="Abstracts" />
+     <TextView
+            android:layout_weight="1"
+            android:text="Welcome | G-Node"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-light"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+			android:gravity="center"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+     
+     
+</LinearLayout>
 
-    <Button
-        android:id="@+id/button3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/button2"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="24dp"
-        android:text="FAV" />
-
-    <Button
-        android:id="@+id/button5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/button1"
-        android:layout_below="@+id/button4"
-        android:layout_marginTop="17dp"
-        android:text="Schedule" />
-
-</RelativeLayout>
-
-</ScrollView>
+</LinearLayout>
