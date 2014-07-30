@@ -30,7 +30,9 @@ public class NewsRoomActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		Log.i("incf", "OnCreate()");
 		setContentView(R.layout.activity_newsroom);
-
+		
+		getActionBar().setDisplayHomeAsUpEnabled(true);
+		
 		//Get reference to our ListView
 		newsItems = (ListView)findViewById(R.id.sitesList);
 		

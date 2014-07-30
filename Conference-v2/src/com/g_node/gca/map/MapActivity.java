@@ -58,6 +58,8 @@ public class MapActivity extends FragmentActivity {
         getActionBar().setIcon(getResources().getDrawable(R.drawable.icon_maps));
         getActionBar().setTitle("Locations Map");
         
+        getActionBar().setDisplayHomeAsUpEnabled(true);
+        
         try {
             MapsInitializer.initialize(this);
         } catch (GooglePlayServicesNotAvailableException e) {

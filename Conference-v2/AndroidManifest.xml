@@ -27,6 +27,7 @@
         android:theme="@style/MyTheme" >
         <activity
             android:name="com.g_node.gca.newsroom.NewsRoomActivity"
+            android:parentActivityName="com.g_node.gca.MainActivity"
             android:label="@string/app_name" >
         </activity>
         <activity
@@ -45,6 +46,7 @@
         </activity>
         <activity
             android:name="com.g_node.gca.abstracts.FavoriteAbstracts"
+            android:parentActivityName="com.g_node.gca.MainActivity"
             android:label="@string/title_activity_favorite_abstracts" >
         </activity>
         <activity
@@ -58,6 +60,7 @@
         </activity>
         <activity
             android:name="com.g_node.gca.map.MapActivity"
+            android:parentActivityName="com.g_node.gca.MainActivity"
             android:label="@string/title_activity_map" >
         </activity>
 

@@ -33,6 +33,9 @@ public class FavoriteAbstracts extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_favorite_abstracts);
+		
+		getActionBar().setDisplayHomeAsUpEnabled(true);
+		
 		listView = (ListView)findViewById(R.id.favAbsListView);
 		
 		/*
