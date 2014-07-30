@@ -47,6 +47,9 @@ public class Abstracts extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_abstracts);
+		
+		getActionBar().setDisplayHomeAsUpEnabled(true);
+		
 		listView = (ListView)findViewById(R.id.AbsListView);
 		searchOption = (EditText)findViewById(R.id.abstractSearch);
 		

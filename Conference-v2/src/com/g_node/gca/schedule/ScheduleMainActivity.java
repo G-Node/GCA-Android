@@ -60,10 +60,11 @@ public class ScheduleMainActivity extends FragmentActivity implements ActionBar.
  		viewPager = (ViewPager) findViewById(R.id.schedulePager);
  		actionBar = getActionBar();
  		actionBar.setIcon(getResources().getDrawable(R.drawable.icon_schedule_actionbar));
+ 		actionBar.setDisplayHomeAsUpEnabled(true);
  		mAdapter = new SchedulePagerAdapter(getSupportFragmentManager());
  		mAdapter.setLists(scheduleRecordsArray, eventsRecordsArray, tracksRecordsArray, sessionRecordsArray, dateWiseEventsRecordList);
  		viewPager.setAdapter(mAdapter);
- 		actionBar.setHomeButtonEnabled(false);
+ 		actionBar.setHomeButtonEnabled(true);
  		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 		
  		for(int i=0; i<dateWiseEventsRecordList.size(); i++) {
