@@ -1,36 +1,23 @@
 package com.g_node.gca.abstracts;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.io.InputStream;
 
-import com.g_node.gca.abstracts.AbstractCursorAdapter;
-import com.g_node.gca.abstracts.DatabaseHelper;
-import com.g_node.gca.utils.JSONReader;
-
-
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import com.shumail.newsroom.R;
-
-import android.R.bool;
-import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
+import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.EditText;
 import android.widget.FilterQueryProvider;
 import android.widget.ListView;
-import android.widget.AdapterView.OnItemClickListener;
+
+import com.shumail.newsroom.R;
 
 public class Abstracts extends Activity {
 	
@@ -81,7 +68,7 @@ public class Abstracts extends Activity {
         if (cursorCount <= 0) {
 
            //call jsonParse function to get data from abstracts JSON file
-        	 InputStream jsonStream = this.getResources().openRawResource(R.raw.abstracts);
+        	InputStream jsonStream = this.getResources().openRawResource(R.raw.abstracts);
         	 
         	AbstractsJsonParse parseAbstractsJson = new AbstractsJsonParse(jsonStream, dbHelper);
             parseAbstractsJson.jsonParse();
