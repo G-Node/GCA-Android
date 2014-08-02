@@ -1,18 +1,16 @@
 /**
- * Copyright (c) 2013, Yasir Adnan <adnan.ayon@gmail.com>
+ * Copyright (c) 2014, Shumail Mohy-ud-Din <shumailmohyuddin@gmail.com>
+ * Copyright (c) 2013, Yasir Adnan <adnan.ayon@gmail.com> - (old version)
  * License: BSD-3 (See LICENSE)
  */
 
 package com.g_node.gca.abstracts;
 
-import com.shumail.newsroom.R;
-
-import android.app.Activity;
-import android.os.Bundle;
 import android.app.ActionBar;
 import android.app.ActionBar.Tab;
 import android.app.FragmentTransaction;
 import android.database.Cursor;
+import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
@@ -20,6 +18,8 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Toast;
+
+import com.shumail.newsroom.R;
 
 
 public class AbstractContent extends FragmentActivity implements
@@ -86,7 +86,7 @@ public class AbstractContent extends FragmentActivity implements
 			}
 		});
         
-    }	//end oncreate
+    }	//end onCreate
     
     
     @Override
@@ -109,19 +109,7 @@ public class AbstractContent extends FragmentActivity implements
         } else {
         	starG.setIcon(R.drawable.ic_action_important);
         }
-	        
-        /*
-         * Disable home button
-         */
-        //getActionBar().setDisplayShowHomeEnabled(false);
-        /*
-         * Hide Application Title
-         */
-        //getActionBar().setDisplayShowTitleEnabled(false);
-        /*
-         * Set Custom Color in ActionBar
-         */
-        
+	    
         return true;
     }
     
