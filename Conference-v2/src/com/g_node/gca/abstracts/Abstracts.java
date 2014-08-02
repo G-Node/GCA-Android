@@ -50,7 +50,8 @@ public class Abstracts extends Activity {
         /*
          * SQL Query to get data
          */
-        String query = "SELECT UUID AS _id , TOPIC, TITLE, ABSRACT_TEXT, STATE, SORTID, REASONFORTALK, MTIME, TYPE,DOI, COI, ACKNOWLEDGEMENTS FROM ABSTRACT_DETAILS;";
+        String query = "SELECT UUID AS _id , TOPIC, TITLE, ABSRACT_TEXT, STATE, SORTID, REASONFORTALK, MTIME, TYPE,DOI, COI, ACKNOWLEDGEMENTS " +
+        				"FROM ABSTRACT_DETAILS;";
         /*
          * Query execution
          */
@@ -72,7 +73,7 @@ public class Abstracts extends Activity {
         	 
         	AbstractsJsonParse parseAbstractsJson = new AbstractsJsonParse(jsonStream, dbHelper);
             parseAbstractsJson.jsonParse();
-        	//jsonParse();
+        	
             /*
              * Query execution
              */
@@ -121,7 +122,7 @@ public class Abstracts extends Activity {
         });
         
         /*
-         * Searching filter to search data by Keywords, Title, Author Names
+         * Searching filter to search data by Keywords, Title, Author Names, affiliation
          */
         cursorAdapter.setFilterQueryProvider(new FilterQueryProvider() {
             public Cursor runQuery(CharSequence constraint) {
@@ -151,11 +152,6 @@ public class Abstracts extends Activity {
 
             }
         });
-        
-		/*
-         * Close Writable Database
-         */
-        //dbHelper.close();
         
 	}//end onCreate
 	
