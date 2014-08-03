@@ -7,11 +7,12 @@
     <EditText
         android:id="@+id/abstractSearch"
         android:lines="1"
-        android:textSize="24sp"
+        android:textSize="16sp"
         android:hint="@string/searchHint"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
         android:maxLines="1" 
+        android:drawableRight="@android:drawable/ic_menu_search"
         android:singleLine="true">
 	</EditText>
     
