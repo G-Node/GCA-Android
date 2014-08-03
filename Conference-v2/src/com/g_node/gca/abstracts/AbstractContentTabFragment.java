@@ -73,33 +73,31 @@ public class AbstractContentTabFragment extends Fragment {
         resetAllFields();
         
         /*
-         * Getting data from Intent
+         * Getting UUID of intent that's detail is to be shown.
          */
-		
-//		Bundle getData = getActivity().getIntent().getExtras();
-//		
-//		String abstracts = getData.getString("abstracts");
-//        String Title = getData.getString("Title");
-//        String Topic = getData.getString("Topic");
-//        String acknowledgments = getData.getString("acknowledgements");
         
         value = TabsPagerAdapter.getValue();
-        //value = getArguments().getString("value");
         Log.i("GCA-Abs-Frag", "new value: " + value);
 		
+        /*
+         * Run SQL Queries to fetch data from database.
+         */
+        
         sqlQueries();
         
         /*
-         * Show Author names for that Abstract
+         * Fetch Authors name for abstract and update author name fields
          */
         authorName();
         
         /*
-         * Get Affiliation Name for associate abstracts
+         * Get Affiliation Name for associate abstracts - and update affiliations view 
          */
         affiliationName();
-        
-//        title.setText(Title);
+                
+        /*
+         * Getting the title of Abstract - and update abstract title view
+         */
         getAbsTitle();
         
         /*
@@ -107,27 +105,26 @@ public class AbstractContentTabFragment extends Fragment {
          */
         title.setTypeface(null, Typeface.BOLD);
         
-//        topic.setText(Topic);
+        /*
+         * Getting Topic of the Abstract - and update abstract topic view
+         */
+        
         getAbsTopic();
         
         /*
-         * Set Abstract Text in view
+         * Get Abstract Content/Text from Cursor and display - update abstract Text view
          */
-        
-//        content.setText(abstracts);
         getContent();
-        /*
-         * If acknowledgments contain any data
-         */
-//        if (acknowledgments.length() > 0) {
-//        	
-//            ConAck.append(acknowledgments + "\n" );
-//        }
         
+        /*
+         * Get acknowledgements for Abstract and display - update abstract acknowldegement view
+         */
         getAcknowledgements();
         
+        /*
+         * Get References from database and display - Update references view
+         */
         
-        //Get References from db and show in view
         getRefs();
     
 	}
@@ -137,82 +134,7 @@ public class AbstractContentTabFragment extends Fragment {
         super.onDestroy();
         Log.i("GCA-Abs-Frag", "AbstractContent Fragment - on Destroy");
     }
-	
-	
-//	@Override
-//	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-//	    inflater.inflate(R.menu.abstract_content_menu, menu);
-//	    
-//	    starG = menu.findItem(R.id.star);
-//        
-//        if(DatabaseHelper.abstractIsFavorite(value) ){
-//        	isFav = true;
-//        } else {
-//        	isFav = false;
-//        }
-//        
-//        if(isFav) {
-//        	starG.setIcon(R.drawable.ic_action_important_selected);
-//        } else {
-//        	starG.setIcon(R.drawable.ic_action_important);
-//        }
-//	        
-//        /*
-//         * Disable home button
-//         */
-//        getActionBar().setDisplayShowHomeEnabled(false);
-//        /*
-//         * Hide Application Title
-//         */
-//        getActionBar().setDisplayShowTitleEnabled(false);
-//        /*
-//         * Set Custom Color in ActionBar
-//         */
-//
-//	    
-//	    super.onCreateOptionsMenu(menu,inflater);
-//	}
-//	
-//	@Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        // TODO Auto-generated method stub
-//    
-//    	switch (item.getItemId()) {
-//        /*
-//         * Menu Item for switching next and previous data
-//         */
-//        
-//        case R.id.star:
-//        	Log.i(gtag, "in Onclick of STAR");
-//        	
-//			if(isFav){ 
-//				Log.i(gtag, "in isFAV");
-//				DatabaseHelper.deleteFromABSTRACT_FAVORITES(value);
-//				Toast.makeText(getActivity().getApplicationContext(), "Removed from Favorites",
-//	                    Toast.LENGTH_SHORT).show();
-//	            starG.setIcon(R.drawable.ic_action_important);
-//	            isFav = false;
-//	        	
-//	        }else{
-//	        	Log.i(gtag, "in else of isFAV");
-//	        	DatabaseHelper.addInABSTRACT_FAVORITES(value);
-//	        	Toast.makeText(getActivity().getApplicationContext(), "Added to Favorites",
-//	                    Toast.LENGTH_SHORT).show();
-//	        	starG.setIcon(R.drawable.ic_action_important_selected);
-//	        	isFav = true;
-//	        }
-//			
-//        	break;
-//        
-//        default:
-//
-//            break;
-//    	}
-//    
-//    	return super.onOptionsItemSelected(item);
-//    	
-//    }	//end onOptionsMenuItemSelected
-	
+
 	
 	
 	private void initial_UI() {
@@ -247,7 +169,10 @@ public class AbstractContentTabFragment extends Fragment {
     
 	}	//end intialUI
 	
-	//Query for fetching next/prev abstract data
+	
+	/*
+     * Function for executing SQL Queries that fetch next/prev or current abstract data
+     */
     private void sqlQueries() {
     	Log.i(gtag, "SQLQueries function");
         String nextAbstractData = "SELECT UUID AS _id , TOPIC, TITLE, " +
@@ -258,11 +183,11 @@ public class AbstractContentTabFragment extends Fragment {
         cursorTwo = DatabaseHelper.database.rawQuery(nextAbstractData, null);
     }
     
+    /*
+     * Function for getting Author Names for the abstract & add to the view
+     */
     private void authorName() {
-        /*
-         * Function for getting Author Names & addint to the view
-         */
-    	
+       
         //Query for getting author name, email, position, affiliation data for the particular Abstract
         String authorSQLQuery = "SELECT DISTINCT AUTHORS_DETAILS.AUTHOR_FIRST_NAME, " +
         								"AUTHOR_MIDDLE_NAME, AUTHOR_LAST_NAME, AUTHOR_EMAIL, " +
@@ -277,7 +202,6 @@ public class AbstractContentTabFragment extends Fragment {
         
         cursor = DatabaseHelper.database.rawQuery(authorSQLQuery, null);
         Log.i(gtag, "Auth executed query: rows = " + cursor.getCount());
-        //cursor.moveToFirst();
         
         List<String> abstractAuthorNames = new ArrayList<String>();
         
@@ -289,8 +213,10 @@ public class AbstractContentTabFragment extends Fragment {
 	        	String authorName = cursor.getString(cursor.getColumnIndexOrThrow("AUTHOR_FIRST_NAME")) + ", " + cursor.getString(cursor.getColumnIndexOrThrow("AUTHOR_LAST_NAME")) ;
 	        	String authAffiliation = cursor.getString(cursor.getColumnIndexOrThrow("AUTHOR_AFFILIATION"));
 	        	
+	        	//remove unwanted characters from affiliation superscript id's
 	        	String authAffiliationINTs = authAffiliation.replaceAll("[^0-9][,]", "");
 	        	
+	        	//pattern to get the digits so to increment those by one later so affiliation numbering starts from 1 instead of 0 
 	        	Pattern digitPattern = Pattern.compile("(\\d)"); // EDIT: Increment each digit.
 
 	        	Matcher matcher = digitPattern.matcher(authAffiliationINTs);
@@ -327,10 +253,13 @@ public class AbstractContentTabFragment extends Fragment {
     	
     } //end authorName function
     
+    
+    
+    /*
+	 *Function for getting affiliation names for that abstract and adding to the view 
+	 */
     private void affiliationName() {
-    	/*
-    	 *Function for getting affiliation names for that abstract and adding to the view 
-    	 */
+    	
     	//SQL Query for getting affiliation data, position for the particular abstract
         String affiliationsSQLQuery = 	"SELECT AFFILIATION_ADDRESS, AFFILIATION_COUNTRY, " +
         										"AFFILIATION_DEPARTMENT, AFFILIATION_SECTION, AFFILIATION_POSITION " +
@@ -358,6 +287,9 @@ public class AbstractContentTabFragment extends Fragment {
     }  //end affiliationName    
     
     
+    /*
+	 *Function for getting abstract title and adding to the view 
+	 */
     private void getAbsTitle() {
 
         cursorTwo.moveToFirst();
@@ -370,7 +302,9 @@ public class AbstractContentTabFragment extends Fragment {
         } while (cursorTwo.moveToNext());
     }
     
-    
+    /*
+	 *Function for getting abstract topic and adding to the view 
+	 */
     private void getAbsTopic() {
 
         cursorTwo.moveToFirst();
@@ -381,7 +315,11 @@ public class AbstractContentTabFragment extends Fragment {
 
         } while (cursorTwo.moveToNext());
     }
-
+    
+    
+    /*
+	 *Function for getting abstract referenes and adding to the view 
+	 */
     private void getRefs() {
 
     	String referenceSQLQuery = "SELECT * FROM ABSTRACT_REFERENCES WHERE ABSTRACT_UUID = '" + value +"';";
@@ -398,6 +336,10 @@ public class AbstractContentTabFragment extends Fragment {
         }
     }
     
+    
+    /*
+	 *Function for getting acknowledgements for that abstract and adding to the view 
+	 */
     private void getAcknowledgements() {
 
         cursorTwo.moveToFirst();
@@ -416,6 +358,9 @@ public class AbstractContentTabFragment extends Fragment {
         
     }
     
+    /*
+	 * Function for getting abstract text and adding to the view 
+	 */
     private void getContent() {
 
         cursorTwo.moveToFirst();
@@ -426,15 +371,12 @@ public class AbstractContentTabFragment extends Fragment {
                 content.setText(Text);
 
             } while (cursorTwo.moveToNext());
-        }
-
-        private void getAfName() {
-
-            affiliationName();
-
-        }
-        
-        private void resetAllFields() {
+    }
+    
+    /*
+	 * Function for resetting all the fields 
+	 */
+    private void resetAllFields() {
 
             title.setText("");
             topic.setText("");
@@ -444,7 +386,7 @@ public class AbstractContentTabFragment extends Fragment {
             authorNames.setText("");
             ConAck.setText("");
 
-        }
+    }
         
     
     
