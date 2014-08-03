@@ -23,7 +23,7 @@ public class MainActivity extends Activity {
 		setContentView(R.layout.activity_main);
 		
 		getActionBar().setTitle("G-Node Conference");
-		getActionBar().setIcon(getResources().getDrawable(R.drawable.icon_brain));
+		//getActionBar().setIcon(getResources().getDrawable(R.drawable.icon_brain));
 		
 		Button news = (Button)findViewById(R.id.btn_news);
 		news.setOnClickListener(new OnClickListener() {

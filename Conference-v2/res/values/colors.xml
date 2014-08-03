@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="color_actionbar_background_blue">#54abee</color>
+    <color name="color_actionbar_background_pressed">#7ac5ff</color>
+    
+</resources>
