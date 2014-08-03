@@ -56,7 +56,7 @@ public class AbstractContentTabFragment extends Fragment {
 			Bundle savedInstanceState) {
 		
 		setHasOptionsMenu(true);  
-		View rootView = inflater.inflate(R.layout.abstracts_show, container, false);
+		View rootView = inflater.inflate(R.layout.fragment_abstracts_content, container, false);
 		Log.i("GCA-Abs-Frag", "Abstract Content Fragment onCreateViews");
 			return rootView;
 	}

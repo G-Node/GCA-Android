@@ -85,7 +85,7 @@ public class NewsRoomActivity extends Activity {
 		@Override
 		protected void onPreExecute()
 	    {
-	        Dialog.setMessage("Updating...");
+	        Dialog.setMessage(NewsRoomActivity.this.getResources().getString(R.string.updating_dialog_text));
 	        Dialog.setCancelable(false);
 	        Dialog.show();
 	    }
