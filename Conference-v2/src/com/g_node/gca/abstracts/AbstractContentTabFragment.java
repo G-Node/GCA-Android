@@ -5,8 +5,6 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import com.shumail.newsroom.R;
-
 import android.database.Cursor;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -15,14 +13,13 @@ import android.text.Html;
 import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import com.shumail.newsroom.R;
 
 public class AbstractContentTabFragment extends Fragment {
 	
@@ -387,11 +384,8 @@ public class AbstractContentTabFragment extends Fragment {
             ConAck.setText("");
 
     }
-        
     
     
-    
-    
-}
+} //end class
 
 
