@@ -1,5 +1,6 @@
 /**
- * Copyright (c) 2013, Yasir Adnan <adnan.ayon@gmail.com>
+ * Copyright (c) 2014, Shumail Mohy-ud-Din <shumailmohyuddin@gmail.com>
+ * Copyright (c) 2013, Yasir Adnan <adnan.ayon@gmail.com> - (old version)
  * License: BSD-3 (See LICENSE)
  */
 
@@ -90,42 +91,6 @@ public class AbstractCursorAdapter extends CursorAdapter {
       } while (cursorOne.moveToNext());
   }
         
-        
-//        /*
-//         * SQL Query for getting Author Name
-//         */
-//        String sqlQuery = "select abstracts_item._id AS ID,abstract_author.NAME AS NAME from abstracts_item,abstract_author,authors_abstract where abstracts_item._id = authors_abstract.abstractsitem_id and abstract_author._id = authors_abstract.abstractauthor_id and ID = "
-//                + value;
-//
-//        cursorOne = DatabaseHelper.database.rawQuery(sqlQuery, null);
-//
-//        if (cursorOne != null) {
-//            cursorOne.moveToFirst();
-//            /*
-//             * Name format will be like this A, B & C or A,B,C & D. So, if the
-//             * name is the last name. We should use '&' before the name
-//             */
-//            do {
-//
-//                if (cursorOne.getPosition() == 0) {
-//                    /*
-//                     * First data
-//                     */
-//                    getName = cursorOne.getString(cursorOne.getColumnIndexOrThrow("NAME"));
-//                } else if (cursorOne.isLast()) {
-//                    /*
-//                     * Last Data
-//                     */
-//                    getName = getName + " & "
-//                            + cursorOne.getString(cursorOne.getColumnIndexOrThrow("NAME"));
-//                } else {
-//                    getName = getName + " , "
-//                            + cursorOne.getString(cursorOne.getColumnIndexOrThrow("NAME"));
-//
-//                }
-//
-//            } while (cursorOne.moveToNext());
-//        }
         /*
          * TextView for Author Names
          */
