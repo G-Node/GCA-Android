@@ -15,7 +15,7 @@ public class TabsPagerAdapter extends FragmentPagerAdapter {
 	}
 
 	public void setValue(String value) {
-		this.value = value;
+		TabsPagerAdapter.value = value;
 	}
 
 	public TabsPagerAdapter(FragmentManager fm) {

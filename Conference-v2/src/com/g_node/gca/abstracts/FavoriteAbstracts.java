@@ -1,22 +1,19 @@
 package com.g_node.gca.abstracts;
 
-import com.shumail.newsroom.R;
-import com.shumail.newsroom.R.id;
-import com.shumail.newsroom.R.layout;
-import com.shumail.newsroom.R.menu;
-
-import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.AdapterView.OnItemClickListener;
+
+import com.shumail.newsroom.R;
 
 public class FavoriteAbstracts extends Activity {
 	
