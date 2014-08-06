@@ -13,8 +13,6 @@ import org.json.JSONTokener;
 
 import android.util.Log;
 
-import com.shumail.newsroom.R;
-
 
 public class ScheduleJSONParse {
 	
@@ -90,8 +88,6 @@ public class ScheduleJSONParse {
                 		String event_abstract = scheduleItemJsonObject.getString("abstract");
                 		Log.i(LOG_TAG, "Basic Event - Abstract: " + event_abstract);
                 		
-                		String scheduleItemType = "event";
-                		               		
                 		//adding the event to events arraylist
                 		eventsRecordsArray.add( new EventScheduleItem(event_title, event_subtitle, event_start_time, event_end_time, event_location, event_date, event_authors, event_type, event_abstract) );
                 		

@@ -1,33 +1,14 @@
 package com.g_node.gca;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.List;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-import org.json.JSONTokener;
-
-import com.g_node.gca.schedule.DateWiseEventsRecord;
-import com.g_node.gca.schedule.EventScheduleItem;
-import com.g_node.gca.schedule.ScheduleItemRecord;
-import com.g_node.gca.schedule.ScheduleJSONParse;
-import com.g_node.gca.schedule.ScheduleMainActivity;
-import com.g_node.gca.schedule.SessionScheduleItem;
-import com.g_node.gca.schedule.TrackScheduleItem;
-import com.shumail.newsroom.R;
-import com.shumail.newsroom.R.layout;
-import com.shumail.newsroom.R.menu;
-
-import android.os.Bundle;
-import android.os.Handler;
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
-import android.view.Menu;
 import android.view.Window;
+
+import com.g_node.gca.schedule.ScheduleJSONParse;
+import com.shumail.newsroom.R;
 
 public class SplashScreen extends Activity {
 	
