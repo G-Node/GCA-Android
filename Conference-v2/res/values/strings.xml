@@ -20,5 +20,6 @@
     <string name="title_activity_schedule_item_extended">Schedule Detail</string>
     <string name="updating_dialog_text">Updating...</string>
     <string name="loading_dialog_text">Loading...</string>
+    <string name="track_chair_label">Chaired By:&#160;&#160;</string>
 
 </resources>

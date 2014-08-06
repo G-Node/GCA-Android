@@ -2,25 +2,19 @@ package com.g_node.gca.schedule;
 
 import java.util.List;
 
-import com.shumail.newsroom.R;
-
 import android.app.Activity;
 import android.content.Context;
-import android.graphics.Color;
 import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.MeasureSpec;
 import android.view.ViewGroup;
-import android.view.ViewGroup.LayoutParams;
 import android.widget.BaseAdapter;
-import android.widget.LinearLayout;
-import android.widget.ListAdapter;
-import android.widget.ListView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+
+import com.shumail.newsroom.R;
 
 
 public class scheduleAdapter extends BaseAdapter {
@@ -35,7 +29,7 @@ public class scheduleAdapter extends BaseAdapter {
 	private List<TrackScheduleItem> tracksRecordsList;
 	private List<SessionScheduleItem> sessionsRecordList;
 	private Context ctx;
-	private Activity activity;
+	
 	
 	public scheduleAdapter(Activity act, List<ScheduleItemRecord> _items, List<EventScheduleItem> _eventsList, List<TrackScheduleItem> _tracksList, List<SessionScheduleItem> _sessionsList, Context _Ctx ) {
 		inflater = (LayoutInflater) act.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -44,7 +38,6 @@ public class scheduleAdapter extends BaseAdapter {
 		tracksRecordsList = _tracksList;
 		sessionsRecordList = _sessionsList;
 		ctx = _Ctx;
-		activity = act;
 	}
 
 	@Override
@@ -99,7 +92,8 @@ public class scheduleAdapter extends BaseAdapter {
 			
 			return vi;
 		
-		} else if (y.getSchedule_item_type().equals(SCHEDULE_ITEMTYPE_TRACK)) {
+		} else if (y.getSchedule_item_type().equals(SCHEDULE_ITEMTYPE_TRACK)) {	
+			//if the schedule item is a Track, different layout and approach
 			
 			Log.i("GCA-B-Schedule", "GetView called for TRACK");
 			
@@ -119,9 +113,7 @@ public class scheduleAdapter extends BaseAdapter {
 			x.setText(tempTrack.getTitle());
 			
 			TextView xa = (TextView) vi.findViewById(R.id.trackSubtitle);
-			xa.setText("Chaired By: " + tempTrack.getChair() );
-			
-			//ListView trackEventsListView = (ListView) vi.findViewById(R.id.trackInsideItemListView);
+			xa.setText(ctx.getResources().getString(R.string.track_chair_label) + tempTrack.getChair() );
 			
 			EventScheduleItem[] tempTrackEvents = tempTrack.getEventsInTrack();
 			
@@ -142,33 +134,7 @@ public class scheduleAdapter extends BaseAdapter {
 				table.addView(tempRow);
 			}
 			table.requestLayout();
-//			trackEventsAdapter tempTrackEventsAdapterl = new trackEventsAdapter(activity, tempTrackEvents);
-//			
-//			trackEventsListView.setAdapter(tempTrackEventsAdapterl);
-//			
-//			int contentHeight = trackEventsListView.getHeight();
-//			Log.i("GCA-Events", "Height of Listview of Tracks: " + contentHeight);
-//			
-//			ListAdapter LvAdapter = trackEventsListView.getAdapter();
-//		    int listviewElementsheight = 0;
-//		    for (int i = 0; i < LvAdapter.getCount(); i++) {
-//		        View mView = LvAdapter.getView(i, null, trackEventsListView);
-//		        mView.measure(
-//		                MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED),
-//		                MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED));
-//		        listviewElementsheight += mView.getMeasuredHeight();
-//		    }
-//		    
-//
-//			Log.i("GCA-Events", "Height of Listview of Tracks: " + listviewElementsheight);
-//			
-//			contentHeight = listviewElementsheight;
-//			
-//			LayoutParams lp = trackEventsListView.getLayoutParams();
-//			lp.height = contentHeight + 30;
-//			
-//			trackEventsListView.setLayoutParams(lp);
-//			
+			
 			return vi;
 			
 		} else {
@@ -193,9 +159,7 @@ public class scheduleAdapter extends BaseAdapter {
 			sessionSubtitle.setText(tempSession.getSubtitle() );
 			
 			TrackScheduleItem[] tempSessionTracks = tempSession.getTracksInSession();
-			
-			//EventScheduleItem[] tempS = tempTrack.getEventsInTrack();
-			
+						
 			TableLayout table = (TableLayout)vi.findViewById(R.id.sessionTracksTable);
 			
 			Log.i("GCA-A-Schedule", "Session Tracks Count: " + tempSessionTracks.length);
@@ -207,7 +171,7 @@ public class scheduleAdapter extends BaseAdapter {
 				
 				TableRow tempRow = (TableRow) inflater.inflate(R.layout.session_track_table_row, null);
 				((TextView)tempRow.findViewById(R.id.session_track_name)).setText(tempSessionTracks[i].getTitle());
-				((TextView)tempRow.findViewById(R.id.session_track_chair)).setText("Chaired by: " + tempSessionTracks[i].getChair());
+				((TextView)tempRow.findViewById(R.id.session_track_chair)).setText(ctx.getResources().getString(R.string.track_chair_label) + tempSessionTracks[i].getChair());
 				
 				//here add events of respective track in another table
 				EventScheduleItem[] eventsInCurrentTrack = tempSessionTracks[i].getEventsInTrack();
@@ -224,7 +188,7 @@ public class scheduleAdapter extends BaseAdapter {
 						Log.i("GCA-Schedule", "NULL SCENE");
 					}
 					((TextView)tempEventRowForTrackEventsTable.findViewById(R.id.session_track_event_start)).setText(eventsInCurrentTrack[j].getStart());
-					Log.i("GCA-A-Schedule", "Event title shit: " + eventsInCurrentTrack[j].getTitle());
+					Log.i("GCA-A-Schedule", "Event title: " + eventsInCurrentTrack[j].getTitle());
 					((TextView)tempEventRowForTrackEventsTable.findViewById(R.id.session_track_Event_end)).setText(eventsInCurrentTrack[j].getEnd());
 					((TextView)tempEventRowForTrackEventsTable.findViewById(R.id.session_track_event_title)).setText(eventsInCurrentTrack[j].getTitle());
 					((TextView)tempEventRowForTrackEventsTable.findViewById(R.id.session_track_event_location)).setText(eventsInCurrentTrack[j].getLocation());
@@ -236,9 +200,7 @@ public class scheduleAdapter extends BaseAdapter {
 					trackEventstable.addView(tempEventRowForTrackEventsTable);
 					trackEventstable.requestLayout();
 				}
-				
-			//	Log.i("GCA-Schedule", "Count of Child in inside table:" + trackEventstable.getChildCount());
-				
+								
 				//adding the final track row
 				table.addView(tempRow);
 			}
@@ -247,7 +209,8 @@ public class scheduleAdapter extends BaseAdapter {
 			
 			return vi;
 			
-		}
-	}
+		} //end if/else
+		
+	} //end getView
 	
-}
+}//end class

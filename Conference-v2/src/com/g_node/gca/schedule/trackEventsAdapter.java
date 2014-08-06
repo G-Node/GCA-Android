@@ -1,10 +1,7 @@
 package com.g_node.gca.schedule;
 
-import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.List;
-
-import com.shumail.newsroom.R;
 
 import android.app.Activity;
 import android.content.Context;
@@ -14,6 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+
+import com.shumail.newsroom.R;
 
 
 

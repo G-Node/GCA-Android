@@ -1,16 +1,10 @@
 package com.g_node.gca.schedule;
 
-import com.g_node.gca.abstracts.AbstractContent;
-import com.g_node.gca.abstracts.DatabaseHelper;
-import com.shumail.newsroom.R;
-import com.shumail.newsroom.R.layout;
-import com.shumail.newsroom.R.menu;
-
-import android.os.Bundle;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -20,6 +14,10 @@ import android.widget.Button;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+
+import com.g_node.gca.abstracts.AbstractContent;
+import com.g_node.gca.abstracts.DatabaseHelper;
+import com.shumail.newsroom.R;
 
 public class ScheduleItemExtended extends Activity {
 	
