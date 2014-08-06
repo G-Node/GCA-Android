@@ -6,7 +6,6 @@
 
 package com.g_node.gca.abstracts;
 
-import com.shumail.newsroom.R;
 import android.content.Context;
 import android.database.Cursor;
 import android.graphics.Color;
@@ -18,6 +17,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.TextView;
+
+import com.shumail.newsroom.R;
 
 public class AbstractCursorAdapter extends CursorAdapter {
     Cursor cursorOne;

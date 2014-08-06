@@ -11,7 +11,6 @@ import org.json.JSONObject;
 import android.util.Log;
 
 import com.g_node.gca.utils.JSONReader;
-import com.shumail.newsroom.R;
 
 
 public class AbstractsJsonParse {
