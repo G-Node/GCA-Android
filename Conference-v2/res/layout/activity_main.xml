@@ -21,7 +21,7 @@
             android:layout_weight="1"
             android:drawableTop="@drawable/icon_news"
             android:drawablePadding="10dp"
-            android:text="NEWS" />
+            android:text="@string/menu_button_news_text" />
 
 		<Button
 		    android:id="@+id/btn_abstracts"
@@ -30,7 +30,7 @@
 		    android:layout_weight="1"
 		    android:drawableTop="@drawable/icon_paper"
 		    android:drawablePadding="10dp"
-		    android:text="Abstracts" />
+		    android:text="@string/menu_button_abstract_text" />
 		
 		<Button
             android:id="@+id/btn_maps"
@@ -39,7 +39,7 @@
             android:layout_weight="1"
             android:drawableTop="@drawable/icon_map_btn"
             android:drawablePadding="10dp"
-            android:text="MAPS" />
+            android:text="@string/menu_button_maps_text" />
 				
 
     </LinearLayout>
@@ -59,7 +59,7 @@
         android:layout_height="wrap_content"
         android:drawableTop="@drawable/icon_schedule_btn2"
         android:drawablePadding="10dp"
-        android:text="Schedule" />
+        android:text="@string/menu_button_schedule_text" />
     
     
     <Button
@@ -69,7 +69,7 @@
         android:layout_height="wrap_content"
         android:drawableTop="@drawable/icon_star_btn"
         android:drawablePadding="10dp"
-        android:text="FAVOURITES" />
+        android:text="@string/menu_button_favorites_text" />
     
 </LinearLayout>
 
@@ -82,7 +82,7 @@
 
      <TextView
             android:layout_weight="1"
-            android:text="Welcome | G-Node"
+            android:text=""
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
             android:layout_width="0dp"
