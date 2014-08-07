@@ -80,22 +80,22 @@ public class AbstractContentTabFragment extends Fragment {
          * Run SQL Queries to fetch data from database.
          */
         
-        sqlQueries();
+        fetchBasicAbstractDataFromDB();
         
         /*
          * Fetch Authors name for abstract and update author name fields
          */
-        authorName();
+        fetchAndUpdateAuthorsDataFromDB();
         
         /*
          * Get Affiliation Name for associate abstracts - and update affiliations view 
          */
-        affiliationName();
+        fetchAndUpdateAffiliationNamesFromDB();
                 
         /*
          * Getting the title of Abstract - and update abstract title view
          */
-        getAbsTitle();
+        getAndUpdateAbstractTitle();
         
         /*
          * Set Title to BOLD
@@ -106,23 +106,23 @@ public class AbstractContentTabFragment extends Fragment {
          * Getting Topic of the Abstract - and update abstract topic view
          */
         
-        getAbsTopic();
+        getAndUpdateAbstractTopic();
         
         /*
          * Get Abstract Content/Text from Cursor and display - update abstract Text view
          */
-        getContent();
+        getAndUpdateAbstractContent();
         
         /*
          * Get acknowledgements for Abstract and display - update abstract acknowldegement view
          */
-        getAcknowledgements();
+        getAndUpdateAbstractAcknowledgements();
         
         /*
          * Get References from database and display - Update references view
          */
         
-        getRefs();
+        getAndUpdateAbstractReferences();
     
 	}
 	
@@ -170,7 +170,7 @@ public class AbstractContentTabFragment extends Fragment {
 	/*
      * Function for executing SQL Queries that fetch next/prev or current abstract data
      */
-    private void sqlQueries() {
+    private void fetchBasicAbstractDataFromDB() {
     	Log.i(gtag, "SQLQueries function");
         String nextAbstractData = "SELECT UUID AS _id , TOPIC, TITLE, " +
         		"ABSRACT_TEXT, STATE, SORTID, REASONFORTALK, MTIME, TYPE,DOI, COI, ACKNOWLEDGEMENTS " +
@@ -183,7 +183,7 @@ public class AbstractContentTabFragment extends Fragment {
     /*
      * Function for getting Author Names for the abstract & add to the view
      */
-    private void authorName() {
+    private void fetchAndUpdateAuthorsDataFromDB() {
        
         //Query for getting author name, email, position, affiliation data for the particular Abstract
         String authorSQLQuery = "SELECT DISTINCT AUTHORS_DETAILS.AUTHOR_FIRST_NAME, " +
@@ -255,7 +255,7 @@ public class AbstractContentTabFragment extends Fragment {
     /*
 	 *Function for getting affiliation names for that abstract and adding to the view 
 	 */
-    private void affiliationName() {
+    private void fetchAndUpdateAffiliationNamesFromDB() {
     	
     	//SQL Query for getting affiliation data, position for the particular abstract
         String affiliationsSQLQuery = 	"SELECT AFFILIATION_ADDRESS, AFFILIATION_COUNTRY, " +
@@ -287,7 +287,7 @@ public class AbstractContentTabFragment extends Fragment {
     /*
 	 *Function for getting abstract title and adding to the view 
 	 */
-    private void getAbsTitle() {
+    private void getAndUpdateAbstractTitle() {
 
         cursorTwo.moveToFirst();
 
@@ -302,7 +302,7 @@ public class AbstractContentTabFragment extends Fragment {
     /*
 	 *Function for getting abstract topic and adding to the view 
 	 */
-    private void getAbsTopic() {
+    private void getAndUpdateAbstractTopic() {
 
         cursorTwo.moveToFirst();
         do {
@@ -317,7 +317,7 @@ public class AbstractContentTabFragment extends Fragment {
     /*
 	 *Function for getting abstract referenes and adding to the view 
 	 */
-    private void getRefs() {
+    private void getAndUpdateAbstractReferences() {
 
     	String referenceSQLQuery = "SELECT * FROM ABSTRACT_REFERENCES WHERE ABSTRACT_UUID = '" + value +"';";
         referenceCursor = DatabaseHelper.database.rawQuery(referenceSQLQuery, null);
@@ -337,7 +337,7 @@ public class AbstractContentTabFragment extends Fragment {
     /*
 	 *Function for getting acknowledgements for that abstract and adding to the view 
 	 */
-    private void getAcknowledgements() {
+    private void getAndUpdateAbstractAcknowledgements() {
 
         cursorTwo.moveToFirst();
 
@@ -358,7 +358,7 @@ public class AbstractContentTabFragment extends Fragment {
     /*
 	 * Function for getting abstract text and adding to the view 
 	 */
-    private void getContent() {
+    private void getAndUpdateAbstractContent() {
 
         cursorTwo.moveToFirst();
 
