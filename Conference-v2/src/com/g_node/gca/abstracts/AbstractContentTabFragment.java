@@ -124,7 +124,7 @@ public class AbstractContentTabFragment extends Fragment {
         
         getAndUpdateAbstractReferences();
     
-	}
+	} //end onViewCreated
 	
 	@Override
 	public void onDestroy() {
