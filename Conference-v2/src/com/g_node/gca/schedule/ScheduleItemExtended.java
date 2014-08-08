@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -40,6 +41,8 @@ public class ScheduleItemExtended extends Activity {
 		dbHelper.open();
 		actionbar = getActionBar();
 		actionbar.setIcon(getResources().getDrawable(R.drawable.icon_schedule));
+		actionbar.setHomeButtonEnabled(true);
+ 		actionbar.setDisplayHomeAsUpEnabled(true);
 		
 		Bundle bundle = getIntent().getExtras();
 		String eType = bundle.getString("type");
@@ -209,6 +212,16 @@ public class ScheduleItemExtended extends Activity {
 		return true;
 	}
 
+	@Override
+	public boolean onMenuItemSelected(int featureId, MenuItem item) {
+		int theId = item.getItemId();
+        if (theId == android.R.id.home) {
+            finish();
+        }
+        return true;
+		
+	}
+	
 	@Override
 	protected void onDestroy() {
 		// TODO Auto-generated method stub
