@@ -55,7 +55,8 @@ public class AbstractContent extends FragmentActivity implements
  		mAdapter.setValue(value);	//set current UUID for fragments
  		
  		viewPager.setAdapter(mAdapter);
- 		actionBar.setHomeButtonEnabled(false);
+ 		actionBar.setHomeButtonEnabled(true);
+ 		actionBar.setDisplayHomeAsUpEnabled(true);
  		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);		
 
  		// Adding Tabs

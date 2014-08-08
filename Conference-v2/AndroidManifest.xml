@@ -43,6 +43,7 @@
         </activity>
         <activity
             android:name="com.g_node.gca.abstracts.AbstractContent"
+            android:parentActivityName="com.g_node.gca.abstracts.Abstracts"
             android:label="@string/title_activity_abstracts" >
         </activity>
         <activity
