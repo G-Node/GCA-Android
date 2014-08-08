@@ -27,4 +27,13 @@
 	<string name="menu_button_schedule_text">Schedule</string>
 	<string name="menu_button_favorites_text">FAVOURITES</string>
 	<string name="menu_welcome_text">Welcome&#160;|&#160;G-Node</string>
+	<string name="schedule_detail_label_date">Date:</string>
+	<string name="schedule_detail_label_time">Time:</string>
+	<string name="schedule_detail_label_author">Author:</string>
+	<string name="schedule_detail_label_location">Location:</string>
+	<string name="schedule_detail_btn_openAbstract_text">Open Abstract</string>
+	<string name="schedule_detail_tracksInSession_Heading">Tracks in this Session:</string>
+	<string name="schedule_track_detail_hint_text">Click the button above to navigate to respective track detail</string>
+	<string name="schedule_detail_eventsInTrack_Heading">Events in this Track:</string>
+	<string name="schedule_event_detail_hint_text">Click the button above to navigate to respective Event detail</string>
 </resources>

@@ -58,7 +58,7 @@
         android:gravity="left|center_vertical"
         android:fontFamily="sans-serif-light"
 		android:textColor="@android:color/black"
-		android:text="Events in this Track:"
+		android:text="@string/schedule_detail_eventsInTrack_Heading"
 		android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small"/>
 	
 	<View
@@ -91,8 +91,8 @@
         android:gravity="center"
         android:textStyle="italic"
 		android:textColor="#0a5690"
-		android:text="Click the button above to navigate to respective Event detail"
+		android:text="@string/schedule_event_detail_hint_text"
 		android:layout_alignParentBottom="true" 
-		android:textSize="10sp"/>
+		android:textSize="12sp"/>
     
 </RelativeLayout>

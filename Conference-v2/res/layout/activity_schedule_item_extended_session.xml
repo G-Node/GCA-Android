@@ -42,7 +42,7 @@
         android:gravity="left|center_vertical"
         android:fontFamily="sans-serif-light"
 		android:textColor="@android:color/black"
-		android:text="Tracks in this Session:"
+		android:text="@string/schedule_detail_tracksInSession_Heading"
 		android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small"/>
 	
 	<View
@@ -74,9 +74,9 @@
         android:gravity="center"
         android:textStyle="italic"
 		android:textColor="#0a5690"
-		android:text="Click the button above to navigate to respective track detail"
+		android:text="@string/schedule_track_detail_hint_text"
 		android:layout_alignParentBottom="true" 
-		android:textSize="10sp"/>
+		android:textSize="12sp"/>
 	
 	
 </RelativeLayout>

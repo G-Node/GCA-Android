@@ -64,7 +64,7 @@
 				android:textColor="#0a5690"
 				android:drawablePadding="5dp"
 		        android:drawableLeft="@drawable/icon_calendar"
-		        android:text="Date:" />
+		        android:text="@string/schedule_detail_label_date" />
 	        <TextView
 	            android:layout_weight="1"
 	            android:id="@+id/schedule_event_date"
@@ -91,7 +91,7 @@
 				android:textColor="#0a5690"
 				android:drawablePadding="5dp"
 		        android:drawableLeft="@drawable/icon_clock"
-		        android:text="Time:" />
+		        android:text="@string/schedule_detail_label_time" />
 	        
 	        <TextView
 	            android:layout_weight="1"	            
@@ -119,7 +119,7 @@
 				android:textColor="#0a5690"
 				android:drawablePadding="5dp"
 		        android:drawableLeft="@drawable/speaker_avatar"
-		        android:text="Author:" />
+		        android:text="@string/schedule_detail_label_author" />
 	        
 	        <TextView
 	            android:layout_weight="1"
@@ -131,7 +131,7 @@
 		        android:layout_height="wrap_content"
 		        android:gravity="center"
 				android:textColor="#0a5690"
-	            android:text="Shumail"
+	            android:text="Author name goes here"
 	            android:padding="3dip" />
     	</TableRow>
 
@@ -147,7 +147,7 @@
 				android:textColor="#0a5690"
 				android:drawablePadding="5dp"
 		        android:drawableLeft="@drawable/icon_location"
-		        android:text="Location:" />
+		        android:text="@string/schedule_detail_label_location" />
 	        <TextView
 	            android:layout_weight="1"	            
 	            android:id="@+id/schedule_event_location"
@@ -168,7 +168,7 @@
 	
     <Button 
         android:id="@+id/btn_launch_Abstract_from_event"
-        android:text="Open Abstract"
+        android:text="@string/schedule_detail_btn_openAbstract_text"
         android:gravity="center"
         android:layout_marginLeft="35dp"
         android:layout_marginRight="35dp"
