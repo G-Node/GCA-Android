@@ -20,7 +20,8 @@
             android:paddingRight="5dp"
 			android:gravity="left"
             android:textStyle="bold"
-            android:background="@android:color/holo_blue_light"
+            android:textColor="#3d3d3d"
+            android:background="#dddddd"
             android:textAppearance="?android:attr/textAppearanceLarge" />
     
     
