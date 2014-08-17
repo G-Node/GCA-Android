@@ -42,7 +42,7 @@ public class AbstractContentTabFragment extends Fragment {
 
     TextView ConAck;
 
-    Button btn;
+    Button btnOpenAbstractFig;
 
     private String value;
     
@@ -121,9 +121,13 @@ public class AbstractContentTabFragment extends Fragment {
         /*
          * Get References from database and display - Update references view
          */
-        
         getAndUpdateAbstractReferences();
-    
+        
+        /*
+         * Get associated Figures from database and set button enabled/disabled - 
+         */
+        getAndUpdateAbstractFiguresBtn();
+        
 	} //end onViewCreated
 	
 	@Override
@@ -163,6 +167,10 @@ public class AbstractContentTabFragment extends Fragment {
          * TextView for Acknowledgments
          */
         ConAck = (TextView)getView().findViewById(R.id.ConACK);
+        /*
+         * Clickable for showing images assosiated with Abstract
+         */
+        btnOpenAbstractFig = (Button) getView().findViewById(R.id.btnOpenAbstractFig);
     
 	}	//end intialUI
 	
@@ -368,6 +376,22 @@ public class AbstractContentTabFragment extends Fragment {
                 content.setText(Text);
 
             } while (cursorTwo.moveToNext());
+    }
+    
+    /*
+	 * Function for getting abstract figures and updateing the button 
+	 */
+    private void getAndUpdateAbstractFiguresBtn() {
+    	String getFiguresQuery = "SELECT * FROM ABSTRACT_FIGURES WHERE ABSTRACT_UUID = '" + value +"';";
+    	Cursor absFiguresCursor = DatabaseHelper.database.rawQuery(getFiguresQuery, null);
+    	
+    	if(absFiguresCursor.getCount() > 0) {
+    		btnOpenAbstractFig.setText("Show Figures" + "(" + absFiguresCursor.getCount() + ")");
+    	
+    	}else{
+    		btnOpenAbstractFig.setText("No Figures Found");
+    		btnOpenAbstractFig.setEnabled(false);
+    	}
     }
     
     /*
