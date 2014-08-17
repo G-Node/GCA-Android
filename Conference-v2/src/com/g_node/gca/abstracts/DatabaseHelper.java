@@ -41,6 +41,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     
     public static final String TABLE_ABSTRACT_REFERENCES = "ABSTRACT_REFERENCES";
     
+    public static final String TABLE_ABSTRACT_FIGURES = "ABSTRACT_FIGURES";
+    
     public static final String TABLE_ABSTRACT_FAVORITES = "ABSTRACT_FAVORITES";
     
     public static final String TABLE_ABSTRACT_NOTES = "ABSTRACT_NOTES";
@@ -83,6 +85,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String CREATE_ABSTRACT_NOTES = "CREATE TABLE IF NOT EXISTS " + TABLE_ABSTRACT_NOTES
     		+ "(NOTE_ID INTEGER PRIMARY KEY,  ABSTRACT_UUID VARCHAR NOT NULL, NOTE_TITLE TEXT, NOTE_TEXT TEXT); " ;
     
+    public static final String CREATE_ABSTRACT_FIGURES = "CREATE TABLE IF NOT EXISTS " + TABLE_ABSTRACT_FIGURES
+			+ "( ABSTRACT_UUID VARCHAR NOT NULL, FIG_UUID VARCHAR NOT NULL, " 
+			+ "FIG_CAPTION TEXT, FIG_URL TEXT, FIG_POSITION TEXT);";
     
     public DatabaseHelper(Context context) {
         super(context, Database_Name, null, Database_Version);
@@ -104,6 +109,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		database.execSQL(CREATE_ABSTRACT_REFERENCES);
 		database.execSQL(CREATE_ABSTRACT_FAVORITES);
 		database.execSQL(CREATE_ABSTRACT_NOTES);
+		database.execSQL(CREATE_ABSTRACT_FIGURES);
 		
 	}
 
@@ -119,6 +125,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		database.execSQL("DROP TABLE IF EXISTS " + TABLE_ABSTRACT_REFERENCES);
 		database.execSQL("DROP TABLE IF EXISTS " + TABLE_ABSTRACT_FAVORITES);
 		database.execSQL("DROP TABLE IF EXISTS " + TABLE_ABSTRACT_NOTES);
+		database.execSQL("DROP TABLE IF EXISTS " + TABLE_ABSTRACT_FIGURES);
 		onCreate(database);
 		
 	}
@@ -264,6 +271,27 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		long ref_id;
 		ref_id = database.insert(TABLE_ABSTRACT_REFERENCES, null, values);
 		Log.i(gtag, "reference inserted: id = > " + ref_id);
+		
+	}
+	
+	//function for adding in ABSTRACT_FIGURES table 
+	public void addInABSTRACT_FIGURES (String ABSTRACT_UUID, String FIG_UUID, String FIG_CAPTION, String FIG_URL, String FIG_POSITION) {
+		
+		ContentValues values = new ContentValues();
+		
+		values.put("ABSTRACT_UUID", ABSTRACT_UUID);
+		
+		values.put("FIG_UUID", FIG_UUID);
+		
+		values.put("FIG_CAPTION", FIG_CAPTION);
+		
+		values.put("FIG_URL", FIG_URL);
+		
+		values.put("FIG_POSITION", FIG_POSITION);
+		
+		long fig_id;
+		fig_id = database.insert(TABLE_ABSTRACT_FIGURES, null, values);
+		Log.i(gtag, "figure inserted: id = > " + fig_id);
 		
 	}
 	

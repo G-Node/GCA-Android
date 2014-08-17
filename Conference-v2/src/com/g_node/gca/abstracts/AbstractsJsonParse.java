@@ -194,6 +194,37 @@ public class AbstractsJsonParse {
 	            	 
 	             } //end authors array loop
 	             
+	             //Abstract Figures JSONArray
+	             JSONArray abs_fugures_array = jsonObject.getJSONArray("figures");
+	             
+	             //now iterate over this array for extracting each figure detail, if it's length is greater than 0
+	             if(abs_fugures_array.length() > 0){
+	            	 
+	            	 for(int j=0; j<abs_fugures_array.length(); j++){
+	            		 //get figure json object
+	            		 JSONObject figureJSONObject = abs_fugures_array.getJSONObject(j);
+	            		 
+	            		 //Figure UUID
+	            		 String figure_uuid = figureJSONObject.getString("uuid");
+	            		 Log.i(gTag, "Fig uuid: " + figure_uuid);
+	            		 
+	            		//Figure Caption
+	            		String figure_caption = figureJSONObject.getString("caption");
+	            		Log.i(gTag, "Fig caption: " + figure_caption);
+	            		
+	            		//Figure URL
+	            		String figure_URL = figureJSONObject.getString("URL");
+	            		Log.i(gTag, "Fig URL: " + figure_URL);
+	            		
+	            		//Figure position
+	            		String figure_position = figureJSONObject.getString("position");
+	            		Log.i(gTag, "Fig position: " + figure_position);
+	            		
+	            		//insert the figure into ABSTRACT_FIGURES table
+	            		dbHelper.addInABSTRACT_FIGURES(abs_uuid, figure_uuid, figure_caption, figure_URL, figure_position);
+	            	 
+	            	 } //end figures array loop
+	             } //end if
 	             
 	             //Abstract references JSONarray
 	             JSONArray abs_References_Array = jsonObject.getJSONArray("references");
