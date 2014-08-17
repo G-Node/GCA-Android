@@ -91,7 +91,7 @@ private class AbstractJSONParsingTask extends AsyncTask<Void, Void, Void> {
 		@Override
 		protected void onPreExecute()
 	    {
-	        Dialog.setMessage(Abstracts.this.getResources().getString(R.string.loading_dialog_text));
+	        Dialog.setMessage(Abstracts.this.getResources().getString(R.string.loading_abstracts_dialog_text));
 	        Dialog.setCancelable(false);
 	        Dialog.show();
 	    }

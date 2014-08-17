@@ -20,6 +20,7 @@
     <string name="title_activity_schedule_item_extended">Schedule Detail</string>
     <string name="updating_dialog_text">Updating...</string>
     <string name="loading_dialog_text">Loading...</string>
+    <string name="loading_abstracts_dialog_text"><b>Loading...Please Wait!</b> \nThis may take a minute</string>
     <string name="track_chair_label">Chaired By:&#160;&#160;</string>
     <string name="menu_button_abstract_text">Abstracts</string>
 	<string name="menu_button_news_text">NEWS</string>
