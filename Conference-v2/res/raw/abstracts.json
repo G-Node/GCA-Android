@@ -116,10 +116,16 @@
         "doi": "doi one",
         "figures": [
             {
-                "URL": "http://localhost:9000/api/figures/ea200993-8633-4f2f-9fda-b78286d5b420/image",
-                "caption": "This is the super nice figure one.",
+                "URL": "http://abstracts.g-node.org/api/figures/cce7e50f-bade-4321-a0e1-402ae0e7dc1f/image",
+                "caption": "A generated photoreceptor mosaic. The photomicrographs are from [Curcio et al. 1990]",
                 "position": 0,
-                "uuid": "ea200993-8633-4f2f-9fda-b78286d5b420"
+                "uuid": "cce7e50f-bade-4321-a0e1-402ae0e7dc1f"
+            },
+            {
+                "URL": "http://abstracts.g-node.org/api/figures/90496036-3cdb-4f92-92ce-e80dd5745ed6/image",
+                "caption": "A generated photoreceptor mosaic. The photomicrographs are from [Curcio et al. 1990]",
+                "position": 0,
+                "uuid": "90496036-3cdb-4f92-92ce-e80dd5745ed6"
             }
         ],
         "isTalk": true,
@@ -207,11 +213,11 @@
         "conflictOfInterest": "coi two",
         "doi": "doi two",
         "figures": [
-            {
-                "URL": "http://localhost:9000/api/figures/859eb654-dcd2-4e85-9565-381d19fc759a/image",
-                "caption": "This is the super nice figure two.",
-                "position": 1,
-                "uuid": "859eb654-dcd2-4e85-9565-381d19fc759a"
+           {
+                "URL": "http://abstracts.g-node.org/api/figures/c0ac2f5d-32b2-4a6d-938f-614b56b0cd19/image",
+                "caption": "Clustering of inter-layer information flow networks discriminate epochs with theta and slow wave activity in rat enthorinal cortex, despite their ever-changing local (but not global) topology.",
+                "position": 0,
+                "uuid": "c0ac2f5d-32b2-4a6d-938f-614b56b0cd19"
             }
         ],
         "isTalk": true,
