@@ -7,6 +7,7 @@ import android.app.Activity;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.shumail.newsroom.R;
@@ -38,12 +39,17 @@ public class AbstractFiguresActivity extends Activity {
 			FiguresList.add(currentFigure);
 		}while(absFiguresCursor.moveToNext());
 		
-		TextView x = (TextView) findViewById(R.id.absFiguresText);
-		x.setText("");
-		for(int i=0; i<FiguresList.size(); i++){
-			x.append("\r\n" + FiguresList.get(i).getURL() + "\r\n");
-			x.append("\r\n" + FiguresList.get(i).getCaption() + "----" + FiguresList.get(i).getFig_uuid() +  "\r\n");
-		}
+		//set listview of images
+		ListView figuresList = (ListView) findViewById(R.id.absFiguresList);
+		AbstractFiguresListAdapter adapter = new AbstractFiguresListAdapter(this, FiguresList);
+		figuresList.setAdapter(adapter);
+		
+//		TextView x = (TextView) findViewById(R.id.absFiguresText);
+//		x.setText("");
+//		for(int i=0; i<FiguresList.size(); i++){
+//			x.append("\r\n" + FiguresList.get(i).getURL() + "\r\n");
+//			x.append("\r\n" + FiguresList.get(i).getCaption() + "----" + FiguresList.get(i).getFig_uuid() +  "\r\n");
+//		}
 		
 		
 	} //end onCreate

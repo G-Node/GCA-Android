@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content" >
+    
+    <TextView
+        android:id="@+id/absListFigCaption"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+    
+    <ImageView 
+		android:id="@+id/absListFigImage"
+		android:layout_height="wrap_content"
+		android:layout_width="fill_parent" 
+		android:layout_below="@+id/absListFigCaption"/>
+    
+</RelativeLayout>
