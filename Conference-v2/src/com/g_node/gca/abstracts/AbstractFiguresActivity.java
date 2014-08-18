@@ -1,3 +1,9 @@
+/**
+ * Copyright (c) 2014, German Neuroinformatics Node (G-Node)
+ * Copyright (c) 2014, Shumail Mohy-ud-Din <shumailmohyuddin@gmail.com>
+ * License: BSD-3 (See LICENSE)
+ */
+
 package com.g_node.gca.abstracts;
 
 import java.util.ArrayList;
@@ -44,15 +50,7 @@ public class AbstractFiguresActivity extends Activity {
 		ListView figuresList = (ListView) findViewById(R.id.absFiguresList);
 		adapter = new AbstractFiguresListAdapter(this, FiguresList);
 		figuresList.setAdapter(adapter);
-		
-//		TextView x = (TextView) findViewById(R.id.absFiguresText);
-//		x.setText("");
-//		for(int i=0; i<FiguresList.size(); i++){
-//			x.append("\r\n" + FiguresList.get(i).getURL() + "\r\n");
-//			x.append("\r\n" + FiguresList.get(i).getCaption() + "----" + FiguresList.get(i).getFig_uuid() +  "\r\n");
-//		}
-		
-		
+			
 	} //end onCreate
 
 	@Override

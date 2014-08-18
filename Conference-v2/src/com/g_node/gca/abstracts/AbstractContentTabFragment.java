@@ -409,20 +409,20 @@ public class AbstractContentTabFragment extends Fragment {
 						NetworkInfo mMobile = connManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
 						
 						if (mWifi.isConnected()) {
-							Toast.makeText(getActivity(), "Connected via WLAN", Toast.LENGTH_SHORT).show();
+							//Toast.makeText(getActivity(), "Connected via WLAN", Toast.LENGTH_SHORT).show();
 							Intent figuresIntent = new Intent(getActivity(), AbstractFiguresActivity.class);
 							figuresIntent.putExtra("abs_uuid", value);
 							startActivity(figuresIntent);
 						
 						} else if(mMobile.isConnected()) {
 							//if connected with mobile data - 2G, 3G, 4G etc
-							Toast.makeText(getActivity(), "Connected via Mobile Internet", Toast.LENGTH_SHORT).show();
+							//Toast.makeText(getActivity(), "Connected via Mobile Internet", Toast.LENGTH_SHORT).show();
 							
 							AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 							builder.setTitle("Additional Traffic Warning").setMessage("Downloading of Figures over Mobile Internet may create additional Traffic. Do you want to Continue ?")
 							       .setPositiveButton("Continue", new DialogInterface.OnClickListener() {
 							           public void onClick(DialogInterface dialog, int id) {
-							               // Handle Agree
+							               // if user Agrees to continue
 							        	   Intent figuresIntent = new Intent(getActivity(), AbstractFiguresActivity.class);
 											figuresIntent.putExtra("abs_uuid", value);
 											startActivity(figuresIntent);
@@ -442,7 +442,7 @@ public class AbstractContentTabFragment extends Fragment {
 						}	//end if/else of wlan/mobile
 						
 					} else {
-						Toast.makeText(getActivity(), "Not Connected to Internet.", Toast.LENGTH_SHORT).show();
+						Toast.makeText(getActivity(), "Not Connected to Internet - Please connect to Internet first", Toast.LENGTH_SHORT).show();
 					} 	//end if/else of isNetworkAvailable
 					
 				}
