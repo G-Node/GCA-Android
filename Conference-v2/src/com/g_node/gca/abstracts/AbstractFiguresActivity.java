@@ -8,12 +8,13 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import com.shumail.newsroom.R;
 
 public class AbstractFiguresActivity extends Activity {
-
+	
+	AbstractFiguresListAdapter adapter;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -41,7 +42,7 @@ public class AbstractFiguresActivity extends Activity {
 		
 		//set listview of images
 		ListView figuresList = (ListView) findViewById(R.id.absFiguresList);
-		AbstractFiguresListAdapter adapter = new AbstractFiguresListAdapter(this, FiguresList);
+		adapter = new AbstractFiguresListAdapter(this, FiguresList);
 		figuresList.setAdapter(adapter);
 		
 //		TextView x = (TextView) findViewById(R.id.absFiguresText);
@@ -62,6 +63,15 @@ public class AbstractFiguresActivity extends Activity {
         }
         return true;
 		
-	}	
+	}
 
+	@Override
+	protected void onDestroy() {
+		// TODO Auto-generated method stub
+		super.onDestroy();
+		this.adapter.imageLoader.destroy();
+	}	
+	
+	
+	
 }
