@@ -88,7 +88,7 @@ public class AbstractFiguresListAdapter extends BaseAdapter{
 
 			@Override
 			public void onLoadingComplete(String arg0, View arg1, Bitmap arg2) {
-				downloadingIndicator.setVisibility(View.INVISIBLE);
+				downloadingIndicator.setVisibility(View.GONE);
 				figureImage.setVisibility(View.VISIBLE);
 				
 			}
