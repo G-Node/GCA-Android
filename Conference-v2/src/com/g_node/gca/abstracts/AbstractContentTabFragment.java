@@ -5,9 +5,14 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Typeface;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.Html;
@@ -20,6 +25,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.shumail.newsroom.R;
 
@@ -394,10 +400,51 @@ public class AbstractContentTabFragment extends Fragment {
 				
 				@Override
 				public void onClick(View arg0) {
-					// TODO Auto-generated method stub
-					Intent figuresIntent = new Intent(getActivity(), AbstractFiguresActivity.class);
-					figuresIntent.putExtra("abs_uuid", value);
-					startActivity(figuresIntent);
+					//if Internet is connected
+					if(isNetworkAvailable()){
+						
+						//check if interent is WIFI
+						ConnectivityManager connManager = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+						NetworkInfo mWifi = connManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+						NetworkInfo mMobile = connManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
+						
+						if (mWifi.isConnected()) {
+							Toast.makeText(getActivity(), "Connected via WLAN", Toast.LENGTH_SHORT).show();
+							Intent figuresIntent = new Intent(getActivity(), AbstractFiguresActivity.class);
+							figuresIntent.putExtra("abs_uuid", value);
+							startActivity(figuresIntent);
+						
+						} else if(mMobile.isConnected()) {
+							//if connected with mobile data - 2G, 3G, 4G etc
+							Toast.makeText(getActivity(), "Connected via Mobile Internet", Toast.LENGTH_SHORT).show();
+							
+							AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+							builder.setTitle("Additional Traffic Warning").setMessage("Downloading of Figures over Mobile Internet may create additional Traffic. Do you want to Continue ?")
+							       .setPositiveButton("Continue", new DialogInterface.OnClickListener() {
+							           public void onClick(DialogInterface dialog, int id) {
+							               // Handle Agree
+							        	   Intent figuresIntent = new Intent(getActivity(), AbstractFiguresActivity.class);
+											figuresIntent.putExtra("abs_uuid", value);
+											startActivity(figuresIntent);
+							           }
+							       })
+							       .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+							           public void onClick(DialogInterface dialog, int id) {
+							               // Handle Cancel
+							        	   dialog.cancel();
+							           }
+							       })
+							       .setIcon(android.R.drawable.ic_dialog_alert)
+								     .show();
+							
+						} else {
+							;
+						}	//end if/else of wlan/mobile
+						
+					} else {
+						Toast.makeText(getActivity(), "Not Connected to Internet.", Toast.LENGTH_SHORT).show();
+					} 	//end if/else of isNetworkAvailable
+					
 				}
 			});
     	
@@ -423,6 +470,13 @@ public class AbstractContentTabFragment extends Fragment {
 
     }
     
+  //Helper method to determine if Internet connection is available.
+  	private boolean isNetworkAvailable() {
+  	    ConnectivityManager connectivityManager 
+  	          = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+  	    NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+  	    return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+  	} 
     
 } //end class
 
