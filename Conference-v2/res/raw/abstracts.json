@@ -345,7 +345,7 @@
         "uuid": "ffff8a2d-913c-455d-962d-c27dc15ec816"
     },
     {
-        "acknowledgements": "acc four",
+        "acknowledgements": null,
         "affiliations": [
             {
                 "address": "Frankfurt",

@@ -369,8 +369,12 @@ public class AbstractContentTabFragment extends Fragment {
                     .getColumnIndexOrThrow("ACKNOWLEDGEMENTS"));
 
             if (acknowledgements.length() > 0) {
-
-                ConAck.append(acknowledgements + "\n" );
+            	if(acknowledgements.equals("null")){
+            		ConAck.append("");
+            	}else{
+            		ConAck.append(acknowledgements + "\n" );
+            	}
+                
             }
 
         } while (cursorTwo.moveToNext());
