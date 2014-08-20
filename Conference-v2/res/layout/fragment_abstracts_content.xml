@@ -80,11 +80,22 @@
             android:layout_below="@+id/ConAfName"
             android:textAppearance="?android:attr/textAppearanceMedium" />
         
+        <TextView
+            android:id="@+id/absSortID"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:paddingLeft="5dip"
+            android:paddingRight="5dip"
+            android:paddingBottom="5dip"
+            android:layout_below="@+id/Content"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+        
         <Button 
             android:id="@+id/btnOpenAbstractFig"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/Content"
+            android:layout_below="@+id/absSortID"
             android:layout_marginLeft="10sp"
             android:layout_marginRight="10sp"
             />

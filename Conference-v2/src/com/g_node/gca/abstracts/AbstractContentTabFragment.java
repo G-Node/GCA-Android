@@ -49,6 +49,8 @@ public class AbstractContentTabFragment extends Fragment {
     TextView ConRefs;
 
     TextView ConAck;
+    
+    TextView absSortID;
 
     Button btnOpenAbstractFig;
 
@@ -175,6 +177,10 @@ public class AbstractContentTabFragment extends Fragment {
          * TextView for Acknowledgments
          */
         ConAck = (TextView)getView().findViewById(R.id.ConACK);
+        /*
+         * TextView for Acknowledgments
+         */
+        absSortID = (TextView)getView().findViewById(R.id.absSortID);
         /*
          * Clickable for showing images assosiated with Abstract
          */
@@ -372,7 +378,7 @@ public class AbstractContentTabFragment extends Fragment {
     }
     
     /*
-	 * Function for getting abstract text and adding to the view 
+	 * Function for getting abstract text & parsing of SortID and adding to the view 
 	 */
     private void getAndUpdateAbstractContent() {
 
@@ -384,6 +390,22 @@ public class AbstractContentTabFragment extends Fragment {
                 content.setText(Text);
 
             } while (cursorTwo.moveToNext());
+            
+            //parsing SortID to extract group id & poster number and add it to abstract text body.
+            cursorTwo.moveToFirst();
+            int sortID = cursorTwo.getInt(cursorTwo.getColumnIndexOrThrow("SORTID"));
+            Log.i("GCA-SortID", "Sort ID: " + sortID);
+            if(sortID != 0) {	
+            	int groupid =  ((sortID & (0xFFFF << 16)) >> 16);
+            	int poster_no = sortID & 0xFFFF;
+            	
+            	//absSortID.append("\r\nSort ID: " + sortID);
+            	absSortID.append("Group ID: " + groupid);
+            	absSortID.append("\r\r-\r\rPoster No: " + poster_no);
+            
+            }else {
+            	absSortID.setVisibility(View.GONE);
+            }
     }
     
     /*
@@ -467,6 +489,7 @@ public class AbstractContentTabFragment extends Fragment {
             afName.setText("");
             authorNames.setText("");
             ConAck.setText("");
+            absSortID.setText("");
 
     }
     
