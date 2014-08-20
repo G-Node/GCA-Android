@@ -53,7 +53,7 @@ public class Abstracts extends Activity {
          * SQL Query to get data
          */
         query = "SELECT UUID AS _id , TOPIC, TITLE, ABSRACT_TEXT, STATE, SORTID, REASONFORTALK, MTIME, TYPE,DOI, COI, ACKNOWLEDGEMENTS " +
-        				"FROM ABSTRACT_DETAILS;";
+        				"FROM ABSTRACT_DETAILS ORDER BY SORTID;";
         
         /*
          * AsynchTask to parse the Abstracts JSON on a background thread
