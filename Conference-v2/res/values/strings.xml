@@ -39,5 +39,11 @@
     <string name="schedule_detail_eventsInTrack_Heading">Events in this Track:</string>
     <string name="schedule_event_detail_hint_text">Click the button above to navigate to respective Event detail</string>
     <string name="title_activity_abstract_figures">Abstract Figures</string>
+    <string-array name="groupid2str">
+        <item>Talk</item>
+        <item>Contributed Talk</item>
+        <item>W</item>
+        <item>T</item>
+    </string-array>
 
 </resources>

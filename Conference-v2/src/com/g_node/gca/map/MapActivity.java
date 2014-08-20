@@ -147,7 +147,10 @@ public class MapActivity extends FragmentActivity {
                 /*
                  * getting zoomto value
                  */
-                int getZoomto = jsonObject.getInt("zoomto");
+                int getZoomto = 1 ;
+                if (jsonObject.has("zoomto")){
+                	getZoomto = jsonObject.getInt("zoomto");
+                }
                 /*
                  * Venue name
                  */
@@ -245,9 +248,11 @@ public class MapActivity extends FragmentActivity {
                 builder = builder.include(m);
             }
             LatLngBounds bounds = builder.build();
-            CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, this.getResources()
-                    .getDisplayMetrics().widthPixels,
-                    this.getResources().getDisplayMetrics().heightPixels, 50);
+            CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, 
+            		this.getResources().getDisplayMetrics().widthPixels-
+            		(int) (this.getResources().getDisplayMetrics().widthPixels*0.1),
+                    this.getResources().getDisplayMetrics().heightPixels-
+                    (int) (this.getResources().getDisplayMetrics().heightPixels*0.1), 50);
             /*
              * Move Camera
              */
