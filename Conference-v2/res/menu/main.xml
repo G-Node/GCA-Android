@@ -1,3 +1,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
-
+	<item
+        android:id="@+id/genInfo"
+        android:showAsAction="always"
+        android:icon="@drawable/info"
+        android:title="@string/menu_genInfo_text"/>
 </menu>

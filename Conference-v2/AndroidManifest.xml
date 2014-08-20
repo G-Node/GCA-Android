@@ -81,6 +81,10 @@
             android:name="com.g_node.gca.abstracts.AbstractFiguresActivity"
             android:label="@string/title_activity_abstract_figures" >
         </activity>
+        <activity
+            android:name="com.g_node.gca.GeneralActivity"
+            android:label="@string/title_activity_generalInfo" >
+        </activity>
     </application>
 
 </manifest>

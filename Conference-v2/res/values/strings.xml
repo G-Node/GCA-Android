@@ -14,6 +14,7 @@
     <string name="title_activity_favorite_abstracts">Favorite Abstracts</string>
     <string name="title_activity_splash_screen">SplashScreen</string>
     <string name="title_activity_map">MapActivity</string>
+    <string name="title_activity_generalInfo">General Information</string>
     <string name="AcknowledgementHeading">Acknowledgements</string>
     <string name="referencesHeading">References</string>
     <string name="splashTiming">700</string>
@@ -28,6 +29,7 @@
     <string name="menu_button_maps_text">MAPS</string>
     <string name="menu_button_schedule_text">Schedule</string>
     <string name="menu_button_favorites_text">FAVOURITES</string>
+    <string name="menu_genInfo_text">Info</string>
     <string name="menu_welcome_text">Welcome&#160;|&#160;G-Node</string>
     <string name="schedule_detail_label_date">Date:</string>
     <string name="schedule_detail_label_time">Time:</string>
