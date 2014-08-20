@@ -404,7 +404,7 @@ public class AbstractContentTabFragment extends Fragment {
             	int poster_no = sortID & 0xFFFF;
             	
             	//absSortID.append("\r\nSort ID: " + sortID);
-            	absSortID.append("Group ID: " + groupid);
+            	absSortID.append("Group ID: " + get_groupid_str(groupid));
             	absSortID.append("\r\r-\r\rPoster No: " + poster_no);
             
             }else {
@@ -413,6 +413,15 @@ public class AbstractContentTabFragment extends Fragment {
     }
     
     /*
+	 * Method mapping groupid to the corresponding String 
+	 */
+    private String get_groupid_str(int groupid) {
+    	String[] id2str = getResources().getStringArray(R.array.groupid2str);
+    	//String[] id2str = {"Talk","Contributed Talk","W","T"};
+		return id2str[groupid];
+	}
+
+	/*
 	 * Function for getting abstract figures and updating the button 
 	 */
     private void getAndUpdateAbstractFiguresBtn() {
