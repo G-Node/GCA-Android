@@ -418,7 +418,7 @@ public class AbstractContentTabFragment extends Fragment {
     private String get_groupid_str(int groupid) {
     	String[] id2str = getResources().getStringArray(R.array.groupid2str);
     	//String[] id2str = {"Talk","Contributed Talk","W","T"};
-		return id2str[groupid];
+		return id2str[groupid-1];
 	}
 
 	/*
