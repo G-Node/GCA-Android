@@ -26,7 +26,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:paddingBottom="10dip"
+        android:paddingBottom="2dip"
         android:paddingRight="5dip"
         android:paddingTop="10dip" >
 
@@ -43,26 +43,11 @@
             android:textStyle="bold"
             android:textSize="20sp"
             android:singleLine="false" />
-       
-                
-	        <!-- Type -->
-		
-	    <TextView
-	        android:id="@+id/abType"
-	        android:layout_width="55dip"
-	        android:layout_height="wrap_content"
-	        android:background="#003f84"
-	        android:layout_alignParentRight="true"
-	        android:layout_alignParentBottom="true"
-	        android:gravity="center"
-	        android:textSize="12sp" 
-	        android:fontFamily="sans-serif-light"
-	        android:textColor="#FFFFFF" />
-       
+        
         <!-- Subtitle -->
 
         <TextView
-            android:id="@+id/SubTitle"
+            android:id="@+id/absAuthorNames"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/abTitle"
@@ -72,6 +57,24 @@
             android:textColor="#666362"
             android:textSize="12sp"
             android:typeface="sans" />
+        
+        <!-- Type -->
+		
+	    <TextView
+	        android:id="@+id/abType"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:background="#003f84"
+	        android:layout_alignParentRight="true"
+	        android:layout_alignParentBottom="true"
+	        android:gravity="center"
+	        android:textSize="12sp"
+	        android:paddingLeft="3sp"
+	        android:paddingRight="3sp"
+	        android:layout_below="@+id/absAuthorNames" 
+	        android:fontFamily="sans-serif-light"
+	        android:textColor="#FFFFFF" />
+       
     </RelativeLayout>
 
 </LinearLayout>

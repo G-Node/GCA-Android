@@ -12,6 +12,8 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.support.v4.widget.CursorAdapter;
+import android.util.Log;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -48,6 +50,48 @@ public class AbstractCursorAdapter extends CursorAdapter {
          * TextView for Showing Type
          */
         TextView type = (TextView)view.findViewById(R.id.abType);
+        int absSortID = cursor.getInt(cursor.getColumnIndexOrThrow("SORTID"));
+        
+        if(absSortID != 0) {	
+        	int groupid =  ((absSortID & (0xFFFF << 16)) >> 16);
+        	
+        	switch (groupid) {
+			case 1:
+				type.setText("TALK");
+				type.setBackgroundColor(Color.parseColor("#33B5E5"));
+				break;
+			
+			case 2:
+				type.setText("TALK & POSTER");
+				type.setBackgroundColor(Color.parseColor("#ef4172"));
+				break;
+			
+			case 3:
+				type.setText("POSTER");
+				type.setBackgroundColor(Color.parseColor("#AA66CC"));
+				break;
+				
+			case 4:
+				type.setText("POSTER");
+				type.setBackgroundColor(Color.parseColor("#AA66CC"));
+				break;	
+			default:
+				break;
+			}
+        	
+        	//absSortID.append("Group ID: " + get_groupid_str(groupid));
+        	
+        }else {
+        	//type.setVisibility(View.GONE);
+        	type.setTextSize(TypedValue.COMPLEX_UNIT_SP,4);
+        	type.setVisibility(View.INVISIBLE);
+        }
+
+        /*
+        Following piece of commented code isn't needed as Abstract Type is 
+        selected now based on GroupID. Previously it was being selected based on 'isTalk' field
+        but now it's selected on basis of GroupID extracted from SortID. 
+        
         String typeText = cursor.getString(cursor.getColumnIndexOrThrow("TYPE"));
         type.setText(typeText.toUpperCase());
         
@@ -56,6 +100,8 @@ public class AbstractCursorAdapter extends CursorAdapter {
         } else {
         	type.setBackgroundColor(Color.parseColor("#33B5E5"));
         }
+        */
+        
         /*
          * _id for getting Author Names
          */
@@ -95,7 +141,7 @@ public class AbstractCursorAdapter extends CursorAdapter {
         /*
          * TextView for Author Names
          */
-        TextView authorNames = (TextView)view.findViewById(R.id.SubTitle);
+        TextView authorNames = (TextView)view.findViewById(R.id.absAuthorNames);
         /*
          * Get Width
          */
