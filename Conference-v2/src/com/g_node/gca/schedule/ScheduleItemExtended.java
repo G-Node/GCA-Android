@@ -18,7 +18,7 @@ import android.widget.TextView;
 
 import com.g_node.gca.abstracts.AbstractContent;
 import com.g_node.gca.abstracts.DatabaseHelper;
-import com.shumail.newsroom.R;
+import com.g_node.gcaa.R;
 
 public class ScheduleItemExtended extends Activity {
 	

@@ -2,7 +2,7 @@ package com.g_node.gca.newsroom;
 
 import java.io.FileNotFoundException;
 
-import com.shumail.newsroom.R;
+import com.g_node.gcaa.R;
 
 import android.app.Activity;
 import android.app.ProgressDialog;

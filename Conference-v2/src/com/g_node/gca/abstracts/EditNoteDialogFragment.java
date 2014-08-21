@@ -11,7 +11,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.shumail.newsroom.R;
+import com.g_node.gcaa.R;
 
 
 public class EditNoteDialogFragment extends DialogFragment {

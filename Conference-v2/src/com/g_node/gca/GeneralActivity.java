@@ -19,7 +19,7 @@ import android.text.Html;
 import android.view.MenuItem;
 import android.widget.TextView;
 
-import com.shumail.newsroom.R;
+import com.g_node.gcaa.R;
 
 public class GeneralActivity extends Activity {
     TextView text;

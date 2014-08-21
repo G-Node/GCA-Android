@@ -20,7 +20,7 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.TextView;
 
-import com.shumail.newsroom.R;
+import com.g_node.gcaa.R;
 
 public class AbstractCursorAdapter extends CursorAdapter {
     Cursor cursorOne;

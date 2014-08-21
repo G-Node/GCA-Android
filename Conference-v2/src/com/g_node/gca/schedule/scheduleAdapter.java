@@ -14,7 +14,7 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
-import com.shumail.newsroom.R;
+import com.g_node.gcaa.R;
 
 
 public class scheduleAdapter extends BaseAdapter {

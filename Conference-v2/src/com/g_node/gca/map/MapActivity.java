@@ -40,7 +40,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.shumail.newsroom.R;
+import com.g_node.gcaa.R;
 
 public class MapActivity extends FragmentActivity {
 

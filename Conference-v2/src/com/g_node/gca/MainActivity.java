@@ -5,7 +5,7 @@ import com.g_node.gca.abstracts.FavoriteAbstracts;
 import com.g_node.gca.map.MapActivity;
 import com.g_node.gca.newsroom.NewsRoomActivity;
 import com.g_node.gca.schedule.ScheduleMainActivity;
-import com.shumail.newsroom.R;
+import com.g_node.gcaa.R;
 
 import android.os.Bundle;
 import android.app.Activity;

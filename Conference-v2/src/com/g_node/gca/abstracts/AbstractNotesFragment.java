@@ -23,7 +23,7 @@ import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.shumail.newsroom.R;
+import com.g_node.gcaa.R;
 
 public class AbstractNotesFragment extends Fragment {
 	

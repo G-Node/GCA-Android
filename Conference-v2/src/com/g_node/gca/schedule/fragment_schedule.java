@@ -14,7 +14,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
-import com.shumail.newsroom.R;
+import com.g_node.gcaa.R;
 
 public class fragment_schedule extends Fragment {
 

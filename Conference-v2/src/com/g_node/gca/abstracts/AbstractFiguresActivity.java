@@ -15,7 +15,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.ListView;
 
-import com.shumail.newsroom.R;
+import com.g_node.gcaa.R;
 
 public class AbstractFiguresActivity extends Activity {
 	

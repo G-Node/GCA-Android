@@ -10,7 +10,7 @@ import android.util.Log;
 import android.view.Window;
 
 import com.g_node.gca.schedule.ScheduleJSONParse;
-import com.shumail.newsroom.R;
+import com.g_node.gcaa.R;
 
 public class SplashScreen extends Activity {
 	

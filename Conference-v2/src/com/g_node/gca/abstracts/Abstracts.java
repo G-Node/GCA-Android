@@ -19,7 +19,7 @@ import android.widget.EditText;
 import android.widget.FilterQueryProvider;
 import android.widget.ListView;
 
-import com.shumail.newsroom.R;
+import com.g_node.gcaa.R;
 
 public class Abstracts extends Activity {
 	
