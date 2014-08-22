@@ -30,6 +30,7 @@
     <string name="menu_button_schedule_text">Schedule</string>
     <string name="menu_button_favorites_text">FAVOURITES</string>
     <string name="menu_genInfo_text">Info</string>
+    <string name="menu_aboutAPP_text">About</string>
     <string name="menu_welcome_text">Welcome&#160;|&#160;G-Node</string>
     <string name="schedule_detail_label_date">Date:</string>
     <string name="schedule_detail_label_time">Time:</string>

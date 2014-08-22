@@ -15,7 +15,12 @@ import com.g_node.gcaa.R;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.LauncherActivity;
+import android.app.AlertDialog.Builder;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.text.Html;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -106,6 +111,22 @@ public class MainActivity extends Activity {
             Intent genInfo = new Intent(this, GeneralActivity.class);
             this.startActivity(genInfo);
             return true;
+            
+		case R.id.abtApp:
+		{
+			Builder aboutDialog = new AlertDialog.Builder(MainActivity.this);
+			aboutDialog.setTitle("About the App:")
+			.setMessage(Html.fromHtml("The <b>G-Node Conference Application</b> for Android serves as an electronic conference guide for participants with included proceedings. <br><br> &#169; <b>German Neuroinformatics Node</b><br><br>Created By: <b>Shumail Mohy-ud-Din</b><br>(as part of GSoC 2014)"))
+			.setNeutralButton(android.R.string.ok,
+					new DialogInterface.OnClickListener() {
+				public void onClick(DialogInterface dialog, int id) {
+					dialog.cancel();
+				}
+			}).setIcon(getResources().getDrawable(R.drawable.launcher_brain_icon))
+			 .show();
+		}	
+	        return true;
+		
 		}
 			
 		return false;
