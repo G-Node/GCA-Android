@@ -212,13 +212,6 @@ public class ScheduleItemExtended extends Activity {
 	}
 
 	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.schedule_item_extended, menu);
-		return true;
-	}
-
-	@Override
 	public boolean onMenuItemSelected(int featureId, MenuItem item) {
 		int theId = item.getItemId();
         if (theId == android.R.id.home) {

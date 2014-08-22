@@ -104,14 +104,7 @@ public class ScheduleMainActivity extends FragmentActivity implements ActionBar.
 		Log.i("GCA-Performance", "in on Resume - Time: " + System.currentTimeMillis());
 	}
 	
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.schedule_main, menu);
-		return true;
-	}
-
-
+	
 	@Override
 	public void onTabReselected(Tab arg0, FragmentTransaction arg1) {
 		// TODO Auto-generated method stub
