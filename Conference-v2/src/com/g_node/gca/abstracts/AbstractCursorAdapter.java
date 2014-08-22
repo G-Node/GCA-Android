@@ -1,6 +1,7 @@
 /**
- * Copyright (c) 2014, Shumail Mohy-ud-Din <shumailmohyuddin@gmail.com>
- * Copyright (c) 2013, Yasir Adnan <adnan.ayon@gmail.com> - (old version)
+ * Copyright (c) 2014, German Neuroinformatics Node (G-Node)
+ * Copyright (c) 2014, Shumail Mohy-ud-Din <shumailmohyuddin@gmail.com> (2014 Version)
+ * Copyright (c) 2013, Yasir Adnan <adnan.ayon@gmail.com> 
  * License: BSD-3 (See LICENSE)
  */
 
@@ -12,7 +13,6 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.support.v4.widget.CursorAdapter;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;

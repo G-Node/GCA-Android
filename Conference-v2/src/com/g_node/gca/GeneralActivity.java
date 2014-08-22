@@ -1,7 +1,7 @@
 /**
- * Copyright (c) 2013, Yasir Adnan <adnan.ayon@gmail.com>
- * Copyright (c) 2014, Shumail Mohy-ud-Din <shumailmohyuddin@gmail.com> (2014 Version)
  * Copyright (c) 2014, German Neuroinformatics Node (G-Node)
+ * Copyright (c) 2014, Shumail Mohy-ud-Din <shumailmohyuddin@gmail.com> (2014 Version)
+ * Copyright (c) 2013, Yasir Adnan <adnan.ayon@gmail.com> 
  * License: BSD-3 (See LICENSE)
  */
 

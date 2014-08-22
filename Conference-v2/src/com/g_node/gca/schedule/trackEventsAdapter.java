@@ -1,3 +1,8 @@
+/**
+ * Copyright (c) 2014, German Neuroinformatics Node (G-Node)
+ * Copyright (c) 2014, Shumail Mohy-ud-Din <shumailmohyuddin@gmail.com>
+ * License: BSD-3 (See LICENSE)
+ */
 package com.g_node.gca.schedule;
 
 import java.util.Arrays;
@@ -13,7 +18,6 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.g_node.gcaa.R;
-
 
 
 public class trackEventsAdapter extends BaseAdapter {

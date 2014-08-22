@@ -1,4 +1,5 @@
 /**
+ * Copyright (c) 2014, German Neuroinformatics Node (G-Node)
  * Copyright (c) 2013, Yasir Adnan <adnan.ayon@gmail.com>
  * Customized for 2nd version by Shumail Mohy-ud-Din <shumailmohyuddin@gmail.com>
  * License: BSD-3 (See LICENSE)

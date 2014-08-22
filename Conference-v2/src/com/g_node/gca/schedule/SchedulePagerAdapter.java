@@ -1,3 +1,9 @@
+/**
+ * Copyright (c) 2014, German Neuroinformatics Node (G-Node)
+ * Copyright (c) 2014, Shumail Mohy-ud-Din <shumailmohyuddin@gmail.com>
+ * License: BSD-3 (See LICENSE)
+ */
+
 package com.g_node.gca.schedule;
 
 import java.util.ArrayList;
@@ -8,8 +14,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.util.Log;
-
-
 
 public class SchedulePagerAdapter extends FragmentStatePagerAdapter {
 	

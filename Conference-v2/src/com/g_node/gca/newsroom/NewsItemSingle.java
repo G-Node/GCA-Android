@@ -1,3 +1,9 @@
+/**
+ * Copyright (c) 2014, German Neuroinformatics Node (G-Node)
+ * Copyright (c) 2014, Shumail Mohy-ud-Din <shumailmohyuddin@gmail.com>
+ * License: BSD-3 (See LICENSE)
+ */
+
 package com.g_node.gca.newsroom;
 /*
  * Data object that holds all of our information about a single rss item.
