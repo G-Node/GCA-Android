@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	
-	
-	
-	<color name="tabMedium">#2B2B2B</color>
-	<color name="tabDark">#000000</color>
-	<color name="tabTransparent">#10ffffff</color>
-	<color name ="Blue">#003f84</color>
+    <color name="color_actionbar_background_blue">#54abee</color>
+    <color name="color_actionbar_background_pressed">#7ac5ff</color>
+    
 </resources>
