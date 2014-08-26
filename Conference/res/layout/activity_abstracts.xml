@@ -1,0 +1,30 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Abstracts" >
+
+    <EditText
+        android:id="@+id/abstractSearch"
+        android:lines="1"
+        android:textSize="16sp"
+        android:hint="@string/searchHint"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:maxLines="1" 
+        android:drawableRight="@android:drawable/ic_menu_search"
+        android:singleLine="true">
+	</EditText>
+    
+    <ListView
+        android:id="@+id/AbsListView"
+        android:layout_below="@+id/abstractSearch"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true" >
+    </ListView>
+    
+    
+
+</RelativeLayout>

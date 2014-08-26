@@ -1,0 +1,98 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#c3ffb5"
+    tools:context=".ScheduleItemExtended" >
+
+    <TextView
+        android:id="@+id/schedule_track_title"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+		android:textColor="#3e720b"
+		android:background="#99df88"
+        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
+        android:text="@string/hello_world" />
+
+	<TextView
+        android:id="@+id/schedule_track_subtitle"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+		android:textColor="#0a5690"
+		android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
+        android:layout_below="@+id/schedule_track_title"
+        android:text="@string/hello_world" />
+
+	<TextView
+        android:id="@+id/schedule_track_chair"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:paddingLeft="10dp"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="left|center_vertical"
+		android:textColor="#0a5690"
+		android:drawablePadding="15dp"
+		android:drawableLeft="@drawable/speaker_avatar"
+		android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
+        android:layout_below="@+id/schedule_track_subtitle"
+        android:text="@string/hello_world" />
+		
+	
+	<TextView
+	    android:id="@+id/schedule_track_events_heading"
+	    android:layout_below="@+id/schedule_track_chair"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="15dp"
+        android:paddingBottom="1dp"
+        android:drawableLeft="@drawable/icon_pointer"
+        android:drawablePadding="5sp"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="left|center_vertical"
+        android:fontFamily="sans-serif-light"
+		android:textColor="@android:color/black"
+		android:text="@string/schedule_detail_eventsInTrack_Heading"
+		android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small"/>
+	
+	<View
+		android:id="@+id/bar8"
+		android:layout_marginLeft="50dp"
+		android:layout_marginRight="15dp"
+		android:layout_marginBottom="3dp"            
+	    android:layout_width="fill_parent"
+	    android:layout_height="0.5sp"
+	    android:layout_below="@+id/schedule_track_events_heading"
+	    android:background="@android:color/black"/>	
+		
+	
+	<TableLayout 
+	    android:id="@+id/schedule_track_events_detail_table"
+	    android:layout_below="@+id/bar8"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:paddingLeft="15dp"
+	    android:layout_marginTop="20dp"
+	    android:stretchColumns="1">	
+	    	
+    </TableLayout>
+	
+	
+	<TextView
+        android:paddingBottom="10dp"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textStyle="italic"
+		android:textColor="#0a5690"
+		android:text="@string/schedule_event_detail_hint_text"
+		android:layout_alignParentBottom="true" 
+		android:textSize="12sp"/>
+    
+</RelativeLayout>

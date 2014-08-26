@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#f8f8b8" >
+
+    <TextView
+		android:id="@+id/notesTabTitle"
+		android:paddingTop="10dp"
+		android:paddingBottom="10dp"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:fontFamily="sans-serif-light"
+		android:paddingLeft="5dp"
+		android:paddingRight="5dp"
+		android:gravity="left"
+		android:text="Notes:"
+		android:drawableLeft="@drawable/notes_icon"
+		android:drawablePadding="5dp"
+		android:textStyle="bold"
+		android:background="@android:color/holo_orange_light"
+		android:textAppearance="?android:attr/textAppearanceLarge" />
+   
+<LinearLayout android:layout_below="@+id/notesTabTitle" android:id="@+id/notesButtons" android:orientation="horizontal" android:layout_height="wrap_content" android:layout_width="fill_parent" android:weightSum="1.0" >
+    <Button 
+     android:layout_height="wrap_content"
+     android:layout_width="wrap_content"  
+     android:id="@+id/NoteRefresh"
+     android:drawableLeft="@drawable/ic_action_refresh"
+     android:drawablePadding="2dp"
+     android:layout_weight="0.3"
+     android:text="Refresh" />
+        
+    <Button 
+     android:layout_height="wrap_content"
+     android:layout_width="wrap_content"  
+     android:id="@+id/addNotebtn"
+     android:drawableLeft="@drawable/ic_action_new"
+     android:drawablePadding="2dp"
+     android:layout_weight="0.7"
+     android:text="Add Note" />
+</LinearLayout>    
+    
+    <ListView
+        android:id="@+id/noteslist"
+        android:layout_marginTop="5dp"
+        android:layout_below="@+id/notesButtons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+         >
+    </ListView>
+        
+    <View
+        android:id="@+id/bar6"
+		android:layout_marginLeft="5dp"
+		android:layout_marginRight="5dp"
+		android:layout_marginTop="5dp"
+		android:layout_marginBottom="3dp"            
+	    android:layout_width="fill_parent"
+	    android:layout_height="1dp"
+	    android:layout_below="@+id/noteslist"
+	    android:background="@android:color/holo_red_dark"/>
+   
+    <TextView android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="notification"
+        android:textSize="20sp"
+        android:gravity="center"
+        android:layout_below="@+id/bar6"
+        android:id="@+id/notesText"/>    
+
+</RelativeLayout>

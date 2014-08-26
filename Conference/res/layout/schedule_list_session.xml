@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:paddingBottom="15dip" 
+    android:background="#FCFFB7" >
+    
+    <LinearLayout 
+        android:id="@+id/schedule_session_header_block"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:orientation="vertical"
+	    android:background="@drawable/yellow_background_pattern"
+    >
+    
+    <!-- Title of Session -->
+    <TextView
+	  	android:id="@+id/sessionTitle"
+	  	android:contentDescription="@string/app_name"
+	  	android:layout_width="wrap_content"
+	  	android:layout_height="wrap_content"
+	  	android:paddingLeft="25dip"
+		android:paddingRight="25dip"
+	    android:paddingTop="8dp"
+	  	android:textColor="#0099CC"
+	  	android:text="123123123123123"
+	  	android:textSize="18sp" />
+
+    <!--  Title -->
+    <TextView
+        android:id="@+id/sessionSubtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingRight="25dip"
+        android:layout_marginLeft="25dip"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        android:paddingBottom="12dp"
+        android:textStyle="bold"
+        android:typeface="sans" />
+    
+    </LinearLayout>
+    
+    <TableLayout 
+        android:id="@+id/sessionTracksTable"
+        android:paddingLeft="25dip"
+        android:paddingRight="25dip"
+        android:paddingTop="15dip"
+        android:layout_below="@+id/schedule_session_header_block"
+        android:layout_width="match_parent" 
+    	android:layout_height="wrap_content" >
+        
+    </TableLayout>
+    
+</RelativeLayout>  
