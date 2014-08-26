@@ -92,6 +92,17 @@ public class MainActivity extends Activity {
 			}
 		});
 		
+		Button infBtn = (Button) findViewById(R.id.btn_info);
+		infBtn.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				Intent infIntent = new Intent(MainActivity.this, GeneralActivity.class);
+				startActivity(infIntent);
+				
+			}
+		});
+		
 		
 				
 	}
