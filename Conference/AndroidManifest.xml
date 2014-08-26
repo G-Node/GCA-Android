@@ -66,7 +66,7 @@
 
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
-            android:value="AIzaSyDqitAsErwWTWAkWCtLiu9od9iJ1Xf-Jts" />
+            android:value="AIzaSyA7lzhoQo0xmdu1Rx_v7Nk7fM3K38h6xlw" />
 
         <activity
             android:name="com.g_node.gca.schedule.ScheduleMainActivity"
