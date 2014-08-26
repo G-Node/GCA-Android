@@ -56,22 +56,22 @@ public class AbstractCursorAdapter extends CursorAdapter {
         	int groupid =  ((absSortID & (0xFFFF << 16)) >> 16);
         	
         	switch (groupid) {
-			case 1:
+			case 0:
 				type.setText("TALK");
 				type.setBackgroundColor(Color.parseColor("#33B5E5"));
 				break;
 			
-			case 2:
+			case 1:
 				type.setText("TALK & POSTER");
 				type.setBackgroundColor(Color.parseColor("#ef4172"));
 				break;
 			
-			case 3:
+			case 2:
 				type.setText("POSTER");
 				type.setBackgroundColor(Color.parseColor("#AA66CC"));
 				break;
 				
-			case 4:
+			case 3:
 				type.setText("POSTER");
 				type.setBackgroundColor(Color.parseColor("#AA66CC"));
 				break;	

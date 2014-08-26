@@ -408,10 +408,11 @@ public class AbstractContentTabFragment extends Fragment {
             if(sortID != 0) {	
             	int groupid =  ((sortID & (0xFFFF << 16)) >> 16);
             	int poster_no = sortID & 0xFFFF;
-            	
+            	Log.i("GCA-groupid", "groupid: " + groupid);
+            	Log.i("GCA-posterno", "Poster Nr: " + poster_no);
             	//absSortID.append("\r\nSort ID: " + sortID);
-            	absSortID.append("Group ID: " + get_groupid_str(groupid));
-            	absSortID.append("\r\r-\r\rPoster No: " + poster_no);
+            	title.append("   (" + get_groupid_str(groupid));
+            	title.append("" + poster_no+")");
             
             }else {
             	absSortID.setVisibility(View.GONE);
@@ -424,7 +425,7 @@ public class AbstractContentTabFragment extends Fragment {
     private String get_groupid_str(int groupid) {
     	String[] id2str = getResources().getStringArray(R.array.groupid2str);
     	//String[] id2str = {"Talk","Contributed Talk","W","T"};
-		return id2str[groupid-1];
+		return id2str[groupid];
 	}
 
 	/*
