@@ -34,7 +34,7 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		
-		getActionBar().setTitle("G-Node Conference");
+		getActionBar().setTitle(R.string.app_name);
 		//getActionBar().setIcon(getResources().getDrawable(R.drawable.icon_brain));
 		
 		Button news = (Button)findViewById(R.id.btn_news);
