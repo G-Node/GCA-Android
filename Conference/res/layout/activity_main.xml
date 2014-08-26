@@ -77,7 +77,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:drawablePadding="10dp"
-        android:drawableTop="@drawable/icon_star_btn"
+        android:drawableTop="@drawable/icon_info_btn"
         android:text="@string/info" />
     
 </LinearLayout>
