@@ -24,7 +24,7 @@
 {
         "title": "Opening Session",
         "subtitle": "",
-        "chair": "",
+        "chair": null,
         "events": [
             {
                 "title": "Opening",
