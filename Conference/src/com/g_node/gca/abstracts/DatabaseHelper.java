@@ -7,18 +7,20 @@
 
 package com.g_node.gca.abstracts;
 
+import com.readystatesoftware.sqliteasset.SQLiteAssetHelper;
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-public class DatabaseHelper extends SQLiteOpenHelper {
+
+public class DatabaseHelper extends SQLiteAssetHelper {
 	
 	private String gtag = "GCA-DB";
 	
-	private static String Database_Name = "gca.db";
+	private static String DATABASE_NAME = "gca.db";
 
     private static int Database_Version = 5;
 
@@ -93,46 +95,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 			+ "FIG_CAPTION TEXT, FIG_URL TEXT, FIG_POSITION TEXT);";
     
     public DatabaseHelper(Context context) {
-        super(context, Database_Name, null, Database_Version);
+        super(context, DATABASE_NAME, null, Database_Version);
         // TODO Auto-generated constructor stub
     }
 
-	@Override
-	public void onCreate(SQLiteDatabase database) {
-		// TODO Auto-generated method stub
-		
-		/*
-         * Creating Tables
-         */
-		database.execSQL(CREATE_ABSTRACT_DETAILS);
-		database.execSQL(CREATE_AUTHORS_DETAILS);
-		database.execSQL(CREATE_ABSTRACT_AUTHOR_POSITION_AFFILIATION);
-		database.execSQL(CREATE_AFFILIATION_DETAILS);
-		database.execSQL(CREATE_ABSTRACT_AFFILIATION_ID_POSITION);
-		database.execSQL(CREATE_ABSTRACT_REFERENCES);
-		database.execSQL(CREATE_ABSTRACT_FAVORITES);
-		database.execSQL(CREATE_ABSTRACT_NOTES);
-		database.execSQL(CREATE_ABSTRACT_FIGURES);
-		
-	}
 
-	@Override
-	public void onUpgrade(SQLiteDatabase database, int oldVersion, int newVersion) {
-		// TODO Auto-generated method stub
-		
-		database.execSQL("DROP TABLE IF EXISTS " + TABLE_ABSTRACT_DETAILS);
-		database.execSQL("DROP TABLE IF EXISTS " + TABLE_AUTHORS_DETAILS);
-		database.execSQL("DROP TABLE IF EXISTS " + TABLE_ABSTRACT_AUTHOR_POSITION_AFFILIATION);
-		database.execSQL("DROP TABLE IF EXISTS " + TABLE_AFFILIATION_DETAILS);
-		database.execSQL("DROP TABLE IF EXISTS " + TABLE_ABSTRACT_AFFILIATION_ID_POSITION);
-		database.execSQL("DROP TABLE IF EXISTS " + TABLE_ABSTRACT_REFERENCES);
-		database.execSQL("DROP TABLE IF EXISTS " + TABLE_ABSTRACT_FAVORITES);
-		database.execSQL("DROP TABLE IF EXISTS " + TABLE_ABSTRACT_NOTES);
-		database.execSQL("DROP TABLE IF EXISTS " + TABLE_ABSTRACT_FIGURES);
-		onCreate(database);
-		
-	}
-	
 	public void open() {
         /*
          * Opening Database

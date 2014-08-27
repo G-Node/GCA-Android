@@ -30,11 +30,12 @@ public class FavoriteAbstracts extends Activity {
 	AbstractCursorAdapter cursorAdapter;
 	
 	String gTag = "GCA-fav-Abstracts";
-	DatabaseHelper dbHelper = new DatabaseHelper(this);
+	DatabaseHelper dbHelper;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		dbHelper = new DatabaseHelper(this);
 		setContentView(R.layout.activity_favorite_abstracts);
 		
 		getActionBar().setDisplayHomeAsUpEnabled(true);

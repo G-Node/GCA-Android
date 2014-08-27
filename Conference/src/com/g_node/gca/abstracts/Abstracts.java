@@ -38,13 +38,13 @@ public class Abstracts extends Activity {
 	String query = "";
 	
 	String gTag = "GCA-Abstracts";
-	DatabaseHelper dbHelper = new DatabaseHelper(this);
+	DatabaseHelper dbHelper ;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_abstracts);
-		
+		dbHelper = new DatabaseHelper(this);
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 		
 		listView = (ListView)findViewById(R.id.AbsListView);
