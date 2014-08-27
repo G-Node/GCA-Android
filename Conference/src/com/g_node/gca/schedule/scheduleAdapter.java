@@ -10,6 +10,8 @@ import java.util.List;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.res.Resources;
+import android.graphics.Color;
 import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -70,10 +72,10 @@ public class scheduleAdapter extends BaseAdapter {
 		Log.i("GCA-B-Schedule", "Line 70");
 		View vi = arg1;
 		ScheduleItemRecord y = scheduleItemsGeneralList.get(arg0);
-		
+		Log.i("Garber_EVENT", "asd");
 		if(y.getSchedule_item_type().equals(SCHEDULE_ITEMTYPE_EVENT)) {
 			Log.i("GCA-B-Schedule", "GetView called for EVENT");
-			
+			Log.i("Garber_BEFORE", "asd");
 			vi = inflater.inflate(R.layout.schedule_list_events_general, null);
 			
 			if(vi==null ){
@@ -96,11 +98,15 @@ public class scheduleAdapter extends BaseAdapter {
 			if(!tempEvent.getAuthors().equals("")) 
 				((TextView)vi.findViewById(R.id.event_location)).append(Html.fromHtml("&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;<i>" + tempEvent.getAuthors() + "</i>" ));
 			
+			if (tempEvent.getType().equals("food")){
+				vi.findViewById(R.id.list_item_middle_container).setBackgroundColor(
+						ctx.getResources().getColor(R.color.color_food));
+			}
 			return vi;
 		
 		} else if (y.getSchedule_item_type().equals(SCHEDULE_ITEMTYPE_TRACK)) {	
 			//if the schedule item is a Track, different layout and approach
-			
+			Log.i("Garber_TRACK", "asd");
 			Log.i("GCA-B-Schedule", "GetView called for TRACK");
 			
 			//display track here now
@@ -118,9 +124,11 @@ public class scheduleAdapter extends BaseAdapter {
 			
 			x.setText(tempTrack.getTitle());
 			
-			TextView xa = (TextView) vi.findViewById(R.id.trackSubtitle);
-			xa.setText(ctx.getResources().getString(R.string.track_chair_label) + tempTrack.getChair() );
 			
+			if (tempTrack.getChair().length()>0){
+				TextView xa = (TextView) vi.findViewById(R.id.trackSubtitle);
+				xa.setText(ctx.getResources().getString(R.string.track_chair_label) + tempTrack.getChair() );
+			}
 			EventScheduleItem[] tempTrackEvents = tempTrack.getEventsInTrack();
 			
 			
@@ -137,6 +145,10 @@ public class scheduleAdapter extends BaseAdapter {
 				if(!tempTrackEvents[i].getAuthors().equals("")) 
 					((TextView)tempRow.findViewById(R.id.track_event_location)).append(Html.fromHtml("&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;<i>" + tempTrackEvents[i].getAuthors() + "</i>"));
 				
+				if (tempTrackEvents[i].getType().equals("food")){
+					tempRow.findViewById(R.id.list_item_middle_container).setBackgroundColor(
+							ctx.getResources().getColor(R.color.color_food));
+				}
 				table.addView(tempRow);
 			}
 			table.requestLayout();
@@ -177,8 +189,10 @@ public class scheduleAdapter extends BaseAdapter {
 				
 				TableRow tempRow = (TableRow) inflater.inflate(R.layout.session_track_table_row, null);
 				((TextView)tempRow.findViewById(R.id.session_track_name)).setText(tempSessionTracks[i].getTitle());
-				((TextView)tempRow.findViewById(R.id.session_track_chair)).setText(ctx.getResources().getString(R.string.track_chair_label) + tempSessionTracks[i].getChair());
-				
+				Log.i("GCA-A-ScheduleChair", "SessionChair: " + tempSessionTracks[i].getChair());	
+				if (tempSessionTracks[i].getChair().length() > 0){
+						((TextView)tempRow.findViewById(R.id.session_track_chair)).setText(ctx.getResources().getString(R.string.track_chair_label) + tempSessionTracks[i].getChair());
+				}
 				//here add events of respective track in another table
 				EventScheduleItem[] eventsInCurrentTrack = tempSessionTracks[i].getEventsInTrack();
 				
@@ -201,7 +215,11 @@ public class scheduleAdapter extends BaseAdapter {
 					
 					if(!eventsInCurrentTrack[j].getAuthors().equals("")) 
 						((TextView)tempEventRowForTrackEventsTable.findViewById(R.id.session_track_event_location)).append(Html.fromHtml("&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;<i>" + eventsInCurrentTrack[j].getAuthors() + "</i>"));
-						
+					
+					if (eventsInCurrentTrack[j].getType().equals("food")){
+						tempRow.findViewById(R.id.list_item_middle_container).setBackgroundColor(
+								ctx.getResources().getColor(R.color.color_food));
+					}
 					//Adding the event row to Tracks
 					trackEventstable.addView(tempEventRowForTrackEventsTable);
 					trackEventstable.requestLayout();
