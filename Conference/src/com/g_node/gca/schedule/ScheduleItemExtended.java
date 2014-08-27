@@ -32,7 +32,7 @@ public class ScheduleItemExtended extends Activity {
 	private String SCHEDULE_ITEMTYPE_TRACK = "track";
 	private String SCHEDULE_ITEMTYPE_SESSION = "session";
 	
-	DatabaseHelper dbHelper = new DatabaseHelper(this);;
+	DatabaseHelper dbHelper;
 	
 	String event_abstract_uuid;
 	
@@ -43,7 +43,7 @@ public class ScheduleItemExtended extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
+		DatabaseHelper dbHelper = new DatabaseHelper(this);;
 		dbHelper.open();
 		actionbar = getActionBar();
 		actionbar.setIcon(getResources().getDrawable(R.drawable.icon_schedule));
@@ -226,7 +226,7 @@ public class ScheduleItemExtended extends Activity {
 	@Override
 	protected void onDestroy() {
 		// TODO Auto-generated method stub
-		dbHelper.close();
+		//dbHelper.close();
 		super.onDestroy();
 	}
 	

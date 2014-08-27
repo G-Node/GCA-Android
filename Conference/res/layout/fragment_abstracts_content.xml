@@ -22,7 +22,7 @@
             android:textStyle="bold"
             android:textColor="#3d3d3d"
             android:background="#dddddd"
-            android:textAppearance="?android:attr/textAppearanceLarge" />
+            android:textAppearance="?android:attr/textAppearanceMedium" />
     
     
         
