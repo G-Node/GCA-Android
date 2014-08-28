@@ -41,6 +41,7 @@
     <string name="schedule_track_detail_hint_text">Click the button above to navigate to respective track detail</string>
     <string name="schedule_detail_eventsInTrack_Heading">Events in this Track:</string>
     <string name="schedule_event_detail_hint_text">Click the button above to navigate to respective Event detail</string>
+    <string name="rss_adress">http://www.nncn.de/de/neues/nachrichten/netzwerk-nachrichten/RSS</string>
     <string name="title_activity_abstract_figures">Abstract Figures</string>
     <string-array name="groupid2str">
         <item>T</item>
