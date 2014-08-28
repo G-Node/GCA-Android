@@ -32,6 +32,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.webkit.WebView;
 
 import com.g_node.gcaa.R;
 
@@ -42,7 +43,7 @@ public class AbstractContentTabFragment extends Fragment {
 	boolean isFav;
 	MenuItem starG;
 	
-    TextView content;
+    WebView content;
 
     TextView title;
 
@@ -158,7 +159,7 @@ public class AbstractContentTabFragment extends Fragment {
         /*
          * TextView for Abstract Text
          */
-        content = (TextView)getView().findViewById(R.id.Content);
+        content = (WebView) getView().findViewById(R.id.Content);
         /*
          * TextView for Abstract Title
          */
@@ -397,7 +398,23 @@ public class AbstractContentTabFragment extends Fragment {
             do {
 
                 String Text = cursorTwo.getString(cursorTwo.getColumnIndexOrThrow("ABSRACT_TEXT"));
-                content.setText(Text);
+                content.getSettings().setJavaScriptEnabled(true);
+        		content.getSettings().setBuiltInZoomControls(false);
+        		content.loadDataWithBaseURL("http://bar", "<script type='text/x-mathjax-config'>"
+        				+"MathJax.Hub.Config({ "
+        				+"showMathMenu: false, "
+        				+"jax: ['input/TeX','output/HTML-CSS'], "
+        				+"tex2jax: {inlineMath: [ ['$','$']],displayMath: [ ['$$','$$'] ],processEscapes: true},"
+        				+"extensions: ['tex2jax.js'], "
+        				+"TeX: { extensions: ['AMSmath.js','AMSsymbols.js',"
+        				+"'noErrors.js','noUndefined.js'] }, "
+        				+"});</script>"
+        				+"<script type='text/javascript' "
+        				+"src='file:///android_asset/MathJax/MathJax.js'"
+        				+"></script><span id='math'>"+Text+"</span>","text/html","utf-8","");
+        	
+        		content.loadUrl("javascript:MathJax.Hub.Queue(['Typeset',MathJax.Hub]);");
+                
 
             } while (cursorTwo.moveToNext());
             
@@ -504,7 +521,7 @@ public class AbstractContentTabFragment extends Fragment {
 
             title.setText("");
             topic.setText("");
-            content.setText("");
+            content.loadData("", "text/html","utf-8");
             ConRefs.setText("");
             afName.setText("");
             authorNames.setText("");

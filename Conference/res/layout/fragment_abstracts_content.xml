@@ -7,7 +7,7 @@
 
     <RelativeLayout
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="match_parent" >
     
     <TextView
             android:id="@+id/ConTitle"
@@ -70,15 +70,14 @@
             android:textStyle="italic" />
 
 
-        <TextView
+        <WebView
             android:id="@+id/Content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
             android:paddingLeft="5dip"
             android:paddingRight="5dip"
-            android:layout_below="@+id/ConAfName"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/ConAfName" />
         
         <TextView
             android:id="@+id/absSortID"
