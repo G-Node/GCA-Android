@@ -90,12 +90,12 @@ public class scheduleAdapter extends BaseAdapter {
 			TextView xa = (TextView) vi.findViewById(R.id.event_title);
 			xa.setText(tempEvent.getTitle());
 			
+			((TextView)vi.findViewById(R.id.event_location)).append(Html.
+					fromHtml("<i>" + tempEvent.getAuthors() + "</i>"+
+					"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" ));
 			((TextView)vi.findViewById(R.id.event_end_time)).setText(tempEvent.getEnd());
-			((TextView)vi.findViewById(R.id.event_location)).setText(tempEvent.getLocation());
-			
-			if(!tempEvent.getAuthors().equals("")) 
-				((TextView)vi.findViewById(R.id.event_location)).append(Html.fromHtml("&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;<i>" + tempEvent.getAuthors() + "</i>" ));
-			
+			((TextView)vi.findViewById(R.id.event_location)).append(tempEvent.getLocation());
+
 			if (tempEvent.getType().equals("food")){
 				vi.findViewById(R.id.list_item_middle_container).setBackgroundColor(
 						ctx.getResources().getColor(R.color.color_food));
@@ -135,13 +135,13 @@ public class scheduleAdapter extends BaseAdapter {
 			for(int i=0; i<tempTrackEvents.length; i++) {
 				
 				TableRow tempRow = (TableRow) LayoutInflater.from(ctx).inflate(R.layout.track_events_table_row, null);
+				((TextView)tempRow.findViewById(R.id.track_event_location)).append(Html.
+						fromHtml("<i>" + tempTrackEvents[i].getAuthors() + "</i>"+
+								"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"));
 				((TextView)tempRow.findViewById(R.id.track_event_start)).setText(tempTrackEvents[i].getStart());
 				((TextView)tempRow.findViewById(R.id.track_event_title)).setText(tempTrackEvents[i].getTitle());
-				((TextView)tempRow.findViewById(R.id.track_event_location)).setText(tempTrackEvents[i].getLocation());
+				((TextView)tempRow.findViewById(R.id.track_event_location)).append(tempTrackEvents[i].getLocation());
 				((TextView)tempRow.findViewById(R.id.track_Event_end)).setText(tempTrackEvents[i].getEnd());
-				
-				if(!tempTrackEvents[i].getAuthors().equals("")) 
-					((TextView)tempRow.findViewById(R.id.track_event_location)).append(Html.fromHtml("&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;<i>" + tempTrackEvents[i].getAuthors() + "</i>"));
 				
 				if (tempTrackEvents[i].getType().equals("food")){
 					tempRow.findViewById(R.id.list_item_middle_container).setBackgroundColor(
@@ -207,13 +207,14 @@ public class scheduleAdapter extends BaseAdapter {
 					}
 					((TextView)tempEventRowForTrackEventsTable.findViewById(R.id.session_track_event_start)).setText(eventsInCurrentTrack[j].getStart());
 					Log.i("GCA-A-Schedule", "Event title: " + eventsInCurrentTrack[j].getTitle());
+					((TextView)tempEventRowForTrackEventsTable.findViewById(
+							R.id.session_track_event_location)).append(Html.
+									fromHtml("<i>" + eventsInCurrentTrack[j].getAuthors() + "</i>"+
+									"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"));
 					((TextView)tempEventRowForTrackEventsTable.findViewById(R.id.session_track_Event_end)).setText(eventsInCurrentTrack[j].getEnd());
 					((TextView)tempEventRowForTrackEventsTable.findViewById(R.id.session_track_event_title)).setText(eventsInCurrentTrack[j].getTitle());
-					((TextView)tempEventRowForTrackEventsTable.findViewById(R.id.session_track_event_location)).setText(eventsInCurrentTrack[j].getLocation());
-					
-					if(!eventsInCurrentTrack[j].getAuthors().equals("")) 
-						((TextView)tempEventRowForTrackEventsTable.findViewById(R.id.session_track_event_location)).append(Html.fromHtml("&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;<i>" + eventsInCurrentTrack[j].getAuthors() + "</i>"));
-					
+					((TextView)tempEventRowForTrackEventsTable.findViewById(R.id.session_track_event_location)).append(eventsInCurrentTrack[j].getLocation());
+								
 					if (eventsInCurrentTrack[j].getType().equals("food")){
 						tempRow.findViewById(R.id.list_item_middle_container).setBackgroundColor(
 								ctx.getResources().getColor(R.color.color_food));
