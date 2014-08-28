@@ -31,7 +31,7 @@ public class FeedXmlPullParser {
 	static final String KEY_LINK = "link";
 	static final String KEY_ABOUT = "description";
 	static final String KEY_IMAGE_URL = "image";
-	static final String KEY_DATE = "pubDate";
+	static final String KEY_DATE = "dc:type";
 
 	public static List<NewsItemSingle> getNewsItemFromFile(Context ctx) {
 
