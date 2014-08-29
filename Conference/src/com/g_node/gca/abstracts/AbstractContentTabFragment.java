@@ -359,14 +359,33 @@ public class AbstractContentTabFragment extends Fragment {
 	 */
     private void getAndUpdateAbstractReferences() {
 
-    	String referenceSQLQuery = "SELECT * FROM ABSTRACT_REFERENCES WHERE ABSTRACT_UUID = '" + value +"';";
+    	String referenceSQLQuery = "SELECT * FROM ABSTRACT_REFERENCES WHERE ABSTRACT_UUID = '" 
+    	+ value +"';";
         referenceCursor = DatabaseHelper.database.rawQuery(referenceSQLQuery, null);
-        
+        String referenceName;
         if (referenceCursor != null && referenceCursor.moveToFirst()) {
         	int refNumber = 1;
         	do {
 	        	Log.i(gtag, "in DO WHILE References");
-	        	String referenceName = referenceCursor.getString(referenceCursor.getColumnIndexOrThrow("REF_TEXT"));
+	        	String ref_txt = referenceCursor.getString(
+	        			referenceCursor.getColumnIndexOrThrow("REF_TEXT"));
+	        	String ref_link = referenceCursor.getString(
+	        			referenceCursor.getColumnIndexOrThrow("REF_LINK"));
+	        	String ref_doi = referenceCursor.getString(
+	        			referenceCursor.getColumnIndexOrThrow("REF_DOI"));
+	        	
+	        	if (!ref_txt.equals("null")){
+	        		referenceName = ref_txt;
+	        	}
+	        	else if(!ref_link.equals("null")){
+	        		referenceName = ref_link;
+	        	}
+	        	else if(!ref_doi.equals("null")){
+	        		referenceName = ref_doi;
+	        	}
+	        	else{
+	        		referenceName = "";
+	        	}
 	        	ConRefs.append(Html.fromHtml(refNumber + ": " + referenceName + "<br/>" ));
 	        	refNumber++;
 	        } while (referenceCursor.moveToNext());
