@@ -72,10 +72,8 @@ public class scheduleAdapter extends BaseAdapter {
 		Log.i("GCA-B-Schedule", "Line 70");
 		View vi = arg1;
 		ScheduleItemRecord y = scheduleItemsGeneralList.get(arg0);
-		Log.i("Garber_EVENT", "asd");
 		if(y.getSchedule_item_type().equals(SCHEDULE_ITEMTYPE_EVENT)) {
 			Log.i("GCA-B-Schedule", "GetView called for EVENT");
-			Log.i("Garber_BEFORE", "asd");
 			vi = inflater.inflate(R.layout.schedule_list_events_general, null);
 			
 			if(vi==null ){
