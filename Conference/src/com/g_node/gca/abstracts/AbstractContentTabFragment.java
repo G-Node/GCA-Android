@@ -22,7 +22,9 @@ import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.Html;
+import android.text.TextUtils;
 import android.text.method.LinkMovementMethod;
+import android.text.util.Linkify;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -33,7 +35,6 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.webkit.WebView;
-
 import com.g_node.gcaa.R;
 
 public class AbstractContentTabFragment extends Fragment {
@@ -236,7 +237,7 @@ public class AbstractContentTabFragment extends Fragment {
 	        	Log.i(gtag, "in DO WHILE");
 	        	String authEmail = cursor.getString(cursor.getColumnIndexOrThrow("AUTHOR_EMAIL"));
 	        	Log.i(gtag, "author email => " + authEmail);
-	        	String authorName = cursor.getString(cursor.getColumnIndexOrThrow("AUTHOR_FIRST_NAME")) + cursor.getString(cursor.getColumnIndexOrThrow("AUTHOR_LAST_NAME")) ;
+	        	String authorName = cursor.getString(cursor.getColumnIndexOrThrow("AUTHOR_FIRST_NAME")) + " " +cursor.getString(cursor.getColumnIndexOrThrow("AUTHOR_LAST_NAME")) ;
 	        	String authAffiliation = cursor.getString(cursor.getColumnIndexOrThrow("AUTHOR_AFFILIATION"));
 	        	
 	        	//remove unwanted characters from affiliation superscript id's
@@ -265,10 +266,11 @@ public class AbstractContentTabFragment extends Fragment {
 
 		        	} else {
 		        		Log.i(gtag, "in author check - ELSE ");
-		        		authorNames.append(Html.fromHtml("<b><a href=\"mailto:" + authEmail + "\">" + authorName + "</a>"  + "</b><sup><small>"
+		        		//authorNames.append(Html.fromHtml("<b><a href=\"mailto:" + authEmail + "\">" + authorName + "</a>"  + "</b><sup><small>"
+		                //        + authAffiliation + "</small></sup><br/>"));
+		        		//authorNames.setMovementMethod(LinkMovementMethod.getInstance());
+		        		authorNames.append(Html.fromHtml("<b>" + authorName + "</b><sup><small>"
 		                        + authAffiliation + "</small></sup><br/>"));
-		        		authorNames.setMovementMethod(LinkMovementMethod.getInstance());
-		        		
 		        	}
 	        	} else {
 	        		;
@@ -276,6 +278,7 @@ public class AbstractContentTabFragment extends Fragment {
 	        	
 	        } while (cursor.moveToNext());
         }
+        
     	
     } //end authorName function
     
@@ -406,9 +409,11 @@ public class AbstractContentTabFragment extends Fragment {
             do {
 
                 String Text = cursorTwo.getString(cursorTwo.getColumnIndexOrThrow("ABSRACT_TEXT"));
+                Text = TextUtils.htmlEncode(Text);
                 content.getSettings().setJavaScriptEnabled(true);
         		content.getSettings().setBuiltInZoomControls(false);
         		if (Text.contains("$")){
+        		//if (true){
 	        		content.loadDataWithBaseURL("http://bar", "<script type='text/x-mathjax-config'>"
 	        				+"MathJax.Hub.Config({ "
 	        				+"showMathMenu: false, "
@@ -420,11 +425,12 @@ public class AbstractContentTabFragment extends Fragment {
 	        				+"});</script>"
 	        				+"<script type='text/javascript' "
 	        				+"src='file:///android_asset/MathJax/MathJax.js'"
-	        				+"></script><span id='math'>"+Text+"</span>","text/html","utf-8","");        	
+	        				+"></script><span id='math'>"+Text+"</span>","text/html","UTF-8","");        	
 	        		content.loadUrl("javascript:MathJax.Hub.Queue(['Typeset',MathJax.Hub]);");
         		}
         		else{
-        			content.loadData(Text, "text/html", "utf-8");
+        			content.loadDataWithBaseURL("http://bar",Text,"text/html","UTF-8","");
+        			
         		}
                 
 
@@ -549,6 +555,8 @@ public class AbstractContentTabFragment extends Fragment {
   	    NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
   	    return activeNetworkInfo != null && activeNetworkInfo.isConnected();
   	} 
+  	
+
     
 } //end class
 
