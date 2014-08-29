@@ -236,7 +236,7 @@ public class AbstractContentTabFragment extends Fragment {
 	        	Log.i(gtag, "in DO WHILE");
 	        	String authEmail = cursor.getString(cursor.getColumnIndexOrThrow("AUTHOR_EMAIL"));
 	        	Log.i(gtag, "author email => " + authEmail);
-	        	String authorName = cursor.getString(cursor.getColumnIndexOrThrow("AUTHOR_FIRST_NAME")) + ", " + cursor.getString(cursor.getColumnIndexOrThrow("AUTHOR_LAST_NAME")) ;
+	        	String authorName = cursor.getString(cursor.getColumnIndexOrThrow("AUTHOR_FIRST_NAME")) + cursor.getString(cursor.getColumnIndexOrThrow("AUTHOR_LAST_NAME")) ;
 	        	String authAffiliation = cursor.getString(cursor.getColumnIndexOrThrow("AUTHOR_AFFILIATION"));
 	        	
 	        	//remove unwanted characters from affiliation superscript id's
@@ -301,10 +301,18 @@ public class AbstractContentTabFragment extends Fragment {
         if (cursorOne != null && cursorOne.moveToFirst()) {
 	        do {
 	        	Log.i(gtag, "in DO WHILE aff");
-	        	String affName = cursorOne.getString(cursorOne.getColumnIndexOrThrow("AFFILIATION_SECTION")) + 
-	        					", " + cursorOne.getString(cursorOne.getColumnIndexOrThrow("AFFILIATION_DEPARTMENT")) + 
-	        					", " + cursorOne.getString(cursorOne.getColumnIndexOrThrow("AFFILIATION_ADDRESS")) + 
-	        					", " + cursorOne.getString(cursorOne.getColumnIndexOrThrow("AFFILIATION_COUNTRY")) ;
+	        	String [] aff_array = {cursorOne.getString(cursorOne.getColumnIndexOrThrow("AFFILIATION_SECTION")),
+		        			cursorOne.getString(cursorOne.getColumnIndexOrThrow("AFFILIATION_DEPARTMENT")),	        	
+		        			cursorOne.getString(cursorOne.getColumnIndexOrThrow("AFFILIATION_ADDRESS")),
+		        			cursorOne.getString(cursorOne.getColumnIndexOrThrow("AFFILIATION_COUNTRY")) 
+		        			};
+	        	String affName = "";
+	        	for (String txt:aff_array){
+	        		if (!txt.equals("null")){
+	        			affName = affName+txt+",";
+	        		}
+	        	}
+	        	affName = affName.substring(0, affName.length()-1);
 	        	int affPos = cursorOne.getInt(cursorOne.getColumnIndexOrThrow("AFFILIATION_POSITION"));
 	        	affPos++;
 	        	afName.append(Html.fromHtml(affPos + ": " + "<b>" + affName + "</b><br/>" ));
