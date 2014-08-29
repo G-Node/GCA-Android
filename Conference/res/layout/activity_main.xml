@@ -13,15 +13,23 @@
         android:orientation="horizontal"
         android:gravity="bottom"
         android:weightSum="3" >
-
-        <Button
-            android:id="@+id/btn_news"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:drawableTop="@drawable/icon_news"
-            android:drawablePadding="10dp"
-            android:text="@string/menu_button_news_text" />
+    
+	    <Button
+	        android:id="@+id/btn_info"
+	        android:layout_width="0dp"
+	        android:layout_height="wrap_content"
+	        android:layout_weight="1"
+	        android:drawablePadding="10dp"
+	        android:drawableTop="@drawable/icon_info_btn"
+	        android:text="@string/info" />
+	    <Button
+	        android:id="@+id/btn_schedule"
+	        android:layout_weight="1"
+	        android:layout_width="0dp"
+	        android:layout_height="wrap_content"
+	        android:drawableTop="@drawable/icon_schedule_btn2"
+	        android:drawablePadding="10dp"
+	        android:text="@string/menu_button_schedule_text" />
 
 		<Button
 		    android:id="@+id/btn_abstracts"
@@ -32,17 +40,8 @@
 		    android:drawablePadding="10dp"
 		    android:text="@string/menu_button_abstract_text" />
 		
-		<Button
-            android:id="@+id/btn_maps"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:drawableTop="@drawable/icon_map_btn"
-            android:drawablePadding="10dp"
-            android:text="@string/menu_button_maps_text" />
-				
 
-    </LinearLayout>
+		</LinearLayout>
     
  <LinearLayout
         android:layout_width="match_parent"
@@ -51,34 +50,35 @@
         android:orientation="horizontal"
         android:weightSum="3" >    
     
+		<Button
+            android:id="@+id/btn_maps"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/icon_map_btn"
+            android:drawablePadding="10dp"
+            android:text="@string/menu_button_maps_text" />
 
-    <Button
-        android:id="@+id/btn_schedule"
-        android:layout_weight="1"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:drawableTop="@drawable/icon_schedule_btn2"
-        android:drawablePadding="10dp"
-        android:text="@string/menu_button_schedule_text" />
     
+	    <Button
+		    android:id="@+id/btn_news"
+		    android:layout_width="0dp"
+		    android:layout_height="wrap_content"
+		    android:layout_weight="1"
+		    android:drawableTop="@drawable/icon_news"
+		    android:drawablePadding="10dp"
+		    android:text="@string/menu_button_news_text" />
     
-    <Button
-        android:id="@+id/btn_favorites"
-        android:layout_weight="1"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:drawableTop="@drawable/icon_star_btn"
-        android:drawablePadding="10dp"
-        android:text="@string/menu_button_favorites_text" />
-    
-    <Button
-        android:id="@+id/btn_info"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:drawablePadding="10dp"
-        android:drawableTop="@drawable/icon_info_btn"
-        android:text="@string/info" />
+	    <Button
+	        android:id="@+id/btn_favorites"
+	        android:layout_weight="1"
+	        android:layout_width="0dp"
+	        android:layout_height="wrap_content"
+	        android:drawableTop="@drawable/icon_star_btn"
+	        android:drawablePadding="10dp"
+	        android:text="@string/menu_button_favorites_text" />
+	    
+
     
 </LinearLayout>
 
