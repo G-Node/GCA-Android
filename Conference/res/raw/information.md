@@ -99,3 +99,35 @@ Giulio Tononi, University of Wisconsin - Madison School of Medicine, Madison, US
 
 We will start this evening event with two 45 min talks by Prof. Dr. Joseph Levine and Prof. Dr. Giulio Tononi. Prof. Levine is a philosopher who has been working on philosophy of the mind and the problem of consciousness for the last 30 years. He argues that a so called explanatory gap separates the realm of physical phenomena and the realm of phenomenal experiences. Prof. Tononi is a neuroscientist and psychiatrist. He is one of the inventors of the Integrated Information Theory of consciousness and his ideas might pave the road towards a quantification and scientific understanding of consciousness.
 Following the two talks, we will have a panel discussion, including questions from the audience. The event is open to the general public.
+
+
+Bernstein Association for Computational Neuroscience
+-----------------
+The Bernstein Association for Computational Neuroscience supports science, research,
+and education in Computational Neuroscience and explains research topics and findings
+to the general public. The Bernstein Association was founded in 2009 by members of
+the Bernstein Network and is recognized as a non-profit organization. Everyone who
+is active in the field of Computational Neuroscience or related subjects can become a
+member of the Bernstein Association. More information can be found on the website
+(www.nncn.de/en/bernstein-association) or at the Bernstein Network Information Booth
+during the Bernstein Conference.
+
+Events at the Bernstein Network Information Booth:
+
+Wednesday, September 3 
+
+17:45 h Welcome Event for all members of the Bernstein Association for Computational Neuroscience 
+
+Thursday, September 4
+
+
+12:30 h Meet the Braitenberg Awardee Alexander Borst (Event for PhD Students, registration required) 
+
+
+17:15 h Live Demonstrations of G-Node (German INCF Node) and Simulation Lab Neuroscience (Bernstein Facility for Simulation and Database Technology)
+
+Friday, September 5
+
+
+12:30 h Meet the Bernstein Award winners Henning Sprekeler and Susanne Schreiber (Event for Postdocs, registration required)
+
