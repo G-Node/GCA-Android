@@ -400,20 +400,24 @@ public class AbstractContentTabFragment extends Fragment {
                 String Text = cursorTwo.getString(cursorTwo.getColumnIndexOrThrow("ABSRACT_TEXT"));
                 content.getSettings().setJavaScriptEnabled(true);
         		content.getSettings().setBuiltInZoomControls(false);
-        		content.loadDataWithBaseURL("http://bar", "<script type='text/x-mathjax-config'>"
-        				+"MathJax.Hub.Config({ "
-        				+"showMathMenu: false, "
-        				+"jax: ['input/TeX','output/HTML-CSS'], "
-        				+"tex2jax: {inlineMath: [ ['$','$']],displayMath: [ ['$$','$$'] ],processEscapes: true},"
-        				+"extensions: ['tex2jax.js'], "
-        				+"TeX: { extensions: ['AMSmath.js','AMSsymbols.js',"
-        				+"'noErrors.js','noUndefined.js'] }, "
-        				+"});</script>"
-        				+"<script type='text/javascript' "
-        				+"src='file:///android_asset/MathJax/MathJax.js'"
-        				+"></script><span id='math'>"+Text+"</span>","text/html","utf-8","");
-        	
-        		content.loadUrl("javascript:MathJax.Hub.Queue(['Typeset',MathJax.Hub]);");
+        		if (Text.contains("$")){
+	        		content.loadDataWithBaseURL("http://bar", "<script type='text/x-mathjax-config'>"
+	        				+"MathJax.Hub.Config({ "
+	        				+"showMathMenu: false, "
+	        				+"jax: ['input/TeX','output/HTML-CSS'], "
+	        				+"tex2jax: {inlineMath: [ ['$','$']],displayMath: [ ['$$','$$'] ],processEscapes: true},"
+	        				+"extensions: ['tex2jax.js'], "
+	        				+"TeX: { extensions: ['AMSmath.js','AMSsymbols.js',"
+	        				+"'noErrors.js','noUndefined.js'] }, "
+	        				+"});</script>"
+	        				+"<script type='text/javascript' "
+	        				+"src='file:///android_asset/MathJax/MathJax.js'"
+	        				+"></script><span id='math'>"+Text+"</span>","text/html","utf-8","");        	
+	        		content.loadUrl("javascript:MathJax.Hub.Queue(['Typeset',MathJax.Hub]);");
+        		}
+        		else{
+        			content.loadData(Text, "text/html", "utf-8");
+        		}
                 
 
             } while (cursorTwo.moveToNext());
