@@ -10,17 +10,22 @@ import java.util.List;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Color;
+import android.os.Bundle;
 import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+import android.widget.AdapterView.OnItemClickListener;
 
 import com.g_node.gcaa.R;
 
@@ -79,7 +84,6 @@ public class scheduleAdapter extends BaseAdapter {
 			if(vi==null ){
 				Log.i("error", "null");
 			}
-			
 			TextView x = (TextView) vi.findViewById(R.id.event_start_time);
 			int indexOfEvent =y.getIndex();
 			
@@ -99,7 +103,8 @@ public class scheduleAdapter extends BaseAdapter {
 			if (tempEvent.getType().equals("food")){
 				vi.findViewById(R.id.list_item_middle_container).setBackgroundColor(
 						ctx.getResources().getColor(R.color.color_food));
-			}
+			}			
+			vi.setOnClickListener(new ModOnClickListener(tempEvent));
 			return vi;
 		
 		} else if (y.getSchedule_item_type().equals(SCHEDULE_ITEMTYPE_TRACK)) {	
@@ -147,6 +152,7 @@ public class scheduleAdapter extends BaseAdapter {
 					tempRow.findViewById(R.id.list_item_middle_container).setBackgroundColor(
 							ctx.getResources().getColor(R.color.color_food));
 				}
+				tempRow.setOnClickListener(new ModOnClickListener(tempTrackEvents[i]));
 				table.addView(tempRow);
 			}
 			table.requestLayout();
@@ -219,6 +225,8 @@ public class scheduleAdapter extends BaseAdapter {
 						tempRow.findViewById(R.id.list_item_middle_container).setBackgroundColor(
 								ctx.getResources().getColor(R.color.color_food));
 					}
+					tempEventRowForTrackEventsTable.setOnClickListener(
+							new ModOnClickListener(eventsInCurrentTrack[j]));
 					//Adding the event row to Tracks
 					trackEventstable.addView(tempEventRowForTrackEventsTable);
 					trackEventstable.requestLayout();
@@ -235,5 +243,32 @@ public class scheduleAdapter extends BaseAdapter {
 		} //end if/else
 		
 	} //end getView
-	
+
+	private class ModOnClickListener implements OnClickListener
+	{
+
+	  EventScheduleItem event ;
+	  public ModOnClickListener(EventScheduleItem event ) {
+	       this.event = event;
+	  }
+
+	  @Override
+	  public void onClick(View v)
+	  {
+		  Log.i("Garbers","clicked_on  "+event.getTitle());
+		  
+		  Intent intent = new Intent(v.getContext(), ScheduleItemExtended.class);
+		
+		  Bundle bundle = new Bundle();
+		  bundle.putSerializable("dEvent", event);
+		
+		  //bundle.putString("type", SCHEDULE_ITEMTYPE_SESSION);
+		  bundle.putString("type", "event");
+		
+		  intent.putExtras(bundle);
+		  v.getContext().startActivity(intent);
+	  }
+
+	};
 }//end class
+
