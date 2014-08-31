@@ -20,7 +20,8 @@
 			android:textColor="#b6f2fd"
 			android:background="#034f5d"
 	        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
-	        android:text="@string/hello_world" />
+	        android:text="@string/hello_world" 
+	        android:visibility="gone"/>
 	
 		<TextView
 	        android:id="@+id/schedule_event_subtitle"
@@ -32,7 +33,8 @@
 			android:textColor="#0a5690"
 			android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
 	        android:layout_below="@+id/schedule_event_title"
-	        android:text="@string/hello_world" />
+	        android:text="@string/hello_world"
+	        android:visibility="gone" />
 	
 		<TextView
 	        android:id="@+id/schedule_event_type"
@@ -47,7 +49,8 @@
 			android:background="#7e7d7b"
 			android:textSize="12sp"
 			android:layout_below="@+id/schedule_event_subtitle"
-	        android:text="Type of Event" />
+	        android:text="Type of Event"
+	        android:visibility="gone" />
 		
 		<TableLayout 
 		    android:id="@+id/schedule_event_detail_table"
@@ -60,6 +63,7 @@
 			<TableRow>
 		        <TextView
 		            android:layout_weight="1"
+		            android:id="@+id/schedule_event_date_pic"
 			        android:paddingTop="10dp"
 			        android:paddingBottom="10dp"
 			        android:paddingLeft="5dp"
@@ -69,7 +73,8 @@
 					android:textColor="#0a5690"
 					android:drawablePadding="5dp"
 			        android:drawableLeft="@drawable/icon_calendar"
-			        android:text="@string/schedule_detail_label_date" />
+			        android:text="@string/schedule_detail_label_date" 
+			        android:visibility="gone"/>
 		        <TextView
 		            android:layout_weight="1"
 		            android:id="@+id/schedule_event_date"
@@ -81,12 +86,14 @@
 			        android:gravity="center"
 					android:textColor="#0a5690"
 		            android:text="Event Date"
-		            android:padding="3dip" />
+		            android:padding="3dip" 
+		            android:visibility="gone"/>
 	    	</TableRow>
 		    	    	
 		    <TableRow>
 		        <TextView
-		            android:layout_weight="1"	            
+		            android:layout_weight="1"	 
+		            android:id="@+id/schedule_event_time_pic"           
 			        android:paddingTop="10dp"
 			        android:paddingBottom="10dp"
 			        android:paddingLeft="5dp"
@@ -96,7 +103,8 @@
 					android:textColor="#0a5690"
 					android:drawablePadding="5dp"
 			        android:drawableLeft="@drawable/icon_clock"
-			        android:text="@string/schedule_detail_label_time" />
+			        android:text="@string/schedule_detail_label_time"
+			        android:visibility="gone" />
 		        
 		        <TextView
 		            android:layout_weight="1"	            
@@ -109,12 +117,14 @@
 			        android:gravity="center"
 					android:textColor="#0a5690"
 		            android:text="Event Time goes here"
-		            android:padding="3dip" />
+		            android:padding="3dip" 
+		            android:visibility="gone"/>
 	    	</TableRow>
 		    
 		    <TableRow>
 		        <TextView
-		            android:layout_weight="1"	            
+		            android:layout_weight="1"
+		            android:id="@+id/schedule_event_author_pic"	            
 			        android:paddingTop="10dp"
 			        android:paddingBottom="10dp"
 			        android:paddingLeft="5dp"
@@ -124,7 +134,8 @@
 					android:textColor="#0a5690"
 					android:drawablePadding="5dp"
 			        android:drawableLeft="@drawable/speaker_avatar"
-			        android:text="@string/schedule_detail_label_author" />
+			        android:text="@string/schedule_detail_label_author" 
+			        android:visibility="gone"/>
 		        
 		        <TextView
 		            android:layout_weight="1"
@@ -137,12 +148,14 @@
 			        android:gravity="center"
 					android:textColor="#0a5690"
 		            android:text="Author name goes here"
-		            android:padding="3dip" />
+		            android:padding="3dip" 
+		            android:visibility="gone"/>
 	    	</TableRow>
 	
 			<TableRow>
 		        <TextView
-		            android:layout_weight="1"	            
+		            android:layout_weight="1"
+		            android:id="@+id/schedule_event_location_pic"            
 			        android:paddingTop="10dp"
 			        android:paddingBottom="10dp"
 			        android:paddingLeft="5dp"
@@ -152,7 +165,8 @@
 					android:textColor="#0a5690"
 					android:drawablePadding="5dp"
 			        android:drawableLeft="@drawable/icon_location"
-			        android:text="@string/schedule_detail_label_location" />
+			        android:text="@string/schedule_detail_label_location"
+			        android:visibility="gone" />
 		        <TextView
 		            android:layout_weight="1"	            
 		            android:id="@+id/schedule_event_location"
@@ -164,7 +178,8 @@
 			        android:gravity="center"
 					android:textColor="#0a5690"
 		            android:text="Event Location"
-		            android:padding="3dip" />
+		            android:padding="3dip"
+		            android:visibility="gone" />
 	    	</TableRow>	    
 	
 				

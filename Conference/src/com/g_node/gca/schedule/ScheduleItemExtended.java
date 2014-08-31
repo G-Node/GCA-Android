@@ -63,16 +63,43 @@ public class ScheduleItemExtended extends Activity {
 			
 			Log.i("GCA-Schedule-List", "event title: " + eventToDisplay.getTitle());
 			
-			TextView eventTitleView = (TextView) findViewById(R.id.schedule_event_title);
-			eventTitleView.setText(eventToDisplay.getTitle());
-			
-			((TextView) findViewById(R.id.schedule_event_subtitle)).setText(eventToDisplay.getSubtitle());
-			((TextView) findViewById(R.id.schedule_event_author)).setText(eventToDisplay.getAuthors());
-			((TextView) findViewById(R.id.schedule_event_time)).setText(eventToDisplay.getStart() + "   -   " + eventToDisplay.getEnd());
-			((TextView) findViewById(R.id.schedule_event_location)).setText(eventToDisplay.getLocation());
+			if (!eventToDisplay.getTitle().equals("")){
+				TextView eventTitleView = (TextView) findViewById(R.id.schedule_event_title);
+				eventTitleView.setText(eventToDisplay.getTitle());
+				findViewById(R.id.schedule_event_title).setVisibility(1);
+			}
+			if (!eventToDisplay.getSubtitle().equals("")){
+				((TextView) findViewById(R.id.schedule_event_subtitle)).
+				setText(eventToDisplay.getSubtitle());
+				findViewById(R.id.schedule_event_subtitle).setVisibility(1);
+			}
+			if (!eventToDisplay.getAuthors().equals("")){
+				((TextView) findViewById(R.id.schedule_event_author)).
+				setText(eventToDisplay.getAuthors());
+				findViewById(R.id.schedule_event_author).setVisibility(1);
+				findViewById(R.id.schedule_event_author_pic).setVisibility(1);
+			}
+			if (!eventToDisplay.getStart().equals("")){
+				((TextView) findViewById(R.id.schedule_event_time)).setText(eventToDisplay.getStart());
+						
+				if(!eventToDisplay.getEnd().equals("")){
+					((TextView)findViewById(R.id.schedule_event_time)).setText(eventToDisplay.getStart()+
+							"   -   " + eventToDisplay.getEnd());
+				}
+				findViewById(R.id.schedule_event_time).setVisibility(1);
+				findViewById(R.id.schedule_event_time_pic).setVisibility(1);
+			}
+			if (!eventToDisplay.getLocation().equals("")){
+				((TextView) findViewById(R.id.schedule_event_location)).setText(eventToDisplay.getLocation());
+				findViewById(R.id.schedule_event_location).setVisibility(1);
+				findViewById(R.id.schedule_event_location_pic).setVisibility(1);
+			}
+			if(!eventToDisplay.getDate().equals("")){
 			((TextView) findViewById(R.id.schedule_event_date)).setText(eventToDisplay.getDate());
 			((TextView) findViewById(R.id.schedule_event_type)).setText(eventToDisplay.getType().toUpperCase());
-			
+			findViewById(R.id.schedule_event_date).setVisibility(1);
+			findViewById(R.id.schedule_event_date_pic).setVisibility(1);
+			}
 			
 			event_abstract_uuid = eventToDisplay.getEventAbstract();
 			event_abstract_uuid = event_abstract_uuid.substring(event_abstract_uuid.lastIndexOf("/")+1, event_abstract_uuid.length());
