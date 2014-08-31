@@ -1,82 +1,88 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#fbffb5"
-    tools:context=".ScheduleItemExtended" >
-
-    <TextView
-        android:id="@+id/schedule_session_title"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-		android:textColor="#3e720b"
-		android:background="#d6de50"
-        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
-        android:text="@string/hello_world" />
-
-	<TextView
-        android:id="@+id/schedule_session_subtitle"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-		android:textColor="#0a5690"
-		android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
-        android:layout_below="@+id/schedule_session_title"
-        android:text="@string/hello_world" />
-
-	<TextView
-	    android:id="@+id/schedule_session_track_heading"
-	    android:layout_below="@+id/schedule_session_subtitle"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="15dp"
-        android:paddingBottom="1dp"
-        android:drawableLeft="@drawable/icon_pointer"
-        android:drawablePadding="5sp"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:gravity="left|center_vertical"
-        android:fontFamily="sans-serif-light"
-		android:textColor="@android:color/black"
-		android:text="@string/schedule_detail_tracksInSession_Heading"
-		android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small"/>
+<ScrollView
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:id="@+id/android:list"
+  android:layout_width="fill_parent"
+  android:layout_height="wrap_content" >
 	
-	<View
-		android:id="@+id/bar7"
-		android:layout_marginLeft="50dp"
-		android:layout_marginRight="15dp"
-		android:layout_marginBottom="3dp"            
-	    android:layout_width="fill_parent"
-	    android:layout_height="0.5sp"
-	    android:layout_below="@+id/schedule_session_track_heading"
-	    android:background="@android:color/black"/>	
+	<RelativeLayout 
+	    android:layout_width="match_parent"
+	    android:layout_height="match_parent"
+	    android:background="#fbffb5"
+	     >
 	
+	    <TextView
+	        android:id="@+id/schedule_session_title"
+	        android:paddingTop="10dp"
+	        android:paddingBottom="10dp"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:gravity="center"
+			android:textColor="#3e720b"
+			android:background="#d6de50"
+	        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
+	        android:text="@string/hello_world" />
 	
-	<TableLayout 
-	    android:id="@+id/schedule_session_track_detail_table"
-	    android:layout_below="@+id/bar7"
-	    android:layout_width="fill_parent"
-	    android:layout_height="wrap_content"
-	    android:paddingLeft="15dp"
-	    android:layout_marginTop="20dp"
-	    android:stretchColumns="1">	
-	    	
-    </TableLayout>
+		<TextView
+	        android:id="@+id/schedule_session_subtitle"
+	        android:paddingTop="10dp"
+	        android:paddingBottom="10dp"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:gravity="center"
+			android:textColor="#0a5690"
+			android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
+	        android:layout_below="@+id/schedule_session_title"
+	        android:text="@string/hello_world" />
 	
-    <TextView
-        android:paddingBottom="10dp"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:textStyle="italic"
-		android:textColor="#0a5690"
-		android:text="@string/schedule_track_detail_hint_text"
-		android:layout_alignParentBottom="true" 
-		android:textSize="12sp"/>
-	
-	
-</RelativeLayout>
+		<TextView
+		    android:id="@+id/schedule_session_track_heading"
+		    android:layout_below="@+id/schedule_session_subtitle"
+	        android:layout_marginLeft="15dp"
+	        android:layout_marginTop="15dp"
+	        android:paddingBottom="1dp"
+	        android:drawableLeft="@drawable/icon_pointer"
+	        android:drawablePadding="5sp"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:gravity="left|center_vertical"
+	        android:fontFamily="sans-serif-light"
+			android:textColor="@android:color/black"
+			android:text="@string/schedule_detail_tracksInSession_Heading"
+			android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small"/>
+		
+		<View
+			android:id="@+id/bar7"
+			android:layout_marginLeft="50dp"
+			android:layout_marginRight="15dp"
+			android:layout_marginBottom="3dp"            
+		    android:layout_width="fill_parent"
+		    android:layout_height="0.5sp"
+		    android:layout_below="@+id/schedule_session_track_heading"
+		    android:background="@android:color/black"/>	
+		
+		
+		<TableLayout 
+		    android:id="@+id/schedule_session_track_detail_table"
+		    android:layout_below="@+id/bar7"
+		    android:layout_width="fill_parent"
+		    android:layout_height="wrap_content"
+		    android:paddingLeft="15dp"
+		    android:layout_marginTop="20dp"
+		    android:stretchColumns="1">	
+		    	
+	    </TableLayout>
+		
+	    <TextView
+	        android:paddingBottom="10dp"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:gravity="center"
+	        android:textStyle="italic"
+			android:textColor="#0a5690"
+			android:text="@string/schedule_track_detail_hint_text"
+			android:layout_alignParentBottom="true" 
+			android:textSize="12sp"/>
+		
+		
+	</RelativeLayout>
+</ScrollView>
