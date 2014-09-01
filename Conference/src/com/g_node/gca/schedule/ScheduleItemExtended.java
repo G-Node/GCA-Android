@@ -100,7 +100,7 @@ public class ScheduleItemExtended extends Activity {
 			findViewById(R.id.schedule_event_date).setVisibility(1);
 			findViewById(R.id.schedule_event_date_pic).setVisibility(1);
 			}
-			
+			((TableLayout) findViewById(R.id.schedule_event_detail_table)).requestLayout();
 			event_abstract_uuid = eventToDisplay.getEventAbstract();
 			event_abstract_uuid = event_abstract_uuid.substring(event_abstract_uuid.lastIndexOf("/")+1, event_abstract_uuid.length());
 			Log.i(LOG_TAG, "Abstract ID of event: " + event_abstract_uuid);
