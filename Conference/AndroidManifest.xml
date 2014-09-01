@@ -27,8 +27,7 @@
         android:theme="@style/MyTheme" >
         <activity
             android:name="com.g_node.gca.newsroom.NewsRoomActivity"
-            android:label="@string/title_activity_newsroom"
-            android:parentActivityName="com.g_node.gca.MainActivity" >
+            android:label="@string/title_activity_newsroom">
         </activity>
         <activity
             android:name="com.g_node.gca.MainActivity"
@@ -66,7 +65,7 @@
 
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
-            android:value="AIzaSyA7lzhoQo0xmdu1Rx_v7Nk7fM3K38h6xlw" />
+            android:value="AIzaSyDKVH4lCyf8xLDfroOctDDjaFyLNwjg7ko" />
 
         <activity
             android:name="com.g_node.gca.schedule.ScheduleMainActivity"
