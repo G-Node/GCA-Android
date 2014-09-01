@@ -11,14 +11,18 @@ Public Lecture: Paulinerkirche, Papendiek 14
 Opening hours registration desk
 --------------------------------
 Tuesday, September 2    12:00 - 18:30 h
+
 Wednesday, September 3  08:00 - 19:00 h
+
 Thursday, September 4   08:00 - 19:00 h
+
 Friday, September 5     08:00 - 16:30 h
 
 
 Poster presentations
 --------------------
 Session I Wednesday, September 3	17:45 - 19:30 h
+
 Session II Thursday, September 4	17:15 - 19:00 h
 
 Poster boards are numbered according to the abstract numbers in this proceedings (W indicates the first poster session on Wednesday and T the second poster session on Thursday). Pins for putting up posters will be provided. Posters can be mounted starting at 13:00 h on the day of the respective poster session. Please take your poster down before 12:00 h on the next day. The conference staff will remove all posters that are not taken down after the poster sessions. Posters that are not picked up at the registration desk by Friday, September 5, 16:30 h will be disposed of.
@@ -49,11 +53,11 @@ Storage space for wardrobe and luggage will be provided next to the registration
 
 Conference coordination
 -----------------------
-Bernstein Focus Neurotechnology Göttingen
-Georg-August University Göttingen
-Third Institute of Physics - Biophysics
-Prof. Dr. Florentin Woergoetter 
-Friedrich-Hund-Platz 1
+Bernstein Focus Neurotechnology Göttingen,
+Georg-August University Göttingen,
+Third Institute of Physics - Biophysics,
+Prof. Dr. Florentin Woergoetter,
+Friedrich-Hund-Platz 1,
 37077 Göttingen
 
 Special Events
@@ -78,6 +82,7 @@ Public Event
 Thursday, September 4
 
 Presentation for Children 	15:00 h
+
 Public Lecture (in German) 	19:30 h
 
 Humanoid Robotics: From household assistants to personalized robot suits
