@@ -25,10 +25,10 @@
     <string name="loading_abstracts_dialog_text"><b>Loading...Please Wait!</b> \nThis may take a minute</string>
     <string name="track_chair_label">Chaired By:&#160;&#160;</string>
     <string name="menu_button_abstract_text">Abstracts</string>
-    <string name="menu_button_news_text">NEWS</string>
-    <string name="menu_button_maps_text">MAPS</string>
+    <string name="menu_button_news_text">News</string>
+    <string name="menu_button_maps_text">Maps</string>
     <string name="menu_button_schedule_text">Schedule</string>
-    <string name="menu_button_favorites_text">FAVOURITES</string>
+    <string name="menu_button_favorites_text">Favorites</string>
     <string name="menu_genInfo_text">Info</string>
     <string name="menu_aboutAPP_text">About</string>
     <string name="menu_welcome_text">Welcome&#160;|&#160;G-Node</string>
