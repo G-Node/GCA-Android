@@ -146,8 +146,11 @@ public class ScheduleItemExtended extends Activity {
 			
 			((TextView) findViewById(R.id.schedule_track_title)).setText(trackToDisplay.getTitle());
 			((TextView) findViewById(R.id.schedule_track_subtitle)).setText(trackToDisplay.getSubtitle());			
+			if (!trackToDisplay.getChair().equals("")){
 			((TextView) findViewById(R.id.schedule_track_chair)).setText("Chair:   " + trackToDisplay.getChair());
-			
+			findViewById(R.id.schedule_track_chair).setVisibility(1);
+			}
+		
 			TableLayout trackEventsTableLayout = (TableLayout) findViewById(R.id.schedule_track_events_detail_table);
 			
 			EventScheduleItem[] tempTrackEvents = trackToDisplay.getEventsInTrack();
