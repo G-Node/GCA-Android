@@ -47,7 +47,8 @@
 			android:drawableLeft="@drawable/speaker_avatar"
 			android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
 	        android:layout_below="@+id/schedule_track_subtitle"
-	        android:text="@string/hello_world" />
+	        android:text="@string/hello_world" 
+	        android:visibility="gone"/>
 			
 		
 		<TextView
