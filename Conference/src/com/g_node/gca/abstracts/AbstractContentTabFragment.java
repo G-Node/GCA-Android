@@ -22,7 +22,9 @@ import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.Html;
+import android.text.TextUtils;
 import android.text.method.LinkMovementMethod;
+import android.text.util.Linkify;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -32,7 +34,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
-
+import android.webkit.WebView;
 import com.g_node.gcaa.R;
 
 public class AbstractContentTabFragment extends Fragment {
@@ -42,7 +44,7 @@ public class AbstractContentTabFragment extends Fragment {
 	boolean isFav;
 	MenuItem starG;
 	
-    TextView content;
+    WebView content;
 
     TextView title;
 
@@ -158,7 +160,7 @@ public class AbstractContentTabFragment extends Fragment {
         /*
          * TextView for Abstract Text
          */
-        content = (TextView)getView().findViewById(R.id.Content);
+        content = (WebView) getView().findViewById(R.id.Content);
         /*
          * TextView for Abstract Title
          */
@@ -235,7 +237,7 @@ public class AbstractContentTabFragment extends Fragment {
 	        	Log.i(gtag, "in DO WHILE");
 	        	String authEmail = cursor.getString(cursor.getColumnIndexOrThrow("AUTHOR_EMAIL"));
 	        	Log.i(gtag, "author email => " + authEmail);
-	        	String authorName = cursor.getString(cursor.getColumnIndexOrThrow("AUTHOR_FIRST_NAME")) + ", " + cursor.getString(cursor.getColumnIndexOrThrow("AUTHOR_LAST_NAME")) ;
+	        	String authorName = cursor.getString(cursor.getColumnIndexOrThrow("AUTHOR_FIRST_NAME")) + " " +cursor.getString(cursor.getColumnIndexOrThrow("AUTHOR_LAST_NAME")) ;
 	        	String authAffiliation = cursor.getString(cursor.getColumnIndexOrThrow("AUTHOR_AFFILIATION"));
 	        	
 	        	//remove unwanted characters from affiliation superscript id's
@@ -264,10 +266,11 @@ public class AbstractContentTabFragment extends Fragment {
 
 		        	} else {
 		        		Log.i(gtag, "in author check - ELSE ");
-		        		authorNames.append(Html.fromHtml("<b><a href=\"mailto:" + authEmail + "\">" + authorName + "</a>"  + "</b><sup><small>"
+		        		//authorNames.append(Html.fromHtml("<b><a href=\"mailto:" + authEmail + "\">" + authorName + "</a>"  + "</b><sup><small>"
+		                //        + authAffiliation + "</small></sup><br/>"));
+		        		//authorNames.setMovementMethod(LinkMovementMethod.getInstance());
+		        		authorNames.append(Html.fromHtml("<b>" + authorName + "</b><sup><small>"
 		                        + authAffiliation + "</small></sup><br/>"));
-		        		authorNames.setMovementMethod(LinkMovementMethod.getInstance());
-		        		
 		        	}
 	        	} else {
 	        		;
@@ -275,6 +278,7 @@ public class AbstractContentTabFragment extends Fragment {
 	        	
 	        } while (cursor.moveToNext());
         }
+        
     	
     } //end authorName function
     
@@ -300,10 +304,18 @@ public class AbstractContentTabFragment extends Fragment {
         if (cursorOne != null && cursorOne.moveToFirst()) {
 	        do {
 	        	Log.i(gtag, "in DO WHILE aff");
-	        	String affName = cursorOne.getString(cursorOne.getColumnIndexOrThrow("AFFILIATION_SECTION")) + 
-	        					", " + cursorOne.getString(cursorOne.getColumnIndexOrThrow("AFFILIATION_DEPARTMENT")) + 
-	        					", " + cursorOne.getString(cursorOne.getColumnIndexOrThrow("AFFILIATION_ADDRESS")) + 
-	        					", " + cursorOne.getString(cursorOne.getColumnIndexOrThrow("AFFILIATION_COUNTRY")) ;
+	        	String [] aff_array = {cursorOne.getString(cursorOne.getColumnIndexOrThrow("AFFILIATION_SECTION")),
+		        			cursorOne.getString(cursorOne.getColumnIndexOrThrow("AFFILIATION_DEPARTMENT")),	        	
+		        			cursorOne.getString(cursorOne.getColumnIndexOrThrow("AFFILIATION_ADDRESS")),
+		        			cursorOne.getString(cursorOne.getColumnIndexOrThrow("AFFILIATION_COUNTRY")) 
+		        			};
+	        	String affName = "";
+	        	for (String txt:aff_array){
+	        		if (!txt.equals("null")){
+	        			affName = affName+txt+",";
+	        		}
+	        	}
+	        	affName = affName.substring(0, affName.length()-1);
 	        	int affPos = cursorOne.getInt(cursorOne.getColumnIndexOrThrow("AFFILIATION_POSITION"));
 	        	affPos++;
 	        	afName.append(Html.fromHtml(affPos + ": " + "<b>" + affName + "</b><br/>" ));
@@ -347,14 +359,33 @@ public class AbstractContentTabFragment extends Fragment {
 	 */
     private void getAndUpdateAbstractReferences() {
 
-    	String referenceSQLQuery = "SELECT * FROM ABSTRACT_REFERENCES WHERE ABSTRACT_UUID = '" + value +"';";
+    	String referenceSQLQuery = "SELECT * FROM ABSTRACT_REFERENCES WHERE ABSTRACT_UUID = '" 
+    	+ value +"';";
         referenceCursor = DatabaseHelper.database.rawQuery(referenceSQLQuery, null);
-        
+        String referenceName;
         if (referenceCursor != null && referenceCursor.moveToFirst()) {
         	int refNumber = 1;
         	do {
 	        	Log.i(gtag, "in DO WHILE References");
-	        	String referenceName = referenceCursor.getString(referenceCursor.getColumnIndexOrThrow("REF_TEXT"));
+	        	String ref_txt = referenceCursor.getString(
+	        			referenceCursor.getColumnIndexOrThrow("REF_TEXT"));
+	        	String ref_link = referenceCursor.getString(
+	        			referenceCursor.getColumnIndexOrThrow("REF_LINK"));
+	        	String ref_doi = referenceCursor.getString(
+	        			referenceCursor.getColumnIndexOrThrow("REF_DOI"));
+	        	
+	        	if (!ref_txt.equals("null")){
+	        		referenceName = ref_txt;
+	        	}
+	        	else if(!ref_link.equals("null")){
+	        		referenceName = ref_link;
+	        	}
+	        	else if(!ref_doi.equals("null")){
+	        		referenceName = ref_doi;
+	        	}
+	        	else{
+	        		referenceName = "";
+	        	}
 	        	ConRefs.append(Html.fromHtml(refNumber + ": " + referenceName + "<br/>" ));
 	        	refNumber++;
 	        } while (referenceCursor.moveToNext());
@@ -397,7 +428,30 @@ public class AbstractContentTabFragment extends Fragment {
             do {
 
                 String Text = cursorTwo.getString(cursorTwo.getColumnIndexOrThrow("ABSRACT_TEXT"));
-                content.setText(Text);
+                Text = TextUtils.htmlEncode(Text);
+                content.getSettings().setJavaScriptEnabled(true);
+        		content.getSettings().setBuiltInZoomControls(false);
+        		if (Text.contains("$")){
+        		//if (true){
+	        		content.loadDataWithBaseURL("http://bar", "<script type='text/x-mathjax-config'>"
+	        				+"MathJax.Hub.Config({ "
+	        				+"showMathMenu: false, "
+	        				+"jax: ['input/TeX','output/HTML-CSS'], "
+	        				+"tex2jax: {inlineMath: [ ['$','$']],displayMath: [ ['$$','$$'] ],processEscapes: true},"
+	        				+"extensions: ['tex2jax.js'], "
+	        				+"TeX: { extensions: ['AMSmath.js','AMSsymbols.js',"
+	        				+"'noErrors.js','noUndefined.js'] }, "
+	        				+"});</script>"
+	        				+"<script type='text/javascript' "
+	        				+"src='file:///android_asset/MathJax/MathJax.js'"
+	        				+"></script><span id='math'>"+Text+"</span>","text/html","UTF-8","");        	
+	        		content.loadUrl("javascript:MathJax.Hub.Queue(['Typeset',MathJax.Hub]);");
+        		}
+        		else{
+        			content.loadDataWithBaseURL("http://bar",Text,"text/html","UTF-8","");
+        			
+        		}
+                
 
             } while (cursorTwo.moveToNext());
             
@@ -408,10 +462,11 @@ public class AbstractContentTabFragment extends Fragment {
             if(sortID != 0) {	
             	int groupid =  ((sortID & (0xFFFF << 16)) >> 16);
             	int poster_no = sortID & 0xFFFF;
-            	
+            	Log.i("GCA-groupid", "groupid: " + groupid);
+            	Log.i("GCA-posterno", "Poster Nr: " + poster_no);
             	//absSortID.append("\r\nSort ID: " + sortID);
-            	absSortID.append("Group ID: " + get_groupid_str(groupid));
-            	absSortID.append("\r\r-\r\rPoster No: " + poster_no);
+            	title.append("   (" + get_groupid_str(groupid));
+            	title.append("" + poster_no+")");
             
             }else {
             	absSortID.setVisibility(View.GONE);
@@ -424,7 +479,7 @@ public class AbstractContentTabFragment extends Fragment {
     private String get_groupid_str(int groupid) {
     	String[] id2str = getResources().getStringArray(R.array.groupid2str);
     	//String[] id2str = {"Talk","Contributed Talk","W","T"};
-		return id2str[groupid-1];
+		return id2str[groupid];
 	}
 
 	/*
@@ -503,7 +558,7 @@ public class AbstractContentTabFragment extends Fragment {
 
             title.setText("");
             topic.setText("");
-            content.setText("");
+            content.loadData("", "text/html","utf-8");
             ConRefs.setText("");
             afName.setText("");
             authorNames.setText("");
@@ -519,6 +574,8 @@ public class AbstractContentTabFragment extends Fragment {
   	    NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
   	    return activeNetworkInfo != null && activeNetworkInfo.isConnected();
   	} 
+  	
+
     
 } //end class
 

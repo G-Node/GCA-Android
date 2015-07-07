@@ -34,7 +34,7 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		
-		getActionBar().setTitle("G-Node Conference");
+		getActionBar().setTitle(R.string.app_name);
 		//getActionBar().setIcon(getResources().getDrawable(R.drawable.icon_brain));
 		
 		Button news = (Button)findViewById(R.id.btn_news);
@@ -88,6 +88,17 @@ public class MainActivity extends Activity {
 			public void onClick(View v) {
 				Intent favIntent = new Intent(MainActivity.this, FavoriteAbstracts.class);
 				startActivity(favIntent);
+				
+			}
+		});
+		
+		Button infBtn = (Button) findViewById(R.id.btn_info);
+		infBtn.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				Intent infIntent = new Intent(MainActivity.this, GeneralActivity.class);
+				startActivity(infIntent);
 				
 			}
 		});

@@ -148,29 +148,23 @@ public class AbstractContent extends FragmentActivity implements
         	
         case R.id.next:
         {
-        	String getCurrentRowIDQuery = "SELECT ROWID FROM ABSTRACT_DETAILS WHERE UUID = '" + value + "';";
-            Log.i(gtag, "Current Row ID Query: " + getCurrentRowIDQuery);
+        	String getCurrentRowIDQuery = "SELECT SORTID FROM ABSTRACT_DETAILS WHERE UUID = '" + value + 
+        			"';";
             Cursor getRowIdCursor = DatabaseHelper.database.rawQuery(getCurrentRowIDQuery, null);
-            Log.i(gtag, "Next Cursor count: " + getRowIdCursor.getCount());
-            Log.i(gtag, "Columns:" + getRowIdCursor.getColumnCount() ); 
-            Log.i(gtag, "Column Name: " + getRowIdCursor.getColumnName(0));
-            Log.i(gtag, "Column Index: " + getRowIdCursor.getColumnIndex("rowid"));
             getRowIdCursor.moveToFirst();
-            Log.i(gtag, "Before 483");
-            int currentRowID = getRowIdCursor.getInt(0);
-            Log.i(gtag, "After 483 & ROW ID = " + currentRowID);
-            int nextRecordID = currentRowID + 1;
-            Log.i(gtag, "New ROW ID = " + nextRecordID);
-            if (nextRecordID <= Abstracts.cursorCount) {
-
-            	//query and get next abstract id 
-            	String getNextAbstractUUID = "SELECT UUID FROM ABSTRACT_DETAILS WHERE ROWID = " + nextRecordID + ";";
-                Cursor getNextAbstractCursor = DatabaseHelper.database.rawQuery(getNextAbstractUUID, null);
-                getNextAbstractCursor.moveToFirst();
-            	value = getNextAbstractCursor.getString(getNextAbstractCursor.getColumnIndexOrThrow("UUID"));
+            int currentSORTID = getRowIdCursor.getInt(0);
+            Log.i("Garbers","CurrentSORTID:"+currentSORTID);
+            String get_SORTIDS_bigger = "SELECT SORTID,UUID from abstract_details WHERE SORTID>"+currentSORTID+
+            		" ORDER BY SORTID";
+            Cursor getSORTID_BiggerCursor = DatabaseHelper.database.rawQuery(get_SORTIDS_bigger, null);
+            if (getSORTID_BiggerCursor.getCount()>0) {
+            	getSORTID_BiggerCursor.moveToFirst();
+            	value = getSORTID_BiggerCursor.getString(
+            			getSORTID_BiggerCursor.getColumnIndexOrThrow("UUID"));
+            	Log.i("Garbers", "NextSORTID:"+getSORTID_BiggerCursor.getInt((0)));
+            	Log.i("Garbers", "NextUUID:"+getSORTID_BiggerCursor.getString((1)));
             	mAdapter.setValue(value);
-            	mAdapter.notifyDataSetChanged();
-            	
+            	mAdapter.notifyDataSetChanged();            	
             	invalidateOptionsMenu();
             	
             } else {
@@ -183,37 +177,30 @@ public class AbstractContent extends FragmentActivity implements
         
         case R.id.Previous:
         {
-        	
-        	String getCurrentRowIDQuery = "SELECT ROWID FROM ABSTRACT_DETAILS WHERE UUID = '" + value + "';";
-            Log.i(gtag, "Current Row ID Query: " + getCurrentRowIDQuery);
+        	String getCurrentRowIDQuery = "SELECT SORTID FROM ABSTRACT_DETAILS WHERE UUID = '" + value + 
+        			"';";
             Cursor getRowIdCursor = DatabaseHelper.database.rawQuery(getCurrentRowIDQuery, null);
-            Log.i(gtag, "Prev Cursor count: " + getRowIdCursor.getCount());
-            Log.i(gtag, "Columns:" + getRowIdCursor.getColumnCount() ); 
-            Log.i(gtag, "Column Name: " + getRowIdCursor.getColumnName(0));
-            Log.i(gtag, "Column Index: " + getRowIdCursor.getColumnIndex("rowid"));
             getRowIdCursor.moveToFirst();
-            Log.i(gtag, "Before 483");
-            int currentRowID = getRowIdCursor.getInt(0);
-            Log.i(gtag, "After 483 & ROW ID = " + currentRowID);
-            int prevRecordID = currentRowID - 1;
-            Log.i(gtag, "New ROW ID = " + prevRecordID);
-            
-			if (prevRecordID != 0) {
-				//query and get prev abstract id 
-            	String getNextAbstractUUID = "SELECT UUID FROM ABSTRACT_DETAILS WHERE ROWID = " + prevRecordID + ";";
-                Cursor getNextAbstractCursor = DatabaseHelper.database.rawQuery(getNextAbstractUUID, null);
-                getNextAbstractCursor.moveToFirst();
-            	value = getNextAbstractCursor.getString(getNextAbstractCursor.getColumnIndexOrThrow("UUID"));
-            	
+            int currentSORTID = getRowIdCursor.getInt(0);
+            Log.i("Garbers","CurrentSORTID:"+currentSORTID);
+            String get_SORTIDS_bigger = "SELECT SORTID,UUID from abstract_details WHERE SORTID<"+currentSORTID+
+            		" ORDER BY SORTID";
+            Cursor getSORTID_BiggerCursor = DatabaseHelper.database.rawQuery(get_SORTIDS_bigger, null);
+            if (getSORTID_BiggerCursor.getCount()>0) {
+            	getSORTID_BiggerCursor.moveToLast();
+            	value = getSORTID_BiggerCursor.getString(
+            			getSORTID_BiggerCursor.getColumnIndexOrThrow("UUID"));
+            	Log.i("Garbers", "NextSORTID:"+getSORTID_BiggerCursor.getInt((0)));
+            	Log.i("Garbers", "NextUUID:"+getSORTID_BiggerCursor.getString((1)));
             	mAdapter.setValue(value);
-            	mAdapter.notifyDataSetChanged();
-            	
+            	mAdapter.notifyDataSetChanged();            	
             	invalidateOptionsMenu();
-			} else {
-                Toast.makeText(getApplicationContext(), "This is the first Abstract",
+            	
+            } else {
+                Toast.makeText(getApplicationContext(), "No more Abstracts Left",
                         Toast.LENGTH_SHORT).show();
             }
-
+            
             break;
         }
         

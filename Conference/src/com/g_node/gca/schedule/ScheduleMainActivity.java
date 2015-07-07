@@ -63,7 +63,7 @@ public class ScheduleMainActivity extends FragmentActivity implements ActionBar.
 		
  		for(int i=0; i<dateWiseEventsRecordList.size(); i++) {
  			DateWiseEventsRecord temp = dateWiseEventsRecordList.get(i);
- 			actionBar.addTab(actionBar.newTab().setText(temp.getGroup_date()).setTabListener(this) );
+ 			actionBar.addTab(actionBar.newTab().setText(temp.get_formated_date()).setTabListener(this) );
  		}
  		
  		viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {

@@ -6,7 +6,10 @@
 
 package com.g_node.gca.schedule;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 
@@ -41,6 +44,16 @@ public class DateWiseEventsRecord {
 		this.events_for_this_date.add(event_index);
 	}
 	
-	
+	public String get_formated_date() {
+		Date date = null;
+		try {
+			date = new SimpleDateFormat("yyyy-M-dd").parse(group_date);
+			
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return date.toString().substring(0, 10);
+	}
 	
 }

@@ -10,15 +10,22 @@ import java.util.List;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.content.res.Resources;
+import android.graphics.Color;
+import android.os.Bundle;
 import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+import android.widget.AdapterView.OnItemClickListener;
 
 import com.g_node.gcaa.R;
 
@@ -70,16 +77,13 @@ public class scheduleAdapter extends BaseAdapter {
 		Log.i("GCA-B-Schedule", "Line 70");
 		View vi = arg1;
 		ScheduleItemRecord y = scheduleItemsGeneralList.get(arg0);
-		
 		if(y.getSchedule_item_type().equals(SCHEDULE_ITEMTYPE_EVENT)) {
 			Log.i("GCA-B-Schedule", "GetView called for EVENT");
-			
 			vi = inflater.inflate(R.layout.schedule_list_events_general, null);
 			
 			if(vi==null ){
 				Log.i("error", "null");
 			}
-			
 			TextView x = (TextView) vi.findViewById(R.id.event_start_time);
 			int indexOfEvent =y.getIndex();
 			
@@ -96,11 +100,16 @@ public class scheduleAdapter extends BaseAdapter {
 			if(!tempEvent.getAuthors().equals("")) 
 				((TextView)vi.findViewById(R.id.event_location)).append(Html.fromHtml("&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;<i>" + tempEvent.getAuthors() + "</i>" ));
 			
+			if (tempEvent.getType().equals("food")){
+				vi.findViewById(R.id.list_item_middle_container).setBackgroundColor(
+						ctx.getResources().getColor(R.color.color_food));
+			}			
+			vi.setOnClickListener(new ModOnClickListener(tempEvent));
 			return vi;
 		
 		} else if (y.getSchedule_item_type().equals(SCHEDULE_ITEMTYPE_TRACK)) {	
 			//if the schedule item is a Track, different layout and approach
-			
+			Log.i("Garber_TRACK", "asd");
 			Log.i("GCA-B-Schedule", "GetView called for TRACK");
 			
 			//display track here now
@@ -118,9 +127,11 @@ public class scheduleAdapter extends BaseAdapter {
 			
 			x.setText(tempTrack.getTitle());
 			
-			TextView xa = (TextView) vi.findViewById(R.id.trackSubtitle);
-			xa.setText(ctx.getResources().getString(R.string.track_chair_label) + tempTrack.getChair() );
 			
+			if (tempTrack.getChair().length()>0){
+				TextView xa = (TextView) vi.findViewById(R.id.trackSubtitle);
+				xa.setText(ctx.getResources().getString(R.string.track_chair_label) + tempTrack.getChair() );
+			}
 			EventScheduleItem[] tempTrackEvents = tempTrack.getEventsInTrack();
 			
 			
@@ -137,6 +148,11 @@ public class scheduleAdapter extends BaseAdapter {
 				if(!tempTrackEvents[i].getAuthors().equals("")) 
 					((TextView)tempRow.findViewById(R.id.track_event_location)).append(Html.fromHtml("&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;<i>" + tempTrackEvents[i].getAuthors() + "</i>"));
 				
+				if (tempTrackEvents[i].getType().equals("food")){
+					tempRow.findViewById(R.id.list_item_middle_container).setBackgroundColor(
+							ctx.getResources().getColor(R.color.color_food));
+				}
+				tempRow.setOnClickListener(new ModOnClickListener(tempTrackEvents[i]));
 				table.addView(tempRow);
 			}
 			table.requestLayout();
@@ -177,8 +193,10 @@ public class scheduleAdapter extends BaseAdapter {
 				
 				TableRow tempRow = (TableRow) inflater.inflate(R.layout.session_track_table_row, null);
 				((TextView)tempRow.findViewById(R.id.session_track_name)).setText(tempSessionTracks[i].getTitle());
-				((TextView)tempRow.findViewById(R.id.session_track_chair)).setText(ctx.getResources().getString(R.string.track_chair_label) + tempSessionTracks[i].getChair());
-				
+				Log.i("GCA-A-ScheduleChair", "SessionChair: " + tempSessionTracks[i].getChair());	
+				if (tempSessionTracks[i].getChair().length() > 0){
+						((TextView)tempRow.findViewById(R.id.session_track_chair)).setText(ctx.getResources().getString(R.string.track_chair_label) + tempSessionTracks[i].getChair());
+				}
 				//here add events of respective track in another table
 				EventScheduleItem[] eventsInCurrentTrack = tempSessionTracks[i].getEventsInTrack();
 				
@@ -201,7 +219,13 @@ public class scheduleAdapter extends BaseAdapter {
 					
 					if(!eventsInCurrentTrack[j].getAuthors().equals("")) 
 						((TextView)tempEventRowForTrackEventsTable.findViewById(R.id.session_track_event_location)).append(Html.fromHtml("&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;<i>" + eventsInCurrentTrack[j].getAuthors() + "</i>"));
-						
+					
+					if (eventsInCurrentTrack[j].getType().equals("food")){
+						tempRow.findViewById(R.id.list_item_middle_container).setBackgroundColor(
+								ctx.getResources().getColor(R.color.color_food));
+					}
+					tempEventRowForTrackEventsTable.setOnClickListener(
+							new ModOnClickListener(eventsInCurrentTrack[j]));
 					//Adding the event row to Tracks
 					trackEventstable.addView(tempEventRowForTrackEventsTable);
 					trackEventstable.requestLayout();
@@ -218,5 +242,32 @@ public class scheduleAdapter extends BaseAdapter {
 		} //end if/else
 		
 	} //end getView
-	
+
+	private class ModOnClickListener implements OnClickListener
+	{
+
+	  EventScheduleItem event ;
+	  public ModOnClickListener(EventScheduleItem event ) {
+	       this.event = event;
+	  }
+
+	  @Override
+	  public void onClick(View v)
+	  {
+		  Log.i("Garbers","clicked_on  "+event.getTitle());
+		  
+		  Intent intent = new Intent(v.getContext(), ScheduleItemExtended.class);
+		
+		  Bundle bundle = new Bundle();
+		  bundle.putSerializable("dEvent", event);
+		
+		  //bundle.putString("type", SCHEDULE_ITEMTYPE_SESSION);
+		  bundle.putString("type", "event");
+		
+		  intent.putExtras(bundle);
+		  v.getContext().startActivity(intent);
+	  }
+
+	};
 }//end class
+

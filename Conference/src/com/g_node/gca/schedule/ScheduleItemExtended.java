@@ -80,6 +80,8 @@ public class ScheduleItemExtended extends Activity {
 			
 	        String query = "SELECT UUID , TOPIC, TITLE, ABSRACT_TEXT, STATE, SORTID, REASONFORTALK, MTIME, TYPE, DOI, COI, ACKNOWLEDGEMENTS FROM ABSTRACT_DETAILS where UUID = '" + event_abstract_uuid + "';";
 			
+	        Log.i(LOG_TAG, "query: " + query);
+	        
 			Cursor abstractForEventCursor = DatabaseHelper.database.rawQuery(query, null);
 			
 			Button btnOpenAbstract = (Button) findViewById(R.id.btn_launch_Abstract_from_event);
