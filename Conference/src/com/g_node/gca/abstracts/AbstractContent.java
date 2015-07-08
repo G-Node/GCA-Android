@@ -148,14 +148,15 @@ public class AbstractContent extends FragmentActivity implements
         	
         case R.id.next:
         {
-        	String getCurrentRowIDQuery = "SELECT SORTID FROM ABSTRACT_DETAILS WHERE UUID = '" + value + 
+        	String getCurrentRowIDQuery = "SELECT ROWID FROM ABSTRACT_DETAILS WHERE UUID = '" + value + 
         			"';";
             Cursor getRowIdCursor = DatabaseHelper.database.rawQuery(getCurrentRowIDQuery, null);
             getRowIdCursor.moveToFirst();
             int currentSORTID = getRowIdCursor.getInt(0);
             Log.i("Garbers","CurrentSORTID:"+currentSORTID);
-            String get_SORTIDS_bigger = "SELECT SORTID,UUID from abstract_details WHERE SORTID>"+currentSORTID+
-            		" ORDER BY SORTID";
+            
+            String get_SORTIDS_bigger = "SELECT ROWID,UUID from abstract_details WHERE ROWID>"+currentSORTID+
+            		" ORDER BY ROWID";
             Cursor getSORTID_BiggerCursor = DatabaseHelper.database.rawQuery(get_SORTIDS_bigger, null);
             if (getSORTID_BiggerCursor.getCount()>0) {
             	getSORTID_BiggerCursor.moveToFirst();
@@ -177,14 +178,14 @@ public class AbstractContent extends FragmentActivity implements
         
         case R.id.Previous:
         {
-        	String getCurrentRowIDQuery = "SELECT SORTID FROM ABSTRACT_DETAILS WHERE UUID = '" + value + 
+        	String getCurrentRowIDQuery = "SELECT ROWID FROM ABSTRACT_DETAILS WHERE UUID = '" + value + 
         			"';";
             Cursor getRowIdCursor = DatabaseHelper.database.rawQuery(getCurrentRowIDQuery, null);
             getRowIdCursor.moveToFirst();
             int currentSORTID = getRowIdCursor.getInt(0);
             Log.i("Garbers","CurrentSORTID:"+currentSORTID);
-            String get_SORTIDS_bigger = "SELECT SORTID,UUID from abstract_details WHERE SORTID<"+currentSORTID+
-            		" ORDER BY SORTID";
+            String get_SORTIDS_bigger = "SELECT ROWID,UUID from abstract_details WHERE SORTID<"+currentSORTID+
+            		" ORDER BY ROWID DESC";
             Cursor getSORTID_BiggerCursor = DatabaseHelper.database.rawQuery(get_SORTIDS_bigger, null);
             if (getSORTID_BiggerCursor.getCount()>0) {
             	getSORTID_BiggerCursor.moveToLast();
