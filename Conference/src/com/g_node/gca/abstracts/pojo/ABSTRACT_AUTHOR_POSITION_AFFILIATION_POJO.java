@@ -68,13 +68,4 @@ public class ABSTRACT_AUTHOR_POSITION_AFFILIATION_POJO {
 	}
 
 
-
-	/**
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
-	}
-
 }

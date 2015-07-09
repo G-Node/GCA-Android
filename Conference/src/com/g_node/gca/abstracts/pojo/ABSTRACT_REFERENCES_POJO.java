@@ -89,15 +89,4 @@ public class ABSTRACT_REFERENCES_POJO {
 		this.reference_doi = reference_doi;
 	}
 
-
-
-
-	/**
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
-	}
-
 }

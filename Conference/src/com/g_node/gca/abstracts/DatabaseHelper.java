@@ -32,7 +32,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     /*
      * Tables Name
      */
-    
     public static final String TABLE_ABSTRACT_DETAILS = "ABSTRACT_DETAILS";
     
     public static final String TABLE_AUTHORS_DETAILS = "AUTHORS_DETAILS";
@@ -53,8 +52,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     
     /*
      * Query for Creating Tables
-     */
-    
+     */    
     public static final String CREATE_ABSTRACT_DETAILS = "CREATE TABLE IF NOT EXISTS ABSTRACT_DETAILS"
             + "(UUID VARCHAR PRIMARY KEY, TOPIC TEXT NOT NULL, "
             + "TITLE TEXT NOT NULL, ABSRACT_TEXT TEXT NOT NULL,"
@@ -95,12 +93,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     
     public DatabaseHelper(Context context) {
         super(context, Database_Name, null, Database_Version);
-        // TODO Auto-generated constructor stub
     }
 
 	@Override
 	public void onCreate(SQLiteDatabase database) {
-		// TODO Auto-generated method stub
 		
 		/*
          * Creating Tables
@@ -119,7 +115,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 	@Override
 	public void onUpgrade(SQLiteDatabase database, int oldVersion, int newVersion) {
-		// TODO Auto-generated method stub
 		
 		database.execSQL("DROP TABLE IF EXISTS " + TABLE_ABSTRACT_DETAILS);
 		database.execSQL("DROP TABLE IF EXISTS " + TABLE_AUTHORS_DETAILS);
@@ -133,19 +128,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		onCreate(database);
 		
 	}
-	
-	public void open() {
-        /*
-         * Opening Database
-         */
 
+	/*
+     * Opening Database
+     */
+	public void open() {
+        
         database = this.getWritableDatabase();
     }
 	
+	/*
+     * Closing Database
+     */
 	public void close() {
-        /*
-         * Closing Database
-         */
 		
         database.close();
     }
@@ -222,17 +217,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 + "%'", null);
         boolean exists = (cursor.getCount() > 0);
         cursor.close();
-//        Log.i("GCA-DB", "Abstract UUID: " + UUID);
-//        Log.i("GCA-DB", "Abstract is Fav: " + exists);
+        Log.d("GCA-DB", "Abstract is Fav: " + exists);
         return exists;
     }
 	
 	/*
 	 * Main search function for Abstracts
 	 */
-	
 	public Cursor fetchDataByName(String string) {
-        // TODO Auto-generated method stub
 
         Cursor cursor = database
                 .rawQuery(
@@ -255,7 +247,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	/*
 	 * Populating ABSTRACT_DETAILS Table from Arraylist ABSTRACT_DETAILS_POJOS_ARRAY that was populated while Parsing
 	 */
-	
 	public void populateABSTRACT_DETAILS(ArrayList<ABSTRACT_DETAILS_POJO> ABSTRACT_DETAILS_POJOS_ARRAY) {
 		
 		String sql = "INSERT INTO " + TABLE_ABSTRACT_DETAILS + " (UUID, TOPIC, TITLE, ABSRACT_TEXT, STATE, SORTID, REASONFORTALK, MTIME, TYPE, DOI, COI, ACKNOWLEDGEMENTS) VALUES(?,?,?,?,?,?,?,?,?,?,?,?);";
@@ -297,10 +288,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	 * Populating ABSTRACT_AFFILIATION_ID_POSITION Table 
 	 * from Arraylist ABSTRACT_AFFILIATION_ID_POSITION_POJOS_ARRAY that was populated while Parsing
 	 */
-	
 	public void populateABSTRACT_AFFILIATION_ID_POSITION(
 			ArrayList<ABSTRACT_AFFILIATION_ID_POSITION_POJO> ABSTRACT_AFFILIATION_ID_POSITION_POJOS_ARRAY) {
-		// TODO Auto-generated method stub
 		
 		String sql = "INSERT INTO " + TABLE_ABSTRACT_AFFILIATION_ID_POSITION + " (ABSTRACT_UUID, AFFILIATION_UUID, AFFILIATION_POSITION) VALUES(?,?,?);";
 		SQLiteStatement statement = database.compileStatement(sql);		
@@ -332,10 +321,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	 * Populating ABSTRACT_AUTHOR_POSITION_AFFILIATION Table 
 	 * from Arraylist ABSTRACT_AUTHOR_POSITION_AFFILIATION_POJOS_ARRAY that was populated while Parsing
 	 */
-
 	public void populateABSTRACT_AUTHOR_POSITION_AFFILIATION(
 			ArrayList<ABSTRACT_AUTHOR_POSITION_AFFILIATION_POJO> ABSTRACT_AUTHOR_POSITION_AFFILIATION_POJOS_ARRAY) {
-		// TODO Auto-generated method stub
 		
 		String sql = "INSERT INTO " + TABLE_ABSTRACT_AUTHOR_POSITION_AFFILIATION + " (ABSTRACT_UUID, AUTHOR_UUID, AUTHOR_POSITION, AUTHOR_AFFILIATION) VALUES(?,?,?,?);";
 		SQLiteStatement statement = database.compileStatement(sql);		
@@ -364,14 +351,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		
 	}
 	
+	
 	/*
 	 * Populating ABSTRACT_FIGURES Table 
 	 * from Arraylist ABSTRACT_FIGURES_POJOS_ARRAY that was populated while Parsing
 	 */
-
 	public void populateABSTRACT_FIGURES(
 			ArrayList<ABSTRACT_FIGURES_POJO> ABSTRACT_FIGURES_POJOS_ARRAY2) {
-		// TODO Auto-generated method stub
 		
 		String sql = "INSERT INTO " + TABLE_ABSTRACT_FIGURES + " (ABSTRACT_UUID, FIG_UUID, FIG_CAPTION, FIG_URL, FIG_POSITION) VALUES(?,?,?,?,?);";
 		SQLiteStatement statement = database.compileStatement(sql);		
@@ -405,10 +391,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	 * Populating ABSTRACT_REFERENCES Table 
 	 * from Arraylist ABSTRACT_REFERENCES_POJOS_ARRAY that was populated while Parsing
 	 */
-	
 	public void populateABSTRACT_REFERENCES(
 			ArrayList<ABSTRACT_REFERENCES_POJO> ABSTRACT_REFERENCES_POJOS_ARRAY2) {
-		// TODO Auto-generated method stub
 		
 		String sql = "INSERT INTO " + TABLE_ABSTRACT_REFERENCES + " (ABSTRACT_UUID, REF_UUID, REF_TEXT, REF_LINK, REF_DOI) VALUES(?,?,?,?,?);";
 		SQLiteStatement statement = database.compileStatement(sql);		
@@ -442,10 +426,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	 * Populating AFFILIATION_DETAILS Table 
 	 * from Arraylist ABSTRACT_REFERENCES_POJOS_ARRAY that was populated while Parsing
 	 */
-	
 	public void populateAFFILIATION_DETAILS(
 			ArrayList<AFFILIATION_DETAILS_POJO> AFFILIATION_DETAILS_POJOS_ARRAY2) {
-		// TODO Auto-generated method stub
 		
 		String sql = "INSERT INTO " + TABLE_AFFILIATION_DETAILS + " (AFFILIATION_UUID, AFFILIATION_ADDRESS, AFFILIATION_COUNTRY, AFFILIATION_DEPARTMENT, AFFILIATION_SECTION) VALUES(?,?,?,?,?);";
 		SQLiteStatement statement = database.compileStatement(sql);		
@@ -478,12 +460,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	/*
 	 * Populating AUTHORS_DETAILS Table 
 	 * from Arraylist AUTHORS_DETAILS_POJOS_ARRAY that was populated while Parsing
-	 */
-	
+	 */	
 	public void populateAUTHORS_DETAILS(
 			ArrayList<AUTHORS_DETAILS_POJO> AUTHORS_DETAILS_POJOS_ARRAY2) {
-		// TODO Auto-generated method stub
-		
 		
 		String sql = "INSERT INTO " + TABLE_AUTHORS_DETAILS + " (AUTHOR_UUID, AUTHOR_FIRST_NAME, AUTHOR_MIDDLE_NAME, AUTHOR_LAST_NAME, AUTHOR_EMAIL) VALUES(?,?,?,?,?);";
 		SQLiteStatement statement = database.compileStatement(sql);		
@@ -517,10 +496,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	 * just a helper function to empty database, if required
 	 */
 	public void emptyDb() {
-		
 		database.execSQL("DELETE FROM " + TABLE_ABSTRACT_DETAILS);
-		
 	}
 	
-
 }

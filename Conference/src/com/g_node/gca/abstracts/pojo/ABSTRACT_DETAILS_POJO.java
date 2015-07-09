@@ -181,13 +181,4 @@ public class ABSTRACT_DETAILS_POJO {
 	}
 
 
-
-	/**
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
-	}
-
 }
