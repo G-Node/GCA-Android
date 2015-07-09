@@ -7,12 +7,17 @@
 
 package com.g_node.gca.abstracts;
 
+import java.util.ArrayList;
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.database.sqlite.SQLiteStatement;
 import android.util.Log;
+
+import com.g_node.gca.abstracts.pojo.*;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 	
@@ -23,10 +28,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static int Database_Version = 5;
 
     public static SQLiteDatabase database;
-    
-    public long items_id;
-    public long author_id;
-    public long abs_auth_pos_id;
     
     /*
      * Tables Name
@@ -63,7 +64,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     
     public static final String CREATE_AUTHORS_DETAILS = "CREATE TABLE IF NOT EXISTS AUTHORS_DETAILS"
             + "( AUTHOR_UUID VARCHAR PRIMARY KEY, AUTHOR_FIRST_NAME TEXT NOT NULL, AUTHOR_MIDDLE_NAME TEXT, " 
-    		+ "AUTHOR_LAST_NAME TEXT NOT NULL, AUTHOR_EMAIL TEXT NOT NULL);";
+    		+ "AUTHOR_LAST_NAME TEXT NOT NULL, AUTHOR_EMAIL TEXT);";
     
     public static final String CREATE_ABSTRACT_AUTHOR_POSITION_AFFILIATION = "CREATE TABLE IF NOT EXISTS ABSTRACT_AUTHOR_POSITION_AFFILIATION"
             + "( ABSTRACT_UUID VARCHAR NOT NULL, AUTHOR_UUID VARCHAR NOT NULL, " 
@@ -149,156 +150,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         database.close();
     }
 	
-	//function for adding data in ABSTRACT_DETAILS table
-	public void addItems(String uuid, String topic, String Title, String text, String STATE, int SortID,
-            String reasonsForTalk, String mtime, String type, String DOI, String COI, String acknowledgements) {
-        ContentValues cd = new ContentValues();
-
-        cd.put("UUID", uuid);
-
-        cd.put("TOPIC", topic);
-
-        cd.put("TITLE", Title);
-
-        cd.put("ABSRACT_TEXT", text);
-
-        cd.put("STATE", STATE);
-
-        cd.put("SORTID", SortID);
-
-        cd.put("REASONFORTALK", reasonsForTalk);
-
-        cd.put("MTIME", mtime);
-
-        cd.put("TYPE", type);
-
-        cd.put("DOI", DOI);
-
-        cd.put("COI", COI);
-        
-        cd.put("ACKNOWLEDGEMENTS", acknowledgements);
-
-        items_id = database.insert(TABLE_ABSTRACT_DETAILS, null, cd);
-        Log.i(gtag, "Abstract item insert id return: " + Long.toString(items_id));
-
-    }	//end function addItems
-	
-	//function for adding data in AUTHORS_DETAILS table
-	public void addAuthors(String uuid, String first_Name, String middle_Name, String last_Name, String author_mail) {
-		
-		ContentValues value = new ContentValues();
-
-        value.put("AUTHOR_UUID", uuid);
-        
-        value.put("AUTHOR_FIRST_NAME", first_Name);
-        
-        value.put("AUTHOR_MIDDLE_NAME", middle_Name);
-        
-        value.put("AUTHOR_LAST_NAME", last_Name);
-        
-        value.put("AUTHOR_EMAIL", author_mail);
-	
-        author_id = database.insert(TABLE_AUTHORS_DETAILS, null, value);
-        Log.i(gtag, "Author inserted - id: " + author_id);
-	
-	}	//end addAuthors function
-	
-	//function for adding data in ABSTRACT_AUTHOR_POSITION_AFFILIATION table
-	public void addInABSTRACT_AUTHOR_POSITION_AFFILIATION(String abstractUUID, String authorUUID, int authorPosition, String authorAffiliation) {
-		ContentValues values = new ContentValues();
-		
-		values.put("ABSTRACT_UUID", abstractUUID);
-		
-		values.put("AUTHOR_UUID", authorUUID);
-		
-		values.put("AUTHOR_POSITION", authorPosition);
-		
-		values.put("AUTHOR_AFFILIATION", authorAffiliation);
-		
-		abs_auth_pos_id = database.insert(TABLE_ABSTRACT_AUTHOR_POSITION_AFFILIATION, null, values);
-		Log.i(gtag, "Abstract UUID, Auth uuid, position, affiliation inserted: " + abs_auth_pos_id);
-		
-	}	//end addInABSTRACT_AUTHOR_POSITION_AFFILIATION function
-	
-	//function for adding new affiliation in AFFILIATION_DETAILS Table
-	public void addInAFFILIATION_DETAILS(String uuid, String aff_address, String aff_country, String aff_dept, String aff_section) {
-		
-		ContentValues values = new ContentValues();
-		
-		values.put("AFFILIATION_UUID", uuid);
-		
-		values.put("AFFILIATION_ADDRESS", aff_address);
-		
-		values.put("AFFILIATION_COUNTRY", aff_country);
-		
-		values.put("AFFILIATION_DEPARTMENT", aff_dept);
-		
-		values.put("AFFILIATION_SECTION", aff_section);
-		
-		long affiliation_id;
-		affiliation_id = database.insert(TABLE_AFFILIATION_DETAILS, null, values);
-		Log.i(gtag, "Affiliation inserted into directory: " + affiliation_id);
-	}
-	
-	//function to add in ABSTRACT_AFFILIATION_ID_POSITION Table - maintaining affiliation position against each abstract in a separate table
-	public void addInABSTRACT_AFFILIATION_ID_POSITION (String abs_uuid, String aff_uuid, int aff_position) {
-		
-		ContentValues values = new ContentValues();
-		
-		values.put("ABSTRACT_UUID", abs_uuid);
-		
-		values.put("AFFILIATION_UUID", aff_uuid);
-		
-		values.put("AFFILIATION_POSITION", aff_position);
-		
-		long abs_aff_id_pos;
-		abs_aff_id_pos = database.insert(TABLE_ABSTRACT_AFFILIATION_ID_POSITION, null, values);
-		Log.i(gtag, "abs uuid, aff uuid, aff pos inserted: id = > " + abs_aff_id_pos);
-	}
-	
-	//function for adding in ABSTRACT_REFERENCES table 
-	public void addInABSTRACT_REFERENCES (String ABSTRACT_UUID, String REF_UUID, String REF_TEXT, String REF_LINK, String REF_DOI) {
-		
-		ContentValues values = new ContentValues();
-		
-		values.put("ABSTRACT_UUID", ABSTRACT_UUID);
-		
-		values.put("REF_UUID", REF_UUID);
-		
-		values.put("REF_TEXT", REF_TEXT);
-		
-		values.put("REF_LINK", REF_LINK);
-		
-		values.put("REF_DOI", REF_DOI);
-		
-		long ref_id;
-		ref_id = database.insert(TABLE_ABSTRACT_REFERENCES, null, values);
-		Log.i(gtag, "reference inserted: id = > " + ref_id);
-		
-	}
-	
-	//function for adding in ABSTRACT_FIGURES table 
-	public void addInABSTRACT_FIGURES (String ABSTRACT_UUID, String FIG_UUID, String FIG_CAPTION, String FIG_URL, String FIG_POSITION) {
-		
-		ContentValues values = new ContentValues();
-		
-		values.put("ABSTRACT_UUID", ABSTRACT_UUID);
-		
-		values.put("FIG_UUID", FIG_UUID);
-		
-		values.put("FIG_CAPTION", FIG_CAPTION);
-		
-		values.put("FIG_URL", FIG_URL);
-		
-		values.put("FIG_POSITION", FIG_POSITION);
-		
-		long fig_id;
-		fig_id = database.insert(TABLE_ABSTRACT_FIGURES, null, values);
-		Log.i(gtag, "figure inserted: id = > " + fig_id);
-		
-	}
-	
-	//function for adding to ABSTRACT_FAVORITES Table when a user favourites some abstract
+	/*
+	 * function for adding to ABSTRACT_FAVORITES Table when a user favourites some abstract
+	 */
 	public static void addInABSTRACT_FAVORITES (String abstract_uuid) {
 			
 		ContentValues values = new ContentValues();
@@ -306,17 +160,21 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		values.put("ABSTRACT_UUID", abstract_uuid);
 		
 		long abs_fav_id = database.insert(TABLE_ABSTRACT_FAVORITES, null, values);
-		Log.i("GCA-DB", "abstract favourited - id: " + abs_fav_id);
+		Log.d("GCA-DB", "abstract favourited - id: " + abs_fav_id);
 	}
 	
-	//function for deleting from ABSTRACT_FAVORITES if user un-favorites some abstract
+	/*
+	 * function for deleting from ABSTRACT_FAVORITES if user un-favorites some abstract
+	 */
 	public static void deleteFromABSTRACT_FAVORITES (String abstract_uuid) {
 		
 		long rows_affected = database.delete(TABLE_ABSTRACT_FAVORITES, "ABSTRACT_UUID = ?", new String[] { abstract_uuid });
-		Log.i("GCA-DB", "deleted abstract from fav - no: " + rows_affected);
+		Log.d("GCA-DB", "deleted abstract from fav - no: " + rows_affected);
 	}
 	
-	//Function for adding notes for some abstract into Database TABLE_ABSTRACT_NOTES
+	/*
+	 * Function for adding notes for some abstract into Database TABLE_ABSTRACT_NOTES
+	 */
 	public static void addInABSTRACT_NOTES(String abstractUUID, String noteTitle, String NoteText) {
 		
 		ContentValues values = new ContentValues();
@@ -329,16 +187,20 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		
 		long note_id;
 		note_id = database.insert(TABLE_ABSTRACT_NOTES, null, values);
-		Log.i("GCA-DB", "Note inserted: id = > " + note_id);
+		Log.d("GCA-DB", "Note inserted: id = > " + note_id);
 	}
 	
-	//Function for delete notes for some abstract from Database TABLE_ABSTRACT_NOTES
+	/*
+	 * Function for delete notes for some abstract from Database TABLE_ABSTRACT_NOTES
+	 */
 	public static void deleteFromABSTRACT_NOTES(long id) {
 		long rows_affected = database.delete(TABLE_ABSTRACT_NOTES, "NOTE_ID = ?", new String[] { String.valueOf(id)});
-		Log.i("GCA-DB", "deleted Note from db  - no: " + rows_affected);
+		Log.d("GCA-DB", "deleted Note from db  - no: " + rows_affected);
 	}
 	
-	//Function for updating the Note if user edits it
+	/*
+	 * Function for updating the Note if user edits it
+	 */
 	public static void updateNoteABSTRACT_NOTES(String note_id, String noteTitle, String NoteText) {
 		
 		ContentValues values = new ContentValues();
@@ -348,37 +210,26 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		values.put("NOTE_TEXT", NoteText);
 		
 		long rows_affected = database.update(TABLE_ABSTRACT_NOTES, values, "NOTE_ID = ?", new String[] { note_id} );
-		Log.i("GCA-DB", "Updated Note from db  - no: " + rows_affected);
+		Log.d("GCA-DB", "Updated Note from db  - no: " + rows_affected);
 	}
 	
-	//function to check if author already exists in directory
-	public boolean AuthorExists(String UUID) {
-        Cursor cursor = database.rawQuery("select 1 from " + TABLE_AUTHORS_DETAILS + " where AUTHOR_UUID like '%" + UUID
-                + "%'", null);
-        boolean exists = (cursor.getCount() > 0);
-        cursor.close();
-        return exists;
-    }
 	
-	//function to check if affiliation already exists in directory
-	public boolean AffiliationExists(String UUID) {
-        Cursor cursor = database.rawQuery("select 1 from " + TABLE_AFFILIATION_DETAILS + " where AFFILIATION_UUID like '%" + UUID
-                + "%'", null);
-        boolean exists = (cursor.getCount() > 0);
-        cursor.close();
-        return exists;
-    }
-	
-	//function to check if Abstract is already favorited and exists in table
+	/*
+	 * function to check if Abstract is already favorited and exists in table
+	 */
 	public static boolean abstractIsFavorite(String UUID) {
         Cursor cursor = database.rawQuery("select 1 from " + TABLE_ABSTRACT_FAVORITES + " where ABSTRACT_UUID like '%" + UUID
                 + "%'", null);
         boolean exists = (cursor.getCount() > 0);
         cursor.close();
-        Log.i("GCA-DB", "Abstract UUID: " + UUID);
-        Log.i("GCA-DB", "Abstract is Fav: " + exists);
+//        Log.i("GCA-DB", "Abstract UUID: " + UUID);
+//        Log.i("GCA-DB", "Abstract is Fav: " + exists);
         return exists;
     }
+	
+	/*
+	 * Main search function for Abstracts
+	 */
 	
 	public Cursor fetchDataByName(String string) {
         // TODO Auto-generated method stub
@@ -400,7 +251,276 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         return cursor;
     }
+
+	/*
+	 * Populating ABSTRACT_DETAILS Table from Arraylist ABSTRACT_DETAILS_POJOS_ARRAY that was populated while Parsing
+	 */
 	
+	public void populateABSTRACT_DETAILS(ArrayList<ABSTRACT_DETAILS_POJO> ABSTRACT_DETAILS_POJOS_ARRAY) {
+		
+		String sql = "INSERT INTO " + TABLE_ABSTRACT_DETAILS + " (UUID, TOPIC, TITLE, ABSRACT_TEXT, STATE, SORTID, REASONFORTALK, MTIME, TYPE, DOI, COI, ACKNOWLEDGEMENTS) VALUES(?,?,?,?,?,?,?,?,?,?,?,?);";
+		SQLiteStatement statement = database.compileStatement(sql);		
+		database.beginTransaction();
+		
+		Log.d(gtag, "Starting - Insert into Abstract Details");
+		
+		for(int i=0; i<ABSTRACT_DETAILS_POJOS_ARRAY.size(); i++){
+			
+			ABSTRACT_DETAILS_POJO tempAbstractDetailsToSave = ABSTRACT_DETAILS_POJOS_ARRAY.get(i); 
+						
+			statement.clearBindings();
+			
+			statement.bindString(1, tempAbstractDetailsToSave.getUuid());
+			statement.bindString(2, tempAbstractDetailsToSave.getTopic());
+			statement.bindString(3, tempAbstractDetailsToSave.getTitle());
+			statement.bindString(4, tempAbstractDetailsToSave.getText());
+			statement.bindString(5, tempAbstractDetailsToSave.getState());
+			statement.bindLong(6, tempAbstractDetailsToSave.getSortID());
+			statement.bindString(7, tempAbstractDetailsToSave.getReasonForTalk());
+			statement.bindString(8, tempAbstractDetailsToSave.getMtime());
+			statement.bindString(9, tempAbstractDetailsToSave.getAbstractType());
+			statement.bindString(10, tempAbstractDetailsToSave.getDoi());
+			statement.bindString(11, tempAbstractDetailsToSave.getCoi());
+			statement.bindString(12, tempAbstractDetailsToSave.getAcknowledgements());
+			
+			long y = statement.executeInsert();
+			Log.d(gtag, "INSERTED - Abstract " + i + " in Abstract Details. ID: " + y);
+			tempAbstractDetailsToSave = null;
+		}
+		statement.close();
+		database.setTransactionSuccessful();
+		database.endTransaction();
+	}
+	
+	
+	/*
+	 * Populating ABSTRACT_AFFILIATION_ID_POSITION Table 
+	 * from Arraylist ABSTRACT_AFFILIATION_ID_POSITION_POJOS_ARRAY that was populated while Parsing
+	 */
+	
+	public void populateABSTRACT_AFFILIATION_ID_POSITION(
+			ArrayList<ABSTRACT_AFFILIATION_ID_POSITION_POJO> ABSTRACT_AFFILIATION_ID_POSITION_POJOS_ARRAY) {
+		// TODO Auto-generated method stub
+		
+		String sql = "INSERT INTO " + TABLE_ABSTRACT_AFFILIATION_ID_POSITION + " (ABSTRACT_UUID, AFFILIATION_UUID, AFFILIATION_POSITION) VALUES(?,?,?);";
+		SQLiteStatement statement = database.compileStatement(sql);		
+		database.beginTransaction();
+		
+		Log.d(gtag, "Starting - Insert into ABSTRACT_AFFILIATION_ID_POSITION");
+		
+		for(int i=0; i<ABSTRACT_AFFILIATION_ID_POSITION_POJOS_ARRAY.size(); i++){
+			
+			ABSTRACT_AFFILIATION_ID_POSITION_POJO temp = ABSTRACT_AFFILIATION_ID_POSITION_POJOS_ARRAY.get(i); 
+						
+			statement.clearBindings();
+			
+			statement.bindString(1, temp.getAbstract_UUID());
+			statement.bindString(2, temp.getAffiliation_UUID());
+			statement.bindLong(3, temp.getAffiliation_position());
+			
+			long y = statement.executeInsert();
+			Log.d(gtag, "INSERTED - ABSTRACT_AFFILIATION_ID_POSITION " + i + " in ABSTRACT_AFFILIATION_ID_POSITION. ID: " + y);
+			temp = null;
+		}
+		statement.close();
+		database.setTransactionSuccessful();
+		database.endTransaction();
+		
+	}
+	
+	/*
+	 * Populating ABSTRACT_AUTHOR_POSITION_AFFILIATION Table 
+	 * from Arraylist ABSTRACT_AUTHOR_POSITION_AFFILIATION_POJOS_ARRAY that was populated while Parsing
+	 */
+
+	public void populateABSTRACT_AUTHOR_POSITION_AFFILIATION(
+			ArrayList<ABSTRACT_AUTHOR_POSITION_AFFILIATION_POJO> ABSTRACT_AUTHOR_POSITION_AFFILIATION_POJOS_ARRAY) {
+		// TODO Auto-generated method stub
+		
+		String sql = "INSERT INTO " + TABLE_ABSTRACT_AUTHOR_POSITION_AFFILIATION + " (ABSTRACT_UUID, AUTHOR_UUID, AUTHOR_POSITION, AUTHOR_AFFILIATION) VALUES(?,?,?,?);";
+		SQLiteStatement statement = database.compileStatement(sql);		
+		database.beginTransaction();
+		
+		Log.d(gtag, "Starting - Insert into ABSTRACT_AUTHOR_POSITION_AFFILIATION");
+		
+		for(int i=0; i<ABSTRACT_AUTHOR_POSITION_AFFILIATION_POJOS_ARRAY.size(); i++){
+			
+			ABSTRACT_AUTHOR_POSITION_AFFILIATION_POJO temp = ABSTRACT_AUTHOR_POSITION_AFFILIATION_POJOS_ARRAY.get(i); 
+						
+			statement.clearBindings();
+			
+			statement.bindString(1, temp.getAbstract_uuid());
+			statement.bindString(2, temp.getAuthor_uuid());
+			statement.bindLong(3, temp.getAuthor_position());
+			statement.bindString(4, temp.getAuthor_affiliation());
+			
+			long y = statement.executeInsert();
+			Log.d(gtag, "INSERTED - ABSTRACT_AUTHOR_POSITION_AFFILIATION" + i + " in ABSTRACT_AUTHOR_POSITION_AFFILIATION. ID: " + y);
+			temp = null;
+		}
+		statement.close();
+		database.setTransactionSuccessful();
+		database.endTransaction();
+		
+	}
+	
+	/*
+	 * Populating ABSTRACT_FIGURES Table 
+	 * from Arraylist ABSTRACT_FIGURES_POJOS_ARRAY that was populated while Parsing
+	 */
+
+	public void populateABSTRACT_FIGURES(
+			ArrayList<ABSTRACT_FIGURES_POJO> ABSTRACT_FIGURES_POJOS_ARRAY2) {
+		// TODO Auto-generated method stub
+		
+		String sql = "INSERT INTO " + TABLE_ABSTRACT_FIGURES + " (ABSTRACT_UUID, FIG_UUID, FIG_CAPTION, FIG_URL, FIG_POSITION) VALUES(?,?,?,?,?);";
+		SQLiteStatement statement = database.compileStatement(sql);		
+		database.beginTransaction();
+		
+		Log.d(gtag, "Starting - Insert into ABSTRACT_FIGURES");
+		
+		for(int i=0; i<ABSTRACT_FIGURES_POJOS_ARRAY2.size(); i++){
+			
+			ABSTRACT_FIGURES_POJO temp = ABSTRACT_FIGURES_POJOS_ARRAY2.get(i); 
+						
+			statement.clearBindings();
+			statement.bindString(1, temp.getAbstract_uuid());
+			statement.bindString(2, temp.getFigure_uuid());
+			statement.bindString(3, temp.getFigure_caption());
+			statement.bindString(4, temp.getFigure_URL());
+			statement.bindString(4, temp.getFigure_position());
+			
+			long y = statement.executeInsert();
+			Log.d(gtag, "INSERTED - ABSTRACT_FIGURES" + i + " in ABSTRACT_FIGURES. ID: " + y);
+			temp = null;
+		}
+		statement.close();
+		database.setTransactionSuccessful();
+		database.endTransaction();
+			
+	}
+
+	
+	/*
+	 * Populating ABSTRACT_REFERENCES Table 
+	 * from Arraylist ABSTRACT_REFERENCES_POJOS_ARRAY that was populated while Parsing
+	 */
+	
+	public void populateABSTRACT_REFERENCES(
+			ArrayList<ABSTRACT_REFERENCES_POJO> ABSTRACT_REFERENCES_POJOS_ARRAY2) {
+		// TODO Auto-generated method stub
+		
+		String sql = "INSERT INTO " + TABLE_ABSTRACT_REFERENCES + " (ABSTRACT_UUID, REF_UUID, REF_TEXT, REF_LINK, REF_DOI) VALUES(?,?,?,?,?);";
+		SQLiteStatement statement = database.compileStatement(sql);		
+		database.beginTransaction();
+		
+		Log.d(gtag, "Starting - Insert into ABSTRACT_REFERENCES");
+		
+		for(int i=0; i<ABSTRACT_REFERENCES_POJOS_ARRAY2.size(); i++){
+			
+			ABSTRACT_REFERENCES_POJO temp = ABSTRACT_REFERENCES_POJOS_ARRAY2.get(i); 
+						
+			statement.clearBindings();
+			
+			statement.bindString(1, temp.getAbstract_uuid());
+			statement.bindString(2, temp.getReference_uuid());
+			statement.bindString(3, temp.getReference_text());
+			statement.bindString(4, temp.getReference_link());
+			statement.bindString(4, temp.getReference_doi());
+			
+			long y = statement.executeInsert();
+			Log.d(gtag, "INSERTED - ABSTRACT_REFERENCES" + i + " in ABSTRACT_REFERENCES. ID: " + y);
+			temp = null;
+		}
+		statement.close();
+		database.setTransactionSuccessful();
+		database.endTransaction();
+		
+	}
+
+	/*
+	 * Populating AFFILIATION_DETAILS Table 
+	 * from Arraylist ABSTRACT_REFERENCES_POJOS_ARRAY that was populated while Parsing
+	 */
+	
+	public void populateAFFILIATION_DETAILS(
+			ArrayList<AFFILIATION_DETAILS_POJO> AFFILIATION_DETAILS_POJOS_ARRAY2) {
+		// TODO Auto-generated method stub
+		
+		String sql = "INSERT INTO " + TABLE_AFFILIATION_DETAILS + " (AFFILIATION_UUID, AFFILIATION_ADDRESS, AFFILIATION_COUNTRY, AFFILIATION_DEPARTMENT, AFFILIATION_SECTION) VALUES(?,?,?,?,?);";
+		SQLiteStatement statement = database.compileStatement(sql);		
+		database.beginTransaction();
+		
+		Log.d(gtag, "Starting - Insert into AFFILIATION_DETAILS");
+		
+		for(int i=0; i<AFFILIATION_DETAILS_POJOS_ARRAY2.size(); i++){
+			
+			AFFILIATION_DETAILS_POJO temp = AFFILIATION_DETAILS_POJOS_ARRAY2.get(i); 
+						
+			statement.clearBindings();
+			
+			statement.bindString(1, temp.getAffiliation_uuid());
+			statement.bindString(2, temp.getAffiliation_address());
+			statement.bindString(3, temp.getAffiliation_country());
+			statement.bindString(4, temp.getAffiliation_department());
+			statement.bindString(5, temp.getAffiliation_section());
+			
+			long y = statement.executeInsert();
+			Log.d(gtag, "INSERTED - AFFILIATION_DETAILS" + i + " in AFFILIATION_DETAILS. ID: " + y);
+			temp = null;
+		}
+		statement.close();
+		database.setTransactionSuccessful();
+		database.endTransaction();		
+		
+	}
+
+	/*
+	 * Populating AUTHORS_DETAILS Table 
+	 * from Arraylist AUTHORS_DETAILS_POJOS_ARRAY that was populated while Parsing
+	 */
+	
+	public void populateAUTHORS_DETAILS(
+			ArrayList<AUTHORS_DETAILS_POJO> AUTHORS_DETAILS_POJOS_ARRAY2) {
+		// TODO Auto-generated method stub
+		
+		
+		String sql = "INSERT INTO " + TABLE_AUTHORS_DETAILS + " (AUTHOR_UUID, AUTHOR_FIRST_NAME, AUTHOR_MIDDLE_NAME, AUTHOR_LAST_NAME, AUTHOR_EMAIL) VALUES(?,?,?,?,?);";
+		SQLiteStatement statement = database.compileStatement(sql);		
+		database.beginTransaction();
+		
+		Log.d(gtag, "Starting - Insert into AUTHORS_DETAILS");
+		
+		for(int i=0; i<AUTHORS_DETAILS_POJOS_ARRAY2.size(); i++){
+			
+			AUTHORS_DETAILS_POJO temp = AUTHORS_DETAILS_POJOS_ARRAY2.get(i); 
+						
+			statement.clearBindings();
+			
+			statement.bindString(1, temp.getAuthor_uuid());
+			statement.bindString(2, temp.getAuthor_fName());
+			statement.bindString(3, temp.getAuthor_middleName());
+			statement.bindString(4, temp.getAuthor_lName());
+			statement.bindString(5, temp.getAuthor_email());
+			
+			long y = statement.executeInsert();
+			Log.d(gtag, "INSERTED - AUTHORS_DETAILS" + i + " in AUTHORS_DETAILS. ID: " + y);
+			temp = null;
+		}
+		statement.close();
+		database.setTransactionSuccessful();
+		database.endTransaction();
+		
+	}
+	
+	/*
+	 * just a helper function to empty database, if required
+	 */
+	public void emptyDb() {
+		
+		database.execSQL("DELETE FROM " + TABLE_ABSTRACT_DETAILS);
+		
+	}
 	
 
 }
