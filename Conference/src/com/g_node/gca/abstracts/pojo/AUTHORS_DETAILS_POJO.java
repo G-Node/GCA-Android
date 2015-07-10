@@ -91,15 +91,4 @@ public class AUTHORS_DETAILS_POJO {
 		this.author_email = author_email;
 	}
 
-
-
-
-	/**
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
-	}
-
 }

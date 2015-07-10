@@ -22,29 +22,13 @@ public class AFFILIATION_DETAILS_POJO {
 	}
 
 
-
-
-
-
-
 	public String getAffiliation_uuid() {
 		return affiliation_uuid;
 	}
 
-
-
-
-
-
-
 	public void setAffiliation_uuid(String affiliation_uuid) {
 		this.affiliation_uuid = affiliation_uuid;
 	}
-
-
-
-
-
 
 
 	public String getAffiliation_address() {
@@ -52,19 +36,9 @@ public class AFFILIATION_DETAILS_POJO {
 	}
 
 
-
-
-
-
-
 	public void setAffiliation_address(String affiliation_address) {
 		this.affiliation_address = affiliation_address;
 	}
-
-
-
-
-
 
 
 	public String getAffiliation_country() {
@@ -72,19 +46,9 @@ public class AFFILIATION_DETAILS_POJO {
 	}
 
 
-
-
-
-
-
 	public void setAffiliation_country(String affiliation_country) {
 		this.affiliation_country = affiliation_country;
 	}
-
-
-
-
-
 
 
 	public String getAffiliation_department() {
@@ -92,47 +56,18 @@ public class AFFILIATION_DETAILS_POJO {
 	}
 
 
-
-
-
-
-
 	public void setAffiliation_department(String affiliation_department) {
 		this.affiliation_department = affiliation_department;
 	}
-
-
-
-
-
-
 
 	public String getAffiliation_section() {
 		return affiliation_section;
 	}
 
 
-
-
-
-
-
 	public void setAffiliation_section(String affiliation_section) {
 		this.affiliation_section = affiliation_section;
 	}
 
-
-
-
-
-
-
-	/**
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
-	}
 
 }

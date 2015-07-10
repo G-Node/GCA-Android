@@ -24,7 +24,6 @@ import com.g_node.gca.utils.JSONReader;
 public class AbstractsJsonParse {
 	
 	String gTag = "GCA-Abstracts";
-	String log_tag_size = "GCA-DB";
 	int noOfRecords = 0;
 	
 	DatabaseHelper dbHelper;
@@ -33,8 +32,7 @@ public class AbstractsJsonParse {
 	/*
 	 * POJOs Arraylists to hold data after parsing
 	 * Lateron, we do bulk insert and save all the data in db
-	 * */
-	
+	 */
 	private ArrayList<ABSTRACT_AFFILIATION_ID_POSITION_POJO> ABSTRACT_AFFILIATION_ID_POSITION_POJOS_ARRAY = new ArrayList<ABSTRACT_AFFILIATION_ID_POSITION_POJO>();
 	private ArrayList<ABSTRACT_AUTHOR_POSITION_AFFILIATION_POJO> ABSTRACT_AUTHOR_POSITION_AFFILIATION_POJOS_ARRAY = new ArrayList<ABSTRACT_AUTHOR_POSITION_AFFILIATION_POJO>(); 
 	private ArrayList<ABSTRACT_DETAILS_POJO> ABSTRACT_DETAILS_POJOS_ARRAY = new ArrayList<ABSTRACT_DETAILS_POJO>();
@@ -76,71 +74,70 @@ public class AbstractsJsonParse {
 
 				 //get first abstract item object
 				 JSONObject jsonObject = jsonArray.getJSONObject(index);
-//				 Log.d(gTag, "json got: " + jsonObject);	             
+				 Log.d(gTag, "json got: " + jsonObject);	             
 				 
 				 //iterate over the object got, to extract required keys and values
 				 
 				 //abstract UUID
 				 String abs_uuid = jsonObject.getString("uuid");
-//	             Log.d(gTag, "abstract uuid: " + abs_uuid);
+	             Log.d(gTag, "abstract uuid: " + abs_uuid);
 	             
 				 //abstract topic
 				 String topic = jsonObject.getString("topic");
-//	             Log.d(gTag, "topic: " + topic);
+	             Log.d(gTag, "topic: " + topic);
 	             
 	             //abstract title
 	             String title = jsonObject.getString("title");
-//	             Log.d(gTag, "title: " + title);
+	             Log.d(gTag, "title: " + title);
 	             
 	             //abstract text
 	             String text = jsonObject.getString("text");
-//	             Log.d(gTag, "text: " + text);
+	             Log.d(gTag, "text: " + text);
 	             
 	             //abstract state
 	             String state = jsonObject.getString("state");
-//	             Log.d(gTag, "state: " + state);
+	             Log.d(gTag, "state: " + state);
 	             
 	             //abstract sortID
 	             int sortID = jsonObject.getInt("sortId");
-//	             Log.d(gTag, "sortID: " + sortID);
+	             Log.d(gTag, "sortID: " + sortID);
 	             
 	             //abstract reasonForTalk
 	             String reasonForTalk = jsonObject.getString("reasonForTalk");
-//	             Log.d(gTag, "reasonForTalk: " + reasonForTalk);
+	             Log.d(gTag, "reasonForTalk: " + reasonForTalk);
 	             
 	             //abstract mtime
 	             String mtime = jsonObject.getString("mtime");
-//	             Log.d(gTag, "mtime: " + mtime);
+	             Log.d(gTag, "mtime: " + mtime);
 	             
 	             //abstract isTalk
 	             Boolean isTalk = jsonObject.getBoolean("isTalk");
 	             String abstractType;
-//	             Log.d(gTag, "isTalk: " + isTalk);
+	             Log.d(gTag, "isTalk: " + isTalk);
 	             
 	             if(!isTalk) {	//if isTalk is false, then type is poster
 	            	abstractType = "poster"; 
 	             } else {
 	            	 abstractType = "Talk";
 	             }
-//	             Log.d(gTag, "abstract type: " + abstractType);
+	             Log.d(gTag, "abstract type: " + abstractType);
 	             
 	             //abstract DOI
 	             String doi = jsonObject.getString("doi");
-//	             Log.d(gTag, "doi: " + doi);
+	             Log.d(gTag, "doi: " + doi);
 	             
 	             //Abstract conflictOfInterest
 	             String coi = jsonObject.getString("conflictOfInterest");
-//	             Log.d(gTag, "conflictOfInterest: " + coi);
+	             Log.d(gTag, "conflictOfInterest: " + coi);
 	             
 	             //Abstract acknowledgements
 	             String acknowledgements = jsonObject.getString("acknowledgements");
-//	             Log.d(gTag, "acknowledgements: " + acknowledgements);
+	             Log.d(gTag, "acknowledgements: " + acknowledgements);
 	             
 	             
 	             /*
 	              * Insertion of parsed Abstract in Arraylist
-	              */
-	             
+	              */            
 	             ABSTRACT_DETAILS_POJO tempAbstractDetails = new ABSTRACT_DETAILS_POJO(abs_uuid, topic, title, text, state, sortID, reasonForTalk, mtime, abstractType, doi, coi, acknowledgements);
 	             ABSTRACT_DETAILS_POJOS_ARRAY.add(tempAbstractDetails);
 	             
@@ -156,32 +153,31 @@ public class AbstractsJsonParse {
 	            	 
 	            	 //affiliation UUID
 	            	 String affiliation_uuid = affiliationJSONObject.getString("uuid");
-//	            	 Log.d(gTag, "aff uuid: " + affiliation_uuid);
+	            	 Log.d(gTag, "aff uuid: " + affiliation_uuid);
 	            	 
 	            	 //affiliation section
 	            	 String affiliation_section = affiliationJSONObject.getString("section");
-//	            	 Log.d(gTag, "aff section: " + affiliation_section);
+	            	 Log.d(gTag, "aff section: " + affiliation_section);
 	            	 
 	            	 //affiliation department
 	            	 String affiliation_department = affiliationJSONObject.getString("department");
-//	            	 Log.d(gTag, "aff department: " + affiliation_department);
+	            	 Log.d(gTag, "aff department: " + affiliation_department);
 	            	 
 	            	 //affiliation country
 	            	 String affiliation_country = affiliationJSONObject.getString("country");
-//	            	 Log.d(gTag, "aff country: " + affiliation_country);
+	            	 Log.d(gTag, "aff country: " + affiliation_country);
 	            	 
 	            	 //affiliation address
 	            	 String affiliation_address = affiliationJSONObject.getString("address");
-//	            	 Log.d(gTag, "aff address: " + affiliation_address);
+	            	 Log.d(gTag, "aff address: " + affiliation_address);
 	            	 
 	            	 //affiliation position - (different for each abstract)
 	            	 int affiliation_position = affiliationJSONObject.getInt("position");
-//	            	 Log.d(gTag, "aff position: " + affiliation_position);
+	            	 Log.d(gTag, "aff position: " + affiliation_position);
 	            	 
 	            	 /*
 	            	  * Check if affiliation is already parsed. If not, save it else skip
 	            	  */
-	            	 
 	            	 if(!PARSED_Affiliation_UUIDs.contains(affiliation_uuid)) {
 	            		 PARSED_Affiliation_UUIDs.add(affiliation_uuid);
 	            		 AFFILIATION_DETAILS_POJO tempAffiliationDetails = new AFFILIATION_DETAILS_POJO(affiliation_uuid, affiliation_address, affiliation_country, affiliation_department, affiliation_section);
@@ -214,32 +210,32 @@ public class AbstractsJsonParse {
 	            	
 	            	 //author UUID
 	            	 String author_uuid = authorJSONObject.getString("uuid");
-//	            	 Log.d(gTag, "auth uuid: " + author_uuid);
+	            	 Log.d(gTag, "auth uuid: " + author_uuid);
 	            	 
 	            	 //author first Name
 	            	 String author_fName = authorJSONObject.getString("firstName");
-//	            	 Log.d(gTag, "auth first name: " + author_fName);
+	            	 Log.d(gTag, "auth first name: " + author_fName);
 	            	 
 	            	 //author last Name
 	            	 String author_lName = authorJSONObject.getString("lastName");
-//	            	 Log.d(gTag, "auth last name: " + author_lName);
+	            	 Log.d(gTag, "auth last name: " + author_lName);
 	            	 
 	            	 //author middle Name
 	            	 String author_middleName = authorJSONObject.getString("middleName");
-//	            	 Log.d(gTag, "auth middle name: " + author_middleName);
+	            	 Log.d(gTag, "auth middle name: " + author_middleName);
 	            	 
 	            	 //author mail
 	            	 String author_mail = authorJSONObject.getString("mail");
-//	            	 Log.d(gTag, "auth mail: " + author_mail);
+	            	 Log.d(gTag, "auth mail: " + author_mail);
 	            	 
 	            	 //author position (unique for each abstract)
 	            	 int author_position = authorJSONObject.getInt("position");
-//	            	 Log.d(gTag, "auth position: " + author_position);
+	            	 Log.d(gTag, "auth position: " + author_position);
 	            	 
 	            	 //now get affiliations of a particular author for an abstract for example
 	            	 // "affiliations": [0,1]
 	            	 JSONArray authorAffiliationsArray = authorJSONObject.getJSONArray("affiliations");
-//	            	 Log.d(gTag, "auth affiliations: " + authorAffiliationsArray.toString());
+	            	 Log.d(gTag, "auth affiliations: " + authorAffiliationsArray.toString());
 	            	 
 	            	 if(!PARSED_Author_UUIDs.contains(author_uuid)) {
 	            		 PARSED_Author_UUIDs.add(author_uuid);
@@ -275,24 +271,23 @@ public class AbstractsJsonParse {
 	            		 
 	            		 //Figure UUID
 	            		 String figure_uuid = figureJSONObject.getString("uuid");
-//	            		 Log.d(gTag, "Fig uuid: " + figure_uuid);
+	            		 Log.d(gTag, "Fig uuid: " + figure_uuid);
 	            		 
 	            		//Figure Caption
 	            		String figure_caption = figureJSONObject.getString("caption");
-//	            		Log.d(gTag, "Fig caption: " + figure_caption);
+	            		Log.d(gTag, "Fig caption: " + figure_caption);
 	            		
 	            		//Figure URL
 	            		String figure_URL = figureJSONObject.getString("URL");
-//	            		Log.d(gTag, "Fig URL: " + figure_URL);
+	            		Log.d(gTag, "Fig URL: " + figure_URL);
 	            		
 	            		//Figure position
 	            		String figure_position = figureJSONObject.getString("position");
-//	            		Log.d(gTag, "Fig position: " + figure_position);
+	            		Log.d(gTag, "Fig position: " + figure_position);
 	            		
 	            		/*
 			              * Insertion into Arraylist of ABSTRACT_FIGURES_POJO
 			              */
-	            		
 	            		ABSTRACT_FIGURES_POJO tempAbsFig = new ABSTRACT_FIGURES_POJO(abs_uuid, figure_uuid, figure_caption, figure_URL, figure_position);
 	            		ABSTRACT_FIGURES_POJOS_ARRAY.add(tempAbsFig);
 	            	 
@@ -309,19 +304,19 @@ public class AbstractsJsonParse {
 	            	 
 	            	 //Reference UUID
 	            	 String reference_uuid = referenceJSONObject.getString("uuid");
-//	            	 Log.d(gTag, "ref uuid: " + reference_uuid);
+	            	 Log.d(gTag, "ref uuid: " + reference_uuid);
 	            	 
 	            	 //Reference text
 	            	 String reference_text = referenceJSONObject.getString("text");
-//	            	 Log.d(gTag, "ref text: " + reference_text);
+	            	 Log.d(gTag, "ref text: " + reference_text);
 	            	 
 	            	 //Reference link
 	            	 String reference_link = referenceJSONObject.getString("link");
-//	            	 Log.d(gTag, "ref link: " + reference_link);
+	            	 Log.d(gTag, "ref link: " + reference_link);
 	            	 
 	            	 //Reference DOI
 	            	 String reference_doi = referenceJSONObject.getString("doi");
-//	            	 Log.d(gTag, "ref DOI: " + reference_doi);
+	            	 Log.d(gTag, "ref DOI: " + reference_doi);
 	            	 
 	            	 /*
 		              * Insertion of reference into Arraylist of ABSTRACT_REFERENCES_POJO
@@ -341,22 +336,21 @@ public class AbstractsJsonParse {
             e.printStackTrace();
         }
 		
-		Log.d(log_tag_size, "Size: - ABSTRACT_AFFILIATION_ID_POSITION_POJOS_ARRAY : " + ABSTRACT_AFFILIATION_ID_POSITION_POJOS_ARRAY.size());
-		Log.d(log_tag_size, "Size: - ABSTRACT_AUTHOR_POSITION_AFFILIATION_POJOS_ARRAY : " + ABSTRACT_AUTHOR_POSITION_AFFILIATION_POJOS_ARRAY.size());
-		Log.d(log_tag_size, "Size: - ABSTRACT_DETAILS_POJOS_ARRAY : " + ABSTRACT_DETAILS_POJOS_ARRAY.size());
-		Log.d(log_tag_size, "Size: - ABSTRACT_FIGURES_POJOS_ARRAY : " + ABSTRACT_FIGURES_POJOS_ARRAY.size());
-		Log.d(log_tag_size, "Size: - ABSTRACT_REFERENCES_POJOS_ARRAY : " + ABSTRACT_REFERENCES_POJOS_ARRAY.size());
-		Log.d(log_tag_size, "Size: - AFFILIATION_DETAILS_POJOS_ARRAY : " + AFFILIATION_DETAILS_POJOS_ARRAY.size());
-		Log.d(log_tag_size, "Size: - AUTHORS_DETAILS_POJOS_ARRAY : " + AUTHORS_DETAILS_POJOS_ARRAY.size());
-		
+		Log.d(gTag, "Size: - ABSTRACT_AFFILIATION_ID_POSITION_POJOS_ARRAY : " + ABSTRACT_AFFILIATION_ID_POSITION_POJOS_ARRAY.size());
+		Log.d(gTag, "Size: - ABSTRACT_AUTHOR_POSITION_AFFILIATION_POJOS_ARRAY : " + ABSTRACT_AUTHOR_POSITION_AFFILIATION_POJOS_ARRAY.size());
+		Log.d(gTag, "Size: - ABSTRACT_DETAILS_POJOS_ARRAY : " + ABSTRACT_DETAILS_POJOS_ARRAY.size());
+		Log.d(gTag, "Size: - ABSTRACT_FIGURES_POJOS_ARRAY : " + ABSTRACT_FIGURES_POJOS_ARRAY.size());
+		Log.d(gTag, "Size: - ABSTRACT_REFERENCES_POJOS_ARRAY : " + ABSTRACT_REFERENCES_POJOS_ARRAY.size());
+		Log.d(gTag, "Size: - AFFILIATION_DETAILS_POJOS_ARRAY : " + AFFILIATION_DETAILS_POJOS_ARRAY.size());
+		Log.d(gTag, "Size: - AUTHORS_DETAILS_POJOS_ARRAY : " + AUTHORS_DETAILS_POJOS_ARRAY.size());
 	
 		/*
 		 * Save the parsed data from arraylists to SQLite database.
 		 */
-		
-		saveFromArrayListtoDB(ABSTRACT_AFFILIATION_ID_POSITION_POJOS_ARRAY, ABSTRACT_AUTHOR_POSITION_AFFILIATION_POJOS_ARRAY,ABSTRACT_DETAILS_POJOS_ARRAY, 
-			ABSTRACT_FIGURES_POJOS_ARRAY, ABSTRACT_REFERENCES_POJOS_ARRAY, AFFILIATION_DETAILS_POJOS_ARRAY,AUTHORS_DETAILS_POJOS_ARRAY );	
-	
+		saveFromArrayListtoDB(ABSTRACT_AFFILIATION_ID_POSITION_POJOS_ARRAY, ABSTRACT_AUTHOR_POSITION_AFFILIATION_POJOS_ARRAY,
+				ABSTRACT_DETAILS_POJOS_ARRAY, ABSTRACT_FIGURES_POJOS_ARRAY, 
+				ABSTRACT_REFERENCES_POJOS_ARRAY, AFFILIATION_DETAILS_POJOS_ARRAY,
+				AUTHORS_DETAILS_POJOS_ARRAY );	
 		
 	/*
 	 * It just gets number of abstracts from it's table and returns. 
@@ -374,7 +368,6 @@ public class AbstractsJsonParse {
 	 * arraylists to relevant tables. For populating each table from it's relevant arraylist, there's respective funciton
 	 * in DatabaseHelper class
 	 */
-	
 	private void saveFromArrayListtoDB(
 			ArrayList<ABSTRACT_AFFILIATION_ID_POSITION_POJO> ABSTRACT_AFFILIATION_ID_POSITION_POJOS_ARRAY2,
 			ArrayList<ABSTRACT_AUTHOR_POSITION_AFFILIATION_POJO> ABSTRACT_AUTHOR_POSITION_AFFILIATION_POJOS_ARRAY2,
@@ -383,12 +376,10 @@ public class AbstractsJsonParse {
 			ArrayList<ABSTRACT_REFERENCES_POJO> ABSTRACT_REFERENCES_POJOS_ARRAY2,
 			ArrayList<AFFILIATION_DETAILS_POJO> AFFILIATION_DETAILS_POJOS_ARRAY2,
 			ArrayList<AUTHORS_DETAILS_POJO> AUTHORS_DETAILS_POJOS_ARRAY2) {
-		// TODO Auto-generated method stub
 		
 		/*
 		 * Populating all tables respectively
 		 */
-		
 		dbHelper.populateABSTRACT_AFFILIATION_ID_POSITION(ABSTRACT_AFFILIATION_ID_POSITION_POJOS_ARRAY2);
 		dbHelper.populateABSTRACT_AUTHOR_POSITION_AFFILIATION(ABSTRACT_AUTHOR_POSITION_AFFILIATION_POJOS_ARRAY2);
 		dbHelper.populateABSTRACT_DETAILS(ABSTRACT_DETAILS_POJOS_ARRAY2);
@@ -397,7 +388,5 @@ public class AbstractsJsonParse {
 		dbHelper.populateAFFILIATION_DETAILS(AFFILIATION_DETAILS_POJOS_ARRAY2);
 		dbHelper.populateAUTHORS_DETAILS(AUTHORS_DETAILS_POJOS_ARRAY2);
 	}
-
-	
 	
 }
