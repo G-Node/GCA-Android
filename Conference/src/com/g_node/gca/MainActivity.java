@@ -6,28 +6,40 @@
 
 package com.g_node.gca;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.AlertDialog.Builder;
+import android.app.ProgressDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.os.AsyncTask;
+import android.os.Bundle;
+import android.text.Html;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.Toast;
+
 import com.g_node.gca.abstracts.Abstracts;
+import com.g_node.gca.abstracts.DatabaseHelper;
 import com.g_node.gca.abstracts.FavoriteAbstracts;
 import com.g_node.gca.map.MapActivity;
 import com.g_node.gca.newsroom.NewsRoomActivity;
 import com.g_node.gca.schedule.ScheduleMainActivity;
 import com.g_node.gcaa.R;
 
-import android.os.Bundle;
-import android.app.Activity;
-import android.app.AlertDialog;
-import android.app.LauncherActivity;
-import android.app.AlertDialog.Builder;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.text.Html;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.Button;
-
 public class MainActivity extends Activity {
+	
+	DatabaseHelper dbHelpeer = new DatabaseHelper(this);
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -122,6 +134,15 @@ public class MainActivity extends Activity {
             Intent genInfo = new Intent(this, GeneralActivity.class);
             this.startActivity(genInfo);
             return true;
+        
+		case R.id.updateAbs:
+		{
+			
+			//start an async task and check with server if there are any new abstracts
+			SynchronizeWithServer syncTask = new SynchronizeWithServer();
+			syncTask.execute();
+			return true;
+		}    
             
 		case R.id.abtApp:
 		{
@@ -144,4 +165,126 @@ public class MainActivity extends Activity {
 		
 	}
 
+	private class SynchronizeWithServer extends AsyncTask<Void, Void, Void> {
+
+		private ProgressDialog Dialog = new ProgressDialog(MainActivity.this);
+		
+		@Override
+		protected void onPreExecute() {
+			Dialog.setMessage("Checking with Server...");
+	        Dialog.setCancelable(false);
+	        Dialog.show();
+			
+		}
+		
+		@Override
+		protected Void doInBackground(Void... params) {
+	
+			InputStream in = null;
+			String response = null;
+			
+			in = MainActivity.this.getResources().openRawResource(R.raw.abstracts_up);
+			dbHelpeer.open();
+			SyncAbstracts sync = new SyncAbstracts(dbHelpeer, in);
+			sync.doSync();
+			
+			
+//			try {
+//				Log.d("GCA-Sync", "Connecting...");
+//				URL url = new URL("http://192.168.173.1:9000/api/conferences/2311a932-1e89-4817-b767-a18f4a0b879f/abstracts/2015-07-09T08:24:50.833Z");
+//				HttpURLConnection httpConnection = (HttpURLConnection) url.openConnection();
+//				Log.d("GCA-Sync", "Connection opened");
+//				httpConnection.setRequestMethod("GET");
+//				Log.d("GCA-Sync", "Method Set");
+//				httpConnection.connect();
+//				Log.d("GCA-Sync", "connected");
+//				Log.d("GCA-Sync", "Response Code: " + httpConnection.getResponseCode());
+//				if(httpConnection.getResponseCode() == HttpURLConnection.HTTP_OK) {
+//					in = httpConnection.getInputStream();
+//					response = convertStreatToString(in);
+//					
+//					Log.d("GCA-Sync", "Response received from: " + url + ": " + response);
+//					Log.d("GCA-Sync", "Response Length: " + response.length());
+//					
+//					if(response.length() <=2) {
+//						//
+//						Toast toast = Toast.makeText(getApplicationContext(), "Already up to date!", Toast.LENGTH_SHORT);
+//						toast.show();
+//					} else {
+//						
+//						/*
+//						 * some valid response. Need to process abstracts - 2 options
+//						 * 1) insert 
+//						 * 2) update
+//						 * 
+//						 * but here, first i should build array of existing abstract UUIDs so to 
+//						 * compare if an abstract is to be updated or inserted
+//						 * 
+//						 * POJOs initially, parse all! and then decide what to do,.
+//						 * 
+//						 * modify abstractsjsonparse with a flag to decide either to update or insert
+//						 */
+//					}
+//					
+//				} else {
+//					// some error in connecting 
+//				}
+//				
+//				httpConnection.disconnect();
+//				
+//			} catch (MalformedURLException e) {
+//				e.printStackTrace();
+//			}
+//			
+//			catch (IOException e) {
+//		         e.printStackTrace();
+//			}
+//			
+			
+//			String response = null;
+//			String url = null;
+//			
+//			
+//			try {
+//	            // http client
+//	            DefaultHttpClient httpClient = new DefaultHttpClient();
+//	            HttpEntity httpEntity = null;
+//	            HttpResponse httpResponse = null;
+//	             
+//	            HttpGet httpGet = new HttpGet(url);
+//	 
+//	            httpResponse = httpClient.execute(httpGet);
+//	            
+//	            httpEntity = httpResponse.getEntity();
+//	            response = EntityUtils.toString(httpEntity);
+//	 
+//	        } catch (UnsupportedEncodingException e) {
+//	            e.printStackTrace();
+//	        } catch (ClientProtocolException e) {
+//	            e.printStackTrace();
+//	        } catch (IOException e) {
+//	            e.printStackTrace();
+//	        }
+			
+			
+			return null;
+		}
+		
+		private String convertStreatToString(InputStream in) {
+			java.util.Scanner s = new java.util.Scanner(in).useDelimiter("\\A");
+		    return s.hasNext() ? s.next() : "";
+		}
+
+		@Override
+		protected void onPostExecute(Void result){
+			dbHelpeer.close();
+			Dialog.dismiss();
+			//notify that it's updated
+		}
+
+	}
+	
 }
+
+
+

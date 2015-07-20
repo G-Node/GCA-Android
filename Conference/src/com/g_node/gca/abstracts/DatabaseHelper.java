@@ -492,11 +492,75 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		
 	}
 	
+	public ArrayList<String> fetchExistingAbstractsUUID() {
+		
+		ArrayList<String> existingAbstractsUUID = new ArrayList<String>();
+		
+		Cursor cursor = database.rawQuery("SELECT * FROM ABSTRACT_DETAILS;", null);
+		cursor.moveToFirst();
+		
+		while(!cursor.isAfterLast()) {
+			
+			String temp = cursor.getString(cursor.getColumnIndexOrThrow("UUID"));
+			existingAbstractsUUID.add(temp);
+			cursor.moveToNext();
+			
+		}
+		
+		return existingAbstractsUUID;
+	}
+	
+
+	public ArrayList<String> fetchExistingAffiliationsUUID() {
+
+		ArrayList<String> existingAffiliationUUID = new ArrayList<String>();
+		
+		Cursor cursor = database.rawQuery("SELECT * FROM AFFILIATION_DETAILS;", null);
+		cursor.moveToFirst();
+		
+		while(!cursor.isAfterLast()) {
+			
+			String temp = cursor.getString(cursor.getColumnIndexOrThrow("AFFILIATION_UUID"));
+			existingAffiliationUUID.add(temp);
+			cursor.moveToNext();
+		}
+		
+		return existingAffiliationUUID;
+	}
+	
+	public ArrayList<String> fetchExistingAuthhorsUUID() {
+		
+		ArrayList<String> existingAuthorsUUID = new ArrayList<String>();
+		
+		Cursor cursor = database.rawQuery("SELECT * FROM AUTHORS_DETAILS;", null);
+		cursor.moveToFirst();
+		
+		while(!cursor.isAfterLast()) {
+			
+			String temp = cursor.getString(cursor.getColumnIndexOrThrow("AUTHOR_UUID"));
+			existingAuthorsUUID.add(temp);
+			cursor.moveToNext();
+		}
+		
+		return existingAuthorsUUID;
+		
+	}
+
 	/*
 	 * just a helper function to empty database, if required
 	 */
 	public void emptyDb() {
 		database.execSQL("DELETE FROM " + TABLE_ABSTRACT_DETAILS);
 	}
+	
+	public int getCountOfRowsInAbstractDetailsTable() {
+		String sql = "SELECT * FROM ABSTRACT_DETAILS";
+		Cursor cursor = database.rawQuery(sql, null);
+		int count = cursor.getCount();
+		cursor.close();
+		return count;
+	}
+
+	
 	
 }

@@ -121,10 +121,11 @@ private class AbstractJSONParsingTask extends AsyncTask<Void, Void, Void> {
 	        if (cursorCount <= 0) {
 
 	           //call jsonParse function to get data from abstracts JSON file
-	        	InputStream jsonStream = Abstracts.this.getResources().openRawResource(R.raw.abstracts);
+	        	InputStream jsonStream = Abstracts.this.getResources().openRawResource(R.raw.abstracts_raw);
 	        	 
 	        	AbstractsJsonParse parseAbstractsJson = new AbstractsJsonParse(jsonStream, dbHelper);
 	            parseAbstractsJson.jsonParse();
+	            parseAbstractsJson.saveFromArrayListtoDB();
 	        	
 	            /*
 	             * Query execution
