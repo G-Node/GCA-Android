@@ -115,8 +115,6 @@ public class MainActivity extends Activity {
 			}
 		});
 		
-		
-				
 	}
 
 	@Override
@@ -171,110 +169,67 @@ public class MainActivity extends Activity {
 		
 		@Override
 		protected void onPreExecute() {
-			Dialog.setMessage("Checking with Server...");
+			Dialog.setMessage("Please wait while app synchrinizes with Server...");
 	        Dialog.setCancelable(false);
 	        Dialog.show();
-			
 		}
 		
 		@Override
 		protected Void doInBackground(Void... params) {
 	
 			InputStream in = null;
-			String response = null;
+
+			try {
+				Log.d("GCA-Sync", "Connecting...");
+				URL url = new URL(getResources().getString(R.string.sync_url));
+				HttpURLConnection httpConnection = (HttpURLConnection) url.openConnection();
+				Log.d("GCA-Sync", "Connection opened");
+				httpConnection.setRequestMethod("GET");
+				Log.d("GCA-Sync", "Method Set");
+				httpConnection.connect();
+				Log.d("GCA-Sync", "connected");
+				Log.d("GCA-Sync", "Response Code: " + httpConnection.getResponseCode());
+				
+				if(httpConnection.getResponseCode() == HttpURLConnection.HTTP_OK) {
+					in = httpConnection.getInputStream();
+					Log.d("GCA-Sync", "stream xx: " + in + " -- " + in.available());
+					
+					if(in.available() <=5) { // 5 because even a single abstract object is returned; it'll be much more than 5
+						//Notify user that it's already upto date
+						Toast toast = Toast.makeText(getApplicationContext(), "Already up to date!", Toast.LENGTH_SHORT);
+						toast.show();
+						
+					} else {
+						/*
+						 * Some valid response. Need to synchronize
+						 */
+						dbHelpeer.open();
+						
+						//in = MainActivity.this.getResources().openRawResource(R.raw.abstracts_up);
+						Log.d("GCA-Sync", "stream yy: " + in + " -- " + in.available());
+						SyncAbstracts sync = new SyncAbstracts(dbHelpeer, in);
+						sync.doSync();
+					}
+					
+				} else {	//response from HTTP not 200
+					
+					// some error in connecting - inform user.
+				}
+				
+				httpConnection.disconnect();
+				
+			} catch (MalformedURLException e) {
+				e.printStackTrace();
+			}
 			
-			in = MainActivity.this.getResources().openRawResource(R.raw.abstracts_up);
-			dbHelpeer.open();
-			SyncAbstracts sync = new SyncAbstracts(dbHelpeer, in);
-			sync.doSync();
-			
-			
-//			try {
-//				Log.d("GCA-Sync", "Connecting...");
-//				URL url = new URL("http://192.168.173.1:9000/api/conferences/2311a932-1e89-4817-b767-a18f4a0b879f/abstracts/2015-07-09T08:24:50.833Z");
-//				HttpURLConnection httpConnection = (HttpURLConnection) url.openConnection();
-//				Log.d("GCA-Sync", "Connection opened");
-//				httpConnection.setRequestMethod("GET");
-//				Log.d("GCA-Sync", "Method Set");
-//				httpConnection.connect();
-//				Log.d("GCA-Sync", "connected");
-//				Log.d("GCA-Sync", "Response Code: " + httpConnection.getResponseCode());
-//				if(httpConnection.getResponseCode() == HttpURLConnection.HTTP_OK) {
-//					in = httpConnection.getInputStream();
-//					response = convertStreatToString(in);
-//					
-//					Log.d("GCA-Sync", "Response received from: " + url + ": " + response);
-//					Log.d("GCA-Sync", "Response Length: " + response.length());
-//					
-//					if(response.length() <=2) {
-//						//
-//						Toast toast = Toast.makeText(getApplicationContext(), "Already up to date!", Toast.LENGTH_SHORT);
-//						toast.show();
-//					} else {
-//						
-//						/*
-//						 * some valid response. Need to process abstracts - 2 options
-//						 * 1) insert 
-//						 * 2) update
-//						 * 
-//						 * but here, first i should build array of existing abstract UUIDs so to 
-//						 * compare if an abstract is to be updated or inserted
-//						 * 
-//						 * POJOs initially, parse all! and then decide what to do,.
-//						 * 
-//						 * modify abstractsjsonparse with a flag to decide either to update or insert
-//						 */
-//					}
-//					
-//				} else {
-//					// some error in connecting 
-//				}
-//				
-//				httpConnection.disconnect();
-//				
-//			} catch (MalformedURLException e) {
-//				e.printStackTrace();
-//			}
-//			
-//			catch (IOException e) {
-//		         e.printStackTrace();
-//			}
-//			
-			
-//			String response = null;
-//			String url = null;
-//			
-//			
-//			try {
-//	            // http client
-//	            DefaultHttpClient httpClient = new DefaultHttpClient();
-//	            HttpEntity httpEntity = null;
-//	            HttpResponse httpResponse = null;
-//	             
-//	            HttpGet httpGet = new HttpGet(url);
-//	 
-//	            httpResponse = httpClient.execute(httpGet);
-//	            
-//	            httpEntity = httpResponse.getEntity();
-//	            response = EntityUtils.toString(httpEntity);
-//	 
-//	        } catch (UnsupportedEncodingException e) {
-//	            e.printStackTrace();
-//	        } catch (ClientProtocolException e) {
-//	            e.printStackTrace();
-//	        } catch (IOException e) {
-//	            e.printStackTrace();
-//	        }
-			
+			catch (IOException e) {
+		         e.printStackTrace();
+			}
 			
 			return null;
-		}
+			
+		}//end doInBackground
 		
-		private String convertStreatToString(InputStream in) {
-			java.util.Scanner s = new java.util.Scanner(in).useDelimiter("\\A");
-		    return s.hasNext() ? s.next() : "";
-		}
-
 		@Override
 		protected void onPostExecute(Void result){
 			dbHelpeer.close();
@@ -283,7 +238,6 @@ public class MainActivity extends Activity {
 		}
 
 	}
-	
 }
 
 
