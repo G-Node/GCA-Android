@@ -335,7 +335,7 @@ private class SynchronizeWithServer extends AsyncTask<Void, Void, Void> {
 				
 				if(httpConnection.getResponseCode() == HttpURLConnection.HTTP_OK) {
 					in = httpConnection.getInputStream();
-					Log.d("GCA-Sync", "stream xx: " + in + " -- " + in.available());
+					Log.d("GCA-Sync", "Received Stream size: " + in + " -- " + in.available());
 					
 					if(in.available() <=20) { // 20 because even a single abstract object is returned; it'll be much more than 5
 						//Notify user that it's already upto date
@@ -350,7 +350,7 @@ private class SynchronizeWithServer extends AsyncTask<Void, Void, Void> {
 							dbHelper.open();
 						}
 						//in = MainActivity.this.getResources().openRawResource(R.raw.abstracts_up);
-						Log.d("GCA-Sync", "stream yy: " + in + " -- " + in.available());
+						Log.d("GCA-Sync", "Received Response size: " + in + " -- " + in.available());
 						SyncAbstracts sync = new SyncAbstracts(dbHelper, in);
 						sync.doSync();
 					}
