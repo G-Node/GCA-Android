@@ -140,8 +140,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	/*
      * Closing Database
      */
-	public void close() {
-		
+	public void close(String string) {
+		Log.d("exc", "DESTROYED:" + string);
         database.close();
     }
 	

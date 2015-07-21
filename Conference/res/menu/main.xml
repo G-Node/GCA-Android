@@ -6,11 +6,6 @@
         android:title="@string/menu_genInfo_text"/>
 	
 	<item
-        android:id="@+id/updateAbs"
-        android:showAsAction="never"
-        android:title="@string/menu_updateAbs_text"/>
-	
-	<item
         android:id="@+id/abtApp"
         android:showAsAction="never"
         android:title="@string/menu_aboutAPP_text"/>

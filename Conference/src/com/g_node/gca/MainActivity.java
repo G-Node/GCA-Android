@@ -6,34 +6,20 @@
 
 package com.g_node.gca;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
-import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.Html;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.Toast;
 
 import com.g_node.gca.abstracts.Abstracts;
-import com.g_node.gca.abstracts.DatabaseHelper;
 import com.g_node.gca.abstracts.FavoriteAbstracts;
 import com.g_node.gca.map.MapActivity;
 import com.g_node.gca.newsroom.NewsRoomActivity;
@@ -42,7 +28,6 @@ import com.g_node.gcaa.R;
 
 public class MainActivity extends Activity {
 	
-	DatabaseHelper dbHelpeer = new DatabaseHelper(this);
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -136,15 +121,6 @@ public class MainActivity extends Activity {
             this.startActivity(genInfo);
             return true;
         
-		case R.id.updateAbs:
-		{
-			
-			//start an async task and check with server if there are any new abstracts
-			SynchronizeWithServer syncTask = new SynchronizeWithServer();
-			syncTask.execute();
-			return true;
-		}    
-            
 		case R.id.abtApp:
 		{
 			Builder aboutDialog = new AlertDialog.Builder(MainActivity.this);
@@ -164,127 +140,6 @@ public class MainActivity extends Activity {
 			
 		return false;
 		
-	}
-
-	private class SynchronizeWithServer extends AsyncTask<Void, Void, Void> {
-		
-		int connectivityFlag = 0;
-		int notificationFlag = 0;
-		
-		private ProgressDialog Dialog = new ProgressDialog(MainActivity.this);
-		
-		@Override
-		protected void onPreExecute() {
-			Dialog.setMessage("Please wait while app synchrinizes with Server...");
-	        Dialog.setCancelable(false);
-	        Dialog.show();
-		}
-		
-		@Override
-		protected Void doInBackground(Void... params) {
-	
-			if(!isNetworkAvailable()) {	//if no internet access
-				connectivityFlag = -1;
-			} else {
-				/*
-				 * internet is available
-				 */
-				InputStream in = null;
-	
-				try {
-					Log.d("GCA-Sync", "Connecting...");
-					URL url = new URL(getResources().getString(R.string.sync_url));
-					HttpURLConnection httpConnection = (HttpURLConnection) url.openConnection();
-					Log.d("GCA-Sync", "Connection opened");
-					httpConnection.setRequestMethod("GET");
-					Log.d("GCA-Sync", "Method Set");
-					httpConnection.connect();
-					Log.d("GCA-Sync", "connected");
-					Log.d("GCA-Sync", "Response Code: " + httpConnection.getResponseCode());
-					
-					if(httpConnection.getResponseCode() == HttpURLConnection.HTTP_OK) {
-						in = httpConnection.getInputStream();
-						Log.d("GCA-Sync", "stream xx: " + in + " -- " + in.available());
-						
-						if(in.available() <=10) { // 10 because even a single abstract object is returned; it'll be much more than 5
-							//Notify user that it's already upto date
-							notificationFlag = -1;
-							
-						} else {
-							/*
-							 * Some valid response. Need to synchronize
-							 */
-							dbHelpeer.open();
-							
-							//in = MainActivity.this.getResources().openRawResource(R.raw.abstracts_up);
-							Log.d("GCA-Sync", "stream yy: " + in + " -- " + in.available());
-							SyncAbstracts sync = new SyncAbstracts(dbHelpeer, in);
-							sync.doSync();
-						}
-						
-					} else {	//response from HTTP not 200
-						
-						// some error in connecting - inform user.
-						Toast toast = Toast.makeText(getApplicationContext(), "Unable to Synchronize with Server. Try later", Toast.LENGTH_LONG);
-						toast.show();
-					}
-					
-					httpConnection.disconnect();
-					
-				} catch (MalformedURLException e) {
-					e.printStackTrace();
-				}
-				
-				catch (IOException e) {
-			         e.printStackTrace();
-				}
-			}// end else
-			
-			return null;
-			
-		}//end doInBackground
-		
-		@Override
-		protected void onPostExecute(Void result){
-			
-			if(connectivityFlag == -1) {
-
-				Dialog.dismiss();
-				connectivityFlag = 0;
-				
-				Builder x = new AlertDialog.Builder(MainActivity.this);
-			    x.setTitle("ERROR")
-			    .setMessage("Unable to connect to Internet. Please ensure internet connectivity")
-			    .setNeutralButton(android.R.string.ok,
-			            new DialogInterface.OnClickListener() {
-			        public void onClick(DialogInterface dialog, int id) {
-			            dialog.cancel();
-			        }
-			    }).setIcon(android.R.drawable.ic_dialog_alert).create().show();
-			    
-			} else {
-				Dialog.dismiss();
-				
-				if(notificationFlag == -1) {
-					notificationFlag = 0;
-					Toast toast = Toast.makeText(getApplicationContext(), "Already up to date!", Toast.LENGTH_LONG);
-					toast.show();
-				} else {
-					dbHelpeer.close();
-					//notify that it's updated
-					Toast toast = Toast.makeText(getApplicationContext(), "Synchronized with server successfully.", Toast.LENGTH_SHORT);
-					toast.show();
-				}
-			}
-		}
-		
-		private boolean isNetworkAvailable() {
-		    ConnectivityManager connectivityManager 
-		          = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-		    NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
-		    return activeNetworkInfo != null && activeNetworkInfo.isConnected();
-		}
-
 	}
 }
 
