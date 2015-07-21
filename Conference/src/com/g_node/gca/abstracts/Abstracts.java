@@ -37,7 +37,6 @@ import android.widget.FilterQueryProvider;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.g_node.gca.SyncAbstracts;
 import com.g_node.gcaa.R;
 
 public class Abstracts extends Activity {

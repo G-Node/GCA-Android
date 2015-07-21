@@ -1,12 +1,10 @@
- package com.g_node.gca;
+ package com.g_node.gca.abstracts;
 
 import java.io.InputStream;
 import java.util.ArrayList;
 
 import android.util.Log;
 
-import com.g_node.gca.abstracts.AbstractsJsonParse;
-import com.g_node.gca.abstracts.DatabaseHelper;
 import com.g_node.gca.abstracts.pojo.ABSTRACT_AFFILIATION_ID_POSITION_POJO;
 import com.g_node.gca.abstracts.pojo.ABSTRACT_AUTHOR_POSITION_AFFILIATION_POJO;
 import com.g_node.gca.abstracts.pojo.ABSTRACT_DETAILS_POJO;
