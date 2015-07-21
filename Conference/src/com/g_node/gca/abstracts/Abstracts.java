@@ -11,6 +11,10 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.TimeZone;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -19,6 +23,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -46,6 +51,9 @@ public class Abstracts extends Activity {
 	EditText searchOption;
 	ListView listView;
 	AbstractCursorAdapter cursorAdapter;
+	
+	String SYNC_TIME_KEY = "com.g_node.gcaa.syncDateTime";
+	String APP_PKG_NAME = "com.g_node.gcaa";
 	
 	String query = "";
 	
@@ -170,6 +178,18 @@ private class AbstractJSONParsingTask extends AsyncTask<Void, Void, Void> {
 	             * get number of cursor data
 	             */
 	            cursorCount = cursor.getCount();
+	            
+	            /*
+	             * save the current time as default time for sync
+	             */
+	    		TimeZone tz = TimeZone.getTimeZone("UTC");
+	    	    DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
+	    	    df.setTimeZone(tz);
+	    	    String nowAsISO = df.format(new Date());
+	    	    Log.d("GCA-Sync", "SYNC: Saving the time first time as default: " + nowAsISO);
+	    	    
+	    	    SharedPreferences prefs = Abstracts.this.getSharedPreferences(APP_PKG_NAME, Context.MODE_PRIVATE);
+	            prefs.edit().putString(SYNC_TIME_KEY, nowAsISO).apply();
 	        }
 			
 			return null;
@@ -283,7 +303,28 @@ private class SynchronizeWithServer extends AsyncTask<Void, Void, Void> {
 
 			try {
 				Log.d("GCA-Sync", "Connecting...");
-				URL url = new URL(getResources().getString(R.string.sync_url));
+				
+				/*
+	             * Read the last saved time and append to URL
+	             * 1 - first we will read the last saved timestamp from sharedpreferences
+	             * 2 - we'll formulate the URL by appending the timestamp at end
+	             * 		- the structure of URL would be usually like
+	             * 		http://127.0.0.1:9000/api/conferences/2311a932-1e89-4817-b767-a18f4a0b879f/abstracts/2015-07-09T08:24:50.833Z
+	             * 		- note the timestamp in end. that's what we have stored in db and will append
+	             * 		- The previous part of url before timestamp is read from strings.xml
+	             * 		- so for formulating we'll read url from strings.xml and concatenate timestamp at end
+	             */
+	    	    SharedPreferences prefs = Abstracts.this.getSharedPreferences(APP_PKG_NAME, Context.MODE_PRIVATE);
+	    	    String lastSyncTime = prefs.getString(SYNC_TIME_KEY, null);
+	    	    Log.d("GCA-Sync", "SYNC: Previous sync time for URL appending: " + lastSyncTime);
+	            
+	    	    String urlString = getResources().getString(R.string.sync_url)+lastSyncTime;
+	    	    Log.d("GCA-Sync", "SYNC: URL: " + urlString);
+				
+	    	    /*
+	    	     * connecting with server
+	    	     */
+	    	    URL url = new URL(urlString);				
 				HttpURLConnection httpConnection = (HttpURLConnection) url.openConnection();
 				Log.d("GCA-Sync", "Connection opened");
 				httpConnection.setRequestMethod("GET");
@@ -357,6 +398,20 @@ private class SynchronizeWithServer extends AsyncTask<Void, Void, Void> {
 		} else {
 			Dialog.dismiss();
 			
+			/*
+             * save the current time as last sync time
+             */
+    		TimeZone tz = TimeZone.getTimeZone("UTC");
+    	    DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
+    	    df.setTimeZone(tz);
+    	    String nowAsISO = df.format(new Date());
+    	    Log.d("GCA-Sync", "SYNC: Current time after sync: " + nowAsISO);
+    	    
+    	    SharedPreferences prefs = Abstracts.this.getSharedPreferences(APP_PKG_NAME, Context.MODE_PRIVATE);
+            prefs.edit().putString(SYNC_TIME_KEY, nowAsISO).apply();
+			
+            Log.d("GCA-Sync", "SYNC: current time form Shared Pref: " + prefs.getString(SYNC_TIME_KEY, null));
+            
 			if(notificationFlag == -1) {
 				notificationFlag = 0;
 				Toast toast = Toast.makeText(getApplicationContext(), "Already up to date!", Toast.LENGTH_LONG);
