@@ -319,6 +319,7 @@ private class SynchronizeWithServer extends AsyncTask<Void, Void, Void> {
 	    	    Log.d("GCA-Sync", "SYNC: Previous sync time for URL appending: " + lastSyncTime);
 	            
 	    	    String urlString = getResources().getString(R.string.sync_url)+lastSyncTime;
+	    	    	
 	    	    Log.d("GCA-Sync", "SYNC: URL: " + urlString);
 				
 	    	    /*
@@ -335,9 +336,9 @@ private class SynchronizeWithServer extends AsyncTask<Void, Void, Void> {
 				
 				if(httpConnection.getResponseCode() == HttpURLConnection.HTTP_OK) {
 					in = httpConnection.getInputStream();
-					Log.d("GCA-Sync", "Received Stream size: " + in + " -- " + in.available());
+					Log.d("GCA-Sync", "Received Stream size: " + httpConnection.getContentLength() + " -- " + in.available());
 					
-					if(in.available() <=20) { // 20 because even a single abstract object is returned; it'll be much more than 5
+					if(httpConnection.getContentLength() <=20) { // 20 because even a single abstract object is returned; it'll be much more than 5
 						//Notify user that it's already upto date
 						notificationFlag = -1;
 						
