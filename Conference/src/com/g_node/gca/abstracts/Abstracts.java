@@ -415,7 +415,8 @@ private class SynchronizeWithServer extends AsyncTask<Void, Void, Void> {
             
 			if(notificationFlag == -1) {
 				notificationFlag = 0;
-				Toast toast = Toast.makeText(getApplicationContext(), "Already up to date!", Toast.LENGTH_LONG);
+				Toast toast = Toast.makeText(getApplicationContext(), "Already up to date!", 
+						Toast.LENGTH_LONG);
 				toast.show();
 			} else {
 				cursor = DatabaseHelper.database.rawQuery(query, null);
@@ -423,7 +424,8 @@ private class SynchronizeWithServer extends AsyncTask<Void, Void, Void> {
 				cursorAdapter.notifyDataSetChanged();
 				//syncDbHelper.close("sync");
 				//notify that it's updated
-				Toast toast = Toast.makeText(getApplicationContext(), "Synchronized with server successfully.", Toast.LENGTH_SHORT);
+				Toast toast = Toast.makeText(getApplicationContext(), "Synchronized with server successfully.", 
+						Toast.LENGTH_SHORT);
 				toast.show();
 				
 			}

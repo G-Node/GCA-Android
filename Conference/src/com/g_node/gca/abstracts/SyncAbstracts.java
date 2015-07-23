@@ -136,19 +136,29 @@ public class SyncAbstracts {
 				 * deletion form 5 tables
 				 * Insertions will be performed later in doAbstractRelatedInsertions() function
 				 */
-				rows_affected = DatabaseHelper.database.delete("ABSTRACT_DETAILS", "UUID = ?", new String[] { currentAbsUUID });
+				rows_affected = DatabaseHelper.database.delete("ABSTRACT_DETAILS", "UUID = ?", 
+						new String[] { currentAbsUUID });
+				
 				Log.i(gTag, "Deleted from ABSTRACT_DETAILS: " + rows_affected);
 				
-				rows_affected = DatabaseHelper.database.delete("ABSTRACT_FIGURES", "ABSTRACT_UUID = ?", new String[] { currentAbsUUID });
+				rows_affected = DatabaseHelper.database.delete("ABSTRACT_FIGURES", "ABSTRACT_UUID = ?", 
+						new String[] { currentAbsUUID });
+				
 				Log.i(gTag, "Deleted from ABSTRACT_FIGURES: " + rows_affected);
 				
-				rows_affected = DatabaseHelper.database.delete("ABSTRACT_REFERENCES", "ABSTRACT_UUID = ?", new String[] { currentAbsUUID });
+				rows_affected = DatabaseHelper.database.delete("ABSTRACT_REFERENCES", "ABSTRACT_UUID = ?", 
+						new String[] { currentAbsUUID });
+				
 				Log.i(gTag, "Deleted from ABSTRACT_REFERENCES: " + rows_affected);
 				
-				rows_affected = DatabaseHelper.database.delete("ABSTRACT_AFFILIATION_ID_POSITION", "ABSTRACT_UUID = ?", new String[] { currentAbsUUID });
+				rows_affected = DatabaseHelper.database.delete("ABSTRACT_AFFILIATION_ID_POSITION", "ABSTRACT_UUID = ?", 
+						new String[] { currentAbsUUID });
+				
 				Log.i(gTag, "Deleted from ABSTRACT_AFFILIATION_ID_POSITION: " + rows_affected);
 				
-				rows_affected = DatabaseHelper.database.delete("ABSTRACT_AUTHOR_POSITION_AFFILIATION", "ABSTRACT_UUID = ?", new String[] { currentAbsUUID });
+				rows_affected = DatabaseHelper.database.delete("ABSTRACT_AUTHOR_POSITION_AFFILIATION", "ABSTRACT_UUID = ?", 
+						new String[] { currentAbsUUID });
+				
 				Log.i(gTag, "Deleted from ABSTRACT_AUTHOR_POSITION_AFFILIATION: " + rows_affected);
 				
 			} else {	
@@ -192,7 +202,9 @@ public class SyncAbstracts {
 			if(ExistingAuthor_UUIDs.contains(temp.getAuthor_uuid())) {	//author already exists, delete it, insert again
 				
 				//query for deleting
-				rows_affected = DatabaseHelper.database.delete("AUTHORS_DETAILS", "AUTHOR_UUID = ?", new String[] { currAuthorUUID });
+				rows_affected = DatabaseHelper.database.delete("AUTHORS_DETAILS", "AUTHOR_UUID = ?", 
+						new String[] { currAuthorUUID });
+				
 				Log.i(gTag, "Deleted from AUTHORS_DETAILS: " + rows_affected);
 				
 			} else {
@@ -230,7 +242,9 @@ public class SyncAbstracts {
 			if(ExistingAffiliation_UUIDs.contains(temp.getAffiliation_uuid())) {
 				
 				//deletion query
-				rows_affected = DatabaseHelper.database.delete("AFFILIATION_DETAILS", "AFFILIATION_UUID = ?", new String[] { currentAffiliationUUID });
+				rows_affected = DatabaseHelper.database.delete("AFFILIATION_DETAILS", "AFFILIATION_UUID = ?", 
+						new String[] { currentAffiliationUUID });
+				
 				Log.i(gTag, "Deleted from AFFILIATION_DETAILS : " + rows_affected);
 				
 			} else {
