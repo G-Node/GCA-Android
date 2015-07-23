@@ -54,6 +54,9 @@ public class Abstracts extends Activity {
 	
 	String SYNC_TIME_KEY = "com.g_node.gcaa.syncDateTime";
 	String APP_PKG_NAME = "com.g_node.gcaa";
+	String DB_CONSISTENCY_FLAG = "com.g_node.gcaa.dbConsistency";
+
+	SharedPreferences appPreferences;
 	
 	String query = "";
 	
@@ -70,7 +73,7 @@ public class Abstracts extends Activity {
 		
 		listView = (ListView)findViewById(R.id.AbsListView);
 		searchOption = (EditText)findViewById(R.id.abstractSearch);
-		
+		appPreferences = Abstracts.this.getSharedPreferences(APP_PKG_NAME, Context.MODE_PRIVATE);
 		/*
          * Get Writable Database
          */
@@ -153,6 +156,14 @@ private class AbstractJSONParsingTask extends AsyncTask<Void, Void, Void> {
 	        Log.i(gTag, "data got rows : " + Integer.toString(a));
 	        
 	        /*
+	         * Get value of DB_CONSISTENCY_FLAG from sharedPref and check if 
+	         * database is consistent or not.
+	         */
+	        int dbConsitencyFlagVal = appPreferences.getInt(DB_CONSISTENCY_FLAG, -1);
+	        Log.d(gTag, "Val of DB_CONSISTENCY_FLAG - checking as Abstracts " +
+	        		"activity is opened: " + dbConsitencyFlagVal);
+	        
+	        /*
 	         * Get number of data to check whether database has any data or it's
 	         * empty
 	         */
@@ -161,15 +172,35 @@ private class AbstractJSONParsingTask extends AsyncTask<Void, Void, Void> {
 	        /*
 	         * Check If Database is empty.
 	         */
-	        if (cursorCount <= 0) {
-
+	        if (cursorCount <= 0 || dbConsitencyFlagVal == -1) {
+	        	
+	        	if(dbConsitencyFlagVal == -1) {
+	        		Log.d(gTag, "Database is inconsitent - flag: " + dbConsitencyFlagVal);
+	        		dbHelper.dropAllTablesAndCreateAgain();
+	        		/*
+	        		 * Set value of sync time to a old date so when it syncs with
+	        		 * server, it just gets everything
+	        		 */
+	        		String oldDummyTime = Abstracts.this.getResources().getString(R.string.old_dummy_sync_time);
+	        		appPreferences.edit().putString(SYNC_TIME_KEY, oldDummyTime).apply();
+	        		Log.d(gTag, "SYNC_TIME Val, if DB_CONSISTENCY_FLAG -1: " + appPreferences.getString(SYNC_TIME_KEY, null));
+	        	}
+	        	
 	           //call jsonParse function to get data from abstracts JSON file
 	        	InputStream jsonStream = Abstracts.this.getResources().openRawResource(R.raw.abstracts_raw);
 	        	 
 	        	AbstractsJsonParse parseAbstractsJson = new AbstractsJsonParse(jsonStream, dbHelper);
 	            parseAbstractsJson.jsonParse();
 	            parseAbstractsJson.saveFromArrayListtoDB();
-	        	
+	            
+	            /*
+	             * as the parsing and building of db process is completed here
+	             * we need to update the consistent flag.
+	             * (The next time if flag value won't be 1, all tables will be dropped
+	             * and built again.)
+	             */
+	            appPreferences.edit().putInt(DB_CONSISTENCY_FLAG, 1).apply();
+	            Log.d(gTag, "Value of DB_CONSISTENCY_FLAG after initial json parsing: " + appPreferences.getInt(DB_CONSISTENCY_FLAG, -1));
 	            /*
 	             * Query execution
 	             */
@@ -188,8 +219,7 @@ private class AbstractJSONParsingTask extends AsyncTask<Void, Void, Void> {
 	    	    String nowAsISO = df.format(new Date());
 	    	    Log.d("GCA-Sync", "SYNC: Saving the time first time as default: " + nowAsISO);
 	    	    
-	    	    SharedPreferences prefs = Abstracts.this.getSharedPreferences(APP_PKG_NAME, Context.MODE_PRIVATE);
-	            prefs.edit().putString(SYNC_TIME_KEY, nowAsISO).apply();
+	    	    appPreferences.edit().putString(SYNC_TIME_KEY, nowAsISO).apply();
 	        }
 			
 			return null;
@@ -314,11 +344,12 @@ private class SynchronizeWithServer extends AsyncTask<Void, Void, Void> {
 	             * 		- The previous part of url before timestamp is read from strings.xml
 	             * 		- so for formulating we'll read url from strings.xml and concatenate timestamp at end
 	             */
-	    	    SharedPreferences prefs = Abstracts.this.getSharedPreferences(APP_PKG_NAME, Context.MODE_PRIVATE);
-	    	    String lastSyncTime = prefs.getString(SYNC_TIME_KEY, null);
+	    	    String lastSyncTime = appPreferences.getString(SYNC_TIME_KEY, null);
 	    	    Log.d("GCA-Sync", "SYNC: Previous sync time for URL appending: " + lastSyncTime);
 	            
-	    	    String urlString = getResources().getString(R.string.sync_url)+lastSyncTime;
+	    	    //String urlString = getResources().getString(R.string.sync_url)+lastSyncTime;
+	    	    String urlString  = "http://labs.shumailmohyuddin.com/gnode/abstracts_up.json";
+	    	    	
 	    	    	
 	    	    Log.d("GCA-Sync", "SYNC: URL: " + urlString);
 				
@@ -350,10 +381,32 @@ private class SynchronizeWithServer extends AsyncTask<Void, Void, Void> {
 						if(!dbHelper.database.isOpen()) {
 							dbHelper.open();
 						}
+						
+						/*
+						 * set value of DB_CONSISTENCY_FLAG to -1 here
+						 * Which we'll update back to 1 after synchronizing with server
+						 */
+						appPreferences.edit().putInt(DB_CONSISTENCY_FLAG, -1).apply();
+						Log.d(gTag, "DB_CONSISTENCY_FLAG set to -1 before syncing");
+						
 						//in = MainActivity.this.getResources().openRawResource(R.raw.abstracts_up);
 						Log.d("GCA-Sync", "Received Response size: " + in + " -- " + in.available());
 						SyncAbstracts sync = new SyncAbstracts(dbHelper, in);
 						sync.doSync();
+						
+						/*
+						 * As synchronizing has been done here, update the value
+						 * of DB_CONSISTENCY_FLAG back to 1 here
+						 * If it's not updated back to 1 here, (because of some
+						 * interuption like if device gets powered off while updating)
+						 * the next time user opens Abstracts activity, it will check if
+						 * value of flag is not 1, it will drop all db and build it again
+						 * and set a old sync date, because with old sync date the next
+						 * time it tries to sync with server, it'll fetch everything to sync again
+						 * as the db is built again
+						 */
+						appPreferences.edit().putInt(DB_CONSISTENCY_FLAG, 1);
+						Log.d(gTag, "DB_CONSISTENCY_FLAG value after syncing: " + appPreferences.getInt(DB_CONSISTENCY_FLAG, -1));
 					}
 					
 				} else {	//response from HTTP not 200
@@ -408,10 +461,9 @@ private class SynchronizeWithServer extends AsyncTask<Void, Void, Void> {
     	    String nowAsISO = df.format(new Date());
     	    Log.d("GCA-Sync", "SYNC: Current time after sync: " + nowAsISO);
     	    
-    	    SharedPreferences prefs = Abstracts.this.getSharedPreferences(APP_PKG_NAME, Context.MODE_PRIVATE);
-            prefs.edit().putString(SYNC_TIME_KEY, nowAsISO).apply();
+    	    appPreferences.edit().putString(SYNC_TIME_KEY, nowAsISO).apply();
 			
-            Log.d("GCA-Sync", "SYNC: current time form Shared Pref: " + prefs.getString(SYNC_TIME_KEY, null));
+            Log.d("GCA-Sync", "SYNC: current time form Shared Pref: " + appPreferences.getString(SYNC_TIME_KEY, null));
             
 			if(notificationFlag == -1) {
 				notificationFlag = 0;

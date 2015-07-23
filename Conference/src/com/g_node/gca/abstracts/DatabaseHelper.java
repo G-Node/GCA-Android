@@ -146,6 +146,24 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 	
 	/*
+	 * Helper function for Dropping all tables and creating again
+	 * In case db is not consistent, it'll drop and build whole db again
+	 * Note that we only need to drop Abstracts data related tables
+	 * We won't dorp Notes and Favorites table
+	 */
+	public void dropAllTablesAndCreateAgain() {
+		database.execSQL("DROP TABLE IF EXISTS " + TABLE_ABSTRACT_DETAILS);
+		database.execSQL("DROP TABLE IF EXISTS " + TABLE_AUTHORS_DETAILS);
+		database.execSQL("DROP TABLE IF EXISTS " + TABLE_ABSTRACT_AUTHOR_POSITION_AFFILIATION);
+		database.execSQL("DROP TABLE IF EXISTS " + TABLE_AFFILIATION_DETAILS);
+		database.execSQL("DROP TABLE IF EXISTS " + TABLE_ABSTRACT_AFFILIATION_ID_POSITION);
+		database.execSQL("DROP TABLE IF EXISTS " + TABLE_ABSTRACT_REFERENCES);
+		database.execSQL("DROP TABLE IF EXISTS " + TABLE_ABSTRACT_FIGURES);
+		onCreate(database);
+		
+	}
+	
+	/*
 	 * function for adding to ABSTRACT_FAVORITES Table when a user favourites some abstract
 	 */
 	public static void addInABSTRACT_FAVORITES (String abstract_uuid) {
