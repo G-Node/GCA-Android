@@ -30,9 +30,6 @@ import com.g_node.gcaa.R;
 
 public class MainActivity extends Activity {
 	
-	String APP_PKG_NAME = "com.g_node.gcaa";
-	String DB_CONSISTENCY_FLAG = "com.g_node.gcaa.dbConsistency";
-	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -40,9 +37,6 @@ public class MainActivity extends Activity {
 		
 		getActionBar().setTitle(R.string.app_name);
 		//getActionBar().setIcon(getResources().getDrawable(R.drawable.icon_brain));
-		
-		SharedPreferences prefs = MainActivity.this.getSharedPreferences(APP_PKG_NAME, Context.MODE_PRIVATE);
-        prefs.edit().putInt(DB_CONSISTENCY_FLAG, -1).apply();
 		
 		Button news = (Button)findViewById(R.id.btn_news);
 		news.setOnClickListener(new OnClickListener() {

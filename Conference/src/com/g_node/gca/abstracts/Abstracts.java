@@ -177,16 +177,11 @@ private class AbstractJSONParsingTask extends AsyncTask<Void, Void, Void> {
 	        	if(dbConsitencyFlagVal == -1) {
 	        		Log.d(gTag, "Database is inconsitent - flag: " + dbConsitencyFlagVal);
 	        		dbHelper.dropAllTablesAndCreateAgain();
-	        		/*
-	        		 * Set value of sync time to a old date so when it syncs with
-	        		 * server, it just gets everything
-	        		 */
-	        		String oldDummyTime = Abstracts.this.getResources().getString(R.string.old_dummy_sync_time);
-	        		appPreferences.edit().putString(SYNC_TIME_KEY, oldDummyTime).apply();
-	        		Log.d(gTag, "SYNC_TIME Val, if DB_CONSISTENCY_FLAG -1: " + appPreferences.getString(SYNC_TIME_KEY, null));
+	        	} else {
+	        		Log.d(gTag, "Database is consistent");
 	        	}
 	        	
-	           //call jsonParse function to get data from abstracts JSON file
+	        	//call jsonParse function to get data from abstracts JSON file
 	        	InputStream jsonStream = Abstracts.this.getResources().openRawResource(R.raw.abstracts_raw);
 	        	 
 	        	AbstractsJsonParse parseAbstractsJson = new AbstractsJsonParse(jsonStream, dbHelper);
@@ -201,6 +196,16 @@ private class AbstractJSONParsingTask extends AsyncTask<Void, Void, Void> {
 	             */
 	            appPreferences.edit().putInt(DB_CONSISTENCY_FLAG, 1).apply();
 	            Log.d(gTag, "Value of DB_CONSISTENCY_FLAG after initial json parsing: " + appPreferences.getInt(DB_CONSISTENCY_FLAG, -1));
+	            
+	            /*
+        		 * Set value of sync time to a old date so when it syncs with
+        		 * server, it just gets everything
+        		 */
+        		String oldDummyTime = Abstracts.this.getResources().getString(R.string.old_dummy_sync_time);
+        		appPreferences.edit().putString(SYNC_TIME_KEY, oldDummyTime).apply();
+        		Log.d(gTag, "SYNC_TIME Val, Saving old time for first time or if DB " +
+        				"is not consistent: " + appPreferences.getString(SYNC_TIME_KEY, null));
+	            
 	            /*
 	             * Query execution
 	             */
@@ -209,17 +214,6 @@ private class AbstractJSONParsingTask extends AsyncTask<Void, Void, Void> {
 	             * get number of cursor data
 	             */
 	            cursorCount = cursor.getCount();
-	            
-	            /*
-	             * save the current time as default time for sync
-	             */
-	    		TimeZone tz = TimeZone.getTimeZone("UTC");
-	    	    DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
-	    	    df.setTimeZone(tz);
-	    	    String nowAsISO = df.format(new Date());
-	    	    Log.d("GCA-Sync", "SYNC: Saving the time first time as default: " + nowAsISO);
-	    	    
-	    	    appPreferences.edit().putString(SYNC_TIME_KEY, nowAsISO).apply();
 	        }
 			
 			return null;
