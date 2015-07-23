@@ -347,9 +347,7 @@ private class SynchronizeWithServer extends AsyncTask<Void, Void, Void> {
 	    	    String lastSyncTime = appPreferences.getString(SYNC_TIME_KEY, null);
 	    	    Log.d("GCA-Sync", "SYNC: Previous sync time for URL appending: " + lastSyncTime);
 	            
-	    	    //String urlString = getResources().getString(R.string.sync_url)+lastSyncTime;
-	    	    String urlString  = "http://labs.shumailmohyuddin.com/gnode/abstracts_up.json";
-	    	    	
+	    	    String urlString = getResources().getString(R.string.sync_url)+lastSyncTime;
 	    	    	
 	    	    Log.d("GCA-Sync", "SYNC: URL: " + urlString);
 				
