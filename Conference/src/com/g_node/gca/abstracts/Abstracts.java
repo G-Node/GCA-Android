@@ -182,7 +182,7 @@ private class AbstractJSONParsingTask extends AsyncTask<Void, Void, Void> {
 	        	}
 	        	
 	        	//call jsonParse function to get data from abstracts JSON file
-	        	InputStream jsonStream = Abstracts.this.getResources().openRawResource(R.raw.abstracts_raw);
+	        	InputStream jsonStream = Abstracts.this.getResources().openRawResource(R.raw.abstracts);
 	        	 
 	        	AbstractsJsonParse parseAbstractsJson = new AbstractsJsonParse(jsonStream, dbHelper);
 	            parseAbstractsJson.jsonParse();
@@ -397,7 +397,7 @@ private class SynchronizeWithServer extends AsyncTask<Void, Void, Void> {
 						 * time it tries to sync with server, it'll fetch everything to sync again
 						 * as the db is built again
 						 */
-						appPreferences.edit().putInt(DB_CONSISTENCY_FLAG, 1);
+						appPreferences.edit().putInt(DB_CONSISTENCY_FLAG, 1).apply();
 						Log.d(gTag, "DB_CONSISTENCY_FLAG value after syncing: " + appPreferences.getInt(DB_CONSISTENCY_FLAG, -1));
 					}
 					
