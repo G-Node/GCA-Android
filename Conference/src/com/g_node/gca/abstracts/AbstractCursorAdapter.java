@@ -110,8 +110,7 @@ public class AbstractCursorAdapter extends CursorAdapter {
         String authorNamesQuery = 	"SELECT ABSTRACT_UUID, AUTHORS_DETAILS.AUTHOR_UUID, AUTHORS_DETAILS.AUTHOR_FIRST_NAME, AUTHOR_MIDDLE_NAME, AUTHOR_LAST_NAME, AUTHOR_EMAIL, ABSTRACT_AUTHOR_POSITION_AFFILIATION.AUTHOR_POSITION as _aPos FROM ABSTRACT_AUTHOR_POSITION_AFFILIATION LEFT OUTER JOIN AUTHORS_DETAILS USING (AUTHOR_UUID) WHERE ABSTRACT_UUID = '" + value + "' ORDER BY _aPos;";
         cursorOne =  DatabaseHelper.database.rawQuery(authorNamesQuery, null);
         
-      if (cursorOne != null) {
-      cursorOne.moveToFirst();
+      if (cursorOne != null && cursorOne.moveToFirst()) {
       /*
        * Name format will be like this A, B & C or A,B,C & D. So, if the
        * name is the last name. We should use '&' before the name

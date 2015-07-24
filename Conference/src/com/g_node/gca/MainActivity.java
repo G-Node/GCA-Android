@@ -6,20 +6,12 @@
 
 package com.g_node.gca;
 
-import com.g_node.gca.abstracts.Abstracts;
-import com.g_node.gca.abstracts.FavoriteAbstracts;
-import com.g_node.gca.map.MapActivity;
-import com.g_node.gca.newsroom.NewsRoomActivity;
-import com.g_node.gca.schedule.ScheduleMainActivity;
-import com.g_node.gcaa.R;
-
-import android.os.Bundle;
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.LauncherActivity;
 import android.app.AlertDialog.Builder;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Bundle;
 import android.text.Html;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -27,8 +19,15 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
-public class MainActivity extends Activity {
+import com.g_node.gca.abstracts.Abstracts;
+import com.g_node.gca.abstracts.FavoriteAbstracts;
+import com.g_node.gca.map.MapActivity;
+import com.g_node.gca.newsroom.NewsRoomActivity;
+import com.g_node.gca.schedule.ScheduleMainActivity;
+import com.g_node.gcaa.R;
 
+public class MainActivity extends Activity {
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -103,8 +102,6 @@ public class MainActivity extends Activity {
 			}
 		});
 		
-		
-				
 	}
 
 	@Override
@@ -122,7 +119,7 @@ public class MainActivity extends Activity {
             Intent genInfo = new Intent(this, GeneralActivity.class);
             this.startActivity(genInfo);
             return true;
-            
+        
 		case R.id.abtApp:
 		{
 			Builder aboutDialog = new AlertDialog.Builder(MainActivity.this);
@@ -143,5 +140,7 @@ public class MainActivity extends Activity {
 		return false;
 		
 	}
-
 }
+
+
+
