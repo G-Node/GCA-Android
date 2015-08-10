@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-   
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/track_event_row_linearLayout_block"    
+   <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/track_event_row_linearLayout_block"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:baselineAligned="false">
+    android:background="@color/schedule_event"
+    android:baselineAligned="false"
+    android:orientation="horizontal" >
 
     <LinearLayout android:id="@+id/block_time_container"
         android:orientation="vertical"
@@ -28,15 +28,15 @@
             android:paddingTop="4dp"/>
     </LinearLayout>
 
-    <LinearLayout android:id="@+id/list_item_middle_container"
+    <LinearLayout
+        android:id="@+id/list_item_middle_container"
         android:layout_width="0dp"
-        android:layout_weight="1"
         android:layout_height="match_parent"
-        android:background="#B7F1FF"
+        android:layout_weight="1"
         android:clickable="false"
         android:focusable="false"
-        android:padding="8dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="8dp" >
 
         <TextView android:id="@+id/event_title"
             android:layout_width="wrap_content"
