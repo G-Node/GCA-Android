@@ -30,6 +30,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.webkit.WebView;
+import android.webkit.WebView.FindListener;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -311,10 +312,10 @@ public class AbstractContentTabFragment extends Fragment {
 	        	String affName = "";
 	        	for (String txt:aff_array){
 	        		if (!txt.equals("null")&&!txt.equals("")){
-	        			affName = affName+txt+",";
+	        			affName = affName+txt+", ";
 	        		}
 	        	}
-	        	affName = affName.substring(0, affName.length()-1);
+	        	affName = affName.substring(0, affName.length()-2);
 	        	int affPos = cursorOne.getInt(cursorOne.getColumnIndexOrThrow("AFFILIATION_POSITION"));
 	        	affPos++;
 	        	afName.append(Html.fromHtml(affPos + ": " + "<b>" + affName + "</b><br/>" ));
@@ -411,6 +412,13 @@ public class AbstractContentTabFragment extends Fragment {
             		ConAck.append(acknowledgements + "\n" );
             	}
                 
+            }
+            else{
+            	ConAck.setVisibility(0);
+            	getView().findViewById(R.id.ConAcknowledgeheading).setVisibility(View.GONE);
+            	getView().findViewById(R.id.bar3).setVisibility(View.GONE);
+            	
+            	
             }
 
         } while (cursorTwo.moveToNext());
