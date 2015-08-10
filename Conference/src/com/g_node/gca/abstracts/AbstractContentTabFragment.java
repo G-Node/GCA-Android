@@ -310,7 +310,7 @@ public class AbstractContentTabFragment extends Fragment {
 		        			};
 	        	String affName = "";
 	        	for (String txt:aff_array){
-	        		if (!txt.equals("null")){
+	        		if (!txt.equals("null")&&!txt.equals("")){
 	        			affName = affName+txt+",";
 	        		}
 	        	}

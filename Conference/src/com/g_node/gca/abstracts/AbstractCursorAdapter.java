@@ -50,42 +50,9 @@ public class AbstractCursorAdapter extends CursorAdapter {
          * TextView for Showing Type
          */
         TextView type = (TextView)view.findViewById(R.id.abType);
-        int absSortID = cursor.getInt(cursor.getColumnIndexOrThrow("SORTID"));
-        
-        if(absSortID != 0) {	
-        	int groupid =  ((absSortID & (0xFFFF << 16)) >> 16);
-        	
-        	switch (groupid) {
-			case 0:
-				type.setText("Invited Talk");
-				type.setBackgroundColor(Color.parseColor("#33B5E5"));
-				break;
-			
-			case 1:
-				type.setText("Contributed Talk");
-				type.setBackgroundColor(Color.parseColor("#ef4172"));
-				break;
-			
-			case 2:
-				type.setText("Poster");
-				type.setBackgroundColor(Color.parseColor("#AA66CC"));
-				break;
-				
-			case 3:
-				type.setText("Poster");
-				type.setBackgroundColor(Color.parseColor("#AA66CC"));
-				break;	
-			default:
-				break;
-			}
-        	
-        	//absSortID.append("Group ID: " + get_groupid_str(groupid));
-        	
-        }else {
-        	//type.setVisibility(View.GONE);
-        	type.setTextSize(TypedValue.COMPLEX_UNIT_SP,4);
-        	type.setVisibility(View.INVISIBLE);
-        }
+
+		type.setText("Poster");
+		type.setBackgroundColor(Color.parseColor("#AA66CC"));
 
         /*
         Following piece of commented code isn't needed as Abstract Type is 
