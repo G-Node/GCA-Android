@@ -186,7 +186,7 @@ public class AbstractsJsonParse {
 	            	 
 	            	 //affiliation address	            	 
 	            	 String affiliation_address ="";
-	            	 if (affiliationJSONObject.has("adress")){
+	            	 if (affiliationJSONObject.has("address")){
 		            	 affiliation_address = affiliationJSONObject.getString("address");
 		            	 Log.d(gTag, "aff address: " + affiliation_address);
 	            	 }
