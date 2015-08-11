@@ -38,15 +38,16 @@
             android:paddingTop="4dp"/>
     </LinearLayout>
 
-    <LinearLayout android:id="@+id/list_item_middle_container"
+    <LinearLayout
+        android:id="@+id/list_item_middle_container"
         android:layout_width="0dp"
-        android:layout_weight="1"
         android:layout_height="match_parent"
-        android:background="#B7F1FF"
+        android:layout_weight="1"
+        android:background="@color/schedule_event"
         android:clickable="false"
         android:focusable="false"
-        android:padding="8dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="8dp" >
 
         <TextView android:id="@+id/session_track_event_title"
             android:layout_width="wrap_content"
@@ -70,10 +71,10 @@
 </LinearLayout>
 
  <View
-    android:layout_width="fill_parent"
-    android:layout_height="5dp"
-    android:layout_below="@+id/session_track_event_row_linearLayout_block"
-    android:background="#C4FFB7" />
+     android:layout_width="fill_parent"
+     android:layout_height="5dp"
+     android:layout_below="@+id/session_track_event_row_linearLayout_block"
+     android:background="@color/schedule_track" />
  
  </RelativeLayout>
  
