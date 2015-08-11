@@ -41,7 +41,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.g_node.gcaa.R;
+import com.g_node.ni15.R;
 
 public class MapActivity extends FragmentActivity {
 

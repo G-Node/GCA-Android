@@ -17,7 +17,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import com.g_node.gcaa.R;
+import com.g_node.ni15.R;
 
 
 public class trackEventsAdapter extends BaseAdapter {

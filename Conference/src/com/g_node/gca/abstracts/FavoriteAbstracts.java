@@ -18,7 +18,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.g_node.gcaa.R;
+import com.g_node.ni15.R;
 
 public class FavoriteAbstracts extends Activity {
 	

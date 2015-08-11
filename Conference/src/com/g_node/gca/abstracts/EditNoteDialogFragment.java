@@ -17,7 +17,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.g_node.gcaa.R;
+import com.g_node.ni15.R;
 
 
 public class EditNoteDialogFragment extends DialogFragment {

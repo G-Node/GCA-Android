@@ -21,7 +21,7 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.TextView;
 
-import com.g_node.gcaa.R;
+import com.g_node.ni15.R;
 
 public class AbstractCursorAdapter extends CursorAdapter {
     Cursor cursorOne;

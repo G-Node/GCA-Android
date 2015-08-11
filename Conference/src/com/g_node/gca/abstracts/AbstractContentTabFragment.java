@@ -35,7 +35,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.g_node.gcaa.R;
+import com.g_node.ni15.R;
 
 public class AbstractContentTabFragment extends Fragment {
 	
@@ -474,6 +474,7 @@ public class AbstractContentTabFragment extends Fragment {
             	absSortID.append("\r\nSort ID: " + sortID);
             	title.append("   (" + get_groupid_str(groupid-1));
             	title.append("" + poster_no+")");
+            	absSortID.setVisibility(View.GONE);
             
             }else {
             	absSortID.setVisibility(View.GONE);

@@ -29,7 +29,7 @@ import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.g_node.gcaa.R;
+import com.g_node.ni15.R;
 
 public class AbstractNotesFragment extends Fragment {
 	
