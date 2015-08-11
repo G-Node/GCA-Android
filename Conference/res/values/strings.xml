@@ -47,8 +47,8 @@
     <string name="title_activity_abstract_figures">Abstract Figures</string>
     <string-array name="groupid2str">
         <item>T</item>
-        <item>CT</item>
-        <item>W</item>
+        <item>P</item>
+        <item>D</item>
         <item>T</item>
     </string-array>
     <string name="sync_message">Please wait while app synchronizes with Server</string>

@@ -471,10 +471,9 @@ public class AbstractContentTabFragment extends Fragment {
             	int poster_no = sortID & 0xFFFF;
             	Log.i("GCA-groupid", "groupid: " + groupid);
             	Log.i("GCA-posterno", "Poster Nr: " + poster_no);
-            	//absSortID.append("\r\nSort ID: " + sortID);
-            	//removed for incf
-            	//title.append("   (" + get_groupid_str(groupid));
-            	//title.append("" + poster_no+")");
+            	absSortID.append("\r\nSort ID: " + sortID);
+            	title.append("   (" + get_groupid_str(groupid-1));
+            	title.append("" + poster_no+")");
             
             }else {
             	absSortID.setVisibility(View.GONE);
