@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="color_actionbar_background_blue">#54abee</color>
-    <color name="color_actionbar_background_pressed">#7ac5ff</color>
-    <color name="color_food">#7ac5ff</color>
+    <color name="color_actionbar_background_blue">#c9d400</color>
+    <color name="color_actionbar_background_pressed">#898e2f</color>
+    <color name="color_food">#CFF6FF</color>
     <color name="schedule_event">#B7F1FF</color>
     <color name="schedule_track">#C4FFB7</color>
     <color name="schedule_session">#FCFFB7</color>
-    
+    <color name="abstract_poster">#AFEC4E</color>
+    <color name="abstract_oral">#E54B97</color>
+    <color name="abstract_demo">#B14ED9</color>    
 </resources>
