@@ -171,15 +171,16 @@
 		    	
 	    </TableLayout>
 		
-	    <Button 
+	    <Button
 	        android:id="@+id/btn_launch_Abstract_from_event"
-	        android:text="@string/schedule_detail_btn_openAbstract_text"
-	        android:gravity="center"
-	        android:layout_marginLeft="35dp"
-	        android:layout_marginRight="35dp"
 	        android:layout_width="fill_parent"
 	        android:layout_height="wrap_content"
-	        android:layout_below="@+id/schedule_event_detail_table"  />
+	        android:layout_below="@+id/schedule_event_detail_table"
+	        android:layout_marginLeft="35dp"
+	        android:layout_marginRight="35dp"
+	        android:gravity="center"
+	        android:text="@string/schedule_detail_btn_openAbstract_text"
+	        android:visibility="gone" />
 	    
 	</RelativeLayout>
 </ScrollView>
