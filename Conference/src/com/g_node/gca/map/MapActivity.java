@@ -60,11 +60,9 @@ public class MapActivity extends FragmentActivity {
         
         getActionBar().setDisplayHomeAsUpEnabled(true);
         
-        try {
-            MapsInitializer.initialize(this);
-        } catch (GooglePlayServicesNotAvailableException e) {
-            e.printStackTrace();
-        }
+
+        MapsInitializer.initialize(this);
+
         locationMarkers();
         
         //Lisener for infoWindow to get LAT & LONG of that marker
