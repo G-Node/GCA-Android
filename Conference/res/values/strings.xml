@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">G-Node Conference</string>
+    <string name="app_name">NI 15</string>
     <string name="hello_world">Hello world!</string>
     <string name="sync_url">http://10.153.175.47:8080/gnode/abstracts_up.json</string>
 	<string name="old_dummy_sync_time">2015-07-09T08:24:50.833Z</string>
@@ -19,7 +19,7 @@
     <string name="title_activity_generalInfo">General Information</string>
     <string name="AcknowledgementHeading">Acknowledgements</string>
     <string name="referencesHeading">References</string>
-    <string name="splashTiming">700</string>
+    <string name="splashTiming">0</string>
     <string name="title_activity_schedule_main">Schedule</string>
     <string name="title_activity_schedule_item_extended">Schedule Detail</string>
     <string name="updating_dialog_text">Updating...</string>
@@ -43,7 +43,7 @@
     <string name="schedule_detail_tracksInSession_Heading">Tracks in this Session:</string>
     <string name="schedule_track_detail_hint_text">Click the button above to navigate to respective track detail</string>
     <string name="schedule_detail_eventsInTrack_Heading">Events in this Track:</string>
-    <string name="schedule_event_detail_hint_text">Click the button above to navigate to respective Event detail</string>
+    <string name="schedule_event_detail_hint_text"></string>
     <string name="title_activity_abstract_figures">Abstract Figures</string>
     <string-array name="groupid2str">
         <item>T</item>
