@@ -193,6 +193,7 @@ public class AbstractContentTabFragment extends Fragment {
          * Clickable for showing images assosiated with Abstract
          */
         btnOpenAbstractFig = (Button) getView().findViewById(R.id.btnOpenAbstractFig);
+        btnOpenAbstractFig.setVisibility(View.GONE);
     
 	}	//end intialUI
 	
@@ -472,8 +473,9 @@ public class AbstractContentTabFragment extends Fragment {
             	Log.i("GCA-groupid", "groupid: " + groupid);
             	Log.i("GCA-posterno", "Poster Nr: " + poster_no);
             	//absSortID.append("\r\nSort ID: " + sortID);
-            	title.append("   (" + get_groupid_str(groupid));
-            	title.append("" + poster_no+")");
+            	//removed for incf
+            	//title.append("   (" + get_groupid_str(groupid));
+            	//title.append("" + poster_no+")");
             
             }else {
             	absSortID.setVisibility(View.GONE);
