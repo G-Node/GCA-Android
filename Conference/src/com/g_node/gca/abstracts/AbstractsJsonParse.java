@@ -74,25 +74,25 @@ public class AbstractsJsonParse {
 				 Log.d("GCA-Profile", "in for loop - parsing obj " + index);
 
 				 //get first abstract item object
-				 JSONObject absractJson = abstractArray.getJSONObject(index);
-				 Log.d(gTag, "json got: " + absractJson);	             
+				 JSONObject abstractJson = abstractArray.getJSONObject(index);
+				 Log.d(gTag, "json got: " + abstractJson);	             
 				 
 				 //iterate over the object got, to extract required keys and values
 				 
 				 //abstract UUID
-				 String abs_uuid = absractJson.getString("uuid");
+				 String abs_uuid = abstractJson.getString("uuid");
 	             Log.d(gTag, "abstract uuid: " + abs_uuid);
 	             
 				 //abstract topic
-				 String topic = absractJson.getString("topic");
+				 String topic = abstractJson.getString("topic");
 	             Log.d(gTag, "topic: " + topic);
 	             
 	             //abstract title
-	             String title = absractJson.getString("title");
+	             String title = abstractJson.getString("title");
 	             Log.d(gTag, "title: " + title);
 	             
 	             //abstract text
-	             String text = absractJson.getString("text");
+	             String text = abstractJson.getString("text");
 	             Log.d(gTag, "text: " + text);
 	             
 	             //abstract state
@@ -100,9 +100,13 @@ public class AbstractsJsonParse {
 	             //Log.d(gTag, "state: " + state);
 	             String state = "";
 	             //abstract sortID
-	             //int sortID = jsonObject.getInt("sortId");
-	             //Log.d(gTag, "sortID: " + sortID);
-	             int sortID = index;
+	             
+	             int sortID = 0;
+	             if (abstractJson.has("sortId")){
+	            	 sortID = abstractJson.getInt("sortId");
+	            	 Log.d(gTag, "sortID: " + sortID);
+	             }
+	             
 	             
 	             //abstract reasonForTalk
 	             //String reasonForTalk = jsonObject.getString("reasonForTalk");
@@ -128,8 +132,8 @@ public class AbstractsJsonParse {
 	             
 	             //abstract DOI
 	             String doi = "";
-	             if (absractJson.has("doi")){
-		             doi = absractJson.getString("doi");
+	             if (abstractJson.has("doi")){
+		             doi = abstractJson.getString("doi");
 		             Log.d(gTag, "doi: " + doi);
 	             }
 	             //Abstract conflictOfInterest
@@ -139,8 +143,8 @@ public class AbstractsJsonParse {
 	             
 	             //Abstract acknowledgements
 	             String acknowledgements = "";
-	             if (absractJson.has("acknowledgements")){
-	            	 acknowledgements = absractJson.getString("acknowledgements");
+	             if (abstractJson.has("acknowledgements")){
+	            	 acknowledgements = abstractJson.getString("acknowledgements");
 	            	 Log.d(gTag, "acknowledgements: " + acknowledgements);
 	             }
 	             
@@ -153,7 +157,7 @@ public class AbstractsJsonParse {
 	             tempAbstractDetails = null;
 	             
 	             //Abstract affiliations JSONarray
-	             JSONArray abs_Aff_Array = absractJson.getJSONArray("affiliations");
+	             JSONArray abs_Aff_Array = abstractJson.getJSONArray("affiliations");
 	             
 	             //now iterate over this array for extracting each affiliation 
 	             for (int j=0; j<abs_Aff_Array.length(); j++) {
@@ -220,7 +224,7 @@ public class AbstractsJsonParse {
 	             }//loop end for each affiliation object
 				 
 	             //Abstract Authors JSONarray
-	             JSONArray abs_authors_Array = absractJson.getJSONArray("authors");
+	             JSONArray abs_authors_Array = abstractJson.getJSONArray("authors");
 	             
 	             //now iterate over authors array to extract each author information
 	             for (int j=0; j<abs_authors_Array.length(); j++) {
@@ -319,8 +323,8 @@ public class AbstractsJsonParse {
 	             } //end if
 	             
 	             //Abstract references JSONarray
-	             if(absractJson.has("references")){
-		             JSONArray abs_References_Array = absractJson.getJSONArray("references");
+	             if(abstractJson.has("references")){
+		             JSONArray abs_References_Array = abstractJson.getJSONArray("references");
 		             
 		             //now iterate over this array for extracting each reference
 			             for (int j=0; j<abs_References_Array.length(); j++) {
