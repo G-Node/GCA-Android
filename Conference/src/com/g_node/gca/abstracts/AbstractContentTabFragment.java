@@ -386,7 +386,7 @@ public class AbstractContentTabFragment extends Fragment {
 	        	else{
 	        		referenceName = "";
 	        	}
-	        	ConRefs.append(Html.fromHtml(refNumber + ": " + referenceName + "<br/>" ));
+	        	ConRefs.append(Html.fromHtml(referenceName + "<br/>" ));
 	        	refNumber++;
 	        } while (referenceCursor.moveToNext());
         }
