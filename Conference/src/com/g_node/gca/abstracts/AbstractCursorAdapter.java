@@ -13,6 +13,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.support.v4.widget.CursorAdapter;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -50,10 +51,38 @@ public class AbstractCursorAdapter extends CursorAdapter {
          * TextView for Showing Type
          */
         TextView type = (TextView)view.findViewById(R.id.abType);
-
-		type.setText("Poster");
-		type.setBackgroundColor(Color.parseColor("#AA66CC"));
-
+        int sortId = cursor.getInt(cursor.getColumnIndexOrThrow("SORTID"));
+        int groupId =  ((sortId & (0xFFFF << 16)) >> 16);
+		switch(groupId){
+			case 0:
+				type.setVisibility(View.GONE);
+				Log.w("sortId","sortId:"+sortId+" title:"+
+				cursor.getString(cursor.getColumnIndexOrThrow("TITLE")));
+				break;
+			case 1:
+				type.setText("Talk");
+				type.setVisibility(View.VISIBLE);
+				type.setBackgroundColor(context.getResources().
+						getColor(R.color.abstract_oral));
+				break;
+			case 2:
+				type.setText("Poster");
+				type.setVisibility(View.VISIBLE);
+				type.setBackgroundColor(context.getResources().
+						getColor(R.color.abstract_poster));
+				break;
+			case 3:
+				type.setText("Demo");
+				type.setBackgroundColor(context.getResources().
+						getColor(R.color.abstract_demo));
+				break;
+			default:
+				type.setVisibility(View.GONE);
+				type.setVisibility(View.VISIBLE);
+				Log.w("groupId","sortId:"+sortId+" title:"+
+				cursor.getString(cursor.getColumnIndexOrThrow("TITLE")));
+			}
+		
         /*
         Following piece of commented code isn't needed as Abstract Type is 
         selected now based on GroupID. Previously it was being selected based on 'isTalk' field

@@ -309,7 +309,7 @@ private class SynchronizeWithServer extends AsyncTask<Void, Void, Void> {
 	
 	@Override
 	protected void onPreExecute() {
-		Dialog.setMessage("Please wait while app synchrinizes with Server...");
+		Dialog.setMessage(getResources().getString(R.string.sync_url));
         Dialog.setCancelable(false);
         Dialog.show();
 	}

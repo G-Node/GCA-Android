@@ -106,6 +106,9 @@ public class AbstractsJsonParse {
 	            	 sortID = abstractJson.getInt("sortId");
 	            	 Log.d(gTag, "sortID: " + sortID);
 	             }
+	             else{
+	 				Log.w("sortID", "SortID: " + sortID + " title:"+title);
+	             }
 	             
 	             
 	             //abstract reasonForTalk
@@ -366,6 +369,7 @@ public class AbstractsJsonParse {
             Log.e("jsonFile", "ioerror");
         } catch (JSONException e) {
             e.printStackTrace();
+            Log.e("JSONException",e.getMessage());
         }
 		
 		Log.d(gTag, "Size: - ABSTRACT_AFFILIATION_ID_POSITION_POJOS_ARRAY : " + ABSTRACT_AFFILIATION_ID_POSITION_POJOS_ARRAY.size());

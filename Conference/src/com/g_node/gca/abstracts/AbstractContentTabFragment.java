@@ -52,7 +52,7 @@ public class AbstractContentTabFragment extends Fragment {
 
     TextView afName;
 
-    TextView authorNames;
+    TextView authors;
 
     TextView ConRefs;
 
@@ -172,7 +172,7 @@ public class AbstractContentTabFragment extends Fragment {
         /*
          * TextView for Abstract Author
          */
-        authorNames = (TextView)getView().findViewById(R.id.ConAuthor);
+        authors = (TextView)getView().findViewById(R.id.ConAuthor);
         /*
          * TextView for Affiliation Name
          */
@@ -232,7 +232,6 @@ public class AbstractContentTabFragment extends Fragment {
         Log.i(gtag, "Auth executed query: rows = " + cursor.getCount());
         
         List<String> abstractAuthorNames = new ArrayList<String>();
-        
         if (cursor != null && cursor.moveToFirst()) {
 	        do {
 	        	Log.i(gtag, "in DO WHILE");
@@ -262,7 +261,7 @@ public class AbstractContentTabFragment extends Fragment {
 	        		
 	        		if (authEmail == null || authEmail.equals("null")) {
 		        		Log.i(gtag, "in author check - IF NULL");
-		        		authorNames.append(Html.fromHtml("<b>" + authorName + "</b><sup><small>"
+		        		authors.append(Html.fromHtml("<b>" + authorName + "</b><sup><small>"
 	                        + authAffiliation + "</small></sup><br/>"));
 
 		        	} else {
@@ -270,7 +269,7 @@ public class AbstractContentTabFragment extends Fragment {
 		        		//authorNames.append(Html.fromHtml("<b><a href=\"mailto:" + authEmail + "\">" + authorName + "</a>"  + "</b><sup><small>"
 		                //        + authAffiliation + "</small></sup><br/>"));
 		        		//authorNames.setMovementMethod(LinkMovementMethod.getInstance());
-		        		authorNames.append(Html.fromHtml("<b>" + authorName + "</b><sup><small>"
+		        		authors.append(Html.fromHtml("<b>" + authorName + "</b><sup><small>"
 		                        + authAffiliation + "</small></sup><br/>"));
 		        	}
 	        	} else {
@@ -570,7 +569,7 @@ public class AbstractContentTabFragment extends Fragment {
             content.loadData("", "text/html","utf-8");
             ConRefs.setText("");
             afName.setText("");
-            authorNames.setText("");
+            authors.setText("");
             ConAck.setText("");
             absSortID.setText("");
 
