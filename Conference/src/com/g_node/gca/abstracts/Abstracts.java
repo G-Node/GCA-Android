@@ -106,16 +106,7 @@ public class Abstracts extends Activity {
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		
-		switch (item.getItemId()) {
-		
-			case R.id.updateAbs:
-			{
-				//start an async task and check with server if there are any new abstracts
-				SynchronizeWithServer syncTask = new SynchronizeWithServer();
-				syncTask.execute();
-				return true;
-			}    
-		}
+
 		return false;
 	}
 	
