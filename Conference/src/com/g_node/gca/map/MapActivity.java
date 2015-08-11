@@ -222,7 +222,8 @@ public class MapActivity extends FragmentActivity {
                                     .position(myLoc)
                                     .title(name)
                                     .icon(BitmapDescriptorFactory
-                                            .fromResource(R.drawable.transport)));
+                                            .defaultMarker(
+                                          BitmapDescriptorFactory.HUE_VIOLET)));
                             break;
                         case 5:
                             /*
