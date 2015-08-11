@@ -180,7 +180,7 @@ public class MapActivity extends FragmentActivity {
                                     .position(myLoc)
                                     .title(name)
                                     .icon(BitmapDescriptorFactory
-                                            .fromResource(R.drawable.conference)));
+                                            .defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
                             break;
                         case 1:
                             /*
@@ -190,7 +190,7 @@ public class MapActivity extends FragmentActivity {
                                     .position(myLoc)
                                     .title(name)
                                     .icon(BitmapDescriptorFactory
-                                            .fromResource(R.drawable.university)));
+                                            .defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
                             break;
                         case 2:
                             /*
@@ -201,7 +201,7 @@ public class MapActivity extends FragmentActivity {
                                             .position(myLoc)
                                             .title(name)
                                             .icon(BitmapDescriptorFactory
-                                                    .fromResource(R.drawable.hotel_1)));
+                                            .defaultMarker(BitmapDescriptorFactory.HUE_RED)));;
                             break;
                         case 3:
                             /*
@@ -228,8 +228,10 @@ public class MapActivity extends FragmentActivity {
                             /*
                              * Food Marker
                              */
-                            supportMap.addMarker(new MarkerOptions().position(myLoc).title(name)
-                                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.food)));
+                            supportMap.addMarker(new MarkerOptions()
+                            		.position(myLoc).title(name)
+                                    .icon(BitmapDescriptorFactory
+                                            .defaultMarker(BitmapDescriptorFactory.HUE_YELLOW)));
                             break;
 
                         default:
