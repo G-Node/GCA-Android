@@ -15,6 +15,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+
 import android.database.Cursor;
 import android.util.Log;
 
@@ -67,54 +68,61 @@ public class AbstractsJsonParse {
 			
 			//get json file from raw 
 			InputStream inStream = this.jsonStream;
-			JSONArray jsonArray = JSONReader.parseStream(inStream);	//read json file and put in JSONarray
+			JSONArray abstractArray = JSONReader.parseStream(inStream);	//read json file and put in JSONarray
 			
-			 for (int index = 0; index < jsonArray.length(); index++) {
+			 for (int index = 0; index < abstractArray.length(); index++) {
 				 Log.d("GCA-Profile", "in for loop - parsing obj " + index);
 
 				 //get first abstract item object
-				 JSONObject jsonObject = jsonArray.getJSONObject(index);
-				 Log.d(gTag, "json got: " + jsonObject);	             
+				 JSONObject abstractJson = abstractArray.getJSONObject(index);
+				 Log.d(gTag, "json got: " + abstractJson);	             
 				 
 				 //iterate over the object got, to extract required keys and values
 				 
 				 //abstract UUID
-				 String abs_uuid = jsonObject.getString("uuid");
+				 String abs_uuid = abstractJson.getString("uuid");
 	             Log.d(gTag, "abstract uuid: " + abs_uuid);
 	             
 				 //abstract topic
-				 String topic = jsonObject.getString("topic");
+				 String topic = abstractJson.getString("topic");
 	             Log.d(gTag, "topic: " + topic);
 	             
 	             //abstract title
-	             String title = jsonObject.getString("title");
+	             String title = abstractJson.getString("title");
 	             Log.d(gTag, "title: " + title);
 	             
 	             //abstract text
-	             String text = jsonObject.getString("text");
+	             String text = abstractJson.getString("text");
 	             Log.d(gTag, "text: " + text);
 	             
 	             //abstract state
-	             String state = jsonObject.getString("state");
-	             Log.d(gTag, "state: " + state);
-	             
+	             //String state = jsonObject.getString("state");
+	             //Log.d(gTag, "state: " + state);
+	             String state = "";
 	             //abstract sortID
-	             int sortID = jsonObject.getInt("sortId");
-	             Log.d(gTag, "sortID: " + sortID);
+	             
+	             int sortID = 0;
+	             if (abstractJson.has("sortId")){
+	            	 sortID = abstractJson.getInt("sortId");
+	            	 Log.d(gTag, "sortID: " + sortID);
+	             }
+	             
 	             
 	             //abstract reasonForTalk
-	             String reasonForTalk = jsonObject.getString("reasonForTalk");
-	             Log.d(gTag, "reasonForTalk: " + reasonForTalk);
+	             //String reasonForTalk = jsonObject.getString("reasonForTalk");
+	             //Log.d(gTag, "reasonForTalk: " + reasonForTalk);
+	             String reasonForTalk = "";
 	             
 	             //abstract mtime
-	             String mtime = jsonObject.getString("mtime");
-	             Log.d(gTag, "mtime: " + mtime);
+	             //String mtime = jsonObject.getString("mtime");
+	             //Log.d(gTag, "mtime: " + mtime);
+	             String mtime = "";
 	             
 	             //abstract isTalk
-	             Boolean isTalk = jsonObject.getBoolean("isTalk");
+	             //Boolean isTalk = jsonObject.getBoolean("isTalk");
+	             Boolean isTalk = false;
 	             String abstractType;
-	             Log.d(gTag, "isTalk: " + isTalk);
-	             
+	             Log.d(gTag, "isTalk: " + isTalk);	             
 	             if(!isTalk) {	//if isTalk is false, then type is poster
 	            	abstractType = "poster"; 
 	             } else {
@@ -123,17 +131,22 @@ public class AbstractsJsonParse {
 	             Log.d(gTag, "abstract type: " + abstractType);
 	             
 	             //abstract DOI
-	             String doi = jsonObject.getString("doi");
-	             Log.d(gTag, "doi: " + doi);
-	             
+	             String doi = "";
+	             if (abstractJson.has("doi")){
+		             doi = abstractJson.getString("doi");
+		             Log.d(gTag, "doi: " + doi);
+	             }
 	             //Abstract conflictOfInterest
-	             String coi = jsonObject.getString("conflictOfInterest");
-	             Log.d(gTag, "conflictOfInterest: " + coi);
+	             //String coi = jsonObject.getString("conflictOfInterest");
+	             //Log.d(gTag, "conflictOfInterest: " + coi);
+	             String coi = "No";
 	             
 	             //Abstract acknowledgements
-	             String acknowledgements = jsonObject.getString("acknowledgements");
-	             Log.d(gTag, "acknowledgements: " + acknowledgements);
-	             
+	             String acknowledgements = "";
+	             if (abstractJson.has("acknowledgements")){
+	            	 acknowledgements = abstractJson.getString("acknowledgements");
+	            	 Log.d(gTag, "acknowledgements: " + acknowledgements);
+	             }
 	             
 	             /*
 	              * Insertion of parsed Abstract in Arraylist
@@ -144,7 +157,7 @@ public class AbstractsJsonParse {
 	             tempAbstractDetails = null;
 	             
 	             //Abstract affiliations JSONarray
-	             JSONArray abs_Aff_Array = jsonObject.getJSONArray("affiliations");
+	             JSONArray abs_Aff_Array = abstractJson.getJSONArray("affiliations");
 	             
 	             //now iterate over this array for extracting each affiliation 
 	             for (int j=0; j<abs_Aff_Array.length(); j++) {
@@ -156,24 +169,35 @@ public class AbstractsJsonParse {
 	            	 Log.d(gTag, "aff uuid: " + affiliation_uuid);
 	            	 
 	            	 //affiliation section
-	            	 String affiliation_section = affiliationJSONObject.getString("section");
-	            	 Log.d(gTag, "aff section: " + affiliation_section);
-	            	 
+	            	 String affiliation_section = "";
+	            	 if (affiliationJSONObject.has("section")){
+		            	 affiliation_section = affiliationJSONObject.getString("section");
+		            	 Log.d(gTag, "aff section: " + affiliation_section);
+	            	 }
 	            	 //affiliation department
-	            	 String affiliation_department = affiliationJSONObject.getString("department");
-	            	 Log.d(gTag, "aff department: " + affiliation_department);
+	            	 String affiliation_department = "";
+	            	 if (affiliationJSONObject.has("department")){
+	            		 affiliation_department = affiliationJSONObject.getString("department");
+	            		 Log.d(gTag, "aff department: " + affiliation_department);
+	            	 }
 	            	 
 	            	 //affiliation country
-	            	 String affiliation_country = affiliationJSONObject.getString("country");
-	            	 Log.d(gTag, "aff country: " + affiliation_country);
+	            	 String affiliation_country = "";
+	            	 if (affiliationJSONObject.has("country")){
+	            		 affiliation_country = affiliationJSONObject.getString("country");
+		            	 Log.d(gTag, "aff country: " + affiliation_country);
+	            	 }
 	            	 
-	            	 //affiliation address
-	            	 String affiliation_address = affiliationJSONObject.getString("address");
-	            	 Log.d(gTag, "aff address: " + affiliation_address);
-	            	 
+	            	 //affiliation address	            	 
+	            	 String affiliation_address ="";
+	            	 if (affiliationJSONObject.has("address")){
+		            	 affiliation_address = affiliationJSONObject.getString("address");
+		            	 Log.d(gTag, "aff address: " + affiliation_address);
+	            	 }
 	            	 //affiliation position - (different for each abstract)
-	            	 int affiliation_position = affiliationJSONObject.getInt("position");
-	            	 Log.d(gTag, "aff position: " + affiliation_position);
+	            	 //int affiliation_position = affiliationJSONObject.getInt("position");
+	            	 //Log.d(gTag, "aff position: " + affiliation_position);
+	            	 int affiliation_position = j;
 	            	 
 	            	 /*
 	            	  * Check if affiliation is already parsed. If not, save it else skip
@@ -200,7 +224,7 @@ public class AbstractsJsonParse {
 	             }//loop end for each affiliation object
 				 
 	             //Abstract Authors JSONarray
-	             JSONArray abs_authors_Array = jsonObject.getJSONArray("authors");
+	             JSONArray abs_authors_Array = abstractJson.getJSONArray("authors");
 	             
 	             //now iterate over authors array to extract each author information
 	             for (int j=0; j<abs_authors_Array.length(); j++) {
@@ -225,12 +249,16 @@ public class AbstractsJsonParse {
 	            	 Log.d(gTag, "auth middle name: " + author_middleName);
 	            	 
 	            	 //author mail
-	            	 String author_mail = authorJSONObject.getString("mail");
-	            	 Log.d(gTag, "auth mail: " + author_mail);
+	            	 String author_mail = "";
+	            	 if (authorJSONObject.has("mail")){
+	            		author_mail = authorJSONObject.getString("mail");
+	            	 	Log.d(gTag, "auth mail: " + author_mail);	            	 
+	            	 }
 	            	 
 	            	 //author position (unique for each abstract)
-	            	 int author_position = authorJSONObject.getInt("position");
-	            	 Log.d(gTag, "auth position: " + author_position);
+	            	 //int author_position = authorJSONObject.getInt("position");
+	            	 //Log.d(gTag, "auth position: " + author_position);
+	            	 int author_position = j;
 	            	 
 	            	 //now get affiliations of a particular author for an abstract for example
 	            	 // "affiliations": [0,1]
@@ -260,8 +288,8 @@ public class AbstractsJsonParse {
 	             } //end authors array loop
 	             
 	             //Abstract Figures JSONArray
-	             JSONArray abs_fugures_array = jsonObject.getJSONArray("figures");
-	             
+	             //JSONArray abs_fugures_array = jsonObject.getJSONArray("figures");
+	             JSONArray abs_fugures_array = new JSONArray();
 	             //now iterate over this array for extracting each figure detail, if it's length is greater than 0
 	             if(abs_fugures_array.length() > 0){
 	            	 
@@ -295,36 +323,40 @@ public class AbstractsJsonParse {
 	             } //end if
 	             
 	             //Abstract references JSONarray
-	             JSONArray abs_References_Array = jsonObject.getJSONArray("references");
-	             
-	             //now iterate over this array for extracting each reference
-	             for (int j=0; j<abs_References_Array.length(); j++) {
-	            	 //get reference object
-	            	 JSONObject referenceJSONObject = abs_References_Array.getJSONObject(j);
-	            	 
-	            	 //Reference UUID
-	            	 String reference_uuid = referenceJSONObject.getString("uuid");
-	            	 Log.d(gTag, "ref uuid: " + reference_uuid);
-	            	 
-	            	 //Reference text
-	            	 String reference_text = referenceJSONObject.getString("text");
-	            	 Log.d(gTag, "ref text: " + reference_text);
-	            	 
-	            	 //Reference link
-	            	 String reference_link = referenceJSONObject.getString("link");
-	            	 Log.d(gTag, "ref link: " + reference_link);
-	            	 
-	            	 //Reference DOI
-	            	 String reference_doi = referenceJSONObject.getString("doi");
-	            	 Log.d(gTag, "ref DOI: " + reference_doi);
-	            	 
-	            	 /*
-		              * Insertion of reference into Arraylist of ABSTRACT_REFERENCES_POJO
-		              */
-	            	 ABSTRACT_REFERENCES_POJO tempAbsRef = new ABSTRACT_REFERENCES_POJO(abs_uuid, reference_uuid, reference_text, reference_link, reference_doi);
-	            	 ABSTRACT_REFERENCES_POJOS_ARRAY.add(tempAbsRef);
-	             	             
-	             }//end references array loop
+	             if(abstractJson.has("references")){
+		             JSONArray abs_References_Array = abstractJson.getJSONArray("references");
+		             
+		             //now iterate over this array for extracting each reference
+			             for (int j=0; j<abs_References_Array.length(); j++) {
+			            	 //get reference object
+			            	 JSONObject referenceJSONObject = abs_References_Array.getJSONObject(j);
+			            	 
+			            	 //Reference UUID
+			            	 String reference_uuid = referenceJSONObject.getString("uuid");
+			            	 Log.d(gTag, "ref uuid: " + reference_uuid);
+			            	 
+			            	 //Reference text
+			            	 String reference_text = referenceJSONObject.getString("text");
+			            	 Log.d(gTag, "ref text: " + reference_text);
+			            	 
+			            	 //Reference link
+			            	 //String reference_link = referenceJSONObject.getString("link");
+			            	 //Log.d(gTag, "ref link: " + reference_link);
+			            	 String reference_link = "";
+			            	 
+			            	 //Reference DOI
+			            	 //String reference_doi = referenceJSONObject.getString("doi");
+			            	 //Log.d(gTag, "ref DOI: " + reference_doi);
+			            	 String reference_doi = "";
+			            	 
+			            	 /*
+				              * Insertion of reference into Arraylist of ABSTRACT_REFERENCES_POJO
+				              */
+			            	 ABSTRACT_REFERENCES_POJO tempAbsRef = new ABSTRACT_REFERENCES_POJO(abs_uuid, reference_uuid, reference_text, reference_link, reference_doi);
+			            	 ABSTRACT_REFERENCES_POJOS_ARRAY.add(tempAbsRef);
+			             	             
+			             }
+		            }//end references array loop
 	             
 			 }//end abstracts array parsing
 		
