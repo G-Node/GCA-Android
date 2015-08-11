@@ -390,6 +390,11 @@ public class AbstractContentTabFragment extends Fragment {
 	        	refNumber++;
 	        } while (referenceCursor.moveToNext());
         }
+        if (referenceCursor.getCount()==0){
+        	ConRefs.setVisibility(View.GONE);
+        	getView().findViewById(R.id.ConReferenceheading).
+        		setVisibility(View.GONE);
+        }
     }
     
     
