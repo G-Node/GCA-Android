@@ -7,6 +7,7 @@
 package com.g_node.gca.abstracts;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -241,20 +242,17 @@ public class AbstractContentTabFragment extends Fragment {
 	        	String authAffiliation = cursor.getString(cursor.getColumnIndexOrThrow("AUTHOR_AFFILIATION"));
 	        	
 	        	//remove unwanted characters from affiliation superscript id's
-	        	String authAffiliationINTs = authAffiliation.replaceAll("[^0-9][,]", "");
-	        	
-	        	//pattern to get the digits so to increment those by one later so affiliation numbering starts from 1 instead of 0 
-	        	Pattern digitPattern = Pattern.compile("(\\d)"); // EDIT: Increment each digit.
-
-	        	Matcher matcher = digitPattern.matcher(authAffiliationINTs);
-	        	StringBuffer result = new StringBuffer();
-	        	while (matcher.find())
-	        	{
-	        	    matcher.appendReplacement(result, String.valueOf(Integer.parseInt(matcher.group(1)) + 1));
+	        	String [] authAffiliations = authAffiliation.
+	        								 replaceAll("[^0-9][,]", "").
+	        								 split(",");
+	        	int i=0;
+	        	for (String affiliation_nr:authAffiliations){
+	        		authAffiliations[i++] = Integer.toString((
+	        				Integer.parseInt(affiliation_nr)+1));
 	        	}
-	        	matcher.appendTail(result);
-	        	authAffiliation = result.toString();
-	        	
+	        	String auth_affiliations_str = Arrays.toString(authAffiliations);
+	        	auth_affiliations_str = auth_affiliations_str.substring(1, 
+	        			                auth_affiliations_str.length()-1);
 	        	
 	        	if (abstractAuthorNames.indexOf(authorName) == -1 ) {
 	        		abstractAuthorNames.add(authorName);
@@ -262,7 +260,7 @@ public class AbstractContentTabFragment extends Fragment {
 	        		if (authEmail == null || authEmail.equals("null")) {
 		        		Log.i(gtag, "in author check - IF NULL");
 		        		authors.append(Html.fromHtml("<b>" + authorName + "</b><sup><small>"
-	                        + authAffiliation + "</small></sup><br/>"));
+	                        + auth_affiliations_str + "</small></sup><br/>"));
 
 		        	} else {
 		        		Log.i(gtag, "in author check - ELSE ");
@@ -270,7 +268,7 @@ public class AbstractContentTabFragment extends Fragment {
 		                //        + authAffiliation + "</small></sup><br/>"));
 		        		//authorNames.setMovementMethod(LinkMovementMethod.getInstance());
 		        		authors.append(Html.fromHtml("<b>" + authorName + "</b><sup><small>"
-		                        + authAffiliation + "</small></sup><br/>"));
+		                        + auth_affiliations_str + "</small></sup><br/>"));
 		        	}
 	        	} else {
 	        		;
