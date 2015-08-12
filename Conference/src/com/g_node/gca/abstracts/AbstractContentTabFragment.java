@@ -7,6 +7,7 @@
 package com.g_node.gca.abstracts;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -52,7 +53,7 @@ public class AbstractContentTabFragment extends Fragment {
 
     TextView afName;
 
-    TextView authorNames;
+    TextView authors;
 
     TextView ConRefs;
 
@@ -172,7 +173,7 @@ public class AbstractContentTabFragment extends Fragment {
         /*
          * TextView for Abstract Author
          */
-        authorNames = (TextView)getView().findViewById(R.id.ConAuthor);
+        authors = (TextView)getView().findViewById(R.id.ConAuthor);
         /*
          * TextView for Affiliation Name
          */
@@ -193,6 +194,7 @@ public class AbstractContentTabFragment extends Fragment {
          * Clickable for showing images assosiated with Abstract
          */
         btnOpenAbstractFig = (Button) getView().findViewById(R.id.btnOpenAbstractFig);
+        btnOpenAbstractFig.setVisibility(View.GONE);
     
 	}	//end intialUI
 	
@@ -231,7 +233,6 @@ public class AbstractContentTabFragment extends Fragment {
         Log.i(gtag, "Auth executed query: rows = " + cursor.getCount());
         
         List<String> abstractAuthorNames = new ArrayList<String>();
-        
         if (cursor != null && cursor.moveToFirst()) {
 	        do {
 	        	Log.i(gtag, "in DO WHILE");
@@ -241,36 +242,33 @@ public class AbstractContentTabFragment extends Fragment {
 	        	String authAffiliation = cursor.getString(cursor.getColumnIndexOrThrow("AUTHOR_AFFILIATION"));
 	        	
 	        	//remove unwanted characters from affiliation superscript id's
-	        	String authAffiliationINTs = authAffiliation.replaceAll("[^0-9][,]", "");
-	        	
-	        	//pattern to get the digits so to increment those by one later so affiliation numbering starts from 1 instead of 0 
-	        	Pattern digitPattern = Pattern.compile("(\\d)"); // EDIT: Increment each digit.
-
-	        	Matcher matcher = digitPattern.matcher(authAffiliationINTs);
-	        	StringBuffer result = new StringBuffer();
-	        	while (matcher.find())
-	        	{
-	        	    matcher.appendReplacement(result, String.valueOf(Integer.parseInt(matcher.group(1)) + 1));
+	        	String [] authAffiliations = authAffiliation.
+	        								 replaceAll("[^0-9][,]", "").
+	        								 split(",");
+	        	int i=0;
+	        	for (String affiliation_nr:authAffiliations){
+	        		authAffiliations[i++] = Integer.toString((
+	        				Integer.parseInt(affiliation_nr)+1));
 	        	}
-	        	matcher.appendTail(result);
-	        	authAffiliation = result.toString();
-	        	
+	        	String auth_affiliations_str = Arrays.toString(authAffiliations);
+	        	auth_affiliations_str = auth_affiliations_str.substring(1, 
+	        			                auth_affiliations_str.length()-1);
 	        	
 	        	if (abstractAuthorNames.indexOf(authorName) == -1 ) {
 	        		abstractAuthorNames.add(authorName);
 	        		
 	        		if (authEmail == null || authEmail.equals("null")) {
 		        		Log.i(gtag, "in author check - IF NULL");
-		        		authorNames.append(Html.fromHtml("<b>" + authorName + "</b><sup><small>"
-	                        + authAffiliation + "</small></sup><br/>"));
+		        		authors.append(Html.fromHtml("<b>" + authorName + "</b><sup><small>"
+	                        + auth_affiliations_str + "</small></sup><br/>"));
 
 		        	} else {
 		        		Log.i(gtag, "in author check - ELSE ");
 		        		//authorNames.append(Html.fromHtml("<b><a href=\"mailto:" + authEmail + "\">" + authorName + "</a>"  + "</b><sup><small>"
 		                //        + authAffiliation + "</small></sup><br/>"));
 		        		//authorNames.setMovementMethod(LinkMovementMethod.getInstance());
-		        		authorNames.append(Html.fromHtml("<b>" + authorName + "</b><sup><small>"
-		                        + authAffiliation + "</small></sup><br/>"));
+		        		authors.append(Html.fromHtml("<b>" + authorName + "</b><sup><small>"
+		                        + auth_affiliations_str + "</small></sup><br/>"));
 		        	}
 	        	} else {
 	        		;
@@ -386,7 +384,7 @@ public class AbstractContentTabFragment extends Fragment {
 	        	else{
 	        		referenceName = "";
 	        	}
-	        	ConRefs.append(Html.fromHtml(refNumber + ": " + referenceName + "<br/>" ));
+	        	ConRefs.append(Html.fromHtml(referenceName + "<br/>" ));
 	        	refNumber++;
 	        } while (referenceCursor.moveToNext());
         }
@@ -476,9 +474,10 @@ public class AbstractContentTabFragment extends Fragment {
             	int poster_no = sortID & 0xFFFF;
             	Log.i("GCA-groupid", "groupid: " + groupid);
             	Log.i("GCA-posterno", "Poster Nr: " + poster_no);
-            	//absSortID.append("\r\nSort ID: " + sortID);
-            	title.append("   (" + get_groupid_str(groupid));
+            	absSortID.append("\r\nSort ID: " + sortID);
+            	title.append("   (" + get_groupid_str(groupid-1));
             	title.append("" + poster_no+")");
+            	absSortID.setVisibility(View.GONE);
             
             }else {
             	absSortID.setVisibility(View.GONE);
@@ -573,7 +572,7 @@ public class AbstractContentTabFragment extends Fragment {
             content.loadData("", "text/html","utf-8");
             ConRefs.setText("");
             afName.setText("");
-            authorNames.setText("");
+            authors.setText("");
             ConAck.setText("");
             absSortID.setText("");
 
