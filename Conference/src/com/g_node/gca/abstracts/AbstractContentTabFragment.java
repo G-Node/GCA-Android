@@ -35,6 +35,7 @@ import android.webkit.WebView.FindListener;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.animation.ObjectAnimator;
 
 import com.g_node.ni15.R;
 
@@ -51,7 +52,7 @@ public class AbstractContentTabFragment extends Fragment {
 
     TextView topic;
 
-    TextView afName;
+    TextView affiliations;
 
     TextView authors;
 
@@ -174,10 +175,28 @@ public class AbstractContentTabFragment extends Fragment {
          * TextView for Abstract Author
          */
         authors = (TextView)getView().findViewById(R.id.ConAuthor);
+        authors.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				ObjectAnimator.ofInt(v, "maxLines", 400).setDuration(2000).
+				start();
+	        	authors.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0 ,0 );
+			}
+		});
         /*
          * TextView for Affiliation Name
          */
-        afName = (TextView)getView().findViewById(R.id.ConAfName);
+        affiliations = (TextView)getView().findViewById(R.id.ConAfName);
+        affiliations.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				ObjectAnimator.ofInt(v, "maxLines", 400).setDuration(2000).
+				start();
+	        	affiliations.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0 ,0 );
+			}
+		});
         /*
          * TextView for Reference
          */
@@ -275,6 +294,11 @@ public class AbstractContentTabFragment extends Fragment {
 	        	}
 	        	
 	        } while (cursor.moveToNext());
+	        if (cursor.getCount()>getResources().
+	        		getInteger(R.integer.max_authors)){
+	        	authors.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0,
+	        			R.drawable.icon_pointer );
+	        }
         }
         
     	
@@ -316,9 +340,14 @@ public class AbstractContentTabFragment extends Fragment {
 	        	affName = affName.substring(0, affName.length()-2);
 	        	int affPos = cursorOne.getInt(cursorOne.getColumnIndexOrThrow("AFFILIATION_POSITION"));
 	        	affPos++;
-	        	afName.append(Html.fromHtml(affPos + ": " + "<b>" + affName + "</b><br/>" ));
+	        	affiliations.append(Html.fromHtml(affPos + ": " + "<b>" + affName + "</b><br/>" ));
 	        } while (cursorOne.moveToNext());
-        }        
+        }
+        if (cursorOne.getCount()>getResources().
+        		getInteger(R.integer.max_aff)){
+        	affiliations.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0,
+        			R.drawable.icon_pointer );
+        }
     }  //end affiliationName    
     
     
@@ -571,7 +600,7 @@ public class AbstractContentTabFragment extends Fragment {
             topic.setText("");
             content.loadData("", "text/html","utf-8");
             ConRefs.setText("");
-            afName.setText("");
+            affiliations.setText("");
             authors.setText("");
             ConAck.setText("");
             absSortID.setText("");
