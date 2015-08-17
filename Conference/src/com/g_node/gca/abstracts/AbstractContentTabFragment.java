@@ -78,6 +78,7 @@ public class AbstractContentTabFragment extends Fragment {
 			return rootView;
 	}
 	
+	
 	@Override
 	public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -181,9 +182,9 @@ public class AbstractContentTabFragment extends Fragment {
 			public void onClick(View v) {
 				ObjectAnimator.ofInt(v, "maxLines", 400).setDuration(2000).
 				start();
-	        	authors.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0 ,0 );
 			}
 		});
+
         /*
          * TextView for Affiliation Name
          */
@@ -194,9 +195,9 @@ public class AbstractContentTabFragment extends Fragment {
 			public void onClick(View v) {
 				ObjectAnimator.ofInt(v, "maxLines", 400).setDuration(2000).
 				start();
-	        	affiliations.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0 ,0 );
 			}
 		});
+       
         /*
          * TextView for Reference
          */
@@ -294,11 +295,18 @@ public class AbstractContentTabFragment extends Fragment {
 	        	}
 	        	
 	        } while (cursor.moveToNext());
-	        if (cursor.getCount()>getResources().
-	        		getInteger(R.integer.max_authors)){
-	        	authors.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0,
-	        			R.drawable.icon_pointer );
-	        }
+        }
+        //Set author view to autoscroll if to many authors are there
+        if (cursor.getCount()>getResources().getInteger(R.integer.max_authors)){
+            authors.post(new Runnable() {
+                @Override
+                public void run() {
+                    ObjectAnimator.ofInt(authors, "scrollY", authors.
+                    		getLayout().getHeight()-authors.getHeight()).
+                    		setDuration(10000).start();
+                    Log.d("garbers","authorsHeight:"+authors.getLayout().getHeight());
+                }
+            });
         }
         
     	
@@ -343,11 +351,18 @@ public class AbstractContentTabFragment extends Fragment {
 	        	affiliations.append(Html.fromHtml(affPos + ": " + "<b>" + affName + "</b><br/>" ));
 	        } while (cursorOne.moveToNext());
         }
-        if (cursorOne.getCount()>getResources().
-        		getInteger(R.integer.max_aff)){
-        	affiliations.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0,
-        			R.drawable.icon_pointer );
+        //Set affiliation view to autoscroll if to many authors are there
+        if (cursorOne.getCount()>getResources().getInteger(R.integer.max_aff)){
+            affiliations.post(new Runnable() {
+                @Override
+                public void run() {
+                    ObjectAnimator.ofInt(affiliations, "scrollY", affiliations.
+                    		getLayout().getHeight()-affiliations.getHeight()).
+                    		setDuration(10000).start();
+                }
+            });
         }
+
     }  //end affiliationName    
     
     
