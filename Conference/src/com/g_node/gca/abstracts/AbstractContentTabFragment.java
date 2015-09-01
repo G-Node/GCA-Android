@@ -245,11 +245,17 @@ public class AbstractContentTabFragment extends Fragment {
 	        	String [] authAffiliations = authAffiliation.
 	        								 replaceAll("[^0-9][,]", "").
 	        								 split(",");
-	        	int i=0;
+
 	        	if (!authAffiliations[0].equals("")){
-		        	for (String affiliation_nr:authAffiliations){
-		        		authAffiliations[i++] = Integer.toString((
-		        				Integer.parseInt(affiliation_nr)+1));
+		        	int [] authAffiliationsInt = new int[authAffiliations.length];
+		        	int i = 0;
+	        		for (String affiliation_nr:authAffiliations){
+	        			authAffiliationsInt[i] = Integer.parseInt(affiliation_nr)+1;
+	        			Arrays.sort(authAffiliationsInt);
+	        		}
+	        		i=0;
+		        	for (int affiliation_nr:authAffiliationsInt){
+		        		authAffiliations[i++] = Integer.toString(affiliation_nr);
 		        	}
 	        	}
 	        	String auth_affiliations_str = Arrays.toString(authAffiliations);
