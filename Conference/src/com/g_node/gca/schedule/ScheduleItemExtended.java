@@ -72,6 +72,10 @@ public class ScheduleItemExtended extends Activity {
 			((TextView) findViewById(R.id.schedule_event_date)).setText(eventToDisplay.getDate());
 			((TextView) findViewById(R.id.schedule_event_type)).setText(eventToDisplay.getType().toUpperCase());
 			
+			if (eventToDisplay.getLocation().equals("")) {
+				findViewById(R.id.schedule_event_location_icon).
+				setVisibility(View.INVISIBLE);
+			}
 			
 			event_abstract_uuid = eventToDisplay.getEventAbstract();
 			event_abstract_uuid = event_abstract_uuid.substring(event_abstract_uuid.lastIndexOf("/")+1, event_abstract_uuid.length());
@@ -87,10 +91,10 @@ public class ScheduleItemExtended extends Activity {
 			
 			if(abstractForEventCursor.getCount() < 1) {
 				btnOpenAbstract.setEnabled(false);
-				btnOpenAbstract.setText("No Abstract Found");
+				btnOpenAbstract.setVisibility(View.GONE);
 				//btnOpenAbstract.setVisibility(View.GONE);
 			} else {
-				
+				btnOpenAbstract.setVisibility(View.VISIBLE);
 				btnOpenAbstract.setOnClickListener(new OnClickListener() {
 					
 					@Override
