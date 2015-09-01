@@ -67,31 +67,31 @@ public class ScheduleJSONParse {
                 	
                 	if(scheduleItemJsonObject.has("start")) {	// 'start' key is only in event
                 		
-                		String event_title = scheduleItemJsonObject.getString("title");
+                		String event_title = scheduleItemJsonObject.optString("title");
                 		Log.i(LOG_TAG, "Basic Event - title: " + event_title);
                 		
-                		String event_subtitle = scheduleItemJsonObject.getString("subtitle");
+                		String event_subtitle = scheduleItemJsonObject.optString("subtitle");
                 		Log.i(LOG_TAG, "Basic Event - subtitle: " + event_subtitle);
                 		
-                		String event_start_time = scheduleItemJsonObject.getString("start");
+                		String event_start_time = scheduleItemJsonObject.optString("start");
                 		Log.i(LOG_TAG, "Basic Event - Start: " + event_start_time);
                 		
-                		String event_end_time = scheduleItemJsonObject.getString("end");
+                		String event_end_time = scheduleItemJsonObject.optString("end");
                 		Log.i(LOG_TAG, "Basic Event - end : " + event_end_time);
                 		
-                		String event_location = scheduleItemJsonObject.getString("location");
+                		String event_location = scheduleItemJsonObject.optString("location");
                 		Log.i(LOG_TAG, "Basic Event - Location: " + event_location);
                 		
-                		String event_date = scheduleItemJsonObject.getString("date");
+                		String event_date = scheduleItemJsonObject.optString("date");
                 		Log.i(LOG_TAG, "Basic Event - date: " + event_date);
                 		
                 		String event_authors = scheduleItemJsonObject.getJSONArray("authors").toString().replace("\"", "").replace("[", "").replace("]", "");
                 		Log.i(LOG_TAG, "Basic Event - Authors: " + event_authors);
                 		
-                		String event_type = scheduleItemJsonObject.getString("type");
+                		String event_type = scheduleItemJsonObject.optString("type");
                 		Log.i(LOG_TAG, "Basic Event - Type: " + event_type);
                 		
-                		String event_abstract = scheduleItemJsonObject.getString("abstract");
+                		String event_abstract = scheduleItemJsonObject.optString("abstract");
                 		Log.i(LOG_TAG, "Basic Event - Abstract: " + event_abstract);
                 		
                 		//adding the event to events arraylist
@@ -112,10 +112,10 @@ public class ScheduleJSONParse {
                 	//closing elseif
                 	} else if(scheduleItemJsonObject.has("tracks")) {  // 'tracks' key is only in session
                 		
-                		String session_title = scheduleItemJsonObject.getString("title");
+                		String session_title = scheduleItemJsonObject.optString("title");
                 		Log.i(LOG_TAG, "SESSION - title: " + session_title);
                 		
-                		String session_subtitle = scheduleItemJsonObject.getString("subtitle");
+                		String session_subtitle = scheduleItemJsonObject.optString("subtitle");
                 		Log.i(LOG_TAG, "SESSION - subtitle: " + session_subtitle);
                 		                		
                 		Log.i(LOG_TAG, "SESSION - Start parsing Tracks");
@@ -128,7 +128,7 @@ public class ScheduleJSONParse {
                 		//get index of added session in the list
                 		int addedSessionIndex = sessionRecordsArray.size() - 1;
                 		
-                		String tempSessionDate = sessionTracksArray.getJSONObject(0).getJSONArray("events").getJSONObject(0).getString("date");
+                		String tempSessionDate = sessionTracksArray.getJSONObject(0).getJSONArray("events").getJSONObject(0).optString("date");
                 		Log.i(LOG_TAG, "Session - " + session_title + " - Date: " + tempSessionDate);
                 		//add it now to main records array
                 		scheduleRecordsArray.add(new ScheduleItemRecord(SCHEDULE_ITEMTYPE_SESSION, addedSessionIndex, tempSessionDate));                		
@@ -149,24 +149,26 @@ public class ScheduleJSONParse {
                 		
                 		Log.i(LOG_TAG, "SESSION - End parsing Tracks");
                 	}
+                	Log.i(LOG_TAG, "Finnished parsing schedule json");
             }
             
 		} catch (Exception e) {
             // TODO: handle exception
-            Log.getStackTraceString(e);
+			Log.e(LOG_TAG, e.getMessage());
+			Log.e(LOG_TAG,Log.getStackTraceString(e));
         }	
 	}
 	
 	//Function for parsing Tracks
 	void parseScheduleTrackJSON(int _counter, JSONObject _scheduleItemJsonObject) throws JSONException {
 		
-		String track_title = _scheduleItemJsonObject.getString("title");
+		String track_title = _scheduleItemJsonObject.optString("title");
 		Log.i(LOG_TAG, "Track - title: " + track_title);
 		
-		String track_subtitle = _scheduleItemJsonObject.getString("subtitle");
+		String track_subtitle = _scheduleItemJsonObject.optString("subtitle");
 		Log.i(LOG_TAG, "Track - subtitle: " + track_subtitle);
 		
-		String track_chair = _scheduleItemJsonObject.getString("chair");
+		String track_chair = _scheduleItemJsonObject.optString("chair");
 		Log.i(LOG_TAG, "Track - Chair: " + track_chair);
 		
 		Log.i(LOG_TAG, "Tracks - Start parsing Events");
@@ -179,7 +181,7 @@ public class ScheduleJSONParse {
 		//get index of that added track and add events at that index
 		int addedTrackIndex = tracksRecordsArray.size() - 1;
 		
-		String tempTrackDate = _scheduleItemJsonObject.getJSONArray("events").getJSONObject(0).getString("date");
+		String tempTrackDate = _scheduleItemJsonObject.getJSONArray("events").getJSONObject(0).optString("date");
 		Log.i(LOG_TAG, "Date for Track - " + track_title + "is: " + tempTrackDate);
 		
 		//add it now to main records array
@@ -193,31 +195,31 @@ public class ScheduleJSONParse {
 			
 			JSONObject trackEventObject = trackEventsArray.getJSONObject(counter);
 			
-				String track_event_title = trackEventObject.getString("title");
+				String track_event_title = trackEventObject.optString("title");
 				Log.i(LOG_TAG, "Track Event - title: " + track_event_title);
 				
-				String track_event_subtitle = trackEventObject.getString("subtitle");
+				String track_event_subtitle = trackEventObject.optString("subtitle");
 				Log.i(LOG_TAG, "Track Event - subtitle: " + track_event_subtitle);
 				
-				String track_event_start_time = trackEventObject.getString("start");
+				String track_event_start_time = trackEventObject.optString("start");
 				Log.i(LOG_TAG, "Track Event - Start: " + track_event_start_time);
 				
-				String track_event_end_time = trackEventObject.getString("end");
+				String track_event_end_time = trackEventObject.optString("end");
 				Log.i(LOG_TAG, "Track Event - end : " + track_event_end_time);
 				
-				String track_event_location = trackEventObject.getString("location");
+				String track_event_location = trackEventObject.optString("location");
 				Log.i(LOG_TAG, "Track Event - Location: " + track_event_location);
 				
-				String track_event_date = trackEventObject.getString("date");
+				String track_event_date = trackEventObject.optString("date");
 				Log.i(LOG_TAG, "Track Event - date: " + track_event_date);
 				
 				String track_event_authors = trackEventObject.getJSONArray("authors").toString().replace("\"", "").replace("[", "").replace("]", "");
 				Log.i(LOG_TAG, "Track Event - Authors: " + track_event_authors);
 				
-				String track_event_type = trackEventObject.getString("type");
+				String track_event_type = trackEventObject.optString("type");
 				Log.i(LOG_TAG, "Track Event - Type: " + track_event_type);
 				
-				String track_event_abstract = trackEventObject.getString("abstract");
+				String track_event_abstract = trackEventObject.optString("abstract");
 				Log.i(LOG_TAG, "Track Event - Abstract: " + track_event_abstract);
 				
 				//add the event to the events array in track in order.
@@ -235,13 +237,13 @@ public class ScheduleJSONParse {
 	//Function for parsing Tracks in Session
 	void parseSessionTrackJSON(int _counter, JSONObject _scheduleItemJsonObject) throws JSONException {
 			
-			String track_title = _scheduleItemJsonObject.getString("title");
+			String track_title = _scheduleItemJsonObject.optString("title");
 			Log.i(LOG_TAG, "Track - title: " + track_title);
 			
-			String track_subtitle = _scheduleItemJsonObject.getString("subtitle");
+			String track_subtitle = _scheduleItemJsonObject.optString("subtitle");
 			Log.i(LOG_TAG, "Track - subtitle: " + track_subtitle);
 			
-			String track_chair = _scheduleItemJsonObject.getString("chair").replace("\"", "").replace("[", "").replace("]", "");
+			String track_chair = _scheduleItemJsonObject.optString("chair").replace("\"", "").replace("[", "").replace("]", "");
 			Log.i(LOG_TAG, "Track - Chair: " + track_chair);
 			
 			Log.i(LOG_TAG, "Tracks - Start parsing Events");
@@ -259,31 +261,31 @@ public class ScheduleJSONParse {
 				
 				JSONObject trackEventObject = trackEventsArray.getJSONObject(counter);
 				
-					String track_event_title = trackEventObject.getString("title");
+					String track_event_title = trackEventObject.optString("title");
 					Log.i(LOG_TAG, "Track Event - title: " + track_event_title);
 					
-					String track_event_subtitle = trackEventObject.getString("subtitle");
+					String track_event_subtitle = trackEventObject.optString("subtitle");
 					Log.i(LOG_TAG, "Track Event - subtitle: " + track_event_subtitle);
 					
-					String track_event_start_time = trackEventObject.getString("start");
+					String track_event_start_time = trackEventObject.optString("start");
 					Log.i(LOG_TAG, "Track Event - Start: " + track_event_start_time);
 					
-					String track_event_end_time = trackEventObject.getString("end");
+					String track_event_end_time = trackEventObject.optString("end");
 					Log.i(LOG_TAG, "Track Event - end : " + track_event_end_time);
 					
-					String track_event_location = trackEventObject.getString("location");
+					String track_event_location = trackEventObject.optString("location");
 					Log.i(LOG_TAG, "Track Event - Location: " + track_event_location);
 					
-					String track_event_date = trackEventObject.getString("date");
+					String track_event_date = trackEventObject.optString("date");
 					Log.i(LOG_TAG, "Track Event - date: " + track_event_date);
 					
 					String track_event_authors = trackEventObject.getJSONArray("authors").toString().replace("\"", "").replace("[", "").replace("]", "");
 					Log.i(LOG_TAG, "Track Event - Authors: " + track_event_authors);
 					
-					String track_event_type = trackEventObject.getString("type");
+					String track_event_type = trackEventObject.optString("type");
 					Log.i(LOG_TAG, "Track Event - Type: " + track_event_type);
 					
-					String track_event_abstract = trackEventObject.getString("abstract");
+					String track_event_abstract = trackEventObject.optString("abstract");
 					Log.i(LOG_TAG, "Track Event - Abstract: " + track_event_abstract);
 					
 					trackAddedForSession.setEventsInTrack(counter, new EventScheduleItem(track_event_title, track_event_subtitle, 

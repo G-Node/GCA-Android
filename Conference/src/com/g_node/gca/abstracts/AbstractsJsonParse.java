@@ -100,12 +100,8 @@ public class AbstractsJsonParse {
 	             //Log.d(gTag, "state: " + state);
 	             String state = "";
 	             //abstract sortID
-	             
-	             int sortID = 0;
-	             if (abstractJson.has("sortId")){
-	            	 sortID = abstractJson.getInt("sortId");
-	            	 Log.d(gTag, "sortID: " + sortID);
-	             }
+	             int sortID = abstractJson.optInt("sortId");
+	             Log.d(gTag, "sortID: " + sortID);
 	             
 	             
 	             //abstract reasonForTalk
@@ -131,22 +127,19 @@ public class AbstractsJsonParse {
 	             Log.d(gTag, "abstract type: " + abstractType);
 	             
 	             //abstract DOI
-	             String doi = "";
-	             if (abstractJson.has("doi")){
-		             doi = abstractJson.getString("doi");
-		             Log.d(gTag, "doi: " + doi);
-	             }
+	             String doi = abstractJson.optString("doi");
+		         Log.d(gTag, "doi: " + doi);
+
 	             //Abstract conflictOfInterest
 	             //String coi = jsonObject.getString("conflictOfInterest");
 	             //Log.d(gTag, "conflictOfInterest: " + coi);
 	             String coi = "No";
 	             
 	             //Abstract acknowledgements
-	             String acknowledgements = "";
-	             if (abstractJson.has("acknowledgements")){
-	            	 acknowledgements = abstractJson.getString("acknowledgements");
-	            	 Log.d(gTag, "acknowledgements: " + acknowledgements);
-	             }
+	             String acknowledgements = abstractJson.
+	            		 optString("acknowledgements");
+	             Log.d(gTag, "acknowledgements: " + acknowledgements);
+
 	             
 	             /*
 	              * Insertion of parsed Abstract in Arraylist
@@ -361,11 +354,11 @@ public class AbstractsJsonParse {
 			 }//end abstracts array parsing
 		
 		} catch (FileNotFoundException e) {
-            Log.e("jsonFile", "file not found");
+			Log.e("AbtractJsonParse", Log.getStackTraceString( e ));
         } catch (IOException e) {
-            Log.e("jsonFile", "ioerror");
+        	Log.e("AbtractJsonParse", Log.getStackTraceString( e ));
         } catch (JSONException e) {
-            e.printStackTrace();
+            Log.e("AbtractJsonParse", Log.getStackTraceString( e ));
         }
 		
 		Log.d(gTag, "Size: - ABSTRACT_AFFILIATION_ID_POSITION_POJOS_ARRAY : " + ABSTRACT_AFFILIATION_ID_POSITION_POJOS_ARRAY.size());
