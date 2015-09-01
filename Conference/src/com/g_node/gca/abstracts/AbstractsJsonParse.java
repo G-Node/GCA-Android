@@ -336,14 +336,13 @@ public class AbstractsJsonParse {
 			            	 Log.d(gTag, "ref text: " + reference_text);
 			            	 
 			            	 //Reference link
-			            	 //String reference_link = referenceJSONObject.getString("link");
-			            	 //Log.d(gTag, "ref link: " + reference_link);
-			            	 String reference_link = "";
+			            	 String reference_link = referenceJSONObject.getString("link");
+			            	 Log.d(gTag, "ref link: " + reference_link);
+			            	 
 			            	 
 			            	 //Reference DOI
-			            	 //String reference_doi = referenceJSONObject.getString("doi");
-			            	 //Log.d(gTag, "ref DOI: " + reference_doi);
-			            	 String reference_doi = "";
+			            	 String reference_doi = referenceJSONObject.getString("doi");
+			            	 Log.d(gTag, "ref DOI: " + reference_doi);
 			            	 
 			            	 /*
 				              * Insertion of reference into Arraylist of ABSTRACT_REFERENCES_POJO
