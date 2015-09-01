@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">NI 15</string>
+    <string name="app_name">BC15</string>
     <string name="hello_world">Hello world!</string>
     <string name="sync_url">http://10.153.175.47:8080/gnode/abstracts_up.json</string>
 	<string name="old_dummy_sync_time">2015-07-09T08:24:50.833Z</string>
