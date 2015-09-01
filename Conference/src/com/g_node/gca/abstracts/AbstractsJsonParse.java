@@ -83,10 +83,12 @@ public class AbstractsJsonParse {
 				 String abs_uuid = abstractJson.getString("uuid");
 	             Log.d(gTag, "abstract uuid: " + abs_uuid);
 	             
-				 //abstract topic
-				 String topic = abstractJson.getString("topic");
-	             Log.d(gTag, "topic: " + topic);
-	             
+				 //abstract topic (this is a workaround for the stupid 'null') behaviour
+	             String topic = "";
+	             if (!abstractJson.isNull("topic")){
+					 topic = abstractJson.getString("topic");
+		             Log.d(gTag, "topic: " + topic);
+	             }
 	             //abstract title
 	             String title = abstractJson.getString("title");
 	             Log.d(gTag, "title: " + title);
@@ -224,71 +226,72 @@ public class AbstractsJsonParse {
 	            	 //get author object
 	            	 
 	            	 JSONObject authorJSONObject = abs_authors_Array.getJSONObject(j);
-	            	
-	            	 //author UUID
-	            	 String author_uuid = authorJSONObject.getString("uuid");
-	            	 Log.d(gTag, "auth uuid: " + author_uuid);
 	            	 
-	            	 //author first Name
-	            	 String author_fName = authorJSONObject.getString("firstName");
-	            	 Log.d(gTag, "auth first name: " + author_fName);
-	            	 
-	            	 //author last Name
-	            	 String author_lName = authorJSONObject.getString("lastName");
-	            	 Log.d(gTag, "auth last name: " + author_lName);
-	            	 
-	            	 //author middle Name
-	            	 String author_middleName = authorJSONObject.getString("middleName");
-	            	 Log.d(gTag, "auth middle name: " + author_middleName);
-	            	 
-	            	 //author mail
-	            	 String author_mail = "";
-	            	 if (authorJSONObject.has("mail")){
-	            		author_mail = authorJSONObject.getString("mail");
-	            	 	Log.d(gTag, "auth mail: " + author_mail);	            	 
-	            	 }
-	            	 
-	            	 //author position (unique for each abstract)
-	            	 //int author_position = authorJSONObject.getInt("position");
-	            	 //Log.d(gTag, "auth position: " + author_position);
-	            	 int author_position = j;
-	            	 
-	            	 //now get affiliations of a particular author for an abstract for example
-	            	 // "affiliations": [0,1]
-	            	 JSONArray authorAffiliationsArray = authorJSONObject.getJSONArray("affiliations");
-	            	 Log.d(gTag, "auth affiliations: " + authorAffiliationsArray.toString());
-	            	 
-	            	 if(!PARSED_Author_UUIDs.contains(author_uuid)) {
-	            		 PARSED_Author_UUIDs.add(author_uuid);
-	            		 
-	            		 /*
-			              * Insertion into Arraylist of AUTHORS_DETAILS_POJO
+	            	 if(!authorJSONObject.isNull("lastName") ){
+		            	 //author UUID
+		            	 String author_uuid = authorJSONObject.getString("uuid");
+		            	 Log.d(gTag, "auth uuid: " + author_uuid);
+		            	 
+		            	 //author first Name
+		            	 String author_fName = authorJSONObject.getString("firstName");
+		            	 Log.d(gTag, "auth first name: " + author_fName);
+		            	 
+		            	 //author last Name
+		            	 String author_lName = authorJSONObject.getString("lastName");
+		            	 Log.d(gTag, "auth last name: " + author_lName);
+		            	 
+		            	 //author middle Name
+		            	 String author_middleName = authorJSONObject.getString("middleName");
+		            	 Log.d(gTag, "auth middle name: " + author_middleName);
+		            	 
+		            	 //author mail
+		            	 String author_mail = "";
+		            	 if (authorJSONObject.has("mail")){
+		            		author_mail = authorJSONObject.getString("mail");
+		            	 	Log.d(gTag, "auth mail: " + author_mail);	            	 
+		            	 }
+		            	 
+		            	 //author position (unique for each abstract)
+		            	 //int author_position = authorJSONObject.getInt("position");
+		            	 //Log.d(gTag, "auth position: " + author_position);
+		            	 int author_position = j;
+		            	 
+		            	 //now get affiliations of a particular author for an abstract for example
+		            	 // "affiliations": [0,1]
+		            	 JSONArray authorAffiliationsArray = authorJSONObject.getJSONArray("affiliations");
+		            	 Log.d(gTag, "auth affiliations: " + authorAffiliationsArray.toString());
+		            	 
+		            	 if(!PARSED_Author_UUIDs.contains(author_uuid)) {
+		            		 PARSED_Author_UUIDs.add(author_uuid);
+		            		 
+		            		 /*
+				              * Insertion into Arraylist of AUTHORS_DETAILS_POJO
+				              */
+		            		 AUTHORS_DETAILS_POJO tempAuthorDetails = new AUTHORS_DETAILS_POJO(author_uuid, author_fName, author_lName, author_middleName, author_mail);
+		            		 AUTHORS_DETAILS_POJOS_ARRAY.add(tempAuthorDetails);
+		            		 tempAuthorDetails = null;
+		            	 }
+		            	 
+		            	 //Remove brackets from author affiliation that's to be written in super script
+		            	 String authorAffiliationsWithoutBraces = authorAffiliationsArray.toString().replaceAll("\\[", "").replaceAll("\\]", "");
+		            	 
+		            	 /*
+			              * Insertion into Arraylist of ABSTRACT_AUTHOR_POSITION_AFFILIATION_POJO
 			              */
-	            		 AUTHORS_DETAILS_POJO tempAuthorDetails = new AUTHORS_DETAILS_POJO(author_uuid, author_fName, author_lName, author_middleName, author_mail);
-	            		 AUTHORS_DETAILS_POJOS_ARRAY.add(tempAuthorDetails);
-	            		 tempAuthorDetails = null;
+		            	 ABSTRACT_AUTHOR_POSITION_AFFILIATION_POJO tempAbsAuthPosAff = new ABSTRACT_AUTHOR_POSITION_AFFILIATION_POJO(abs_uuid, author_uuid, author_position, authorAffiliationsWithoutBraces);
+		            	 ABSTRACT_AUTHOR_POSITION_AFFILIATION_POJOS_ARRAY.add(tempAbsAuthPosAff);
 	            	 }
-	            	 
-	            	 //Remove brackets from author affiliation that's to be written in super script
-	            	 String authorAffiliationsWithoutBraces = authorAffiliationsArray.toString().replaceAll("\\[", "").replaceAll("\\]", "");
-	            	 
-	            	 /*
-		              * Insertion into Arraylist of ABSTRACT_AUTHOR_POSITION_AFFILIATION_POJO
-		              */
-	            	 ABSTRACT_AUTHOR_POSITION_AFFILIATION_POJO tempAbsAuthPosAff = new ABSTRACT_AUTHOR_POSITION_AFFILIATION_POJO(abs_uuid, author_uuid, author_position, authorAffiliationsWithoutBraces);
-	            	 ABSTRACT_AUTHOR_POSITION_AFFILIATION_POJOS_ARRAY.add(tempAbsAuthPosAff);
-	            	 
 	             } //end authors array loop
 	             
 	             //Abstract Figures JSONArray
 	             //JSONArray abs_fugures_array = jsonObject.getJSONArray("figures");
-	             JSONArray abs_fugures_array = new JSONArray();
+	             JSONArray abs_figures_array = abstractJson.getJSONArray("figures");
 	             //now iterate over this array for extracting each figure detail, if it's length is greater than 0
-	             if(abs_fugures_array.length() > 0){
+	             if(abs_figures_array.length() > 0){
 	            	 
-	            	 for(int j=0; j<abs_fugures_array.length(); j++){
+	            	 for(int j=0; j<abs_figures_array.length(); j++){
 	            		 //get figure json object
-	            		 JSONObject figureJSONObject = abs_fugures_array.getJSONObject(j);
+	            		 JSONObject figureJSONObject = abs_figures_array.getJSONObject(j);
 	            		 
 	            		 //Figure UUID
 	            		 String figure_uuid = figureJSONObject.getString("uuid");

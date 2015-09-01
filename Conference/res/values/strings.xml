@@ -46,10 +46,10 @@
     <string name="schedule_event_detail_hint_text"></string>
     <string name="title_activity_abstract_figures">Abstract Figures</string>
     <string-array name="groupid2str">
+        <item>I</item>
+        <item>C</item>
         <item>T</item>
-        <item>CT</item>
         <item>W</item>
-        <item>T</item>
     </string-array>
         <string name="info">Info</string>
 

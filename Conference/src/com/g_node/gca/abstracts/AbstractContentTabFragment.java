@@ -194,7 +194,7 @@ public class AbstractContentTabFragment extends Fragment {
          * Clickable for showing images assosiated with Abstract
          */
         btnOpenAbstractFig = (Button) getView().findViewById(R.id.btnOpenAbstractFig);
-        btnOpenAbstractFig.setVisibility(View.GONE);
+        //btnOpenAbstractFig.setVisibility(View.GONE);
     
 	}	//end intialUI
 	
@@ -246,9 +246,11 @@ public class AbstractContentTabFragment extends Fragment {
 	        								 replaceAll("[^0-9][,]", "").
 	        								 split(",");
 	        	int i=0;
-	        	for (String affiliation_nr:authAffiliations){
-	        		authAffiliations[i++] = Integer.toString((
-	        				Integer.parseInt(affiliation_nr)+1));
+	        	if (!authAffiliations[0].equals("")){
+		        	for (String affiliation_nr:authAffiliations){
+		        		authAffiliations[i++] = Integer.toString((
+		        				Integer.parseInt(affiliation_nr)+1));
+		        	}
 	        	}
 	        	String auth_affiliations_str = Arrays.toString(authAffiliations);
 	        	auth_affiliations_str = auth_affiliations_str.substring(1, 
@@ -384,7 +386,7 @@ public class AbstractContentTabFragment extends Fragment {
 	        	else{
 	        		referenceName = "";
 	        	}
-	        	ConRefs.append(Html.fromHtml(referenceName + "<br/>" ));
+	        	ConRefs.append(Html.fromHtml(refNumber+ ":"+referenceName + "<br/>" ));
 	        	refNumber++;
 	        } while (referenceCursor.moveToNext());
         }
@@ -408,7 +410,8 @@ public class AbstractContentTabFragment extends Fragment {
             String acknowledgements = cursorTwo.getString(cursorTwo
                     .getColumnIndexOrThrow("ACKNOWLEDGEMENTS"));
 
-            if (acknowledgements.length() > 0) {
+            if (acknowledgements.length() > 0&&!acknowledgements.equals("null")) {
+            	ConAck.setVisibility(View.VISIBLE);
             	if(acknowledgements.equals("null")){
             		ConAck.append("");
             	}else{
@@ -417,7 +420,7 @@ public class AbstractContentTabFragment extends Fragment {
                 
             }
             else{
-            	ConAck.setVisibility(0);
+            	ConAck.setVisibility(View.GONE);
             	getView().findViewById(R.id.ConAcknowledgeheading).setVisibility(View.GONE);
             	getView().findViewById(R.id.bar3).setVisibility(View.GONE);
             	
@@ -475,7 +478,7 @@ public class AbstractContentTabFragment extends Fragment {
             	Log.i("GCA-groupid", "groupid: " + groupid);
             	Log.i("GCA-posterno", "Poster Nr: " + poster_no);
             	absSortID.append("\r\nSort ID: " + sortID);
-            	title.append("   (" + get_groupid_str(groupid-1));
+            	title.append("   (" + get_groupid_str(groupid));
             	title.append("" + poster_no+")");
             	absSortID.setVisibility(View.GONE);
             
@@ -501,6 +504,7 @@ public class AbstractContentTabFragment extends Fragment {
     	Cursor absFiguresCursor = DatabaseHelper.database.rawQuery(getFiguresQuery, null);
     	
     	if(absFiguresCursor.getCount() > 0) {
+    		btnOpenAbstractFig.setVisibility(View.VISIBLE);
     		btnOpenAbstractFig.setText("Show Figures" + "  (" + absFiguresCursor.getCount() + ")");
     		
     		btnOpenAbstractFig.setOnClickListener(new OnClickListener() {
@@ -556,7 +560,7 @@ public class AbstractContentTabFragment extends Fragment {
 			});
     	
     	}else{
-    		btnOpenAbstractFig.setText("No Figures Found");
+    		btnOpenAbstractFig.setVisibility(View.GONE);
     		btnOpenAbstractFig.setEnabled(false);
     		//btnOpenAbstractFig.setVisibility(View.GONE);
     	}
