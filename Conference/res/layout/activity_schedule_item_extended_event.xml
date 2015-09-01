@@ -142,7 +142,8 @@
 	
 			<TableRow>
 		        <TextView
-		            android:layout_weight="1"	            
+		            android:layout_weight="1"
+		            android:id="@+id/schedule_event_location_icon"	            
 			        android:paddingTop="10dp"
 			        android:paddingBottom="10dp"
 			        android:paddingLeft="5dp"
