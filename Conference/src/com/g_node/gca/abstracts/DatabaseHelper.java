@@ -428,7 +428,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 			statement.bindString(2, temp.getReference_uuid());
 			statement.bindString(3, temp.getReference_text());
 			statement.bindString(4, temp.getReference_link());
-			statement.bindString(4, temp.getReference_doi());
+			statement.bindString(5, temp.getReference_doi());
 			
 			long y = statement.executeInsert();
 			Log.d(gtag, "INSERTED - ABSTRACT_REFERENCES" + i + " in ABSTRACT_REFERENCES. ID: " + y);
