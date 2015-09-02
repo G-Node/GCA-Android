@@ -3,6 +3,7 @@
     <color name="color_actionbar_background_blue">#064082</color>
     <color name="color_actionbar_background_pressed">#064082</color>
     <color name="color_food">#84C3E1</color>
+    <color name="color_poster">#E1F4FD</color>
     <color name="schedule_event">#b1def3</color>
     <color name="schedule_track">#FFEBB6</color>
     <color name="schedule_session">#1F66B6</color>
