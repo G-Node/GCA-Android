@@ -21,6 +21,33 @@
                 android:fontFamily="sans-serif-light"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
+            <ImageView
+                android:id="@+id/imageView1"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/text"
+                android:layout_centerInParent="true"
+                android:scaleType="centerInside"
+                android:src="@drawable/bc15eg" />
+            
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/imageView1"
+                android:layout_centerInParent="true"
+                android:scaleType="centerInside"
+                android:src="@drawable/bc151og" />
+            
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/imageView2"
+                android:layout_centerInParent="true"
+                android:scaleType="centerInside"
+                android:src="@drawable/bc152og" />                 
+
        </RelativeLayout>
        
       </ScrollView>
