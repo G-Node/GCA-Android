@@ -22,7 +22,7 @@
 	  	android:paddingLeft="25dip"
 		android:paddingRight="25dip"
 	    android:paddingTop="8dp"
-	  	android:textColor="#0099CC"
+	  	android:textColor="@color/schedule_track_title"
 	  	android:text="123123123123123"
 	  	android:textSize="18sp"
         android:textStyle="bold" 

@@ -7,7 +7,7 @@
 	<RelativeLayout 
 	    android:layout_width="match_parent"
 	    android:layout_height="match_parent"
-	    android:background="#b6f2fd"
+	    android:background="@color/schedule_event"
 	     >
 	
 	    <TextView
@@ -17,8 +17,7 @@
 	        android:layout_width="fill_parent"
 	        android:layout_height="wrap_content"
 	        android:gravity="center"
-			android:textColor="#b6f2fd"
-			android:background="#034f5d"
+			android:textColor="@color/schedule_event_title"
 	        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
 	        android:text="@string/hello_world" />
 	
@@ -44,7 +43,6 @@
 	        android:layout_height="wrap_content"
 	        android:gravity="right"
 			android:textColor="#e7e7e5"
-			android:background="#7e7d7b"
 			android:textSize="12sp"
 			android:layout_below="@+id/schedule_event_subtitle"
 	        android:text="Type of Event" />
