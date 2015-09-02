@@ -82,7 +82,6 @@ public class NewsAdapter extends ArrayAdapter<NewsItemSingle> {
 		TextView nameTxt = (TextView)row.findViewById(R.id.nameTxt);
 		TextView aboutTxt = (TextView)row.findViewById(R.id.aboutTxt);
 		TextView dateText = (TextView) row.findViewById(R.id.dateTxt);
-		
 		final ProgressBar indicator = (ProgressBar)row.findViewById(R.id.progress);
 		
 		//Initially we want the progress indicator visible, and the image invisible
@@ -127,7 +126,7 @@ public class NewsAdapter extends ArrayAdapter<NewsItemSingle> {
 		nameTxt.setText(getItem(pos).getName());
 		aboutTxt.setText(getItem(pos).getAbout());
 		
-		DateFormat formatter = new SimpleDateFormat("EEE, dd MMM yyyy");
+		DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
 
 		String parsedPubDate = "";
 		try {

@@ -145,8 +145,12 @@ public class scheduleAdapter extends BaseAdapter {
 					((TextView)tempRow.findViewById(R.id.track_event_location)).append(Html.fromHtml("&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;<i>" + tempTrackEvents[i].getAuthors() + "</i>"));
 				
 				if (tempTrackEvents[i].getType().equals("food")){
-					tempRow.findViewById(R.id.list_item_middle_container).setBackgroundColor(
+					tempRow.findViewById(R.id.track_event_row_linearLayout_block).setBackgroundColor(
 							ctx.getResources().getColor(R.color.color_food));
+				}
+				if (tempTrackEvents[i].getType().equals("poster")){
+					tempRow.findViewById(R.id.track_event_row_linearLayout_block).setBackgroundColor(
+							ctx.getResources().getColor(R.color.color_poster));
 				}
 				tempRow.setOnClickListener(new ModOnClickListener(tempTrackEvents[i]));
 				table.addView(tempRow);
