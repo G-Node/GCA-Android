@@ -42,7 +42,6 @@
         android:layout_width="0dp"
         android:layout_weight="1"
         android:layout_height="match_parent"
-        android:background="#B7F1FF"
         android:clickable="false"
         android:focusable="false"
         android:padding="8dp"
@@ -72,7 +71,7 @@
     android:layout_width="fill_parent"
     android:layout_height="5dp"
     android:layout_below="@+id/track_event_row_linearLayout_block"
-    android:background="#C4FFB7" />
+    android:background="@color/schedule_track" />
  
  </RelativeLayout>
  
