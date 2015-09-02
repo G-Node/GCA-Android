@@ -20,7 +20,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import com.g_node.gcaa.R;
+import com.g_node.bc15.R;
 
 
 public class AbstractContent extends FragmentActivity implements
