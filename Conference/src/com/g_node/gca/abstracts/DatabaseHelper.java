@@ -392,7 +392,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 			statement.bindString(2, temp.getFigure_uuid());
 			statement.bindString(3, temp.getFigure_caption());
 			statement.bindString(4, temp.getFigure_URL());
-			statement.bindString(4, temp.getFigure_position());
+			statement.bindString(5, temp.getFigure_position());
 			
 			long y = statement.executeInsert();
 			Log.d(gtag, "INSERTED - ABSTRACT_FIGURES" + i + " in ABSTRACT_FIGURES. ID: " + y);
