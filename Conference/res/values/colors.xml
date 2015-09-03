@@ -5,7 +5,7 @@
     <color name="color_food">#84C3E1</color>
     <color name="color_poster">#E1F4FD</color>
     <color name="schedule_event">#b1def3</color>
-    <color name="schedule_track">#FFEBB6</color>
+    <color name="schedule_track">#e2e2e2</color>
     <color name="schedule_session">#1F66B6</color>
     <color name="schedule_event_title">#000000</color>
     <color name="schedule_track_title">#064082</color>
