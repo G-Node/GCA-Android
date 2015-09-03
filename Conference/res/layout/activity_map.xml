@@ -12,5 +12,14 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
         class="com.google.android.gms.maps.SupportMapFragment" />
+    
+    <fragment
+        android:id="@+id/floorplan"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        class="com.g_node.gca.map.FloorplanFragment" />
  
 </RelativeLayout>

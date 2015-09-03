@@ -24,7 +24,10 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
@@ -55,8 +58,8 @@ public class MapActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
         
-        getActionBar().setIcon(getResources().getDrawable(R.drawable.icon_maps));
-        getActionBar().setTitle("Locations Map");
+        //getActionBar().setIcon(getResources().getDrawable(R.drawable.icon_maps));
+        getActionBar().setTitle("Maps");
         
         getActionBar().setDisplayHomeAsUpEnabled(true);
         
@@ -65,6 +68,10 @@ public class MapActivity extends FragmentActivity {
 
         locationMarkers();
         
+        FragmentManager fmanager = getSupportFragmentManager();        
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        ft.hide(fmanager.findFragmentById(R.id.map));
+        ft.commit();
         //Lisener for infoWindow to get LAT & LONG of that marker
         supportMap.setOnInfoWindowClickListener(new OnInfoWindowClickListener() {
 
@@ -165,7 +172,9 @@ public class MapActivity extends FragmentActivity {
                 FragmentManager fmanager = getSupportFragmentManager();
                 Fragment fragment = fmanager.findFragmentById(R.id.map);
                 SupportMapFragment supportmapfragment = (SupportMapFragment)fragment;
+                              
                 supportMap = supportmapfragment.getMap();
+                
                 if (supportMap != null) {
                     /*
                      * implementing different colors markers for different
@@ -278,4 +287,34 @@ public class MapActivity extends FragmentActivity {
         }
 
     }
+    
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
+        menu.add(0, 5, 0, "History").setIcon(getResources().getDrawable(R.drawable.icon_maps))
+                .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
+        return true;
+    }
+    
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle presses on the action bar items
+        switch (item.getItemId()) {
+            case 5:
+            	FragmentManager fmanager = getSupportFragmentManager();
+                FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+                Fragment map1 = fmanager.findFragmentById(R.id.map);
+                Fragment map2 = fmanager.findFragmentById(R.id.floorplan);
+                if (map1.isHidden()){
+                	ft.hide(map2);
+                	ft.show(map1);
+                }else{
+                	ft.hide(map1);
+                	ft.show(map2);
+                }                
+                ft.commit();
+        }
+        return true;
+    }
 }
+
