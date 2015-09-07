@@ -22,7 +22,8 @@ public class FloorplanFragment extends Fragment {
     	View view = inflater.inflate(R.layout.fragment_floorplan, container, false);
     	
     	int screen_width =  (int)(view.getResources().getDisplayMetrics()
-    			.widthPixels* 0.5);
+    			.widthPixels/view.getResources().getDisplayMetrics()
+    			.density);
     	WebView floorplansView = (WebView) view.findViewById(
     			                           R.id.floorplan_web_view);
     	String html_string = String.format(
