@@ -61,7 +61,8 @@ public class MapActivity extends FragmentActivity {
         getActionBar().setDisplayHomeAsUpEnabled(true);
         
 
-        MapsInitializer.initialize(this);
+        int conn_code = MapsInitializer.initialize(this);
+        Log.d(gtag,"IMpConnectionCode:" + conn_code);
 
         locationMarkers();
         
