@@ -18,17 +18,27 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.app.AlertDialog.Builder;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.text.Html;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
+import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -55,63 +65,63 @@ public class MapActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
         
-        getActionBar().setIcon(getResources().getDrawable(R.drawable.icon_maps));
-        getActionBar().setTitle("Locations Map");
+        //getActionBar().setIcon(getResources().getDrawable(R.drawable.icon_maps));
+        getActionBar().setTitle("Maps");
         
         getActionBar().setDisplayHomeAsUpEnabled(true);
-        
-
         int conn_code = MapsInitializer.initialize(this);
-        Log.d(gtag,"IMpConnectionCode:" + conn_code);
-
-        locationMarkers();
-        
-        //Lisener for infoWindow to get LAT & LONG of that marker
-        supportMap.setOnInfoWindowClickListener(new OnInfoWindowClickListener() {
-
-            public void onInfoWindowClick(Marker marker) {
-                LatLng position = marker.getPosition();
-            	Log.i(gtag, "Marker Info Clicked - LAT: " + position.latitude + ", LONG: " + position.longitude);
-            	
-            	Intent navigateIntent = new Intent(Intent.ACTION_VIEW);
-            	
-            	String currentLat =  String.valueOf(position.latitude);
-            	String currentLong =  String.valueOf(position.longitude);
-            	String currLabel = marker.getTitle();
-            	
-            	String geoLocation =  "geo:0,0?q=" + currentLat + "," + currentLong + "(" + currLabel + ")";
-				navigateIntent.setData(Uri.parse(geoLocation));
-				startActivity(navigateIntent);
-            	
-            }
-        });
-        
-        //adapter for custom info-window - added icon for navigation
-        supportMap.setInfoWindowAdapter(new InfoWindowAdapter() {
-			
-			@Override
-			public View getInfoWindow(Marker arg0) {
-				// TODO Auto-generated method stub
-				return null;
-			}
-			
-			@Override
-			public View getInfoContents(Marker arg0) {
-				// TODO Auto-generated method stub
-				// Getting view from the layout file info_window_layout
-                View v = getLayoutInflater().inflate(R.layout.info_window_layout, null);
-
-                // Getting reference to the TextView to set title
-                TextView note = (TextView) v.findViewById(R.id.note);
-
-                note.setText(arg0.getTitle() );
-
-                // Returning the view containing InfoWindow contents
-                return v;
-			}
-		});
-        
+        Log.d(gtag,"ImpConnectionCode:" + conn_code);
+        if(conn_code==ConnectionResult.SUCCESS){  	
+	        locationMarkers();        
+	        
+	        //Lisener for infoWindow to get LAT & LONG of that marker
+	        supportMap.setOnInfoWindowClickListener(new OnInfoWindowClickListener() {
+	
+	            public void onInfoWindowClick(Marker marker) {
+	                LatLng position = marker.getPosition();
+	            	Log.i(gtag, "Marker Info Clicked - LAT: " + position.latitude + ", LONG: " + position.longitude);
+	            	
+	            	Intent navigateIntent = new Intent(Intent.ACTION_VIEW);
+	            	
+	            	String currentLat =  String.valueOf(position.latitude);
+	            	String currentLong =  String.valueOf(position.longitude);
+	            	String currLabel = marker.getTitle();
+	            	
+	            	String geoLocation =  "geo:0,0?q=" + currentLat + "," + currentLong + "(" + currLabel + ")";
+					navigateIntent.setData(Uri.parse(geoLocation));
+					startActivity(navigateIntent);
+	            	
+	            }
+	        });
+	        
+	        //adapter for custom info-window - added icon for navigation
+	        supportMap.setInfoWindowAdapter(new InfoWindowAdapter() {
+				
+				@Override
+				public View getInfoWindow(Marker arg0) {
+					// TODO Auto-generated method stub
+					return null;
+				}
+				
+				@Override
+				public View getInfoContents(Marker arg0) {
+					// TODO Auto-generated method stub
+					// Getting view from the layout file info_window_layout
+	                View v = getLayoutInflater().inflate(R.layout.info_window_layout, null);
+	
+	                // Getting reference to the TextView to set title
+	                TextView note = (TextView) v.findViewById(R.id.note);
+	
+	                note.setText(arg0.getTitle() );
+	
+	                // Returning the view containing InfoWindow contents
+	                return v;
+				}
+				
+			});
+        }
     }
+    
     
     //Main map points function
     public void locationMarkers() {
@@ -166,7 +176,9 @@ public class MapActivity extends FragmentActivity {
                 FragmentManager fmanager = getSupportFragmentManager();
                 Fragment fragment = fmanager.findFragmentById(R.id.map);
                 SupportMapFragment supportmapfragment = (SupportMapFragment)fragment;
+                              
                 supportMap = supportmapfragment.getMap();
+                
                 if (supportMap != null) {
                     /*
                      * implementing different colors markers for different
@@ -279,4 +291,6 @@ public class MapActivity extends FragmentActivity {
         }
 
     }
+ 
 }
+
