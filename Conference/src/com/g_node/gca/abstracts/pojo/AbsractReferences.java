@@ -1,6 +1,6 @@
 package com.g_node.gca.abstracts.pojo;
 
-public class ABSTRACT_REFERENCES_POJO {
+public class AbsractReferences {
 	
 	private String abstract_uuid;
 	private String reference_uuid;
@@ -9,7 +9,7 @@ public class ABSTRACT_REFERENCES_POJO {
 	private String reference_doi;
 	
 
-	public ABSTRACT_REFERENCES_POJO(String abstract_uuid, String reference_uuid,
+	public AbsractReferences(String abstract_uuid, String reference_uuid,
 			String reference_text, String reference_link, String reference_doi) {
 		super();
 		this.abstract_uuid = abstract_uuid;

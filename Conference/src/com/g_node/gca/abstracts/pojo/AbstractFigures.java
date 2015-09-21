@@ -1,6 +1,6 @@
 package com.g_node.gca.abstracts.pojo;
 
-public class ABSTRACT_FIGURES_POJO {
+public class AbstractFigures {
 
 	
 	private String abstract_uuid;
@@ -10,7 +10,7 @@ public class ABSTRACT_FIGURES_POJO {
 	private String figure_position;
 	
 	
-	public ABSTRACT_FIGURES_POJO(String abstract_uuid, String figure_uuid,
+	public AbstractFigures(String abstract_uuid, String figure_uuid,
 			String figure_caption, String figure_URL, String figure_position) {
 		super();
 		this.abstract_uuid = abstract_uuid;

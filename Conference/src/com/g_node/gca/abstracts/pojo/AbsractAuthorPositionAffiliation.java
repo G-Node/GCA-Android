@@ -1,6 +1,6 @@
 package com.g_node.gca.abstracts.pojo;
 
-public class ABSTRACT_AUTHOR_POSITION_AFFILIATION_POJO {
+public class AbsractAuthorPositionAffiliation {
 
 	
 	private String abstract_uuid;
@@ -10,7 +10,7 @@ public class ABSTRACT_AUTHOR_POSITION_AFFILIATION_POJO {
 	
 	
 	
-	public ABSTRACT_AUTHOR_POSITION_AFFILIATION_POJO(String abstract_uuid,
+	public AbsractAuthorPositionAffiliation(String abstract_uuid,
 			String author_uuid, int author_position, String author_affiliation) {
 		super();
 		this.abstract_uuid = abstract_uuid;

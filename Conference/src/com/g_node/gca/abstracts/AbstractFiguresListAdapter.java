@@ -38,7 +38,8 @@ public class AbstractFiguresListAdapter extends BaseAdapter{
 		this.figuresList = figuresList;
 		
 		//Setup the ImageLoader, 
-        ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(context).build();
+        ImageLoaderConfiguration config = new ImageLoaderConfiguration
+        		.Builder(context).build();
         imageLoader = ImageLoader.getInstance();
         imageLoader.init(config);
         

@@ -23,14 +23,13 @@ import android.widget.TextView;
 import com.g_node.gcaa.R;
 
 public class AbstractCursorAdapter extends CursorAdapter {
-    Cursor cursorOne;
-
+    private Cursor mAuthorCursor;    
+    final DatabaseHelper mDbHelper;
     String getName;
 
-    @SuppressWarnings("deprecation")
-    public AbstractCursorAdapter(Context context, Cursor c) {
-        super(context, c);
-        // TODO Auto-generated constructor stub
+    public AbstractCursorAdapter(Context context, Cursor c, int flags) {
+        super(context, c, flags);
+        mDbHelper= DatabaseHelper.getInstance(context);
     }
 
     @Override
@@ -87,54 +86,42 @@ public class AbstractCursorAdapter extends CursorAdapter {
         	type.setVisibility(View.INVISIBLE);
         }
 
-        /*
-        Following piece of commented code isn't needed as Abstract Type is 
-        selected now based on GroupID. Previously it was being selected based on 'isTalk' field
-        but now it's selected on basis of GroupID extracted from SortID. 
+        String uuid = cursor.getString(cursor.getColumnIndexOrThrow("UUID"));        
+        mAuthorCursor =  mDbHelper.fetchAuthorsByAbsId(uuid);
         
-        String typeText = cursor.getString(cursor.getColumnIndexOrThrow("TYPE"));
-        type.setText(typeText.toUpperCase());
-        
-        if(typeText.compareToIgnoreCase("poster") == 0) {
-        	type.setBackgroundColor(Color.parseColor("#AA66CC"));
-        } else {
-        	type.setBackgroundColor(Color.parseColor("#33B5E5"));
-        }
-        */
-        
-        /*
-         * _id for getting Author Names
-         */
-        String value = cursor.getString(cursor.getColumnIndexOrThrow("_id"));
-
-        String authorNamesQuery = 	"SELECT ABSTRACT_UUID, AUTHORS_DETAILS.AUTHOR_UUID, AUTHORS_DETAILS.AUTHOR_FIRST_NAME, AUTHOR_MIDDLE_NAME, AUTHOR_LAST_NAME, AUTHOR_EMAIL, ABSTRACT_AUTHOR_POSITION_AFFILIATION.AUTHOR_POSITION as _aPos FROM ABSTRACT_AUTHOR_POSITION_AFFILIATION LEFT OUTER JOIN AUTHORS_DETAILS USING (AUTHOR_UUID) WHERE ABSTRACT_UUID = '" + value + "' ORDER BY _aPos;";
-        cursorOne =  DatabaseHelper.database.rawQuery(authorNamesQuery, null);
-        
-      if (cursorOne != null && cursorOne.moveToFirst()) {
+      if (mAuthorCursor != null && mAuthorCursor.moveToFirst()) {
       /*
        * Name format will be like this A, B & C or A,B,C & D. So, if the
        * name is the last name. We should use '&' before the name
        */
       do {
 
-          if (cursorOne.getPosition() == 0) {
+          if (mAuthorCursor.getPosition() == 0) {
               /*
                * First data
                */
-              getName = cursorOne.getString(cursorOne.getColumnIndexOrThrow("AUTHOR_FIRST_NAME")) + " " + cursorOne.getString(cursorOne.getColumnIndexOrThrow("AUTHOR_LAST_NAME"));
-          } else if (cursorOne.isLast()) {
+              getName = mAuthorCursor.getString(mAuthorCursor
+            		  .getColumnIndexOrThrow("AUTHOR_FIRST_NAME")) + " " 
+            		  + mAuthorCursor.getString(mAuthorCursor
+            				  .getColumnIndexOrThrow("AUTHOR_LAST_NAME"));
+          } else if (mAuthorCursor.isLast()) {
               /*
                * Last Data
                */
               getName = getName + " & "
-                      + cursorOne.getString(cursorOne.getColumnIndexOrThrow("AUTHOR_FIRST_NAME")) + " " + cursorOne.getString(cursorOne.getColumnIndexOrThrow("AUTHOR_LAST_NAME"));
+                      + mAuthorCursor.getString(mAuthorCursor
+                    		  .getColumnIndexOrThrow("AUTHOR_FIRST_NAME")) 
+                    		  + " " + mAuthorCursor.getString(mAuthorCursor
+                    				  .getColumnIndexOrThrow("AUTHOR_LAST_NAME"));
           } else {
               getName = getName + " , "
-                      + cursorOne.getString(cursorOne.getColumnIndexOrThrow("AUTHOR_FIRST_NAME")) + " " + cursorOne.getString(cursorOne.getColumnIndexOrThrow("AUTHOR_LAST_NAME"));
-
+                      + mAuthorCursor.getString(mAuthorCursor
+                    		  .getColumnIndexOrThrow("AUTHOR_FIRST_NAME")) 
+                    		  + " " + mAuthorCursor.getString(mAuthorCursor
+                    				  .getColumnIndexOrThrow("AUTHOR_LAST_NAME"));
           }
 
-      } while (cursorOne.moveToNext());
+      } while (mAuthorCursor.moveToNext());
   }
         
         /*
@@ -144,7 +131,8 @@ public class AbstractCursorAdapter extends CursorAdapter {
         /*
          * Get Width
          */
-        WindowManager WinMgr = (WindowManager)context.getSystemService(Context.WINDOW_SERVICE);
+        WindowManager WinMgr = (WindowManager)context.getSystemService(
+        		Context.WINDOW_SERVICE);
         @SuppressWarnings("deprecation")
         int displayWidth = WinMgr.getDefaultDisplay().getWidth();
         Paint paint = new Paint();

@@ -3,15 +3,17 @@
 import java.io.InputStream;
 import java.util.ArrayList;
 
+import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
-import com.g_node.gca.abstracts.pojo.ABSTRACT_AFFILIATION_ID_POSITION_POJO;
-import com.g_node.gca.abstracts.pojo.ABSTRACT_AUTHOR_POSITION_AFFILIATION_POJO;
-import com.g_node.gca.abstracts.pojo.ABSTRACT_DETAILS_POJO;
-import com.g_node.gca.abstracts.pojo.ABSTRACT_FIGURES_POJO;
-import com.g_node.gca.abstracts.pojo.ABSTRACT_REFERENCES_POJO;
-import com.g_node.gca.abstracts.pojo.AFFILIATION_DETAILS_POJO;
-import com.g_node.gca.abstracts.pojo.AUTHORS_DETAILS_POJO;
+import com.g_node.gca.abstracts.pojo.AbstractAffiliationIdPosition;
+import com.g_node.gca.abstracts.pojo.AbsractAuthorPositionAffiliation;
+import com.g_node.gca.abstracts.pojo.AbstractDetails;
+import com.g_node.gca.abstracts.pojo.AbstractFigures;
+import com.g_node.gca.abstracts.pojo.AbsractReferences;
+import com.g_node.gca.abstracts.pojo.AffiliationDetails;
+import com.g_node.gca.abstracts.pojo.AuthorsDetails;
+import com.google.android.gms.internal.dd;
 
 public class SyncAbstracts {
 	
@@ -24,13 +26,13 @@ public class SyncAbstracts {
 	 * POJOs Arraylists to hold data after parsing 
 	 * Later on, we do bulk insert and save all the data in db
 	 */
-	private ArrayList<ABSTRACT_AFFILIATION_ID_POSITION_POJO> ABSTRACT_AFFILIATION_ID_POSITION_POJOS_ARRAY = new ArrayList<ABSTRACT_AFFILIATION_ID_POSITION_POJO>();
-	private ArrayList<ABSTRACT_AUTHOR_POSITION_AFFILIATION_POJO> ABSTRACT_AUTHOR_POSITION_AFFILIATION_POJOS_ARRAY = new ArrayList<ABSTRACT_AUTHOR_POSITION_AFFILIATION_POJO>(); 
-	private ArrayList<ABSTRACT_DETAILS_POJO> ABSTRACT_DETAILS_POJOS_ARRAY = new ArrayList<ABSTRACT_DETAILS_POJO>();
-	private ArrayList<ABSTRACT_FIGURES_POJO> ABSTRACT_FIGURES_POJOS_ARRAY = new ArrayList<ABSTRACT_FIGURES_POJO>();
-	private ArrayList<ABSTRACT_REFERENCES_POJO> ABSTRACT_REFERENCES_POJOS_ARRAY = new ArrayList<ABSTRACT_REFERENCES_POJO>(); 
-	private ArrayList<AFFILIATION_DETAILS_POJO> AFFILIATION_DETAILS_POJOS_ARRAY = new ArrayList<AFFILIATION_DETAILS_POJO>();
-	private ArrayList<AUTHORS_DETAILS_POJO> AUTHORS_DETAILS_POJOS_ARRAY = new ArrayList<AUTHORS_DETAILS_POJO>();	
+	private ArrayList<AbstractAffiliationIdPosition> ABSTRACT_AFFILIATION_ID_POSITION_POJOS_ARRAY = new ArrayList<AbstractAffiliationIdPosition>();
+	private ArrayList<AbsractAuthorPositionAffiliation> ABSTRACT_AUTHOR_POSITION_AFFILIATION_POJOS_ARRAY = new ArrayList<AbsractAuthorPositionAffiliation>(); 
+	private ArrayList<AbstractDetails> ABSTRACT_DETAILS_POJOS_ARRAY = new ArrayList<AbstractDetails>();
+	private ArrayList<AbstractFigures> ABSTRACT_FIGURES_POJOS_ARRAY = new ArrayList<AbstractFigures>();
+	private ArrayList<AbsractReferences> ABSTRACT_REFERENCES_POJOS_ARRAY = new ArrayList<AbsractReferences>(); 
+	private ArrayList<AffiliationDetails> AFFILIATION_DETAILS_POJOS_ARRAY = new ArrayList<AffiliationDetails>();
+	private ArrayList<AuthorsDetails> AUTHORS_DETAILS_POJOS_ARRAY = new ArrayList<AuthorsDetails>();	
 	
 	/*
 	 * These arraylists are for fetching existing stuff from database
@@ -122,49 +124,13 @@ public class SyncAbstracts {
 	 * if it is: it deletes it's entry from 5 tables, related to Abstract
 	 * we are doing this because we need to update Abstract
 	 */
-	public void processAbstracts() {
-		
-		for(int i=0; i< ABSTRACT_DETAILS_POJOS_ARRAY.size(); i++) {
-			
-			ABSTRACT_DETAILS_POJO temp = ABSTRACT_DETAILS_POJOS_ARRAY.get(i);
-			String currentAbsUUID = temp.getUuid();
-			
-			if(ExistingAbstracts_UUIDs.contains(temp.getUuid())){	//update case - perform deletions
-				long rows_affected;
-				
-				/*
-				 * deletion form 5 tables
-				 * Insertions will be performed later in doAbstractRelatedInsertions() function
-				 */
-				rows_affected = DatabaseHelper.database.delete("ABSTRACT_DETAILS", "UUID = ?", 
-						new String[] { currentAbsUUID });
-				
-				Log.i(gTag, "Deleted from ABSTRACT_DETAILS: " + rows_affected);
-				
-				rows_affected = DatabaseHelper.database.delete("ABSTRACT_FIGURES", "ABSTRACT_UUID = ?", 
-						new String[] { currentAbsUUID });
-				
-				Log.i(gTag, "Deleted from ABSTRACT_FIGURES: " + rows_affected);
-				
-				rows_affected = DatabaseHelper.database.delete("ABSTRACT_REFERENCES", "ABSTRACT_UUID = ?", 
-						new String[] { currentAbsUUID });
-				
-				Log.i(gTag, "Deleted from ABSTRACT_REFERENCES: " + rows_affected);
-				
-				rows_affected = DatabaseHelper.database.delete("ABSTRACT_AFFILIATION_ID_POSITION", "ABSTRACT_UUID = ?", 
-						new String[] { currentAbsUUID });
-				
-				Log.i(gTag, "Deleted from ABSTRACT_AFFILIATION_ID_POSITION: " + rows_affected);
-				
-				rows_affected = DatabaseHelper.database.delete("ABSTRACT_AUTHOR_POSITION_AFFILIATION", "ABSTRACT_UUID = ?", 
-						new String[] { currentAbsUUID });
-				
-				Log.i(gTag, "Deleted from ABSTRACT_AUTHOR_POSITION_AFFILIATION: " + rows_affected);
-				
-			} else {	
-				; //do nothing
+	public void processAbstracts() {		
+		for(AbstractDetails abstractPojo:ABSTRACT_DETAILS_POJOS_ARRAY) {			
+			String uuid = abstractPojo.getUuid();			
+			if(ExistingAbstracts_UUIDs.contains(uuid)){	//update case - perform deletions
+				dbHelper.deleteAbstract(uuid);				
 			}
-		}	//end for		
+		}			
 	}
 	
 	/*
@@ -190,27 +156,13 @@ public class SyncAbstracts {
 	 * So this function deletes previous entry of author.
 	 * Insertion of that author again with updated info will be handled in doAuthorInsertions() func.
 	 */
-	public void processAuthors() {
-		
-		for(int i=0; i<AUTHORS_DETAILS_POJOS_ARRAY.size(); i++) {
-			//check for duplication and delete
-			AUTHORS_DETAILS_POJO temp = AUTHORS_DETAILS_POJOS_ARRAY.get(i);
-			
-			String currAuthorUUID = temp.getAuthor_uuid();
-			long rows_affected;
-			
-			if(ExistingAuthor_UUIDs.contains(temp.getAuthor_uuid())) {	//author already exists, delete it, insert again
-				
-				//query for deleting
-				rows_affected = DatabaseHelper.database.delete("AUTHORS_DETAILS", "AUTHOR_UUID = ?", 
-						new String[] { currAuthorUUID });
-				
-				Log.i(gTag, "Deleted from AUTHORS_DETAILS: " + rows_affected);
-				
-			} else {
-				; //do nothing -  insertions later on
-			}
-		} //end for
+	public void processAuthors() {		
+		for(AuthorsDetails author:AUTHORS_DETAILS_POJOS_ARRAY) {
+			String currAuthorUUID = author.getAuthor_uuid();
+			if(ExistingAuthor_UUIDs.contains(currAuthorUUID)) {
+				dbHelper.deleteAuthor(currAuthorUUID);
+			} 
+		} 
 	}
 	
 	/*
@@ -230,26 +182,12 @@ public class SyncAbstracts {
 	 * Insertion of that affiliation again with updated info will be handled in 
 	 * dAffiliationInsertions() func.
 	 */
-	public void processAffiliations() {
-		
-		for(int i=0; i< AFFILIATION_DETAILS_POJOS_ARRAY.size(); i++) {
-			//check for duplication and delete
-			
-			AFFILIATION_DETAILS_POJO temp = AFFILIATION_DETAILS_POJOS_ARRAY.get(i);
-			
-			String currentAffiliationUUID = temp.getAffiliation_uuid();
-			long rows_affected;
-			if(ExistingAffiliation_UUIDs.contains(temp.getAffiliation_uuid())) {
-				
-				//deletion query
-				rows_affected = DatabaseHelper.database.delete("AFFILIATION_DETAILS", "AFFILIATION_UUID = ?", 
-						new String[] { currentAffiliationUUID });
-				
-				Log.i(gTag, "Deleted from AFFILIATION_DETAILS : " + rows_affected);
-				
-			} else {
-				; //do nothing as insertions will be done later
-			}
+	public void processAffiliations() {		
+		for(AffiliationDetails affiliation:AFFILIATION_DETAILS_POJOS_ARRAY) {
+			String currentAffiliationUUID = affiliation.getAffiliation_uuid();
+			if(ExistingAffiliation_UUIDs.contains(currentAffiliationUUID)) {
+				dbHelper.deleteAffiliation(currentAffiliationUUID);
+			} 
 		} //end for
 	}
 	
@@ -271,9 +209,9 @@ public class SyncAbstracts {
 	 */
 	public void populateExistingDataFromDB() {
 		
-		this.ExistingAbstracts_UUIDs = dbHelper.fetchExistingAbstractsUUID();
-		this.ExistingAffiliation_UUIDs = dbHelper.fetchExistingAffiliationsUUID();
-		this.ExistingAuthor_UUIDs = dbHelper.fetchExistingAuthhorsUUID();
+		this.ExistingAbstracts_UUIDs = dbHelper.fetchAbstractsUUIDs();
+		this.ExistingAffiliation_UUIDs = dbHelper.fetchAffiliationsUUIDs();
+		this.ExistingAuthor_UUIDs = dbHelper.fetchAuthhorsUUIDs();
 	}
 	
 	/*

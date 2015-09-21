@@ -21,6 +21,9 @@ public class AbstractFiguresActivity extends Activity {
 	
 	AbstractFiguresListAdapter adapter;
 	
+	private final DatabaseHelper mDbHelper = DatabaseHelper
+			.getInstance(this);
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -28,21 +31,21 @@ public class AbstractFiguresActivity extends Activity {
 		
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 		
-		String abs_uuid = getIntent().getExtras().getString("abs_uuid");
+		String uuid = getIntent().getExtras().getString("abs_uuid");
 		
-		String getFiguresQuery = "SELECT * FROM ABSTRACT_FIGURES WHERE ABSTRACT_UUID = '" + abs_uuid +"';";
-    	Cursor absFiguresCursor = DatabaseHelper.database.rawQuery(getFiguresQuery, null);
-		absFiguresCursor.moveToFirst();
-		
-		List<AbstractFiguresClass> FiguresList = new ArrayList<AbstractFiguresClass>();
-		
+    	Cursor absFiguresCursor = mDbHelper.fetchFiguresByAbsId(uuid);
+		absFiguresCursor.moveToFirst();		
+		List<AbstractFiguresClass> FiguresList = new ArrayList<AbstractFiguresClass>();		
 		do{
 			AbstractFiguresClass currentFigure = new AbstractFiguresClass();
-			currentFigure.setFig_uuid(absFiguresCursor.getString(absFiguresCursor.getColumnIndexOrThrow("FIG_UUID")));
-			currentFigure.setCaption(absFiguresCursor.getString(absFiguresCursor.getColumnIndexOrThrow("FIG_CAPTION")));
-			currentFigure.setURL(absFiguresCursor.getString(absFiguresCursor.getColumnIndexOrThrow("FIG_URL")));
-			currentFigure.setPosition(absFiguresCursor.getString(absFiguresCursor.getColumnIndexOrThrow("FIG_POSITION")));
-			
+			currentFigure.setFig_uuid(absFiguresCursor.getString(
+					absFiguresCursor.getColumnIndexOrThrow("FIG_UUID")));
+			currentFigure.setCaption(absFiguresCursor.getString(
+					absFiguresCursor.getColumnIndexOrThrow("FIG_CAPTION")));
+			currentFigure.setURL(absFiguresCursor.getString(
+					absFiguresCursor.getColumnIndexOrThrow("FIG_URL")));
+			currentFigure.setPosition(absFiguresCursor.getString(
+					absFiguresCursor.getColumnIndexOrThrow("FIG_POSITION")));			
 			FiguresList.add(currentFigure);
 		}while(absFiguresCursor.moveToNext());
 		

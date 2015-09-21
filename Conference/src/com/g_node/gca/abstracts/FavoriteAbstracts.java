@@ -29,7 +29,7 @@ public class FavoriteAbstracts extends Activity {
 	AbstractCursorAdapter cursorAdapter;
 	
 	String gTag = "GCA-fav-Abstracts";
-	DatabaseHelper dbHelper = new DatabaseHelper(this);
+	final DatabaseHelper mDbHelper = DatabaseHelper.getInstance(this);
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +43,7 @@ public class FavoriteAbstracts extends Activity {
 		/*
          * Get Writable Database
          */
-        dbHelper.open();
+        mDbHelper.open();
 		//function to load favourite abstracts
         loadFavAbstracts();
 
@@ -53,7 +53,7 @@ public class FavoriteAbstracts extends Activity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        dbHelper.close();
+        mDbHelper.close();
         // The activity is about to be destroyed.
     }
     
@@ -70,15 +70,7 @@ public class FavoriteAbstracts extends Activity {
     private void loadFavAbstracts() {
     	
     	Log.i(gTag, "Loading Fav Abstract function");
-    	//check if DB already has data
-        /*
-         * SQL Query to get data
-         */
-        String query = "SELECT UUID AS _id , TOPIC, TITLE, ABSRACT_TEXT, STATE, SORTID, REASONFORTALK, MTIME, TYPE,DOI, COI, ACKNOWLEDGEMENTS FROM ABSTRACT_DETAILS WHERE _id IN (SELECT ABSTRACT_UUID FROM ABSTRACT_FAVORITES);";
-        /*
-         * Query execution
-         */
-        cursor = DatabaseHelper.database.rawQuery(query, null);
+        cursor = mDbHelper.fetchFavoriteAbs();
         int a = cursor.getCount();
         Log.i(gTag, "data got rows : " + Integer.toString(a));
         
@@ -94,13 +86,15 @@ public class FavoriteAbstracts extends Activity {
         	//NO FAVORITES
         	TextView noAbstractInFav = (TextView)findViewById(R.id.noFavAbsText);
         	noAbstractInFav.setText("You don't have any Favorite Abstract");
+        	cursor.close();
         	
         } else {
         	
         	TextView belowFav = (TextView)findViewById(R.id.noFavAbsText);
         	belowFav.setText("Your Favorited Abstracts");
         	
-        	cursorAdapter = new AbstractCursorAdapter(this, cursor);
+        	cursorAdapter = new AbstractCursorAdapter(this, cursor,
+        			AbstractCursorAdapter.FLAG_REGISTER_CONTENT_OBSERVER);
             listView.setAdapter(cursorAdapter);
             listView.setTextFilterEnabled(true);
             listView.setFastScrollEnabled(true);

@@ -1,6 +1,6 @@
 package com.g_node.gca.abstracts.pojo;
 
-public class AFFILIATION_DETAILS_POJO {
+public class AffiliationDetails {
 
 	
 	private String affiliation_uuid;
@@ -10,7 +10,7 @@ public class AFFILIATION_DETAILS_POJO {
 	private String affiliation_section;
 	
 
-	public AFFILIATION_DETAILS_POJO(String affiliation_uuid,
+	public AffiliationDetails(String affiliation_uuid,
 			String affiliation_address, String affiliation_country,
 			String affiliation_department, String affiliation_section) {
 		super();

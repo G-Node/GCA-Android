@@ -13,14 +13,14 @@ import android.util.Log;
 
 public class TabsPagerAdapter extends FragmentPagerAdapter {
 	
-	static String value;
+	static String uuid;
 
-	public static String getValue() {
-		return value;
+	public static String getUuid() {
+		return uuid;
 	}
 
-	public void setValue(String value) {
-		TabsPagerAdapter.value = value;
+	public void setUuid(String uuid) {
+		TabsPagerAdapter.uuid = uuid;
 	}
 
 	public TabsPagerAdapter(FragmentManager fm) {
@@ -37,7 +37,7 @@ public class TabsPagerAdapter extends FragmentPagerAdapter {
 		{
 			// Main Abstract Content Fragment
 			Bundle bundle = new Bundle();
-			bundle.putString("value", value);
+			bundle.putString("value", uuid);
 			
 			AbstractContentTabFragment y = new AbstractContentTabFragment();
 			y.setArguments(bundle);
@@ -47,7 +47,7 @@ public class TabsPagerAdapter extends FragmentPagerAdapter {
 			
 			// Notes fragment
 			Bundle bundle = new Bundle();
-			bundle.putString("value", value);
+			bundle.putString("value", uuid);
 			AbstractNotesFragment y = new AbstractNotesFragment();
 			y.setArguments(bundle);
 			return y;

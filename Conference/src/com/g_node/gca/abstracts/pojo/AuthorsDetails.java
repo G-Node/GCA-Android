@@ -1,6 +1,6 @@
 package com.g_node.gca.abstracts.pojo;
 
-public class AUTHORS_DETAILS_POJO {
+public class AuthorsDetails {
 
 	private String author_uuid;
 	private String author_fName;
@@ -11,7 +11,7 @@ public class AUTHORS_DETAILS_POJO {
 	
 	
 	
-	public AUTHORS_DETAILS_POJO(String author_uuid, String author_fName,
+	public AuthorsDetails(String author_uuid, String author_fName,
 			String author_lName, String author_middleName, String author_email) {
 		super();
 		this.author_uuid = author_uuid;

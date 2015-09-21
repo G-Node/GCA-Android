@@ -21,7 +21,9 @@ import com.g_node.gcaa.R;
 
 
 public class EditNoteDialogFragment extends DialogFragment {
-
+	
+	private final DatabaseHelper mDbHelper = DatabaseHelper.getInstance(this
+			.getActivity());
 	
 	public EditNoteDialogFragment(){
 	    // Empty constructor required for DialogFragment
@@ -51,8 +53,7 @@ public class EditNoteDialogFragment extends DialogFragment {
 
          
 		//setting previous values
-         String getNotesQuery = "SELECT NOTE_ID, ABSTRACT_UUID, NOTE_TITLE, NOTE_TEXT FROM ABSTRACT_NOTES WHERE NOTE_ID = '" + current_note_id  + "';";
-         Cursor notesCursor = DatabaseHelper.database.rawQuery(getNotesQuery, null);
+         Cursor notesCursor = mDbHelper.fetchNotesByUUID(current_note_id);
          notesCursor.moveToFirst();
          String currentNoteTitle = notesCursor.getString(notesCursor.getColumnIndexOrThrow("NOTE_TITLE"));
          String currentNoteText = notesCursor.getString(notesCursor.getColumnIndexOrThrow("NOTE_TEXT"));
@@ -71,11 +72,12 @@ public class EditNoteDialogFragment extends DialogFragment {
             	 String y = noteText.toString();
             	 String noteTitle = noteTitleEditText.getText().toString();
             	 
-            	 DatabaseHelper.updateNoteABSTRACT_NOTES(current_note_id, noteTitle, y);
+            	 mDbHelper.updateNoteABSTRACT_NOTES(current_note_id, noteTitle, y);
                  
             	 Toast.makeText(getActivity(), "Updated Note - Please Refresh...", Toast.LENGTH_SHORT).show();
  //                 
-                 AbstractNotesFragment.adapter.notifyDataSetChanged();
+                 //((AbstractNotesFragment)getParentFragment()).getAdapter()
+                 //.notifyDataSetChanged();
                  dialog.dismiss();
              }
          });

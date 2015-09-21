@@ -34,13 +34,13 @@ public class AbstractsJsonParse {
 	 * POJOs Arraylists to hold data after parsing
 	 * Lateron, we do bulk insert and save all the data in db
 	 */
-	private ArrayList<ABSTRACT_AFFILIATION_ID_POSITION_POJO> ABSTRACT_AFFILIATION_ID_POSITION_POJOS_ARRAY = new ArrayList<ABSTRACT_AFFILIATION_ID_POSITION_POJO>();
-	private ArrayList<ABSTRACT_AUTHOR_POSITION_AFFILIATION_POJO> ABSTRACT_AUTHOR_POSITION_AFFILIATION_POJOS_ARRAY = new ArrayList<ABSTRACT_AUTHOR_POSITION_AFFILIATION_POJO>(); 
-	private ArrayList<ABSTRACT_DETAILS_POJO> ABSTRACT_DETAILS_POJOS_ARRAY = new ArrayList<ABSTRACT_DETAILS_POJO>();
-	private ArrayList<ABSTRACT_FIGURES_POJO> ABSTRACT_FIGURES_POJOS_ARRAY = new ArrayList<ABSTRACT_FIGURES_POJO>();
-	private ArrayList<ABSTRACT_REFERENCES_POJO> ABSTRACT_REFERENCES_POJOS_ARRAY = new ArrayList<ABSTRACT_REFERENCES_POJO>(); 
-	private ArrayList<AFFILIATION_DETAILS_POJO> AFFILIATION_DETAILS_POJOS_ARRAY = new ArrayList<AFFILIATION_DETAILS_POJO>();
-	private ArrayList<AUTHORS_DETAILS_POJO> AUTHORS_DETAILS_POJOS_ARRAY = new ArrayList<AUTHORS_DETAILS_POJO>();	
+	private ArrayList<AbstractAffiliationIdPosition> ABSTRACT_AFFILIATION_ID_POSITION_POJOS_ARRAY = new ArrayList<AbstractAffiliationIdPosition>();
+	private ArrayList<AbsractAuthorPositionAffiliation> ABSTRACT_AUTHOR_POSITION_AFFILIATION_POJOS_ARRAY = new ArrayList<AbsractAuthorPositionAffiliation>(); 
+	private ArrayList<AbstractDetails> ABSTRACT_DETAILS_POJOS_ARRAY = new ArrayList<AbstractDetails>();
+	private ArrayList<AbstractFigures> ABSTRACT_FIGURES_POJOS_ARRAY = new ArrayList<AbstractFigures>();
+	private ArrayList<AbsractReferences> ABSTRACT_REFERENCES_POJOS_ARRAY = new ArrayList<AbsractReferences>(); 
+	private ArrayList<AffiliationDetails> AFFILIATION_DETAILS_POJOS_ARRAY = new ArrayList<AffiliationDetails>();
+	private ArrayList<AuthorsDetails> AUTHORS_DETAILS_POJOS_ARRAY = new ArrayList<AuthorsDetails>();	
 	
 	/*
 	 * These 2 arraylists are just to hold UUIDs of parsed Affiliations and Authors. 
@@ -146,7 +146,7 @@ public class AbstractsJsonParse {
 	             /*
 	              * Insertion of parsed Abstract in Arraylist
 	              */            
-	             ABSTRACT_DETAILS_POJO tempAbstractDetails = new ABSTRACT_DETAILS_POJO(abs_uuid, topic, title, text, state, sortID, reasonForTalk, mtime, abstractType, doi, coi, acknowledgements);
+	             AbstractDetails tempAbstractDetails = new AbstractDetails(abs_uuid, topic, title, text, state, sortID, reasonForTalk, mtime, abstractType, doi, coi, acknowledgements);
 	             ABSTRACT_DETAILS_POJOS_ARRAY.add(tempAbstractDetails);
 	             
 	             tempAbstractDetails = null;
@@ -199,7 +199,7 @@ public class AbstractsJsonParse {
 	            	  */
 	            	 if(!PARSED_Affiliation_UUIDs.contains(affiliation_uuid)) {
 	            		 PARSED_Affiliation_UUIDs.add(affiliation_uuid);
-	            		 AFFILIATION_DETAILS_POJO tempAffiliationDetails = new AFFILIATION_DETAILS_POJO(affiliation_uuid, affiliation_address, affiliation_country, affiliation_department, affiliation_section);
+	            		 AffiliationDetails tempAffiliationDetails = new AffiliationDetails(affiliation_uuid, affiliation_address, affiliation_country, affiliation_department, affiliation_section);
 	            		 
 	            		 /*
 	    	              * Insertion of parsed Affiliation in Arraylist
@@ -208,7 +208,7 @@ public class AbstractsJsonParse {
 	            		 tempAffiliationDetails = null;
 	            	 }
 	            	 
-	            	 ABSTRACT_AFFILIATION_ID_POSITION_POJO tempABSTRACT_AFFILIATION_ID_POSITION_POJO = new ABSTRACT_AFFILIATION_ID_POSITION_POJO(abs_uuid, affiliation_uuid, affiliation_position);
+	            	 AbstractAffiliationIdPosition tempABSTRACT_AFFILIATION_ID_POSITION_POJO = new AbstractAffiliationIdPosition(abs_uuid, affiliation_uuid, affiliation_position);
 	            	 
 	            	 /*
 		              * Insertion into Arraylist of ABSTRACT_AFFILIATION_ID_POSITION_POJO
@@ -267,7 +267,7 @@ public class AbstractsJsonParse {
 		            		 /*
 				              * Insertion into Arraylist of AUTHORS_DETAILS_POJO
 				              */
-		            		 AUTHORS_DETAILS_POJO tempAuthorDetails = new AUTHORS_DETAILS_POJO(author_uuid, author_fName, author_lName, author_middleName, author_mail);
+		            		 AuthorsDetails tempAuthorDetails = new AuthorsDetails(author_uuid, author_fName, author_lName, author_middleName, author_mail);
 		            		 AUTHORS_DETAILS_POJOS_ARRAY.add(tempAuthorDetails);
 		            		 tempAuthorDetails = null;
 		            	 }
@@ -278,7 +278,7 @@ public class AbstractsJsonParse {
 		            	 /*
 			              * Insertion into Arraylist of ABSTRACT_AUTHOR_POSITION_AFFILIATION_POJO
 			              */
-		            	 ABSTRACT_AUTHOR_POSITION_AFFILIATION_POJO tempAbsAuthPosAff = new ABSTRACT_AUTHOR_POSITION_AFFILIATION_POJO(abs_uuid, author_uuid, author_position, authorAffiliationsWithoutBraces);
+		            	 AbsractAuthorPositionAffiliation tempAbsAuthPosAff = new AbsractAuthorPositionAffiliation(abs_uuid, author_uuid, author_position, authorAffiliationsWithoutBraces);
 		            	 ABSTRACT_AUTHOR_POSITION_AFFILIATION_POJOS_ARRAY.add(tempAbsAuthPosAff);
 	            	 }
 	             } //end authors array loop
@@ -312,7 +312,7 @@ public class AbstractsJsonParse {
 	            		/*
 			              * Insertion into Arraylist of ABSTRACT_FIGURES_POJO
 			              */
-	            		ABSTRACT_FIGURES_POJO tempAbsFig = new ABSTRACT_FIGURES_POJO(abs_uuid, figure_uuid, figure_caption, figure_URL, figure_position);
+	            		AbstractFigures tempAbsFig = new AbstractFigures(abs_uuid, figure_uuid, figure_caption, figure_URL, figure_position);
 	            		ABSTRACT_FIGURES_POJOS_ARRAY.add(tempAbsFig);
 	            	 
 	            	 } //end figures array loop
@@ -347,7 +347,7 @@ public class AbstractsJsonParse {
 			            	 /*
 				              * Insertion of reference into Arraylist of ABSTRACT_REFERENCES_POJO
 				              */
-			            	 ABSTRACT_REFERENCES_POJO tempAbsRef = new ABSTRACT_REFERENCES_POJO(abs_uuid, reference_uuid, reference_text, reference_link, reference_doi);
+			            	 AbsractReferences tempAbsRef = new AbsractReferences(abs_uuid, reference_uuid, reference_text, reference_link, reference_doi);
 			            	 ABSTRACT_REFERENCES_POJOS_ARRAY.add(tempAbsRef);
 			             	             
 			             }
@@ -376,8 +376,8 @@ public class AbstractsJsonParse {
 	 * It just gets number of abstracts from it's table and returns. 
 	 * Not really used, but good to return - helper for debugging	
 	 */
-	Cursor cursor = DatabaseHelper.database.rawQuery("SELECT * FROM ABSTRACT_DETAILS;", null);
-    noOfRecords = cursor.getCount();
+	
+    noOfRecords = dbHelper.fetchAbstractsUUIDs().size();
 	
 	return noOfRecords;
 	}	//end json parsing
@@ -403,31 +403,31 @@ public class AbstractsJsonParse {
 	}
 	
 
-	public ArrayList<ABSTRACT_AFFILIATION_ID_POSITION_POJO> getABSTRACT_AFFILIATION_ID_POSITION_POJOS_ARRAY() {
+	public ArrayList<AbstractAffiliationIdPosition> getABSTRACT_AFFILIATION_ID_POSITION_POJOS_ARRAY() {
 		return ABSTRACT_AFFILIATION_ID_POSITION_POJOS_ARRAY;
 	}
 
-	public ArrayList<ABSTRACT_AUTHOR_POSITION_AFFILIATION_POJO> getABSTRACT_AUTHOR_POSITION_AFFILIATION_POJOS_ARRAY() {
+	public ArrayList<AbsractAuthorPositionAffiliation> getABSTRACT_AUTHOR_POSITION_AFFILIATION_POJOS_ARRAY() {
 		return ABSTRACT_AUTHOR_POSITION_AFFILIATION_POJOS_ARRAY;
 	}
 
-	public ArrayList<ABSTRACT_DETAILS_POJO> getABSTRACT_DETAILS_POJOS_ARRAY() {
+	public ArrayList<AbstractDetails> getABSTRACT_DETAILS_POJOS_ARRAY() {
 		return ABSTRACT_DETAILS_POJOS_ARRAY;
 	}
 
-	public ArrayList<ABSTRACT_FIGURES_POJO> getABSTRACT_FIGURES_POJOS_ARRAY() {
+	public ArrayList<AbstractFigures> getABSTRACT_FIGURES_POJOS_ARRAY() {
 		return ABSTRACT_FIGURES_POJOS_ARRAY;
 	}
 
-	public ArrayList<ABSTRACT_REFERENCES_POJO> getABSTRACT_REFERENCES_POJOS_ARRAY() {
+	public ArrayList<AbsractReferences> getABSTRACT_REFERENCES_POJOS_ARRAY() {
 		return ABSTRACT_REFERENCES_POJOS_ARRAY;
 	}
 
-	public ArrayList<AFFILIATION_DETAILS_POJO> getAFFILIATION_DETAILS_POJOS_ARRAY() {
+	public ArrayList<AffiliationDetails> getAFFILIATION_DETAILS_POJOS_ARRAY() {
 		return AFFILIATION_DETAILS_POJOS_ARRAY;
 	}
 
-	public ArrayList<AUTHORS_DETAILS_POJO> getAUTHORS_DETAILS_POJOS_ARRAY() {
+	public ArrayList<AuthorsDetails> getAUTHORS_DETAILS_POJOS_ARRAY() {
 		return AUTHORS_DETAILS_POJOS_ARRAY;
 	}
 

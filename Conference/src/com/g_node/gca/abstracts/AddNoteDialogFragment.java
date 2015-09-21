@@ -21,6 +21,8 @@ import com.g_node.gcaa.R;
 
 public class AddNoteDialogFragment extends DialogFragment {
 
+	private final DatabaseHelper mDbHelper = DatabaseHelper.getInstance(this
+			.getActivity());
 	
 	public AddNoteDialogFragment(){
 	    // Empty constructor required for DialogFragment
@@ -33,23 +35,6 @@ public class AddNoteDialogFragment extends DialogFragment {
         frag.setArguments(args);
         return frag;
     }
-	
-//	 @Override
-//	    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-//	            Bundle savedInstanceState) {
-//		 
-//				 
-		 
-//		 
-//	        View view = inflater.inflate(R.layout.add_note_dialog_fragment, container);
-//	        EditText mEditText = (EditText) view.findViewById(R.id.txt_your_name);
-//	        String uuid = getArguments().getString("uuid", "uuid not valid");
-//	        getDialog().setTitle("Add New Note:");
-//	        // Show soft keyboard automatically
-//	        mEditText.requestFocus();
-//	        
-//	        return view;
-//	    }
 	 
 	 @Override
      public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -72,15 +57,11 @@ public class AddNoteDialogFragment extends DialogFragment {
             	 String noteTitle = noteTitleEditText.getText().toString();
             	 
             	 //Adding to the DB
-            	 DatabaseHelper.addInABSTRACT_NOTES(absUUID, noteTitle, y);
-                 
-            	 Toast.makeText(getActivity(), "Note Added - Please Refresh..", Toast.LENGTH_SHORT).show();
-                 
-//                 String getNotesQuery = "SELECT ABSTRACT_UUID AS _id, NOTE_TITLE FROM ABSTRACT_NOTES WHERE ABSTRACT_UUID = '" + absUUID + "';";
-//                 AbstractNotesFragment.notesCursor = DatabaseHelper.database.rawQuery(getNotesQuery, null);
-//                 
-                 AbstractNotesFragment.adapter.notifyDataSetChanged();
-                 dialog.dismiss();
+            	 mDbHelper.addInABSTRACT_NOTES(absUUID, noteTitle, y);
+                 getActivity().getFragmentManager().findFragmentById(R.layout.noteslist_item_layout);
+            	 Toast.makeText(getActivity(), "Note Added", Toast.LENGTH_SHORT).show();
+            	 getActivity().startActivityForResult(getActivity().getIntent(), 10);
+            	 dialog.dismiss();
              }
          });
          alertDialogBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -90,7 +71,6 @@ public class AddNoteDialogFragment extends DialogFragment {
                  dialog.cancel();
              }
          });
-
          return alertDialogBuilder.create();
 
 	 }

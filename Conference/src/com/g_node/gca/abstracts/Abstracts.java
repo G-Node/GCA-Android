@@ -61,8 +61,7 @@ public class Abstracts extends Activity {
 	String query = "";
 	
 	String gTag = "GCA-Abstracts";
-	DatabaseHelper dbHelper = new DatabaseHelper(this);
-	DatabaseHelper syncDbHelpaer = new DatabaseHelper(this);
+	private final DatabaseHelper dbHelper = DatabaseHelper.getInstance(this);
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -79,12 +78,6 @@ public class Abstracts extends Activity {
          */
         dbHelper.open();
 		
-        /*
-         * SQL Query to get data
-         */
-        query = "SELECT UUID AS _id , TOPIC, TITLE, ABSRACT_TEXT, STATE, SORTID, REASONFORTALK, MTIME, TYPE,DOI, COI, ACKNOWLEDGEMENTS " +
-        				"FROM ABSTRACT_DETAILS ORDER BY SORTID;";
-        
         /*
          * AsynchTask to parse the Abstracts JSON on a background thread
          * ListView is also made ready in same AsyncTask's onPostExecute method
@@ -151,7 +144,7 @@ private class AbstractJSONParsingTask extends AsyncTask<Void, Void, Void> {
 	         * Query execution
 	         */
 			
-			cursor = DatabaseHelper.database.rawQuery(query, null);
+			cursor = dbHelper.getWritableDatabase().rawQuery(query, null);
 	        int a = cursor.getCount();
 	        Log.i(gTag, "data got rows : " + Integer.toString(a));
 	        
@@ -176,7 +169,7 @@ private class AbstractJSONParsingTask extends AsyncTask<Void, Void, Void> {
 	        	
 	        	if(dbConsitencyFlagVal == -1) {
 	        		Log.d(gTag, "Database is inconsitent - flag: " + dbConsitencyFlagVal);
-	        		dbHelper.dropAllTablesAndCreateAgain();
+	        		dbHelper.dropAllCreateAgain();
 	        	} else {
 	        		Log.d(gTag, "Database is consistent");
 	        	}
@@ -209,7 +202,7 @@ private class AbstractJSONParsingTask extends AsyncTask<Void, Void, Void> {
 	            /*
 	             * Query execution
 	             */
-	            cursor = DatabaseHelper.database.rawQuery(query, null);
+	            cursor = dbHelper.getWritableDatabase().rawQuery(query, null);
 	            /*
 	             * get number of cursor data
 	             */
@@ -224,7 +217,8 @@ private class AbstractJSONParsingTask extends AsyncTask<Void, Void, Void> {
 	        
 			//set listView
 			
-	        cursorAdapter = new AbstractCursorAdapter(Abstracts.this, cursor);
+	        cursorAdapter = new AbstractCursorAdapter(Abstracts.this, cursor, 
+	        		AbstractCursorAdapter.FLAG_REGISTER_CONTENT_OBSERVER);
 	        listView.setAdapter(cursorAdapter);
 	        listView.setTextFilterEnabled(true);
 	        listView.setFastScrollEnabled(true);
@@ -242,7 +236,7 @@ private class AbstractJSONParsingTask extends AsyncTask<Void, Void, Void> {
 	                    Log.i(gTag, "ABSTRACT_TEXT => " + Text);
 	                    String Title = cursor.getString(cursor.getColumnIndexOrThrow("TITLE"));
 	                    String Topic = cursor.getString(cursor.getColumnIndexOrThrow("TOPIC"));
-	                    String value = cursor.getString(cursor.getColumnIndexOrThrow("_id"));
+	                    String uuid = cursor.getString(cursor.getColumnIndexOrThrow("_id"));
 	                    String acknowledgements = cursor.getString(cursor.getColumnIndexOrThrow("ACKNOWLEDGEMENTS"));
 	                    Intent in = new Intent(getApplicationContext(), AbstractContent.class);
 	                    /*
@@ -251,7 +245,7 @@ private class AbstractJSONParsingTask extends AsyncTask<Void, Void, Void> {
 	                    in.putExtra("abstracts", Text);
 	                    in.putExtra("Title", Title);
 	                    in.putExtra("Topic", Topic);
-	                    in.putExtra("value", value);
+	                    in.putExtra("value", uuid);
 	                    in.putExtra("acknowledgements", acknowledgements);
 	                    startActivity(in);
 	                } catch (Exception e) {
@@ -268,7 +262,7 @@ private class AbstractJSONParsingTask extends AsyncTask<Void, Void, Void> {
 			*/
 			cursorAdapter.setFilterQueryProvider(new FilterQueryProvider() {
 				public Cursor runQuery(CharSequence constraint) {
-				    return dbHelper.fetchDataByName(constraint.toString());
+				    return dbHelper.findAbstractsWithString(constraint.toString());
 				}
 			});
 			
@@ -370,9 +364,6 @@ private class SynchronizeWithServer extends AsyncTask<Void, Void, Void> {
 						 * Some valid response. Need to synchronize
 						 */
 						
-						if(!dbHelper.database.isOpen()) {
-							dbHelper.open();
-						}
 						
 						/*
 						 * set value of DB_CONSISTENCY_FLAG to -1 here
@@ -463,7 +454,7 @@ private class SynchronizeWithServer extends AsyncTask<Void, Void, Void> {
 						Toast.LENGTH_LONG);
 				toast.show();
 			} else {
-				cursor = DatabaseHelper.database.rawQuery(query, null);
+				cursor = dbHelper.getWritableDatabase().rawQuery(query, null);
 				cursorAdapter.changeCursor(cursor);
 				cursorAdapter.notifyDataSetChanged();
 				//syncDbHelper.close("sync");
@@ -471,7 +462,6 @@ private class SynchronizeWithServer extends AsyncTask<Void, Void, Void> {
 				Toast toast = Toast.makeText(getApplicationContext(), "Synchronized with server successfully.", 
 						Toast.LENGTH_SHORT);
 				toast.show();
-				
 			}
 		}
 	}

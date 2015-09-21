@@ -1,6 +1,6 @@
 package com.g_node.gca.abstracts.pojo;
 
-public class ABSTRACT_DETAILS_POJO {
+public class AbstractDetails {
 
 	private String uuid;
 	private String topic;
@@ -17,7 +17,7 @@ public class ABSTRACT_DETAILS_POJO {
 	
 	
 	
-	public ABSTRACT_DETAILS_POJO(String uuid, String topic, String title,
+	public AbstractDetails(String uuid, String topic, String title,
 			String text, String state, int sortID, String reasonForTalk,
 			String mtime, String abstractType, String doi,
 			String coi, String acknowledgements) {
