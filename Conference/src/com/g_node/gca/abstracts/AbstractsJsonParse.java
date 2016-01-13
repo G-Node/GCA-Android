@@ -10,25 +10,20 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-
-import android.database.Cursor;
 import android.util.Log;
-
 import com.g_node.gca.abstracts.pojo.*;
 import com.g_node.gca.utils.JSONReader;
 
 public class AbstractsJsonParse {
 	
-	String gTag = "GCA-Abstracts";
+	private String gTag = "GCA-Abstracts";
 	int noOfRecords = 0;
 	
-	DatabaseHelper dbHelper;
-	InputStream jsonStream;
+	private DatabaseHelper dbHelper;
+	private InputStream jsonStream;
 	
 	/*
 	 * POJOs Arraylists to hold data after parsing

@@ -9,9 +9,6 @@ package com.g_node.gca.abstracts;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -31,7 +28,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.webkit.WebView;
-import android.webkit.WebView.FindListener;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -40,28 +36,28 @@ import com.g_node.gcaa.R;
 
 public class AbstractContentTabFragment extends Fragment {
 	
-	String gtag = "GCA-Abs-Con";
+	private String gtag = "GCA-Abs-Con";
 
-	boolean isFav;
-	MenuItem starG;
+	private boolean isFav;
+	private MenuItem starG;
 	
-    WebView content;
+	private WebView content;
 
-    TextView title;
+	private TextView title;
 
-    TextView topic;
+	private TextView topic;
 
-    TextView afName;
+	private TextView afName;
 
-    TextView authors;
+	private TextView authors;
 
-    TextView ConRefs;
+	private TextView ConRefs;
 
-    TextView ConAck;
+	private TextView ConAck;
     
-    TextView absSortID;
+	private TextView absSortID;
 
-    Button btnOpenAbstractFig;
+	private Button btnOpenAbstractFig;
 
     private String uuid;
     
@@ -89,7 +85,7 @@ public class AbstractContentTabFragment extends Fragment {
         /*
          * Initializing fields
          */
-        initial_UI();
+        initialUI();
         resetAllFields();
         
         /*
@@ -160,7 +156,7 @@ public class AbstractContentTabFragment extends Fragment {
 
 	
 	
-	private void initial_UI() {
+	private void initialUI() {
         /*
          * TextView for Abstract Text
          */
@@ -262,9 +258,7 @@ public class AbstractContentTabFragment extends Fragment {
 		        		authors.append(Html.fromHtml("<b>" + authorName + "</b><sup><small>"
 		                        + auth_affiliations_str + "</small></sup><br/>"));
 		        	}
-	        	} else {
-	        		;
-	        	}
+	        	} 
 	        	
 	        } while (mAuthorCursor.moveToNext());
         }
@@ -461,7 +455,7 @@ public class AbstractContentTabFragment extends Fragment {
             	Log.i("GCA-groupid", "groupid: " + groupid);
             	Log.i("GCA-posterno", "Poster Nr: " + poster_no);
             	absSortID.append("\r\nSort ID: " + sortID);
-            	title.append("   (" + get_groupid_str(groupid));
+            	title.append("   (" + getGroupIdStr(groupid));
             	title.append("" + poster_no+")");
             	absSortID.setVisibility(View.GONE);
             
@@ -473,7 +467,7 @@ public class AbstractContentTabFragment extends Fragment {
     /*
 	 * Method mapping groupid to the corresponding String 
 	 */
-    private String get_groupid_str(int groupid) {
+    private String getGroupIdStr(int groupid) {
     	String[] id2str = getResources().getStringArray(R.array.groupid2str);
     	//String[] id2str = {"Talk","Contributed Talk","W","T"};
 		return id2str[groupid];

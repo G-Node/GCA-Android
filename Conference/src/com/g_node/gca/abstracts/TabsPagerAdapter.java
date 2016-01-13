@@ -13,7 +13,7 @@ import android.util.Log;
 
 public class TabsPagerAdapter extends FragmentPagerAdapter {
 	
-	static String uuid;
+	private static String uuid;
 
 	public static String getUuid() {
 		return uuid;
@@ -51,7 +51,10 @@ public class TabsPagerAdapter extends FragmentPagerAdapter {
 			AbstractNotesFragment y = new AbstractNotesFragment();
 			y.setArguments(bundle);
 			return y;
+		default:
+			break;
 		}
+		
 
 		return null;
 	}

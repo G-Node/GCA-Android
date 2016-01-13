@@ -14,7 +14,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -22,13 +21,12 @@ import com.g_node.gcaa.R;
 
 public class FavoriteAbstracts extends Activity {
 	
-	Cursor cursor;
+	private Cursor cursor;
 	public static int cursorCount;
-	EditText searchOption;
-	ListView listView;
-	AbstractCursorAdapter cursorAdapter;
+	private ListView listView;
+	private AbstractCursorAdapter cursorAdapter;
 	
-	String gTag = "GCA-fav-Abstracts";
+	private String gTag = "GCA-fav-Abstracts";
 	final DatabaseHelper mDbHelper = DatabaseHelper.getInstance(this);
 
 	@Override

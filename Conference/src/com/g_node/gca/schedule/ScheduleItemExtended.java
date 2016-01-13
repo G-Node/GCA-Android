@@ -29,15 +29,14 @@ public class ScheduleItemExtended extends Activity {
 	
 	private String SCHEDULE_ITEMTYPE_EVENT = "event";
 	private String SCHEDULE_ITEMTYPE_TRACK = "track";
-	private String SCHEDULE_ITEMTYPE_SESSION = "session";
 	
-	DatabaseHelper dbHelper = DatabaseHelper.getInstance(this);
+	private DatabaseHelper dbHelper = DatabaseHelper.getInstance(this);
 	
-	String event_abstract_uuid;
+	private String event_abstract_uuid;
 	
-	ActionBar actionbar;
+	private ActionBar actionbar;
 	
-	String LOG_TAG = "GCA-Sch-Extend";
+	private String LOG_TAG = "GCA-Sch-Extend";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

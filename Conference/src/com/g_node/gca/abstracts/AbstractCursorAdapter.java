@@ -24,8 +24,8 @@ import com.g_node.gcaa.R;
 
 public class AbstractCursorAdapter extends CursorAdapter {
     private Cursor mAuthorCursor;    
-    final DatabaseHelper mDbHelper;
-    String getName;
+    private final DatabaseHelper mDbHelper;
+    private String getName;
 
     public AbstractCursorAdapter(Context context, Cursor c, int flags) {
         super(context, c, flags);

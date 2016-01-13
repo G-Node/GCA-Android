@@ -30,8 +30,8 @@ public class AbstractFiguresListAdapter extends BaseAdapter{
 	private LayoutInflater inflater;
     private List<AbstractFiguresClass> figuresList;
     
-    ImageLoader imageLoader;
-	DisplayImageOptions options;
+    private ImageLoader imageLoader;
+	private DisplayImageOptions options;
 	
 	public AbstractFiguresListAdapter(Context context, List<AbstractFiguresClass> figuresList){
 		this.inflater = LayoutInflater.from(context);
@@ -117,6 +117,10 @@ public class AbstractFiguresListAdapter extends BaseAdapter{
 		imageLoader.displayImage(currentFigure.getURL(), figureImage, options, progressListener);
 		
 		return arg1;
+	}
+	
+	public ImageLoader getImageLoader(){
+		return this.imageLoader ;
 	}
 	
 }

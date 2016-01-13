@@ -2,10 +2,7 @@
 
 import java.io.InputStream;
 import java.util.ArrayList;
-
-import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
-
 import com.g_node.gca.abstracts.pojo.AbstractAffiliationIdPosition;
 import com.g_node.gca.abstracts.pojo.AbsractAuthorPositionAffiliation;
 import com.g_node.gca.abstracts.pojo.AbstractDetails;
@@ -13,14 +10,13 @@ import com.g_node.gca.abstracts.pojo.AbstractFigures;
 import com.g_node.gca.abstracts.pojo.AbsractReferences;
 import com.g_node.gca.abstracts.pojo.AffiliationDetails;
 import com.g_node.gca.abstracts.pojo.AuthorsDetails;
-import com.google.android.gms.internal.dd;
 
 public class SyncAbstracts {
 	
-	String gTag = "GCA-Sync";
+	private String gTag = "GCA-Sync";
 	
-	DatabaseHelper dbHelper;
-	InputStream jsonStreamFromServer;
+	private DatabaseHelper dbHelper;
+	private InputStream jsonStreamFromServer;
 	
 	/*
 	 * POJOs Arraylists to hold data after parsing 

@@ -19,7 +19,7 @@ import com.g_node.gcaa.R;
 
 public class AbstractFiguresActivity extends Activity {
 	
-	AbstractFiguresListAdapter adapter;
+	private AbstractFiguresListAdapter adapter;
 	
 	private final DatabaseHelper mDbHelper = DatabaseHelper
 			.getInstance(this);
@@ -70,7 +70,7 @@ public class AbstractFiguresActivity extends Activity {
 	protected void onDestroy() {
 		// TODO Auto-generated method stub
 		super.onDestroy();
-		this.adapter.imageLoader.destroy();
+		this.adapter.getImageLoader().destroy();
 	}	
 	
 	

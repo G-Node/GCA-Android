@@ -26,11 +26,11 @@ import com.g_node.gcaa.R;
 public class AbstractContent extends FragmentActivity implements
 	ActionBar.TabListener {
 	
-	String gtag = "GCA-Abs-Con";
+	private String gtag = "GCA-Abs-Con";
 	private String uuid;
 	
-	boolean isFav;
-	MenuItem starG;
+	private boolean isFav;
+	private MenuItem starG;
 	
 	private ViewPager viewPager;
 	private TabsPagerAdapter mAdapter;
@@ -39,7 +39,7 @@ public class AbstractContent extends FragmentActivity implements
 	// Tab titles
 	private String[] tabs = { "Abstract", "Notes" };
 	
-	final DatabaseHelper mDbHelper = DatabaseHelper.getInstance(this);
+	private final DatabaseHelper mDbHelper = DatabaseHelper.getInstance(this);
     
 	@Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,11 +82,12 @@ public class AbstractContent extends FragmentActivity implements
 	
 			@Override
 			public void onPageScrolled(int arg0, float arg1, int arg2) {
+				//This is intentionally empty
 			}
 	
 			@Override
 			public void onPageScrollStateChanged(int arg0) {
-			
+				//This is intentionally empty
 			}
 		});
         
@@ -211,6 +212,7 @@ public class AbstractContent extends FragmentActivity implements
     
     @Override
 	public void onTabReselected(Tab tab, FragmentTransaction ft) {
+    	//This is intentionally empty
 	}
 
 	@Override
@@ -222,6 +224,7 @@ public class AbstractContent extends FragmentActivity implements
 
 	@Override
 	public void onTabUnselected(Tab tab, FragmentTransaction ft) {
+		//This is intentionally empty
 	}
 	
 	@Override

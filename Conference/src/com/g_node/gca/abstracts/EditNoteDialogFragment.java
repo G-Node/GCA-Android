@@ -65,9 +65,6 @@ public class EditNoteDialogFragment extends DialogFragment {
          alertDialogBuilder.setPositiveButton("Update", new DialogInterface.OnClickListener() {
              @Override
              public void onClick(DialogInterface dialog, int which) {
-            	 
-            	 
-            	 String absUUID = uuid;
             	 Editable noteText = noteTextEditText.getText();
             	 String y = noteText.toString();
             	 String noteTitle = noteTitleEditText.getText().toString();

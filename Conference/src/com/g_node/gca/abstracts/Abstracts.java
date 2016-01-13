@@ -46,21 +46,21 @@ import com.g_node.gcaa.R;
 
 public class Abstracts extends Activity {
 	
-	Cursor cursor;
+	private Cursor cursor;
 	public static int cursorCount;
-	EditText searchOption;
-	ListView listView;
-	AbstractCursorAdapter cursorAdapter;
+	private EditText searchOption;
+	private ListView listView;
+	private AbstractCursorAdapter cursorAdapter;
 	
-	String SYNC_TIME_KEY = "com.g_node.gcaa.syncDateTime";
-	String APP_PKG_NAME = "com.g_node.gcaa";
-	String DB_CONSISTENCY_FLAG = "com.g_node.gcaa.dbConsistency";
+	private String SYNC_TIME_KEY = "com.g_node.gcaa.syncDateTime";
+	private String APP_PKG_NAME = "com.g_node.gcaa";
+	private String DB_CONSISTENCY_FLAG = "com.g_node.gcaa.dbConsistency";
 
-	SharedPreferences appPreferences;
+	private SharedPreferences appPreferences;
 	
-	String query = "";
+	private String query = "";
 	
-	String gTag = "GCA-Abstracts";
+	private String gTag = "GCA-Abstracts";
 	private final DatabaseHelper dbHelper = DatabaseHelper.getInstance(this);
 
 	@Override
@@ -107,7 +107,9 @@ public class Abstracts extends Activity {
 				SynchronizeWithServer syncTask = new SynchronizeWithServer();
 				syncTask.execute();
 				return true;
-			}    
+			}
+			default:
+				break;
 		}
 		return false;
 	}
@@ -296,8 +298,8 @@ private class AbstractJSONParsingTask extends AsyncTask<Void, Void, Void> {
 
 private class SynchronizeWithServer extends AsyncTask<Void, Void, Void> {
 	
-	int connectivityFlag = 0;
-	int notificationFlag = 0;
+	private int connectivityFlag = 0;
+	private int notificationFlag = 0;
 	
 	private ProgressDialog Dialog = new ProgressDialog(Abstracts.this);
 	

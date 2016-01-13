@@ -21,25 +21,21 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
-import android.widget.CursorAdapter;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.g_node.gcaa.R;
-import com.google.android.gms.internal.db;
 
 public class AbstractNotesFragment extends Fragment{
 
 	private String uuid;
 	private Cursor notesCursor;
-	ListView notesList;
+	private ListView notesList;
 	private SimpleCursorAdapter mAdapter;
-	TextView notificationNote;
+	private TextView notificationNote;
 	private final DatabaseHelper mDbHelper = DatabaseHelper.getInstance(this
 			.getActivity());
 
@@ -124,8 +120,6 @@ public class AbstractNotesFragment extends Fragment{
 	@Override
 	public void onCreateContextMenu(ContextMenu menu, View v,
 			ContextMenuInfo menuInfo) {
-		AdapterContextMenuInfo info = (AdapterContextMenuInfo) menuInfo; // ??
-		int currentNoteId = (int) info.id;
 		menu.add(0, 2, 0, "Edit");
 		menu.add(0, 3, 1, "Delete");
 	}

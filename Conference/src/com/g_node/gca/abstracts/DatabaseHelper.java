@@ -8,9 +8,6 @@
 package com.g_node.gca.abstracts;
 
 import java.util.ArrayList;
-
-import org.jsoup.helper.StringUtil;
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -25,13 +22,9 @@ import com.g_node.gca.abstracts.pojo.*;
 public class DatabaseHelper extends SQLiteOpenHelper {
 
 	private String gtag = "GCA-DB";
-
 	private static String Database_Name = "gca.db";
-
 	private static int Database_Version = 5;
-
-	private static SQLiteDatabase database;
-
+	private static SQLiteDatabase database; 
 	private static DatabaseHelper sInstance;
 
 	private DatabaseHelper(Context context) {
@@ -551,12 +544,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
  * They are used in the DatabaseHelper and statically imported  *
  */
 final class SqlStrings {
-	private SqlStrings() {
-		// this prevents even the native class from
-		// calling this ctor as well :
-		throw new AssertionError();
-	}
-
 	/*
 	 * Tables Name
 	 */
@@ -743,4 +730,10 @@ final class SqlStrings {
 	public static final String SELECT_FAV_ABSTRACT =  
 			"SELECT * FROM ABSTRACT_DETAILS WHERE UUID IN " +
 			"(SELECT ABSTRACT_UUID FROM ABSTRACT_FAVORITES);";
+	
+	private SqlStrings() {
+		// this prevents even the native class from
+		// calling this ctor as well :
+		throw new AssertionError();
+	}
 	}
