@@ -86,7 +86,7 @@ public class AbstractCursorAdapter extends CursorAdapter {
         	type.setVisibility(View.INVISIBLE);
         }
 
-        String uuid = cursor.getString(cursor.getColumnIndexOrThrow("UUID"));        
+        String uuid = cursor.getString(cursor.getColumnIndexOrThrow("_id"));        
         mAuthorCursor =  mDbHelper.fetchAuthorsByAbsId(uuid);
         
       if (mAuthorCursor != null && mAuthorCursor.moveToFirst()) {

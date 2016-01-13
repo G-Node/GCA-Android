@@ -46,19 +46,17 @@ import com.g_node.gcaa.R;
 
 public class Abstracts extends Activity {
 	
-	private Cursor cursor;
 	public static int cursorCount;
 	private EditText searchOption;
 	private ListView listView;
 	private AbstractCursorAdapter cursorAdapter;
+	private Cursor cursor;
 	
 	private String SYNC_TIME_KEY = "com.g_node.gcaa.syncDateTime";
 	private String APP_PKG_NAME = "com.g_node.gcaa";
 	private String DB_CONSISTENCY_FLAG = "com.g_node.gcaa.dbConsistency";
 
 	private SharedPreferences appPreferences;
-	
-	private String query = "";
 	
 	private String gTag = "GCA-Abstracts";
 	private final DatabaseHelper dbHelper = DatabaseHelper.getInstance(this);
@@ -146,8 +144,8 @@ private class AbstractJSONParsingTask extends AsyncTask<Void, Void, Void> {
 	         * Query execution
 	         */
 			
-			cursor = dbHelper.getWritableDatabase().rawQuery(query, null);
-	        int a = cursor.getCount();
+			
+	        int a = dbHelper.getAbsCount();
 	        Log.i(gTag, "data got rows : " + Integer.toString(a));
 	        
 	        /*
@@ -162,7 +160,7 @@ private class AbstractJSONParsingTask extends AsyncTask<Void, Void, Void> {
 	         * Get number of data to check whether database has any data or it's
 	         * empty
 	         */
-	        cursorCount = cursor.getCount();
+	        cursorCount = dbHelper.getAbsCount();
 	        
 	        /*
 	         * Check If Database is empty.
@@ -202,13 +200,9 @@ private class AbstractJSONParsingTask extends AsyncTask<Void, Void, Void> {
         				"is not consistent: " + appPreferences.getString(SYNC_TIME_KEY, null));
 	            
 	            /*
-	             * Query execution
-	             */
-	            cursor = dbHelper.getWritableDatabase().rawQuery(query, null);
-	            /*
 	             * get number of cursor data
 	             */
-	            cursorCount = cursor.getCount();
+	            cursorCount = dbHelper.getAbsCount();
 	        }
 			
 			return null;
@@ -218,7 +212,7 @@ private class AbstractJSONParsingTask extends AsyncTask<Void, Void, Void> {
 		protected void onPostExecute(Void result){
 	        
 			//set listView
-			
+			cursor = dbHelper.getAllAbs();
 	        cursorAdapter = new AbstractCursorAdapter(Abstracts.this, cursor, 
 	        		AbstractCursorAdapter.FLAG_REGISTER_CONTENT_OBSERVER);
 	        listView.setAdapter(cursorAdapter);
@@ -456,7 +450,7 @@ private class SynchronizeWithServer extends AsyncTask<Void, Void, Void> {
 						Toast.LENGTH_LONG);
 				toast.show();
 			} else {
-				cursor = dbHelper.getWritableDatabase().rawQuery(query, null);
+				cursor = dbHelper.getAllAbs();
 				cursorAdapter.changeCursor(cursor);
 				cursorAdapter.notifyDataSetChanged();
 				//syncDbHelper.close("sync");

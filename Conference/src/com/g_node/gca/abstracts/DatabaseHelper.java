@@ -537,6 +537,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		cursor.close();
 		return count;
 	}
+	
+	public int getAbsCount(){
+		return getReadableDatabase().rawQuery(SELECT_UUID_AS_ID, null)
+				.getCount();
+	}
+	
+	public Cursor getAllAbs(){
+		return getReadableDatabase().rawQuery(SELECT_UUID_AS_ID, null);
+	}
 }
 
 /**
@@ -725,11 +734,16 @@ final class SqlStrings {
 			"SELECT * FROM ABSTRACT_FIGURES WHERE ABSTRACT_UUID = ?;";
 	
 	public static final String SELECT_NOTES_BY_ABSID = 
-			"SELECT * FROM ABSTRACT_NOTES WHERE ABSTRACT_UUID = ?;";
+			"SELECT NOTE_ID AS _id, * FROM ABSTRACT_NOTES WHERE ABSTRACT_UUID = ?;";
 	
 	public static final String SELECT_FAV_ABSTRACT =  
 			"SELECT * FROM ABSTRACT_DETAILS WHERE UUID IN " +
 			"(SELECT ABSTRACT_UUID FROM ABSTRACT_FAVORITES);";
+	
+	public static final String SELECT_UUID_AS_ID =  
+			"SELECT UUID AS _id , TOPIC, TITLE, ABSRACT_TEXT, STATE, SORTID,"+
+			"REASONFORTALK, MTIME, TYPE,DOI, COI, ACKNOWLEDGEMENTS " +
+    		"FROM ABSTRACT_DETAILS ORDER BY SORTID;";
 	
 	private SqlStrings() {
 		// this prevents even the native class from
