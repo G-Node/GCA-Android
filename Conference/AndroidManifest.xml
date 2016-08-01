@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.g_node.gcaa"
+    package="com.g_node.ni16"
     android:versionCode="1"
     android:versionName="1.0" >
 
@@ -26,32 +26,32 @@
         android:label="@string/app_name"
         android:theme="@style/MyTheme" >
         <activity
-            android:name="com.g_node.gca.newsroom.NewsRoomActivity"
+            android:name="com.g_node.ni16.newsroom.NewsRoomActivity"
             android:label="@string/title_activity_newsroom"
             android:parentActivityName="com.g_node.gca.MainActivity" >
         </activity>
         <activity
-            android:name="com.g_node.gca.MainActivity"
+            android:name="com.g_node.ni16.MainActivity"
             android:label="@string/title_activity_main"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="com.g_node.gca.abstracts.Abstracts"
+            android:name="com.g_node.ni16.abstracts.Abstracts"
             android:label="@string/title_activity_abstracts"
             android:parentActivityName="com.g_node.gca.MainActivity"
             android:windowSoftInputMode="stateUnchanged" >
         </activity>
         <activity
-            android:name="com.g_node.gca.abstracts.AbstractContent"
+            android:name="com.g_node.ni16.abstracts.AbstractContent"
             android:label="@string/title_activity_abstracts"
             android:parentActivityName="com.g_node.gca.abstracts.Abstracts" >
         </activity>
         <activity
-            android:name="com.g_node.gca.abstracts.FavoriteAbstracts"
+            android:name="com.g_node.ni16.abstracts.FavoriteAbstracts"
             android:label="@string/title_activity_favorite_abstracts"
             android:parentActivityName="com.g_node.gca.MainActivity" >
         </activity>
-        <activity android:name="com.g_node.gca.SplashScreen" >
+        <activity android:name="com.g_node.ni16.SplashScreen" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -61,7 +61,7 @@
         <activity
             android:name="com.g_node.gca.map.MapActivity"
             android:label="@string/title_activity_map"
-            android:parentActivityName="com.g_node.gca.MainActivity" >
+            android:parentActivityName="com.g_node.ni16.MainActivity" >
 
         </activity>
         <meta-data
@@ -72,12 +72,12 @@
             android:value="AIzaSyA7lzhoQo0xmdu1Rx_v7Nk7fM3K38h6xlw" />
 
         <activity
-            android:name="com.g_node.gca.schedule.ScheduleMainActivity"
+            android:name="com.g_node.ni16.schedule.ScheduleMainActivity"
             android:label="@string/title_activity_schedule_main"
-            android:parentActivityName="com.g_node.gca.MainActivity" >
+            android:parentActivityName="com.g_node.ni16.MainActivity" >
         </activity>
         <activity
-            android:name="com.g_node.gca.schedule.ScheduleItemExtended"
+            android:name="com.g_node.ni16.schedule.ScheduleItemExtended"
             android:label="@string/title_activity_schedule_item_extended" >
         </activity>
         <activity
@@ -85,7 +85,7 @@
             android:label="@string/title_activity_abstract_figures" >
         </activity>
         <activity
-            android:name="com.g_node.gca.GeneralActivity"
+            android:name="com.g_node.ni16.GeneralActivity"
             android:label="@string/title_activity_generalInfo" >
         </activity>
     </application>
