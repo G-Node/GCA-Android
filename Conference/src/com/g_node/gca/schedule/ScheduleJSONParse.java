@@ -104,12 +104,6 @@ public class ScheduleJSONParse {
                 		scheduleRecordsArray.add(new ScheduleItemRecord(SCHEDULE_ITEMTYPE_EVENT, eventAddedIndex, event_date));
                 		
                 	//closing if	
-                	} else if(scheduleItemJsonObject.has("chair")) {	// 'chair' key is only in track
-                		
-                		//parse the track
-                		parseScheduleTrackJSON(counter, scheduleItemJsonObject);
-                	
-                	//closing elseif
                 	} else if(scheduleItemJsonObject.has("tracks")) {  // 'tracks' key is only in session
                 		
                 		String session_title = scheduleItemJsonObject.optString("title");
@@ -148,6 +142,12 @@ public class ScheduleJSONParse {
                 		sessionRecordsArray.set(addedSessionIndex, tempSession);
                 		
                 		Log.i(LOG_TAG, "SESSION - End parsing Tracks");
+                	} else {
+                		
+                		//parse the track
+                		parseScheduleTrackJSON(counter, scheduleItemJsonObject);
+                	
+                	//closing elseif
                 	}
                 	Log.i(LOG_TAG, "Finnished parsing schedule json");
             }
