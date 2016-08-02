@@ -417,31 +417,8 @@ public class AbstractContentTabFragment extends Fragment {
                 String Text = mAbstractDataCursor.getString(mAbstractDataCursor
                 		.getColumnIndexOrThrow("ABSRACT_TEXT"));
                 Text = TextUtils.htmlEncode(Text);
-                content.getSettings().setJavaScriptEnabled(true);
         		content.getSettings().setBuiltInZoomControls(false);
-        		if (Text.contains("$")){
-        		//if (true){
-	        		content.loadDataWithBaseURL(
-	        				"http://bar", "<script type='text/x-mathjax-config'>"
-	        				+"MathJax.Hub.Config({ "
-	        				+"showMathMenu: false, "
-	        				+"jax: ['input/TeX','output/HTML-CSS'], "
-	        				+"tex2jax: {inlineMath: [ ['$','$']],displayMath: [ ['$$','$$'] ],processEscapes: true},"
-	        				+"extensions: ['tex2jax.js'], "
-	        				+"TeX: { extensions: ['AMSmath.js','AMSsymbols.js',"
-	        				+"'noErrors.js','noUndefined.js'] }, "
-	        				+"});</script>"
-	        				+"<script type='text/javascript' "
-	        				+"src='file:///android_asset/MathJax/MathJax.js'"
-	        				+"></script><span id='math'>"+Text+"</span>","text/html","UTF-8","");        	
-	        		content.loadUrl("javascript:MathJax.Hub.Queue(['Typeset',MathJax.Hub]);");
-        		}
-        		else{
         			content.loadDataWithBaseURL("http://bar",Text,"text/html","UTF-8","");
-        			
-        		}
-                
-
             } while (mAbstractDataCursor.moveToNext());
             
             //parsing SortID to extract group id & poster number and add it to abstract text body.
