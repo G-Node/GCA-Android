@@ -279,39 +279,40 @@ public class AbstractsJsonParse {
 	             } //end authors array loop
 	             
 	             //Abstract Figures JSONArray
-	             //JSONArray abs_fugures_array = jsonObject.getJSONArray("figures");
-	             JSONArray abs_figures_array = abstractJson.getJSONArray("figures");
-	             //now iterate over this array for extracting each figure detail, if it's length is greater than 0
-	             if(abs_figures_array.length() > 0){
-	            	 
-	            	 for(int j=0; j<abs_figures_array.length(); j++){
-	            		 //get figure json object
-	            		 JSONObject figureJSONObject = abs_figures_array.getJSONObject(j);
-	            		 
-	            		 //Figure UUID
-	            		 String figure_uuid = figureJSONObject.getString("uuid");
-	            		 Log.d(gTag, "Fig uuid: " + figure_uuid);
-	            		 
-	            		//Figure Caption
-	            		String figure_caption = figureJSONObject.getString("caption");
-	            		Log.d(gTag, "Fig caption: " + figure_caption);
-	            		
-	            		//Figure URL
-	            		String figure_URL = figureJSONObject.getString("URL");
-	            		Log.d(gTag, "Fig URL: " + figure_URL);
-	            		
-	            		//Figure position
-	            		String figure_position = figureJSONObject.getString("position");
-	            		Log.d(gTag, "Fig position: " + figure_position);
-	            		
-	            		/*
-			              * Insertion into Arraylist of ABSTRACT_FIGURES_POJO
-			              */
-	            		AbstractFigures tempAbsFig = new AbstractFigures(abs_uuid, figure_uuid, figure_caption, figure_URL, figure_position);
-	            		ABSTRACT_FIGURES_POJOS_ARRAY.add(tempAbsFig);
-	            	 
-	            	 } //end figures array loop
-	             } //end if
+	             if (abstractJson.has("figures")){
+		             JSONArray abs_figures_array = abstractJson.getJSONArray("figures");
+		             //now iterate over this array for extracting each figure detail, if it's length is greater than 0
+		             if(abs_figures_array.length() > 0){
+		            	 
+		            	 for(int j=0; j<abs_figures_array.length(); j++){
+		            		 //get figure json object
+		            		 JSONObject figureJSONObject = abs_figures_array.getJSONObject(j);
+		            		 
+		            		 //Figure UUID
+		            		 String figure_uuid = figureJSONObject.getString("uuid");
+		            		 Log.d(gTag, "Fig uuid: " + figure_uuid);
+		            		 
+		            		//Figure Caption
+		            		String figure_caption = figureJSONObject.getString("caption");
+		            		Log.d(gTag, "Fig caption: " + figure_caption);
+		            		
+		            		//Figure URL
+		            		String figure_URL = figureJSONObject.getString("URL");
+		            		Log.d(gTag, "Fig URL: " + figure_URL);
+		            		
+		            		//Figure position
+		            		String figure_position = figureJSONObject.getString("position");
+		            		Log.d(gTag, "Fig position: " + figure_position);
+		            		
+		            		/*
+				              * Insertion into Arraylist of ABSTRACT_FIGURES_POJO
+				              */
+		            		AbstractFigures tempAbsFig = new AbstractFigures(abs_uuid, figure_uuid, figure_caption, figure_URL, figure_position);
+		            		ABSTRACT_FIGURES_POJOS_ARRAY.add(tempAbsFig);
+		            	 
+		            	 } //end figures array loop
+		             } //end if
+	             }
 	             
 	             //Abstract references JSONarray
 	             if(abstractJson.has("references")){
