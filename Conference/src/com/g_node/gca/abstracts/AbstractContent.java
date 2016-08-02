@@ -184,7 +184,7 @@ public class AbstractContent extends FragmentActivity implements
             Cursor prevAbstracts = mDbHelper.fetchPreviousAbtractsDetails(
             								 currentSORTID);
             if (prevAbstracts.getCount()>0) {
-            	prevAbstracts.moveToFirst();
+            	prevAbstracts.moveToLast();
             	uuid = prevAbstracts.getString(
             			prevAbstracts.getColumnIndexOrThrow("UUID"));
             	prevAbstracts.close();

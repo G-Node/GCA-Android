@@ -97,7 +97,7 @@ public class AbstractsJsonParse {
 	             //Log.d(gTag, "state: " + state);
 	             String state = "";
 	             //abstract sortID
-	             int sortID = abstractJson.optInt("sortId");
+	             int sortID = abstractJson.optInt("sortId", index);
 	             Log.d(gTag, "sortID: " + sortID);
 	             
 	             
