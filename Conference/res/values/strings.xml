@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">NI 15</string>
+    <string name="app_name">NI 16</string>
     <string name="hello_world">Hello world!</string>
     <string name="sync_url">http://10.153.175.47:8080/gnode/abstracts_up.json</string>
 	<string name="old_dummy_sync_time">2015-07-09T08:24:50.833Z</string>
@@ -27,10 +27,10 @@
     <string name="loading_abstracts_dialog_text"><b>Loading...Please Wait!</b> \nThis may take a minute</string>
     <string name="track_chair_label">Chaired By:&#160;&#160;</string>
     <string name="menu_button_abstract_text">Abstracts</string>
-    <string name="menu_button_news_text">NEWS</string>
-    <string name="menu_button_maps_text">MAPS</string>
+    <string name="menu_button_news_text">News</string>
+    <string name="menu_button_maps_text">Maps</string>
     <string name="menu_button_schedule_text">Schedule</string>
-    <string name="menu_button_favorites_text">FAVOURITES</string>
+    <string name="menu_button_favorites_text">Favs</string>
     <string name="menu_genInfo_text">Info</string>
     <string name="menu_aboutAPP_text">About</string>
     <string name="menu_welcome_text">Welcome&#160;|&#160;G-Node</string>
