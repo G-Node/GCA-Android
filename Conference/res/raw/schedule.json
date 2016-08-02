@@ -1,139 +1,563 @@
 [
-    {
-        "title": "Opening",
-        "subtitle": "might be there",
-        "start": "13:30",
-        "end": "14:30",
-        "location": "B01.063",
-        "date": "2014-08-01",
-        "authors": ["George Martin"],
-        "type": "talk",
-        "abstract": "http://abstracts.g-node.org/api/conferences/ba604a3c-e95a-4569-84a9-7d4dedd08310/abstracts/493aa24d-6b48-4283-9643-619d371dbafc"
-    },
-    {
-        "title": "Session 1",
-        "subtitle": "Dead people talking",
-        "tracks": [
-            {
-                "title": "Honorfull People",
-                "subtitle": "might die earlier",
-                "chair": ["Lord Aryn"],
-                "events": [
-                    {
-                        "title": "Bealisch warned me",
-                        "subtitle": "i guess",
-                        "start": "14:45",
-                        "end": "15:30",
-                        "location": "B01.063",
-                        "date": "2014-08-01",
-                        "authors": ["Eddard Stark"],
-                        "type": "talk",
-                        "abstract": "http://..."
-                    },
-                    {
-                        "title": "Should not have fucked the girl",
-                        "subtitle": null,
-                        "start": "15:30",
-                        "end": "16:15",
-                        "location": "B01.063",
-                        "date": "2014-08-01",
-                        "authors": ["Rob Stark"],
-                        "type": "talk",
-                        "abstract": "http://..."
-                    }
-                ]
-            },
-            {
-                "title": "Not so Honorfull People",
-                "subtitle": null,
-                "chair": ["Lord Tywin"],
-                "events": [
-                    {
-                        "title": "It was Tyrion",
-                        "subtitle": null,
-                        "start": "14:45",
-                        "end": "15:30",
-                        "location": "B01.064",
-                        "date": "2014-08-01",
-                        "authors": ["Jeofrey Bratheon"],
-                        "type": "talk", "abstract": "http://..."
-                    },
-                    {
-                        "title": "I like ears",
-                        "subtitle": null,
-                        "start": "15:30",
-                        "end": "16:00",
-                        "location": "B01.064",
-                        "date": "2014-08-01",
-                        "authors": ["The biter"],
-                        "type": "talk",
-                        "abstract": "http://..."
-                    },
-                    {
-                        "title": "Maeh",
-                        "subtitle": null,
-                        "start": "16:00",
-                        "end": "16:15",
-                        "location": "B01.064",
-                        "date": "2014-08-01",
-                        "authors": ["Vargo Hoat"],
-                        "type": "talk",
-                        "abstract": "http://..."
-                    }
-                ]
-            }
-        ]
-    },
-    {
-        "title": "Coffe break",
-        "subtitle": "might be there",
-        "start": "16:15",
-        "end": "17:00",
-        "location": "Crown room",
-        "date": "2014-08-01",
-        "authors": [],
-        "type": "break",
-        "abstract": "http://..."
-    },
-    {
-        "title": "Living people talking",
-        "subtitle": "Some more info as subtitle",
-        "chair": "Sandor Clegane",
+  {
+    "title": "Opening statement",
+    "subtitle": "",
+    "start": "09:00",
+    "end": "09:15",
+    "date": "2016-09-03",
+    "authors": [
+      "Alan Evans, Program committee chair"
+    ],
+    "type": "talk"
+  },
+  {
+    "title": "Track A - Informatics I: Data systems",
+    "events": [
+      {
+        "title": "Moving grounds",
+        "subtitle": "The evolution of neuroinformatics, statistical, and sociological aspects and their interactions in brain imaging research",
+        "start": "09:15",
+        "end": "09:45",
+        "date": "2016-09-03",
+        "authors": [
+          "Jean-Baptiste Poline"
+        ],
+        "type": "keynote"
+      },
+      {
+        "title": "Neuroscience gateway – cyberinfrastructure providing supercomputing resources for large scale computational neuroscience research",
+        "start": "09:45",
+        "end": "10:05",
+        "date": "2016-09-03",
+        "authors": [
+          "Amitava Majumdar"
+        ],
+        "type": "talk"
+      },
+      {
+        "title": "Linking computational models to experimental data with the Brain Operation DataBase (BODB)",
+        "start": "10:05",
+        "end": "10:25",
+        "date": "2016-09-03",
+        "authors": [
+          "James J Bonaiuto"
+        ],
+        "type": "talk"
+      }
+    ]
+  },
+  {
+    "title": "Coffee break",
+    "start": "10:25",
+    "end": "10:55",
+    "date": "2016-09-03",
+    "type": "break"
+  },
+  {
+    "title": "Track B - Informatics II: Computing systems",
+    "events": [
+      {
+        "title": "Web platforms for high-throughput neuroimaging analyses: state of the art and future directions",
+        "start": "10:55",
+        "end": "11:25",
+        "date": "2016-09-03",
+        "authors": [
+          "Tristan Glatard"
+        ],
+        "type": "keynote"
+      },
+      {
+        "title": "Easy-to-use GPU acceleration of neural network simulations with GeNN",
+        "start": "11:25",
+        "end": "11:45",
+        "date": "2016-09-03",
+        "authors": [
+          "James P Turner"
+        ],
+        "type": "talk"
+      },
+      {
+        "title": "Automatic analysis (aa): efficient and transparent multimodal neuroimaging workflows",
+        "start": "11:25",
+        "end": "11:45",
+        "date": "2016-09-03",
+        "authors": [
+          "Tibor Auer"
+        ],
+        "type": "talk"
+      }
+    ]
+  },
+  {
+    "title": "Roundtable discussion",
+    "subtitle": "",
+    "start": "12:05",
+    "end": "12:35",
+    "date": "2016-09-03",
+    "type": "talk"
+  },
+  {
+    "title": "Lunch",
+    "start": "12:35",
+    "end": "13:30",
+    "date": "2016-09-03",
+    "type": "break"
+  },
+  {
+    "title": "Afternoon Session I",
+    "tracks": [
+      {
+        "title": "Track C - Neuroimaging I",
         "events": [
-            {
-                "title": "Where do whores go?",
-                "subtitle": "really i am asking you",
-                "start": "14:45",
-                "end": "15:30",
-                "location": "B01.063",
-                "date": "2014-08-02",
-                "authors": ["Tyrion Lannister "],
-                "type": "talk",
-                "abstract": "http://..."
-            },
-            {
-                "title": "The halls beneath the keep",
-                "subtitle": null,
-                "start": "15:30",
-                "end": "16:15",
-                "location": "Reed Keep",
-                "date": "2014-08-02",
-                "authors": ["Varys"],
-                "type": "workshop",
-                "abstract": "http://..."
-            }
+          {
+            "title": "3D-Polarized light imaging – The structural connectome goes microscopic",
+            "start": "13:30",
+            "end": "14:00",
+            "date": "2016-09-03",
+            "authors": [
+              "Markus Axer"
+            ],
+            "type": "keynote"
+          },
+          {
+            "title": "A symmetry-based method to infer structural brain networks from probabilistic tractography data",
+            "start": "14:00",
+            "end": "14:20",
+            "date": "2016-09-03",
+            "authors": [
+              "Constantine Dovrolis"
+            ],
+            "type": "talk"
+          },
+          {
+            "title": "Whole brain fMRI activity at a high temporal resolution: A novel analytic framework",
+            "start": "14:20",
+            "end": "14:40",
+            "date": "2016-09-03",
+            "authors": [
+              "Niels Janssen"
+            ],
+            "type": "talk"
+          }
         ]
-    },
-    {
-        "title": "Coffe break",
-        "subtitle": "might be there",
-        "start": "16:15",
-        "end": "17:00",
-        "location": "Crown room",
-        "date": "2014-08-03",
-        "authors": [],
-        "type": "break",
-        "abstract": "http://..."
-    }
+      },
+      {
+        "title": "Track D - Computation and cognition: from neural processing to psychology",
+        "events": [
+          {
+            "title": "Emergence of subnetworks in plastic recurrent networks",
+            "start": "13:30",
+            "end": "14:00",
+            "date": "2016-09-03",
+            "authors": [
+              "Claudia Clopath"
+            ],
+            "type": "keynote"
+          },
+          {
+            "title": "Common neural coding across domains of decision making identified by meta-analysis",
+            "start": "14:00",
+            "end": "14:20",
+            "date": "2016-09-03",
+            "authors": [
+              "Manisha Chawla"
+            ],
+            "type": "talk"
+          },
+          {
+            "title": "Statistical uncertainty and sensitivity analysis of intracellular signaling models - through approximate Bayesian computation and variance based global sensitivity analysis",
+            "start": "14:20",
+            "end": "14:40",
+            "date": "2016-09-03",
+            "authors": [
+              "Olivia Eriksson"
+            ],
+            "type": "talk"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Coffee break",
+    "start": "14:40",
+    "end": "15:10",
+    "date": "2016-09-03",
+    "type": "break"
+  },
+  {
+    "title": "Afternoon Session II",
+    "tracks": [
+      {
+        "title": "Track C - Neuroimaging II",
+        "events": [
+          {
+            "title": "Deep neural networks: a new framework for modelling brain information processing",
+            "start": "15:10",
+            "end": "15:40",
+            "date": "2016-09-03",
+            "authors": [
+              "Nikolaus Kriegeskorte"
+            ],
+            "type": "keynote"
+          },
+          {
+            "title": "Over a unified connectivity estimator for intra and inter-frequency couplings through symbolic transfer entropy: A MEG resting-state analysis",
+            "start": "15:40",
+            "end": "16:00",
+            "date": "2016-09-03",
+            "authors": [
+              "Stavros I. Dimitriadis"
+            ],
+            "type": "talk"
+          },
+          {
+            "title": "An information theoretic framework for neuroimaging data analysis: stimulus modulations, representational interactions and causal communication of specific information content",
+            "start": "16:00",
+            "end": "16:20",
+            "date": "2016-09-03",
+            "authors": [
+              "Robin A. A. Ince"
+            ],
+            "type": "talk"
+          }
+        ]
+      },
+      {
+        "title": "Track D - Computation and cognition: from neural processing to psychology",
+        "events": [
+          {
+            "title": "Neurocomputational Modeling in Psychiatry\"",
+            "start": "15:10",
+            "end": "15:40",
+            "date": "2016-09-03",
+            "authors": [
+              "Peter Dayan"
+            ],
+            "type": "keynote"
+          },
+          {
+            "title": "Simultaneous modeling of brain and behavior using dynamic field theory: Probing the neural dynamics of response selectionSimultaneous modeling of brain and behavior using dynamic field theory: Probing the neural dynamics of response selection",
+            "start": "15:40",
+            "end": "16:00",
+            "date": "2016-09-03",
+            "authors": [
+              "Sobana Wijeakumar"
+            ],
+            "type": "talk"
+          },
+          {
+            "title": "Simulating word acquisition and semantic grounding in a neuroanatomically realistic, Hebbian-learning, spiking neural network model of the cortex",
+            "start": "16:00",
+            "end": "16:20",
+            "date": "2016-09-03",
+            "authors": [
+              "Massimiliano Garagnani"
+            ],
+            "type": "talk"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Roundtable discussion",
+    "subtitle": "",
+    "start": "16:20",
+    "end": "17:00",
+    "date": "2016-09-03",
+    "type": "talk"
+  },
+  {
+    "title": "Poster session and drink reception",
+    "subtitle": "complimentary, refreshments served",
+    "start": "17:30",
+    "end": "19:30",
+    "date": "2016-09-03",
+    "type": "poster"
+  },
+  {
+    "title": "UK Node presentation",
+    "subtitle": "",
+    "start": "09:00",
+    "end": "09:15",
+    "date": "2016-09-03",
+    "authors": [
+      "Leslie Smith"
+    ],
+    "type": "talk"
+  },
+  {
+    "title": "Track E - Informatics III: Visualization",
+    "events": [
+      {
+        "title": "Massive scale neuroinformatics",
+        "start": "09:15",
+        "end": "09:45",
+        "date": "2016-09-04",
+        "authors": [
+          "Hanchuan Peng"
+        ],
+        "type": "keynote"
+      },
+      {
+        "title": "Measuring complex brain networks structure",
+        "start": "09:45",
+        "end": "10:05",
+        "date": "2016-09-04",
+        "authors": [
+          "Ester Bonmati"
+        ],
+        "type": "talk"
+      },
+      {
+        "title": "Virtual reality visualisation of a biologically realistic anatomical and functional model of the tadpole spinal cord",
+        "start": "10:05",
+        "end": "10:25",
+        "date": "2016-09-04",
+        "authors": [
+          "Marius Varga"
+        ],
+        "type": "talk"
+      }
+    ]
+  },
+  {
+    "title": "Coffee break",
+    "start": "10:25",
+    "end": "10:55",
+    "date": "2016-09-04",
+    "type": "break"
+  },
+  {
+    "title": "Track F - Informatics IV: From Single Neurons to Large-Scale Networks: Connecting Micro Macro Scales",
+    "events": [
+      {
+        "title": "Towards a modeling framework for the efficient creation, simulation and analysis of brain functions",
+        "start": "10:55",
+        "end": "11:25",
+        "date": "2016-09-04",
+        "authors": [
+          "Jeffrey Krichmar"
+        ],
+        "type": "keynote"
+      },
+      {
+        "title": "Reconstructing and simulating neocortical microcircuitry",
+        "start": "11:25",
+        "end": "11:45",
+        "date": "2016-09-04",
+        "authors": [
+          "Srikanth Ramaswamy"
+        ],
+        "type": "talk"
+      },
+      {
+        "title": "Relating extrinsic connections to the intrinsic architecture of the cerebral cortex",
+        "start": "11:25",
+        "end": "11:45",
+        "date": "2016-09-04",
+        "authors": [
+          "Claus Hilgetag"
+        ],
+        "type": "talk"
+      }
+    ]
+  },
+  {
+    "title": "Roundtable discussion",
+    "subtitle": "",
+    "start": "12:05",
+    "end": "12:35",
+    "date": "2016-09-04",
+    "type": "talk"
+  },
+  {
+    "title": "Trellis spotlight presentation",
+    "subtitle": "",
+    "start": "12:35",
+    "end": "12:45",
+    "date": "2016-09-04",
+    "type": "talk"
+  },
+  {
+    "title": "Lunch",
+    "start": "12:45",
+    "end": "13:30",
+    "date": "2016-09-04",
+    "type": "break"
+  },
+  {
+    "title": "Afternoon Session I",
+    "tracks": [
+      {
+        "title": "Track G - Brain Disorders I",
+        "events": [
+          {
+            "title": "The evolving role for imaging in optimizing treatment for depression",
+            "start": "13:30",
+            "end": "14:00",
+            "date": "2016-09-04",
+            "authors": [
+              "Helen Mayberg"
+            ],
+            "type": "keynote"
+          },
+          {
+            "title": "Mechanisms underlying different onset patterns of focal seizures",
+            "start": "14:00",
+            "end": "14:20",
+            "date": "2016-09-04",
+            "authors": [
+              "Yujiang Wang"
+            ],
+            "type": "talk"
+          },
+          {
+            "title": "Detection and cortical localization of ictal signatures using electroencephalogram signals",
+            "start": "14:20",
+            "end": "14:40",
+            "date": "2016-09-04",
+            "authors": [
+              "Piyush Swami"
+            ],
+            "type": "talk"
+          }
+        ]
+      },
+      {
+        "title": "Track H - Normal development / cognition I",
+        "events": [
+          {
+            "title": "Typical and atypical development of large-scale brain networks",
+            "start": "13:30",
+            "end": "14:00",
+            "date": "2016-09-04",
+            "authors": [
+              "Vinod Menon"
+            ],
+            "type": "keynote"
+          },
+          {
+            "title": "Detailed computational modeling of the developmental self-organization of neuronal structure and function",
+            "start": "14:00",
+            "end": "14:20",
+            "date": "2016-09-04",
+            "authors": [
+              "Roman Bauer"
+            ],
+            "type": "talk"
+          },
+          {
+            "title": "The functional and neural architecture of object concepts",
+            "start": "14:20",
+            "end": "14:40",
+            "date": "2016-09-04",
+            "authors": [
+              "Yanchao Bi"
+            ],
+            "type": "keynote"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Coffee break",
+    "start": "14:40",
+    "end": "15:10",
+    "date": "2016-09-03",
+    "type": "break"
+  },
+  {
+    "title": "Afternoon Session II",
+    "tracks": [
+      {
+        "title": "Track G - Brain Disorders II",
+        "events": [
+          {
+            "title": "Integrative hubs in the connectome",
+            "start": "15:10",
+            "end": "15:40",
+            "date": "2016-09-04",
+            "authors": [
+              "Martijn van den Heuvel"
+            ],
+            "type": "keynote"
+          },
+          {
+            "title": "Contributions from white and grey matter on structural connectomes of temporal lobe epilepsy patients",
+            "start": "15:40",
+            "end": "16:00",
+            "date": "2016-09-04",
+            "authors": [
+              "Peter Neal Taylor"
+            ],
+            "type": "talk"
+          },
+          {
+            "title": "Determining epilepsy surgery targets through connectome-based computer simulations",
+            "start": "16:00",
+            "end": "16:20",
+            "date": "2016-09-04",
+            "authors": [
+              "Marcus Kaiser"
+            ],
+            "type": "talk"
+          }
+        ]
+      },
+      {
+        "title": "Track H - Traumatic brain injury",
+        "events": [
+          {
+            "title": "Acquiring and analysing data in TBI: Challenges and opportunities",
+            "start": "15:40",
+            "end": "16:00",
+            "date": "2016-09-04",
+            "authors": [
+              "David Menon"
+            ],
+            "type": "keynote"
+          },
+          {
+            "title": "Computational challenges for the analysis of Intracranial Pressure and Heart Rate data in traumatic brain injuries patients",
+            "start": "16:00",
+            "end": "16:20",
+            "date": "2016-09-04",
+            "authors": [
+              "Pietro Lio"
+            ],
+            "type": "talk"
+          },
+          {
+            "title": "",
+            "start": "15:10",
+            "end": "15:40",
+            "date": "2016-09-03",
+            "authors": [
+              "Jeannette Söderberg"
+            ],
+            "type": "talk"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Roundtable discussion",
+    "subtitle": "",
+    "start": "16:20",
+    "end": "17:00",
+    "date": "2016-09-04",
+    "type": "talk"
+  },
+  {
+    "title": "Poster session and drink reception",
+    "subtitle": "complimentary, refreshments served",
+    "start": "17:30",
+    "end": "19:30",
+    "date": "2016-09-04",
+    "type": "poster"
+  }
 ]
-
