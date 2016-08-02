@@ -363,7 +363,7 @@ public class AbstractContentTabFragment extends Fragment {
 	        		referenceName += ref_doi + " ";
 	        	}
 	        	
-	        	ConRefs.append(Html.fromHtml(refNumber+ ":"+referenceName + "<br/>" ));
+	        	ConRefs.append(Html.fromHtml(referenceName + "<br/>" ));
 	        	refNumber++;
 	        } while (mReferenceCursor.moveToNext());
         }
