@@ -85,8 +85,14 @@ public class ScheduleJSONParse {
                 		String event_date = scheduleItemJsonObject.optString("date");
                 		Log.i(LOG_TAG, "Basic Event - date: " + event_date);
                 		
-                		String event_authors = scheduleItemJsonObject.getJSONArray("authors").toString().replace("\"", "").replace("[", "").replace("]", "");
-                		Log.i(LOG_TAG, "Basic Event - Authors: " + event_authors);
+                		String event_authors = ""; 
+                		if (scheduleItemJsonObject.has("authors")){
+	                		event_authors = scheduleItemJsonObject.
+	                				getJSONArray("authors").toString().
+	                				replace("\"", "").replace("[", "").
+	                				replace("]", "");
+	                		Log.i(LOG_TAG, "Basic Event - Authors: " + event_authors);
+                		}
                 		
                 		String event_type = scheduleItemJsonObject.optString("type");
                 		Log.i(LOG_TAG, "Basic Event - Type: " + event_type);
