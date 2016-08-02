@@ -161,7 +161,6 @@ private class AbstractJSONParsingTask extends AsyncTask<Void, Void, Void> {
 	         * empty
 	         */
 	        cursorCount = dbHelper.getAbsCount();
-	        
 	        /*
 	         * Check If Database is empty.
 	         */

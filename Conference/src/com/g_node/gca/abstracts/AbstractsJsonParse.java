@@ -323,20 +323,20 @@ public class AbstractsJsonParse {
 			            	 JSONObject referenceJSONObject = abs_References_Array.getJSONObject(j);
 			            	 
 			            	 //Reference UUID
-			            	 String reference_uuid = referenceJSONObject.getString("uuid");
+			            	 String reference_uuid = referenceJSONObject.optString("uuid");
 			            	 Log.d(gTag, "ref uuid: " + reference_uuid);
 			            	 
 			            	 //Reference text
-			            	 String reference_text = referenceJSONObject.getString("text");
+			            	 String reference_text = referenceJSONObject.optString("text");
 			            	 Log.d(gTag, "ref text: " + reference_text);
 			            	 
 			            	 //Reference link
-			            	 String reference_link = referenceJSONObject.getString("link");
+			            	 String reference_link = referenceJSONObject.optString("link");
 			            	 Log.d(gTag, "ref link: " + reference_link);
 			            	 
 			            	 
 			            	 //Reference DOI
-			            	 String reference_doi = referenceJSONObject.getString("doi");
+			            	 String reference_doi = referenceJSONObject.optString("doi");
 			            	 Log.d(gTag, "ref DOI: " + reference_doi);
 			            	 
 			            	 /*
