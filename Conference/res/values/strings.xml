@@ -43,8 +43,10 @@
     <string name="schedule_detail_tracksInSession_Heading">Tracks in this Session:</string>
     <string name="schedule_track_detail_hint_text">Click the button above to navigate to respective track detail</string>
     <string name="schedule_detail_eventsInTrack_Heading">Events in this Track:</string>
+     <string name="schedule_detail_events_detail">Event Details</string>
     <string name="schedule_event_detail_hint_text"></string>
     <string name="title_activity_abstract_figures">Abstract Figures</string>
+    
     <string-array name="groupid2str">
         <item>I</item>
         <item>C</item>

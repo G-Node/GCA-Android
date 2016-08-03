@@ -57,7 +57,7 @@ public class ScheduleItemExtended extends Activity {
 			
 			EventScheduleItem eventToDisplay =  (EventScheduleItem) bundle.getSerializable("dEvent");
 			
-			actionbar.setTitle("Event Details");
+			actionbar.setTitle(R.string.schedule_detail_events_detail);
 			
 			Log.i("GCA-Schedule-List", "event title: " + eventToDisplay.getTitle());
 			
