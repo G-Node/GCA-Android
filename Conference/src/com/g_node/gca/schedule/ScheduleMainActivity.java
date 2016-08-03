@@ -37,16 +37,12 @@ public class ScheduleMainActivity extends FragmentActivity implements ActionBar.
 	ViewPager viewPager;
 	SchedulePagerAdapter mAdapter;
 	
-
-	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		
+		super.onCreate(savedInstanceState);		
 		Log.i("GCA-Performance", "In Oncreate of ScheduleMain");
 		Log.i("GCA-Performance", "in on Create - Time: " + System.currentTimeMillis());
 		setContentView(R.layout.activity_schedule_main_viewpager);
-		
 		//ArrayLists are already populated during splash screen activity so let's move to initialization
 		
 		// Initilization
@@ -69,12 +65,7 @@ public class ScheduleMainActivity extends FragmentActivity implements ActionBar.
 
 			@Override
 			public void onPageScrollStateChanged(int arg0) {
-				
-				// TODO Auto-generated method stub
-				Log.i(LOG_TAG, "at 100 of schedule activity");
-//				actionBar.setSelectedNavigationItem(1);
-				Log.i(LOG_TAG, "at 102 of schedule activity");
-				//supportInvalidateOptionsMenu();
+
 			}
 
 			@Override

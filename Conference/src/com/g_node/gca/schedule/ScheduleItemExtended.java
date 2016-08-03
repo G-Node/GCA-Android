@@ -76,7 +76,7 @@ public class ScheduleItemExtended extends Activity {
 				setVisibility(View.INVISIBLE);
 			}
 			if (eventToDisplay.getAuthors().equals("")) {
-				findViewById(R.id.schedule_event_author).
+				findViewById(R.id.schedule_event_author_icon).
 				setVisibility(View.INVISIBLE);
 			}
 			

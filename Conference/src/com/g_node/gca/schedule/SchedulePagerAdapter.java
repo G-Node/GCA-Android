@@ -25,7 +25,6 @@ public class SchedulePagerAdapter extends FragmentStatePagerAdapter {
 
 	public SchedulePagerAdapter(FragmentManager fm) {
 		super(fm);
-		// TODO Auto-generated constructor stub
 	}
 	
 	public void setLists(List<ScheduleItemRecord> _items, List<EventScheduleItem> _eventsList, List<TrackScheduleItem> _tracksList, List<SessionScheduleItem> _sessionsList, List<DateWiseEventsRecord> _dateWiseEventsRecordList) {
@@ -38,14 +37,12 @@ public class SchedulePagerAdapter extends FragmentStatePagerAdapter {
 
 	@Override
 	public Fragment getItem(int arg0) {
-		// TODO Auto-generated methdod stub
 		Log.i("GCA-Schedule-Fragment", "getItem called for tab: " + arg0);
 		
 		DateWiseEventsRecord groupedEventRecordForThisFragment = dateWiseEventsRecordList.get(arg0);
 		
 		List<Integer> indexesOfEventsForThisDateTab = groupedEventRecordForThisFragment.getEvents_for_this_date();
-		
-		//idhar indexes se index utha kar schedulearray se wo wali objects events me copy karni han
+
 		
 		List<ScheduleItemRecord> eventsForThisFragment = new ArrayList<ScheduleItemRecord>();
 		
@@ -55,10 +52,8 @@ public class SchedulePagerAdapter extends FragmentStatePagerAdapter {
 			eventsForThisFragment.add(eventObjectGot);
 		}
 		 
-		//isey yahan schedulerecorsarray siraf is date wali bhejni ha
 		fragment_schedule.setLists(eventsRecordsArray, tracksRecordsArray, sessionRecordsArray);
-		//eventsForThisFragment = null;
-		
+	
 		Bundle bundle = new Bundle();
 		bundle.putInt("tab", arg0);
 		
