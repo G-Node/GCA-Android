@@ -1,14 +1,13 @@
 [
     {
         "description": "Congress venue: Palmer building, room G:10",
-	"img": "http://www.architekten24.de/mediadb/news/11142/index.jpg",
         "name": "Palmer building", 
         "point": {
             "lat": 51.4413644, 
             "long": -0.9464657
         }, 
         "type": 0,
-        "zoomto": 1,
+        "zoomto":1,
 	"cid" : "510160837290046745"
     }, 
     {
@@ -19,7 +18,7 @@
             "long": -0.9461278
         }, 
         "type": 2,
-        "zoomto": 0,
+        "zoomto":1,
 	"cid": "459380363919386213"
     }, 
     {
@@ -30,7 +29,7 @@
             "long": -0.980323648	
         }, 
         "type": 2,
-        "zoomto": 0,
+        "zoomto":1,
 	"cid" : "9715630728399769598"
     }, 
     {
@@ -41,7 +40,7 @@
             "long": -0.9750441
         }, 
         "type": 2,
-        "zoomto": 0,
+        "zoomto":1,
 	"cid": "5319197376176516414"
     }, 
     {
@@ -52,7 +51,7 @@
             "long": -0.9753579
         }, 
         "type": 4,
-        "zoomto": 0,
+        "zoomto":1,
 	"cid" : "1997384735751528427"
     }
 ]

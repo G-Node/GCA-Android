@@ -157,10 +157,8 @@ public class MapActivity extends FragmentActivity {
                 /*
                  * getting zoomto value
                  */
-                int getZoomto = 1 ;
-                if (jsonObject.has("zoomto")){
-                	getZoomto = jsonObject.getInt("zoomto");
-                }
+                int getZoomto;
+               	getZoomto = jsonObject.optInt("zoomto",1);
                 /*
                  * Venue name
                  */
