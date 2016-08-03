@@ -51,7 +51,7 @@ public class AbstractCursorAdapter extends CursorAdapter {
         TextView type = (TextView)view.findViewById(R.id.abType);
         int absSortID = cursor.getInt(cursor.getColumnIndexOrThrow("SORTID"));
         
-        if(absSortID != 0) {	
+        if(false) {	
         	int groupid =  ((absSortID & (0xFFFF << 16)) >> 16);
         	
         	switch (groupid) {

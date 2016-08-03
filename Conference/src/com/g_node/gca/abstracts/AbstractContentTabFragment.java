@@ -432,8 +432,8 @@ public class AbstractContentTabFragment extends Fragment {
             	Log.i("GCA-groupid", "groupid: " + groupid);
             	Log.i("GCA-posterno", "Poster Nr: " + poster_no);
             	absSortID.append("\r\nSort ID: " + sortID);
-            	title.append("   (" + getGroupIdStr(groupid));
-            	title.append("" + poster_no+")");
+            	//title.append("   (" + getGroupIdStr(groupid));
+            	//title.append("" + poster_no+")");
             	absSortID.setVisibility(View.GONE);
             
             }else {
