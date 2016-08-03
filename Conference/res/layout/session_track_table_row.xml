@@ -10,14 +10,14 @@
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:background="#C4FFB7"  >
+    android:background="@color/schedule_track"  >
     
      <LinearLayout 
         android:id="@+id/schedule_tracks_header_block"
 	    android:layout_width="fill_parent"
 	    android:layout_height="wrap_content"
 	    android:orientation="vertical"
-	    android:background="@drawable/green_background_pattern" >
+	    android:background="@drawable/transparent_background_pattern" >
     
     <!-- Time -->
     <TextView
@@ -64,8 +64,7 @@
     <View
         android:layout_width="fill_parent"
         android:layout_height="5dp"
-        android:layout_below="@+id/session_track_events_table"
-        android:background="#FCFFB7" />
+        android:layout_below="@+id/session_track_events_table"/>
     
 </RelativeLayout>  
 </TableRow>
