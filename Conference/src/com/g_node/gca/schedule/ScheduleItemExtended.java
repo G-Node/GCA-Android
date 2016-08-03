@@ -75,6 +75,10 @@ public class ScheduleItemExtended extends Activity {
 				findViewById(R.id.schedule_event_location_icon).
 				setVisibility(View.INVISIBLE);
 			}
+			if (eventToDisplay.getAuthors().equals("")) {
+				findViewById(R.id.schedule_event_author).
+				setVisibility(View.INVISIBLE);
+			}
 			
 			event_abstract_uuid = eventToDisplay.getEventAbstract();
 			event_abstract_uuid = event_abstract_uuid.substring(event_abstract_uuid.lastIndexOf("/")+1, event_abstract_uuid.length());
