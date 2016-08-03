@@ -111,18 +111,20 @@
 	    	</TableRow>
 		    
 		    <TableRow>
+
 		        <TextView
-		            android:layout_weight="1"	            
-			        android:paddingTop="10dp"
-			        android:paddingBottom="10dp"
-			        android:paddingLeft="5dp"
-			        android:layout_width="fill_parent"
-			        android:layout_height="wrap_content"
-			        android:gravity="center_vertical"
-					android:textColor="#0a5690"
-					android:drawablePadding="5dp"
-			        android:drawableLeft="@drawable/speaker_avatar"
-			        android:text="@string/schedule_detail_label_author" />
+		            android:id="@+id/schedule_event_author_icon"
+		            android:layout_width="fill_parent"
+		            android:layout_height="wrap_content"
+		            android:layout_weight="1"
+		            android:drawableLeft="@drawable/speaker_avatar"
+		            android:drawablePadding="5dp"
+		            android:gravity="center_vertical"
+		            android:paddingBottom="10dp"
+		            android:paddingLeft="5dp"
+		            android:paddingTop="10dp"
+		            android:text="@string/schedule_detail_label_author"
+		            android:textColor="#0a5690" />
 		        
 		        <TextView
 		            android:layout_weight="1"

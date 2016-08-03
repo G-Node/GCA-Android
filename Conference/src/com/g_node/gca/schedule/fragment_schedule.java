@@ -78,66 +78,6 @@ public class fragment_schedule extends Fragment {
 			public void onItemClick(AdapterView<?> arg0, View v, int position, long id) {
 				// TODO Auto-generated method stub
 				
-				Log.i("GCA-Schedule-List", "Clicked Item - int position: " + position);
-				Log.i("GCA-Schedule-List", "Clicked Item - Long ID: " + id);
-				
-				if(eventsForThisFragment.get(position).getSchedule_item_type().equals(SCHEDULE_ITEMTYPE_EVENT)) {
-					Log.i("GCA-Schedule-List", "Event Clicked");
-					
-					ScheduleItemRecord scheduleItemRecordAtCurrentPosition = eventsForThisFragment.get(position);
-					EventScheduleItem eventAtListPosition = eventsRecordsArray.get(scheduleItemRecordAtCurrentPosition.getIndex() );
-					
-					//ScheduleItemExtended scheduleDetailObject = new ScheduleItemExtended(eventAtListPosition);
-					
-					Intent intent = new Intent(getActivity(), ScheduleItemExtended.class);
-					
-					Bundle bundle = new Bundle();
-					bundle.putSerializable("dEvent", eventAtListPosition);
-					
-					//bundle.putString("type", SCHEDULE_ITEMTYPE_SESSION);
-					bundle.putString("type", eventsForThisFragment.get(position).getSchedule_item_type());
-					
-					intent.putExtras(bundle);
-					startActivity(intent);
-					
-				} else if (eventsForThisFragment.get(position).getSchedule_item_type().equals(SCHEDULE_ITEMTYPE_TRACK)) {
-					
-					Log.i("GCA-Schedule-List", "Track Clicked");
-					
-					ScheduleItemRecord scheduleItemRecordAtCurrentPosition = eventsForThisFragment.get(position);
-					TrackScheduleItem trackAtListPosition = tracksRecordsArray.get(scheduleItemRecordAtCurrentPosition.getIndex() );
-					
-					//ScheduleItemExtended scheduleDetailObject = new ScheduleItemExtended(eventAtListPosition);
-					
-					Intent intent = new Intent(getActivity(), ScheduleItemExtended.class);
-					
-					Bundle bundle = new Bundle();
-					bundle.putSerializable("dTrack", trackAtListPosition);
-					
-					//bundle.putString("type", SCHEDULE_ITEMTYPE_SESSION);
-					bundle.putString("type", eventsForThisFragment.get(position).getSchedule_item_type());
-					
-					intent.putExtras(bundle);
-					startActivity(intent);
-					
-				} else {
-					Log.i("GCA-Schedule-List", "Session Clicked");
-					
-					ScheduleItemRecord scheduleItemRecordAtCurrentPosition = eventsForThisFragment.get(position);
-					SessionScheduleItem sessionkAtListPosition = sessionRecordsArray.get(scheduleItemRecordAtCurrentPosition.getIndex() );
-					
-					Intent intent = new Intent(getActivity(), ScheduleItemExtended.class);
-					
-					Bundle bundle = new Bundle();
-					bundle.putSerializable("dSession", sessionkAtListPosition);
-					
-					//bundle.putString("type", SCHEDULE_ITEMTYPE_SESSION);
-					bundle.putString("type", eventsForThisFragment.get(position).getSchedule_item_type());
-					
-					intent.putExtras(bundle);
-					startActivity(intent);					
-				}
-				
 			}
 		});		
            
