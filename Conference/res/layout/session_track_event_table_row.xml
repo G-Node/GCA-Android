@@ -65,7 +65,24 @@
             android:paddingBottom="8dp"
             android:duplicateParentState="true" />
     </LinearLayout>
-    
+    <LinearLayout android:id="@+id/block_type_container"
+        android:orientation="vertical"
+        android:layout_height="match_parent"
+		android:gravity="center_horizontal"
+        android:background="@drawable/transparent_background_pattern"
+        android:layout_width="wrap_content">
+
+        <TextView
+            android:id="@+id/event_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="3dp"
+            android:layout_marginRight="3dp"            
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:visibility="gone" />
+
+    </LinearLayout>
 </LinearLayout>
 
  <View
