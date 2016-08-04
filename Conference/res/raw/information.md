@@ -6,7 +6,7 @@ The poster and demo sessions are scheduled for Saturday, Sep 3 17:30 - 19:30 and
 			
 The poster boards and demo stations will be marked with numbers referring to those stated in the abstract tab, and in the online Abstract book. Materials for putting up the posters will be provided. 
 ##### Contact On-Site
-Rosa Cusato-SšrnŠs, INCF +46 8 524 870 16 
+Rosa Cusato-Sörnäs, INCF +46 8 524 870 16 
 
 #####PARTICIPATION, NAME TAGS
 Official conference name tags will be required for admission to all conference functions.
