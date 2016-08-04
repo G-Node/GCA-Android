@@ -100,7 +100,7 @@ public class NewsRoomActivity extends Activity {
 		protected Void doInBackground(Void... arg0) {
 			//Download the file
 			try {
-				Downloader.DownloadFromUrl("http://www.incf.org/newsroom/aggregator/rss.xml", openFileOutput("news.xml", Context.MODE_PRIVATE));
+				Downloader.DownloadFromUrl("https://www.incf.org/news/feed", openFileOutput("news.xml", Context.MODE_PRIVATE));
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();
 			}
