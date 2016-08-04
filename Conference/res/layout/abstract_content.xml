@@ -55,7 +55,7 @@
             android:paddingRight="25dip"
             android:paddingTop="3dip"
             android:textColor="#666362"
-            android:textSize="12sp"
+            android:textSize="16sp"
             android:typeface="sans" />
         
         <!-- Type -->
