@@ -248,7 +248,7 @@ public class AbstractContentTabFragment extends Fragment {
 	        		if (authEmail == null || authEmail.equals("null")) {
 		        		Log.i(gtag, "in author check - IF NULL");
 		        		authors.append(Html.fromHtml("<b>" + authorName + "</b><sup><small>"
-	                        + auth_affiliations_str + "</small></sup><br/>"));
+	                        + auth_affiliations_str + "</small></sup>, "));
 
 		        	} else {
 		        		Log.i(gtag, "in author check - ELSE ");
@@ -256,11 +256,13 @@ public class AbstractContentTabFragment extends Fragment {
 		                //        + authAffiliation + "</small></sup><br/>"));
 		        		//authorNames.setMovementMethod(LinkMovementMethod.getInstance());
 		        		authors.append(Html.fromHtml("<b>" + authorName + "</b><sup><small>"
-		                        + auth_affiliations_str + "</small></sup><br/>"));
+		                        + auth_affiliations_str + "</small></sup>, "));
 		        	}
 	        	} 
 	        	
 	        } while (mAuthorCursor.moveToNext());
+	        CharSequence authorsText = authors.getText();
+	        authors.setText(authorsText.subSequence(0, authorsText.length()-2));
         }
         
     	
@@ -304,8 +306,10 @@ public class AbstractContentTabFragment extends Fragment {
 	        					"AFFILIATION_POSITION"));
 	        	affPos++;
 	        	afName.append(Html.fromHtml(affPos + ": " + "<b>" + affName + 
-	        			"</b><br/>" ));
+	        			"</b>, " ));
 	        } while (mAffiliationCursor.moveToNext());
+	        CharSequence affText = afName.getText();
+	        afName.setText(affText.subSequence(0, affText.length()-2));
         }        
     }  //end affiliationName    
     
