@@ -331,7 +331,7 @@ private class SynchronizeWithServer extends AsyncTask<Void, Void, Void> {
 	    	    Log.d("GCA-Sync", "SYNC: Previous sync time for URL appending: " + lastSyncTime);
 	            
 	    	    String urlString = getResources().getString(R.string.sync_url)+lastSyncTime;
-	    	    	
+	    	    
 	    	    Log.d("GCA-Sync", "SYNC: URL: " + urlString);
 				
 	    	    /*

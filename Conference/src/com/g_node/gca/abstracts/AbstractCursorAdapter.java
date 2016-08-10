@@ -51,29 +51,28 @@ public class AbstractCursorAdapter extends CursorAdapter {
         TextView type = (TextView)view.findViewById(R.id.abType);
         int absSortID = cursor.getInt(cursor.getColumnIndexOrThrow("SORTID"));
         
-        if(false) {	
+        if(absSortID>0) {	
         	int groupid =  ((absSortID & (0xFFFF << 16)) >> 16);
         	
         	switch (groupid) {
-			case 0:
-				type.setText("Invited Talk");
-				type.setBackgroundColor(Color.parseColor("#33B5E5"));
-				break;
-			
 			case 1:
-				type.setText("Contributed Talk");
-				type.setBackgroundColor(Color.parseColor("#ef4172"));
+				type.setText("Investigator Presentation");
+				type.setBackgroundColor(Color.parseColor("#33B5E5"));
 				break;
 			
 			case 2:
 				type.setText("Poster");
+				type.setBackgroundColor(Color.parseColor("#ef4172"));
+				break;
+			
+			case 3:
+				type.setText("Demonstration");
 				type.setBackgroundColor(Color.parseColor("#AA66CC"));
 				break;
-				
-			case 3:
-				type.setText("Poster");
-				type.setBackgroundColor(Color.parseColor("#AA66CC"));
-				break;	
+			case 4:
+				type.setText("Unknown");
+				type.setBackgroundColor(Color.parseColor("#ff0000"));
+				break;				
 			default:
 				break;
 			}
