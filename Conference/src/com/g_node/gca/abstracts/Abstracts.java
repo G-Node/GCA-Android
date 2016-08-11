@@ -6,6 +6,7 @@
 
 package com.g_node.gca.abstracts;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
@@ -15,6 +16,8 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.TimeZone;
+
+import org.json.JSONException;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -123,11 +126,13 @@ public class Abstracts extends Activity {
     
 private class AbstractJSONParsingTask extends AsyncTask<Void, Void, Void> {
 		
-		private ProgressDialog Dialog = new ProgressDialog(Abstracts.this);
+		private ProgressDialog Dialog; 
 		
 		@Override
 		protected void onPreExecute()
+		
 	    {
+			Dialog = new ProgressDialog(Abstracts.this);
 	        Dialog.setMessage(Abstracts.this.getResources().getString(R.string.loading_abstracts_dialog_text));
 	        Dialog.setCancelable(false);
 	        Dialog.show();
@@ -169,34 +174,16 @@ private class AbstractJSONParsingTask extends AsyncTask<Void, Void, Void> {
 	        	if(dbConsitencyFlagVal == -1) {
 	        		Log.d(gTag, "Database is inconsitent - flag: " + dbConsitencyFlagVal);
 	        		dbHelper.dropAllCreateAgain();
+	    			appPreferences.edit().putInt(DB_CONSISTENCY_FLAG, 1).apply();
 	        	} else {
 	        		Log.d(gTag, "Database is consistent");
 	        	}
 	        	
 	        	//call jsonParse function to get data from abstracts JSON file
-	        	InputStream jsonStream = Abstracts.this.getResources().openRawResource(R.raw.abstracts);
-	        	 
-	        	AbstractsJsonParse parseAbstractsJson = new AbstractsJsonParse(jsonStream, dbHelper);
-	            parseAbstractsJson.jsonParse();
-	            parseAbstractsJson.saveFromArrayListtoDB();
-	            
-	            /*
-	             * as the parsing and building of db process is completed here
-	             * we need to update the consistent flag.
-	             * (The next time if flag value won't be 1, all tables will be dropped
-	             * and built again.)
-	             */
-	            appPreferences.edit().putInt(DB_CONSISTENCY_FLAG, 1).apply();
-	            Log.d(gTag, "Value of DB_CONSISTENCY_FLAG after initial json parsing: " + appPreferences.getInt(DB_CONSISTENCY_FLAG, -1));
-	            
-	            /*
-        		 * Set value of sync time to a old date so when it syncs with
-        		 * server, it just gets everything
-        		 */
-        		String oldDummyTime = Abstracts.this.getResources().getString(R.string.old_dummy_sync_time);
-        		appPreferences.edit().putString(SYNC_TIME_KEY, oldDummyTime).apply();
-        		Log.d(gTag, "SYNC_TIME Val, Saving old time for first time or if DB " +
-        				"is not consistent: " + appPreferences.getString(SYNC_TIME_KEY, null));
+	        	InputStream jsonStream = Abstracts.this.getResources().
+	        			openRawResource(R.raw.abstracts);
+	        	parseJsonAndInsert(jsonStream);				
+
 	            
 	            /*
 	             * get number of cursor data
@@ -206,10 +193,36 @@ private class AbstractJSONParsingTask extends AsyncTask<Void, Void, Void> {
 			
 			return null;
 		}
+
+		void parseJsonAndInsert(InputStream jsonStream) {
+			AbstractsJsonParse parseAbstractsJson = new AbstractsJsonParse(
+					jsonStream, dbHelper);
+			try{
+				parseAbstractsJson.jsonParse();
+			}
+        	catch (FileNotFoundException e){
+        		Log.e(gTag, e.getMessage());
+        		appPreferences.edit().putInt(DB_CONSISTENCY_FLAG, -1);
+        		cancel(true);
+        		return;
+        	} 
+        	catch (IOException e) {
+        		Log.e(gTag, e.getMessage());
+        		appPreferences.edit().putInt(DB_CONSISTENCY_FLAG, -1);
+        		cancel(true);
+        		return;
+			} 
+        	catch (JSONException e) {
+        		Log.e(gTag, e.getMessage());
+        		appPreferences.edit().putInt(DB_CONSISTENCY_FLAG, -1);
+        		cancel(true);
+        		return;
+			}			
+			parseAbstractsJson.saveFromArrayListtoDB();
+		}
 		
 		@Override
 		protected void onPostExecute(Void result){
-	        
 			//set listView
 			cursor = dbHelper.getAllAbs();
 	        cursorAdapter = new AbstractCursorAdapter(Abstracts.this, cursor, 
@@ -294,10 +307,11 @@ private class SynchronizeWithServer extends AsyncTask<Void, Void, Void> {
 	private int connectivityFlag = 0;
 	private int notificationFlag = 0;
 	
-	private ProgressDialog Dialog = new ProgressDialog(Abstracts.this);
+	private ProgressDialog Dialog;
 	
 	@Override
 	protected void onPreExecute() {
+		Dialog = new ProgressDialog(Abstracts.this);
 		Dialog.setMessage("Please wait while app synchrinizes with Server...");
         Dialog.setCancelable(false);
         Dialog.show();
@@ -327,10 +341,10 @@ private class SynchronizeWithServer extends AsyncTask<Void, Void, Void> {
 	             * 		- The previous part of url before timestamp is read from strings.xml
 	             * 		- so for formulating we'll read url from strings.xml and concatenate timestamp at end
 	             */
-	    	    String lastSyncTime = appPreferences.getString(SYNC_TIME_KEY, null);
+	    	    long lastSyncTime = appPreferences.getLong(SYNC_TIME_KEY,0);
 	    	    Log.d("GCA-Sync", "SYNC: Previous sync time for URL appending: " + lastSyncTime);
 	            
-	    	    String urlString = getResources().getString(R.string.sync_url)+lastSyncTime;
+	    	    String urlString = getResources().getString(R.string.sync_url) + lastSyncTime;
 	    	    
 	    	    Log.d("GCA-Sync", "SYNC: URL: " + urlString);
 				
@@ -367,11 +381,11 @@ private class SynchronizeWithServer extends AsyncTask<Void, Void, Void> {
 						appPreferences.edit().putInt(DB_CONSISTENCY_FLAG, -1).apply();
 						Log.d(gTag, "DB_CONSISTENCY_FLAG set to -1 before syncing");
 						
-						//in = MainActivity.this.getResources().openRawResource(R.raw.abstracts_up);
-						Log.d("GCA-Sync", "Received Response size: " + in + " -- " + in.available());
-						SyncAbstracts sync = new SyncAbstracts(dbHelper, in);
-						sync.doSync();
-						
+						dbHelper.dropAllCreateAgain();						
+						AbstractJSONParsingTask jsonParsingAsyncTask = 
+								new AbstractJSONParsingTask();
+						jsonParsingAsyncTask.parseJsonAndInsert(in);
+						 
 						/*
 						 * As synchronizing has been done here, update the value
 						 * of DB_CONSISTENCY_FLAG back to 1 here
@@ -384,20 +398,21 @@ private class SynchronizeWithServer extends AsyncTask<Void, Void, Void> {
 						 * as the db is built again
 						 */
 						appPreferences.edit().putInt(DB_CONSISTENCY_FLAG, 1).apply();
+						long newSyncTime = appPreferences.getLong(SYNC_TIME_KEY, 0) + 1;
+						appPreferences.edit().putLong(SYNC_TIME_KEY, newSyncTime).apply();
 						Log.d(gTag, "DB_CONSISTENCY_FLAG value after syncing: " + appPreferences.getInt(DB_CONSISTENCY_FLAG, -1));
 					}
 					
 				} else {	//response from HTTP not 200
 					
-					// some error in connecting - inform user.
-					Toast toast = Toast.makeText(getApplicationContext(), "Unable to Synchronize with Server. Try later", Toast.LENGTH_LONG);
-					toast.show();
+					notificationFlag = -1;
 				}
 				
 				httpConnection.disconnect();
 				
 			} catch (MalformedURLException e) {
 				e.printStackTrace();
+				connectivityFlag = -1;
 			}
 			
 			catch (IOException e) {
@@ -419,7 +434,7 @@ private class SynchronizeWithServer extends AsyncTask<Void, Void, Void> {
 			
 			Builder x = new AlertDialog.Builder(Abstracts.this);
 		    x.setTitle("ERROR")
-		    .setMessage("Unable to connect to Internet. Please ensure internet connectivity")
+		    .setMessage("Unable to connect to Server")
 		    .setNeutralButton(android.R.string.ok,
 		            new DialogInterface.OnClickListener() {
 		        public void onClick(DialogInterface dialog, int id) {
@@ -428,21 +443,7 @@ private class SynchronizeWithServer extends AsyncTask<Void, Void, Void> {
 		    }).setIcon(android.R.drawable.ic_dialog_alert).create().show();
 		    
 		} else {
-			Dialog.dismiss();
-			
-			/*
-             * save the current time as last sync time
-             */
-    		TimeZone tz = TimeZone.getTimeZone("UTC");
-    	    DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
-    	    df.setTimeZone(tz);
-    	    String nowAsISO = df.format(new Date());
-    	    Log.d("GCA-Sync", "SYNC: Current time after sync: " + nowAsISO);
-    	    
-    	    appPreferences.edit().putString(SYNC_TIME_KEY, nowAsISO).apply();
-			
-            Log.d("GCA-Sync", "SYNC: current time form Shared Pref: " + appPreferences.getString(SYNC_TIME_KEY, null));
-            
+			Dialog.dismiss();            
 			if(notificationFlag == -1) {
 				notificationFlag = 0;
 				Toast toast = Toast.makeText(getApplicationContext(), "Already up to date!", 

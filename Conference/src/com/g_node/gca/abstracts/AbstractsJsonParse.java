@@ -57,8 +57,7 @@ public class AbstractsJsonParse {
 	 * Main Parsing function that takes the JSON, parsed it, builds relevant Arraylists, and sends signal 
 	 * for saving the parsed stuff ito database by migrating it from Arraylists to DB.
 	 */
-	public int jsonParse() {
-		try {
+	public int jsonParse() throws FileNotFoundException, IOException, JSONException {
 			Log.d(gTag, "in JSON PARSING FUNCTION");
 			
 			//get json file from raw 
@@ -350,15 +349,9 @@ public class AbstractsJsonParse {
 		            }//end references array loop
 	             
 			 }//end abstracts array parsing
-		
-		} catch (FileNotFoundException e) {
-			Log.e("AbtractJsonParse", Log.getStackTraceString( e ));
-        } catch (IOException e) {
-        	Log.e("AbtractJsonParse", Log.getStackTraceString( e ));
-        } catch (JSONException e) {
-            Log.e("AbtractJsonParse", Log.getStackTraceString( e ));
-        }
-		
+		// !!!Just loogging these errors ist definitly not enough!!! CG 
+
+
 		Log.d(gTag, "Size: - ABSTRACT_AFFILIATION_ID_POSITION_POJOS_ARRAY : " + ABSTRACT_AFFILIATION_ID_POSITION_POJOS_ARRAY.size());
 		Log.d(gTag, "Size: - ABSTRACT_AUTHOR_POSITION_AFFILIATION_POJOS_ARRAY : " + ABSTRACT_AUTHOR_POSITION_AFFILIATION_POJOS_ARRAY.size());
 		Log.d(gTag, "Size: - ABSTRACT_DETAILS_POJOS_ARRAY : " + ABSTRACT_DETAILS_POJOS_ARRAY.size());
