@@ -223,6 +223,7 @@ private class AbstractJSONParsingTask extends AsyncTask<Void, Void, Void> {
 		
 		@Override
 		protected void onPostExecute(Void result){
+
 			//set listView
 			cursor = dbHelper.getAllAbs();
 	        cursorAdapter = new AbstractCursorAdapter(Abstracts.this, cursor, 

@@ -213,6 +213,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		getReadableDatabase().beginTransaction();
 		Log.d(gtag, "Starting - Insert into Abstract Details");
 		for ( AbstractDetails item:abstractDetailsArray ) {
+			
 			statement.clearBindings();
 			statement.bindString(1, item.getUuid());
 			statement.bindString(2, item.getTopic());
