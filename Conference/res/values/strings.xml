@@ -46,6 +46,7 @@
     <string name="schedule_event_detail_hint_text"></string>
     <string name="schedule_event_keynote">Keynote</string>
     <string name="title_activity_abstract_figures">Abstract Figures</string>
+     <string name="splash_data_warning">Data provided by INCF</string>
     
     <string-array name="groupid2str">
         <item></item>

@@ -14,4 +14,15 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="186dp" />
 
+    <TextView
+        android:id="@+id/splash_data_warning"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:gravity="center_horizontal"
+        android:text="@string/splash_data_warning"
+        android:textColor="#ffffff" />
+
 </RelativeLayout>
