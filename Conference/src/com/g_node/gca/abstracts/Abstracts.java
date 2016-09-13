@@ -42,7 +42,7 @@ import android.widget.FilterQueryProvider;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.g_node.gcaa.R;
+import com.g_node.ni16.R;
 
 public class Abstracts extends Activity {
 	
@@ -90,7 +90,7 @@ public class Abstracts extends Activity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.abstracts_menu, menu);
+		//getMenuInflater().inflate(R.menu.abstracts_menu, menu);
 		return true;
 	}
 	

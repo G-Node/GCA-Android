@@ -23,7 +23,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.assist.ImageLoadingListener;
-import com.g_node.gcaa.R;
+import com.g_node.ni16.R;
 
 public class AbstractFiguresListAdapter extends BaseAdapter{
 	

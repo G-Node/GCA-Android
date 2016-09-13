@@ -17,7 +17,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.g_node.gcaa.R;
+import com.g_node.ni16.R;
 
 public class FavoriteAbstracts extends Activity {
 	
@@ -110,7 +110,7 @@ public class FavoriteAbstracts extends Activity {
                         Log.i(gTag, "ABSTRACT_TEXT => " + Text);
                         String Title = cursor.getString(cursor.getColumnIndexOrThrow("TITLE"));
                         String Topic = cursor.getString(cursor.getColumnIndexOrThrow("TOPIC"));
-                        String value = cursor.getString(cursor.getColumnIndexOrThrow("_id"));
+                        String value = cursor.getString(cursor.getColumnIndexOrThrow("UUID"));
                         String afName = "TEST AF"; //cursor.getString(cursor.getColumnIndexOrThrow("AF_NAME"));
                         String email = "test@foo.bar"; //cursor.getString(cursor.getColumnIndexOrThrow("CORRESPONDENCE"));
                         String refs = "REF 1 Test"; // cursor.getString(cursor.getColumnIndexOrThrow("REFS"));

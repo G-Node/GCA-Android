@@ -1,139 +1,406 @@
 [
-    {
-        "title": "Opening",
-        "subtitle": "might be there",
-        "start": "13:30",
-        "end": "14:30",
-        "location": "B01.063",
-        "date": "2014-08-01",
-        "authors": ["George Martin"],
-        "type": "talk",
-        "abstract": "http://abstracts.g-node.org/api/conferences/ba604a3c-e95a-4569-84a9-7d4dedd08310/abstracts/493aa24d-6b48-4283-9643-619d371dbafc"
-    },
-    {
-        "title": "Session 1",
-        "subtitle": "Dead people talking",
-        "tracks": [
-            {
-                "title": "Honorfull People",
-                "subtitle": "might die earlier",
-                "chair": ["Lord Aryn"],
-                "events": [
-                    {
-                        "title": "Bealisch warned me",
-                        "subtitle": "i guess",
-                        "start": "14:45",
-                        "end": "15:30",
-                        "location": "B01.063",
-                        "date": "2014-08-01",
-                        "authors": ["Eddard Stark"],
-                        "type": "talk",
-                        "abstract": "http://..."
-                    },
-                    {
-                        "title": "Should not have fucked the girl",
-                        "subtitle": null,
-                        "start": "15:30",
-                        "end": "16:15",
-                        "location": "B01.063",
-                        "date": "2014-08-01",
-                        "authors": ["Rob Stark"],
-                        "type": "talk",
-                        "abstract": "http://..."
-                    }
-                ]
-            },
-            {
-                "title": "Not so Honorfull People",
-                "subtitle": null,
-                "chair": ["Lord Tywin"],
-                "events": [
-                    {
-                        "title": "It was Tyrion",
-                        "subtitle": null,
-                        "start": "14:45",
-                        "end": "15:30",
-                        "location": "B01.064",
-                        "date": "2014-08-01",
-                        "authors": ["Jeofrey Bratheon"],
-                        "type": "talk", "abstract": "http://..."
-                    },
-                    {
-                        "title": "I like ears",
-                        "subtitle": null,
-                        "start": "15:30",
-                        "end": "16:00",
-                        "location": "B01.064",
-                        "date": "2014-08-01",
-                        "authors": ["The biter"],
-                        "type": "talk",
-                        "abstract": "http://..."
-                    },
-                    {
-                        "title": "Maeh",
-                        "subtitle": null,
-                        "start": "16:00",
-                        "end": "16:15",
-                        "location": "B01.064",
-                        "date": "2014-08-01",
-                        "authors": ["Vargo Hoat"],
-                        "type": "talk",
-                        "abstract": "http://..."
-                    }
-                ]
-            }
-        ]
-    },
-    {
-        "title": "Coffe break",
-        "subtitle": "might be there",
-        "start": "16:15",
-        "end": "17:00",
-        "location": "Crown room",
-        "date": "2014-08-01",
+  {
+    "title": "Welcome by Sabine Kunst, President of Humboldt-Universität zu Berlin",
+    "subtitle": "",
+    "start": "14:00",
+    "end": "14:10",
+    "date": "2016-09-21",
+    "authors": [],
+    "type": "talk"
+  },
+  {
+    "title": "Welcome by Andreas Herz, Speaker of the Bernstein Network Computational Neuroscience",
+    "subtitle": "",
+    "start": "14:10",
+    "end": "14:20",
+    "date": "2016-09-21",
+    "authors": [],
+    "type": "talk"
+  },
+  {
+    "title": "Opening Keynote Lecture",
+    "chair": "Michael Brecht",
+    "events": [
+      {
+        "title": "Scent and Sensibility: Navigating a Chemical Traile",
+        "subtitle": "",
+        "start": "14:20",
+        "end": "15:05",
+        "date": "2016-09-21",
+        "authors": [
+          "Bard Ermentrout (University of Pittsburg, USA)"
+        ],
+        "type": "keynote"
+      }
+    ]
+  },
+  {
+    "title": "Presentation of the Valentino Braitenberg Award 2016",
+    "events": [
+      {
+        "title": "Opening of the award ceremony by Carla Braitenberg",
+        "subtitle": "on behalf of Andrea Zeppa (Autonome Provinz Bozen Südtirol)",
+        "start": "15.05",
+        "end": "",
+        "date": "2016-09-21",
         "authors": [],
-        "type": "break",
-        "abstract": "http://..."
-    },
-    {
-        "title": "Living people talking",
-        "subtitle": "Some more info as subtitle",
-        "chair": "Sandor Clegane",
-        "events": [
-            {
-                "title": "Where do whores go?",
-                "subtitle": "really i am asking you",
-                "start": "14:45",
-                "end": "15:30",
-                "location": "B01.063",
-                "date": "2014-08-02",
-                "authors": ["Tyrion Lannister "],
-                "type": "talk",
-                "abstract": "http://..."
-            },
-            {
-                "title": "The halls beneath the keep",
-                "subtitle": null,
-                "start": "15:30",
-                "end": "16:15",
-                "location": "Reed Keep",
-                "date": "2014-08-02",
-                "authors": ["Varys"],
-                "type": "workshop",
-                "abstract": "http://..."
-            }
-        ]
-    },
-    {
-        "title": "Coffe break",
-        "subtitle": "might be there",
-        "start": "16:15",
-        "end": "17:00",
-        "location": "Crown room",
-        "date": "2014-08-03",
+        "type": "talk"
+      },
+      {
+        "title": "Laudation for the awardee by Christoph von der Malsburg",
+        "subtitle": "",
+        "start": "",
+        "end": "",
+        "date": "2016-09-21",
         "authors": [],
-        "type": "break",
-        "abstract": "http://..."
-    }
+        "type": "talk"
+      },
+      {
+        "title": "Lecture by the Valentino Braitenberg Award Winner David Willshaw (Professor Emeritus, University of Edinburgh, UK)",
+        "subtitle": "",
+        "start": "",
+        "end": "15:50",
+        "date": "2016-09-21",
+        "authors": [],
+        "type": "talk"
+      }
+    ]
+  },
+  {
+    "title": "Poster session I",
+    "subtitle": "",
+    "start": "15:50",
+    "end": "19:00",
+    "date": "2016-09-21",
+    "type": "poster"
+  },
+  {
+    "title": "Public Evening Lecture",
+    "chair": "John-Dylan Haynes",
+    "events": [
+      {
+        "title": "Learning and Transfer: Lessons from Action Video Games",
+        "subtitle": "",
+        "start": "20:00",
+        "end": "",
+        "date": "2016-09-21",
+        "authors": [
+          "Daphne Bavelier (University of Geneva, Switzerland and Rochester University, USA)"
+        ],
+        "type": "publicLecture"
+      }
+    ]
+  },
+  {
+    "title": "Session I",
+    "chair": "Andreas Herz",
+    "events": [
+      {
+        "title": "The Superposition of Object-Based and Rule-Based Representations in Inferotemporal (IT) Cortex",
+        "subtitle": "",
+        "start": "09:00",
+        "end": "09:45",
+        "date": "2016-09-22",
+        "authors": [
+          "Nicole Rust (University of Pennsylvania, USA)"
+        ],
+        "type": "keynote"
+      },
+      {
+        "title": "How Invariant Feature Selectivity Is Achieved in Cortex",
+        "subtitle": "",
+        "start": "09:45",
+        "end": "10:30",
+        "date": "2016-09-22",
+        "authors": [
+          "Tatyana Sharpee (Salk Institute for Biological Studies, La Jolla, USA)"
+        ],
+        "type": "talk"
+      }
+    ]
+  },
+  {
+    "title": "Coffee break",
+    "start": "10:30",
+    "end": "11:00",
+    "date": "2016-09-22",
+    "type": "break"
+  },
+  {
+    "title": "Session II",
+    "chair": "Henning Sprekeler",
+    "events": [
+      {
+        "title": "A Flexible Code: Retinal Ganglion Cells Dynamically Switch between two Computations",
+        "subtitle": "",
+        "start": "11:00",
+        "end": "11:15",
+        "date": "2016-09-22",
+        "authors": [
+          "Stéphane Deny (Institut de la Vision, Paris, France)"
+        ],
+        "type": "talk"
+      },
+      {
+        "title": "Local Circuits Form Long-Ranging Spontaneous Correlations to Build Distributed Sensory Representations in the Early Developing Visual Cortex",
+        "subtitle": "",
+        "start": "11:15",
+        "end": "11:30",
+        "date": "2016-09-22",
+        "authors": [
+          "Bettina Hein (Frankfurt Institute for Advanced Studies (FIAS), Germany)"
+        ],
+        "type": "talk"
+      },
+      {
+        "title": "Principles Underlying Sensory Map Topography in Primary Visual Cortex",
+        "subtitle": "",
+        "start": "11:30",
+        "end": "11:45",
+        "date": "2016-09-22",
+        "authors": [
+          "Jens Kremkow (Institute for Theoretical Biology, Humboldt-University of Berlin & Neuroscience Research Center (NWFZ) Charité, Berlin, Germany)"
+        ],
+        "type": "talk"
+      },
+      {
+        "title": "Large-Scale Predictive Modeling: Principles and Examples from Affective Neuroscience (Chair: John-Dylan Haynes)",
+        "subtitle": "",
+        "start": "11:45",
+        "end": "12:30",
+        "date": "2016-09-22",
+        "authors": [
+          "Tor Wager (University of Colorado at Boulder, USA)"
+        ],
+        "type": "talk"
+      }
+    ]
+  },
+  {
+    "title": "Poster session II",
+    "subtitle": "",
+    "start": "12:30",
+    "end": "15:30",
+    "date": "2016-09-22",
+    "type": "poster"
+  },
+  {
+    "title": "Session III",
+    "chair": "Susanne Schreiber)",
+    "events": [
+      {
+        "title": "Firing Rate Homeostasis in Freely Behaving Rodents",
+        "subtitle": "",
+        "start": "15:30",
+        "end": "15:15",
+        "date": "2016-09-22",
+        "authors": [
+          "Gina Turrigiano (Brandeis University, Waltham, USA)"
+        ],
+        "type": "keynote"
+      },
+      {
+        "title": "A Spike Timing Dependent Model of Dendritic Spine Plasticity and Turnover",
+        "subtitle": "",
+        "start": "16:15",
+        "end": "16:30",
+        "date": "2016-09-22",
+        "authors": [
+          "Moritz Deger (Ecole Polytechnique Fédérale de Lausanne, Switzerland)"
+        ],
+        "type": "talk"
+      }
+    ]
+  },
+  {
+    "title": "Coffee break",
+    "start": "16:30",
+    "end": "17:00",
+    "date": "2016-09-22",
+    "type": "break"
+  },
+  {
+    "title": "Session IV:\"Bayes Debate\"",
+    "chair": "Matthias Bethge",
+    "events": [
+      {
+        "title": "We Are All Statisticians. Faking It Until We Make It",
+        "subtitle": "",
+        "start": "17:00",
+        "end": "17:15",
+        "date": "2016-09-22",
+        "authors": [
+          "Konrad Kording (Northwestern University, Evanston, USA)"
+        ],
+        "type": "talk"
+      },
+      {
+        "title": "Bayes, the Brain, and the Future of Cognitive Science",
+        "subtitle": "",
+        "start": "17:15",
+        "end": "17:30",
+        "date": "2016-09-22",
+        "authors": [
+          "Matteo Colombo (Tilburg University, Netherlands)"
+        ],
+        "type": "talk"
+      },
+      {
+        "title": "Bayesian Principles Underlying the Organisation of Neural Circuits",
+        "subtitle": "",
+        "start": "17:30",
+        "end": "17:45",
+        "date": "2016-09-22",
+        "authors": [
+          "Máté Lengyel (University of Cambridge, UK)"
+        ],
+        "type": "talk"
+      },
+      {
+        "title": "Moderated Debate \"Information Processing in the Brain Is Bayesian\"",
+        "subtitle": "",
+        "start": "17:45",
+        "end": "",
+        "date": "2016-09-22",
+        "authors": [
+          ""
+        ],
+        "type": "talk"
+      }
+    ]
+  },
+  {
+    "title": "Conference Dinner at the Naturkundemuseum Berlin",
+    "start": "19:30",
+    "end": "",
+    "date": "2016-09-22",
+    "type": "break"
+  },
+  {
+    "title": "Session V",
+    "chair": "Philipp Hövel",
+    "events": [
+      {
+        "title": "Derivation of Neural Circuits from the Similarity Matching Principle",
+        "subtitle": "",
+        "start": "09:00",
+        "end": "09:45",
+        "date": "2016-09-23",
+        "authors": [
+          "Dmitri Chklovskii (Simons Foundation, New York City, USA)"
+        ],
+        "type": "talk"
+      },
+      {
+        "title": "Network Reconfiguration: Functional Role and Structural Predictors",
+        "subtitle": "",
+        "start": "09:45",
+        "end": "10:30",
+        "date": "2016-09-23",
+        "authors": [
+          "Danielle Bassett (University of Pennsylvania, USA)"
+        ],
+        "type": "talk"
+      }
+    ]
+  },
+  {
+    "title": "Coffee break",
+    "start": "10:30",
+    "end": "11:00",
+    "date": "2016-09-23",
+    "type": "break"
+  },
+  {
+    "title": "Session VI",
+    "chair": "Benjamin Lindner",
+    "events": [
+      {
+        "title": "Recording and Modeling Cellular-Activity Timing Relationships Spanning Brain Volumes in Mouse and Human",
+        "subtitle": "",
+        "start": "11:00",
+        "end": "11:15",
+        "date": "2016-09-23",
+        "authors": [
+          "Logan Grosenick (Stanford University, Palo Alto, USA)"
+        ],
+        "type": "talk"
+      },
+      {
+        "title": "Balanced Networks with Excitatory and Inhibitory Clusters Reproduce Cortical Variability Dynamics In Vivo",
+        "subtitle": "",
+        "start": "11:15",
+        "end": "11:30",
+        "date": "2016-09-23",
+        "authors": [
+          "Martin Nawrot (Universität Köln, Germany)"
+        ],
+        "type": "talk"
+      },
+      {
+        "title": "The Organization of Adaptation in Auditory Receptor Neurons of Drosophila",
+        "subtitle": "",
+        "start": "11:30",
+        "end": "11:45",
+        "date": "2016-09-23",
+        "authors": [
+          "Jan Clemens (Princeton University, USA)"
+        ],
+        "type": "talk"
+      },
+      {
+        "title": "Presentation of the Brains4Brains Award 2016 and Lecture by the Awardee Anthony Jang (National Institutes of Health, Bethesda, USA)",
+        "subtitle": "Effects of Prefrontal and Medial-Temporal Brain Lesions on Learning a Bayesian Prior Belief on Reversals",
+        "start": "11:45",
+        "end": "12:10",
+        "date": "2016-09-23",
+        "authors": [""],
+        "type": "talk"
+      },
+      {
+        "title": "Presentation of the Brains4Brains Award 2016 and Lecture by the Awardee Anthony Jang (National Institutes of Health, Bethesda, USA)",
+        "subtitle": "Effects of Prefrontal and Medial-Temporal Brain Lesions on Learning a Bayesian Prior Belief on Reversals",
+        "start": "11:45",
+        "end": "12:10",
+        "date": "2016-09-23",
+        "authors": [""],
+        "type": "talk"
+      }
+    ]
+  },
+  {
+    "title": "Final Keynote Lecture",
+    "chair": "Michael Brecht",
+    "events": [
+      {
+        "title": "Comprehensive Anatomical Classification of Retinal Ganglion Cells",
+        "subtitle": "",
+        "start": "12:10",
+        "end": "12:55",
+        "date": "2016-09-23",
+        "authors": [
+          "Sebastian Seung (Princeton University, USA)"
+        ],
+        "type": "keynote"
+      },
+      {
+        "title": "Closing remarks",
+        "subtitle": "",
+        "start": "12:55",
+        "end": "",
+        "date": "2016-09-23",
+        "authors": [""],
+        "type": "talk"
+      },
+      {
+        "title": "Announcement of the Bernstein Conference 2017 in Göttingen",
+        "subtitle": "",
+        "start": "13:00",
+        "end": "",
+        "date": "2016-09-23",
+        "authors": [""],
+        "type": "talk"
+      }
+    ]
+  }
 ]
-

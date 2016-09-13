@@ -8,7 +8,7 @@ package com.g_node.gca.newsroom;
 
 import java.io.FileNotFoundException;
 
-import com.g_node.gcaa.R;
+import com.g_node.ni16.R;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -100,7 +100,7 @@ public class NewsRoomActivity extends Activity {
 		protected Void doInBackground(Void... arg0) {
 			//Download the file
 			try {
-				Downloader.DownloadFromUrl("http://www.incf.org/newsroom/aggregator/rss.xml", openFileOutput("news.xml", Context.MODE_PRIVATE));
+				Downloader.DownloadFromUrl("http://www.nncn.de/en/news/nachrichten-en/network-news/RSS", openFileOutput("news.xml", Context.MODE_PRIVATE));
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();
 			}

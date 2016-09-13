@@ -24,7 +24,7 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.g_node.gcaa.R;
+import com.g_node.ni16.R;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
@@ -130,13 +130,6 @@ public class NewsAdapter extends ArrayAdapter<NewsItemSingle> {
 		DateFormat formatter = new SimpleDateFormat("EEE, dd MMM yyyy");
 
 		String parsedPubDate = "";
-		try {
-			Date date = formatter.parse(getItem(pos).getPubDate());
-			parsedPubDate = formatter.format(date);
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		
 		dateText.setText(parsedPubDate);
 		return row;
