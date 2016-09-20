@@ -15,7 +15,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.ListView;
 
-import com.g_node.ni16.R;
+import com.g_node.bc16.R;
 
 public class AbstractFiguresActivity extends Activity {
 	

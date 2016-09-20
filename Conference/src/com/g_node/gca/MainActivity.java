@@ -24,7 +24,7 @@ import com.g_node.gca.abstracts.FavoriteAbstracts;
 import com.g_node.gca.map.MapActivity;
 import com.g_node.gca.newsroom.NewsRoomActivity;
 import com.g_node.gca.schedule.ScheduleMainActivity;
-import com.g_node.ni16.R;
+import com.g_node.bc16.R;
 
 public class MainActivity extends Activity {
 	
@@ -124,13 +124,13 @@ public class MainActivity extends Activity {
 		{
 			Builder aboutDialog = new AlertDialog.Builder(MainActivity.this);
 			aboutDialog.setTitle("About the App:")
-			.setMessage(Html.fromHtml("The <b>G-Node Conference Application</b> for Android serves as an electronic conference guide for participants with included proceedings. <br><br> &#169; <b>German Neuroinformatics Node</b><br><br>Created By: <b>Shumail Mohy-ud-Din</b><br>(as part of GSoC 2014)"))
+			.setMessage(Html.fromHtml("The <b>G-Node Conference Application</b> for Android serves as an electronic conference guide for participants with included proceedings. <br><br> &#169; <b>German Neuroinformatics Node</b><br><br>Created By: <b>Shumail Mohy-ud-Din</b> and <b>Christian Garbers</b><br>(as part of GSoC 2014)"))
 			.setNeutralButton(android.R.string.ok,
 					new DialogInterface.OnClickListener() {
 				public void onClick(DialogInterface dialog, int id) {
 					dialog.cancel();
 				}
-			}).setIcon(getResources().getDrawable(R.drawable.launcher_brain_icon))
+			}).setIcon(getResources().getDrawable(R.drawable.launcher))
 			 .show();
 		}	
 	        return true;

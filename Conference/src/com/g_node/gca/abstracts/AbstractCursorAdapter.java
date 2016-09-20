@@ -20,7 +20,7 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.TextView;
 
-import com.g_node.ni16.R;
+import com.g_node.bc16.R;
 
 public class AbstractCursorAdapter extends CursorAdapter {
     private Cursor mAuthorCursor;    

@@ -23,7 +23,7 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
-import com.g_node.ni16.R;
+import com.g_node.bc16.R;
 
 
 public class scheduleAdapter extends BaseAdapter {

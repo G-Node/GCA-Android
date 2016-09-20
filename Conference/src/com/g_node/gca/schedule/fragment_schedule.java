@@ -20,7 +20,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
-import com.g_node.ni16.R;
+import com.g_node.bc16.R;
 
 public class fragment_schedule extends Fragment {
 

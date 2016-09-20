@@ -23,6 +23,7 @@
     "events": [
       {
         "title": "Scent and Sensibility: Navigating a Chemical Traile",
+		"abstract":"/7958f8ed-b556-484f-8735-a0681162f4d2",
         "subtitle": "",
         "start": "14:20",
         "end": "15:05",
@@ -40,7 +41,7 @@
       {
         "title": "Opening of the award ceremony by Carla Braitenberg",
         "subtitle": "on behalf of Andrea Zeppa (Autonome Provinz Bozen Südtirol)",
-        "start": "15.05",
+        "start": "15:05",
         "end": "",
         "date": "2016-09-21",
         "authors": [],
@@ -80,6 +81,7 @@
     "events": [
       {
         "title": "Learning and Transfer: Lessons from Action Video Games",
+	"abstract":"/168ed324-4b87-4f89-b709-aa54f68b6368",
         "subtitle": "",
         "start": "20:00",
         "end": "",
@@ -97,6 +99,7 @@
     "events": [
       {
         "title": "The Superposition of Object-Based and Rule-Based Representations in Inferotemporal (IT) Cortex",
+	"abstract":"/f3db35db-ca48-4d9c-b702-b4b3b5832baa",
         "subtitle": "",
         "start": "09:00",
         "end": "09:45",
@@ -108,6 +111,7 @@
       },
       {
         "title": "How Invariant Feature Selectivity Is Achieved in Cortex",
+	"abstract":"/9d23ae38-ee6d-4940-9baa-e2a5a1279bd5",
         "subtitle": "",
         "start": "09:45",
         "end": "10:30",
@@ -132,6 +136,7 @@
     "events": [
       {
         "title": "A Flexible Code: Retinal Ganglion Cells Dynamically Switch between two Computations",
+	"abstract":"/728062d7-469d-4d9a-93e9-1d502976d45d",
         "subtitle": "",
         "start": "11:00",
         "end": "11:15",
@@ -143,6 +148,7 @@
       },
       {
         "title": "Local Circuits Form Long-Ranging Spontaneous Correlations to Build Distributed Sensory Representations in the Early Developing Visual Cortex",
+	"abstract":"/6649fa44-57a4-4bcc-9353-fe85a5919111",
         "subtitle": "",
         "start": "11:15",
         "end": "11:30",
@@ -154,6 +160,7 @@
       },
       {
         "title": "Principles Underlying Sensory Map Topography in Primary Visual Cortex",
+	"abstract":"/792df8b0-369b-4602-8e7e-33477c3e4d56",
         "subtitle": "",
         "start": "11:30",
         "end": "11:45",
@@ -165,6 +172,7 @@
       },
       {
         "title": "Large-Scale Predictive Modeling: Principles and Examples from Affective Neuroscience (Chair: John-Dylan Haynes)",
+	"abstract":"/4a501573-6bee-4ab3-b8fe-204604047fec",
         "subtitle": "",
         "start": "11:45",
         "end": "12:30",
@@ -190,9 +198,10 @@
     "events": [
       {
         "title": "Firing Rate Homeostasis in Freely Behaving Rodents",
+	"abstract":"/01f20e9d-f176-4903-91fc-0ac221ad9e8c",
         "subtitle": "",
         "start": "15:30",
-        "end": "15:15",
+        "end": "16:15",
         "date": "2016-09-22",
         "authors": [
           "Gina Turrigiano (Brandeis University, Waltham, USA)"
@@ -201,6 +210,7 @@
       },
       {
         "title": "A Spike Timing Dependent Model of Dendritic Spine Plasticity and Turnover",
+	"abstract":"/b3917281-0a7b-4aef-9a2b-4a966ec49198",
         "subtitle": "",
         "start": "16:15",
         "end": "16:30",
@@ -225,6 +235,7 @@
     "events": [
       {
         "title": "We Are All Statisticians. Faking It Until We Make It",
+	"abstract":"/ad130f9e-40c5-4947-9ad7-a3fb8809deb4",
         "subtitle": "",
         "start": "17:00",
         "end": "17:15",
@@ -237,6 +248,7 @@
       {
         "title": "Bayes, the Brain, and the Future of Cognitive Science",
         "subtitle": "",
+	"abstract":"/e5261287-c04a-4e0b-88c5-f32cfcbb80c7",
         "start": "17:15",
         "end": "17:30",
         "date": "2016-09-22",
@@ -247,6 +259,7 @@
       },
       {
         "title": "Bayesian Principles Underlying the Organisation of Neural Circuits",
+	"abstract":"/8584c9a7-6553-4ff5-8e3c-3839f2053ccf",
         "subtitle": "",
         "start": "17:30",
         "end": "17:45",
@@ -282,6 +295,7 @@
     "events": [
       {
         "title": "Derivation of Neural Circuits from the Similarity Matching Principle",
+	"abstract":"/d46ab151-ac76-4f18-a7d9-b1a99d39d5d2",
         "subtitle": "",
         "start": "09:00",
         "end": "09:45",
@@ -293,6 +307,7 @@
       },
       {
         "title": "Network Reconfiguration: Functional Role and Structural Predictors",
+	"abstract":"/56d8c369-5f20-45ad-b1af-5778dce2f5c8",
         "subtitle": "",
         "start": "09:45",
         "end": "10:30",
@@ -317,6 +332,7 @@
     "events": [
       {
         "title": "Recording and Modeling Cellular-Activity Timing Relationships Spanning Brain Volumes in Mouse and Human",
+	"abstract":"/65d5d070-c40b-40a1-b238-0253b68ee833",
         "subtitle": "",
         "start": "11:00",
         "end": "11:15",
@@ -328,6 +344,7 @@
       },
       {
         "title": "Balanced Networks with Excitatory and Inhibitory Clusters Reproduce Cortical Variability Dynamics In Vivo",
+	"abstract":"/5de7de1e-9971-4c81-aaf9-b64890958dcc",
         "subtitle": "",
         "start": "11:15",
         "end": "11:30",
@@ -339,6 +356,7 @@
       },
       {
         "title": "The Organization of Adaptation in Auditory Receptor Neurons of Drosophila",
+	"abstract":"/10c8e9bd-cf69-4547-a832-95f7b21808e3",
         "subtitle": "",
         "start": "11:30",
         "end": "11:45",
@@ -346,15 +364,6 @@
         "authors": [
           "Jan Clemens (Princeton University, USA)"
         ],
-        "type": "talk"
-      },
-      {
-        "title": "Presentation of the Brains4Brains Award 2016 and Lecture by the Awardee Anthony Jang (National Institutes of Health, Bethesda, USA)",
-        "subtitle": "Effects of Prefrontal and Medial-Temporal Brain Lesions on Learning a Bayesian Prior Belief on Reversals",
-        "start": "11:45",
-        "end": "12:10",
-        "date": "2016-09-23",
-        "authors": [""],
         "type": "talk"
       },
       {
@@ -375,6 +384,7 @@
       {
         "title": "Comprehensive Anatomical Classification of Retinal Ganglion Cells",
         "subtitle": "",
+	"abstract":"/e10786a4-1efc-4127-b19c-d9488f53dbd6'",
         "start": "12:10",
         "end": "12:55",
         "date": "2016-09-23",

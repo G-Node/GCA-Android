@@ -17,7 +17,7 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 
-import com.g_node.ni16.R;
+import com.g_node.bc16.R;
 
 public class ScheduleMainActivity extends FragmentActivity implements ActionBar.TabListener {
 	
