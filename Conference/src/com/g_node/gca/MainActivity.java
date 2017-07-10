@@ -36,16 +36,7 @@ public class MainActivity extends Activity {
 		getActionBar().setTitle(R.string.app_name);
 		//getActionBar().setIcon(getResources().getDrawable(R.drawable.icon_brain));
 		
-		Button news = (Button)findViewById(R.id.btn_news);
-		news.setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				Intent newsIntent = new Intent(MainActivity.this, NewsRoomActivity.class);
-				startActivity(newsIntent);
-			}
-		});
-		
+	
 		Button absBtn = (Button) findViewById(R.id.btn_abstracts);
 		absBtn.setOnClickListener(new OnClickListener() {
 			
@@ -53,17 +44,6 @@ public class MainActivity extends Activity {
 			public void onClick(View v) {
 				Intent abstractIntent = new Intent(MainActivity.this, Abstracts.class);
 				startActivity(abstractIntent);
-				
-			}
-		});
-		
-		Button mapBtn = (Button) findViewById(R.id.btn_maps);
-		mapBtn.setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				Intent mapIntent = new Intent(MainActivity.this, MapActivity.class);
-				startActivity(mapIntent);
 				
 			}
 		});
