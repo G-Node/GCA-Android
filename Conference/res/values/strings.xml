@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">BC16</string>
+    <string name="app_name">NI17</string>
     <string name="hello_world">Hello world!</string>
     <string name="sync_url">http://10.153.175.47:8080/gnode/abstracts_up.json</string>
 	<string name="old_dummy_sync_time">2015-07-09T08:24:50.833Z</string>
@@ -49,10 +49,11 @@
     <string name="title_activity_abstract_figures">Abstract Figures</string>
     
     <string-array name="groupid2str">
-        <item>I</item>
-        <item>C</item>
-        <item>W</item>
-        <item>T</item>
+        <item>D</item>
+        <item>P</item>
+        <item>IP</item>
+        <item>DI</item>
+        <item>PI</item>
     </string-array>
         <string name="info">Info</string>
 
