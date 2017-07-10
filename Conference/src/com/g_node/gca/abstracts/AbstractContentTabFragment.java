@@ -32,7 +32,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.g_node.bc16.R;
+import com.g_node.ni17.R;
 
 public class AbstractContentTabFragment extends Fragment {
 	

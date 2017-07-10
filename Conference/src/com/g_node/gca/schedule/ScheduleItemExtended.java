@@ -23,7 +23,7 @@ import android.widget.TextView;
 
 import com.g_node.gca.abstracts.AbstractContent;
 import com.g_node.gca.abstracts.DatabaseHelper;
-import com.g_node.bc16.R;
+import com.g_node.ni17.R;
 
 public class ScheduleItemExtended extends Activity {
 	
