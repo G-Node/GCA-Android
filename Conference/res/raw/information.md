@@ -1,54 +1,54 @@
-##### Venue 
-###### Main Conference and Public Lecture:
-Humboldt-Universität zu Berlin,  
-AUDIMAX,  
-Unter den Linden 6, 10117 Berlin
-###### Workshops:
-Humboldt-Universität zu Berlin,  
-Seminargebäude am Hegelplatz,  
-Dorotheenstr. 24, 10117 Berlin
+###### GENERAL INFORMATION:
+The Neuroinformatics 2017 will take place at the Double Tree by Hilton Hotel, Kuala Lumpur. The
+meeting rooms are located at level 10 of the hotel. Exhibits are located outside the lecture hall.
 
-###### PhD Symposium:
-BCCN Berlin,   
-Philippstr. 13 Haus 4,  
-10115 Berlin (Campus Nord of Humboldt-Universität zu Berlin)
+The poster and the demo sessions will take place in the Hibiscus room and adjacent foyer, just beside
+the lecture halls. The poster and demo sessions are scheduled for Sunday, August 20 and Monday, August 21.
 
-###### Conference Dinner:
-Naturkundemuseum (Museum of Natural History),  
-Invalidenstr. 43, 10115 Berlin
+The poster boards and the demo stations will be marked with numbers referring to those stated in
+the abstract book. Materials for putting up the posters will be provided. The meeting staff will
+remove posters not taken down by Monday, August 21 at 20,30. The meeting organizers do not
+accept responsibility for any materials left behind.
 
-##### Opening Hours Registration Desk
-Tuesday, Sept 20: 13:00 - 18:30 h  
-Wednesday, Sept 21: 08:30 - 18:30 h  
-Thursday, Sept 22 08:30 - 18:30 h  
-Friday, Sept 23: 08:30 - 13:00 h  
+###### Internet:
+WiFi codes will be handed out at registration.
 
-##### Opening Hours Exhibition
-Wednesday, Sept 21: 13:30 - 19:00 h  
-Thursday, Sept 22: 09:00 - 19:00 h  
-Friday, Sept 23: 09:00 - 12:30 h  
+###### LUNCH
+Lunch will be served in the hotels’ restaurant Makal Kitchen according to the program schedule. Coffee breaks will be served in the exhibit area.
 
-##### Poster Sessions
-Session I, Wednesday, Sept 21: 15:50 - 19:00 h  
-Session II, Thursday, Sept 22: 12:30 - 15:30 h  
+###### CONFERENCE COORDINATOR ON SITE
+Rosa Cusato-Sörnäs, INCF +46 8 524 870 16 
+###### OPENING HOURS OF THE REGISTRATION DESK
+Aug 20-21		 	8:00 - 17:30
 
-##### Mounting and Dismounting Posters
-Poster boards are numbered according to the abstract numbers in the poster booklet (W indicates the first poster session on Wednesday and T the second poster session on Thursday). Pins for putting up posters will be provided. Posters can be mounted starting at 13:00 h on Wednesday and at 9:00 h on Thursday. Please take your poster down after your session otherwise the conference staff will remove it. Removed posters that are not picked up at the registration desk by Friday, September 23, 13:00 h will be disposed of.
+###### PARTICIPATION, NAME TAGS
+Official conference name tags will be handed out at registration and will be required for admission to all conference functions. Participants who lose their name tags will have to pay a fee of 25EUR to obtain a replacement tag.
 
-##### Abstracts
-Conference abstracts including high-resolution versions of figures will be published online at http://www.g-node.org/abstracts/bc16.
+######SOCIAL EVENTS
+There will be a Cultural Malaysian Performance in the lecture hall August 20, at 17,30. Following the performance, there will be one complimentary welcome reception during the poster and demo session on August 20, at 18,00 and one complimentary reception during the second poster and demo session August 21, at 17,30.
 
-##### Name Tags  
-Official name tags will be required for admission to all conference events. Participants who lose their name tags will have to pay a fee of 10.00 EUR to retain a replacement tag.
-##### Wardrobe  
-Storage space for wardrobe and luggage will be provided in a separate room. Please ask at the registration desk. The organizer assumes no liability for lost valuables of the wardrobe at the venue.
-##### Silent Room/Working Space  
-You are welcome to use room 2014A on the same floor as the lecture hall and poster sessions.
-##### Internet  
-Wireless web access is provided free of charge. **Logins are provided with the registration documents**. Please feel free to use eduroam if you wish.
-###### Configuration of WiFi Network “HU-Meeting”
-For the conference, the WiFi network “HU-Meeting” can be used. This WiFi network is unencrypted and supports only selected protocols.
-Privacy advise: Please use encrypted communication protocols, e.g. https or imaps, or a vpn connection because the data will be transmitted unencrypted over the WiFi network.
-Start of usage: Please connect your computer to the WiFi “HU-Meeting”. The TCP/IP communication parameters are assigned automatically by DHCP. Please start a web browser and try to open a web site. Your browser will be redirected to the login page (https://nexus.cms.hu-berlin.de). Please login with your account (i.e. wlanuser123) and password.
-##### Bernstein Conference Dinner
-The Bernstein Conference dinner will take place in the Naturkundemuseum, Invalidenstr. 43, which is 22 minutes walking distance from the Lecture Hall (Audimax) or two stations by U6 underground. The dinner will start at 20:00 h. You need to register in advance and have a voucher for the dinner. A museum tour will be provided in English language for those who registered for the tour. Places for dinner and tour are limited.
+######TO THE VENUE
+Visitors arriving by plane at Kuala Lumpur International airport can take the express train. 
+KLIA Express is the fastest way to travel from KLIA to Kuala Lumpur, connecting the airport to the city centre in 28 minutes by stopping at KL Sentral. At KL Sentral, switch to the Rapid KL train arriving at Ampang Park station followed by an 8-minute short walk using the covered link bridge to arrive hotel. 
+
+###### Local Organising Committee
+* Ahmad Fadzil Mohd Hani
+* Eric Ho Tatt Wei
+* Mohamad Naufal Mohamad Saad
+* Vijanth Sagayan Asirvadam
+* Siti Asmah Daud
+* Mohana Sundaram Muthuvalu
+* Nur Nadiah Muhamad Suffi
+* Nadira binti Nordin University Petronas, Malaysia
+
+###### Program Committee
+* Prof. Russell Poldrack, Stanford University (co-chair), USA
+* Dr. Jean-Baptiste Poline, University of California, Berkeley (co-chair), USA
+* Dr. Srikanth Ramaswamy, EPFL, India
+* Dr. Rapahel Ritz, Max Planck Computing and Data Facility, Germany
+* Prof. Sharon Crook, Arizona State University, USA
+* Prof. Fadzil Hani, Universiti Teknologie PETRONAS, Malaysia
+* Dr. Naufal Saad, Universiti Teknologie PETRONAS, Malaysia
+
+###### Registration Company
+Kuoni Destination Management
