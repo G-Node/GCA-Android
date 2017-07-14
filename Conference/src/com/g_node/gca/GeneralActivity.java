@@ -17,12 +17,12 @@ import android.content.Context;
 import android.os.Bundle;
 import android.text.Html;
 import android.view.MenuItem;
-import android.widget.TextView;
+import android.webkit.WebView;
 
 import com.g_node.gcaa.R;
 
 public class GeneralActivity extends Activity {
-    TextView text;
+    WebView text;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,18 +44,14 @@ public class GeneralActivity extends Activity {
          */
         String getMarkDown = markDownPro.markdown(raw);
         /*
-         * Getting content as CharSequence
-         */
-        CharSequence cs = Html.fromHtml(getMarkDown);
-        /*
          * Set Content in TextView
          */
-        text.setText(cs);
+        text.loadDataWithBaseURL(null, getMarkDown, "text/html", "utf-8", null);
 
     }
 
     private void initialUI() {
-        text = (TextView)findViewById(R.id.text);
+        text = (WebView)findViewById(R.id.text);
     }
 
     public static String readRawTextFile(Context ctx, int resId) {
