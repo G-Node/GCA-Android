@@ -19,7 +19,7 @@
     <string name="title_activity_generalInfo">General Information</string>
     <string name="AcknowledgementHeading">Acknowledgements</string>
     <string name="referencesHeading">References</string>
-    <string name="splashTiming">1000</string>
+    <string name="splashTiming">3000</string>
     <string name="title_activity_schedule_main">Schedule</string>
     <string name="title_activity_schedule_item_extended">Schedule Detail</string>
     <string name="updating_dialog_text">Updating...</string>
@@ -48,6 +48,10 @@
     <string name="schedule_event_keynote">Keynote</string>
     <string name="title_activity_abstract_figures">Abstract Figures</string>
     <string name="splash_data_warning">Data provided by INCF</string>
+    <string name="absract_menue">Abstracts</string>
+    <string name="schedule_menue">Schedule</string>
+    <string name="favorites_menue">Favorites</string>
+    <string name="welcome">Welcome to Neuroinformatics 2017</string>
     
     <string-array name="groupid2str">
         <item>D</item>

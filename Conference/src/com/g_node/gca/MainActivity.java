@@ -34,53 +34,7 @@ public class MainActivity extends Activity {
 		setContentView(R.layout.activity_main);
 		
 		getActionBar().setTitle(R.string.app_name);
-		//getActionBar().setIcon(getResources().getDrawable(R.drawable.icon_brain));
-		
-	
-		Button absBtn = (Button) findViewById(R.id.btn_abstracts);
-		absBtn.setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				Intent abstractIntent = new Intent(MainActivity.this, Abstracts.class);
-				startActivity(abstractIntent);
-				
-			}
-		});
-		
-		Button scheduleBtn = (Button) findViewById(R.id.btn_schedule);
-		scheduleBtn.setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				Intent scheduleIntent = new Intent(MainActivity.this, ScheduleMainActivity.class);
-				startActivity(scheduleIntent);
-				
-			}
-		});
-
-		
-		Button favBtn = (Button) findViewById(R.id.btn_favorites);
-		favBtn.setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				Intent favIntent = new Intent(MainActivity.this, FavoriteAbstracts.class);
-				startActivity(favIntent);
-				
-			}
-		});
-		
-		Button infBtn = (Button) findViewById(R.id.btn_info);
-		infBtn.setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				Intent infIntent = new Intent(MainActivity.this, GeneralActivity.class);
-				startActivity(infIntent);
-				
-			}
-		});
+		//getActionBar().setIcon(getResources().getDrawable(R.drawable.icon_brain));	
 		
 	}
 
@@ -98,8 +52,19 @@ public class MainActivity extends Activity {
 		case R.id.genInfo:
             Intent genInfo = new Intent(this, GeneralActivity.class);
             this.startActivity(genInfo);
+            return true;		
+		case R.id.abstracts_menue:
+			Intent abstractIntent = new Intent(MainActivity.this, Abstracts.class);
+			startActivity(abstractIntent);
             return true;
-        
+		case R.id.schedule_menue:
+			Intent scheduleIntent = new Intent(MainActivity.this, ScheduleMainActivity.class);
+			startActivity(scheduleIntent);
+            return true;
+		case R.id.favorites_menue:
+			Intent favIntent = new Intent(MainActivity.this, FavoriteAbstracts.class);
+			startActivity(favIntent);
+            return true;
 		case R.id.abtApp:
 		{
 			Builder aboutDialog = new AlertDialog.Builder(MainActivity.this);

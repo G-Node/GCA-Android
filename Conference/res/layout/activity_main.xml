@@ -3,63 +3,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#cbddff"
+    android:background="@drawable/splash_ni17"
     android:weightSum="3" >
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1.3"
-        android:orientation="horizontal"
-        android:gravity="bottom"
-        android:weightSum="3" >
     
-	    <Button
-	        android:id="@+id/btn_info"
-	        android:layout_width="0dp"
-	        android:layout_height="wrap_content"
-	        android:layout_weight="1"
-	        android:drawablePadding="10dp"
-	        android:drawableTop="@drawable/icon_info_btn"
-	        android:text="@string/info" />
-
-	    <Button
-	        android:id="@+id/btn_schedule"
-	        android:layout_width="0dp"
-	        android:layout_height="wrap_content"
-	        android:layout_weight="1"
-	        android:drawablePadding="10dp"
-	        android:drawableTop="@drawable/icon_schedule_btn2"
-	        android:text="@string/menu_button_schedule_text" />
-
-	    <Button
-	        android:id="@+id/btn_favorites"
-	        android:layout_width="0dp"
-	        android:layout_height="wrap_content"
-	        android:layout_weight="1"
-	        android:drawablePadding="10dp"
-	        android:drawableTop="@drawable/icon_star_btn"
-	        android:text="@string/menu_button_favorites_text" />
-
-		</LinearLayout>
-    
- <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="horizontal"
-        android:weightSum="3" >
-
-	    <Button
-	        android:id="@+id/btn_abstracts"
-	        android:layout_width="match_parent"
-	        android:layout_height="wrap_content"
-	        android:drawablePadding="10dp"
-	        android:drawableTop="@drawable/icon_paper"
-	        android:text="@string/menu_button_abstract_text" />
-    
-</LinearLayout>
-
+<TextView
+    android:id="@+id/main_data_warning"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignParentLeft="true"
+    android:layout_alignParentRight="true"
+    android:layout_alignParentTop="true"
+    android:gravity="center_horizontal"
+    android:text="@string/splash_data_warning"
+    android:textColor="#ffffff" />
 
 <LinearLayout
         android:layout_width="match_parent"
@@ -81,7 +37,15 @@
 			android:gravity="center"
             android:textAppearance="?android:attr/textAppearanceLarge" />
      
-     
 </LinearLayout>
+
+<TextView
+    android:id="@+id/welcome"
+    android:layout_width="match_parent"
+    android:layout_height="194dp"
+    android:gravity="center_horizontal"
+    android:text="@string/welcome"
+    android:textColor="#ffffff"
+    android:textSize="30dp" />
 
 </LinearLayout>
