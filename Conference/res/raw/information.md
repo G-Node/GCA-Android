@@ -24,10 +24,10 @@ Aug 20-21		 	8:00 - 17:30
 ###### PARTICIPATION, NAME TAGS
 Official conference name tags will be handed out at registration and will be required for admission to all conference functions. Participants who lose their name tags will have to pay a fee of 25EUR to obtain a replacement tag.
 
-######SOCIAL EVENTS
+###### SOCIAL EVENTS
 There will be a Cultural Malaysian Performance in the lecture hall August 20, at 17,30. Following the performance, there will be one complimentary welcome reception during the poster and demo session on August 20, at 18,00 and one complimentary reception during the second poster and demo session August 21, at 17,30.
 
-######TO THE VENUE
+###### TO THE VENUE
 Visitors arriving by plane at Kuala Lumpur International airport can take the express train. 
 KLIA Express is the fastest way to travel from KLIA to Kuala Lumpur, connecting the airport to the city centre in 28 minutes by stopping at KL Sentral. At KL Sentral, switch to the Rapid KL train arriving at Ampang Park station followed by an 8-minute short walk using the covered link bridge to arrive hotel. 
 
@@ -48,7 +48,7 @@ KLIA Express is the fastest way to travel from KLIA to Kuala Lumpur, connecting 
 * Dr. Rapahel Ritz, Max Planck Computing and Data Facility, Germany
 * Prof. Sharon Crook, Arizona State University, USA
 * Prof. Fadzil Hani, Universiti Teknologie PETRONAS, Malaysia
-* Dr. Naufal Saad, Universiti Teknologie PETRONAS, Malaysia
+* 	Dr. Naufal Saad, Universiti Teknologie PETRONAS, Malaysia
 
 ###### Registration Company
 Kuoni Destination Management
