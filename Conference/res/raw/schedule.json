@@ -1,416 +1,500 @@
 [
-  {
-    "title": "Welcome by Sabine Kunst, President of Humboldt-Universität zu Berlin",
-    "subtitle": "",
-    "start": "14:00",
-    "end": "14:10",
-    "date": "2016-09-21",
-    "authors": [],
-    "type": "talk"
-  },
-  {
-    "title": "Welcome by Andreas Herz, Speaker of the Bernstein Network Computational Neuroscience",
-    "subtitle": "",
-    "start": "14:10",
-    "end": "14:20",
-    "date": "2016-09-21",
-    "authors": [],
-    "type": "talk"
-  },
-  {
-    "title": "Opening Keynote Lecture",
-    "chair": "Michael Brecht",
-    "events": [
-      {
-        "title": "Scent and Sensibility: Navigating a Chemical Traile",
-		"abstract":"/7958f8ed-b556-484f-8735-a0681162f4d2",
-        "subtitle": "",
-        "start": "14:20",
-        "end": "15:05",
-        "date": "2016-09-21",
-        "authors": [
-          "Bard Ermentrout (University of Pittsburg, USA)"
-        ],
-        "type": "keynote"
-      }
-    ]
-  },
-  {
-    "title": "Presentation of the Valentino Braitenberg Award 2016",
-    "events": [
-      {
-        "title": "Opening of the award ceremony by Carla Braitenberg",
-        "subtitle": "on behalf of Andrea Zeppa (Autonome Provinz Bozen Südtirol)",
-        "start": "15:05",
-        "end": "",
-        "date": "2016-09-21",
-        "authors": [],
-        "type": "talk"
-      },
-      {
-        "title": "Laudation for the awardee by Christoph von der Malsburg",
-        "subtitle": "",
-        "start": "",
-        "end": "",
-        "date": "2016-09-21",
-        "authors": [],
-        "type": "talk"
-      },
-      {
-        "title": "Lecture by the Valentino Braitenberg Award Winner David Willshaw (Professor Emeritus, University of Edinburgh, UK)",
-        "subtitle": "",
-        "start": "",
-        "end": "15:50",
-        "date": "2016-09-21",
-        "authors": [],
-        "type": "talk"
-      }
-    ]
-  },
-  {
-    "title": "Poster session I",
-    "subtitle": "",
-    "start": "15:50",
-    "end": "19:00",
-    "date": "2016-09-21",
-    "type": "poster"
-  },
-  {
-    "title": "Public Evening Lecture",
-    "chair": "John-Dylan Haynes",
-    "events": [
-      {
-        "title": "Learning and Transfer: Lessons from Action Video Games",
-	"abstract":"/168ed324-4b87-4f89-b709-aa54f68b6368",
-        "subtitle": "",
-        "start": "20:00",
-        "end": "",
-        "date": "2016-09-21",
-        "authors": [
-          "Daphne Bavelier (University of Geneva, Switzerland and Rochester University, USA)"
-        ],
-        "type": "publicLecture"
-      }
-    ]
-  },
-  {
-    "title": "Session I",
-    "chair": "Andreas Herz",
-    "events": [
-      {
-        "title": "The Superposition of Object-Based and Rule-Based Representations in Inferotemporal (IT) Cortex",
-	"abstract":"/f3db35db-ca48-4d9c-b702-b4b3b5832baa",
-        "subtitle": "",
+    {
+        "title": "Welcome",
+        "subtitle": "Opening session by the Program committee chairs and the Minister of Education in Malaysia.",
         "start": "09:00",
-        "end": "09:45",
-        "date": "2016-09-22",
-        "authors": [
-          "Nicole Rust (University of Pennsylvania, USA)"
-        ],
-        "type": "keynote"
-      },
-      {
-        "title": "How Invariant Feature Selectivity Is Achieved in Cortex",
-	"abstract":"/9d23ae38-ee6d-4940-9baa-e2a5a1279bd5",
-        "subtitle": "",
-        "start": "09:45",
-        "end": "10:30",
-        "date": "2016-09-22",
-        "authors": [
-          "Tatyana Sharpee (Salk Institute for Biological Studies, La Jolla, USA)"
-        ],
+        "end": "09:20",
+        "date": "2017-08-20",
+        "authors": [],
         "type": "talk"
-      }
-    ]
-  },
-  {
-    "title": "Coffee break",
-    "start": "10:30",
-    "end": "11:00",
-    "date": "2016-09-22",
-    "type": "break"
-  },
-  {
-    "title": "Session II",
-    "chair": "Henning Sprekeler",
-    "events": [
-      {
-        "title": "A Flexible Code: Retinal Ganglion Cells Dynamically Switch between two Computations",
-	"abstract":"/728062d7-469d-4d9a-93e9-1d502976d45d",
+    },
+    {
+        "title": "Session 1 - Data standards and reproducibility",
+        "chair": "",
+        "events": [
+            {
+                "title": "Keynote: Variance is the spice of reproducible research",
+                "abstract":"",
+                "subtitle": "",
+                "start": "09:20",
+                "end": "09:50",
+                "date": "2017-08-20",
+                "authors": [
+                    "Satrajit S Ghosh"
+                ],
+                "type": "keynote"
+            },
+            {
+                "title": "Investigator presentation",
+                "abstract":"",
+                "subtitle": "",
+                "start": "09:50",
+                "end": "10:10",
+                "date": "2017-08-20",
+                "authors": [
+                    "Hugo Leroux"
+                ],
+                "type": "ip"
+            },
+            {
+                "title": "Keynote: Title TBA",
+                "abstract":"",
+                "subtitle": "",
+                "start": "10:10",
+                "end": "10:40",
+                "date": "2017-08-20",
+                "authors": [
+                    "Ferath Kherif"
+                ],
+                "type": "keynote"
+            }
+        ]
+    },
+    {
+        "title": "Coffee break",
+        "start": "10:40",
+        "end": "11:10",
+        "date": "2017-08-20",
+        "type": "food"
+    },
+    {
+        "title": "Session 2 - Science gateways and reproducible computing",
+        "chair": "",
+        "events": [
+            {
+                "title": "Keynote: Towards open reproducible neuroscience in the age of big data",
+                "abstract":"",
+                "subtitle": "",
+                "start": "11:10",
+                "end": "11:40",
+                "date": "2017-08-20",
+                "authors": [
+                    "Chris Gorgolewski"
+                ],
+                "type": "keynote"
+            },
+            {
+                "title": "Investigator presentation",
+                "abstract":"",
+                "subtitle": "",
+                "start": "11:40",
+                "end": "12:00",
+                "date": "2017-08-20",
+                "authors": [
+                    "Lalet Scaria"
+                ],
+                "type": "ip"
+            },
+            {
+                "title": "Investigator presentation",
+                "abstract":"",
+                "subtitle": "",
+                "start": "12:00",
+                "end": "12:20",
+                "date": "2017-08-20",
+                "authors": [
+                    "Alejandro de la Vega"
+                ],
+                "type": "ip"
+            }
+        ]
+    },
+    {
+        "title": "Roundtable discussion with speakers from session 1 and 2",
+        "abstract":"",
         "subtitle": "",
-        "start": "11:00",
-        "end": "11:15",
-        "date": "2016-09-22",
+        "start": "12:20",
+        "end": "13:00",
+        "date": "2017-08-20",
         "authors": [
-          "Stéphane Deny (Institut de la Vision, Paris, France)"
+            ""
         ],
-        "type": "talk"
-      },
-      {
-        "title": "Local Circuits Form Long-Ranging Spontaneous Correlations to Build Distributed Sensory Representations in the Early Developing Visual Cortex",
-	"abstract":"/6649fa44-57a4-4bcc-9353-fe85a5919111",
-        "subtitle": "",
-        "start": "11:15",
-        "end": "11:30",
-        "date": "2016-09-22",
-        "authors": [
-          "Bettina Hein (Frankfurt Institute for Advanced Studies (FIAS), Germany)"
-        ],
-        "type": "talk"
-      },
-      {
-        "title": "Principles Underlying Sensory Map Topography in Primary Visual Cortex",
-	"abstract":"/792df8b0-369b-4602-8e7e-33477c3e4d56",
-        "subtitle": "",
-        "start": "11:30",
-        "end": "11:45",
-        "date": "2016-09-22",
-        "authors": [
-          "Jens Kremkow (Institute for Theoretical Biology, Humboldt-University of Berlin & Neuroscience Research Center (NWFZ) Charité, Berlin, Germany)"
-        ],
-        "type": "talk"
-      },
-      {
-        "title": "Large-Scale Predictive Modeling: Principles and Examples from Affective Neuroscience (Chair: John-Dylan Haynes)",
-	"abstract":"/4a501573-6bee-4ab3-b8fe-204604047fec",
-        "subtitle": "",
-        "start": "11:45",
-        "end": "12:30",
-        "date": "2016-09-22",
-        "authors": [
-          "Tor Wager (University of Colorado at Boulder, USA)"
-        ],
-        "type": "talk"
-      }
-    ]
-  },
-  {
-    "title": "Poster session II",
-    "subtitle": "",
-    "start": "12:30",
-    "end": "15:30",
-    "date": "2016-09-22",
-    "type": "poster"
-  },
-  {
-    "title": "Session III",
-    "chair": "Susanne Schreiber)",
-    "events": [
-      {
-        "title": "Firing Rate Homeostasis in Freely Behaving Rodents",
-	"abstract":"/01f20e9d-f176-4903-91fc-0ac221ad9e8c",
-        "subtitle": "",
-        "start": "15:30",
-        "end": "16:15",
-        "date": "2016-09-22",
-        "authors": [
-          "Gina Turrigiano (Brandeis University, Waltham, USA)"
-        ],
-        "type": "keynote"
-      },
-      {
-        "title": "A Spike Timing Dependent Model of Dendritic Spine Plasticity and Turnover",
-	"abstract":"/b3917281-0a7b-4aef-9a2b-4a966ec49198",
-        "subtitle": "",
-        "start": "16:15",
-        "end": "16:30",
-        "date": "2016-09-22",
-        "authors": [
-          "Moritz Deger (Ecole Polytechnique Fédérale de Lausanne, Switzerland)"
-        ],
-        "type": "talk"
-      }
-    ]
-  },
-  {
-    "title": "Coffee break",
-    "start": "16:30",
-    "end": "17:00",
-    "date": "2016-09-22",
-    "type": "break"
-  },
-  {
-    "title": "Session IV:\"Bayes Debate\"",
-    "chair": "Matthias Bethge",
-    "events": [
-      {
-        "title": "We Are All Statisticians. Faking It Until We Make It",
-	"abstract":"/ad130f9e-40c5-4947-9ad7-a3fb8809deb4",
-        "subtitle": "",
-        "start": "17:00",
-        "end": "17:15",
-        "date": "2016-09-22",
-        "authors": [
-          "Konrad Kording (Northwestern University, Evanston, USA)"
-        ],
-        "type": "talk"
-      },
-      {
-        "title": "Bayes, the Brain, and the Future of Cognitive Science",
-        "subtitle": "",
-	"abstract":"/e5261287-c04a-4e0b-88c5-f32cfcbb80c7",
-        "start": "17:15",
-        "end": "17:30",
-        "date": "2016-09-22",
-        "authors": [
-          "Matteo Colombo (Tilburg University, Netherlands)"
-        ],
-        "type": "talk"
-      },
-      {
-        "title": "Bayesian Principles Underlying the Organisation of Neural Circuits",
-	"abstract":"/8584c9a7-6553-4ff5-8e3c-3839f2053ccf",
-        "subtitle": "",
-        "start": "17:30",
-        "end": "17:45",
-        "date": "2016-09-22",
-        "authors": [
-          "Máté Lengyel (University of Cambridge, UK)"
-        ],
-        "type": "talk"
-      },
-      {
-        "title": "Moderated Debate \"Information Processing in the Brain Is Bayesian\"",
-        "subtitle": "",
-        "start": "17:45",
-        "end": "",
-        "date": "2016-09-22",
-        "authors": [
-          ""
-        ],
-        "type": "talk"
-      }
-    ]
-  },
-  {
-    "title": "Conference Dinner at the Naturkundemuseum Berlin",
-    "start": "19:30",
-    "end": "",
-    "date": "2016-09-22",
-    "type": "break"
-  },
-  {
-    "title": "Session V",
-    "chair": "Philipp Hövel",
-    "events": [
-      {
-        "title": "Derivation of Neural Circuits from the Similarity Matching Principle",
-	"abstract":"/d46ab151-ac76-4f18-a7d9-b1a99d39d5d2",
-        "subtitle": "",
-        "start": "09:00",
-        "end": "09:45",
-        "date": "2016-09-23",
-        "authors": [
-          "Dmitri Chklovskii (Simons Foundation, New York City, USA)"
-        ],
-        "type": "talk"
-      },
-      {
-        "title": "Network Reconfiguration: Functional Role and Structural Predictors",
-	"abstract":"/56d8c369-5f20-45ad-b1af-5778dce2f5c8",
-        "subtitle": "",
-        "start": "09:45",
-        "end": "10:30",
-        "date": "2016-09-23",
-        "authors": [
-          "Danielle Bassett (University of Pennsylvania, USA)"
-        ],
-        "type": "talk"
-      }
-    ]
-  },
-  {
-    "title": "Coffee break",
-    "start": "10:30",
-    "end": "11:00",
-    "date": "2016-09-23",
-    "type": "break"
-  },
-  {
-    "title": "Session VI",
-    "chair": "Benjamin Lindner",
-    "events": [
-      {
-        "title": "Recording and Modeling Cellular-Activity Timing Relationships Spanning Brain Volumes in Mouse and Human",
-	"abstract":"/65d5d070-c40b-40a1-b238-0253b68ee833",
-        "subtitle": "",
-        "start": "11:00",
-        "end": "11:15",
-        "date": "2016-09-23",
-        "authors": [
-          "Logan Grosenick (Stanford University, Palo Alto, USA)"
-        ],
-        "type": "talk"
-      },
-      {
-        "title": "Balanced Networks with Excitatory and Inhibitory Clusters Reproduce Cortical Variability Dynamics In Vivo",
-	"abstract":"/5de7de1e-9971-4c81-aaf9-b64890958dcc",
-        "subtitle": "",
-        "start": "11:15",
-        "end": "11:30",
-        "date": "2016-09-23",
-        "authors": [
-          "Martin Nawrot (Universität Köln, Germany)"
-        ],
-        "type": "talk"
-      },
-      {
-        "title": "The Organization of Adaptation in Auditory Receptor Neurons of Drosophila",
-	"abstract":"/10c8e9bd-cf69-4547-a832-95f7b21808e3",
-        "subtitle": "",
-        "start": "11:30",
-        "end": "11:45",
-        "date": "2016-09-23",
-        "authors": [
-          "Jan Clemens (Princeton University, USA)"
-        ],
-        "type": "talk"
-      },
-      {
-        "title": "Presentation of the Brains4Brains Award 2016 and Lecture by the Awardee Anthony Jang (National Institutes of Health, Bethesda, USA)",
-        "subtitle": "Effects of Prefrontal and Medial-Temporal Brain Lesions on Learning a Bayesian Prior Belief on Reversals",
-        "start": "11:45",
-        "end": "12:10",
-        "date": "2016-09-23",
-        "authors": [""],
-        "type": "talk"
-      }
-    ]
-  },
-  {
-    "title": "Final Keynote Lecture",
-    "chair": "Michael Brecht",
-    "events": [
-      {
-        "title": "Comprehensive Anatomical Classification of Retinal Ganglion Cells",
-        "subtitle": "",
-	"abstract":"/e10786a4-1efc-4127-b19c-d9488f53dbd6'",
-        "start": "12:10",
-        "end": "12:55",
-        "date": "2016-09-23",
-        "authors": [
-          "Sebastian Seung (Princeton University, USA)"
-        ],
-        "type": "keynote"
-      },
-      {
-        "title": "Closing remarks",
-        "subtitle": "",
-        "start": "12:55",
-        "end": "",
-        "date": "2016-09-23",
-        "authors": [""],
-        "type": "talk"
-      },
-      {
-        "title": "Announcement of the Bernstein Conference 2017 in Göttingen",
-        "subtitle": "",
+        "type": "discussion"
+    },
+    {
+        "title": "Lunch",
         "start": "13:00",
-        "end": "",
-        "date": "2016-09-23",
-        "authors": [""],
+        "end": "14:00",
+        "date": "2017-08-20",
+        "type": "food"
+    },
+    {
+        "title": "Session 3 - Informatics for brain modeling",
+        "chair": "",
+        "events": [
+            {
+                "title": "Keynote: Bridging clinical and cognitive neuroscience with large-scale computational modeling",
+                "abstract":"",
+                "subtitle": "",
+                "start": "14:00",
+                "end": "14:30",
+                "date": "2017-08-20",
+                "authors": [
+                    "Randy McIntosh"
+                ],
+                "type": "keynote"
+            },
+            {
+                "title": "Investigator presentation",
+                "abstract":"",
+                "subtitle": "",
+                "start": "14:30",
+                "end": "14:50",
+                "date": "2017-08-20",
+                "authors": [
+                    "Devin Bayly"
+                ],
+                "type": "ip"
+            },
+            {
+                "title": "Keynote: Open source tools and resources for collaborative modeling of brain function",
+                "abstract":"",
+                "subtitle": "",
+                "start": "14:50",
+                "end": "15:20",
+                "date": "2017-08-20",
+                "authors": [
+                    "Angus Silver"
+                ],
+                "type": "keynote"
+            }
+        ]
+    },
+    {
+        "title": "Roundtable discussion with speakers from session 3",
+        "abstract":"",
+        "subtitle": "",
+        "start": "15:20",
+        "end": "16:00",
+        "date": "2017-08-20",
+        "authors": [
+            ""
+        ],
+        "type": "discussion"
+    },
+    {
+        "title": "Coffee break",
+        "start": "16:00",
+        "end": "16:30",
+        "date": "2017-08-20",
+        "type": "food"
+    },
+    {
+        "title": "Session 4 - Novel analytics for clinical data",
+        "chair": "",
+        "events": [
+            {
+                "title": "Keynote: The upside and downside of being highly connected in the brain",
+                "abstract":"",
+                "subtitle": "",
+                "start": "16:30",
+                "end": "17:00",
+                "date": "2017-08-20",
+                "authors": [
+                    "Alex Fornito"
+                ],
+                "type": "keynote"
+            },
+            {
+                "title": "Investigator presentation",
+                "abstract":"",
+                "subtitle": "",
+                "start": "17:00",
+                "end": "17:20",
+                "date": "2017-08-20",
+                "authors": [
+                    "Liew Boon Seng"
+                ],
+                "type": "ip"
+            },
+            {
+                "title": "Investigator presentation",
+                "abstract":"",
+                "subtitle": "",
+                "start": "17:20",
+                "end": "17:40",
+                "date": "2017-08-20",
+                "authors": [
+                    "Xinli You"
+                ],
+                "type": "ip"
+            }
+        ]
+    },
+    {
+        "title": "Roundtable discussion with speakers from session 4",
+        "abstract":"",
+        "subtitle": "",
+        "start": "17:40",
+        "end": "18:20",
+        "date": "2017-08-20",
+        "authors": [
+            ""
+        ],
+        "type": "discussion"
+    },
+    {
+        "title": "Poster session and reception",
+        "abstract":"",
+        "subtitle": "",
+        "start": "18:20",
+        "end": "21:00",
+        "date": "2017-08-20",
+        "authors": [
+            ""
+        ],
+        "type": "poster"
+    },
+    {
+        "title": "Malaysian node presentation",
+        "subtitle": "",
+        "start": "09:00",
+        "end": "09:20",
+        "date": "2017-08-21",
+        "authors": [],
         "type": "talk"
-      }
-    ]
-  }
+    },
+    {
+        "title": "Session 5 - Large-scale databasing and mega-analyses",
+        "chair": "",
+        "events": [
+            {
+                "title": "Keynote: Title TBA",
+                "abstract":"",
+                "subtitle": "",
+                "start": "09:20",
+                "end": "09:50",
+                "date": "2017-08-21",
+                "authors": [
+                    "Jessica Turner"
+                ],
+                "type": "keynote"
+            },
+            {
+                "title": "Investigator presentation",
+                "abstract":"",
+                "subtitle": "",
+                "start": "09:50",
+                "end": "10:10",
+                "date": "2017-08-21",
+                "authors": [
+                    "Federico Raimondo"
+                ],
+                "type": "ip"
+            },
+            {
+                "title": "Keynote: Automated reconstruction of synaptic-resolution neural wiring diagrams using very large scale computation and machine learning",
+                "abstract":"",
+                "subtitle": "",
+                "start": "10:10",
+                "end": "10:40",
+                "date": "2017-08-21",
+                "authors": [
+                    "Viren Jain"
+                ],
+                "type": "keynote"
+            }
+        ]
+    },
+    {
+        "title": "Coffee break",
+        "start": "10:40",
+        "end": "11:10",
+        "date": "2017-08-21",
+        "type": "food"
+    },
+    {
+        "title": "Session 6 - Machine learning and data mining",
+        "chair": "",
+        "events": [
+            {
+                "title": "Keynote: Mapping the neural substrates of behavior using computer vision",
+                "abstract":"",
+                "subtitle": "",
+                "start": "11:10",
+                "end": "11:40",
+                "date": "2017-08-21",
+                "authors": [
+                    "Kristin Branson"
+                ],
+                "type": "keynote"
+            },
+            {
+                "title": "Investigator presentation",
+                "abstract":"",
+                "subtitle": "",
+                "start": "11:40",
+                "end": "12:00",
+                "date": "2017-08-21",
+                "authors": [
+                    "Ahmed Rauf Subhani"
+                ],
+                "type": "ip"
+            },
+            {
+                "title": "Investigator presentation",
+                "abstract":"",
+                "subtitle": "",
+                "start": "12:00",
+                "end": "12:20",
+                "date": "2017-08-21",
+                "authors": [
+                    "Sheng Hung Chung"
+                ],
+                "type": "ip"
+            }
+        ]
+    },
+    {
+        "title": "Roundtable discussion with speakers from session 5 and 6",
+        "abstract":"",
+        "subtitle": "",
+        "start": "12:20",
+        "end": "13:00",
+        "date": "2017-08-21",
+        "authors": [
+            ""
+        ],
+        "type": "discussion"
+    },
+    {
+        "title": "Lunch",
+        "start": "13:00",
+        "end": "14:00",
+        "date": "2017-08-21",
+        "type": "food"
+    },
+    {
+        "title": "Session 7 - Collaborative neuroscience knowledge building tools",
+        "chair": "",
+        "events": [
+            {
+                "title": "Keynote: Making neuroscience FAIR",
+                "abstract":"",
+                "subtitle": "",
+                "start": "14:00",
+                "end": "14:30",
+                "date": "2017-08-21",
+                "authors": [
+                    "Maryann Martone"
+                ],
+                "type": "keynote"
+            },
+            {
+                "title": "Investigator presentation",
+                "abstract":"",
+                "subtitle": "",
+                "start": "14:30",
+                "end": "14:50",
+                "date": "2017-08-21",
+                "authors": [
+                    "Markus Butz-Ostendorf"
+                ],
+                "type": "ip"
+            },
+            {
+                "title": "Keynote: Delivery open data, tools and knowledge on a timeline",
+                "abstract":"",
+                "subtitle": "",
+                "start": "14:50",
+                "end": "15:20",
+                "date": "2017-08-21",
+                "authors": [
+                    "Lydia Ng"
+                ],
+                "type": "keynote"
+            },
+            {
+                "title": "Coffee break",
+                "start": "15:20",
+                "end": "15:50",
+                "date": "2017-08-21",
+                "type": "food"
+            },
+            {
+                "title": "Keynote: FAIR digital research assets: beyond the acronym",
+                "abstract":"",
+                "subtitle": "",
+                "start": "15:50",
+                "end": "16:20",
+                "date": "2017-08-21",
+                "authors": [
+                    "Susanna Sansone"
+                ],
+                "type": "keynote"
+            },
+            {
+                "title": "Investigator presentation",
+                "abstract":"",
+                "subtitle": "",
+                "start": "16:20",
+                "end": "16:40",
+                "date": "2017-08-21",
+                "authors": [
+                    "Anita Bandrowski"
+                ],
+                "type": "ip"
+            }
+        ]
+    },
+    {
+        "title": "Roundtable discussion with speakers from session 7",
+        "abstract":"",
+        "subtitle": "",
+        "start": "16:40",
+        "end": "17:20",
+        "date": "2017-08-21",
+        "authors": [
+            ""
+        ],
+        "type": "discussion"
+    },
+    {
+        "title": "Congress 2018 presentation",
+        "abstract":"",
+        "subtitle": "",
+        "start": "17:20",
+        "end": "17:35",
+        "date": "2017-08-21",
+        "authors": [
+            ""
+        ],
+        "type": "talk"
+    },
+    {
+        "title": "Closing remarks",
+        "abstract":"",
+        "subtitle": "",
+        "start": "17:35",
+        "end": "17:50",
+        "date": "2017-08-21",
+        "authors": [
+            ""
+        ],
+        "type": "talk"
+    },
+    {
+        "title": "Cultural Malaysian performance",
+        "abstract":"",
+        "subtitle": "",
+        "start": "17:50",
+        "end": "18:20",
+        "date": "2017-08-21",
+        "authors": [
+            ""
+        ],
+        "type": "talk"
+    },
+    {
+        "title": "Poster session and reception",
+        "abstract":"",
+        "subtitle": "",
+        "start": "18:20",
+        "end": "21:00",
+        "date": "2017-08-21",
+        "authors": [
+            ""
+        ],
+        "type": "poster"
+    }
 ]
