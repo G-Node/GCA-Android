@@ -219,8 +219,11 @@ public class ScheduleJSONParse {
 				String track_event_date = trackEventObject.optString("date");
 				Log.i(LOG_TAG, "Track Event - date: " + track_event_date);
 				
-				String track_event_authors = trackEventObject.getJSONArray("authors").toString().replace("\"", "").replace("[", "").replace("]", "");
-				Log.i(LOG_TAG, "Track Event - Authors: " + track_event_authors);
+				String track_event_authors = "";
+				if (trackEventObject.has("authors")) {
+						track_event_authors = trackEventObject.getJSONArray("authors").toString().replace("\"", "").replace("[", "").replace("]", "");
+						Log.i(LOG_TAG, "Track Event - Authors: " + track_event_authors);
+				}
 				
 				String track_event_type = trackEventObject.optString("type");
 				Log.i(LOG_TAG, "Track Event - Type: " + track_event_type);
