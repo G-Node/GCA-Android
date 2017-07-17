@@ -69,7 +69,7 @@ public class MainActivity extends Activity {
 		{
 			Builder aboutDialog = new AlertDialog.Builder(MainActivity.this);
 			aboutDialog.setTitle("About the App:")
-			.setMessage(Html.fromHtml("The <b>G-Node Conference Application</b> for Android serves as an electronic conference guide for participants with included proceedings. <br><br> &#169; <b>German Neuroinformatics Node</b><br><br>Created By: <b>Shumail Mohy-ud-Din</b> and <b>Christian Garbers</b><br>(as part of GSoC 2014)"))
+			.setMessage(Html.fromHtml("The <b>G-Node Conference Application</b> for Android serves as an electronic conference guide with included proceedings. <br><br> &#169; <b>German Neuroinformatics Node</b> <br>Data provided by INCF<br><br>Created By: <b>Shumail Mohy-ud-Din</b> and <b>Christian Garbers</b><br>(as part of GSoC 2014)"))
 			.setNeutralButton(android.R.string.ok,
 					new DialogInterface.OnClickListener() {
 				public void onClick(DialogInterface dialog, int id) {
