@@ -15,7 +15,7 @@ import android.util.Log;
 import android.view.Window;
 
 import com.g_node.gca.schedule.ScheduleJSONParse;
-import com.g_node.ni12017.R;
+import com.g_node.bc17.R;
 
 public class SplashScreen extends Activity {
 	

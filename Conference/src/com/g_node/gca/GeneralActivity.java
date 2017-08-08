@@ -19,7 +19,7 @@ import android.text.Html;
 import android.view.MenuItem;
 import android.webkit.WebView;
 
-import com.g_node.ni12017.R;
+import com.g_node.bc17.R;
 
 public class GeneralActivity extends Activity {
     WebView text;

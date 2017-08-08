@@ -8,7 +8,7 @@ package com.g_node.gca.newsroom;
 
 import java.io.FileNotFoundException;
 
-import com.g_node.ni12017.R;
+import com.g_node.bc17.R;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
