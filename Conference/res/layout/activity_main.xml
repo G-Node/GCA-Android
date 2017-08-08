@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/splash_ni15"
+    android:background="@drawable/splash_bc15"
     android:weightSum="3" >
     
 <LinearLayout
@@ -34,7 +34,6 @@
     android:layout_height="194dp"
     android:gravity="center_horizontal"
     android:text="@string/welcome"
-    android:textColor="#ffffff"
     android:textSize="30dp" />
 
 </LinearLayout>
