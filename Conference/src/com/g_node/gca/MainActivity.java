@@ -65,6 +65,10 @@ public class MainActivity extends Activity {
 			Intent favIntent = new Intent(MainActivity.this, FavoriteAbstracts.class);
 			startActivity(favIntent);
             return true;
+		case R.id.map_menue:
+			Intent mapIntent = new Intent(MainActivity.this, MapActivity.class);
+			startActivity(mapIntent);
+            return true;
 		case R.id.abtApp:
 		{
 			Builder aboutDialog = new AlertDialog.Builder(MainActivity.this);

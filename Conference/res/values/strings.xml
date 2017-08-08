@@ -51,6 +51,7 @@
     <string name="absract_menue">Abstracts</string>
     <string name="schedule_menue">Schedule</string>
     <string name="favorites_menue">Favorites</string>
+    <string name="map_menue">Map</string>
     <string name="welcome">Welcome to the Bernstein Conference 2017</string>
     
     <string-array name="groupid2str">
