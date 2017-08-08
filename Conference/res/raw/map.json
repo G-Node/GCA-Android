@@ -1,57 +1,46 @@
 [
     {
-        "description": "HU Hauptgebäude",
-        "name": "Main Conference", 
+        "ExtendedData": "",
+        "name": "Central Lecture Hall (ZHG)",
+        "description": "Main Conference and Workshops",
         "point": {
-            "lat": 52.517657, 
-            "long": 13.393776
-        }, 
-        "type": 1,
-        "zoomto": 1,
-	"cid" : "510160837290046745"
-    }, 
-    {
-        "description": "Seminargebäude am Hegelplatz, Dorotheenstr. 24", 
-        "name": "Workshops", 
-        "point": {
-            "lat": 52.519442, 
-            "long": 13.392433
-        }, 
-        "type": 1,
-        "zoomto": 1,
-	"cid": "459380363919386213"
-    }, 
-    {
-        "description": "", 
-        "name": "Copy Shop", 
-        "point": {
-            "lat": 52.520119, 
-            "long": 13.391854
-        }, 
-        "type": 1,
-        "zoomto": 1,
-	"cid" : "9715630728399769598"
-    }, 
-    {
-        "description": "Philippstr. 13 Haus 4", 
-        "name": "PhD Symposium", 
-        "point": {
-            "lat": 52.525393, 
-            "long": 13.381736
-        }, 
-        "type": 1,
-        "zoomto": 1,
-	"cid": "5319197376176516414"
+            "lat": 51.542262,
+            "long": 9.935886
+        },
+        "type": 0,
+        "zoomto": 1
     },
     {
-        "description": "Naturkundemuseum, Invalidenstr. 43,", 
-        "name": "Bernstein Conference Dinner", 
+        "ExtendedData": "",
+        "name": "Alte Mensa",
+        "description": "Public Lecture and Conference Dinner",
         "point": {
-            "lat": 52.530216, 
-            "long": 13.379403
-        }, 
-        "type": 1,
-        "zoomto": 1,
-	"cid": "5319197376176516414"
+            "lat": 51.533442,
+            "long": 9.937631
+        },
+        "type": 0,
+        "zoomto": 1
+    },
+    {
+        "ExtendedData": "",
+        "name": "Alte Mensa",
+        "description": "Conference Dinner",
+        "point": {
+            "lat": 51.533442,
+            "long": 9.937631
+        },
+        "type": 5,
+        "zoomto": 1
+    },
+    {
+        "ExtendedData": "",
+        "name": "Göttingen Hbf",
+        "description": "main station",
+        "point": {
+            "lat": 51.536548,
+            "long": 9.926891
+        },
+        "type": 4,
+        "zoomto": 1
     }
 ]
