@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">NI17</string>
+    <string name="app_name">BC17</string>
     <string name="hello_world">Hello world!</string>
     <string name="sync_url">http://10.153.175.47:8080/gnode/abstracts_up.json</string>
 	<string name="old_dummy_sync_time">2015-07-09T08:24:50.833Z</string>
@@ -51,7 +51,7 @@
     <string name="absract_menue">Abstracts</string>
     <string name="schedule_menue">Schedule</string>
     <string name="favorites_menue">Favorites</string>
-    <string name="welcome">Welcome to Neuroinformatics 2017</string>
+    <string name="welcome">Welcome to the Bernstein Conference 2017</string>
     
     <string-array name="groupid2str">
         <item>D</item>
