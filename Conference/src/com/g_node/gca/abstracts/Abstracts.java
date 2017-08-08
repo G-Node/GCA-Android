@@ -42,7 +42,7 @@ import android.widget.FilterQueryProvider;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.g_node.ni17.R;
+import com.g_node.ni12017.R;
 
 public class Abstracts extends Activity {
 	

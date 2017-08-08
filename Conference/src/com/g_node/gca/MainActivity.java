@@ -24,7 +24,7 @@ import com.g_node.gca.abstracts.FavoriteAbstracts;
 import com.g_node.gca.map.MapActivity;
 import com.g_node.gca.newsroom.NewsRoomActivity;
 import com.g_node.gca.schedule.ScheduleMainActivity;
-import com.g_node.ni17.R;
+import com.g_node.ni12017.R;
 
 public class MainActivity extends Activity {
 	

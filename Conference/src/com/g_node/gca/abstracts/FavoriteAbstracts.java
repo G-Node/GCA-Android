@@ -17,7 +17,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.g_node.ni17.R;
+import com.g_node.ni12017.R;
 
 public class FavoriteAbstracts extends Activity {
 	
