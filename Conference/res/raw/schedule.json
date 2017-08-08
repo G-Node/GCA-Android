@@ -1,500 +1,438 @@
 [
-    {
-        "title": "Welcome",
-        "subtitle": "Opening session by the Program committee chairs and the Minister of Education in Malaysia.",
-        "start": "09:00",
-        "end": "09:20",
-        "date": "2017-08-20",
-        "authors": [],
-        "type": "talk"
-    },
-    {
-        "title": "Session 1 - Data standards and reproducibility",
-        "chair": "",
-        "events": [
-            {
-                "title": "Keynote: Variance is the spice of reproducible research",
-                "abstract":"",
-                "subtitle": "",
-                "start": "09:20",
-                "end": "09:50",
-                "date": "2017-08-20",
-                "authors": [
-                    "Satrajit S Ghosh"
-                ],
-                "type": "keynote"
-            },
-            {
-                "title": "Investigator presentation",
-                "abstract":"",
-                "subtitle": "",
-                "start": "09:50",
-                "end": "10:10",
-                "date": "2017-08-20",
-                "authors": [
-                    "Hugo Leroux"
-                ],
-                "type": "ip"
-            },
-            {
-                "title": "Keynote: Title TBA",
-                "abstract":"",
-                "subtitle": "",
-                "start": "10:10",
-                "end": "10:40",
-                "date": "2017-08-20",
-                "authors": [
-                    "Ferath Kherif"
-                ],
-                "type": "keynote"
-            }
-        ]
-    },
-    {
-        "title": "Coffee break",
-        "start": "10:40",
-        "end": "11:10",
-        "date": "2017-08-20",
-        "type": "food"
-    },
-    {
-        "title": "Session 2 - Science gateways and reproducible computing",
-        "chair": "",
-        "events": [
-            {
-                "title": "Keynote: Towards open reproducible neuroscience in the age of big data",
-                "abstract":"",
-                "subtitle": "",
-                "start": "11:10",
-                "end": "11:40",
-                "date": "2017-08-20",
-                "authors": [
-                    "Chris Gorgolewski"
-                ],
-                "type": "keynote"
-            },
-            {
-                "title": "Investigator presentation",
-                "abstract":"",
-                "subtitle": "",
-                "start": "11:40",
-                "end": "12:00",
-                "date": "2017-08-20",
-                "authors": [
-                    "Lalet Scaria"
-                ],
-                "type": "ip"
-            },
-            {
-                "title": "Investigator presentation",
-                "abstract":"",
-                "subtitle": "",
-                "start": "12:00",
-                "end": "12:20",
-                "date": "2017-08-20",
-                "authors": [
-                    "Alejandro de la Vega"
-                ],
-                "type": "ip"
-            }
-        ]
-    },
-    {
-        "title": "Roundtable discussion with speakers from session 1 and 2",
-        "abstract":"",
+  {
+    "title": "OPENING SESSION",
+    "subtitle": "",
+    "chair": "Fred Wolf",
+    "events": [
+      {
+        "title": "Welcome by Ulf Diederichsen, Vice-President for Research, University of Goettingen",
         "subtitle": "",
-        "start": "12:20",
-        "end": "13:00",
-        "date": "2017-08-20",
-        "authors": [
-            ""
-        ],
-        "type": "discussion"
-    },
-    {
-        "title": "Lunch",
         "start": "13:00",
-        "end": "14:00",
-        "date": "2017-08-20",
-        "type": "food"
-    },
-    {
-        "title": "Session 3 - Informatics for brain modeling",
-        "chair": "",
-        "events": [
-            {
-                "title": "Keynote: Bridging clinical and cognitive neuroscience with large-scale computational modeling",
-                "abstract":"",
-                "subtitle": "",
-                "start": "14:00",
-                "end": "14:30",
-                "date": "2017-08-20",
-                "authors": [
-                    "Randy McIntosh"
-                ],
-                "type": "keynote"
-            },
-            {
-                "title": "Investigator presentation",
-                "abstract":"",
-                "subtitle": "",
-                "start": "14:30",
-                "end": "14:50",
-                "date": "2017-08-20",
-                "authors": [
-                    "Devin Bayly"
-                ],
-                "type": "ip"
-            },
-            {
-                "title": "Keynote: Open source tools and resources for collaborative modeling of brain function",
-                "abstract":"",
-                "subtitle": "",
-                "start": "14:50",
-                "end": "15:20",
-                "date": "2017-08-20",
-                "authors": [
-                    "Angus Silver"
-                ],
-                "type": "keynote"
-            }
-        ]
-    },
-    {
-        "title": "Roundtable discussion with speakers from session 3",
-        "abstract":"",
+        "end": "",
+        "date": "2017-09-13",
+        "authors": [
+          "Ulf Diederichsen"
+        ],
+        "type": "talk",
+        "abstract": ""
+      },
+      {
+        "title": "Welcome by Andreas Herz",
+        "subtitle": "Chairman of the Bernstein Network Computational Neuroscience",
+        "start": "13:05",
+        "end": "",
+        "date": "2017-09-13",
+        "authors": [
+          "Andreas Herz"
+        ],
+        "type": "talk",
+        "abstract": ""
+      },
+      {
+        "title": "Keynote Lecture: The stabilized supralinear network, or, the importance of being loosely balanced",
         "subtitle": "",
-        "start": "15:20",
+        "start": "13:15",
+        "end": "14:00",
+        "location": "",
+        "date": "2017-09-13",
+        "authors": [
+          "Ken Miller"
+        ],
+        "type": "talk",
+        "abstract": ""
+      }
+    ]
+  },
+  {
+    "title": "COMPUTATIONAL NEUROSCIENCE OF LEARNING AND MEMORY",
+    "subtitle": "",
+    "chair": "Claudia Clopath",
+    "events": [
+      {
+        "title": "Attractor dynamics in networks with learning rules inferred from data",
+        "subtitle": "",
+        "start": "14:00",
+        "end": "14:45",
+        "date": "2017-09-13",
+        "authors": [
+          "Nicolas Brunel "
+        ],
+        "type": "talk",
+        "abstract": ""
+      },
+      {
+        "title": "Control of variability in motor learning",
+        "subtitle": "",
+        "start": "14:45",
+        "end": "15:30",
+        "date": "2017-09-13",
+        "authors": [
+          "Adrienne Fairhall "
+        ],
+        "type": "talk",
+        "abstract": ""
+      },
+      {
+        "title": "Coffee break",
+        "subtitle": "",
+        "start": "15:30",
         "end": "16:00",
-        "date": "2017-08-20",
-        "authors": [
-            ""
-        ],
-        "type": "discussion"
-    },
-    {
-        "title": "Coffee break",
+        "date": "2017-09-13",
+        "authors": [],
+        "type": "food",
+        "abstract": ""
+      },
+      {
+        "title": "Effects of short-term plasticity on the memory lifetime of recurrent neural circuits",
+        "subtitle": "",
         "start": "16:00",
+        "end": "16:15",
+        "date": "2017-09-13",
+        "authors": [
+          "Sofia Jativa "
+        ],
+        "type": "talk",
+        "abstract": ""
+      },
+      {
+        "title": "Sequential neuromodulation of Hebbian plasticity offers a mechanism for effective reward-based navigation",
+        "subtitle": "",
+        "start": "16:15",
         "end": "16:30",
-        "date": "2017-08-20",
-        "type": "food"
-    },
-    {
-        "title": "Session 4 - Novel analytics for clinical data",
-        "chair": "",
-        "events": [
-            {
-                "title": "Keynote: The upside and downside of being highly connected in the brain",
-                "abstract":"",
-                "subtitle": "",
-                "start": "16:30",
-                "end": "17:00",
-                "date": "2017-08-20",
-                "authors": [
-                    "Alex Fornito"
-                ],
-                "type": "keynote"
-            },
-            {
-                "title": "Investigator presentation",
-                "abstract":"",
-                "subtitle": "",
-                "start": "17:00",
-                "end": "17:20",
-                "date": "2017-08-20",
-                "authors": [
-                    "Liew Boon Seng"
-                ],
-                "type": "ip"
-            },
-            {
-                "title": "Investigator presentation",
-                "abstract":"",
-                "subtitle": "",
-                "start": "17:20",
-                "end": "17:40",
-                "date": "2017-08-20",
-                "authors": [
-                    "Xinli You"
-                ],
-                "type": "ip"
-            }
-        ]
-    },
-    {
-        "title": "Roundtable discussion with speakers from session 4",
-        "abstract":"",
-        "subtitle": "",
-        "start": "17:40",
-        "end": "18:20",
-        "date": "2017-08-20",
+        "date": "2017-09-13",
         "authors": [
-            ""
+          "Sara Zanonne "
         ],
-        "type": "discussion"
-    },
-    {
-        "title": "Poster session and reception",
-        "abstract":"",
+        "type": "talk",
+        "abstract": ""
+      },
+      {
+        "title": "Spiking neurons can discover predictive features by aggregate-label learning",
         "subtitle": "",
-        "start": "18:20",
-        "end": "21:00",
-        "date": "2017-08-20",
+        "start": "16:30",
+        "end": "17:15",
+        "date": "2017-09-13",
         "authors": [
-            ""
+          "Robert Guetig "
         ],
-        "type": "poster"
-    },
-    {
-        "title": "Malaysian node presentation",
+        "type": "talk",
+        "abstract": ""
+      },
+      {
+        "title": "Poster Session I",
+        "subtitle": "",
+        "start": "17:15",
+        "end": "19:45",
+        "location": "",
+        "date": "2017-09-13",
+        "authors": [],
+        "type": "poster",
+        "abstract": ""
+      },
+      {
+        "title": "The Funder’s Hour",
+        "subtitle": "HFSP: Funding International Research Collaborations in the Life Sciences",
+        "start": "17:30",
+        "end": "18:30",
+        "location": "Hörsaal 105",
+        "date": "2017-09-13",
+        "authors": [
+          "Barbara Pauly and Jérémie Barral "
+        ],
+        "type": "talk",
+        "abstract": ""
+      },
+      {
+        "title": "Public Lecture (in German): Gehirn-Maschine-Verbindungen: Wem nutzen sie?",
+        "subtitle": "",
+        "start": "20:00",
+        "end": "",
+        "location": "Alte Mensa, Wilhelmsplatz 3",
+        "date": "2017-09-13",
+        "authors": [
+          "Niels Birbaumer"
+        ],
+        "type": "talk",
+        "abstract": ""
+      }
+    ]
+  },
+  {
+    "title": "SENSORY NEUROSCIENCE",
+    "subtitle": "",
+    "chair": "Laura Busse",
+    "events": [
+      {
+        "title": "Understanding retinal response through the lens of prediction",
         "subtitle": "",
         "start": "09:00",
-        "end": "09:20",
-        "date": "2017-08-21",
-        "authors": [],
-        "type": "talk"
-    },
-    {
-        "title": "Session 5 - Large-scale databasing and mega-analyses",
-        "chair": "",
-        "events": [
-            {
-                "title": "Keynote: Title TBA",
-                "abstract":"",
-                "subtitle": "",
-                "start": "09:20",
-                "end": "09:50",
-                "date": "2017-08-21",
-                "authors": [
-                    "Jessica Turner"
-                ],
-                "type": "keynote"
-            },
-            {
-                "title": "Investigator presentation",
-                "abstract":"",
-                "subtitle": "",
-                "start": "09:50",
-                "end": "10:10",
-                "date": "2017-08-21",
-                "authors": [
-                    "Federico Raimondo"
-                ],
-                "type": "ip"
-            },
-            {
-                "title": "Keynote: Automated reconstruction of synaptic-resolution neural wiring diagrams using very large scale computation and machine learning",
-                "abstract":"",
-                "subtitle": "",
-                "start": "10:10",
-                "end": "10:40",
-                "date": "2017-08-21",
-                "authors": [
-                    "Viren Jain"
-                ],
-                "type": "keynote"
-            }
-        ]
-    },
-    {
+        "end": "09:45",
+        "date": "2017-09-14",
+        "authors": [
+          "Stephanie Palmer "
+        ],
+        "type": "talk",
+        "abstract": ""
+      },
+      {
+        "title": "Principles of local and long-range organisation of cortical circuits",
+        "subtitle": "",
+        "start": "09:45",
+        "end": "10:30",
+        "date": "2017-09-14",
+        "authors": [
+          "Tom Mrsic-Flogel "
+        ],
+        "type": "talk",
+        "abstract": ""
+      },
+      {
         "title": "Coffee break",
-        "start": "10:40",
-        "end": "11:10",
-        "date": "2017-08-21",
-        "type": "food"
-    },
-    {
-        "title": "Session 6 - Machine learning and data mining",
-        "chair": "",
-        "events": [
-            {
-                "title": "Keynote: Mapping the neural substrates of behavior using computer vision",
-                "abstract":"",
-                "subtitle": "",
-                "start": "11:10",
-                "end": "11:40",
-                "date": "2017-08-21",
-                "authors": [
-                    "Kristin Branson"
-                ],
-                "type": "keynote"
-            },
-            {
-                "title": "Investigator presentation",
-                "abstract":"",
-                "subtitle": "",
-                "start": "11:40",
-                "end": "12:00",
-                "date": "2017-08-21",
-                "authors": [
-                    "Ahmed Rauf Subhani"
-                ],
-                "type": "ip"
-            },
-            {
-                "title": "Investigator presentation",
-                "abstract":"",
-                "subtitle": "",
-                "start": "12:00",
-                "end": "12:20",
-                "date": "2017-08-21",
-                "authors": [
-                    "Sheng Hung Chung"
-                ],
-                "type": "ip"
-            }
-        ]
-    },
-    {
-        "title": "Roundtable discussion with speakers from session 5 and 6",
-        "abstract":"",
         "subtitle": "",
-        "start": "12:20",
-        "end": "13:00",
-        "date": "2017-08-21",
-        "authors": [
-            ""
-        ],
-        "type": "discussion"
-    },
-    {
-        "title": "Lunch",
-        "start": "13:00",
-        "end": "14:00",
-        "date": "2017-08-21",
-        "type": "food"
-    },
-    {
-        "title": "Session 7 - Collaborative neuroscience knowledge building tools",
-        "chair": "",
-        "events": [
-            {
-                "title": "Keynote: Making neuroscience FAIR",
-                "abstract":"",
-                "subtitle": "",
-                "start": "14:00",
-                "end": "14:30",
-                "date": "2017-08-21",
-                "authors": [
-                    "Maryann Martone"
-                ],
-                "type": "keynote"
-            },
-            {
-                "title": "Investigator presentation",
-                "abstract":"",
-                "subtitle": "",
-                "start": "14:30",
-                "end": "14:50",
-                "date": "2017-08-21",
-                "authors": [
-                    "Markus Butz-Ostendorf"
-                ],
-                "type": "ip"
-            },
-            {
-                "title": "Keynote: Delivery open data, tools and knowledge on a timeline",
-                "abstract":"",
-                "subtitle": "",
-                "start": "14:50",
-                "end": "15:20",
-                "date": "2017-08-21",
-                "authors": [
-                    "Lydia Ng"
-                ],
-                "type": "keynote"
-            },
-            {
-                "title": "Coffee break",
-                "start": "15:20",
-                "end": "15:50",
-                "date": "2017-08-21",
-                "type": "food"
-            },
-            {
-                "title": "Keynote: FAIR digital research assets: beyond the acronym",
-                "abstract":"",
-                "subtitle": "",
-                "start": "15:50",
-                "end": "16:20",
-                "date": "2017-08-21",
-                "authors": [
-                    "Susanna Sansone"
-                ],
-                "type": "keynote"
-            },
-            {
-                "title": "Investigator presentation",
-                "abstract":"",
-                "subtitle": "",
-                "start": "16:20",
-                "end": "16:40",
-                "date": "2017-08-21",
-                "authors": [
-                    "Anita Bandrowski"
-                ],
-                "type": "ip"
-            }
-        ]
-    },
-    {
-        "title": "Roundtable discussion with speakers from session 7",
-        "abstract":"",
+        "start": "10:30",
+        "end": "11:00",
+        "location": "",
+        "date": "2017-09-14",
+        "authors": [],
+        "type": "food",
+        "abstract": ""
+      },
+      {
+        "title": "The foveal visual representation of the primate superior colliculus",
         "subtitle": "",
-        "start": "16:40",
-        "end": "17:20",
-        "date": "2017-08-21",
+        "start": "11:00",
+        "end": "10:15",
+        "date": "2017-09-14",
         "authors": [
-            ""
+          "Ziad M. Hafed "
         ],
-        "type": "discussion"
-    },
-    {
-        "title": "Congress 2018 presentation",
-        "abstract":"",
+        "type": "talk",
+        "abstract": ""
+      },
+      {
+        "title": "High cellular and columnar variability underlies the absence of early orientation selectivity",
         "subtitle": "",
-        "start": "17:20",
-        "end": "17:35",
-        "date": "2017-08-21",
+        "start": "11:15",
+        "end": "11:30",
+        "date": "2017-09-14",
         "authors": [
-            ""
+          "David E Whitney "
         ],
-        "type": "talk"
-    },
-    {
-        "title": "Closing remarks",
-        "abstract":"",
+        "type": "talk",
+        "abstract": ""
+      },
+      {
+        "title": "Neural circuits for visual processing in thalamus",
         "subtitle": "",
-        "start": "17:35",
-        "end": "17:50",
-        "date": "2017-08-21",
+        "start": "11:30",
+        "end": "12:15",
+        "date": "2017-09-14",
         "authors": [
-            ""
+          "Judith Hirsch "
         ],
-        "type": "talk"
-    },
-    {
-        "title": "Cultural Malaysian performance",
-        "abstract":"",
+        "type": "talk",
+        "abstract": ""
+      },
+      {
+        "title": "Poster Session II",
         "subtitle": "",
-        "start": "17:50",
-        "end": "18:20",
-        "date": "2017-08-21",
-        "authors": [
-            ""
-        ],
-        "type": "talk"
-    },
-    {
-        "title": "Poster session and reception",
-        "abstract":"",
+        "start": "12:15",
+        "end": "15:30",
+        "location": "",
+        "date": "2017-09-14",
+        "authors": [],
+        "type": "poster",
+        "abstract": ""
+      }
+    ]
+  },
+  {
+    "title": "CIRCUIT NEUROSCIENCE & CONNECTOMICS",
+    "subtitle": "",
+    "chair": "Viola Priesemann, Claus C. Hilgetag",
+    "events": [
+      {
+        "title": "Cerebral cortex connectomics",
         "subtitle": "",
-        "start": "18:20",
-        "end": "21:00",
-        "date": "2017-08-21",
+        "start": "15:30",
+        "end": "16:15",
+        "date": "2017-09-14",
         "authors": [
-            ""
+          "Moritz Helmstaedter"
         ],
-        "type": "poster"
-    }
+        "type": "talk",
+        "abstract": ""
+      },
+      {
+        "title": "From connectivity to rate dynamics - successes and failures of the mean-field approach",
+        "subtitle": "",
+        "start": "16:15",
+        "end": "17:00",
+        "date": "2017-09-14",
+        "authors": [
+          "Merav Stern"
+        ],
+        "type": "talk",
+        "abstract": ""
+      },
+      {
+        "title": "Coffee break",
+        "subtitle": "",
+        "start": "17:00",
+        "end": "17:30",
+        "date": "2017-09-14",
+        "authors": [],
+        "type": "food",
+        "abstract": ""
+      },
+      {
+        "title": "Economic and topological trade-offs in the human connectome",
+        "subtitle": "",
+        "start": "17:30",
+        "end": "17:45",
+        "date": "2017-09-14",
+        "authors": [
+          "Leonardo L. Gollo"
+        ],
+        "type": "talk",
+        "abstract": ""
+      },
+      {
+        "title": "Visual exploration and generation of connectivity in neural networks: bridging the gap between empirical data and theoretical model definition",
+        "subtitle": "",
+        "start": "17:45",
+        "end": "18:00",
+        "date": "2017-09-14",
+        "authors": [
+          "Wouter Klijn "
+        ],
+        "type": "talk",
+        "abstract": ""
+      },
+      {
+        "title": "The dynamic architecture of the adult visual cortex: how to keep my brain young?",
+        "subtitle": "",
+        "start": "18:00",
+        "end": "18:45",
+        "date": "2017-09-14",
+        "authors": [
+          "Siegrid Loewel "
+        ],
+        "type": "talk",
+        "abstract": ""
+      },
+      {
+        "title": "Conference Dinner",
+        "subtitle": "",
+        "start": "19:00",
+        "end": "",
+        "location": "Alte Mensa, Wilhelmsplatz 3",
+        "date": "2017-09-14",
+        "authors": [],
+        "type": "food",
+        "abstract": ""
+      }
+    ]
+  },
+  {
+    "title": "PRIMATE COGNITION / COMPUTATIONAL PSYCHOLOGY",
+    "subtitle": "",
+    "chair": "Julia Fischer, Alexander Gail",
+    "events": [
+      {
+        "title": "The anterior cingulate cortex in learning and changing behaviour",
+        "subtitle": "",
+        "start": "09:00",
+        "end": "09:45",
+        "date": "2017-09-15",
+        "authors": [
+          "Matthew Rushworth"
+        ],
+        "type": "talk",
+        "abstract": ""
+      },
+      {
+        "title": "The magical number zero",
+        "subtitle": "",
+        "start": "09:45",
+        "end": "10:30",
+        "date": "2017-09-15",
+        "authors": [
+          "Andreas Nieder"
+        ],
+        "type": "talk",
+        "abstract": ""
+      },
+      {
+        "title": "Coffee Break",
+        "subtitle": "",
+        "start": "10:30",
+        "end": "11:00",
+        "location": "",
+        "date": "2017-09-15",
+        "authors": [],
+        "type": "food",
+        "abstract": ""
+      },
+      {
+        "title": "Bayesian mapping reveals that attention boosts neural responses to predicted and unpredicted stimuli ",
+        "subtitle": "Presentation of the Brains4Brains Award 2017 and Lecture by the Awardee",
+        "start": "11:00",
+        "end": "11:30",
+        "date": "2017-09-14",
+        "authors": [
+          "Elise Genevieve Rowe"
+        ],
+        "type": "talk",
+        "abstract": "",
+        "info": "b4b-award"
+      },
+      {
+        "title": "A state space model for change point detection in multivariate spike count data",
+        "subtitle": "",
+        "start": "11:30",
+        "end": "11:45",
+        "date": "2017-09-15",
+        "authors": [
+          "Hazem Toutounji"
+        ],
+        "type": "talk",
+        "abstract": ""
+      },
+      {
+        "title": "Single trail population activity of the fronto-parietal grasping network evolves through three independent subspaces",
+        "subtitle": "",
+        "start": "11:45",
+        "end": "12:00",
+        "date": "2017-09-15",
+        "authors": [
+          "Benjamin Dann"
+        ],
+        "type": "talk",
+        "abstract": ""
+      },
+      {
+        "title": "Single trail population activity of the fronto-parietal grasping network evolves through three independent subspaces",
+        "subtitle": "",
+        "start": "12:00",
+        "end": "12:45",
+        "date": "2017-09-15",
+        "authors": [
+          "Anne Churchland"
+        ],
+        "type": "talk",
+        "abstract": ""
+      },
+      {
+        "title": "Closing Remarks",
+        "subtitle": "",
+        "start": "12:45",
+        "end": "",
+        "date": "2017-09-15",
+        "authors": [],
+        "type": "talk",
+        "abstract": ""
+      }
+    ]
+  }
 ]
