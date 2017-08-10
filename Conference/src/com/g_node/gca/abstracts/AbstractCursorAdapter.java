@@ -56,29 +56,24 @@ public class AbstractCursorAdapter extends CursorAdapter {
         	
         	switch (groupid) {
 			case 0:
-				type.setText("Demo");
+				type.setText("Talk I");
 				type.setBackgroundColor(Color.parseColor("#33B4E5"));
 				break;
 			
 			case 1:
-				type.setText("Poster");
+				type.setText("Talk C");
 				type.setBackgroundColor(Color.parseColor("#FFC330"));
 				break;
 			
 			case 2:
-				type.setText("Investigator Presentation");
+				type.setText("Poster W");
 				type.setBackgroundColor(Color.parseColor("#445EE9"));
 				break;
 				
 			case 3:
-				type.setText("Demo and Investigator Presentation");
+				type.setText("Poster T");
 				type.setBackgroundColor(Color.parseColor("#0487B9"));
 				break;
-
-			case 4:
-				type.setText("Poster and Investigator Presentation");
-				type.setBackgroundColor(Color.parseColor("#FFB600"));
-				break;	
 			default:
 				break;
 			}
