@@ -7,18 +7,24 @@ University of Goettingen, Central Lecture Hall (ZHG), Platz der Goettinger Siebe
 Alte Mensa, Wilhelmsplatz 3, 37073 Goettingen
 
 ### Opening Hours Registration Desk
-Tuesday,   Sept 12   13:00 - 18:30 h
-Wednesday, Sept 13   08:30 - 18:30 h
-Thursday,  Sept 14   08:30 - 18:30 h
-Friday,    Sept 15   08:30 - 13:00 h
+Tuesday, Sept 12, 13:00 - 18:30 h
+
+Wednesday, Sept 13, 08:30 - 18:30 h
+
+Thursday, Sept 14, 08:30 - 18:30 h
+
+Friday, Sept 15, 08:30 - 13:00 h
 
 ### Opening Hours Exhibition
-Wednesday, Sept 13	 13:30 - 19:00 h
-Thursday,  Sept 14	 09:00 - 19:00 h
-Friday,    Sept 15	 09:00 - 12:30 h
+Wednesday, Sept 13, 13:30 - 19:00 h
+
+Thursday,Sept 14, 09:00 - 19:00 h
+
+Friday,Sept 15, 09:00 - 12:30 h
 ### Poster Sessions
-Session I,  Wednesday, Sept 13        17:15 - 19:45 h
-Session II, Thursday, Sept 14        12:15 - 15:30 h
+Session I,  Wednesday, Sept 13, 17:15 - 19:45 h
+
+Session II, Thursday, Sept 14, 12:15 - 15:30 h
 
 #### Mounting and Dismounting Posters
 Poster boards are numbered according to the abstract numbers in the poster booklet (W indicates the first poster session on Wednesday and T the second poster session on Thursday). Pins for putting up posters will be provided. Posters can be mounted starting at 13:00 h on Wednesday and at 09:00 h on Thursday. Please take your poster down after your session otherwise the conference staff will remove it. Removed posters that are not picked up at the registration desk by Friday, September 15, 13:00 h will be disposed of.
@@ -40,14 +46,63 @@ Please feel free to use eduroam if you wish.
 ### Bernstein Conference Dinner
 The Bernstein Conference dinner will take place at the Alte Mensa, Wilhelmsplatz 3, which is 15 minutes walking distance from the Central Lecture Hall (ZHG). The dinner will start at 19:30 h. You need to register in advance and have a voucher for the dinner. 
 
+### Workshops
+The Bernstein Conference features a series of Satellite Workshops on September 12-13. The goal is to provide a forum for the discussion of topical research questions and challenges.
+Details of the individual workshops are available on the conference webpage (www.bernstein-conference.de) 
+
+Half Day Workshops I : Sept 12, 2017, 13:00-18:30 h
+
+Half Day Workshops II: Sept 13, 2017, 09:00-12:30 h
+
+Full Day Workshops: Sept 12, 13:00-18:30 h and Sept 13, 2017, 09:00-12:30 h
+
+### PhD Symposium
+Venue: The Central Lecture Hall (ZHG), Platz der Goettinger Sieben 5, 
+37073 Goettingen
+
+#### Tuesday, September 12
+
+18:00 PechaKucha presentations Part 1
+
+19:00 Coffee break
+
+19:15 PechaKucha presentations Part 2
+
+20:15 PhD Social (Dinner tba)
+
+#### Friday, September 15
+
+15:15 Tatjana Tchumatchenko, Max Planck Institute for Brain Research, Frankfurt, Germany
+
+15:30 Jonathan Touboul, Mathematical Neuroscience Team (PI), CIRB - Collège de France
+
+16:00 Panel Discussion: Tatjana Tchumatchenko & Jonathan Touboul
+
+18:00 PhD Social (Dinner tba) & Farewell
+
+
+
 ## How to get to 
 ### Main Conference and Workshops
 The Central Lecture Hall (ZHG), Platz der Goettinger Sieben 5, is located at the centre of the university complex on the "Platz der Goettinger Sieben". The lecture hall is near the city centre and only ten minutes walk from the railway station.
+
 ### Public Lecture and Conference Dinner
 Both events will take place at Alte Mensa, Wilhelmsplatz 3. Alte Mensa is a historical building of the University of Goettingen and it is located within the city centre. 
 
+
 ## Special Events
-### The Funder’s Hour
+### Cinema Bernstein
+Tuesday, September 12, 19:00 h 
+Venue: German Primate Center, Kellnerweg 4, Main Lecture Hall 
+with Benjamin Heisenberg (Artist, Author and Filmmaker) 
+
+Schläfer / Sleeper (Austrian-German Film 2005, OMU)
+
+Benjamin Heisenberg’s 2005 film *Schläfer / Sleeper* - giving some of the most accurate cinematic representations of laboratory life - shows actors Bastian Trost, Mehdi Nebbou and Loretta Pflaum in a story of rivalry and treachery set in a triangle of love, science and politics. Conceived in the aftermath of 9/11 and the ensuing security legislation, it paints an intimate picture of an unsettled society undermined by a silent epidemic of suspicion. Johannes, a new assistant at the university, is asked to provide reports on Farid, an Algerian Postdoc - who is suspected of being a sleeper. He refuses, but a seed of doubt has been planted. A fragile friendship overshadowed by competition in the lab and rivalry in their relationship with Beate, a joint friend, eventually leads to betrayal. *"My approach to the story was to interweave the political level in a delicate way with the characters’ private conflicts in order to make the subtle corruption of the characters perceptible"* (B. Heisenberg, 2005).
+
+Schläfer received numerous awards, among them the Midas Prize, EuroPAWS, for the best fiction drama set in science and technology, and was screened at the Cannes Film Festival 2005. The Cinema Bernstein screening of the film, open to the general public, will feature a discussion with artist, author and filmmaker Benjamin Heisenberg. Born 1974 in Tübingen, Heisenberg grew up near Würzburg and studied sculpting (1993-1999) and filmmaking (1997-2005) in Munich. He has directed three feature films, numerous short films and is a founding editor of the filmmagazine Revolver. Most recently he co-designed the public artwork at the Munich Documentation Centre for the History of National Socialism.
+
+### The Funder's Hour
 Wednesday, September 13, 17:30 h 
 Venue: Central Lecture Hall (ZHG), first floor, room 105 
 with Barbara Pauly (HFSP Director of Fellowships) and Jérémie Barral (NYU, Long-Term Fellow)
@@ -77,7 +132,7 @@ Bernstein Coordination Site (BCOS)
 BCOS is the connecting link to partners in science, industry, politics and the general public. It oversees a large information pool and can provide valuable networking resources. 
 BCOS activities are aimed at facilitating scientific encounter, supporting young researchers and public outreach. The SMARTSTART Joint Training Program in Computational Neuroscience, which is coordinated by BCOS, prepares young researchers for a career in computational neuroscience. Information on all services can be gained during poster sessions. 
 
-## German Node of the International Neuroinformatics Coordination Facility (G-Node)
+## German Neuroinformatics Node (G-Node)
 During the conference, the G-Node presents their new data management service GIN. GIN is a free service for managing, sharing, and publishing research data. It features versioned storage, multi-user access for collaboration, and publishing of data using persistent identifiers (DOI). The G-Node invites all conference participants to try out the new service: bring your data, discuss your data management needs, hear about upcoming features. Demos will be given during poster sessions and coffee breaks. Walk-ins are welcome any time during the conference.
 
 ## Bernstein Facility for Simulation and Database Technology (SimLab Neuroscience)
