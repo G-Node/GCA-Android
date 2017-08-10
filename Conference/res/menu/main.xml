@@ -1,25 +1,24 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
-	<item
-        android:id="@+id/genInfo"
-        android:showAsAction="ifRoom"
-        android:title="@string/menu_genInfo_text"/>	
-	<item
+    <item
         android:id="@+id/abstracts_menue"
         android:showAsAction="ifRoom"
         android:title="@string/absract_menue" />
 	<item
+        android:id="@+id/genInfo"
+        android:showAsAction="ifRoom"
+        android:title="@string/menu_genInfo_text"/>	
+    <item
         android:id="@+id/schedule_menue"
         android:showAsAction="ifRoom"
         android:title="@string/schedule_menue" />
 	<item
-        android:id="@+id/favorites_menue"
-        android:showAsAction="ifRoom"
-        android:title="@string/favorites_menue" />
-	
-	<item
         android:id="@+id/map_menue"
         android:showAsAction="ifRoom"
         android:title="@string/map_menue" />
+	<item
+        android:id="@+id/favorites_menue"
+        android:showAsAction="ifRoom"
+        android:title="@string/favorites_menue" />
 	<item
         android:id="@+id/abtApp"
         android:showAsAction="never"
