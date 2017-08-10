@@ -55,11 +55,10 @@
     <string name="welcome">Welcome to the Bernstein Conference 2017</string>
     
     <string-array name="groupid2str">
-        <item>D</item>
-        <item>P</item>
-        <item>IP</item>
-        <item>DI</item>
-        <item>PI</item>
+        <item>I</item>
+        <item>C</item>
+        <item>W</item>
+        <item>T</item>
     </string-array>
         <string name="info">Info</string>
 
