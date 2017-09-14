@@ -466,10 +466,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	}
 
 	public Cursor fetchPreviousAbtractsDetails(int sortId){
-		return getReadableDatabase().rawQuery(SELECT_PREVIOUS_ABSTRACTS, 
+		return getReadableDatabase().rawQuery(SELECT_PREVIOUS_FAV_ABSTRACTS, 
 									 new String[]{String.valueOf(sortId)});
 	}
 	
+	public Cursor fetchNextFavAbtractsDetails(int sortId){
+		return getReadableDatabase().rawQuery(SELECT_NEXT_FAV_ABSTRACTS, 
+									 new String[]{String.valueOf(sortId)});
+	}
+
+	public Cursor fetchPreviousFavAbtractsDetails(int sortId){
+		return getReadableDatabase().rawQuery(SELECT_PREVIOUS_ABSTRACTS, 
+									 new String[]{String.valueOf(sortId)});
+	}	
 	public Cursor fetchAuthorsByAbsId(String abstractUUID){
 		return getReadableDatabase().rawQuery(SELECT_AUTHORS_BY_ABSID, 
 									 new String[]{abstractUUID, abstractUUID});
@@ -705,6 +714,14 @@ final class SqlStrings {
 	public static final String SELECT_NEXT_ABSTRACTS = "SELECT * from abstract_details WHERE SORTID>? ORDER BY SORTID";
 	
 	public static final String SELECT_PREVIOUS_ABSTRACTS = "SELECT * from abstract_details WHERE SORTID<? ORDER BY SORTID";
+
+	public static final String SELECT_NEXT_FAV_ABSTRACTS = 
+			"SELECT * from abstract_details WHERE UUID IN " +
+			"(SELECT ABSTRACT_UUID FROM ABSTRACT_FAVORITES) AND SORTID>? ORDER BY SORTID";
+	
+	public static final String SELECT_PREVIOUS_FAV_ABSTRACTS = 
+			"SELECT * from abstract_details WHERE UUID IN " +
+			"(SELECT ABSTRACT_UUID FROM ABSTRACT_FAVORITES) AND SORTID<? ORDER BY SORTID";
 	
 	public static final String SELECT_AUTHORS_BY_ABSID = 
 			"SELECT DISTINCT AUTHORS_DETAILS.AUTHOR_FIRST_NAME, " +

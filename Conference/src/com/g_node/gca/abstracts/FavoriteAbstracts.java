@@ -127,6 +127,7 @@ public class FavoriteAbstracts extends Activity {
                         in.putExtra("email", email);
                         in.putExtra("refs", refs);
                         in.putExtra("acknowledgements", acknowledgements);
+                        in.putExtra("favlist", true);
                         startActivity(in);
                     } catch (Exception e) {
                         e.printStackTrace();
