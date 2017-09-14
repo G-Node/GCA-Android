@@ -30,6 +30,7 @@ public class AbstractContent extends FragmentActivity implements
 	private String uuid;
 	
 	private boolean isFav;
+	private boolean fromFavList;
 	private MenuItem starG;
 	
 	private ViewPager viewPager;
@@ -49,7 +50,8 @@ public class AbstractContent extends FragmentActivity implements
         
         Bundle getData = getIntent().getExtras();		
 		uuid = getData.getString("value");
-        
+		fromFavList = getData.getBoolean("favlist");
+		
         // Initilization
  		viewPager = (ViewPager) findViewById(R.id.pager);
  		actionBar = getActionBar();
@@ -151,13 +153,20 @@ public class AbstractContent extends FragmentActivity implements
         	
         case R.id.next:
         {
-            Cursor abstractCursor = mDbHelper.fetchAbtractDetailsByUUID(uuid);
+        	Cursor abstractCursor = mDbHelper.fetchAbtractDetailsByUUID(uuid);
             abstractCursor.moveToFirst();
             int currentSORTID = abstractCursor.getInt(abstractCursor
             		.getColumnIndex("SORTID"));
             abstractCursor.close();
-            Cursor nextAbstracts = mDbHelper.fetchNextAbtractsDetails(
-            								 currentSORTID);
+            Cursor nextAbstracts ; 
+            if (fromFavList){
+            	nextAbstracts = mDbHelper.fetchNextFavAbtractsDetails(
+						 currentSORTID);
+            } else {
+            	nextAbstracts = mDbHelper.fetchNextAbtractsDetails(
+						 currentSORTID);	
+            }
+            
             if (nextAbstracts.getCount()>0) {
             	nextAbstracts.moveToFirst();
             	uuid = nextAbstracts.getString(
@@ -181,8 +190,15 @@ public class AbstractContent extends FragmentActivity implements
             int currentSORTID = abstractCursor.getInt(abstractCursor
             		.getColumnIndex("SORTID"));
             abstractCursor.close();
-            Cursor prevAbstracts = mDbHelper.fetchPreviousAbtractsDetails(
-            								 currentSORTID);
+            Cursor prevAbstracts;
+            if (fromFavList){
+            	prevAbstracts = mDbHelper.fetchPreviousFavAbtractsDetails(
+						 currentSORTID);
+            } else {
+            	prevAbstracts = mDbHelper.fetchPreviousAbtractsDetails(
+						 currentSORTID);	
+            }
+            
             if (prevAbstracts.getCount()>0) {
             	prevAbstracts.moveToLast();
             	uuid = prevAbstracts.getString(
